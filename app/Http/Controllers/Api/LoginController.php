@@ -21,7 +21,7 @@ class LoginController extends Controller
             ]);
                     $authKey = 'jayga_user';
                     $authToken = Hash::make($authKey);
-                    if($validated){
+                   
                     $user = User::where('phone', $request->phone)->get();
                     
                     
@@ -50,9 +50,7 @@ class LoginController extends Controller
                             ], 404);
                         }
     
-                    }else{
-                        return $validated->errors();
-                    }
+                    
            
         }
     }
@@ -66,14 +64,13 @@ class LoginController extends Controller
            ]);
 
            
-           if($validated){
 
-            $user = User::where('email', $request->input('user_email'))->get();
+            $user = User::where('email', $request->input('user_email'))->orWhere('phone', $request->input('phone'))->get();
             if(count($user)>0){
 
                 return response()->json([
                     'status' => 403,
-                    'messege' => 'Email in use. Please login instead'
+                    'messege' => 'Email or phone in use. Please login instead'
                 ], 403);
             }else{
 
@@ -101,6 +98,6 @@ class LoginController extends Controller
             
             
             
-           }
+           
     }
 }
