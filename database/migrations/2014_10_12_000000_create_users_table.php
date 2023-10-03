@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('phone');
-            $table->string('user_nid')->nullable();
+            $table->bigInteger('user_nid')->nullable();
             $table->string('user_dob');
             $table->string('user_address')->nullable();
             $table->boolean('is_lister')->default(false);
-            $table->integer('user_long')->nullable();
-            $table->integer('user_lat')->nullable();
+            $table->float('user_long')->nullable();
+            $table->float('user_lat')->nullable();
             $table->integer('platform_tag')->nullable();
             $table->string('FCM_token')->nullable();
            
