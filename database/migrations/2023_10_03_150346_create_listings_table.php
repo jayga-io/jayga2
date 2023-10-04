@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('listings', function (Blueprint $table) {
             $table->id('listing_id');
            // $table->dropForeign('lister_id');
-            $table->bigInteger('lister_id')->unsigned();
+            $table->bigInteger('lister_id')->unsigned()->nullable();
             $table->foreign('lister_id')->references('lister_id')->on('lister_users')->onDelete('cascade');
-            $table->string('lister_name');
-            $table->string('nid_number');
+            $table->string('lister_name')->nullable();
+            $table->string('nid_number')->nullable();
             $table->bigInteger('guest_number');
             $table->bigInteger('bed_number');
             $table->bigInteger('bathroom_number');
@@ -28,16 +28,20 @@ return new class extends Migration
             $table->string('district');
             $table->string('town');
             $table->bigInteger('zip_code');
-            $table->bigInteger('allow_short_stay');
-            $table->bigInteger('describe_peaceful');
-            $table->bigInteger('describe_unique');
-            $table->bigInteger('describe_familyfriendly');
-            $table->bigInteger('describe_stylish');
-            $table->bigInteger('describe_central');
-            $table->bigInteger('describe_spacious');
+            $table->boolean('allow_short_stay');
+            $table->boolean('describe_peaceful');
+            $table->boolean('describe_unique');
+            $table->boolean('describe_familyfriendly');
+            $table->boolean('describe_stylish');
+            $table->boolean('describe_central');
+            $table->boolean('describe_spacious');
+            $table->boolean('private_bathroom');
+            $table->boolean('door_lock');
+            $table->boolean('breakfast_included');
+            $table->boolean('unknown_guest_entry');
             $table->string('listing_type');
-            $table->integer('lat');
-            $table->integer('long');
+            $table->integer('lat')->nullable();
+            $table->integer('long')->nullable();
             $table->timestamps();
         });
     }
