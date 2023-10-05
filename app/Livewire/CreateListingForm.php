@@ -46,10 +46,10 @@ class CreateListingForm extends Component
 
    
 
-    public $allow_short_stay = false;
+    public $allow_short_stay=true ;
 
    // #[Rule('required')]
-    public $describe_peaceful =false;
+    public $describe_peaceful =true;
 
    // #[Rule('required')]
     public $describe_unique =false;

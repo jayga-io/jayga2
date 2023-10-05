@@ -256,13 +256,254 @@
 				<div class="page-header">
 					<div class="row align-items-center">
 						<div class="col">
-							<h3 class="page-title mt-5">Add Lister</h3> </div>
+							<h3 class="page-title mt-5">Add Listing</h3> </div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-12">
-						<!--livewire form -->
-						<livewire:create-listing-form />
+						<form action="{{ route('create_listing') }}" method="post" enctype="multipart/form-data">
+							@csrf
+							<div class="row formtype">
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Lister ID and Name</label>
+										<select class="form-control" id="lister_id" name="lister_id" >
+											<option selected="" value="">Select Lister ID and Name</option>
+						
+										</select>
+									</div>
+								</div>
+						
+								<!-- Hidden input fields to store the selected lister_id and lister_name -->
+								<input type="hidden" id="selected_lister_id" name="selected_lister_id" value="">
+								<input type="hidden" id="selected_lister_name" name="selected_lister_name" value="">
+						
+						
+						
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Guest Number Allowed</label>
+										<input class="form-control" name="guest_num" type="number">
+									</div>
+								</div>
+						
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>How many Bedrooms?</label>
+										<input class="form-control" name="bedroom_num" type="number">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>How many Bathrooms?</label>
+										<input class="form-control" name="bathroom_num" type="number">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Give your Listing a title</label>
+										<input class="form-control" name="listing_title" type="text">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Describe Listing?</label>
+										<!-- <input class="form-control" name="name" type="text" >  -->
+										<textarea class="form-control" rows="5" name="describe_listing"></textarea>
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>What is the price set for a day stay?</label>
+										<input class="form-control" name="price" type="number">
+									</div>
+								</div>
+						
+								<!-- <div class="col-md-4">
+															<div class="form-group">
+																<label>What is the price for short stay?</label>
+																<input class="form-control" name="name" type="text" > </div>
+														</div> -->
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>What is the listing adress?</label>
+										<input class="form-control" name="listing_address" type="text">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Listing zip code?</label>
+										<input class="form-control" name="zip_code" type="text">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Which district is it in?</label>
+										<input class="form-control" name="district" type="text">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Which town is it in?</label>
+										<input class="form-control" name="town" type="text">
+									</div>
+								</div>
+						
+						
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Would you allow short stay?</label>
+										<br>
+										<input type="hidden" name="allow_short_stay"  value="0">
+										<input type="checkbox" name="allow_short_stay" value="1" data-toggle="toggle"
+											data-onstyle="success" data-offstyle="danger">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Is it peaceful?</label>
+										<br>
+										<input type="hidden" name="peaceful" value="0" >
+										<input type="checkbox" name="peaceful" value=1 data-toggle="toggle"
+											data-onstyle="success" data-offstyle="danger">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Is it unique?</label>
+										<br>
+										<input type="hidden" name="unique" value="0" >
+										<input type="checkbox" name="unique" value=1 checked data-toggle="toggle"
+											data-onstyle="success" data-offstyle="danger">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Is it family friendly?</label>
+										<br>
+										<input type="hidden" name="family_friendly" value="0" >
+										<input type="checkbox" name="family_friendly" value=1 checked data-toggle="toggle"
+											data-onstyle="success" data-offstyle="danger">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Is it stylish?</label>
+										<br>
+										<input type="hidden" name="stylish" value="0" >
+										<input type="checkbox" name="stylish" value=1 checked data-toggle="toggle"
+											data-onstyle="success" data-offstyle="danger">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Is it central?</label>
+										<br>
+										<input type="hidden" name="central" value="0" >
+										<input type="checkbox" name="central" value=1 checked data-toggle="toggle"
+											data-onstyle="success" data-offstyle="danger">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Is it spacious?</label>
+										<br>
+										<input type="hidden" name="spacious" value="0" >
+										<input type="checkbox" name="spacious" value=1  data-toggle="toggle"
+											data-onstyle="success" data-offstyle="danger">
+									</div>
+								</div>
+						
+						
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Does it have a private bathroom?</label>
+										<br>
+										<input type="hidden" name="private_bathroom" value="0" >
+										<input type="checkbox" name="private_bathroom" value=1  data-toggle="toggle"
+											data-onstyle="success" data-offstyle="danger">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Is breakfast available?</label>
+										<br>
+										<input type="hidden" name="breakfast_included" value="0" >
+										<input type="checkbox" name="breakfast_included" value=1 data-toggle="toggle"
+											data-onstyle="success" data-offstyle="danger">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Is room lock available?</label>
+										<br>
+										<input type="hidden" name="door_lock" value="0" >
+										<input type="checkbox" name="door_lock" value=1 data-toggle="toggle" data-onstyle="success"
+											data-offstyle="danger">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Will there be anyone else in the house?</label>
+										<input type="hidden" name="unknown_guest_entry" value="0" >
+										<br><input type="checkbox" name="unknown_guest_entry" value=1  data-toggle="toggle"
+											data-onstyle="success" data-offstyle="danger">
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Listing Type</label>
+										<select class="form-control" name="listing_type">
+											<option>Select</option>
+											<option>Room</option>
+											<option>Appartment</option>
+											<option>Hotel</option>
+											<!-- <option>King</option>
+												<option>Suite</option>
+												<option>Villa</option> -->
+										</select>
+						
+									</div>
+								</div>
+						
+								<div class="col-md-4">
+									<div class="form-group">
+										<label> Upload Listing Pictures</label>
+										<div class="custom-file mb-3">
+											<!-- <input type="file" class="custom-file-input" name="user_pic[]" multiple onchange="displayFileNames(event)">
+																		  <div id="file-names"></div> -->
+											<input type="file" name="listing_pictures[]" class="form-control input-lg" multiple>
+											<!-- <label class="custom-file-label" for="customFile">Choose file</label> -->
+										</div>
+									</div>
+								</div>
+						
+							</div>
+							<button type="submit" class="btn btn-primary buttonedit1">Create Listing</button>
+						</form>
 					</div>
 				</div>
 			</div>

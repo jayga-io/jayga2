@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,5 @@ Route::prefix('admin')->group(function(){
         return view('admin.add-listing');
     });
 });
+
+Route::post('/create/listing', [ListingController::class, 'create'])->name('create_listing');

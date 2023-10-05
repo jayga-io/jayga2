@@ -1,7 +1,7 @@
 <div>
     <form wire:submit="save">
         <div class="row formtype">
-    <!--
+    
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Lister ID and Name</label>
@@ -17,7 +17,7 @@
             <input type="hidden" id="selected_lister_name" name="selected_lister_name" value="">
     
     
-        -->
+        
     
             <div class="col-md-4">
                 <div class="form-group">
@@ -104,8 +104,9 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Would you allow short stay?</label>
-                    <br><input type="checkbox"  wire:model="allow_short_stay"  data-toggle="toggle"
+                    <br><input type="checkbox" class="form-control" wire:model="allow_short_stay"  data-toggle="toggle"
                         data-onstyle="success" data-offstyle="danger">
+                        allow_short_stay : {{ var_export($allow_short_stay) }}
                 </div>
             </div>
     
@@ -136,7 +137,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Is it stylish?</label>
-                    <br><input type="checkbox" wire:model="describe_stylish"   data-toggle="toggle"
+                    <br><input type="checkbox" wire:model="describe_stylish" data-toggle="toggle"
                         data-onstyle="success" data-offstyle="danger">
                 </div>
             </div>
