@@ -126,7 +126,7 @@
 								<li><a href="edit-user.php"> Edit Users </a></li>
 								<li><a href="edit-listing.php"> Edit Listing </a></li>
 								<li><a href="add-user.php"> Add Users </a></li>
-								<li><a href="/add-listing"> Add Listing </a></li>
+								<li><a href="/admin/add-listing"> Add Listing </a></li>
 							</ul>
 						</li>
 						<li class="submenu"> <a href="#"><i class="fas fa-key"></i> <span> Stays </span> <span class="menu-arrow"></span></a>

@@ -10,6 +10,8 @@ class Listing extends Model
     use HasFactory;
 
     protected $fillable = [
+            'lister_id',
+            'lister_name',
             'guest_number',
             'bed_number' ,
             'bathroom_number',
@@ -33,4 +35,6 @@ class Listing extends Model
             'unknown_guest_entry' ,
             'listing_type',
     ];
+
+    
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('listing_id');
            // $table->dropForeign('lister_id');
             $table->bigInteger('lister_id')->unsigned()->nullable();
-            $table->foreign('lister_id')->references('lister_id')->on('lister_users')->onDelete('cascade');
+            $table->foreign('lister_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('lister_name')->nullable();
             $table->string('nid_number')->nullable();
             $table->bigInteger('guest_number');

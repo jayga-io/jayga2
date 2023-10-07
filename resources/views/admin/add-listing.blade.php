@@ -123,7 +123,7 @@
 								<li><a href="edit-user.php"> Edit Users </a></li>
 								<li><a href="edit-listing.php"> Edit Listing </a></li>
 								<li><a href="add-user.php"> Add Users </a></li>
-								<li><a href="add-listing.php"> Add Listing </a></li>
+								<li><a href="/admin/add-listing"> Add Listing </a></li>
 							</ul>
 						</li>
 						<li class="submenu"> <a href="#"><i class="fas fa-key"></i> <span> Stays </span> <span class="menu-arrow"></span></a>
@@ -268,15 +268,24 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Lister ID and Name</label>
-										<select class="form-control" id="lister_id" name="lister_id" >
-											<option selected="" value="">Select Lister ID and Name</option>
+										<select class="form-control" selected id="lister_id" name="lister_id" >
+											<option value="none" selected disabled hidden>Select an Option</option> 
+											
+											@if (count($users)>0)
+												@foreach ($users as $item)
+													<option value="{{$item->id}}, {{$item->name}}" >{{$item->name}}</option>
+												@endforeach
+											@else
+												<option value="none ">No User found</option>
+											@endif
+											
 						
 										</select>
 									</div>
 								</div>
 						
 								<!-- Hidden input fields to store the selected lister_id and lister_name -->
-								<input type="hidden" id="selected_lister_id" name="selected_lister_id" value="">
+								<input type="hidden" id="selected_lister_id" name="lister_id" value="">
 								<input type="hidden" id="selected_lister_name" name="selected_lister_name" value="">
 						
 						

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListingController;
-
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,13 +18,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', function(){
-    return view('admin.dashboard');
-});
+
 
 Route::prefix('admin')->group(function(){
+    Route::get('/', function(){
+        return view('admin.dashboard');
+    });
     Route::get('/add-listing', function(){
-        return view('admin.add-listing');
+        $user = User::all();
+     //   dd($user);
+        return view('admin.add-listing')->with('users', $user);
     });
 });
 
