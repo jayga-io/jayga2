@@ -9,6 +9,7 @@ use App\Models\UserNid;
 use App\Models\ListingGuestAmenities;
 use App\Models\ListingDescribe;
 use App\Models\ListingRestrictions;
+use App\Models\ListingImages;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Support\Facades\Storage;
 
