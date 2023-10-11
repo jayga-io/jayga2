@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ListingImages;
 
 class Listing extends Model
 {
@@ -12,9 +13,9 @@ class Listing extends Model
     protected $fillable = [
             'lister_id',
             'lister_name',
-            'guest_number',
-            'bed_number' ,
-            'bathroom_number',
+            'guest_num',
+            'bed_num' ,
+            'bathroom_num',
             'listing_title' ,
             'listing_description' ,
             'full_day_price_set_by_user', 
@@ -36,5 +37,7 @@ class Listing extends Model
             'listing_type',
     ];
 
-    
+    public function images(){
+        return $this->hasMany(ListingImages::class, 'listing_id', 'listing_id');
+    }
 }

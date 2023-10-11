@@ -18,9 +18,9 @@ return new class extends Migration
             $table->foreign('lister_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('lister_name')->nullable();
             $table->string('nid_number')->nullable();
-            $table->bigInteger('guest_number');
-            $table->bigInteger('bed_number');
-            $table->bigInteger('bathroom_number');
+            $table->bigInteger('guest_num');
+            $table->bigInteger('bed_num');
+            $table->bigInteger('bathroom_num');
             $table->string('listing_title');
             $table->string('listing_description');
             $table->bigInteger('full_day_price_set_by_user');
@@ -42,6 +42,7 @@ return new class extends Migration
             $table->string('listing_type');
             $table->integer('lat')->nullable();
             $table->integer('long')->nullable();
+            $table->boolean('isApproved')->default(false);
             $table->timestamps();
         });
     }

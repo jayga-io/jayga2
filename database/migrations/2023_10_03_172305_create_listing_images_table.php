@@ -19,8 +19,7 @@ return new class extends Migration
             $table->foreign('lister_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('listing_file_name');
             $table->string('listing_targetlocation');
-            $table->string('flags');
-            $table->string('fahim');
+           
             $table->timestamps();
         });
     }

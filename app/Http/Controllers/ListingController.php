@@ -24,8 +24,11 @@ class ListingController extends Controller
     public function create(Request $request)
     {
       if($request->method() == 'POST'){
+       // dd($request->all());
        $lister = $request->input('lister_id');
-       
+       if($lister === null){
+        return redirect()->back()->with('errors', 'No Lister found');
+       }else{
         $data = explode(',', $lister);
         $lister_name = $data[1];
         $lister_id = $data[0];
@@ -33,64 +36,61 @@ class ListingController extends Controller
         //check if exists
         $listing_user = Listing::where('lister_id', $lister_id)->get();
         if(count($listing_user)>0){
-            return redirect()->back();
+            return redirect()->back()->with('errors', 'A Lister can only create one listing');
         }else{
-            Listing::create([
-                'lister_id' => $lister_id,
-                'lister_name' => $lister_name,
-                'guest_number' => $request->input('guest_num'),
-                'bed_number' => $request->input('bedroom_num'),
-                'bathroom_number' => $request->input('bathroom_num'),
-                'listing_title' => $request->input('listing_title'),
-                'listing_description' => $request->input('describe_listing'),
-                'full_day_price_set_by_user' => $request->input('price'),
-                'listing_address' => $request->input('listing_address'),
-                'zip_code' => $request->input('zip_code'),
-                'district' => $request->input('district'),
-                'town' => $request->input('town'),
-                'allow_short_stay' => $request->input('allow_short_stay'),
-                'describe_peaceful' => $request->input('peaceful'),
-                'describe_unique' => $request->input('unique'),
-                'describe_familyfriendly' => $request->input('family_friendly'),
-                'describe_stylish' => $request->input('stylish'),
-                'describe_central' => $request->input('central'),
-                'describe_spacious' => $request->input('spacious'),
-                'private_bathroom' => $request->input('private_bathroom'),
-                'door_lock' => $request->input('door_lock'),
-                'breakfast_included' => $request->input('breakfast_included'),
-                'unknown_guest_entry' => $request->input('unknown_guest_entry'),
-                'listing_type' => $request->input('listing_type'),
-            ]);
+            
+                    Listing::create([
+                    'lister_id' => $lister_id,
+                    'lister_name' => $lister_name,
+                    'guest_num' => $request->input('guest_num'),
+                    'bed_num' => $request->input('bedroom_num'),
+                    'bathroom_num' => $request->input('bathroom_num'),
+                    'listing_title' => $request->input('listing_title'),
+                    'listing_description' => $request->input('describe_listing'),
+                    'full_day_price_set_by_user' => $request->input('price'),
+                    'listing_address' => $request->input('listing_address'),
+                    'zip_code' => $request->input('zip_code'),
+                    'district' => $request->input('district'),
+                    'town' => $request->input('town'),
+                    'allow_short_stay' => $request->input('allow_short_stay'),
+                    'describe_peaceful' => $request->input('peaceful'),
+                    'describe_unique' => $request->input('unique'),
+                    'describe_familyfriendly' => $request->input('family_friendly'),
+                    'describe_stylish' => $request->input('stylish'),
+                    'describe_central' => $request->input('central'),
+                    'describe_spacious' => $request->input('spacious'),
+                    'private_bathroom' => $request->input('private_bathroom'),
+                    'door_lock' => $request->input('door_lock'),
+                    'breakfast_included' => $request->input('breakfast_included'),
+                    'unknown_guest_entry' => $request->input('unknown_guest_entry'),
+                    'listing_type' => $request->input('listing_type'),
+                ]);
 
-            $listing_image = Listing::where('lister_id', $lister_id)->get();
-            if($files = $request->file('listing_pictures')){
-                
-                    foreach($files as $file){
-                        $path = $file->store('/public/listing_pictures');
-                        ListingImages::create([
-                            'lister_id' => $lister_id,
-                            'listing_id' => $listing_image[0]->listing_id,
-                            'listing_file_name' => 'abc',
-                            'listing_targetlocation' =>'joha',
-                        ]);
-
-                        return redirect('/admin');
-                    }
+                $listing_image = Listing::where('lister_id', $lister_id)->get();
+                if($files = $request->file('listing_pictures')){
                     
-                }else{
-                    return redirect()->back();
-                }
+                        foreach($files as $file){
+                            $path = $file->store('/public/listing_pictures');
+                            ListingImages::create([
+                                'lister_id' => $lister_id,
+                                'listing_id' => $listing_image[0]->listing_id,
+                                'listing_file_name' => $file->hashName(),
+                                'listing_targetlocation' => $path,
+                            ]);
 
-        }
-      
+                           
+                        }
+                        return redirect(route('addlisting'))->with('success', 'Listing Created and Submitted for review');
+                        
+                    }else{
+                        return redirect()->back();
+                    }
+            
+            }
 
-       
-      
-      
-        
-
-       return view('admin.dashboard');
-      } 
+    }    
+                return view('admin.dashboard');
+        } 
     }
 
     /**
@@ -128,8 +128,18 @@ class ListingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Listing $listing)
+    public function destroy(Listing $listing, $id)
     {
-        //
+        Listing::where('listing_id', $id)->delete();
+        return redirect()->back('deleted', 'Listing Declined');
     }
+
+    public function approve(Request $request, $id){
+        Listing::where('listing_id', $id)->update([
+            'isApproved' => true
+        ]);
+        return redirect()->back()->with('success', 'Listing Approved');
+    }
+
+   
 }

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\ListingController;
 
 
 /*
@@ -22,3 +23,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/signin', [LoginController::class, 'signin']);
 Route::post('/register', [LoginController::class, 'register']);
+
+Route::get('/listings' , [ListingController::class, 'listings']);
+
+Route::get('/filter-listings', [ListingController::class, 'filter']);
+
+Route::post('/user-nid/upload', [ListingController::class, 'nid']);
+
+Route::post('/add/listing', [ListingController::class, 'create']);
+
+Route::post('/add/listing-images', [ListingController::class, 'images']);

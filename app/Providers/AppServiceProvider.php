@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use App\Models\Listing;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $pending_count = Listing::where('isApproved', false)->get();
+        
+        view()->share('pending_count', $pending_count->count());
+        view()->share('time', $pending_count);
     }
 }

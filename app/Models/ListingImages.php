@@ -14,5 +14,9 @@ class ListingImages extends Model
         'lister_id',
         'listing_file_name',
         'listing_targetlocation',
-];
+    ];
+
+    public function listings(){
+        return $this->belongsTo(Listing::class, 'listing_id');
+    }
 }
