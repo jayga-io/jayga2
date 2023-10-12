@@ -54,7 +54,7 @@ class LoginController extends Controller
                                 'user' => [
                                     'user_id' => $user[0]->id,
                                     'phone' => $user[0]->phone,
-                                    'FCM_token' => $user[0]->FCM_token
+                                    'authToken' => $authToken
                                 ]
                                 
                             ]);

@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('name')->nullable();
+            $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('phone');
             $table->bigInteger('user_nid')->nullable();
-            $table->string('user_dob');
+            $table->string('user_dob')->nullable();
             $table->string('user_address')->nullable();
             $table->boolean('is_lister')->default(false);
             $table->float('user_long')->nullable();
