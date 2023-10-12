@@ -19,7 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/link/storage', function(){
+    Artisan::call('storage:link');
+});
 
 Route::prefix('admin')->group(function(){
     Route::get('/', function(){

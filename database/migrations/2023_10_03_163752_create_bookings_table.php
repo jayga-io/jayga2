@@ -19,7 +19,7 @@ return new class extends Migration
             $table->bigInteger('listing_id')->unsigned();
             $table->foreign('listing_id')->references('listing_id')->on('listings')->onDelete('cascade');
             $table->bigInteger('lister_id')->unsigned();
-            $table->foreign('lister_id')->references('lister_id')->on('lister_users')->onDelete('cascade');
+            $table->foreign('lister_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('short_stay_flag');
             $table->bigInteger('time_id');
             $table->bigInteger('all_day_flag');
