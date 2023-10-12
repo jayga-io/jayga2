@@ -15,7 +15,7 @@ class LoginController extends Controller
            
             $validated = $request->validate([
              'phone' => 'required',
-             'is_lister' => 'required|boolean',
+             'is_lister' => 'boolean',
             
              
             ]);
@@ -28,7 +28,7 @@ class LoginController extends Controller
                     
                         if(count($user)>0){
 
-                            User::where('id', $user[0]->id)->update(['access_token' => $authToken, 'FCM_token' => $request->input('FCM_token')]);
+                            User::where('id', $user[0]->id)->update([ 'access_token' => $authToken, 'FCM_token' => $request->input('FCM_token')]);
                             
                             return response()->json([
                                 'status' => '200',
@@ -43,11 +43,21 @@ class LoginController extends Controller
                             ]);
     
                         }else{
+                            User::create([
+                                'phone' => $request->input('phone'),
+                                'FCM_token' => $request->input('FCM_token'),
+                            ]);
+                            $user = User::where('phone', $request->input('phone'))->get();
                             return response()->json([
-                                'status' => '404',
-                                'messege' => 'User not found',
+                                'status' => '200',
+                                'messege' => 'New user registered successfully',
+                                'user' => [
+                                    'user_id' => $user[0]->id,
+                                    'phone' => $user[0]->phone,
+                                    'FCM_token' => $user[0]->FCM_token
+                                ]
                                 
-                            ], 404);
+                            ]);
                         }
     
                     
@@ -65,13 +75,17 @@ class LoginController extends Controller
 
            
 
-            $user = User::where('email', $request->input('user_email'))->orWhere('phone', $request->input('phone'))->get();
+            $user = User::where('access_token', $request->input('acc_token'))->get();
             if(count($user)>0){
-
+                User::where('id', $user[0]->id)->update([
+                    'name' => $request->input('user_name'),
+                    'email' => $request->input('user_email'),
+                    'user_dob' => $request->input('user_dob'),
+                ]);
                 return response()->json([
-                    'status' => 403,
-                    'messege' => 'Email or phone in use. Please login instead'
-                ], 403);
+                    'status' => 200,
+                    'messege' => 'user info updated'
+                ]);
             }else{
 
                User::create([
