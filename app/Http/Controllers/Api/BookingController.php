@@ -21,7 +21,7 @@ class BookingController extends Controller
 
         if($validated){
             Booking::create([
-                ''
+                'user_id' => ''
             ]);
         }
     }
