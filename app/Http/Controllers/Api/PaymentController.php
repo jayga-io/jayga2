@@ -9,6 +9,7 @@ class PaymentController extends Controller
 {
     public function pay(Request $request){
         $validated = $request->validate([
+            'booking_id' => 'required',
             'total_amount' => 'required',
             'tran_id' => 'required',
             'cus_email' => 'required',
@@ -16,6 +17,7 @@ class PaymentController extends Controller
            
         ]);
         if($validated){
+            $book_id = $request->input('booking_id');
                 $data = [
                 'store_id' => 'jayga65056056e685d',
                 'store_passwd' => 'jayga65056056e685d@ssl',
@@ -51,7 +53,12 @@ class PaymentController extends Controller
 
                 // do anything you want with your response
                // var_dump($response);
-               return $response;
+               return response()->json([
+                'status' => 200,
+                'booking_id' => $book_id,
+                'response' => $response
+               ]);
+
         }else{
             return $validated->errors();
         }
