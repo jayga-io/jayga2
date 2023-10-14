@@ -28,10 +28,11 @@ class BookingController extends Controller
                 'date_exit' => $request->input('date_exit'),
                 'short_stay_flag' => $request->input('short_stay_flag'),
                 'time_id' => $request->input('time_id'),
+                'pay_amount' => $request->input('pay_amount'),
                 'all_day_flag' => $request->input('all_day_flag'),
             ]);
 
-            $booked = Booking::where('listing_id', $request->input('listing_id'))->get();
+            $booked = Booking::where('user_id', $request->input('user_id'))->get();
             return response()->json([
                 'status' => 200,
                 'messege' => 'Booking created successfully',
