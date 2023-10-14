@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\ListingController;
 use App\Http\Controllers\Api\BookingController;
+use App\Http\Controllers\Api\PaymentController;
 
 
 /*
@@ -36,3 +37,5 @@ Route::post('/add/listing', [ListingController::class, 'create']);
 Route::post('/add/listing-images', [ListingController::class, 'images']);
 
 Route::post('/add/booking', [BookingController::class, 'book']);
+
+Route::post('/payment', [PaymentController::class, 'pay']);

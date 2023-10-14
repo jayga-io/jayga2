@@ -22,6 +22,7 @@ class BookingController extends Controller
         if($validated){
             Booking::create([
                 'user_id' => $request->input('user_id'),
+                'booking_order_name' => $request->input('transaction_id'),
                 'lister_id' => $request->input('lister_id'),
                 'listing_id' => $request->input('listing_id'),
                 'date_enter' => $request->input('date_enter'),
@@ -39,6 +40,7 @@ class BookingController extends Controller
                 'booking_details' => [
                     'id' => $booked[0]->booking_id,
                     'pay_amount' => $booked[0]->pay_amount,
+                    'transaction_id' => $booked[0]->booking_order_name
                 ]
             ]);
         }else{
