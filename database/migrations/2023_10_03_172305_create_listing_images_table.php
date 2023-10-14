@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('listing_id')->references('listing_id')->on('listings')->onDelete('cascade');
             $table->bigInteger('lister_id')->unsigned();
             $table->foreign('lister_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('listing_file_name');
+            $table->string('listing_filename');
             $table->string('listing_targetlocation');
            
             $table->timestamps();

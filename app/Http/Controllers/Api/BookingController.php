@@ -30,9 +30,15 @@ class BookingController extends Controller
                 'time_id' => $request->input('time_id'),
                 'all_day_flag' => $request->input('all_day_flag'),
             ]);
+
+            $booked = Booking::where('listing_id', $request->input('listing_id'))->get();
             return response()->json([
                 'status' => 200,
-                'messege' => 'Booking created successfully'
+                'messege' => 'Booking created successfully',
+                'booking_details' => [
+                    'id' => $booked[0]->booking_id,
+                    'pay_amount' => $booked[0]->pay_amount,
+                ]
             ]);
         }else{
            return $validated->errors();
