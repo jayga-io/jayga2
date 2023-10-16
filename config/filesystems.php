@@ -38,8 +38,8 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'root' => '/home/jaygabdc/new.jayga.xyz',
+            'url' => env('APP_URL').'/public',
             'visibility' => 'public',
             'throw' => false,
         ],
