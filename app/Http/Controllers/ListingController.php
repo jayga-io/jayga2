@@ -70,7 +70,7 @@ class ListingController extends Controller
                 if($files = $request->file('listing_pictures')){
                     
                         foreach($files as $file){
-                            $path = $file->store('/public/listing_pictures');
+                            $path = $file->store('listings');
                             ListingImages::create([
                                 'lister_id' => $lister_id,
                                 'listing_id' => $listing_image[0]->listing_id,
