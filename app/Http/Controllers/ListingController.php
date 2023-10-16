@@ -131,7 +131,7 @@ class ListingController extends Controller
     public function destroy(Listing $listing, $id)
     {
         Listing::where('listing_id', $id)->delete();
-        return redirect()->back('deleted', 'Listing Declined');
+        return redirect()->back()->with('deleted', 'Listing Declined');
     }
 
     public function approve(Request $request, $id){
