@@ -39,7 +39,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => '/home/jaygabdc/new.jayga.xyz/',
-            'url' => env('APP_URL'),
+            'url' => env('APP_URL').'/uploads',
             'visibility' => 'public',
             'throw' => false,
         ],
