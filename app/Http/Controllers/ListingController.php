@@ -74,7 +74,7 @@ class ListingController extends Controller
                             ListingImages::create([
                                 'lister_id' => $lister_id,
                                 'listing_id' => $listing_image[0]->listing_id,
-                                'listing_file_name' => $file->hashName(),
+                                'listing_filename' => $file->hashName(),
                                 'listing_targetlocation' => $path,
                             ]);
 
