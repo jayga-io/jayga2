@@ -27,6 +27,7 @@ class User extends Authenticatable
         'FCM_token',
         'user_dob',
         'user_address',
+        'user_nid',
         'platform_tag',
     ];
 

@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class UserPictures extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 }

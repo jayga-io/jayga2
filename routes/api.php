@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ListingController;
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\UserController;
 
 
 /*
@@ -45,3 +46,7 @@ Route::post('/payment', [PaymentController::class, 'pay']);
 Route::post('/create/review', [ReviewController::class, 'create']);
 
 Route::get('/reviews/{id}', [ReviewController::class, 'view']);
+
+Route::get('/user/{id}', [UserController::class, 'getUser']);
+
+Route::post('/user/edit/{id}', [UserController::class, 'editUser']);
