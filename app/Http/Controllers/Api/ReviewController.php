@@ -13,7 +13,7 @@ class ReviewController extends Controller
         $validated = $request->validate([
             'user_id' => 'required',
             'listing_id' => 'required',
-            'lister_id' => 'required',
+            
             'stars' => 'required',
             'review' => 'required',
         ]);
@@ -24,7 +24,7 @@ class ReviewController extends Controller
                 'user_id' => $request->input('user_id'),
                 'user_name' => $user[0]->name,
                 'listing_id' => $request->input('listing_id'),
-                'lister_id' => $request->input('lister_id'),
+                
                 'stars' => $request->input('stars'),
                 'description' => $request->input('review'),
             ]);
@@ -38,7 +38,7 @@ class ReviewController extends Controller
     }
 
     public function view(Request $request, $id){
-       $reviews = Reviews::where('listing_id', $id)->get();
+       $reviews = Reviews::where('listing_id', $id)->where()->get();
         if(count($reviews)>0){
             $total = 0;
             foreach ($reviews as $value) {
