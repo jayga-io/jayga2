@@ -162,7 +162,7 @@ class ListingController extends Controller
                     'status' => 200,
                     'messege' => 'Listing created and submitted for review',
                     'listing_id' => [
-                        'id' => $listing_id
+                        'id' => $listing_id[0]->listing_id
                     ]
                  ]);
         
