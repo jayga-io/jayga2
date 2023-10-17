@@ -49,4 +49,6 @@ Route::get('/reviews/{id}', [ReviewController::class, 'view']);
 
 Route::get('/user/{id}', [UserController::class, 'getUser']);
 
-Route::post('/user/edit/{id}', [UserController::class, 'editUser']);
+Route::post('/user/edit', [UserController::class, 'editUser']);
+
+Route::post('/payment/update', [PaymentController::class, 'paid']);

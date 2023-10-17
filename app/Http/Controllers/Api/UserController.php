@@ -30,8 +30,9 @@ class UserController extends Controller
         
     }
 
-    public function editUser(Request $request, $id){
+    public function editUser(Request $request){
         $validated = $request->validate([
+            'user_id' => 'required',
             'user_name' => 'required',
             'user_email' => 'required',
             'user_dob' => 'required',
@@ -43,7 +44,7 @@ class UserController extends Controller
            ]);
 
            if($validated){
-                    User::where('id', $id)->update([
+                    User::where('id', $request->input('user_id'))->update([
                     'name' => $request->input('user_name'),
                     'email' => $request->input('user_email'),
                     'user_dob' => $request->input('user_dob'),
