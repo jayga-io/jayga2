@@ -10,7 +10,7 @@ class PaymentController extends Controller
 {
     public function pay(Request $request){
         $validated = $request->validate([
-            
+            'booking_id' => 'required',
             'total_amount' => 'required',
             'tran_id' => 'required',
             'cus_email' => 'required',
