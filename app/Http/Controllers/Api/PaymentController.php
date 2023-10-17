@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Booking;
 
 class PaymentController extends Controller
 {
     public function pay(Request $request){
         $validated = $request->validate([
-            'booking_id' => 'required',
+            
             'total_amount' => 'required',
             'tran_id' => 'required',
             'cus_email' => 'required',
@@ -63,5 +64,25 @@ class PaymentController extends Controller
             return $validated->errors();
         }
         
+    }
+
+    public function paid(Request $request){
+       $validated = $request->validate([
+        'booking_id' => 'required',
+        'pay_amount' => 'required',
+       ]);
+       if($validated){
+        Booking::where('booking_id', $request->input('booking_id'))->update([
+            'pay_amount' => $request->input('pay_amount'),
+            'payment_flag' => true
+        ]);
+        return response()->json([
+            'status' => 200,
+            'messege' => 'Paid',
+            'booking_id' => $request->input('booking_id'),
+        ]);
+       }else{
+        return $validated->errors();
+       }
     }
 }
