@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\ListingController;
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\Api\ReviewController;
 
 
 /*
@@ -24,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/signin', [LoginController::class, 'signin']);
+
 Route::post('/register', [LoginController::class, 'register']);
 
 Route::get('/listings' , [ListingController::class, 'listings']);
@@ -39,3 +41,7 @@ Route::post('/add/listing-images', [ListingController::class, 'images']);
 Route::post('/add/booking', [BookingController::class, 'book']);
 
 Route::post('/payment', [PaymentController::class, 'pay']);
+
+Route::post('/create/review', [ReviewController::class, 'create']);
+
+Route::get('/reviews/{id}', [ReviewController::class, 'view']);

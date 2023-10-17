@@ -55,7 +55,7 @@ class ListingController extends Controller
             if(count($file)>0){
                 
                 foreach ($file as $f) {
-                $path = $f->store('public/nid_pictures');
+                $path = $f->store('nids');
                 UserNid::create([
                     'user_id' => $request->input('user_id'),
                     'user_nid_filename' => $f->hashName(),
@@ -187,7 +187,7 @@ class ListingController extends Controller
             if(count($file)>0){
                 
                 foreach ($file as $f) {
-                $path = $f->store('public/listing_pictures');
+                $path = $f->store('listings');
                 ListingImages::create([
                     'listing_id' => $request->input('listing_id'),
                     'lister_id' => $request->input('lister_id'),
