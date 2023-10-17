@@ -82,13 +82,6 @@ class ListingController extends Controller
 
         $listing = Listing::where('lister_id', $request->input('lister_id'))->get();
 
-        if(count($listing)>0){
-            return response()->json([
-                'status'=> 403,
-                'messege' => 'A lister can only create one listing'
-            ], 403);
-        }else{
-
                 Listing::create([
                     'lister_id' => $request->input('lister_id'),
                     'lister_name' => $request->input('lister_name'),
@@ -169,7 +162,7 @@ class ListingController extends Controller
                         'id' => $listing_id
                     ]
                  ]);
-        }
+        
 
 
         
