@@ -79,10 +79,7 @@ class ListingController extends Controller
     }
 
     public function create(Request $request){
-
-        $listing = Listing::where('lister_id', $request->input('lister_id'))->get();
-
-                Listing::create([
+                  Listing::create([
                     'lister_id' => $request->input('lister_id'),
                     'lister_name' => $request->input('lister_name'),
                     'guest_num' => $request->input('guest_num'),
@@ -107,53 +104,59 @@ class ListingController extends Controller
                     'listing_type' => $request->input('listing_type'),
                 ]);
 
-                $listing_id = Listing::where('lister_id', $request->input('lister_id'))->get();
+                
+                $listing_id = Listing::where('lister_id', $request->input('user_id'))->get();
 
-                ListingDescribe::create([
-                    'listing_id' => $listing_id[0]->listing_id,
-                    'apartments' => $request->input('apartments'),
-                    'cabin' => $request->input('cabin'),
-                    'lounge' => $request->input('lounge'),
-                    'farm' => $request->input('farm'),
-                    'campsite' => $request->input('campsite'),
-                    'hotel' => $request->input('hotel'),
-                    'bread_breakfast' => $request->input('bread_breakfast'),
-                ]);
+                foreach ($listing_id as $key => $value) {
 
-                ListingGuestAmenities::create([
-                    'listing_id' => $listing_id[0]->listing_id,
-                    'wifi' => $request->input('wifi'),
-                    'tv' => $request->input('tv'),
-                    'kitchen' => $request->input('kitchen'),
-                    'washing_machine' => $request->input('washing_machine'),
-                    'free_parking' => $request->input('free_parking'),
-                    'breakfast_included' => $request->input('breakfast_included'),
-                    'air_condition' => $request->input('air_condition'),
-                    'dedicated_workspace' => $request->input('dedicated_workspace'),
-                    'pool' => $request->input('pool'),
-                    'hot_tub' => $request->input('hot_tub'),
-                    'patio' => $request->input('patio'),
-                    'bbq_grill' => $request->input('bbq_grill'),
-                    'outdooring' => $request->input('outdooring'),
-                    'fire_pit' => $request->input('fire_pit'),
-                    'gym' => $request->input('gym'),
-                    'beach_lake_access' => $request->input('beach_lake_access'),
-                    'smoke_alarm' => $request->input('smoke_alarm'),
-                    'first_aid' => $request->input('first_aid'),
-                    'fire_extinguish' => $request->input('fire_extinguish'),
-                    'cctv' => $request->input('cctv'),
-                ]);
+                        ListingDescribe::create([
+                        'listing_id' => $value->listing_id,
+                        'apartments' => $request->input('apartments'),
+                        'cabin' => $request->input('cabin'),
+                        'lounge' => $request->input('lounge'),
+                        'farm' => $request->input('farm'),
+                        'campsite' => $request->input('campsite'),
+                        'hotel' => $request->input('hotel'),
+                        'bread_breakfast' => $request->input('bread_breakfast'),
+                    ]);
 
-                ListingRestrictions::create([
-                    'listing_id' => $listing_id[0]->listing_id,
-                    'indoor_smoking' => $request->input('indoor_smoking'),
-                    'party' => $request->input('party'),
-                    'pets' => $request->input('pets'),
-                    'late_night_entry' => $request->input('late_night_entry'),
-                    'unknown_guest_entry' => $request->input('unknown_guest_entry'),
-                    'specific_requirement' => $request->input('specific_requirement'),
-                    
-                ]);
+                    ListingGuestAmenities::create([
+                        'listing_id' => $value->listing_id,
+                        'wifi' => $request->input('wifi'),
+                        'tv' => $request->input('tv'),
+                        'kitchen' => $request->input('kitchen'),
+                        'washing_machine' => $request->input('washing_machine'),
+                        'free_parking' => $request->input('free_parking'),
+                        'breakfast_included' => $request->input('breakfast_included'),
+                        'air_condition' => $request->input('air_condition'),
+                        'dedicated_workspace' => $request->input('dedicated_workspace'),
+                        'pool' => $request->input('pool'),
+                        'hot_tub' => $request->input('hot_tub'),
+                        'patio' => $request->input('patio'),
+                        'bbq_grill' => $request->input('bbq_grill'),
+                        'outdooring' => $request->input('outdooring'),
+                        'fire_pit' => $request->input('fire_pit'),
+                        'gym' => $request->input('gym'),
+                        'beach_lake_access' => $request->input('beach_lake_access'),
+                        'smoke_alarm' => $request->input('smoke_alarm'),
+                        'first_aid' => $request->input('first_aid'),
+                        'fire_extinguish' => $request->input('fire_extinguish'),
+                        'cctv' => $request->input('cctv'),
+                    ]);
+
+                    ListingRestrictions::create([
+                        'listing_id' => $value->listing_id,
+                        'indoor_smoking' => $request->input('indoor_smoking'),
+                        'party' => $request->input('party'),
+                        'pets' => $request->input('pets'),
+                        'late_night_entry' => $request->input('late_night_entry'),
+                        'unknown_guest_entry' => $request->input('unknown_guest_entry'),
+                        'specific_requirement' => $request->input('specific_requirement'),
+                        
+                    ]);
+                }
+
+                
 
                 return response()->json([
                     'status' => 200,
