@@ -108,7 +108,7 @@ class ListingController extends Controller
                 $listing_id = Listing::where('lister_id', $request->input('user_id'))->get();
 
                 foreach ($listing_id as $key => $value) {
-
+                    dd($value);
                         ListingDescribe::create([
                         'listing_id' => $value->listing_id,
                         'apartments' => $request->input('apartments'),

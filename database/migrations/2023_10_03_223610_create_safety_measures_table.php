@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id('id');
             $table->bigInteger('listing_id')->unsigned();
             $table->foreign('listing_id')->references('listing_id')->on('listings')->onDelete('cascade');
-            $table->boolean('smoke_alarm');
-            $table->boolean('first_aid_kit');
-            $table->boolean('fire_extinguisher');
-            $table->boolean('CO_alarm');
+            $table->bigInteger('smoke_alarm');
+            $table->bigInteger('first_aid_kit');
+            $table->bigInteger('fire_extinguisher');
+            $table->bigInteger('CO_alarm');
             $table->timestamps();
         });
     }

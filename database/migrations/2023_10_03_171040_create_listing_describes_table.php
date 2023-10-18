@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id('id');
             $table->bigInteger('listing_id')->unsigned();
             $table->foreign('listing_id')->references('listing_id')->on('listings')->onDelete('cascade');
-            $table->boolean('apartments');
-            $table->boolean('cabin');
-            $table->boolean('lounge');
-            $table->boolean('farm');
-            $table->boolean('campsite');
-            $table->boolean('hotel');
-            $table->boolean('bread_breakfast');
+            $table->bigInteger('apartments');
+            $table->bigInteger('cabin');
+            $table->bigInteger('lounge');
+            $table->bigInteger('farm');
+            $table->bigInteger('campsite');
+            $table->bigInteger('hotel');
+            $table->bigInteger('bread_breakfast');
             $table->timestamps();
         });
     }

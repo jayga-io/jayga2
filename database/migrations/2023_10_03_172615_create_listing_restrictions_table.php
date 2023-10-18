@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id('id');
             $table->bigInteger('listing_id')->unsigned();
             $table->foreign('listing_id')->references('listing_id')->on('listings')->onDelete('cascade');
-            $table->boolean('indoor_smoking');
-            $table->boolean('party');
-            $table->boolean('pets');
-            $table->boolean('late_night_entry');
-            $table->boolean('unknown_guest_entry');
+            $table->bigInteger('indoor_smoking');
+            $table->bigInteger('party');
+            $table->bigInteger('pets');
+            $table->bigInteger('late_night_entry');
+            $table->bigInteger('unknown_guest_entry');
             $table->string('specific_requirement');
             
             $table->timestamps();
