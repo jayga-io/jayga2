@@ -105,12 +105,12 @@ class ListingController extends Controller
                 ]);
 
                 
-                $listing_id = Listing::where('lister_id', $request->input('user_id'))->get();
+                $listing_id = Listing::where('listing_title', $request->input('listing_title'))->get();
 
-                foreach ($listing_id as $key => $value) {
-                    dd($value->listing_id);
-                        ListingDescribe::create([
-                        'listing_id' => $value->listing_id,
+                
+                    
+                    ListingDescribe::create([
+                        'listing_id' => $listing_id[0]->listing_id,
                         'apartments' => $request->input('apartments'),
                         'cabin' => $request->input('cabin'),
                         'lounge' => $request->input('lounge'),
@@ -121,7 +121,7 @@ class ListingController extends Controller
                     ]);
 
                     ListingGuestAmenities::create([
-                        'listing_id' => $value->listing_id,
+                        'listing_id' => $listing_id[0]->listing_id,
                         'wifi' => $request->input('wifi'),
                         'tv' => $request->input('tv'),
                         'kitchen' => $request->input('kitchen'),
@@ -145,7 +145,7 @@ class ListingController extends Controller
                     ]);
 
                     ListingRestrictions::create([
-                        'listing_id' => $value->listing_id,
+                        'listing_id' => $listing_id[0]->listing_id,
                         'indoor_smoking' => $request->input('indoor_smoking'),
                         'party' => $request->input('party'),
                         'pets' => $request->input('pets'),
@@ -154,7 +154,7 @@ class ListingController extends Controller
                         'specific_requirement' => $request->input('specific_requirement'),
                         
                     ]);
-                }
+                
 
                 
 
@@ -162,7 +162,7 @@ class ListingController extends Controller
                     'status' => 200,
                     'messege' => 'Listing created and submitted for review',
                     'listing_id' => [
-                        'id' => 'Nai'
+                        'id' => $listing_id[0]->listing_id
                     ]
                  ]);
         
