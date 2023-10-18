@@ -71,22 +71,23 @@ class UserController extends Controller
     }
 
     public function photos(Request $request){
-        $file = $request->file('photo');
+        
         $validated = $request->validate([
             'user_id' => 'required',
             'photo' => 'required'
         ]);
         if($validated){
+            $file = $request->file('photo');
             if(count($file)>0){
                 
-                foreach ($file as $f) {
-                $path = $f->store('useravatars');
+                
+                $path = $file->store('useravatars');
                 UserPictures::updateOrCreate([
                     'user_id' => $request->input('user_id'),
-                    'user_filename' => $f->hashName(),
+                    'user_filename' => $file->hashName(),
                     'user_targetlocation' => $path,
                 ]);
-                }
+                
                 return response()->json([
                     'status' => 200,
                     'messege' => 'User avatar uploaded'
