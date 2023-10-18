@@ -79,7 +79,15 @@ class ListingController extends Controller
     }
 
     public function create(Request $request){
-                  Listing::create([
+
+        $check = Listing::where('listing_title', $request->input('listing_title'))->get();
+        if(count($check)>0){
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Listing title can not be same'
+            ]);
+        }else{
+                Listing::create([
                     'lister_id' => $request->input('user_id'),
                     'lister_name' => $request->input('lister_name'),
                     'guest_num' => $request->input('guest_num'),
@@ -165,6 +173,8 @@ class ListingController extends Controller
                         'id' => $listing_id[0]->listing_id
                     ]
                  ]);
+        }
+                  
         
 
 
