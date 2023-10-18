@@ -52,3 +52,5 @@ Route::get('/user/{id}', [UserController::class, 'getUser']);
 Route::post('/user/edit', [UserController::class, 'editUser']);
 
 Route::post('/payment/update', [PaymentController::class, 'paid']);
+
+Route::post('/update/user/avatar', [UserController::class, 'photos']);

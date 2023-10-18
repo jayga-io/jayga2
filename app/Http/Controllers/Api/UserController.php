@@ -38,7 +38,7 @@ class UserController extends Controller
             'user_dob' => 'required',
             'user_nid' => 'required',
             'user_address' => 'required',
-            'photo' => 'required',
+            
             'is_lister' => 'required',
             
            ]);
@@ -58,15 +58,7 @@ class UserController extends Controller
                     'platform_tag' => $request->input('platform_tag'),
                 ]);
 
-                $images = $request->file('photo');
-                foreach ($images as $value) {
-                    $path = $value->store('useravatar');
-                    UserPictures::create([
-                        'user_id' => $request->input('user_id'),
-                        'user_filename' => $value->hashName(),
-                        'user_targetlocation' => $path
-                    ]);
-                }
+             
 
                 return response()->json([
                     'status' => 200,
@@ -75,6 +67,39 @@ class UserController extends Controller
            }else{
                 return $validated->errors();
            }
+        
+    }
+
+    public function photos(Request $request){
+        $file = $request->file('photo');
+        $validated = $request->validate([
+            'user_id' => 'required',
+            'photo' => 'required'
+        ]);
+        if($validated){
+            if(count($file)>0){
+                
+                foreach ($file as $f) {
+                $path = $f->store('useravatars');
+                UserPictures::updateOrCreate([
+                    'user_id' => $request->input('user_id'),
+                    'user_filename' => $f->hashName(),
+                    'user_targetlocation' => $path,
+                ]);
+                }
+                return response()->json([
+                    'status' => 200,
+                    'messege' => 'User avatar uploaded'
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 404,
+                    'messege' => 'No picture uploaded'
+                ], 404);
+            } 
+        }else{
+            return $validated->errors();
+        }
         
     }
 }
