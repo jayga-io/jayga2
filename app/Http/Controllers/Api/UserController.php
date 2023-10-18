@@ -38,7 +38,7 @@ class UserController extends Controller
             'user_dob' => 'required',
             'user_nid' => 'required',
             'user_address' => 'required',
-            'photo' => 'required',
+            
             'is_lister' => 'required',
             
            ]);

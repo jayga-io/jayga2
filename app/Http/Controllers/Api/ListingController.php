@@ -80,7 +80,7 @@ class ListingController extends Controller
 
     public function create(Request $request){
                   Listing::create([
-                    'lister_id' => $request->input('lister_id'),
+                    'lister_id' => $request->input('user_id'),
                     'lister_name' => $request->input('lister_name'),
                     'guest_num' => $request->input('guest_num'),
                     'bed_num' => $request->input('bed_num'),
