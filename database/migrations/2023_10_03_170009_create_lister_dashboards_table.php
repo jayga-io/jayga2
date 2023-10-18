@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lister_dashboards', function (Blueprint $table) {
-            $table->id('lister_id');
+            $table->id('id');
+            $table->bigInteger('lister_id')->unsigned();
             $table->foreign('lister_id')->references('lister_id')->on('lister_users')->onDelete('cascade');
             $table->bigInteger('earnings');
             $table->string('past_booking');

@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('listing_restrictions', function (Blueprint $table) {
-            $table->id('listing_id');
+            $table->id('id');
+            $table->bigInteger('listing_id')->unsigned();
             $table->foreign('listing_id')->references('listing_id')->on('listings')->onDelete('cascade');
-            $table->integer('indoor_smoking');
-            $table->integer('party');
-            $table->integer('pets');
-            $table->integer('late_night_entry');
-            $table->integer('unknown_guest_entry');
+            $table->boolean('indoor_smoking');
+            $table->boolean('party');
+            $table->boolean('pets');
+            $table->boolean('late_night_entry');
+            $table->boolean('unknown_guest_entry');
             $table->string('specific_requirement');
             
             $table->timestamps();

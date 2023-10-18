@@ -26,8 +26,8 @@ return new class extends Migration
             $table->integer('days_stayed');
             $table->string('date_enter');
             $table->string('date_exit');
-            $table->bigInteger('pay_amount');
-            $table->bigInteger('payment_flag');
+            $table->string('pay_amount');
+            $table->boolean('payment_flag');
             $table->timestamps();
         });
     }

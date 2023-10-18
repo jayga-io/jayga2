@@ -12,15 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('listing_describes', function (Blueprint $table) {
-            $table->id('listing_id');
+            $table->id('id');
+            $table->bigInteger('listing_id')->unsigned();
             $table->foreign('listing_id')->references('listing_id')->on('listings')->onDelete('cascade');
-            $table->integer('apartments');
-            $table->integer('cabin');
-            $table->integer('lounge');
-            $table->integer('farm');
-            $table->integer('campsite');
-            $table->integer('hotel');
-            $table->integer('bread_breakfast');
+            $table->boolean('apartments');
+            $table->boolean('cabin');
+            $table->boolean('lounge');
+            $table->boolean('farm');
+            $table->boolean('campsite');
+            $table->boolean('hotel');
+            $table->boolean('bread_breakfast');
             $table->timestamps();
         });
     }
