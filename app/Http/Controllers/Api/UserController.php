@@ -78,7 +78,7 @@ class UserController extends Controller
         ]);
         if($validated){
             $file = $request->file('photo');
-            if(count($file)>0){
+            if($file){
                 
                 
                 $path = $file->store('useravatars');
