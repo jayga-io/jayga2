@@ -33,10 +33,13 @@ class ListingController extends Controller
         $lister_name = $data[1];
         $lister_id = $data[0];
         $images = [];
-        //check if exists
-        $listing_user = Listing::where('lister_id', $lister_id)->get();
-        if(count($listing_user)>0){
-            return redirect()->back()->with('errors', 'A Lister can only create one listing');
+        //check 
+        $check = Listing::where('listing_title', $request->input('listing_title'))->get();
+        if(count($check)>0){
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Listing title can not be same'
+            ]);
         }else{
             
                     Listing::create([

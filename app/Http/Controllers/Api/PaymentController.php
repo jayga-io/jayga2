@@ -52,12 +52,15 @@ class PaymentController extends Controller
                 // close the connection, release resources used
                 curl_close($ch);
 
+                $jsonresponse = json_decode($response, true);
+                $payresponse = collect($jsonresponse);
+
                 // do anything you want with your response
                // var_dump($response);
                return response()->json([
                 'status' => 200,
                 'booking_id' => $book_id,
-                'response' => $response
+                'response' => $payresponse
                ]);
 
         }else{
