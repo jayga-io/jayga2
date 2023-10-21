@@ -91,7 +91,7 @@ class ListingController extends Controller
             
             }
 
-    }    
+        }    
                 return view('admin.dashboard');
         } 
     }
@@ -109,7 +109,7 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
-        //
+        return view('admin.view-listing');
     }
 
     /**
