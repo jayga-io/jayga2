@@ -30,7 +30,92 @@
 						</div>
 					</div>
 				</div>
-
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="container mt-5">
+                            <div class="card">
+                                <div id="imageCarousel" class="carousel slide" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#imageCarousel" data-slide-to="0" class="active"></li>
+                                        <li data-target="#imageCarousel" data-slide-to="1"></li>
+                                        <li data-target="#imageCarousel" data-slide-to="2"></li>
+                                    </ol>
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="image1.jpg" class="d-block w-100" alt="Image 1">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="image2.jpg" class="d-block w-100" alt="Image 2">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="image3.jpg" class="d-block w-100" alt="Image 3">
+                                        </div>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#imageCarousel" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Card Title</h5>
+                                    <p class="card-text">Some quick example text to build on the card's content.</p>
+                                    <a href="#" class="btn btn-primary">Learn More</a>
+                                </div>
+                            </div>
+                            <p class="card-text">Some quick example text to build on the card's content.</p>
+                            <div class="list-group">
+                                <div class="list-group-item">
+                                    <div class="row">
+                                        <div class="col">Item 1</div>
+                                        <div class="col">Item 2</div>
+                                        <div class="col">Item 3</div>
+                                        <div class="col">Item 4</div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="row">
+                                        <div class="col">Item 5</div>
+                                        <div class="col">Item 6</div>
+                                        <div class="col">Item 7</div>
+                                        <div class="col">Item 8</div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="row">
+                                        <div class="col">Item 9</div>
+                                        <div class="col">Item 10</div>
+                                        <div class="col">Item 11</div>
+                                        <div class="col">Item 12</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="container mt-5">
+                            <div class="card">
+                                <img src="profile-image.jpg" class="card-img-top" alt="Profile Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">John Doe</h5>
+                                    <p class="card-text">Web Developer</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Location: New York, USA</li>
+                                    <li class="list-group-item">Email: john@example.com</li>
+                                    <li class="list-group-item">Phone: (123) 456-7890</li>
+                                </ul>
+                                <div class="card-body">
+                                    <a href="#" class="card-link">Website</a>
+                                    <a href="#" class="card-link">LinkedIn</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
