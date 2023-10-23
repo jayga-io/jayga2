@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use App\Models\ListingImages;
 use App\Models\ListerNid;
+use App\Models\User;
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
 use Illuminate\Http\Request;
@@ -109,9 +110,14 @@ class ListingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Listing $listing)
+    public function show(Request $request, $id)
     {
-        return view('admin.view-listing');
+        $listingImages = ListingImages::where('listing_id', $id)->get();
+        
+        $listing = Listing::where('listing_id', $id)->get();
+        $lister = User::where('id', $listing[0]->lister_id)->get();
+        $lister_image = UserPictures::where('user_id', $listing[0]->lister_id)->get();
+        return view('admin.view-listing')->with('listing_images', $listingImages)->with('listing', $listing)->with('lister', $lister)->with('lister_image', $lister_image);
     }
 
     /**

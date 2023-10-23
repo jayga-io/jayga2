@@ -39,7 +39,7 @@ Route::prefix('admin')->group(function(){
         return view('admin.pending-listing')->with('pending', $listings);
     })->name('pendinglisting');
 
-    Route::get('/view-listing', [ListingController::class, 'show']);
+    Route::get('/view-listing/{id}', [ListingController::class, 'show']);
 
     Route::get('/approve-listing/{id}', [ListingController::class, 'approve']);
     

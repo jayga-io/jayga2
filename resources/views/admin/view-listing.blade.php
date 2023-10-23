@@ -22,8 +22,12 @@
 			<div class="content container-fluid">
 				<div class="page-header">
 					<div class="row">
-						<div class="col-sm-12 mt-5">
+						<div class="col-sm-12 mt-5 ">
 							<h3 class="page-title mt-3">Listing Details</h3>
+                            <div class="page-title mt-3" style="float:right">
+                                <button class="btn btn-primary">Approve</button>
+                                <button class="btn btn-danger">Decline</button>
+                            </div>
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item active">Dashboard</li>
 							</ul>
@@ -35,21 +39,22 @@
                         <div class="container mt-5">
                             <div class="card">
                                 <div id="imageCarousel" class="carousel slide" data-ride="carousel">
-                                    <ol class="carousel-indicators">
-                                        <li data-target="#imageCarousel" data-slide-to="0" class="active"></li>
-                                        <li data-target="#imageCarousel" data-slide-to="1"></li>
-                                        <li data-target="#imageCarousel" data-slide-to="2"></li>
-                                    </ol>
+                                    @foreach ($listing_images as $key => $item)
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#imageCarousel" data-slide-to="{{ $key }}" class="active"></li>
+                                            
+                                        </ol>
+                                    @endforeach
+                                    
+                                   
                                     <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img src="image1.jpg" class="d-block w-100" alt="Image 1">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="image2.jpg" class="d-block w-100" alt="Image 2">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="image3.jpg" class="d-block w-100" alt="Image 3">
-                                        </div>
+                                        @foreach ($listing_images as $item)
+                                            <div class="carousel-item">
+                                                <img src="{{ $item->listing_targetlocation }}" class="d-block w-100" alt="Image 1">
+                                            </div>
+                                        @endforeach
+                                        
+                                       
                                     </div>
                                     <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
