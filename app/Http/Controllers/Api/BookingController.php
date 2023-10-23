@@ -33,6 +33,7 @@ class BookingController extends Controller
                 'date_exit' => $request->input('date_exit'),
                 'short_stay_flag' => $request->input('short_stay_flag'),
                 'tier' => $request->input('tier'),
+                'days_stayed' => $request->input('days_stayed'),
                 'pay_amount' => $request->input('pay_amount'),
                 'all_day_flag' => $request->input('all_day_flag'),
             ]);
