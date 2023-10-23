@@ -29,7 +29,7 @@ Route::prefix('admin')->group(function(){
         return view('admin.dashboard');
     });
     Route::get('/add-listing', function(){
-        $user = User::all();
+        $user = User::whereNotNull('name')->get();
      //   dd($user);
         return view('admin.add-listing')->with('users', $user);
     })->name('addlisting');
