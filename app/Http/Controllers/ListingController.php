@@ -6,6 +6,7 @@ use App\Models\Listing;
 use App\Models\ListingImages;
 use App\Models\ListerNid;
 use App\Models\User;
+use App\Models\UserPictures;
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
 use Illuminate\Http\Request;
