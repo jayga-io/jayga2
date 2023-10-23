@@ -19,12 +19,18 @@ class BookingController extends Controller
             'short_stay_flag' => 'required',
             'all_day_flag' => 'required',
             'transaction_id' => 'required',
-            
+
         ]);
 
         if($validated){
-            
-            Booking::create([
+            $check = Booking::where('transaction_id', $request->input('transaction_id'))->get();
+            if(count($check)>0){
+                return response()->json([
+                    'status' => false,
+                    'messege' => 'Transaction id can not be same'
+                ]);
+            }else{
+                Booking::create([
                 'user_id' => $request->input('user_id'),
                 'booking_order_name' => $request->input('booking_order_name'),
                 'transaction_id' => $request->input('transaction_id'),
@@ -51,6 +57,8 @@ class BookingController extends Controller
                     'transaction_id' => $booked[0]->transaction_id,
                 ]
             ]);
+        }
+            
         }else{
            return $validated->errors();
         }
