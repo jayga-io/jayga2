@@ -7,6 +7,7 @@ use App\Models\ListingImages;
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
 use Illuminate\Http\Request;
+use Storage;
 
 class ListingController extends Controller
 {
@@ -133,6 +134,16 @@ class ListingController extends Controller
      */
     public function destroy(Listing $listing, $id)
     {
+        
+        $images = ListingImages::where('listing_id', $id)->get();
+        $nids = ListerNid::where('listing_id', $id)->get();
+        foreach ($images as $value) {
+           Storage::delete($value->listing_targetlocation);
+        }
+
+        foreach ($nids as $value) {
+            Storage::delete($value->nid_targetlocation);
+        }
         Listing::where('listing_id', $id)->delete();
         return redirect()->back()->with('deleted', 'Listing Declined');
     }
