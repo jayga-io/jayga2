@@ -18,7 +18,8 @@ class BookingController extends Controller
             'date_exit' => 'required',
             'short_stay_flag' => 'required',
             'all_day_flag' => 'required',
-            'transaction_id' => 'required'
+            'transaction_id' => 'required',
+            
         ]);
 
         if($validated){
@@ -36,6 +37,7 @@ class BookingController extends Controller
                 'days_stayed' => $request->input('days_stayed'),
                 'pay_amount' => $request->input('pay_amount'),
                 'all_day_flag' => $request->input('all_day_flag'),
+                'payment_flag' => $request->input('payment_flag'),
             ]);
 
             $booked = Booking::where('transaction_id', $request->input('transaction_id'))->get();
