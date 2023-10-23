@@ -50,7 +50,7 @@
                                     <div class="carousel-inner">
                                         @foreach ($listing_images as $item)
                                             <div class="carousel-item">
-                                                <img src="{{ $item->listing_targetlocation }}" class="d-block w-100" alt="Image 1">
+                                                <img src="{{ base_url(). $item->listing_targetlocation }}" class="d-block w-100" alt="Image 1">
                                             </div>
                                         @endforeach
                                         
