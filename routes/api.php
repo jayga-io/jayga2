@@ -35,6 +35,8 @@ Route::get('/filter-listings', [ListingController::class, 'filter']);
 
 Route::post('/user-nid/upload', [ListingController::class, 'nid']);
 
+Route::post('/listing-nid/upload', [ListingController::class, 'listing_nid']);
+
 Route::post('/add/listing', [ListingController::class, 'create']);
 
 Route::post('/add/listing-images', [ListingController::class, 'images']);

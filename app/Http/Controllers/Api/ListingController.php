@@ -215,4 +215,39 @@ class ListingController extends Controller
             return $validated->errors();
         }
     }
+
+    public function listing_nid(Request $request){
+        $file = $request->file('listing_nid');
+        $validated = $request->validate([
+            'listing_id' => 'required',
+            'user_id' => 'required',
+            
+        ]);
+        if($validated){
+            
+            if(count($file)>0){
+                
+                foreach ($file as $f) {
+                $path = $f->store('listings-nid');
+                ListingImages::create([
+                    'listing_id' => $request->input('listing_id'),
+                    'lister_id' => $request->input('user_id'),
+                    'listing_filename' => $f->hashName(),
+                    'listing_targetlocation' => $path,
+                ]);
+                }
+                return response()->json([
+                    'status' => 200,
+                    'messege' => 'Listing Nid uploaded'
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 404,
+                    'messege' => 'No picture uploaded'
+                ], 404);
+            } 
+        }else{
+            return $validated->errors();
+        }
+    }
 }
