@@ -83,7 +83,7 @@ class ListingController extends Controller
         $check = Listing::where('listing_title', $request->input('listing_title'))->get();
         if(count($check)>0){
             return response()->json([
-                'status' => 200,
+                'status' => false,
                 'messege' => 'Listing title can not be same'
             ]);
         }else{
@@ -167,7 +167,7 @@ class ListingController extends Controller
                 
 
                 return response()->json([
-                    'status' => 200,
+                    'status' => true,
                     'messege' => 'Listing created and submitted for review',
                     'listing_id' => [
                         'id' => $listing_id[0]->listing_id

@@ -21,11 +21,12 @@ return new class extends Migration
             $table->bigInteger('lister_id')->unsigned();
             $table->foreign('lister_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('short_stay_flag');
-            $table->bigInteger('time_id');
+            $table->string('transaction_id');
             $table->bigInteger('all_day_flag');
             $table->integer('days_stayed');
             $table->string('date_enter');
             $table->string('date_exit');
+            $table->bigInteger('tier');
             $table->string('pay_amount');
             $table->boolean('payment_flag');
             $table->timestamps();
