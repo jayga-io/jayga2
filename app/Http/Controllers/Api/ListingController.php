@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\UserNid;
+use App\Models\ListerNid;
 use App\Models\ListingGuestAmenities;
 use App\Models\ListingDescribe;
 use App\Models\ListingRestrictions;
@@ -229,11 +230,11 @@ class ListingController extends Controller
                 
                 foreach ($file as $f) {
                 $path = $f->store('listings-nid');
-                ListingImages::create([
+                ListerNid::create([
                     'listing_id' => $request->input('listing_id'),
                     'lister_id' => $request->input('user_id'),
-                    'listing_filename' => $f->hashName(),
-                    'listing_targetlocation' => $path,
+                    'nid_filename' => $f->hashName(),
+                    'nid_targetlocation' => $path,
                 ]);
                 }
                 return response()->json([

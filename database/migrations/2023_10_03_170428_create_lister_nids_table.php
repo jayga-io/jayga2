@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('lister_nids', function (Blueprint $table) {
             $table->id('lister_nid_id');
-            $table->bigInteger('lister_user_id')->unsigned();
-            $table->foreign('lister_user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('lister_nid_pic_name');
-            $table->string('lister_nid_pic_location');
+            $table->bigInteger('lister_id')->unsigned();
+            $table->foreign('lister_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('listing_id')->unsigned();
+            $table->foreign('listing_id')->references('listing_id')->on('listings')->onDelete('cascade');
+            $table->string('nid_filename');
+            $table->string('nid_targetlocation');
             $table->timestamps();
         });
     }
