@@ -43,8 +43,8 @@
                                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                                         
                                         <div class="carousel-inner">
-                                            @foreach ($listing_images as $item)
-                                                <div class="carousel-item ">
+                                            @foreach ($listing_images as $key => $item)
+                                                <div class="carousel-item {{ $key }}">
                                                     <img src="https://new.jayga.xyz/uploads/listings/kZyUvFhvakT1rAToKjab84nFLjcSBN2uxIONS3Op.jpg" alt="Image 1">
                                                 </div> 
                                             @endforeach
