@@ -86,7 +86,7 @@
 											<td>{{$item->listing_address}}</td>
 											<td>{{$item->full_day_price_set_by_user}}</td>
 											<td>{{$item->district}}/{{$item->town}}</td>
-											<td><a class="btn btn-primary" href="">View Listing</a></td>
+											<td><a class="btn btn-primary" href="/admin/view-listing/{{$item->listing_id}}">View Listing</a></td>
 											<td> <a class="btn btn-primary" href="/admin/approve-listing/{{$item->listing_id}}">Approve</a> / <a class="btn btn-danger" href="/admin/decline-listing/{{$item->listing_id}}">Decline</a></td>
 										</tr>
 									@endforeach

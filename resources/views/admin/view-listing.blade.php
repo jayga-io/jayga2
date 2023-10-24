@@ -41,7 +41,7 @@
                                 <div id="imageCarousel" class="carousel slide" data-ride="carousel">
                                     @foreach ($listing_images as $key => $item)
                                         <ol class="carousel-indicators">
-                                            <li data-target="#imageCarousel" data-slide-to="{{ $key }}" class="active"></li>
+                                            <li data-target="#imageCarousel" data-slide-to="{{ $key }}"></li>
                                             
                                         </ol>
                                     @endforeach
@@ -66,7 +66,7 @@
                                     </a>
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">Card Title</h5>
+                                    <h5 class="card-title">{{ $listing[0]->listing_title }}</h5>
                                     <p class="card-text">Some quick example text to build on the card's content.</p>
                                     <a href="#" class="btn btn-primary">Learn More</a>
                                 </div>
