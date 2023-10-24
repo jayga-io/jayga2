@@ -36,30 +36,38 @@
 				</div>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="container">
+                        <div class="container mt-5">
                             <div class="card">
                                 @if (count($listing_images)>0)
                                     <!-- Carousel -->
-                                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                                        
-                                        <div class="carousel-inner">
+                                    
                                             @foreach ($listing_images as $key => $item)
-                                                <div class="carousel-item {{ $key }}">
-                                                    <img src="https://new.jayga.xyz/uploads/listings/kZyUvFhvakT1rAToKjab84nFLjcSBN2uxIONS3Op.jpg" alt="Image {{$key}}">
-                                                </div> 
+
+                                           <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                            
+                                                <div class="carousel-inner">
+                                            
+                                            
+                                                    <div class="carousel-item {{ $key }}">
+                                                        <img src="https://new.jayga.xyz/uploads/listings/kZyUvFhvakT1rAToKjab84nFLjcSBN2uxIONS3Op.jpg"
+                                                            alt="Image 1">
+                                                    </div>
+                                            
+                                            
+                                                </div>
+                                                <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
                                             @endforeach
                                             
                                            
-                                        </div>
-                                        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </div>
+                                        
                                     
                                 @else
                                     <p class="p-3 text-center">No listing image provided</p>
