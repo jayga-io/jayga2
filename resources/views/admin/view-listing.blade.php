@@ -46,12 +46,11 @@
                                         
                                         <!-- The slideshow/carousel -->
                                         <div class="carousel-inner">
-                                            @foreach ($listing_images as $item)
-                                                <div class="carousel-item">
-                                                    <img src="https://new.jayga.xyz/uploads/listings/kZyUvFhvakT1rAToKjab84nFLjcSBN2uxIONS3Op.jpg" alt="Los Angeles" class="d-block" style="width:100%">
-                                                </div>
-                                            @endforeach
-                                        
+                                           
+                                        <div class="carousel-item">
+                                            <img src="https://new.jayga.xyz/uploads/listings/kZyUvFhvakT1rAToKjab84nFLjcSBN2uxIONS3Op.jpg" alt="Los Angeles"
+                                                class="d-block" style="width:100%">
+                                        </div>
                                         
                                         </div>
                                         
