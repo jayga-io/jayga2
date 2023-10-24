@@ -103,7 +103,7 @@
                     <div class="col-md-6">
                         <div class="container mt-5">
                             <div class="card">
-                                <img src="{{ asset('/uploads/'. $lister_image[0]->usertargetlocation)}}" class="card-img-top" alt="Profile Image">
+                                <img src="{{ asset('/uploads/'. $lister_image[0]->user_targetlocation)}}" class="card-img-top" alt="Profile Image">
                                 <div class="card-body">
                                     <h5 class="card-title">John Doe</h5>
                                     <p class="card-text">Web Developer</p>
