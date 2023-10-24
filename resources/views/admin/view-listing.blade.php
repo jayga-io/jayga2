@@ -42,14 +42,7 @@
                                     <!-- Carousel -->
                                     <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
-                                        <!-- Indicators/dots -->
-                                        <div class="carousel-indicators">
-                                            @foreach ($listing_images as $key => $item)
-                                                <button type="button" data-bs-target="#demo" data-bs-slide-to="{{$key}}" class="active"></button>
-                                            @endforeach
-                                        
-                                        
-                                        </div>
+        
                                         
                                         <!-- The slideshow/carousel -->
                                         <div class="carousel-inner">
