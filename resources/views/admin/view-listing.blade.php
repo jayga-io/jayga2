@@ -38,34 +38,41 @@
                     <div class="col-md-6">
                         <div class="container mt-5">
                             <div class="card">
-                                <div id="imageCarousel" class="carousel slide" data-ride="carousel">
-                                    
-                                        <ol class="carousel-indicators">
+                                @if (count($listing_images)>0)
+                                    <!-- Carousel -->
+                                    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+                                        <!-- Indicators/dots -->
+                                        <div class="carousel-indicators">
                                             @foreach ($listing_images as $key => $item)
-                                                <li data-target="#imageCarousel" data-slide-to="{{ $key }}"></li>
+                                                <button type="button" data-bs-target="#demo" data-bs-slide-to="{{$key}}" class="active"></button>
                                             @endforeach
-                                        </ol>
-                                    
-                                    
-                                   
-                                    <div class="carousel-inner">
-                                        @foreach ($listing_images as $item)
-                                            <div class="carousel-item">
-                                                <img src="{{ asset('/uploads/'.$item->listing_targetlocation)  }}" class="d-block w-100" alt="Image 1">
-                                            </div>
-                                        @endforeach
                                         
-                                       
+                                        
+                                        </div>
+                                        
+                                        <!-- The slideshow/carousel -->
+                                        <div class="carousel-inner">
+                                            @foreach ($listing_images as $item)
+                                                <div class="carousel-item">
+                                                    <img src="{{ asset('/uploads/'. $item->listing_targetlocation)}}" alt="Los Angeles" class="d-block" style="width:100%">
+                                                </div>
+                                            @endforeach
+                                        
+                                        
+                                        </div>
+                                        
+                                        <!-- Left and right controls/icons -->
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon"></span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon"></span>
+                                        </button>
                                     </div>
-                                    <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#imageCarousel" role="button" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </div>
+                                @else
+                                    <p class="p-3 text-center">No listing image provided</p>
+                                @endif
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $listing[0]->listing_title }}</h5>
                                     <p class="card-text">{{ $listing[0]->listing_address }}</p>
@@ -107,7 +114,7 @@
                                 @if (count($lister_image)>0)
                                     <img src="{{ asset('/uploads/'. $lister_image[0]->user_targetlocation)}}" class="card-img-top" alt="Profile Image">
                                 @else
-                                    <p>No user image provided</p>
+                                <p class="p-3 text-center">No user image provided</p>
                                 @endif
                                 
                                 <div class="card-body">
