@@ -39,21 +39,19 @@
                         <div class="container mt-5">
                             <div class="card">
                                 <div id="imageCarousel" class="carousel slide" data-ride="carousel">
-                                    @foreach ($listing_images as $key => $item)
+                                   
+                                    
+                                   
+                                    <div class="carousel-inner">
+                                         @foreach ($listing_images as $key => $item)
                                         <ol class="carousel-indicators">
                                             <li data-target="#imageCarousel" data-slide-to="{{ $key }}"></li>
                                             
                                         </ol>
+                                        <div class="carousel-item">
+                                            <img src="{{ asset('/uploads/'.$item->listing_targetlocation)  }}" class="d-block w-100" alt="Image 1">
+                                        </div>
                                     @endforeach
-                                    
-                                   
-                                    <div class="carousel-inner">
-                                        @foreach ($listing_images as $item)
-                                            <div class="carousel-item">
-                                                <img src="{{ asset('/uploads/'.$item->listing_targetlocation)  }}" class="d-block w-100" alt="Image 1">
-                                            </div>
-                                        @endforeach
-                                        
                                        
                                     </div>
                                     <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
