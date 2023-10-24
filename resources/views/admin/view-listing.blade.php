@@ -40,28 +40,8 @@
                             <div class="card">
                                 @if (count($listing_images)>0)
                                     <!-- Carousel -->
-                                    <div id="demo" class="carousel slide" data-bs-ride="carousel">
-
-        
-                                        
-                                        <!-- The slideshow/carousel -->
-                                        <div class="carousel-inner">
-                                           
-                                        <div class="carousel-item">
-                                            <img src="https://new.jayga.xyz/uploads/listings/kZyUvFhvakT1rAToKjab84nFLjcSBN2uxIONS3Op.jpg" alt="Los Angeles"
+                                    <img src="https://new.jayga.xyz/uploads/listings/kZyUvFhvakT1rAToKjab84nFLjcSBN2uxIONS3Op.jpg" alt="Los Angeles"
                                                 class="d-block" style="width:100%">
-                                        </div>
-                                        
-                                        </div>
-                                        
-                                        <!-- Left and right controls/icons -->
-                                        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon"></span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon"></span>
-                                        </button>
-                                    </div>
                                 @else
                                     <p class="p-3 text-center">No listing image provided</p>
                                 @endif
