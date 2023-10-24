@@ -39,19 +39,22 @@
                         <div class="container mt-5">
                             <div class="card">
                                 <div id="imageCarousel" class="carousel slide" data-ride="carousel">
-                                   
+                                    
+                                        <ol class="carousel-indicators">
+                                            @foreach ($listing_images as $key => $item)
+                                                <li data-target="#imageCarousel" data-slide-to="{{ $key }}"></li>
+                                            @endforeach
+                                        </ol>
+                                    
                                     
                                    
                                     <div class="carousel-inner">
-                                         @foreach ($listing_images as $key => $item)
-                                        <ol class="carousel-indicators">
-                                            <li data-target="#imageCarousel" data-slide-to="{{ $key }}"></li>
-                                            
-                                        </ol>
-                                        <div class="carousel-item">
-                                            <img src="{{ asset('/uploads/'.$item->listing_targetlocation)  }}" class="d-block w-100" alt="Image 1">
-                                        </div>
-                                    @endforeach
+                                        @foreach ($listing_images as $item)
+                                            <div class="carousel-item">
+                                                <img src="{{ asset('/uploads/'.$item->listing_targetlocation)  }}" class="d-block w-100" alt="Image 1">
+                                            </div>
+                                        @endforeach
+                                        
                                        
                                     </div>
                                     <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
@@ -65,11 +68,11 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $listing[0]->listing_title }}</h5>
-                                    <p class="card-text">Some quick example text to build on the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Learn More</a>
+                                    <p class="card-text">{{ $listing[0]->listing_address }}</p>
+                                    <a href="#" class="btn btn-primary">{{ $listing[0]->full_day_price_set_by_user }} TK/- Per Day</a>
                                 </div>
                             </div>
-                            <p class="card-text">Some quick example text to build on the card's content.</p>
+                            <p class="card-text">Amenities</p>
                             <div class="list-group">
                                 <div class="list-group-item">
                                     <div class="row">
