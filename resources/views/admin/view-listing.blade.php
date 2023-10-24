@@ -36,7 +36,7 @@
 				</div>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="container mt-5">
+                        <div class="container">
                             <div class="card">
                                 @if (count($listing_images)>0)
                                     <!-- Carousel -->
@@ -45,7 +45,7 @@
                                         <div class="carousel-inner">
                                             @foreach ($listing_images as $key => $item)
                                                 <div class="carousel-item {{ $key }}">
-                                                    <img src="https://new.jayga.xyz/uploads/listings/kZyUvFhvakT1rAToKjab84nFLjcSBN2uxIONS3Op.jpg" alt="Image 1">
+                                                    <img src="https://new.jayga.xyz/uploads/listings/kZyUvFhvakT1rAToKjab84nFLjcSBN2uxIONS3Op.jpg" alt="Image {{$key}}">
                                                 </div> 
                                             @endforeach
                                             
