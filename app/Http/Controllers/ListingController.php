@@ -114,7 +114,7 @@ class ListingController extends Controller
     public function show(Request $request, $id)
     {
         $listingImages = ListingImages::where('listing_id', $id)->get();
-        
+        dd($listingImages);
         $listing = Listing::where('listing_id', $id)->get();
         $lister = User::where('id', $listing[0]->lister_id)->get();
         $lister_image = UserPictures::where('user_id', $listing[0]->lister_id)->get();
