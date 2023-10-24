@@ -103,7 +103,12 @@
                     <div class="col-md-6">
                         <div class="container mt-5">
                             <div class="card">
-                                <img src="{{ asset('/uploads/'. $lister_image[0]->user_targetlocation)}}" class="card-img-top" alt="Profile Image">
+                                @if (count($lister_image)>0)
+                                    <img src="{{ asset('/uploads/'. $lister_image[0]->user_targetlocation)}}" class="card-img-top" alt="Profile Image">
+                                @else
+                                    <p>No user image provided</p>
+                                @endif
+                                
                                 <div class="card-body">
                                     <h5 class="card-title">John Doe</h5>
                                     <p class="card-text">Web Developer</p>
