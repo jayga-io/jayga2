@@ -48,7 +48,7 @@
                                         <div class="carousel-inner">
                                             @foreach ($listing_images as $item)
                                                 <div class="carousel-item">
-                                                    <img src="{{ asset('/uploads/'. $item->listing_targetlocation)}}" alt="Los Angeles" class="d-block" style="width:100%">
+                                                    <img src="{{ asset('/uploads/listings/'. $item->listing_filename)}}" alt="Los Angeles" class="d-block" style="width:100%">
                                                 </div>
                                             @endforeach
                                         
