@@ -143,26 +143,26 @@
                                 <p>No Describes Found</p>
                                 @endif
                             </div>
-
+                            <p class="card-text">Restrictions</p>
                             <div class="list-group-item">
 
                                 @if (count($restrictions)>0)
-                                <div class="list-group-item">
+                                
                                     <div class="row">
-                                        <div class="col">Indoor Smoking {{ $restrictions[0]->indoor_smoking == 1 ? '✔' :
+                                        <div class="col-md-4">Indoor Smoking {{ $restrictions[0]->indoor_smoking == 1 ? '✔' :
                                             'X' }}</div>
-                                        <div class="col">Party {{ $restrictions[0]->party == 1 ? '✔' : 'X' }}</div>
-                                        <div class="col">Pets {{ $restrictions[0]->pets == 1 ? '✔' : 'X' }}</div>
-                                        <div class="col">Late Night Entry {{ $restrictions[0]->late_night_entry == 1 ?
+                                        <div class="col-md-4">Party {{ $restrictions[0]->party == 1 ? '✔' : 'X' }}</div>
+                                        <div class="col-md-4">Pets {{ $restrictions[0]->pets == 1 ? '✔' : 'X' }}</div>
+                                        <div class="col-md-4">Late Night Entry {{ $restrictions[0]->late_night_entry == 1 ?
                                             '✔' : 'X' }}</div>
-                                        <div class="col">Additional Guest Entry {{ $restrictions[0]->unknown_guest_entry
+                                        <div class="col-md-4">Additional Guest Entry {{ $restrictions[0]->unknown_guest_entry
                                             == 1 ? '✔' : 'X' }}</div>
-                                        <div class="col">Specific Requirements {{ $restrictions[0]->specific_requirement
+                                        <div class="col-md-4">Specific Requirements {{ $restrictions[0]->specific_requirement
                                             ? $restrictions[0]->specific_requirement : 'No Requirement provided' }}
                                         </div>
 
                                     </div>
-                                </div>
+                                
                                 @else
                                 <p>No Restrictions Provided</p>
                                 @endif
