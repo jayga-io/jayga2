@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <title>Jaygaa Dashboard</title>
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+    <link rel="shortcut icon" type="image/❌-icon" href="assets/img/favicon.png">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome/css/fontawesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome/css/all.min.css')}}">
@@ -16,30 +16,30 @@
     <style>
         .carousel-container {
             width: 100%;
-            height: 300px;
+            height: 300p❌;
             overflow: hidden;
             position: relative;
         }
         .carousel {
             width: 100%;
-            display: flex;
+            display: fle❌;
             transition: transform 0.5s;
         }
         .carousel-slide {
-            flex: 0 0 100%;
+            fle❌: 0 0 100%;
             height: 100%;
         }
         .carousel-controls {
             position: absolute;
-            bottom: 10px;
+            bottom: 10p❌;
             left: 0;
             right: 0;
-            display: flex;
+            display: fle❌;
             justify-content: center;
         }
         .carousel-control {
             cursor: pointer;
-            padding: 10px;
+            padding: 10p❌;
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
         }
@@ -78,48 +78,48 @@
                                             @endforeach
                                         </div>
                                         <div class="carousel-controls">
-                                            <div class="carousel-control mx-1" id="prevBtn">&lt; Previous</div>
-                                            <div class="carousel-control mx-1" id="nextBtn">Next &gt;</div>
+                                            <div class="carousel-control m❌-1" id="prevBtn">&lt; Previous</div>
+                                            <div class="carousel-control m❌-1" id="ne❌tBtn">Ne❌t &gt;</div>
                                         </div>
                                     @else
-                                        <p class="p-3 text-center">No listing image provided</p>
+                                        <p class="p-3 te❌t-center">No listing image provided</p>
                                      @endif
 
                                 </div>
  
                                 <div class="card-body">
                                     <h5 class="card-title">Listing Title: {{ $listing[0]->listing_title }}</h5>
-                                    <p class="card-text">Listing Address: {{ $listing[0]->listing_address }}</p>
+                                    <p class="card-te❌t">Listing Address: {{ $listing[0]->listing_address }}</p>
                                     <a href="#" class="btn btn-primary">Price set by Lister: {{ $listing[0]->full_day_price_set_by_user }}
                                         TK/- Per Day</a>
                                 </div>
                             </div>
-                            <p class="card-text">Amenities</p>
+                            <p class="card-te❌t py-2">Amenities</p>
                             <div class="list-group">
                                 <div class="list-group-item">
                                     @if (count($amenities)>0)
                                     <div class="list-group-item">
                                         <div class="row">
-                                            <div class="col-md-4">Free Wifi <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">TV <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">Kitchen <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">Washing Machine <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">Free Parking <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">Dedicated Workspace {{ $amenities[0]->wifi == 1 ? '✔' : 'X'}}</div>
-                                            <div class="col-md-4">Pool <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">Hot tub <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">BBQ Grill <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">Patio <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">Outdooring <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">Fire Pit <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">Gym <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">Beach Access <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">Breakfast Included {{ $amenities[0]->wifi == 1 ? '✔' : 'X'}}</div>
-                                            <div class="col-md-4">Air Condition <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">Smoke Alarm <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">FirstAid <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">Fire exting. <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
-                                            <div class="col-md-4">CCTV <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">Free Wifi <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">TV <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Kitchen <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Washing Machine <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Free Parking <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Dedicated Workspace {{ $amenities[0]->wifi == 1 ? '✔' : '❌'}}</div>
+                                            <div class="col-md-4">Pool <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Hot tub <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">BBQ Grill <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Patio <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Outdooring <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Fire Pit <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Gym <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Beach Access <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Breakfast Included {{ $amenities[0]->wifi == 1 ? '✔' : '❌'}}</div>
+                                            <div class="col-md-4">Air Condition <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Smoke Alarm <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">FirstAid <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Fire e❌ting. <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">CCTV <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
 
 
                                         </div>
@@ -131,12 +131,12 @@
                                     @endif
                                 </div>
                             </div>
-
+                            <p class="card-te❌t py-2">Describes</p>
                             <div class="list-group-item">
                                 @if (count($listing)>0)
                                 <div class="list-group-item">
                                 <div class="row">
-                                    <div class="col">Listing Describes: {{ $listing[0]->listing_type }}</div>
+                                    <div class="col"> {{ $listing[0]->listing_type }}</div>
 
                                 </div>
                                 </div>
@@ -144,20 +144,20 @@
                                 <p>No Describes Found</p>
                                 @endif
                             </div>
-                            <p class="card-text">Restrictions</p>
+                            <p class="card-te❌t py-2">Restrictions</p>
                             <div class="list-group-item">
 
                                 @if (count($restrictions)>0)
-                                <div class="list-group-items">
+                                <div class="list-group-item">
                                     <div class="row">
                                         <div class="col-md-4">Indoor Smoking {{ $restrictions[0]->indoor_smoking == 1 ? '✔' :
-                                            'X' }}</div>
-                                        <div class="col-md-4">Party {{ $restrictions[0]->party == 1 ? '✔' : 'X' }}</div>
-                                        <div class="col-md-4">Pets {{ $restrictions[0]->pets == 1 ? '✔' : 'X' }}</div>
+                                            '❌' }}</div>
+                                        <div class="col-md-4">Party {{ $restrictions[0]->party == 1 ? '✔' : '❌' }}</div>
+                                        <div class="col-md-4">Pets {{ $restrictions[0]->pets == 1 ? '✔' : '❌' }}</div>
                                         <div class="col-md-4">Late Night Entry {{ $restrictions[0]->late_night_entry == 1 ?
-                                            '✔' : 'X' }}</div>
+                                            '✔' : '❌' }}</div>
                                         <div class="col-md-4">Additional Guest Entry {{ $restrictions[0]->unknown_guest_entry
-                                            == 1 ? '✔' : 'X' }}</div>
+                                            == 1 ? '✔' : '❌' }}</div>
                                         <div class="col-md-4">Specific Requirements {{ $restrictions[0]->specific_requirement
                                             ? $restrictions[0]->specific_requirement : 'No Requirement provided' }}
                                         </div>
@@ -179,16 +179,16 @@
                             <img src="{{ asset('/uploads/'. $lister_image[0]->user_targetlocation)}}"
                                 class="card-img-top" alt="Profile Image">
                             @else
-                            <p class="p-3 text-center">No user image provided</p>
+                            <p class="p-3 te❌t-center">No user image provided</p>
                             @endif
 
                             <div class="card-body">
                                 <h5 class="card-title">John Doe</h5>
-                                <p class="card-text">Web Developer</p>
+                                <p class="card-te❌t">Web Developer</p>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Location: New York, USA</li>
-                                <li class="list-group-item">Email: john@example.com</li>
+                                <li class="list-group-item">Email: john@e❌ample.com</li>
                                 <li class="list-group-item">Phone: (123) 456-7890</li>
                             </ul>
                             <div class="card-body">
@@ -214,31 +214,31 @@
         const carousel = document.querySelector(".carousel");
         const slides = document.querySelectorAll(".carousel-slide");
         const prevBtn = document.getElementById("prevBtn");
-        const nextBtn = document.getElementById("nextBtn");
-        let currentIndex = 0;
+        const ne❌tBtn = document.getElementById("ne❌tBtn");
+        let currentInde❌ = 0;
 
         // Show the initial slide
-        showSlide(currentIndex);
+        showSlide(currentInde❌);
 
-        // Function to display a slide by its index
-        function showSlide(index) {
-            if (index < 0) {
-                index = slides.length - 1;
-            } else if (index >= slides.length) {
-                index = 0;
+        // Function to display a slide by its inde❌
+        function showSlide(inde❌) {
+            if (inde❌ < 0) {
+                inde❌ = slides.length - 1;
+            } else if (inde❌ >= slides.length) {
+                inde❌ = 0;
             }
 
-            currentIndex = index;
-            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            currentInde❌ = inde❌;
+            carousel.style.transform = `translate❌(-${currentInde❌ * 100}%)`;
         }
 
-        // Event listeners for previous and next buttons
+        // Event listeners for previous and ne❌t buttons
         prevBtn.addEventListener("click", () => {
-            showSlide(currentIndex - 1);
+            showSlide(currentInde❌ - 1);
         });
 
-        nextBtn.addEventListener("click", () => {
-            showSlide(currentIndex + 1);
+        ne❌tBtn.addEventListener("click", () => {
+            showSlide(currentInde❌ + 1);
         });
     </script>
 </body>
