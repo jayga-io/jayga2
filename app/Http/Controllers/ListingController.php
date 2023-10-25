@@ -116,29 +116,7 @@ class ListingController extends Controller
      */
     public function show(Request $request, $id)
     {
-
-            // Specify the common value you're looking for
-            $commonValue = '1';
-
-            // Replace 'your_table' with the actual name of your table
-            $columns = \Schema::getColumnListing('listing_guest_amenities');
-
-            $matchingColumns = [];
-
-            foreach ($columns as $column) {
-                // Replace 'your_table' with the actual name of your table
-                $count = YourModel::where('your_table.' . $column, $commonValue)->count();
-                
-                if ($count > 0) {
-                    $matchingColumns[] = $column;
-                }
-            }
-
-
-
-
-
-
+ 
         $listingImages = ListingImages::where('listing_id', $id)->get();
         $amenities = ListingGuestAmenities::where('listing_id', $id)->get();
         $restrictions = ListingRestrictions::where('listing_id', $id)->get();
