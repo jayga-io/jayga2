@@ -15,8 +15,8 @@
 	<link rel="stylesheet" href="{{asset('assets/css/style.css')}}"> 
     <style>
         .slider-container {
-            width: 100%;
-            height: 60%;
+            width: 400px;
+            height: 300px;
             overflow: hidden;
             position: relative;
         }
@@ -58,16 +58,23 @@
                             <div class="card">
                                 @if (count($listing_images)>0)
 
-                                <h3 class="card-title">Property Images</h3>
+                               
                                     <!-- Carousel -->
+
+
                                     <div class="slider">
                                         @foreach ($listing_images as $key => $item)
-                                            <div class="slide"><img src="{{ asset('/uploads/'. $item->listing_targetlocation)}}" alt="Image" ></div>
-                                        @endforeach    
+                                                
+                                                    <img src="{{ asset('/uploads/'. $item->listing_targetlocation)}}" alt="Image" >
+                                                 
+                                            @endforeach
                                     </div>
-                                    <button id="prevBtn">Previous</button>
-                                    <button id="nextBtn">Next</button>
-   
+                                    
+                                           
+                                            
+                                           
+                                        
+                                    
                                 @else
                                     <p class="p-3 text-center">No listing image provided</p>
                                 @endif
@@ -81,36 +88,38 @@
                             <div class="list-group">
                                 <div class="list-group-item">
                                     @if (count($amenities)>0)
-                                       
-                                        <div class="row">
-                                            <div class="col">Free Wifi {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">TV {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">Kitchen {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">Washing Machine {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">Free Parking {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">Dedicated Workspace {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">Pool {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">Hot tub {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">BBQ Grill {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">Patio {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">Outdooring {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">Fire Pit {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">Gym {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">Beach Access {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">Breakfast Included {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">Air Condition {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">Smoke Alarm {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">FirstAid {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">Fire exting. {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col">CCTV {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                          
+                                       <div class="list-group-item">
+                                            <div class="row">
+                                                <div class="col">Free Wifi {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">TV {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">Kitchen {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">Washing Machine {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">Free Parking {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">Dedicated Workspace {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">Pool {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">Hot tub {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">BBQ Grill {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">Patio {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">Outdooring {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">Fire Pit {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">Gym {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">Beach Access {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">Breakfast Included {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">Air Condition {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">Smoke Alarm {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">FirstAid {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">Fire exting. {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                                <div class="col">CCTV {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
                                             
-                                        </div>
-                                    </div>
+                                                
+                                            </div>
+                                       </div>
+                                        
+                                    
                                     @else
                                         <p>No amenities found</p>
                                     @endif
-                                    
+                                   </div> 
                                 </div>
                                 
                                  <div class="list-group-item">
@@ -124,9 +133,10 @@
                                     @endif
                                 </div>
                                
-                               
-                                <div class="list-group-item">
+                        <div class="list-group-item"> 
+                                
                                     @if (count($restrictions)>0)
+                                    <div class="list-group-item">
                                         <div class="row">
                                             <div class="col">Indoor Smoking {{ $restrictions[0]->indoor_smoking == 1 ? '✔' : 'X' }}</div>
                                             <div class="col">Party {{ $restrictions[0]->party == 1 ? '✔' : 'X' }}</div>
@@ -136,11 +146,12 @@
                                             <div class="col">Specific Requirements {{ $restrictions[0]->specific_requirement ? $restrictions[0]->specific_requirement : 'No Requirement provided' }}</div>
                                             
                                         </div>
+                                    </div>
                                     @else
                                         <p>No Restrictions Provided</p>
                                     @endif
-                                    
-                                </div>
+                        </div> 
+                                
                             </div>
                         </div>
                     </div>
@@ -182,35 +193,25 @@
 	<script src="{{asset('assets/js/chart.morris.js')}}"></script>
 	<script src="{{asset('assets/js/script.js')}}"></script>
     <script>
-        const slider = document.querySelector(".slider");
-        const slides = document.querySelectorAll(".slide");
-        const prevBtn = document.getElementById("prevBtn");
-        const nextBtn = document.getElementById("nextBtn");
-        let currentIndex = 0;
-
-        // Show the initial slide
-        showSlide(currentIndex);
-
-        // Function to display a slide by its index
-        function showSlide(index) {
-            if (index < 0) {
-                index = slides.length - 1;
-            } else if (index >= slides.length) {
-                index = 0;
-            }
-
-            currentIndex = index;
-            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        // JavaScript for the image slider
+        const slider = document.querySelector('.slider');
+        const images = slider.querySelectorAll('img');
+        let currentImage = 0;
+    
+        function nextImage() {
+            images[currentImage].style.display = 'none';
+            currentImage = (currentImage + 1) % images.length;
+            images[currentImage].style.display = 'block';
         }
-
-        // Event listeners for previous and next buttons
-        prevBtn.addEventListener("click", () => {
-            showSlide(currentIndex - 1);
-        });
-
-        nextBtn.addEventListener("click", () => {
-            showSlide(currentIndex + 1);
-        });
+    
+        function prevImage() {
+            images[currentImage].style.display = 'none';
+            currentImage = (currentImage - 1 + images.length) % images.length;
+            images[currentImage].style.display = 'block';
+        }
+    
+        // Automatic slideshow
+        setInterval(nextImage, 3000); // Change image every 3 seconds
     </script>
 </body>
 </html>
