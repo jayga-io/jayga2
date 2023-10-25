@@ -14,22 +14,34 @@
     <link rel="stylesheet" href="{{asset('assets/plugins/morris/morris.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <style>
-        .slider-container {
-            width: 400px;
+        .carousel-container {
+            width: 100%;
             height: 300px;
             overflow: hidden;
             position: relative;
         }
-
-        .slider {
+        .carousel {
             width: 100%;
             display: flex;
             transition: transform 0.5s;
         }
-
-        .slide {
+        .carousel-slide {
             flex: 0 0 100%;
             height: 100%;
+        }
+        .carousel-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .carousel-control {
+            cursor: pointer;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
         }
     </style>
 </head>
@@ -58,28 +70,23 @@
                     <div class="col-md-6">
                         <div class="container mt-5">
                             <div class="card">
-                                @if (count($listing_images)>0)
+                                <div class="carousel-container">
+                                     @if (count($listing_images)>0)
+                                        <div class="carousel">
+                                            @foreach ($listing_images as $key => $item)
+                                                <div class="carousel-slide"><img src="{{ asset('/uploads/'. $item->listing_targetlocation)}}" alt="Image"></div>
+                                            @endforeach
+                                        </div>
+                                        <div class="carousel-controls">
+                                            <div class="carousel-control" id="prevBtn">&lt; Previous</div>
+                                            <div class="carousel-control" id="nextBtn">Next &gt;</div>
+                                        </div>
+                                    @else
+                                        <p class="p-3 text-center">No listing image provided</p>
+                                     @endif
 
-
-                                <!-- Carousel -->
-
-
-                                <div class="slider">
-                                    @foreach ($listing_images as $key => $item)
-
-                                    <img src="{{ asset('/uploads/'. $item->listing_targetlocation)}}" alt="Image">
-
-                                    @endforeach
                                 </div>
-
-
-
-
-
-
-                                @else
-                                <p class="p-3 text-center">No listing image provided</p>
-                                @endif
+ 
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $listing[0]->listing_title }}</h5>
                                     <p class="card-text">{{ $listing[0]->listing_address }}</p>
@@ -147,7 +154,7 @@
                             <div class="list-group-item">
 
                                 @if (count($restrictions)>0)
-                                
+                                <div class="list-group-items">
                                     <div class="row">
                                         <div class="col-md-4">Indoor Smoking {{ $restrictions[0]->indoor_smoking == 1 ? '✔' :
                                             'X' }}</div>
@@ -162,7 +169,7 @@
                                         </div>
 
                                     </div>
-                                
+                                </div>
                                 @else
                                 <p>No Restrictions Provided</p>
                                 @endif
@@ -210,25 +217,35 @@
     <script src="{{asset('assets/js/chart.morris.js')}}"></script>
     <script src="{{asset('assets/js/script.js')}}"></script>
     <script>
-        // JavaScript for the image slider
-        const slider = document.querySelector('.slider');
-        const images = slider.querySelectorAll('img');
-        let currentImage = 0;
-    
-        function nextImage() {
-            images[currentImage].style.display = 'none';
-            currentImage = (currentImage + 1) % images.length;
-            images[currentImage].style.display = 'block';
+        const carousel = document.querySelector(".carousel");
+        const slides = document.querySelectorAll(".carousel-slide");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        let currentIndex = 0;
+
+        // Show the initial slide
+        showSlide(currentIndex);
+
+        // Function to display a slide by its index
+        function showSlide(index) {
+            if (index < 0) {
+                index = slides.length - 1;
+            } else if (index >= slides.length) {
+                index = 0;
+            }
+
+            currentIndex = index;
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
-    
-        function prevImage() {
-            images[currentImage].style.display = 'none';
-            currentImage = (currentImage - 1 + images.length) % images.length;
-            images[currentImage].style.display = 'block';
-        }
-    
-        // Automatic slideshow
-        setInterval(nextImage, 3000); // Change image every 3 seconds
+
+        // Event listeners for previous and next buttons
+        prevBtn.addEventListener("click", () => {
+            showSlide(currentIndex - 1);
+        });
+
+        nextBtn.addEventListener("click", () => {
+            showSlide(currentIndex + 1);
+        });
     </script>
 </body>
 
