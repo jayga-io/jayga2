@@ -81,25 +81,20 @@
                             <div class="list-group">
                                 <div class="list-group-item">
                                     @if (count($amenities)>0)
-                                        @foreach ($amenities as $item)
-                                            <div class="row">
-                                                <div class="col">{{$item}}</div>
-                                                
-                                            </div>
-                                        @endforeach
+                                       <div class="list-group-item">
+                                        <div class="row">
+                                            <div class="col">Free Wifi {{ $amenities->wifi == 1 ? '✔' : 'X' }}</div>
+                                            <div class="col">Item 6</div>
+                                            <div class="col">Item 7</div>
+                                            <div class="col">Item 8</div>
+                                        </div>
+                                    </div>
                                     @else
                                         <p>No amenities found</p>
                                     @endif
                                     
                                 </div>
-                                <div class="list-group-item">
-                                    <div class="row">
-                                        <div class="col">Item 5</div>
-                                        <div class="col">Item 6</div>
-                                        <div class="col">Item 7</div>
-                                        <div class="col">Item 8</div>
-                                    </div>
-                                </div>
+                                
                                 <div class="list-group-item">
                                     <div class="row">
                                         <div class="col">Item 9</div>
