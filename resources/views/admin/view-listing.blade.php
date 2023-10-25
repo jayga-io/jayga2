@@ -83,7 +83,7 @@
                                     @if (count($amenities)>0)
                                        <div class="list-group-item">
                                         <div class="row">
-                                            <div class="col">Free Wifi {{ $amenities->wifi == 1 ? '✔' : 'X' }}</div>
+                                            <div class="col">Free Wifi {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
                                             <div class="col">Item 6</div>
                                             <div class="col">Item 7</div>
                                             <div class="col">Item 8</div>
