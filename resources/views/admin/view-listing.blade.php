@@ -78,8 +78,8 @@
                                             @endforeach
                                         </div>
                                         <div class="carousel-controls">
-                                            <div class="carousel-control" id="prevBtn">&lt; Previous</div>
-                                            <div class="carousel-control" id="nextBtn">Next &gt;</div>
+                                            <div class="carousel-control mx-1" id="prevBtn">&lt; Previous</div>
+                                            <div class="carousel-control mx-1" id="nextBtn">Next &gt;</div>
                                         </div>
                                     @else
                                         <p class="p-3 text-center">No listing image provided</p>
@@ -88,9 +88,9 @@
                                 </div>
  
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ $listing[0]->listing_title }}</h5>
-                                    <p class="card-text">{{ $listing[0]->listing_address }}</p>
-                                    <a href="#" class="btn btn-primary">{{ $listing[0]->full_day_price_set_by_user }}
+                                    <h5 class="card-title">Listing Title: {{ $listing[0]->listing_title }}</h5>
+                                    <p class="card-text">Listing Address: {{ $listing[0]->listing_address }}</p>
+                                    <a href="#" class="btn btn-primary">Price set by Lister: {{ $listing[0]->full_day_price_set_by_user }}
                                         TK/- Per Day</a>
                                 </div>
                             </div>
@@ -100,34 +100,26 @@
                                     @if (count($amenities)>0)
                                     <div class="list-group-item">
                                         <div class="row">
-                                            <div class="col-md-4">Free Wifi {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col-md-4">TV {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col-md-4">Kitchen {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col-md-4">Washing Machine {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}
-                                            </div>
-                                            <div class="col-md-4">Free Parking {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}
-                                            </div>
-                                            <div class="col-md-4">Dedicated Workspace {{ $amenities[0]->wifi == 1 ? '✔' : 'X'
-                                                }}</div>
-                                            <div class="col-md-4">Pool {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col-md-4">Hot tub {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col-md-4">BBQ Grill {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col-md-4">Patio {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col-md-4">Outdooring {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col-md-4">Fire Pit {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col-md-4">Gym {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col-md-4">Beach Access {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}
-                                            </div>
-                                            <div class="col-md-4">Breakfast Included {{ $amenities[0]->wifi == 1 ? '✔' : 'X'
-                                                }}</div>
-                                            <div class="col-md-4">Air Condition {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}
-                                            </div>
-                                            <div class="col-md-4">Smoke Alarm {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}
-                                            </div>
-                                            <div class="col-md-4">FirstAid {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col-md-4">Fire exting. {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}
-                                            </div>
-                                            <div class="col-md-4">CCTV {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                            <div class="col-md-4">Free Wifi <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">TV <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">Kitchen <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">Washing Machine <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">Free Parking <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">Dedicated Workspace {{ $amenities[0]->wifi == 1 ? '✔' : 'X'}}</div>
+                                            <div class="col-md-4">Pool <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">Hot tub <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">BBQ Grill <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">Patio <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">Outdooring <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">Fire Pit <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">Gym <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">Beach Access <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">Breakfast Included {{ $amenities[0]->wifi == 1 ? '✔' : 'X'}}</div>
+                                            <div class="col-md-4">Air Condition <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">Smoke Alarm <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">FirstAid <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">Fire exting. <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
+                                            <div class="col-md-4">CCTV <span> {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }} </span></div>
 
 
                                         </div>
@@ -142,9 +134,11 @@
 
                             <div class="list-group-item">
                                 @if (count($listing)>0)
+                                <div class="list-group-item">
                                 <div class="row">
                                     <div class="col">Listing Describes: {{ $listing[0]->listing_type }}</div>
 
+                                </div>
                                 </div>
                                 @else
                                 <p>No Describes Found</p>
