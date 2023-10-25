@@ -15,8 +15,8 @@
 	<link rel="stylesheet" href="{{asset('assets/css/style.css')}}"> 
     <style>
         .slider-container {
-            width: 400px;
-            height: 300px;
+            width: 100%;
+            height: 60%;
             overflow: hidden;
             position: relative;
         }
