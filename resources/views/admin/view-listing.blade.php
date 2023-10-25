@@ -6,15 +6,28 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 	<title>Jaygaa Dashboard</title>
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="{{asset('assets/plugins/fontawesome/css/fontawesome.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/plugins/fontawesome/css/all.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/css/feathericon.min.css')}}">
 	<link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
 	<link rel="stylesheet" href="{{asset('assets/plugins/morris/morris.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/css/style.css')}}"> </head>
+	<link rel="stylesheet" href="{{asset('assets/css/style.css')}}"> 
+    <style>
+        /* Add your CSS styles here */
+        .slider {
+            width: 300px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .slider img {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+    </style>
+</head>
 
 <body>
 	<div class="main-wrapper">
@@ -42,13 +55,14 @@
                             <div class="card">
                                 @if (count($listing_images)>0)
                                     <!-- Carousel -->
-                                    <div class="owl-carousel">
-                                         @foreach ($listing_images as $key => $item)
-                                                <div>
+                                    <div class="slider">
+                                        @foreach ($listing_images as $key => $item)
+                                                
                                                     <img src="https://new.jayga.xyz/uploads/listings/kZyUvFhvakT1rAToKjab84nFLjcSBN2uxIONS3Op.jpg" alt="Image 1">
-                                                </div> 
+                                                 
                                             @endforeach
                                     </div>
+                                    
                                            
                                             
                                            
@@ -124,11 +138,31 @@
     <script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script>
 	<script src="{{asset('assets/js/popper.min.js')}}"></script>
 	<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="{{asset('assets/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/raphael/raphael.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/morris/morris.min.js')}}"></script>
 	<script src="{{asset('assets/js/chart.morris.js')}}"></script>
 	<script src="{{asset('assets/js/script.js')}}"></script>
+    <script>
+        // JavaScript for the image slider
+        const slider = document.querySelector('.slider');
+        const images = slider.querySelectorAll('img');
+        let currentImage = 0;
+    
+        function nextImage() {
+            images[currentImage].style.display = 'none';
+            currentImage = (currentImage + 1) % images.length;
+            images[currentImage].style.display = 'block';
+        }
+    
+        function prevImage() {
+            images[currentImage].style.display = 'none';
+            currentImage = (currentImage - 1 + images.length) % images.length;
+            images[currentImage].style.display = 'block';
+        }
+    
+        // Automatic slideshow
+        setInterval(nextImage, 3000); // Change image every 3 seconds
+    </script>
 </body>
 </html>
