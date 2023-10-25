@@ -93,34 +93,34 @@
                                     @if (count($amenities)>0)
                                     <div class="list-group-item">
                                         <div class="row">
-                                            <div class="col-md-4">Free Wifi {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X' }}</div>
-                                            <div class="col-md-4">TV {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X' }}</div>
-                                            <div class="col-md-4">Kitchen {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X' }}</div>
-                                            <div class="col-md-4">Washing Machine {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X' }}
+                                            <div class="col-md-4">Free Wifi {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}</div>
+                                            <div class="col-md-4">TV {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}</div>
+                                            <div class="col-md-4">Kitchen {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}</div>
+                                            <div class="col-md-4">Washing Machine {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}
                                             </div>
-                                            <div class="col-md-4">Free Parking {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X' }}
+                                            <div class="col-md-4">Free Parking {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}
                                             </div>
-                                            <div class="col-md-4">Dedicated Workspace {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X'
+                                            <div class="col-md-4">Dedicated Workspace {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X'
                                                 }}</div>
-                                            <div class="col-md-4">Pool {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X' }}</div>
-                                            <div class="col-md-4">Hot tub {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X' }}</div>
-                                            <div class="col-md-4">BBQ Grill {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X' }}</div>
-                                            <div class="col-md-4">Patio {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X' }}</div>
-                                            <div class="col-md-4">Outdooring {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X' }}</div>
-                                            <div class="col-md-4">Fire Pit {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X' }}</div>
-                                            <div class="col-md-4">Gym {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X' }}</div>
-                                            <div class="col-md-4">Beach Access {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X' }}
+                                            <div class="col-md-4">Pool {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}</div>
+                                            <div class="col-md-4">Hot tub {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}</div>
+                                            <div class="col-md-4">BBQ Grill {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}</div>
+                                            <div class="col-md-4">Patio {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}</div>
+                                            <div class="col-md-4">Outdooring {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}</div>
+                                            <div class="col-md-4">Fire Pit {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}</div>
+                                            <div class="col-md-4">Gym {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}</div>
+                                            <div class="col-md-4">Beach Access {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}
                                             </div>
-                                            <div class="col-md-4">Breakfast Included {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X'
+                                            <div class="col-md-4">Breakfast Included {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X'
                                                 }}</div>
-                                            <div class="col-md-4">Air Condition {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X' }}
+                                            <div class="col-md-4">Air Condition {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}
                                             </div>
-                                            <div class="col-md-4">Smoke Alarm {{ $amenities[0]->wifi == 1 ? <i class="fa-solid fa-check"></i> : 'X' }}
+                                            <div class="col-md-4">Smoke Alarm {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}
                                             </div>
-                                            <div class="col-md-4">FirstAid {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
-                                            <div class="col-md-4">Fire exting. {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}
+                                            <div class="col-md-4">FirstAid {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}</div>
+                                            <div class="col-md-4">Fire exting. {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}
                                             </div>
-                                            <div class="col-md-4">CCTV {{ $amenities[0]->wifi == 1 ? '✔' : 'X' }}</div>
+                                            <div class="col-md-4">CCTV {{ $amenities[0]->wifi == 1 ? '<i class="fa-solid fa-check"></i>' : 'X' }}</div>
 
 
                                         </div>
