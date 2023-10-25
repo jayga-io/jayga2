@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
+use App\Models\ListingDescribe;
+use App\Models\ListingGuestAmenities;
+use App\Models\ListingRestrictions;
 use App\Models\ListingImages;
 use App\Models\ListerNid;
 use App\Models\User;
@@ -114,11 +117,15 @@ class ListingController extends Controller
     public function show(Request $request, $id)
     {
         $listingImages = ListingImages::where('listing_id', $id)->get();
-        
+        $amenities = ListingGuestAmenities::where('listing_id', $id)->get();
+        $restrictions = ListingRestrictions::where('listing_id', $id)->get();
+        $describes = ListingDescribe::where('listing_id', $id)->get();
         $listing = Listing::where('listing_id', $id)->get();
         $lister = User::where('id', $listing[0]->lister_id)->get();
         $lister_image = UserPictures::where('user_id', $listing[0]->lister_id)->get();
-        return view('admin.view-listing')->with('listing_images', $listingImages)->with('listing', $listing)->with('lister', $lister)->with('lister_image', $lister_image);
+        return view('admin.view-listing')
+        ->with('listing_images', $listingImages)->with('listing', $listing)->with('lister', $lister)
+        ->with('lister_image', $lister_image)->with('describes', $describes)->with('restrictions', $restrictions)->with('amenities', $amenities);
     }
 
     /**

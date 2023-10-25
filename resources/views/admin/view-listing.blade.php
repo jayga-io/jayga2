@@ -16,7 +16,7 @@
     <style>
         /* Add your CSS styles here */
         .slider {
-            width: 300px;
+            width: 100%;
             overflow: hidden;
             margin: 0 auto;
         }
@@ -58,7 +58,7 @@
                                     <div class="slider">
                                         @foreach ($listing_images as $key => $item)
                                                 
-                                                    <img src="https://new.jayga.xyz/uploads/listings/kZyUvFhvakT1rAToKjab84nFLjcSBN2uxIONS3Op.jpg" alt="Image 1">
+                                                    <img src="{{ asset('/uploads/'. $item->listing_targetlocation)}}" alt="Image 1">
                                                  
                                             @endforeach
                                     </div>
@@ -80,12 +80,17 @@
                             <p class="card-text">Amenities</p>
                             <div class="list-group">
                                 <div class="list-group-item">
-                                    <div class="row">
-                                        <div class="col">Item 1</div>
-                                        <div class="col">Item 2</div>
-                                        <div class="col">Item 3</div>
-                                        <div class="col">Item 4</div>
-                                    </div>
+                                    @if (count($amenities)>0)
+                                        @foreach ($amenities as $item)
+                                            <div class="row">
+                                                <div class="col">{{$item}}</div>
+                                                
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <p>No amenities found</p>
+                                    @endif
+                                    
                                 </div>
                                 <div class="list-group-item">
                                     <div class="row">
