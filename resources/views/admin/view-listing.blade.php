@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <title>Jaygaa Dashboard</title>
-    <link rel="shortcut icon" type="image/❌-icon" href="assets/img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome/css/fontawesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome/css/all.min.css')}}">
@@ -16,30 +16,30 @@
     <style>
         .carousel-container {
             width: 100%;
-            height: 300p❌;
+            height: 300px;
             overflow: hidden;
             position: relative;
         }
         .carousel {
             width: 100%;
-            display: fle❌;
+            display: flex;
             transition: transform 0.5s;
         }
         .carousel-slide {
-            fle❌: 0 0 100%;
+            flex: 0 0 100%;
             height: 100%;
         }
         .carousel-controls {
             position: absolute;
-            bottom: 10p❌;
+            bottom: 10px;
             left: 0;
             right: 0;
-            display: fle❌;
+            display: flex;
             justify-content: center;
         }
         .carousel-control {
             cursor: pointer;
-            padding: 10p❌;
+            padding: 10px;
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
         }
@@ -78,23 +78,23 @@
                                             @endforeach
                                         </div>
                                         <div class="carousel-controls">
-                                            <div class="carousel-control m❌-1" id="prevBtn">&lt; Previous</div>
-                                            <div class="carousel-control m❌-1" id="ne❌tBtn">Ne❌t &gt;</div>
+                                            <div class="carousel-control mx-1" id="prevBtn">&lt; Previous</div>
+                                            <div class="carousel-control mx-1" id="nextBtn">Next &gt;</div>
                                         </div>
                                     @else
-                                        <p class="p-3 te❌t-center">No listing image provided</p>
+                                        <p class="p-3 text-center">No listing image provided</p>
                                      @endif
 
                                 </div>
  
                                 <div class="card-body">
                                     <h5 class="card-title">Listing Title: {{ $listing[0]->listing_title }}</h5>
-                                    <p class="card-te❌t">Listing Address: {{ $listing[0]->listing_address }}</p>
+                                    <p class="card-text">Listing Address: {{ $listing[0]->listing_address }}</p>
                                     <a href="#" class="btn btn-primary">Price set by Lister: {{ $listing[0]->full_day_price_set_by_user }}
                                         TK/- Per Day</a>
                                 </div>
                             </div>
-                            <p class="card-te❌t py-2">Amenities</p>
+                            <p class="card-text py-2">Amenities</p>
                             <div class="list-group">
                                 <div class="list-group-item">
                                     @if (count($amenities)>0)
@@ -118,7 +118,7 @@
                                             <div class="col-md-4">Air Condition <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
                                             <div class="col-md-4">Smoke Alarm <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
                                             <div class="col-md-4">FirstAid <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">Fire e❌ting. <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Fire exting. <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
                                             <div class="col-md-4">CCTV <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
 
 
@@ -131,7 +131,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <p class="card-te❌t py-2">Describes</p>
+                            <p class="card-text py-2">Describes</p>
                             <div class="list-group-item">
                                 @if (count($listing)>0)
                                 <div class="list-group-item">
@@ -144,7 +144,7 @@
                                 <p>No Describes Found</p>
                                 @endif
                             </div>
-                            <p class="card-te❌t py-2">Restrictions</p>
+                            <p class="card-text py-2">Restrictions</p>
                             <div class="list-group-item">
 
                                 @if (count($restrictions)>0)
@@ -158,15 +158,22 @@
                                             '✔' : '❌' }}</div>
                                         <div class="col-md-4">Additional Guest Entry {{ $restrictions[0]->unknown_guest_entry
                                             == 1 ? '✔' : '❌' }}</div>
-                                        <div class="col-md-4">Specific Requirements {{ $restrictions[0]->specific_requirement
-                                            ? $restrictions[0]->specific_requirement : 'No Requirement provided' }}
-                                        </div>
+                                        
 
                                     </div>
                                 </div>
                                 @else
                                 <p>No Restrictions Provided</p>
                                 @endif
+                            </div>
+
+                            <p class="card-text py-2">Specific requirement</p>
+                            <div class="list-group-item">
+                                <div class="row">
+                                    <div class="col-md-4">Specific Requirements {{ $restrictions[0]->specific_requirement
+                                        ? $restrictions[0]->specific_requirement : 'No Requirement provided' }}
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -179,16 +186,16 @@
                             <img src="{{ asset('/uploads/'. $lister_image[0]->user_targetlocation)}}"
                                 class="card-img-top" alt="Profile Image">
                             @else
-                            <p class="p-3 te❌t-center">No user image provided</p>
+                            <p class="p-3 text-center">No user image provided</p>
                             @endif
 
                             <div class="card-body">
                                 <h5 class="card-title">John Doe</h5>
-                                <p class="card-te❌t">Web Developer</p>
+                                <p class="card-text">Web Developer</p>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Location: New York, USA</li>
-                                <li class="list-group-item">Email: john@e❌ample.com</li>
+                                <li class="list-group-item">Email: john@example.com</li>
                                 <li class="list-group-item">Phone: (123) 456-7890</li>
                             </ul>
                             <div class="card-body">
@@ -214,31 +221,31 @@
         const carousel = document.querySelector(".carousel");
         const slides = document.querySelectorAll(".carousel-slide");
         const prevBtn = document.getElementById("prevBtn");
-        const ne❌tBtn = document.getElementById("ne❌tBtn");
-        let currentInde❌ = 0;
+        const nextBtn = document.getElementById("nextBtn");
+        let currentIndex = 0;
 
         // Show the initial slide
-        showSlide(currentInde❌);
+        showSlide(currentIndex);
 
-        // Function to display a slide by its inde❌
-        function showSlide(inde❌) {
-            if (inde❌ < 0) {
-                inde❌ = slides.length - 1;
-            } else if (inde❌ >= slides.length) {
-                inde❌ = 0;
+        // Function to display a slide by its index
+        function showSlide(index) {
+            if (index < 0) {
+                index = slides.length - 1;
+            } else if (index >= slides.length) {
+                index = 0;
             }
 
-            currentInde❌ = inde❌;
-            carousel.style.transform = `translate❌(-${currentInde❌ * 100}%)`;
+            currentIndex = index;
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
 
-        // Event listeners for previous and ne❌t buttons
+        // Event listeners for previous and next buttons
         prevBtn.addEventListener("click", () => {
-            showSlide(currentInde❌ - 1);
+            showSlide(currentIndex - 1);
         });
 
-        ne❌tBtn.addEventListener("click", () => {
-            showSlide(currentInde❌ + 1);
+        nextBtn.addEventListener("click", () => {
+            showSlide(currentIndex + 1);
         });
     </script>
 </body>
