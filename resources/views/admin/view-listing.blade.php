@@ -188,7 +188,7 @@
                         <div class="card">
                             @if (count($lister_image)>0)
                             <img src="{{ asset('/uploads/'. $lister_image[0]->user_targetlocation)}}"
-                                class="card-img-top rounded-circle" style="width: 200px; height:200px" alt="Profile Image">
+                                class="card-img-top rounded-circle px-5" style="width: 200px; height:200px" alt="Profile Image">
                             @else
                             <p class="p-3 text-center">No user image provided</p>
                             @endif
@@ -202,12 +202,18 @@
                                 
                                 
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Location: {{ $lister[0]->user_address === null ? 'No address provided' : $lister[0]->user_address }}</li>
-                                <li class="list-group-item">Email: {{ $lister[0]->email === null ? 'No email provided' : $lister[0]->email }}</li>
-                                <li class="list-group-item">Phone: {{ $lister[0]->phone }}</li>
-                                <li class="list-group-item">Joined: {{ $lister[0]->created_at->diffForHumans() }}</li>
-                            </ul>
+                            @if (count($lister)>0)
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Location: {{ $lister[0]->user_address === null ? 'No address provided' :
+                                        $lister[0]->user_address }}</li>
+                                    <li class="list-group-item">Email: {{ $lister[0]->email === null ? 'No email provided' : $lister[0]->email }}</li>
+                                    <li class="list-group-item">Phone: {{ $lister[0]->phone }}</li>
+                                    <li class="list-group-item">Joined: {{ $lister[0]->created_at->diffForHumans() }}</li>
+                                </ul>
+                            @else
+                                <p>No info available</p>
+                            @endif
+                            
                             <div class="card-body">
                                <p class="card-text py-2">Submitted Documents for listing</p>
                                <div class="carousel-container">
