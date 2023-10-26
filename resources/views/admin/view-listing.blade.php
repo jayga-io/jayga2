@@ -194,7 +194,7 @@
                             @endif
 
                             <div class="card-body">
-                                <h5 class="card-title">Lister name: {{ $lister[0]->name }}</h5>
+                                <h5 class="card-title">Lister name: {{ $lister[0]->name === null ? 'user has no name / user not registered yet' : $lister[0]->name }}</h5>
                                 
                             </div>
                             <ul class="list-group list-group-flush">
