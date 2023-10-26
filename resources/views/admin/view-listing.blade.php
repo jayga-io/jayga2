@@ -61,28 +61,6 @@
                                 <a href="/admin/approve-listing/{{ $listing[0]->listing_id }}" class="btn btn-primary">Approve</button>
                                 <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">Decline</button>
                             </div>
-                            <!-- modal -->
-
-                            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- Content for the modal goes here -->
-                                            <p>Are you sure to decline? this action is irreversibale</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <a href="/admin/decline-listing/{{$listing[0]->listing_id}}" class="btn btn-primary">Decline</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-
 
 
                             <ul class="breadcrumb">
