@@ -49,25 +49,8 @@
 
 <body>
 
-    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Content for the modal goes here -->
-                    <p>Are you sure to decline? this action is irreversibale</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a href="/admin/decline-listing/{{$listing[0]->listing_id}}" class="btn btn-primary">Decline</button>
-                </div>
-            </div>
-        </div>
-    </div>
     
+
     <div class="main-wrapper">
 
         @include('admin.sidebar')
@@ -89,6 +72,29 @@
                         </div>
                     </div>
                 </div>
+
+
+                <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Content for the modal goes here -->
+                                <p>Are you sure to decline? this action is irreversibale</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="/admin/decline-listing/{{$listing[0]->listing_id}}" class="btn btn-primary">Decline</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
                 <div class="row">
                     <div class="col-md-6">
                         <div class="container mt-5">
