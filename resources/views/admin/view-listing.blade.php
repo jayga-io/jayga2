@@ -201,7 +201,7 @@
                                 <li class="list-group-item">Location: {{ $lister[0]->user_address === null ? 'No address provided' : $lister[0]->user_address }}</li>
                                 <li class="list-group-item">Email: {{ $lister[0]->email === null ? 'No email provided' : $lister[0]->email }}</li>
                                 <li class="list-group-item">Phone: {{ $lister[0]->phone }}</li>
-                                <li class="list-group-item">Joined: {{ diffForHumans($lister[0]->created_at) }}</li>
+                                <li class="list-group-item">Joined: {{ $lister[0]->created_at->diffForHumans() }}</li>
                             </ul>
                             <div class="card-body">
                                <p class="card-text py-2">Submitted Documents for listing</p>
