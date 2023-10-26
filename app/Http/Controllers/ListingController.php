@@ -123,10 +123,10 @@ class ListingController extends Controller
         $describes = ListingDescribe::where('listing_id', $id)->get();
         $listing = Listing::where('listing_id', $id)->get();
         $lister = User::where('id', $listing[0]->lister_id)->get();
-        $lister_image = UserPictures::where('user_id', $listing[0]->lister_id)->get();
+        $lister_nid = ListerNid::where('listing_id', $id)->get();
         return view('admin.view-listing')
         ->with('listing_images', $listingImages)->with('listing', $listing)->with('lister', $lister)
-        ->with('lister_image', $lister_image)->with('describes', $describes)->with('restrictions', $restrictions)->with('amenities', $amenities);
+        ->with('lister_nid', $lister_nid)->with('describes', $describes)->with('restrictions', $restrictions)->with('amenities', $amenities);
     }
 
     /**

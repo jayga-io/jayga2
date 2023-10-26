@@ -28,6 +28,7 @@
         .carousel-slide {
             flex: 0 0 100%;
             height: 100%;
+            width: 100%;
         }
         .carousel-controls {
             position: absolute;
@@ -94,9 +95,10 @@
                                         TK/- Per Day</a>
                                 </div>
                             </div>
-                            <p class="card-text py-2">Amenities</p>
+                            
                             <div class="list-group">
                                 <div class="list-group-item">
+                                    <p class="card-text py-2">Amenities</p>
                                     @if (count($amenities)>0)
                                     <div class="list-group-item">
                                         <div class="row">
@@ -131,9 +133,10 @@
                                     @endif
                                 </div>
                             </div>
-                            <p class="card-text py-2">Describes</p>
+                            
                             <div class="list-group-item">
                                 @if (count($listing)>0)
+                                <p class="card-text py-2">Describes</p>
                                 <div class="list-group-item">
                                 <div class="row">
                                     <div class="col"> {{ $listing[0]->listing_type }}</div>
@@ -144,10 +147,11 @@
                                 <p>No Describes Found</p>
                                 @endif
                             </div>
-                            <p class="card-text py-2">Restrictions</p>
+                            
                             <div class="list-group-item">
 
                                 @if (count($restrictions)>0)
+                                <p class="card-text py-2">Restrictions</p>
                                 <div class="list-group-item">
                                     <div class="row">
                                         <div class="col-md-4">Indoor Smoking {{ $restrictions[0]->indoor_smoking == 1 ? '✔' :
@@ -170,7 +174,7 @@
                             <p class="card-text py-2">Specific requirement</p>
                             <div class="list-group-item">
                                 <div class="row">
-                                    <div class="col-md-4">Specific Requirements {{ $restrictions[0]->specific_requirement
+                                    <div class="col-md-4">Specific Requirements <br> {{ $restrictions[0]->specific_requirement
                                         ? $restrictions[0]->specific_requirement : 'No Requirement provided' }}
                                     </div>
                                 </div>
@@ -184,23 +188,39 @@
                         <div class="card">
                             @if (count($lister_image)>0)
                             <img src="{{ asset('/uploads/'. $lister_image[0]->user_targetlocation)}}"
-                                class="card-img-top" alt="Profile Image">
+                                class="card-img-top rounded-circle" style="width: 200px; height:200px" alt="Profile Image">
                             @else
                             <p class="p-3 text-center">No user image provided</p>
                             @endif
 
                             <div class="card-body">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="card-text">Web Developer</p>
+                                <h5 class="card-title">Lister name: {{ $lister[0]->name }}</h5>
+                                
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Location: New York, USA</li>
-                                <li class="list-group-item">Email: john@example.com</li>
-                                <li class="list-group-item">Phone: (123) 456-7890</li>
+                                <li class="list-group-item">Location: {{ $lister[0]->user_address === null ? 'No address provided' : $lister[0]->user_address }}</li>
+                                <li class="list-group-item">Email: {{ $lister[0]->email === null ? 'No email provided' : $lister[0]->email }}</li>
+                                <li class="list-group-item">Phone: {{ $lister[0]->phone }}</li>
+                                <li class="list-group-item">Joined: {{ diffForHuman($lister[0]->created_at) }}</li>
                             </ul>
                             <div class="card-body">
-                                <a href="#" class="card-link">Website</a>
-                                <a href="#" class="card-link">LinkedIn</a>
+                               <p class="card-text py-2">Submitted Documents for listing</p>
+                               <div class="carousel-container">
+                                @if (count($lister_nid)>0)
+                                   <div class="carousel">
+                                       @foreach ($lister_nid as $key => $item)
+                                           <div class="carousel-slide"><img src="{{ asset('/uploads/'. $item->nid_targetlocation)}}" alt="Image"></div>
+                                       @endforeach
+                                   </div>
+                                   <div class="carousel-controls">
+                                       <div class="carousel-control mx-1" id="prevBtn">&lt; Previous</div>
+                                       <div class="carousel-control mx-1" id="nextBtn">Next &gt;</div>
+                                   </div>
+                               @else
+                                   <p class="p-3 text-center">No documents provided</p>
+                                @endif
+
+                           </div>
                             </div>
                         </div>
                     </div>
