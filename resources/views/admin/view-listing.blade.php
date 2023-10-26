@@ -223,10 +223,8 @@
                                     <li class="list-group-item">Joined: {{ $lister[0]->created_at->diffForHumans() }}</li>
                                 </ul>
                             @else
-                                <p class="card-text px-2">No info available</p>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Phone: {{ $lister[0]->phone }}</li>
-                                </ul>
+                                <p class="card-text px-2">This listing has no user. created by admin</p>
+                                
                             @endif
                             
                             <div class="card-body">
