@@ -163,14 +163,14 @@ class ListingController extends Controller
             Storage::delete($value->nid_targetlocation);
         }
         Listing::where('listing_id', $id)->delete();
-        return redirect()->back()->with('deleted', 'Listing Declined');
+        return redirect(route('pendinglisting'))->with('deleted', 'Listing Declined');
     }
 
     public function approve(Request $request, $id){
         Listing::where('listing_id', $id)->update([
             'isApproved' => true
         ]);
-        return redirect()->back()->with('success', 'Listing Approved');
+        return redirect(route('pendinglisting'))->with('success', 'Listing Approved');
     }
 
    

@@ -58,9 +58,33 @@
                         <div class="col-sm-12 mt-5 ">
                             <h3 class="page-title mt-3">Listing Details</h3>
                             <div class="page-title mt-3" style="float:right">
-                                <button class="btn btn-primary">Approve</button>
-                                <button class="btn btn-danger">Decline</button>
+                                <a href="/admin/approve-listing/{{ $listing[0]->listing_id }}" class="btn btn-primary">Approve</button>
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">Decline</button>
                             </div>
+                            <!-- modal -->
+
+                            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Content for the modal goes here -->
+                                            <p>Are you sure to decline? this action is irreversibale</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <a href="/admin/decline-listing/{{$listing[0]->listing_id}}" class="btn btn-primary">Decline</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+
+
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item active">Listing Id : {{ $listing[0]->listing_id }}</li>
                             </ul>
@@ -94,7 +118,7 @@
                                     <a href="#" class="btn btn-primary">Price set by lister: {{ $listing[0]->full_day_price_set_by_user }}
                                         bdt/- per day</a>
 
-                                    <p class="card-text">Listing Description: {{$listing[0]->listing_description}}</p>
+                                    <p class="card-text mt-2">Listing Description: {{$listing[0]->listing_description}}</p>
 
                                     <div class="list-group-item">
                                         <div class="row">
@@ -183,8 +207,9 @@
                                 @endif
                             </div>
 
-                            <p class="card-text py-2">Specific requirement</p>
+                            
                             <div class="list-group-item">
+                                <p class="card-text py-2">Specific requirement</p>
                                 <div class="row">
                                     <div class="col-md-4">Specific Requirements <br> {{ $restrictions[0]->specific_requirement
                                         ? $restrictions[0]->specific_requirement : 'No Requirement provided' }}
