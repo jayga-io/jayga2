@@ -91,8 +91,20 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Listing Title: {{ $listing[0]->listing_title }}</h5>
                                     <p class="card-text">Listing Address: {{ $listing[0]->listing_address }}</p>
-                                    <a href="#" class="btn btn-primary">Price set by Lister: {{ $listing[0]->full_day_price_set_by_user }}
-                                        TK/- Per Day</a>
+                                    <a href="#" class="btn btn-primary">Price set by lister: {{ $listing[0]->full_day_price_set_by_user }}
+                                        bdt/- per day</a>
+
+                                    <p class="card-text">Listing Description: {{$listing[0]->listing_description}}</p>
+
+                                    <div class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-md-4">Allow Short Stay {{$listing[0]->allow_short_stay == 1 ? '✔' : '❌' }}</div>
+                                            <div class="col-md-4">Peaceful {{$listing[0]->describe_peaceful == 1 ? '✔' : '❌' }}</div>
+                                            <div class="col-md-4">Unique {{$listing[0]->describe_unique == 1 ? '✔' : '❌' }}</div>
+                                            <div class="col-md-4">Family Friendly {{$listing[0]->describe_familyfriendly == 1 ? '✔' : '❌' }}</div>
+                                            <div class="col-md-4">Spacious {{$listing[0]->describe_spacious == 1 ? '✔' : '❌' }}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -188,7 +200,7 @@
                         <div class="card">
                             @if (count($lister_image)>0)
                             <img src="{{ asset('/uploads/'. $lister_image[0]->user_targetlocation)}}"
-                                class="card-img-top rounded-circle px-5" style="width: 200px; height:200px" alt="Profile Image">
+                                class="card-img-top rounded-circle" style="width: 200px; height:200px; margin-left:20px" alt="Profile Image">
                             @else
                             <p class="p-3 text-center">No user image provided</p>
                             @endif
@@ -211,7 +223,10 @@
                                     <li class="list-group-item">Joined: {{ $lister[0]->created_at->diffForHumans() }}</li>
                                 </ul>
                             @else
-                                <p>No info available</p>
+                                <p class="card-text px-2">No info available</p>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Phone: {{ $lister[0]->phone }}</li>
+                                </ul>
                             @endif
                             
                             <div class="card-body">
