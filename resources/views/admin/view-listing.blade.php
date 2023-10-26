@@ -194,7 +194,12 @@
                             @endif
 
                             <div class="card-body">
-                                <h5 class="card-title">Lister name: {{ $lister[0]->name === null ? 'user has no name / user not registered yet' : $lister[0]->name }}</h5>
+                                @if (count($lister)>0)
+                                    <h5 class="card-title">Lister name: {{ $lister[0]->name }}</h5>
+                                @else
+                                    <h6 class="card-title">Lister isn't registered yet</h6>
+                                @endif
+                                
                                 
                             </div>
                             <ul class="list-group list-group-flush">
