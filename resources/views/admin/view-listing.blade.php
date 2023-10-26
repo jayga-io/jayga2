@@ -45,43 +45,6 @@
             color: white;
         }
     </style>
-
-<style>
-    /* Style for the overlay background */
-    .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        z-index: 1;
-    }
-
-    /* Style for the modal */
-    .modal {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        padding: 20px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        text-align: center;
-        z-index: 2;
-    }
-
-    /* Style for buttons */
-    .modal-button {
-        margin: 10px;
-        padding: 10px 20px;
-        background-color: #007BFF;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-    }
-</style>
 </head>
 
 <body>
@@ -99,7 +62,7 @@
                             <h3 class="page-title mt-3">Listing Details</h3>
                             <div class="page-title mt-3" style="float:right">
                                 <a href="/admin/approve-listing/{{ $listing[0]->listing_id }}" class="btn btn-primary">Approve</a>
-                                <button class="btn btn-danger" id="openPopupButton">Decline</button>
+                                <a class="btn btn-danger" href="/admin/decline-listing/{{$listing[0]->listing_id }}">Decline</a>
                             </div>
 
 
@@ -297,13 +260,6 @@
     </div>
 
 
-    <div class="overlay" id="popupOverlay">
-        <div class="modal" id="popupModal">
-            <p>This is a custom popup.</p>
-            <button class="modal-button" id="closePopupButton">Close</button>
-            <button class="modal-button" id="customActionButton">Custom Action</button>
-        </div>
-    </div>
     
     <script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script>
     <script src="{{asset('assets/js/popper.min.js')}}"></script>
@@ -344,24 +300,7 @@
             showSlide(currentIndex + 1);
         });
     </script>
-    <script>
-        const openPopupButton = document.getElementById("openPopupButton");
-        const closePopupButton = document.getElementById("closePopupButton");
-        const customActionButton = document.getElementById("customActionButton");
-        const popupOverlay = document.getElementById("popupOverlay");
-
-        openPopupButton.addEventListener("click", () => {
-            popupOverlay.style.display = "block";
-        });
-
-        closePopupButton.addEventListener("click", () => {
-            popupOverlay.style.display = "none";
-        });
-
-        customActionButton.addEventListener("click", () => {
-            alert("Custom action executed!");
-        });
-    </script>
+    
 </body>
 
 </html>
