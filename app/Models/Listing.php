@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ListingImages;
+use App\Models\ListingDescribe;
 
 class Listing extends Model
 {
@@ -39,5 +40,9 @@ class Listing extends Model
 
     public function images(){
         return $this->hasMany(ListingImages::class, 'listing_id', 'listing_id');
+    }
+
+    public function describes(){
+        return $this->hasOne(ListingDescribe::class, 'listing_id', 'listing_id');
     }
 }

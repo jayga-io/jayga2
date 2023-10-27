@@ -32,7 +32,7 @@ class ListingController extends Controller
     }
 
     public function filter(Request $request){
-        $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->allowedFilters(['guest_num', 'bed_num', 'district', 'town', 'allow_short_stay'])->with('images')->get();
+        $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->allowedFilters(['guest_num', 'bed_num', 'district', 'town', 'allow_short_stay'])->with('images')->with('describes')->get();
         if(count($filtered_listing)>0){
             return response()->json([
                 'status' => 200,
