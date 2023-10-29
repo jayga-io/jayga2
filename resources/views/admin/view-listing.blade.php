@@ -183,20 +183,21 @@
 
                                     </div>
                                 </div>
+                                <div class="list-group-item">
+                                    <p class="card-text py-2">Specific requirement</p>
+                                    <div class="row">
+                                        <div class="col-md-4">Specific Requirements <br> {{ $restrictions[0]->specific_requirement
+                                            ? $restrictions[0]->specific_requirement : 'No Requirement provided' }}
+                                        </div>
+                                    </div>
+                                </div>
                                 @else
                                 <p>No Restrictions Provided</p>
                                 @endif
                             </div>
 
                             
-                            <div class="list-group-item">
-                                <p class="card-text py-2">Specific requirement</p>
-                                <div class="row">
-                                    <div class="col-md-4">Specific Requirements <br> {{ $restrictions[0]->specific_requirement
-                                        ? $restrictions[0]->specific_requirement : 'No Requirement provided' }}
-                                    </div>
-                                </div>
-                            </div>
+                            
 
                         </div>
                     </div>
