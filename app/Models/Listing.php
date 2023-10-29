@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ListingImages;
 use App\Models\ListingDescribe;
+use App\Models\Booking;
 
 class Listing extends Model
 {
@@ -44,5 +45,9 @@ class Listing extends Model
 
     public function describes(){
         return $this->hasOne(ListingDescribe::class, 'listing_id', 'listing_id');
+    }
+
+    public function booking(){
+        return $this->hasMany(Booking::class, 'listing_id', 'listing_id');
     }
 }

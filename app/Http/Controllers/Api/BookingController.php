@@ -63,4 +63,27 @@ class BookingController extends Controller
            return $validated->errors();
         }
     }
+
+    public function booking_history(Request $request){
+        $validated = $request->validate([
+            'user_id' => 'required'
+        ]);
+
+        if($validated){
+            $bookings = Booking::where('user_id', $request->input('user_id'))->with('listings')->with('listings.images')->get();
+            if(count($bookings)>0){
+                return response()->json([
+                    'status' => true,
+                    'bookings' => $bookings
+                ]);
+            }else{
+                return response()->json([
+                    'status' => false,
+                    'messege' => 'No Bookings Found'
+                ]);
+            }
+        }else{
+            return $validated->errors();
+        }
+    }
 }
