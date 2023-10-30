@@ -33,7 +33,7 @@ class ListingController extends Controller
       if($request->method() == 'POST'){
        // dd($request->all());
        $lister = $request->input('lister_id');
-       $files = $request->input('listing_pictures');
+       
        if($lister === null){
         return redirect()->back()->with('errors', 'No Lister found');
        }else{
@@ -127,7 +127,7 @@ class ListingController extends Controller
                 ]);
             
                 
-                if(count($files)>0){
+                if($files = $request->file('listing_pictures')){
                 
                     foreach ($file as $f) {
                     $path = $f->store('listings');
