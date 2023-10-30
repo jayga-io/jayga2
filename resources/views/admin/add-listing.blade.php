@@ -109,7 +109,7 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>How many Bedrooms?</label>
-										<input class="form-control" name="bedroom_num" type="number">
+										<input class="form-control" name="bed_num" type="number">
 									</div>
 								</div>
 						
@@ -131,14 +131,14 @@
 									<div class="form-group">
 										<label>Describe Listing?</label>
 										<!-- <input class="form-control" name="name" type="text" >  -->
-										<textarea class="form-control" rows="5" name="describe_listing"></textarea>
+										<textarea class="form-control" rows="5" name="listing_description"></textarea>
 									</div>
 								</div>
 						
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>What is the price set for a day stay?</label>
-										<input class="form-control" name="price" type="number">
+										<input class="form-control" name="full_day_price_set_by_user" type="number">
 									</div>
 								</div>
 						
@@ -192,8 +192,8 @@
 									<div class="form-group">
 										<label>Is it peaceful?</label>
 										<br>
-										<input type="hidden" name="peaceful" value="0" >
-										<input type="checkbox" name="peaceful" value=1 data-toggle="toggle"
+										<input type="hidden" name="describe_peaceful" value="0" >
+										<input type="checkbox" name="describe_peaceful" value=1 data-toggle="toggle"
 											data-onstyle="success" data-offstyle="danger">
 									</div>
 								</div>
@@ -202,8 +202,8 @@
 									<div class="form-group">
 										<label>Is it unique?</label>
 										<br>
-										<input type="hidden" name="unique" value="0" >
-										<input type="checkbox" name="unique" value=1 checked data-toggle="toggle"
+										<input type="hidden" name="describe_unique" value="0" >
+										<input type="checkbox" name="describe_unique" value=1 checked data-toggle="toggle"
 											data-onstyle="success" data-offstyle="danger">
 									</div>
 								</div>
@@ -212,8 +212,8 @@
 									<div class="form-group">
 										<label>Is it family friendly?</label>
 										<br>
-										<input type="hidden" name="family_friendly" value="0" >
-										<input type="checkbox" name="family_friendly" value=1 checked data-toggle="toggle"
+										<input type="hidden" name="describe_familyfriendly" value="0" >
+										<input type="checkbox" name="describe_familyfriendly" value=1 checked data-toggle="toggle"
 											data-onstyle="success" data-offstyle="danger">
 									</div>
 								</div>
@@ -222,8 +222,8 @@
 									<div class="form-group">
 										<label>Is it stylish?</label>
 										<br>
-										<input type="hidden" name="stylish" value="0" >
-										<input type="checkbox" name="stylish" value=1 checked data-toggle="toggle"
+										<input type="hidden" name="describe_stylish" value="0" >
+										<input type="checkbox" name="describe_stylish" value=1 checked data-toggle="toggle"
 											data-onstyle="success" data-offstyle="danger">
 									</div>
 								</div>
@@ -232,8 +232,8 @@
 									<div class="form-group">
 										<label>Is it central?</label>
 										<br>
-										<input type="hidden" name="central" value="0" >
-										<input type="checkbox" name="central" value=1 checked data-toggle="toggle"
+										<input type="hidden" name="describe_central" value="0" >
+										<input type="checkbox" name="describe_central" value=1 checked data-toggle="toggle"
 											data-onstyle="success" data-offstyle="danger">
 									</div>
 								</div>
@@ -242,33 +242,15 @@
 									<div class="form-group">
 										<label>Is it spacious?</label>
 										<br>
-										<input type="hidden" name="spacious" value="0" >
-										<input type="checkbox" name="spacious" value=1  data-toggle="toggle"
+										<input type="hidden" name="describe_spacious" value="0" >
+										<input type="checkbox" name="describe_spacious" value=1  data-toggle="toggle"
 											data-onstyle="success" data-offstyle="danger">
 									</div>
 								</div>
 						
 						
 						
-								<div class="col-md-4">
-									<div class="form-group">
-										<label>Does it have a private bathroom?</label>
-										<br>
-										<input type="hidden" name="private_bathroom" value="0" >
-										<input type="checkbox" name="private_bathroom" value=1  data-toggle="toggle"
-											data-onstyle="success" data-offstyle="danger">
-									</div>
-								</div>
-						
-								<div class="col-md-4">
-									<div class="form-group">
-										<label>Is breakfast available?</label>
-										<br>
-										<input type="hidden" name="breakfast_included" value="0" >
-										<input type="checkbox" name="breakfast_included" value=1 data-toggle="toggle"
-											data-onstyle="success" data-offstyle="danger">
-									</div>
-								</div>
+								
 						
 								<div class="col-md-4">
 									<div class="form-group">
@@ -280,14 +262,7 @@
 									</div>
 								</div>
 						
-								<div class="col-md-4">
-									<div class="form-group">
-										<label>Will there be anyone else in the house?</label>
-										<input type="hidden" name="unknown_guest_entry" value="0" >
-										<br><input type="checkbox" name="unknown_guest_entry" value=1  data-toggle="toggle"
-											data-onstyle="success" data-offstyle="danger">
-									</div>
-								</div>
+								
 						
 								<div class="col-md-4">
 									<div class="form-group">
