@@ -148,7 +148,7 @@ class ListingController extends Controller
 
                 $jsonresponse = json_decode($response, true);
                 $listingresponse = collect($jsonresponse);
-
+                dd($jsonresponse);
                 $listing_image = Listing::where('lister_id', $lister_id)->get();
                 if($files = $request->file('listing_pictures')){
                     
