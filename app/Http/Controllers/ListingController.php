@@ -136,7 +136,7 @@ class ListingController extends Controller
                     'listing_type' => $request->input('listing_type'),
                 ]); */
 
-                $ch = curl_init(asset('/api/add/listing'));
+                $ch = curl_init('/api/add/listing');
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
@@ -148,7 +148,7 @@ class ListingController extends Controller
 
                 $jsonresponse = json_decode($response, true);
                 $listingresponse = collect($jsonresponse);
-                dd($jsonresponse);
+                dd($response);
                 $listing_image = Listing::where('lister_id', $lister_id)->get();
                 if($files = $request->file('listing_pictures')){
                     
