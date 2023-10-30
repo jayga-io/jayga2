@@ -136,7 +136,7 @@ class ListingController extends Controller
                     'listing_type' => $request->input('listing_type'),
                 ]); */
 
-                $ch = curl_init('/api/add/listing');
+                $ch = curl_init('https://new.jayga.xyz/api/add/listing');
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
