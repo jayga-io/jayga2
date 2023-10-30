@@ -77,7 +77,7 @@
 									<div class="form-group">
 										<label>Lister ID and Name</label>
 										<select class="form-control" selected id="lister_id" name="lister_id" >
-											<option value="none" selected disabled hidden>Select an Option</option> 
+											<option value="none">Select an Option</option> 
 											
 											@if (count($users)>0)
 												@foreach ($users as $item)

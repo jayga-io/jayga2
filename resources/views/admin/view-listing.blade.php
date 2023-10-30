@@ -120,25 +120,25 @@
                                     <div class="list-group-item">
                                         <div class="row">
                                             <div class="col-md-4">Free Wifi <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">TV <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">Kitchen <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">Washing Machine <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">Free Parking <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">Dedicated Workspace {{ $amenities[0]->wifi == 1 ? '✔' : '❌'}}</div>
-                                            <div class="col-md-4">Pool <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">Hot tub <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">BBQ Grill <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">Patio <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">Outdooring <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">Fire Pit <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">Gym <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">Beach Access <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">Breakfast Included {{ $amenities[0]->wifi == 1 ? '✔' : '❌'}}</div>
-                                            <div class="col-md-4">Air Condition <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">Smoke Alarm <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">FirstAid <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">Fire exting. <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
-                                            <div class="col-md-4">CCTV <span> {{ $amenities[0]->wifi == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">TV <span> {{ $amenities[0]->tv == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Kitchen <span> {{ $amenities[0]->kitchen == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Washing Machine <span> {{ $amenities[0]->washing_machine == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Free Parking <span> {{ $amenities[0]->free_parking == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Dedicated Workspace {{ $amenities[0]->dedicated_workspace == 1 ? '✔' : '❌'}}</div>
+                                            <div class="col-md-4">Pool <span> {{ $amenities[0]->pool == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Hot tub <span> {{ $amenities[0]->hot_tub == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">BBQ Grill <span> {{ $amenities[0]->bbq_grill == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Patio <span> {{ $amenities[0]->patio == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Outdooring <span> {{ $amenities[0]->outdooring == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Fire Pit <span> {{ $amenities[0]->fire_pit == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Gym <span> {{ $amenities[0]->gym == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Beach Access <span> {{ $amenities[0]->beach_lake_access == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Breakfast Included {{ $amenities[0]->breakfast_included == 1 ? '✔' : '❌'}}</div>
+                                            <div class="col-md-4">Air Condition <span> {{ $amenities[0]->air_condition == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Smoke Alarm <span> {{ $amenities[0]->smoke_alarm == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">FirstAid <span> {{ $amenities[0]->first_aid == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">Fire exting. <span> {{ $amenities[0]->fire_extinguish == 1 ? '✔' : '❌' }} </span></div>
+                                            <div class="col-md-4">CCTV <span> {{ $amenities[0]->cctv == 1 ? '✔' : '❌' }} </span></div>
 
 
                                         </div>
