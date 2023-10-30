@@ -148,7 +148,7 @@ class ListingController extends Controller
 
                 $jsonresponse = json_decode($response, true);
                 $listingresponse = collect($jsonresponse);
-                dd($response);
+                
                 $listing_image = Listing::where('lister_id', $lister_id)->get();
                 if($files = $request->file('listing_pictures')){
                     
@@ -163,8 +163,12 @@ class ListingController extends Controller
 
                            
                         }
-                        return redirect(route('addlisting'))->with('success', 'Listing Created and Submitted for review');
+                       
                         
+                    }
+
+                    if(count($jsonresponse)>0){
+                        return redirect(route('addlisting'))->with('success', 'Listing Created and Submitted for review');
                     }else{
                         return redirect()->back();
                     }
