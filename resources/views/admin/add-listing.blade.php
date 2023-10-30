@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-lg-12">
+				<div class="col-lg-12">
 					@if(session()->has('success'))
 					
 					<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -317,6 +317,346 @@
 									</div>
 								</div>
 						
+							</div>
+							<div class="row formtype">
+								<div class="accordion" style="width: 100%" id="accordionExample">
+									<div class="card">
+									  <div class="card-header" id="headingOne">
+										<h2 class="mb-0">
+										  <button class="btn btn-primary btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+											Amenities
+										  </button>
+										</h2>
+									  </div>
+								  
+									  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+										<div class="card-body">
+											<div class="row">
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Wifi</label>
+														<br>
+														<input type="hidden" name="wifi" value="0">
+														<input type="checkbox" name="wifi" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>TV</label>
+														<br>
+														<input type="hidden" name="tv" value="0">
+														<input type="checkbox" name="tv" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Kitchen</label>
+														<br>
+														<input type="hidden" name="kitchen" value="0">
+														<input type="checkbox" name="kitchen" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Washing Machine</label>
+														<br>
+														<input type="hidden" name="washing_machine" value="0">
+														<input type="checkbox" name="washing_machine" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Free Parking</label>
+														<br>
+														<input type="hidden" name="free_parking" value="0">
+														<input type="checkbox" name="free_parking" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Breakfast Included</label>
+														<br>
+														<input type="hidden" name="breakfast_included" value="0">
+														<input type="checkbox" name="breakfast_included" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Air Condition</label>
+														<br>
+														<input type="hidden" name="air_condition" value="0">
+														<input type="checkbox" name="air_condition" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Dedicated Workspace</label>
+														<br>
+														<input type="hidden" name="dedicated_workspace" value="0">
+														<input type="checkbox" name="dedicated_workspace" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Pool</label>
+														<br>
+														<input type="hidden" name="pool" value="0">
+														<input type="checkbox" name="pool" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Hot Tub</label>
+														<br>
+														<input type="hidden" name="hot_tub" value="0">
+														<input type="checkbox" name="hot_tub" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Patio</label>
+														<br>
+														<input type="hidden" name="patio" value="0">
+														<input type="checkbox" name="patio" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>BBQ Grill</label>
+														<br>
+														<input type="hidden" name="bbq_grill" value="0">
+														<input type="checkbox" name="bbq_grill" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Outdooring</label>
+														<br>
+														<input type="hidden" name="outdooring" value="0">
+														<input type="checkbox" name="outdooring" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Fire Pit</label>
+														<br>
+														<input type="hidden" name="fire_pit" value="0">
+														<input type="checkbox" name="fire_pit" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Gym</label>
+														<br>
+														<input type="hidden" name="gym" value="0">
+														<input type="checkbox" name="gym" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Beach Lake Access</label>
+														<br>
+														<input type="hidden" name="beach_lake_access" value="0">
+														<input type="checkbox" name="beach_lake_access" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Smoke Alarm</label>
+														<br>
+														<input type="hidden" name="smoke_alarm" value="0">
+														<input type="checkbox" name="smoke_alarm" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>First Aid</label>
+														<br>
+														<input type="hidden" name="first_aid" value="0">
+														<input type="checkbox" name="first_aid" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Fire Ext</label>
+														<br>
+														<input type="hidden" name="fire_extinguish" value="0">
+														<input type="checkbox" name="fire_extinguish" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>CCTV</label>
+														<br>
+														<input type="hidden" name="cctv" value="0">
+														<input type="checkbox" name="cctv" value=1 data-toggle="toggle" data-onstyle="success"
+															data-offstyle="danger">
+													</div>
+												</div>
+												
+											</div>
+											
+										</div>
+									  </div>
+									</div>
+									<div class="card">
+									  <div class="card-header" id="headingTwo">
+										<h2 class="mb-0">
+										  <button class="btn btn-primary btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+											Describes
+										  </button>
+										</h2>
+									  </div>
+									  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+										<div class="card-body">
+										  <div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Apartment</label>
+													<br>
+													<input type="hidden" name="apartments" value="0">
+													<input type="checkbox" name="apartments" value=1 data-toggle="toggle" data-onstyle="success"
+														data-offstyle="danger">
+												</div>
+											</div><div class="col-md-4">
+												<div class="form-group">
+													<label>Cabin</label>
+													<br>
+													<input type="hidden" name="cabin" value="0">
+													<input type="checkbox" name="cabin" value=1 data-toggle="toggle" data-onstyle="success"
+														data-offstyle="danger">
+												</div>
+											</div><div class="col-md-4">
+												<div class="form-group">
+													<label>Lounge</label>
+													<br>
+													<input type="hidden" name="lounge" value="0">
+													<input type="checkbox" name="lounge" value=1 data-toggle="toggle" data-onstyle="success"
+														data-offstyle="danger">
+												</div>
+											</div><div class="col-md-4">
+												<div class="form-group">
+													<label>Farm</label>
+													<br>
+													<input type="hidden" name="farm" value="0">
+													<input type="checkbox" name="farm" value=1 data-toggle="toggle" data-onstyle="success"
+														data-offstyle="danger">
+												</div>
+											</div><div class="col-md-4">
+												<div class="form-group">
+													<label>Campsite</label>
+													<br>
+													<input type="hidden" name="campsite" value="0">
+													<input type="checkbox" name="campsite" value=1 data-toggle="toggle" data-onstyle="success"
+														data-offstyle="danger">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Hotel</label>
+													<br>
+													<input type="hidden" name="hotel" value="0">
+													<input type="checkbox" name="hotel" value=1 data-toggle="toggle" data-onstyle="success"
+														data-offstyle="danger">
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Bread Breakfast</label>
+													<br>
+													<input type="hidden" name="bread_breakfast" value="0">
+													<input type="checkbox" name="bread_breakfast" value=1 data-toggle="toggle" data-onstyle="success"
+														data-offstyle="danger">
+												</div>
+											</div>
+										  </div>
+										</div>
+									  </div>
+									</div>
+									<div class="card">
+									  <div class="card-header" id="headingThree">
+										<h2 class="mb-0">
+										  <button class="btn btn-primary btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+											Restrictions
+										  </button>
+										</h2>
+									  </div>
+									  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+										<div class="card-body">
+										  <div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label>Indoor Smoking</label>
+													<br>
+													<input type="hidden" name="indoor_smoking" value="0">
+													<input type="checkbox" name="indoor_smoking" value=1 data-toggle="toggle" data-onstyle="success"
+														data-offstyle="danger">
+												</div>
+											</div><div class="col-md-4">
+												<div class="form-group">
+													<label>Party</label>
+													<br>
+													<input type="hidden" name="party" value="0">
+													<input type="checkbox" name="party" value=1 data-toggle="toggle" data-onstyle="success"
+														data-offstyle="danger">
+												</div>
+											</div><div class="col-md-4">
+												<div class="form-group">
+													<label>Pets</label>
+													<br>
+													<input type="hidden" name="pets" value="0">
+													<input type="checkbox" name="pets" value=1 data-toggle="toggle" data-onstyle="success"
+														data-offstyle="danger">
+												</div>
+											</div><div class="col-md-4">
+												<div class="form-group">
+													<label>Late Night Entry</label>
+													<br>
+													<input type="hidden" name="late_night_entry" value="0">
+													<input type="checkbox" name="late_night_entry" value=1 data-toggle="toggle" data-onstyle="success"
+														data-offstyle="danger">
+												</div>
+											</div><div class="col-md-4">
+												<div class="form-group">
+													<label>Unknown Guest Entry</label>
+													<br>
+													<input type="hidden" name="unknown_guest_entry" value="0">
+													<input type="checkbox" name="unknown_guest_entry" value=1 data-toggle="toggle" data-onstyle="success"
+														data-offstyle="danger">
+												</div>
+											</div><div class="col-md-4">
+												<div class="form-group">
+													<label>Specific Requirement</label>
+													<br>
+													<input type="hidden" name="specific_requirement" value="0">
+													<input type="checkbox" name="specific_requirement" value=1 data-toggle="toggle" data-onstyle="success"
+														data-offstyle="danger">
+												</div>
+											</div>
+										  </div>
+										</div>
+									  </div>
+									</div>
+								  </div>
 							</div>
 							<button type="submit" class="btn btn-primary buttonedit1">Create Listing</button>
 						</form>
