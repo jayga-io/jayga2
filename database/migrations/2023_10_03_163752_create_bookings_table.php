@@ -29,6 +29,8 @@ return new class extends Migration
             $table->bigInteger('tier');
             $table->string('pay_amount');
             $table->boolean('payment_flag');
+            $table->boolean('booking_status');
+            $table->boolean('isApproved');
             $table->timestamps();
         });
     }

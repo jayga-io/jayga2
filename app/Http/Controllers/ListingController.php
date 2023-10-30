@@ -48,6 +48,23 @@ class ListingController extends Controller
                 'messege' => 'Listing title can not be same'
             ]);
         }else{
+
+            $listing_image = Listing::where('lister_id', $lister_id)->get();
+                if($files = $request->file('listing_pictures')){
+                    
+                        foreach($files as $file){
+                            $path = $file->store('listings');
+                            ListingImages::create([
+                                'lister_id' => $lister_id,
+                                'listing_id' => $listing_image[0]->listing_id,
+                                'listing_filename' => $file->hashName(),
+                                'listing_targetlocation' => $path,
+                            ]);
+
+                           
+                        } 
+                        
+                    }
             
             $data = [
                     'lister_id' => $lister_id,
@@ -149,23 +166,7 @@ class ListingController extends Controller
                 $jsonresponse = json_decode($response, true);
                 $listingresponse = collect($jsonresponse);
                 
-                $listing_image = Listing::where('lister_id', $lister_id)->get();
-                if($files = $request->file('listing_pictures')){
-                    
-                        foreach($files as $file){
-                            $path = $file->store('listings');
-                            ListingImages::create([
-                                'lister_id' => $lister_id,
-                                'listing_id' => $listing_image[0]->listing_id,
-                                'listing_filename' => $file->hashName(),
-                                'listing_targetlocation' => $path,
-                            ]);
-
-                           
-                        }
-                       
-                        
-                    }
+                
 
                     if(count($jsonresponse)>0){
                         return redirect(route('addlisting'))->with('success', 'Listing Created and Submitted for review');

@@ -86,4 +86,50 @@ class BookingController extends Controller
             return $validated->errors();
         }
     }
+
+    public function booking_for_lister(Request $request){
+        $validated = $request->validate([
+            'lister_id' => 'required'
+        ]);
+
+        if($validated){
+            $bookings = Booking::where('lister_id', $request->input('lister_id'))->with('listings')->with('listings.images')->get();
+            if(count($bookings)>0){
+                return response()->json([
+                    'status' => true,
+                    'bookings' => $bookings
+                ]);
+            }else{
+                return response()->json([
+                    'status' => false,
+                    'messege' => 'No Bookings Found'
+                ]);
+            }
+        }else{
+            return $validated->errors();
+        }
+    }
+
+    public function booking_status(Request $request){
+        $validated = $request->validate([
+            'booking_id' => 'required',
+            'booking_status' => 'boolean',
+        ]);
+        if($validated){
+             Booking::where('booking_id', $request->input('booking_id'))->update([
+                'booking_status' => $request->input('booking_status'),
+                ]);
+            
+                return response()->json([
+                    'status' => true,
+                    'bookings' => 'Booking Status changed'
+                ]);
+           
+                
+        }
+        else{
+            return $validated->errors();
+        }
+
+    }
 }
