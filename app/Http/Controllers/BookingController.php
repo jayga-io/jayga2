@@ -20,7 +20,7 @@ class BookingController extends Controller
     public function index()
     {
         $user = User::whereNotNull('name')->get();
-        $listing = Listing::all();
+        $listing = Listing::where('isApproved', true)->get();
         $times = TimeSlotShortstays::all();
         return view('admin.booking.add-booking')->with('user', $user)->with('listing', $listing)->with('times', $times);
     }

@@ -33,7 +33,8 @@
 				</div>
 				<div class="row">
 					<div class="col-lg-12">
-						<form>
+						<form action="{{ route('createbooking') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
 							<div class="row formtype">
                                 <div class="col-md-12 mb-3">
                                     <label for="short_stay" >Use Short Stay</label>

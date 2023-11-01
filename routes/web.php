@@ -37,7 +37,7 @@ Route::prefix('admin')->group(function(){
         $listings = Listing::where('isApproved', false)->get();
         return view('admin.pending-listing')->with('pending', $listings);
     })->name('pendinglisting');
-    
+
 
     Route::get('/view-listing/{id}', [ListingController::class, 'show']);
 
@@ -48,6 +48,8 @@ Route::prefix('admin')->group(function(){
 
     //booking section
     Route::get('/add-booking', [BookingController::class, 'index'])->name('addbooking');
+
+    Route::post('/create-booking', [BookingController::class, 'create'])->name('createbooking');
 });
 
 Route::post('/create/listing', [ListingController::class, 'create'])->name('create_listing');

@@ -23,7 +23,7 @@ return new class extends Migration
             
             $table->bigInteger('dedicated_workspace');
             $table->bigInteger('pool');
-            $table->bigInteger('hottub');
+            $table->bigInteger('hot_tub');
             $table->bigInteger('patio');
             $table->bigInteger('bbq_grill');
             $table->bigInteger('outdooring');
