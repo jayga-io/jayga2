@@ -164,7 +164,7 @@
 						
 								<div class="col-md-4">
 									<div class="form-group">
-										<select class="form-control">
+										<select class="form-control" name="district">
 											<option selected>Which district is it in?</option>
 											@foreach ($locations as $item)
 												<option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
@@ -177,7 +177,7 @@
 						
 								<div class="col-md-4">
 									<div class="form-group">
-										<select class="form-control">
+										<select class="form-control" name="town">
 											<option selected>Which Town is it in?</option>
 											@foreach ($locations as $item)
 												<option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
