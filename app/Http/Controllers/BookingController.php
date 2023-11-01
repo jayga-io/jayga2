@@ -8,7 +8,7 @@ use App\Http\Requests\UpdateBookingRequest;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Listing;
-
+use Illuminate\Http\Request;
 use App\Models\TimeSlotShortstays;
 use App\Models\UserNid;
 
