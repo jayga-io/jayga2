@@ -169,9 +169,9 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<label>Upload Guest Nid</label>
+										<label for="upload">Upload Guest Nid (Must upload 2 images including NID front & back)</label>
 										<div class="custom-file mb-3">
-											<input type="file" class="custom-file-input" id="customFile" name="guest_nid[]" multiple>
+											<input type="file" class="form-control input-lg" id="customFile" name="guest_nid[]" multiple>
 											
 										</div>
 									</div>

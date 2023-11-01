@@ -52,6 +52,9 @@ Route::prefix('admin')->group(function(){
     Route::post('/create-booking', [BookingController::class, 'create'])->name('createbooking');
 
     Route::get('/pending-booking', [BookingController::class, 'show'])->name('pendingbooking');
+    Route::get('/approve-booking/{id}', [BookingController::class, 'approve']);
+    
+    Route::get('/decline-booking/{id}', [bookingController::class, 'destroy']);
 });
 
 Route::post('/create/listing', [ListingController::class, 'create'])->name('create_listing');

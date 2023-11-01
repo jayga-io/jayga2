@@ -111,9 +111,14 @@ class BookingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit(Request $request, $id)
     {
-        //
+        $booking = Booking::where('booking_id', $id)->get();
+        $user_nids = UserNid::where('user_id', $booking[0]->user_id)->get();
+
+        return view('admin.booking.view-booking')
+        ->with('booking', $booking)->with('user', $user_nids);
+        
     }
 
     /**
@@ -124,11 +129,26 @@ class BookingController extends Controller
         //
     }
 
+    public function approve(Request $request, $id){
+        Booking::where('booking_id', $id)->update([
+            'isApproved' => true
+        ]);
+        return redirect(route('pendingbooking'))->with('success', 'Booking Approved');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy()
+    public function destroy(Request $request, $id)
     {
-        //
+       $user = Booking::where('booking_id', $id)->get();
+        $nids = UserNid::where('user_id', $user[0]->user_id)->get();
+     
+
+        foreach ($nids as $value) {
+            Storage::delete($value->user_nid_targetlocation);
+        }
+        Booking::where('booking_id', $id)->delete();
+        return redirect(route('pendingbooking'))->with('deleted', 'Booking Declined');
     }
 }

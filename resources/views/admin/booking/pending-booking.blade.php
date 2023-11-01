@@ -86,10 +86,10 @@
 											<td>{{$item->booking_order_name }}</td>
 											<td>{{$item->email}}</td>
 											<td>{{$item->phone }}</td>
-											<td>{{$item->members }}</td>
+											<td>{{$item->total_members }}</td>
                                             <td>{{$item->date_enter}}</td>
-											<td><a class="btn btn-primary" href="/admin/view-listing/{{$item->booking_id}}">View Listing</a></td>
-											<td> <a class="btn btn-primary" href="/admin/approve-listing/{{$item->booking_id}}">Approve</a> | <a class="btn btn-danger" href="/admin/decline-listing/{{$item->listing_id}}">Decline</a></td>
+											<td><a class="btn btn-primary" href="/admin/view-booking/{{$item->booking_id}}">View Bookings</a></td>
+											<td> <a class="btn btn-primary" href="/admin/approve-booking/{{$item->booking_id}}">Approve</a> | <a class="btn btn-danger" href="/admin/decline-booking/{{$item->listing_id}}">Decline</a></td>
 										</tr>
 									@endforeach
 									
