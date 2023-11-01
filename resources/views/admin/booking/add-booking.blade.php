@@ -151,10 +151,11 @@
 									</div>
 								</div>
 							</div>
+                            <button type="submit" class="btn btn-primary buttonedit1">Create Booking</button>
 						</form>
 					</div>
 				</div>
-				<button type="button" class="btn btn-primary buttonedit1">Create Booking</button>
+				
 			</div>
 		</div>
 	</div>
