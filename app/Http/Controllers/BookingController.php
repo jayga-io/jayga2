@@ -11,7 +11,7 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 use App\Models\TimeSlotShortstays;
 use App\Models\UserNid;
-
+use Storage;
 class BookingController extends Controller
 {
     /**
