@@ -50,6 +50,8 @@ Route::prefix('admin')->group(function(){
     Route::get('/add-booking', [BookingController::class, 'index'])->name('addbooking');
 
     Route::post('/create-booking', [BookingController::class, 'create'])->name('createbooking');
+
+    Route::get('/pending-booking', [BookingController::class, 'show'])->name('pendingbooking');
 });
 
 Route::post('/create/listing', [ListingController::class, 'create'])->name('create_listing');
