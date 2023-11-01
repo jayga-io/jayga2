@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('time_slot_shortstays', function (Blueprint $table) {
             $table->id('time_id');
-            $table->bigInteger('times');
+            $table->string('times');
             $table->timestamps();
         });
     }

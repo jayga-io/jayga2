@@ -22,7 +22,10 @@ class ListingController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::whereNotNull('name')->get();
+        $locations = \File::json('locations.json');
+ 
+        return view('admin.add-listing')->with('users', $user)->with('locations', $locations);
     }
 
     /**
@@ -176,6 +179,7 @@ class ListingController extends Controller
         $lister = User::where('id', $listing[0]->lister_id)->get();
         $lister_image = UserPictures::where('user_id', $listing[0]->lister_id)->get();
         $lister_nid = ListerNid::where('listing_id', $id)->get();
+       
         return view('admin.view-listing')
         ->with('listing_images', $listingImages)->with('listing', $listing)->with('lister', $lister)
         ->with('lister_image', $lister_image)->with('describes', $describes)->with('restrictions', $restrictions)

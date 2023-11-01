@@ -66,7 +66,7 @@
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="all-booking.php"> All Booking </a></li>
                         <li><a href="edit-booking.php"> Edit Booking </a></li>
-                        <li><a href="add-booking.php"> Add Booking </a></li>
+                        <li><a href={{route('addbooking')}}> Add Booking </a></li>
                     </ul>
                 </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>

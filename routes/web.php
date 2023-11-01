@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\BookingController;
 use App\Models\User;
 use App\Models\Listing;
 
@@ -25,25 +26,28 @@ Route::get('/link/storage', function(){
 });
 
 Route::prefix('admin')->group(function(){
+
     Route::get('/', function(){
         return view('admin.dashboard');
     });
-    Route::get('/add-listing', function(){
-        $user = User::whereNotNull('name')->get();
-     //   dd($user);
-        return view('admin.add-listing')->with('users', $user);
-    })->name('addlisting');
+    
+    Route::get('/add-listing', [ListingController::class, 'index'])->name('addlisting');
 
     Route::get('/pending-listing', function(){
         $listings = Listing::where('isApproved', false)->get();
         return view('admin.pending-listing')->with('pending', $listings);
     })->name('pendinglisting');
+    
 
     Route::get('/view-listing/{id}', [ListingController::class, 'show']);
 
     Route::get('/approve-listing/{id}', [ListingController::class, 'approve']);
     
     Route::get('/decline-listing/{id}', [ListingController::class, 'destroy']);
+
+
+    //booking section
+    Route::get('/add-booking', [BookingController::class, 'index'])->name('addbooking');
 });
 
 Route::post('/create/listing', [ListingController::class, 'create'])->name('create_listing');
