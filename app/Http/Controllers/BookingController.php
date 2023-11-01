@@ -77,7 +77,7 @@ class BookingController extends Controller
                 ]);
             }
 
-        $files = $request->input('guest_nid');
+        $files = $request->file('guest_nid');
         foreach($files as $file){
             $path = $file->store('user_nids');
             UserNid::create([
