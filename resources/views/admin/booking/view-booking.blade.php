@@ -61,8 +61,8 @@
                         <div class="col-sm-12 mt-5 ">
                             <h3 class="page-title mt-3">Booking Details</h3>
                             <div class="page-title mt-3" style="float:right">
-                                <a class="btn btn-primary" href="/admin/approve-booking/{{$item->booking_id}}">Approve</a>
-                                <a class="btn btn-danger" href="/admin/decline-booking/{{$item->listing_id}}">Decline</a>
+                                <a class="btn btn-primary" href="/admin/approve-booking/{{$booking[0]->booking_id}}">Approve</a>
+                                <a class="btn btn-danger" href="/admin/decline-booking/{{$booking[0]->booking_id}}">Decline</a>
                             </div>
 
 
