@@ -24,7 +24,7 @@ return new class extends Migration
             $table->bigInteger('short_stay_flag')->nullable();
             $table->string('transaction_id')->nullable();
             $table->bigInteger('all_day_flag')->nullable();
-            $table->integer('days_stayed');
+            $table->integer('days_stayed')->nullable();
             $table->string('date_enter');
             $table->string('date_exit')->nullable();
             $table->bigInteger('tier')->nullable();

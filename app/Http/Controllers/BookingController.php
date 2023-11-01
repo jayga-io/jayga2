@@ -35,9 +35,7 @@ class BookingController extends Controller
         $lister_id = Listing::where('listing_id', $request->input('listing'))->get();
        
         if($short_stay == 0){
-            $date_enter = Carbon::createFromFormat('d/m/Y', $request->input('date_enter'))->format('d-m-Y');
-            $date_exit = Carbon::createFromFormat('d/m/Y', $request->input('date_exit'))->format('d-m-Y'); 
-            $days_stayed = $date_exit->diffInDays($date_enter);
+            
                 Booking::create([
                     'user_id' => $request->input('user'),
                     'booking_order_name' => $request->input('booking_order_name'),
@@ -48,7 +46,7 @@ class BookingController extends Controller
                     'date_exit' => $request->input('date_exit'),
                     'listing_type' => $request->input('listing_type'),
                     
-                    'days_stayed' => $days_stayed,
+                    
                     'short_stay_flag' => 0,
                     'all_day_flag' => 1,
                     'total_members' => $request->input('members'),
@@ -67,7 +65,7 @@ class BookingController extends Controller
                     'date_exit' => $request->input('date_enter'),
                     'listing_type' => $request->input('listing_type'),
                     'tier' => $request->input('tier'),
-                    'days_stayed' => 1,
+                    
                     'short_stay_flag' => 1,
                     'all_day_flag' => 0,
                     'total_members' => $request->input('members'),
