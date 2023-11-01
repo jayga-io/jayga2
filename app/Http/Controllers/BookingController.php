@@ -34,7 +34,7 @@ class BookingController extends Controller
         $short_stay = $request->input('short_stay');
         $lister_id = Listing::where('listing_id', $request->input('listing'))->get();
        
-        if($short_stay === null){
+        if($short_stay == 0){
             $date_enter = Carbon::parse($request->input('date_enter'));
             $date_exit = Carbon::parse($request->input('date_exit'));
             $days_stayed = $date_exit->diffInDays($date_enter);
@@ -82,7 +82,7 @@ class BookingController extends Controller
             $path = $file->store('user_nids');
             UserNid::create([
                 'user_id' => $request->input('user'),
-                'user_nid_filename' => $f->hashName(),
+                'user_nid_filename' => $file->hashName(),
                 'user_nid_targetlocation' => $path,
             ]);
         }
