@@ -75,15 +75,18 @@ class BookingController extends Controller
                 ]);
             }
 
-        $files = $request->file('guest_nid');
-        foreach($files as $file){
-            $path = $file->store('user_nids');
-            UserNid::create([
-                'user_id' => $request->input('user'),
-                'user_nid_filename' => $file->hashName(),
-                'user_nid_targetlocation' => $path,
-            ]);
-        }
+            if($files = $request->file('guest_nid')){
+                foreach($files as $file){
+                    $path = $file->store('user_nids');
+                    UserNid::create([
+                         'user_id' => $request->input('user'),
+                        'user_nid_filename' => $file->hashName(),
+                        'user_nid_targetlocation' => $path,
+                    ]);
+                }
+            }
+        
+        
 
         return redirect(route('addbooking'))->with('success', 'Booking submitted for approval');
     }

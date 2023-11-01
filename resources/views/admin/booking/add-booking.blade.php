@@ -139,8 +139,8 @@
 									<div class="form-group">
 										<label>Upload Guest Nid</label>
 										<div class="custom-file mb-3">
-											<input type="file" class="custom-file-input" id="customFile" name="guest_nid" multiple>
-											<label class="custom-file-label" for="customFile">Choose file</label>
+											<input type="file" class="custom-file-input" id="customFile" name="guest_nid[]" multiple>
+											
 										</div>
 									</div>
 								</div>
