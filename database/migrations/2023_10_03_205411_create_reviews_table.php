@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('user_name');
             $table->bigInteger('listing_id')->unsigned();
             $table->foreign('listing_id')->references('listing_id')->on('listings')->onDelete('cascade');
-            $table->bigInteger('lister_id')->unsigned();
-            $table->foreign('lister_id')->references('lister_id')->on('lister_users')->onDelete('cascade');
+           // $table->bigInteger('lister_id')->unsigned();
+           // $table->foreign('lister_id')->references('lister_id')->on('lister_users')->onDelete('cascade');
             $table->string('lister_name')->nullable();
             $table->bigInteger('stars');
             $table->string('description');

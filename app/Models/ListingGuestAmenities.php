@@ -10,4 +10,5 @@ class ListingGuestAmenities extends Model
     use HasFactory;
     protected $guarded = [];
 
+    
 }
