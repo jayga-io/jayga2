@@ -32,13 +32,13 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => '/home/jaygabdc/new.jayga.xyz/uploads',
+            'root' => '/home/jaygaio/new.jayga.io/uploads',
             'throw' => false,
         ],
 
         'public' => [
             'driver' => 'local',
-            'root' => '/home/jaygabdc/new.jayga.xyz/uploads',
+            'root' => '/home/jaygaio/new.jayga.io/uploads',
             'url' => env('APP_URL').'/uploads',
             'visibility' => 'public',
             'throw' => false,
