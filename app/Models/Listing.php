@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\ListingImages;
 use App\Models\ListingDescribe;
 use App\Models\ListingGuestAmenities;
+use App\Models\ListingRestrictions;
 use App\Models\Booking;
 
 class Listing extends Model
@@ -29,5 +30,9 @@ class Listing extends Model
 
     public function amenities(){
         return $this->hasOne(ListingGuestAmenities::class, 'listing_id', 'listing_id');
+    }
+
+    public function restrictions(){
+        return $this->hasOne(ListingRestrictions::class, 'listing_id', 'listing_id');
     }
 }
