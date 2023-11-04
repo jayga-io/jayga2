@@ -113,7 +113,7 @@ class BookingController extends Controller
     public function booking_status(Request $request){
         $validated = $request->validate([
             'booking_id' => 'required',
-            'booking_status' => 'boolean',
+            'booking_status' => 'required',
         ]);
         if($validated){
              Booking::where('booking_id', $request->input('booking_id'))->update([

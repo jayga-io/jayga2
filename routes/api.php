@@ -62,3 +62,7 @@ Route::post('/booking-history', [BookingController::class, 'booking_history']);
 Route::post('/booking/lister', [BookingController::class, 'booking_for_lister']);
 
 Route::post('/change/booking-status', [BookingController::class, 'booking_status']);
+
+Route::get('/profile/listings/{id}', [ListingController::class, 'profile_listings']);
+
+Route::post('/update/listing', [ListingController::class, 'update_listing']);
