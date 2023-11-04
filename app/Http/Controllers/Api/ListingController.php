@@ -344,4 +344,14 @@ class ListingController extends Controller
             'messege' => 'Listing updated'
         ]);
     }
+
+    public function delete_image_listing(Request $request, $id){
+        $img = ListingImages::where('listing_img_id', $id)->get();
+        Storage::delete($img[0]->listing_targetlocation);
+        $img->delete();
+        return response()->json([
+            'status' => 200,
+            'messege' => 'Listing image deleted'
+        ]);
+    }
 }

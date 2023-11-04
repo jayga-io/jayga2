@@ -66,3 +66,5 @@ Route::post('/change/booking-status', [BookingController::class, 'booking_status
 Route::get('/profile/listings/{id}', [ListingController::class, 'profile_listings']);
 
 Route::post('/update/listing', [ListingController::class, 'update_listing']);
+
+Route::get('/listing/image/delete/{id}', [ListingController::class, 'delete_image_listing']);
