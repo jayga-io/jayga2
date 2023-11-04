@@ -61,7 +61,11 @@ Route::prefix('admin')->group(function(){
 
 Route::post('/create/listing', [ListingController::class, 'create'])->name('create_listing');
 
-Route::get('/sucess', function(){
+Route::get('/payment/success', function(){
     return view('success');
+});
+
+Route::get('/payment/failure', function(){
+    return view('failed');
 });
 

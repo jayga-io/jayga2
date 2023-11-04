@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jayga | Payment Confirmation</title>
+    <title>Jayga | Payment Failure</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
     <style>
         body {
@@ -23,7 +23,7 @@
     
         .top-container {
             height: 280px;
-            background-color: #29CDB5;
+            background-color: rgb(240, 46, 12);
         }
     
         i.bigger-size {
@@ -35,12 +35,7 @@
             margin-top: 30px;
         }
     
-        .success-icon {
-            font-size: 100px;
-            color: #ecf6ec;
-            border: #f0f0f0;
-            border-radius: 50%;
-        }
+        
     
         button {
             font-family: Roboto;
@@ -81,21 +76,18 @@
     <div class="main-container">
         
         <div class="top-container ">
-            
-            <i class="fa fa-check-circle-o bigger-size" aria-hidden="true"></i>
-            
+            <i class="fa fa-exclamation-circle bigger-size" aria-hidden="true"></i>
+
         </div>
       
         <div class="bottom-container">
-          <h1>Success</h1>
-          <p>Payment Successful</p>
+          <h1>Error</h1>
+          <p>Transaction Failed</p>
       
-          <span class="celebration">&#127881;</span>
-          
-          <lottie-player src="https://lottie.host/17aacc4f-d373-499c-a5a7-1c17a9546e6a/Y0ILM8XkHz.json" background="#0000" speed="1" style="width: 100%; height: 150px" loop autoplay direction="1" mode="normal">
-        </lottie-player>
-        <img style="float: right;" src="{{ asset('/assets/img/logo/Jayga Logo-02.png')}}" width="50" height="70" alt="logo">
+          <i class="fa fa-frown-o" style="font-size: 50px;" aria-hidden="true"></i>
+
         </div>
+        <img style="float: right;" src="{{ asset('/assets/img/logo/Jayga Logo-02.png')}}" width="50" height="70" alt="logo">
       </div>
       <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </body>

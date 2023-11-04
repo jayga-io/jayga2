@@ -253,7 +253,7 @@ class ListingController extends Controller
     }
 
     public function profile_listings(Request $request, $id){
-        $listings = Listing::where('lister_id', $id)->get();
+        $listings = Listing::where('lister_id', $id)->with('amenities')->with('describes')->with('restrictions')->get();
         if(count($listings)>0){
             return response()->json([
                 'status' => 200,
