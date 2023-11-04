@@ -254,7 +254,7 @@ class ListingController extends Controller
 
     public function profile_listings(Request $request, $id){
         $listings = Listing::where('lister_id', $id)->get();
-        if(count($listing)>0){
+        if(count($listings)>0){
             return response()->json([
                 'status' => 200,
                 'profile_listings' => $listings
