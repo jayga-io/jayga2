@@ -257,7 +257,7 @@ class ListingController extends Controller
         if(count($listing)>0){
             return response()->json([
                 'status' => 200,
-                'profile_listings' => $listing
+                'profile_listings' => $listings
             ]);
         }else{
             return response()->json([
