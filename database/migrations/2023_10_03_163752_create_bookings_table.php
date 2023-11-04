@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('pay_amount')->nullable();
             $table->boolean('payment_flag')->default(false);
-            $table->boolean('booking_status')->default(false);
+            $table->bigInteger('booking_status')->default(0);
             $table->boolean('isApproved')->default(false);
             $table->string('messeges')->nullable();
             $table->timestamps();

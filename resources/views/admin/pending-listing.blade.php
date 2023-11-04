@@ -72,6 +72,7 @@
 								<thead>
 									<tr>
 										<th>Lister Name</th>
+										<th>Listing_title</th>
 										<th>Listing Address</th>
 										<th>Price Set by User</th>
 										<th>District/Town</th>
@@ -83,6 +84,7 @@
 									@foreach ($pending as $item)
 										<tr>
 											<td>{{$item->lister_name}}</td>
+											<td>{{$item->listing_title}}</td>
 											<td>{{$item->listing_address}}</td>
 											<td>{{$item->full_day_price_set_by_user}}</td>
 											<td>{{$item->district}}/{{$item->town}}</td>

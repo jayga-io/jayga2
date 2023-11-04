@@ -40,8 +40,8 @@ return new class extends Migration
             $table->boolean('breakfast_included')->default(false);
             $table->boolean('unknown_guest_entry')->default(false);
             $table->string('listing_type');
-            $table->integer('lat')->nullable();
-            $table->integer('long')->nullable();
+            $table->string('lat')->nullable();
+            $table->string('long')->nullable();
             $table->boolean('isApproved')->default(false);
             $table->timestamps();
         });
