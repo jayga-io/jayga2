@@ -61,3 +61,7 @@ Route::prefix('admin')->group(function(){
 
 Route::post('/create/listing', [ListingController::class, 'create'])->name('create_listing');
 
+Route::get('/sucess', function(){
+    return view('success');
+});
+
