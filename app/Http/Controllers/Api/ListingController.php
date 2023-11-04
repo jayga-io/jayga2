@@ -347,11 +347,19 @@ class ListingController extends Controller
 
     public function delete_image_listing(Request $request, $id){
         $img = ListingImages::where('listing_img_id', $id)->get();
-        Storage::delete($img[0]->listing_targetlocation);
-        $img->delete();
-        return response()->json([
-            'status' => 200,
-            'messege' => 'Listing image deleted'
-        ]);
+        if(count($img)>0){
+            Storage::delete($img[0]->listing_targetlocation);
+            ListingImages::where('listing_img_id', $id)->delete();
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Listing image deleted'
+            ]);
+        }else{
+            return response()->json([
+                'status' => 200,
+                'messege' => 'No image found'
+            ]);
+        }
+        
     }
 }
