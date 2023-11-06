@@ -362,4 +362,19 @@ class ListingController extends Controller
         }
         
     }
+
+    public function get_listing_images(Request $request, $id){
+       $images = ListingImages::where('listing_id', $id)->get();
+        if(count($images)>0){
+            return response()->json([
+                'status' => 200,
+                'listing_images' => $images
+            ]);
+        }else{
+            return response()->json([
+                'status' => 200,
+                'messege' => 'No listing image found'
+            ]);
+        }
+    }
 }
