@@ -83,7 +83,7 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="#">
-              <h2><img style="float: right;" src="../public/assets/img/logo/Jayga Logo-02.png" width="70" height="70" alt="logo"/></h2>
+              <h2><img style="float: right;" src="{{asset('assets/img/logo/Jayga Logo-02.png')}}" width="70" height="70" alt="logo"/></h2>
   
             </a>
             <div class="collapse navbar-collapse px-5" id="navbarTogglerDemo03">
@@ -116,15 +116,11 @@
                 <div style="width: 100%; height: 178px; position: relative">
 
                   <div class="login-container ">
-                    
-                    <form class="login-form">
+                    <form class="login-form" action="{{route('sendotp')}}" method="POST" >
+                        @csrf
                         <div class="form-group">
-                            <label for="username">Username:</label>
-                            <input type="text" id="username" class="form-control" placeholder="Enter your username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                            
+                            <input type="text" id="phone" name="phone" class="form-control" placeholder="Enter your phone" required>
                         </div>
                         <button type="submit" class="btn btn-warning" style="color: white;">Login</button>
                     </form>

@@ -83,7 +83,7 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="#">
-              <h2><img style="float: right;" src="../public/assets/img/logo/Jayga Logo-02.png" width="70" height="70" alt="logo"/></h2>
+              <h2><img style="float: right;" src="{{asset('assets/img/logo/Jayga Logo-02.png')}}" width="70" height="70" alt="logo"/></h2>
   
             </a>
             <div class="collapse navbar-collapse px-5" id="navbarTogglerDemo03">
@@ -110,27 +110,21 @@
 
                 <div class="py-4 text-center"
                   style="color: #139175; font-size: 38px; font-family: Montserrat; font-weight: 700; word-wrap: break-word ;">
-                  Log-in
+                  Verify OTP
                 </div>
               
                 <div style="width: 100%; height: 178px; position: relative">
 
                   <div class="login-container ">
-                    
-                    <form class="login-form">
+                    <form class="login-form" action="{{route('otpverify')}}" method="POST" >
+                        @csrf
                         <div class="form-group">
-                            <label for="username">Username:</label>
-                            <input type="text" id="username" class="form-control" placeholder="Enter your username" required>
+                            
+                            <input type="text" id="phone" name="OTP" class="form-control" placeholder="Enter the code we sent you {{ $code }}" required>
                         </div>
-                        <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
-                        </div>
-                        <button type="submit" class="btn btn-warning" style="color: white;">Login</button>
+                        <button type="submit" class="btn btn-warning" style="color: white;">Verify OTP</button>
                     </form>
-                    <div class="signup-link">
-                        <p>Don't have an account? <a href="#">Sign up</a></p>
-                    </div>
+                   
                 </div>
 
                 </div>

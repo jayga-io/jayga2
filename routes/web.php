@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\LoginController;
 use App\Models\User;
 use App\Models\Listing;
+use App\Http\Middleware\ensureotp;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,3 +71,12 @@ Route::get('/payment/failure', function(){
     return view('failed');
 });
 
+
+//host 
+Route::prefix('host')->group(function(){
+    //login
+    Route::get('/login', [LoginController::class, 'login']);
+    Route::post('/get-otp', [LoginController::class, 'get_otp'])->name('sendotp');
+    Route::post('/verify', [LoginController::class, 'otpverify'])->name('otpverify');
+    Route::get('/setup', [LoginController::class, 'host_setup']);
+});
