@@ -4,9 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HostController;
 use App\Models\User;
 use App\Models\Listing;
 use App\Http\Middleware\ensureotp;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,5 +80,21 @@ Route::prefix('host')->group(function(){
     Route::get('/login', [LoginController::class, 'login']);
     Route::post('/get-otp', [LoginController::class, 'get_otp'])->name('sendotp');
     Route::post('/verify', [LoginController::class, 'otpverify'])->name('otpverify');
-    Route::get('/setup', [LoginController::class, 'host_setup']);
+    Route::get('/setup', function(){
+        return redirect('/setup/step/1');
+    });
+    
+});
+
+Route::prefix('setup')->group(function(){
+    Route::get('/step/1', [HostController::class, 'userform'])->name('');
+    Route::get('/step/2', [HostController::class, 'hostypeform'])->name('');
+    Route::get('/step/3', [HostController::class, 'listing_nid'])->name('');
+    Route::get('/step/4', [HostController::class, 'listingform'])->name('');
+    Route::get('/step/5', [HostController::class, 'listing_info'])->name('');
+    Route::get('/step/6', [HostController::class, 'amenities'])->name('');
+    Route::get('/step/7', [HostController::class, 'restrictions'])->name('');
+    Route::get('/step/8', [HostController::class, 'listing_images'])->name('');
+    Route::get('/step/9', [HostController::class, 'set_home_address'])->name('');
+    Route::get('/step/10', [HostController::class, 'listing_images'])->name('');
 });

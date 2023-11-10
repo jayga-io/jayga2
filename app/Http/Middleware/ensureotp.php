@@ -16,10 +16,10 @@ class ensureotp
     public function handle(Request $request, Closure $next): Response
     {
         $check = $request->session()->get('phone');
-        if(!$check){
+        if($check != null){
             return $next($request);
         }else{
-            return redirect()->back();
+            return redirect('/host/login');
         }
         
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 // use Illuminate\Http\Client\Pool;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -51,7 +52,11 @@ class LoginController extends Controller
     public function otpverify(Request $request){
         $code = $request->input('OTP');
         $session = $request->session()->get('otp');
+        $phone = $request->session()->get('phone');
         if($code == $session){
+            $user = User::where('phone', $phone)->get();
+           
+            session([ 'user' => $user[0]->id ]);
             return redirect('/host/setup');
         }else{
             return redirect('/host/login');
