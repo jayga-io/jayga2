@@ -96,5 +96,5 @@ Route::prefix('setup')->group(function(){
     Route::get('/step/7', [HostController::class, 'restrictions'])->name('');
     Route::get('/step/8', [HostController::class, 'listing_images'])->name('');
     Route::get('/step/9', [HostController::class, 'set_home_address'])->name('');
-    Route::get('/step/10', [HostController::class, 'listing_images'])->name('');
+    Route::get('/step/10', [HostController::class, 'congrats'])->name('');
 });
