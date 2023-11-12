@@ -20,12 +20,12 @@
     </div>
     <ul class="progress-bar">
         <li class="active">Personal Information</li>
-        <li>Hosting Type</li>
-        <li>Basic Listing info</li>
-        <li>Share some info about your place</li>
-        <li>Amenities for guests</li>
-        <li>Restrictions for guests</li>
-        <li>Upload Listing Images</li>
+        <li class="active">Hosting Type</li>
+        <li class="active">Basic Listing info</li>
+        <li class="active">Share some info about your place</li>
+        <li class="active">Amenities for guests</li>
+        <li class="active">Restrictions for guests</li>
+        <li class="active">Upload Listing Images</li>
         
         
     </ul>

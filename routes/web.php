@@ -95,8 +95,8 @@ Route::prefix('setup')->group(function(){
     Route::get('/step/6', [HostController::class, 'amenities'])->name('step6');
     Route::get('/step/7', [HostController::class, 'restrictions'])->name('step7');
     Route::get('/step/8', [HostController::class, 'listing_images'])->name('step8');
-    Route::get('/step/9', [HostController::class, 'set_home_address'])->name('step8');
-    Route::get('/step/10', [HostController::class, 'congrats'])->name('step9');
+    Route::get('/step/9', [HostController::class, 'set_home_address'])->name('step9');
+    Route::get('/step/10', [HostController::class, 'congrats'])->name('step10');
 
     Route::prefix('form')->group(function(){
         Route::post('/user/create', [HostController::class, 'user_create'])->name('usercreate');
