@@ -68,9 +68,6 @@ class HostController extends Controller
         return redirect(route('step2'));
     }
 
-    public function step3(){
-       
-    }
 
     public function create_listing(Request $request){
         $ph = $request->session()->get('phone');
@@ -114,14 +111,15 @@ class HostController extends Controller
     }
 
     public function doc_uploads(Request $request){
-        $nid = $request->file('nid');
-        $utility = $request->file('utility');
+        
         $ph = $request->session()->get('phone');
         $user = User::where('phone', $ph)->get();
         $title = $request->session()->get('listing_title');
         $listing = Listing::where('listing_title', $title)->get();
 
         if(count($listing)>0){
+            $nid = $request->file('nid');
+            $utility = $request->file('utility');
                 foreach ($nid as $value) {
                 $path = $value->store('listings-nid');
                     ListerNid::create([
@@ -201,12 +199,13 @@ class HostController extends Controller
 
 
     public function upload_listing_images(Request $request){
-        $images = $request->file('listingimages');
+        
         $ph = $request->session()->get('phone');
         $user = User::where('phone', $ph)->get();
         $title = $request->session()->get('listing_title');
         $listing = Listing::where('listing_title', $title)->get();
         if(count($listing)>0){
+            $images = $request->file('listingimages');
             foreach ($images as $mal) {
                 $path = $mal->store('listings');
                 ListingImages::create([
