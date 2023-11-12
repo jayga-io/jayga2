@@ -19,7 +19,7 @@
        
     </div>
     <ul class="progress-bar">
-        <li >Personal Information</li>
+        <li class="active">Personal Information</li>
         <li class="active">Hosting Type</li>
         <li>Basic Listing info</li>
         <li>Share some info about your place</li>
@@ -55,8 +55,8 @@
             
                 
                 <div class="buttons button_space">
-                    <button class="back_button">Back</button>
-                    <button class="next_button">Next Step</button>
+                    <a href="{{route('step1')}}" class="back_button">Back</a>
+                    <a href="{{route('step3')}}" class="next_button">Next Step</a>
                 </div>
             </div>
 

@@ -6,7 +6,7 @@
         <span style="font-weight: 900;">Host Setup</span>
     </div>
     <div class="steps-content">
-        <h3>Step <span class="step-number">4</span></h3>
+        <h3>Step <span class="step-number">3</span></h3>
         <p class="step-number-content active">Please complete your account information to host your own place.</p>
         <p class="step-number-content d-none">Whether it’s a room for stay or an experience to offer, Jayga has got you covered</p>
         <p class="step-number-content d-none">Provide basic info about your house</p>
@@ -19,9 +19,9 @@
        
     </div>
     <ul class="progress-bar">
-        <li >Personal Information</li>
-        <li>Hosting Type</li>
-        <li>Lister Owner's Verification</li>
+        <li class="active">Personal Information</li>
+        <li class="active">Hosting Type</li>
+        
         <li class="active">Basic Listing info</li>
         <li>Share some info about your place</li>
         <li>Amenities for guests</li>
@@ -40,68 +40,71 @@
 
             <div class="main active">
                 <small><img src="{{asset('assets/img/logo/jayga-appicon1.png')}}" style="width: 50px; height: 50px;" alt="" srcset=""></small>
-                <div class="text">
-                    <h2>Now, let’s give your house a intro</h2>
-                    <p>Short titles work best. Have fun with it - you can always change it later</p>
-                </div>
-                <div class="input-text">
-                    <input type="text" name="listing_title" required require>
+                <form action="{{route('listingcreate')}}" method="POST">
+                    @csrf
+                    <div class="text">
+                        <h2>Now, let’s give your house a intro</h2>
+                        <p>Short titles work best. Have fun with it - you can always change it later</p>
+                    </div>
+                    <div class="input-text">
+                        <input type="text" name="listing_title" required require>
                         <span>House Title</span>
-                
-                </div>
-                <div class="input-text">
-                    <textarea type="text" name="listing_description" required require></textarea>
+                    
+                    </div>
+                    <div class="input-text">
+                        <textarea type="text" name="listing_description" required require></textarea>
                         <span>House Description</span>
-                
-                </div>
-                <h2>Describe your house</h2>
-                <div class="input-text">
-                
-                    <input type="hidden" name="peaceful" value="0">
+                    
+                    </div>
+                    <h2>Describe your house</h2>
+                    <div class="input-text">
+                    
+                        <input type="hidden" name="peaceful" value="0">
                         <input type="checkbox" name="peaceful" value="1">
                         <label>peaceful</label>
-                
-                </div>
-
-                <div class="input-text">
-                
-                    <input type="hidden" name="describe_familyfriendly" value="0" >
-                                <input type="checkbox" name="describe_familyfriendly" value=1 checked data-toggle="toggle"
-                                    data-onstyle="success" data-offstyle="danger">
+                    
+                    </div>
+                    
+                    <div class="input-text">
+                    
+                        <input type="hidden" name="describe_familyfriendly" value="0">
+                        <input type="checkbox" name="describe_familyfriendly" value=1 checked data-toggle="toggle" data-onstyle="success"
+                            data-offstyle="danger">
                         <label>Family friendly</label>
-                
-                </div>
-                <div class="input-text">
-                
-                    <input type="hidden" name="door_lock" value="0" >
-                                <input type="checkbox" name="door_lock" value=1 data-toggle="toggle" data-onstyle="success"
-                                    data-offstyle="danger">
+                    
+                    </div>
+                    <div class="input-text">
+                    
+                        <input type="hidden" name="door_lock" value="0">
+                        <input type="checkbox" name="door_lock" value=1 data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
                         <label>Room Lock available?</label>
-                
-                </div>
-                <div class="input-text" >
-                    <label>Select Listing Type</label>
-                    <select name="listing_type">
-                        <option>Select</option>
-                        <option>Room</option>
-                        <option>Apartment</option>
-                        <option>Hotel</option>
-                        <option>Cabin</option>
-                        <option>Lounge</option>
-                        <option>Farm</option>
-                        <option>Suit</option>
-                        
-                    </select>
-                        
-                
-                </div>
-
-            
-                
-                <div class="buttons button_space">
-                    <button class="back_button">Back</button>
-                    <button class="next_button">Next Step</button>
-                </div>
+                    
+                    </div>
+                    <div class="input-text">
+                        <label>Select Listing Type</label>
+                        <select name="listing_type">
+                            <option>Select</option>
+                            <option value="room">Room</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="hotel">Hotel</option>
+                            <option value="cabin">Cabin</option>
+                            <option value="lounge">Lounge</option>
+                            <option value="farm">Farm</option>
+                            <option value="suit">Suit</option>
+                    
+                        </select>
+                    
+                    
+                    </div>
+                    
+                    
+                    
+                    <div class="buttons button_space">
+                        <a href="{{route('step2')}}" class="back_button">Back</a>
+                        <button type="submit" class="next_button">Next Step</button>
+                    </div>
+                </form>
+               
             </div>
            
      

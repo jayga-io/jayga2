@@ -20,12 +20,12 @@
     </div>
     <ul class="progress-bar">
         <li class="active">Personal Information</li>
-        <li>Hosting Type</li>
-        <li>Basic Listing info</li>
-        <li>Share some info about your place</li>
-        <li>Amenities for guests</li>
-        <li>Restrictions for guests</li>
-        <li>Upload Listing Images</li>
+        <li class="active">Hosting Type</li>
+        <li class="active">Basic Listing info</li>
+        <li class="active">Share some info about your place</li>
+        <li class="active">Amenities for guests</li>
+        <li class="active">Restrictions for guests</li>
+        <li class="active">Upload Listing Images</li>
         
         
     </ul>
@@ -42,6 +42,8 @@
                     <h2>Set your home address</h2>
                     <p>Set your home address and price for a day</p>
                 </div>
+                <form action="{{route('setaddress')}}" method="POST">
+                    @csrf
                 <div class="input-text">
                     <input type="text" name="street_address" placeholder="Street address">
                 </div>
@@ -58,9 +60,10 @@
                     <input type="text" name="price" placeholder="Price for a day">
                 </div>
                 <div class="buttons button_space">
-                    <button class="back_button">Back</button>
-                    <button class="next_button">next</button>
+                    <a class="back_button">Back</a>
+                    <button type="submit" class="next_button">Publish</button>
                 </div>
+                </form>
             </div>
 
    

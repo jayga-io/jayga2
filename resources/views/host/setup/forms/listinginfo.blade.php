@@ -6,7 +6,7 @@
         <span style="font-weight: 900;">Host Setup</span>
     </div>
     <div class="steps-content">
-        <h3>Step <span class="step-number">5</span></h3>
+        <h3>Step <span class="step-number">4</span></h3>
         <p class="step-number-content active">Please complete your account information to host your own place.</p>
         <p class="step-number-content d-none">Whether it’s a room for stay or an experience to offer, Jayga has got you covered</p>
         <p class="step-number-content d-none">Provide basic info about your house</p>
@@ -19,11 +19,11 @@
        
     </div>
     <ul class="progress-bar">
-        <li>Personal Information</li>
-        <li>Hosting Type</li>
-        <li>Lister Owner's Verification</li>
+        <li class="active">Personal Information</li>
+        <li class="active">Hosting Type</li>
+        
         <li class="active">Basic Listing info</li>
-        <li>Share some info about your place</li>
+        <li class="active">Share some info about your place</li>
         <li>Amenities for guests</li>
         <li>Restrictions for guests</li>
         <li>Upload Listing Images</li>
@@ -44,8 +44,9 @@
                     <h2>Share some info about your place</h2>
                     <p>You'll add more details later</p>
                 </div>
+                <form action="{{route('listinginfo')}}" method="POST">
+                    @csrf
                 
-                <div class="input-text">
                     <div class="input-text">
                         <div class="row">
                             <div class="col-md-12">
@@ -96,13 +97,14 @@
                             </div>
                             </div>
                     </div>
-                </div>
+                
             
                 
                 <div class="buttons button_space">
-                    <button class="back_button">Back</button>
-                    <button class="next_button">Next Step</button>
+                    <a href="{{route('step3')}}" class="back_button">Back</a>
+                    <button type="submit" class="next_button">Next Step</button>
                 </div>
+                </form>
             </div>
 
            

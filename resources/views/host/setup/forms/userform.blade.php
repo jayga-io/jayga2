@@ -42,8 +42,9 @@
                     <h2>Your Personal Information</h2>
                     <p>Enter your personal information to get closer to copanies.</p>
                 </div>
-                
-                    <div class="input-text">
+                <form action="{{ route('usercreate')}}" method="POST">
+                    @csrf
+                     <div class="input-text">
                         <div class="input-div">
                             <input type="text" name="name" required require id="user_name">
                             <span>Name</span>
@@ -51,10 +52,7 @@
                         
                     </div>
                     <div class="input-text">
-                        <div class="input-div">
-                            <input type="text" name="phone" required require>
-                            <span>Phone number</span>
-                        </div>
+                        
                         <div class="input-div">
                             <input type="text" name="email" required require>
                             <span>E-mail Address</span>
@@ -62,8 +60,10 @@
                     </div>
                 
                     <div class="buttons">
-                        <button  class="next_button">Next Step</button>
+                        <button type="submit" class="next_button">Next Step</button>
                     </div>
+                </form>
+                   
                 
                
             </div>

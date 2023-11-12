@@ -20,11 +20,11 @@
     </div>
     <ul class="progress-bar">
         <li class="active">Personal Information</li>
-        <li>Hosting Type</li>
-        <li>Lister Owners Verification</li>
-        <li>Basic Listing info</li>
-        <li>Share some info about your place</li>
-        <li>Amenities for guests</li>
+        <li class="active">Hosting Type</li>
+        
+        <li class="active">Basic Listing info</li>
+        <li class="active">Share some info about your place</li>
+        <li class="active">Amenities for guests</li>
         <li class="active">Restrictions for guests</li>
         <li>Upload Listing Images</li>
         
@@ -44,6 +44,8 @@
                     <h2>Restrictions</h2>
                     <p>Let the guests know what are not allowed</p>
                 </div>
+                <form action="{{route('restrictions')}}" method="POST">
+                    @csrf
                 <div class="input-text">
                     <div class="input-div">
                         
@@ -87,9 +89,10 @@
                 
             
                 <div class="buttons button_space">
-                    <button class="back_button">Back</button>
-                    <button class="next_button">Next Step</button>
+                    <a href="{{route('step6')}}" class="back_button">Back</a>
+                    <button type="submit" class="next_button">Next Step</button>
                 </div>
+                </form>
             </div>
             
             

@@ -82,19 +82,30 @@ Route::prefix('host')->group(function(){
     Route::post('/verify', [LoginController::class, 'otpverify'])->name('otpverify');
     Route::get('/setup', function(){
         return redirect('/setup/step/1');
-    });
+    })->middleware(ensureotp::class);
     
 });
 
 Route::prefix('setup')->group(function(){
-    Route::get('/step/1', [HostController::class, 'userform'])->name('');
-    Route::get('/step/2', [HostController::class, 'hostypeform'])->name('');
-    Route::get('/step/3', [HostController::class, 'listing_nid'])->name('');
-    Route::get('/step/4', [HostController::class, 'listingform'])->name('');
-    Route::get('/step/5', [HostController::class, 'listing_info'])->name('');
-    Route::get('/step/6', [HostController::class, 'amenities'])->name('');
-    Route::get('/step/7', [HostController::class, 'restrictions'])->name('');
-    Route::get('/step/8', [HostController::class, 'listing_images'])->name('');
-    Route::get('/step/9', [HostController::class, 'set_home_address'])->name('');
-    Route::get('/step/10', [HostController::class, 'congrats'])->name('');
+    Route::get('/step/1', [HostController::class, 'userform'])->name('step1');
+    Route::get('/step/2', [HostController::class, 'hostypeform'])->name('step2');
+    Route::get('/step/3', [HostController::class, 'listingform'])->name('step3');
+    Route::get('/step/4', [HostController::class, 'listing_info'])->name('step4');
+    Route::get('/step/5', [HostController::class, 'listing_nid'])->name('step5');
+    Route::get('/step/6', [HostController::class, 'amenities'])->name('step6');
+    Route::get('/step/7', [HostController::class, 'restrictions'])->name('step7');
+    Route::get('/step/8', [HostController::class, 'listing_images'])->name('step8');
+    Route::get('/step/9', [HostController::class, 'set_home_address'])->name('step8');
+    Route::get('/step/10', [HostController::class, 'congrats'])->name('step9');
+
+    Route::prefix('form')->group(function(){
+        Route::post('/user/create', [HostController::class, 'user_create'])->name('usercreate');
+        Route::post('/listing/create', [HostController::class, 'create_listing'])->name('listingcreate');
+        Route::post('/listing/info', [HostController::class, 'create_infos'])->name('listinginfo');
+        Route::post('/upload/files', [HostController::class, 'doc_uploads'])->name('uploadfiles');
+        Route::post('/create/amenities', [HostController::class, 'create_amenities'])->name('amenities');
+        Route::post('/create/restrictions', [HostController::class, 'create_restrictions'])->name('restrictions');
+        Route::post('/upload/listing/images', [HostController::class, 'upload_listing_images'])->name('listingimages');
+        Route::post('/set/address', [HostController::class, 'set_address'])->name('setaddress');
+    });
 });

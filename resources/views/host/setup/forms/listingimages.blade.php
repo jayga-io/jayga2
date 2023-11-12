@@ -20,11 +20,11 @@
     </div>
     <ul class="progress-bar">
         <li class="active">Personal Information</li>
-        <li>Hosting Type</li>
-        <li>Basic Listing info</li>
-        <li>Share some info about your place</li>
-        <li>Amenities for guests</li>
-        <li>Restrictions for guests</li>
+        <li class="active">Hosting Type</li>
+        <li class="active">Basic Listing info</li>
+        <li class="active">Share some info about your place</li>
+        <li class="active">Amenities for guests</li>
+        <li class="active">Restrictions for guests</li>
         <li class="active">Upload Listing Images</li>
         
         
@@ -43,15 +43,18 @@
                     <h2>Make it stand out</h2>
                     <p>Add some photos to your listing. You can add as many you want</p>
                 </div>
+                <form action="{{route('listingimages')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
                 <div class="user_card">
                 <div class="input-text">
                     <input type="file" name="listingimages" multiple>
                 </div>
                 </div>
                 <div class="buttons button_space">
-                    <button class="back_button">Back</button>
-                    <button class="next_button">Next</button>
+                    <a class="back_button">Back</a>
+                    <button type="submit" class="next_button">Next</button>
                 </div>
+                </form>
             </div>
           
    
