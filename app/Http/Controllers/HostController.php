@@ -118,6 +118,8 @@ class HostController extends Controller
         $listing = Listing::where('listing_title', $title)->get();
 
         if(count($listing)>0){
+           
+           
             $nid = $request->file('nid');
             $utility = $request->file('utility');
                 foreach ($nid as $value) {

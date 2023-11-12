@@ -47,7 +47,7 @@
                     @csrf
                 <div class="user_card">
                 <div class="input-text">
-                    <input type="file" name="listingimages" multiple>
+                    <input type="file" name="listingimages[]" multiple />
                 </div>
                 </div>
                 <div class="buttons button_space">

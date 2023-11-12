@@ -40,23 +40,24 @@
 
             <div class="main active">
                 <small><img src="{{asset('assets/img/logo/jayga-appicon1.png')}}" style="width: 50px; height: 50px;" alt="" srcset=""></small>
-                <form action="{{route('uploadfiles')}}" method="POST" enctype="multipart/form-data">
-                    @csrf
+                
                     <div class="text">
                         <h2>Please attach documents</h2>
                         <p>Please upload 3 files including your NID(Front/Back) and a copy of utility bill</p>
                     </div>
-                    <div class="user_card">
+                    <form action="{{route('uploadfiles')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                    
                         <div class="input-text">
-                            <input type="file" name="nid" multiple>
+                            <input type="file" name="nid[]" multiple />
                         </div> <br>
                         <div class="input-text">
-                            <input type="file" name="utility" multiple>
+                            <input type="file" name="utility[]" multiple />
                         </div>
-                    </div>
+                    
                     <div class="buttons button_space">
-                        <a href="{{route('step2')}}" class="back_button">Back</a>
-                        <button type="submit" class="submit_button">Next Step</button>
+                        <a href="{{route('step2')}}" class="btn btn-secondary">Back</a>
+                        <button type="submit" class="btn btn-primary">Next Step</button>
                     </div>
                 </form>
                 
