@@ -55,8 +55,16 @@ class LoginController extends Controller
         $phone = $request->session()->get('phone');
         if($code == $session){
             $user = User::where('phone', $phone)->get();
-           
+           if(count($user)>0){
             session([ 'user' => $user[0]->id ]);
+           }else{
+            User::create([
+                'phone' => $phone
+            ]);
+            $id = User::where('phone', $phone)->get();
+            session([ 'user' => $id[0]->id ]);
+           }
+            
             return redirect('/host/setup');
         }else{
             return redirect('/host/login');
