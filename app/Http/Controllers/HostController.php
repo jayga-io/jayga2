@@ -10,6 +10,7 @@ use App\Models\ListingImages;
 use App\Models\ListingDescribe;
 use App\Models\ListingRestrictions;
 use App\Models\ListerNid;
+use App\Models\UserPictures;
 
 
 class HostController extends Controller

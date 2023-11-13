@@ -51,7 +51,7 @@
                 </div>
                 </div>
                 <div class="buttons button_space">
-                    <a class="back_button">Back</a>
+                    <a href="{{route('step7')}}" class="btn btn-secondary">Back</a>
                     <button type="submit" class="next_button">Next</button>
                 </div>
                 </form>

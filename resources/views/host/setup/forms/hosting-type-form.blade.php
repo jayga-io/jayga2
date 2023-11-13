@@ -55,8 +55,8 @@
             
                 
                 <div class="buttons button_space">
-                    <a href="{{route('step1')}}" class="back_button">Back</a>
-                    <a href="{{route('step3')}}" class="next_button">Next Step</a>
+                    <a href="{{route('step1')}}" class="btn btn-secondary">Back</a>
+                    <a href="{{route('step3')}}" class="btn btn-primary">Next Step</a>
                 </div>
             </div>
 

@@ -89,7 +89,7 @@
                 
             
                 <div class="buttons button_space">
-                    <a href="{{route('step6')}}" class="back_button">Back</a>
+                    <a href="{{route('step6')}}" class="btn btn-secondary">Back</a>
                     <button type="submit" class="next_button">Next Step</button>
                 </div>
                 </form>

@@ -60,7 +60,7 @@
                     <input type="text" name="price" placeholder="Price for a day">
                 </div>
                 <div class="buttons button_space">
-                    <a class="back_button">Back</a>
+                    <a href="{{route('step8')}}" class="btn btn-secondary">Back</a>
                     <button type="submit" class="next_button">Publish</button>
                 </div>
                 </form>
