@@ -52,34 +52,55 @@
                     
                     </div>
                     <div class="input-text">
-                        <textarea type="text" name="listing_description" required require></textarea>
+                        <textarea type="text" name="listing_description" class="form-control" required require></textarea>
                         <span>House Description</span>
                     
                     </div>
                     <h2>Describe your house</h2>
                     <div class="input-text">
-                    
-                        <input type="hidden" name="peaceful" value="0">
-                        <input type="checkbox" name="peaceful" value="1">
-                        <label>peaceful</label>
+                        <div class="input-div">
+                                <input type="hidden" name="peaceful" value="0">
+                                <input type="checkbox" name="peaceful" value="1">
+                                <label>peaceful</label>
+                        </div>
+                       <div class="input-div">
+                            <input type="hidden" name="lively" value="0">
+                            <input type="checkbox" name="lively" value=1 data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+                            <label>Lively</label>
+                       </div>
                     
                     </div>
                     
                     <div class="input-text">
-                    
-                        <input type="hidden" name="describe_familyfriendly" value="0">
-                        <input type="checkbox" name="describe_familyfriendly" value=1 checked data-toggle="toggle" data-onstyle="success"
-                            data-offstyle="danger">
-                        <label>Family friendly</label>
+                        <div class="input-div">
+                                <input type="hidden" name="describe_familyfriendly" value="0">
+                            <input type="checkbox" name="describe_familyfriendly" value=1 checked data-toggle="toggle" data-onstyle="success"
+                                data-offstyle="danger">
+                            <label>Family friendly</label>
+                        </div>
+                        <div class="input-div">
+                            <input type="hidden" name="door_lock" value="0">
+                            <input type="checkbox" name="door_lock" value=1 data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+                            <label>Room Lock available?</label>
+                        </div>
                     
                     </div>
+                    
                     <div class="input-text">
-                    
-                        <input type="hidden" name="door_lock" value="0">
-                        <input type="checkbox" name="door_lock" value=1 data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
-                        <label>Room Lock available?</label>
+                        <div class="input-div">
+                            <input type="hidden" name="citycenter" value="0">
+                            <input type="checkbox" name="citycenter" value=1 data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+                            <label>City Center</label>
+                        </div>
+                        <div class="input-div">
+                            <input type="hidden" name="tourist_spot" value="0">
+                            <input type="checkbox" name="tourist_spot" value=1 data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+                            <label>Tourist attraction nearby</label>
+                        </div>
                     
                     </div>
+                    
+                    
                     <div class="input-text">
                         <label>Select Listing Type</label>
                         <select name="listing_type">

@@ -55,9 +55,9 @@
                                     <p class="text-dark">Guests</p>
                                 </div>
                                 <div class="input-group w-auto justify-content-end align-items-center">
-                                    <input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " data-field="quantity">
+                                    <input type="button" value="-"  class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " data-field="guest_num">
                                     <input type="number" step="1" max="10" value="1" name="guest_num" class="quantity-field border-0 text-center w-25">
-                                    <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm " data-field="quantity">
+                                    <input type="button" value="+"  class="button-plus border rounded-circle icon-shape icon-sm " data-field="guest_num">
                                 </div>
                             </div>
                             </div>
@@ -67,9 +67,9 @@
                                     <p class="text-dark">Bedroom</p>
                                 </div>
                                 <div class="input-group w-auto justify-content-end align-items-center">
-                                    <input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " data-field="quantity">
+                                    <input type="button"  value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " data-field="bed_num">
                                     <input type="number" step="1" max="10" value="1" name="bed_num" class="quantity-field border-0 text-center w-25">
-                                    <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm lh-0" data-field="quantity">
+                                    <input type="button"  value="+" class="button-plus border rounded-circle icon-shape icon-sm lh-0" data-field="bed_num">
                                 </div>
                             </div>
                             </div>
@@ -79,9 +79,9 @@
                                     <p class="text-dark">Bathroom</p>
                                 </div>
                                 <div class="input-group w-auto justify-content-end align-items-center">
-                                    <input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 lh-0" data-field="quantity">
+                                    <input type="button" value="-"  class="button-minus border rounded-circle  icon-shape icon-sm mx-1 lh-0" data-field="bathroom_num">
                                     <input type="number" step="1" max="10" value="1" name="bathroom_num" class="quantity-field border-0 text-center w-25">
-                                    <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm lh-0" data-field="quantity">
+                                    <input type="button" value="+"  class="button-plus border rounded-circle icon-shape icon-sm lh-0" data-field="bathroom_num">
                                 </div>
                             </div>
                             </div>
@@ -89,9 +89,9 @@
                                 <p class="mt-5">Will you allow short stay?</p>
                                 <div class="input-text">
                                     <label for="">No</label>
-                                    <input type="checkbox" name="allow_short_stay" value="0">
+                                    <input type="checkbox" name="allow_short_stay" value="0" checked>
                                     <label for="">Yes</label>
-                                    <input type="checkbox" name="allow_short_stay" value="1">
+                                    <input type="checkbox" name="allow_short_stay" value="1" >
                                     
                                 </div>
                             </div>
@@ -111,43 +111,7 @@
      
 
   
-
-            <script>
-                function incrementValue(e) {
-                    e.preventDefault();
-                    var fieldName = $(e.target).data('field');
-                    var parent = $(e.target).closest('div');
-                    var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
-            
-                    if (!isNaN(currentVal)) {
-                        parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
-                    } else {
-                        parent.find('input[name=' + fieldName + ']').val(0);
-                    }
-                }
-            
-                function decrementValue(e) {
-                    e.preventDefault();
-                    var fieldName = $(e.target).data('field');
-                    var parent = $(e.target).closest('div');
-                    var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
-            
-                    if (!isNaN(currentVal) && currentVal > 0) {
-                        parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
-                    } else {
-                        parent.find('input[name=' + fieldName + ']').val(0);
-                    }
-                }
-            
-                $('.input-group').on('click', '.button-plus', function (e) {
-                    incrementValue(e);
-                });
-            
-                $('.input-group').on('click', '.button-minus', function (e) {
-                    decrementValue(e);
-                });
-            
-            </script>
+           
 
 </div>
 
