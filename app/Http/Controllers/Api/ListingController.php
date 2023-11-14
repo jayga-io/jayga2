@@ -13,6 +13,7 @@ use App\Models\ListingRestrictions;
 use App\Models\ListingImages;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 
 class ListingController extends Controller
 {
