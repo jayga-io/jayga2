@@ -133,6 +133,24 @@ class BookingController extends Controller
         Booking::where('booking_id', $id)->update([
             'isApproved' => true
         ]);
+
+        $booking_id = Booking::where('booking_id', $id)->get();
+        $user = User::where('id', $booking_id[0]->lister_id)->get();
+
+        $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
+            
+        
+        $phone = $user[0]->phone;
+        $data = [
+            "sender_id" => "8809601010510",
+            "receiver" => $phone,
+            "message" =>  $booking_id[0]->booking_order_name . 'Your booking has been approved',
+            "remove_duplicate" => true
+        ];
+        $response = Http::withHeaders([
+            'Authorization' => 'Token d275d614a4ca92e21d2dea7a1e2bb81fbfac1eb0',
+            
+        ])->post($url, $data);
         return redirect(route('pendingbooking'))->with('success', 'Booking Approved');
     }
 
@@ -148,6 +166,26 @@ class BookingController extends Controller
         foreach ($nids as $value) {
             Storage::delete($value->user_nid_targetlocation);
         }
+
+        $booking_id = Booking::where('booking_id', $id)->get();
+        $user = User::where('id', $booking_id[0]->lister_id)->get();
+
+        $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
+            
+        
+        $phone = $user[0]->phone;
+        $data = [
+            "sender_id" => "8809601010510",
+            "receiver" => $phone,
+            "message" =>  $booking_id[0]->booking_order_name . 'Your booking has been declined',
+            "remove_duplicate" => true
+        ];
+        $response = Http::withHeaders([
+            'Authorization' => 'Token d275d614a4ca92e21d2dea7a1e2bb81fbfac1eb0',
+            
+        ])->post($url, $data);
+
+
         Booking::where('booking_id', $id)->delete();
         return redirect(route('pendingbooking'))->with('deleted', 'Booking Declined');
     }
