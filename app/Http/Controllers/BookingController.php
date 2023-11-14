@@ -135,12 +135,12 @@ class BookingController extends Controller
         ]);
 
         $booking_id = Booking::where('booking_id', $id)->get();
-        $user = User::where('id', $booking_id[0]->lister_id)->get();
+       
 
         $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
             
         
-        $phone = $user[0]->phone;
+        $phone = $booking_id[0]->phone;
         $data = [
             "sender_id" => "8809601010510",
             "receiver" => $phone,
@@ -168,12 +168,12 @@ class BookingController extends Controller
         }
 
         $booking_id = Booking::where('booking_id', $id)->get();
-        $user = User::where('id', $booking_id[0]->lister_id)->get();
+        
 
         $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
             
         
-        $phone = $user[0]->phone;
+        $phone = $booking_id[0]->phone;
         $data = [
             "sender_id" => "8809601010510",
             "receiver" => $phone,
