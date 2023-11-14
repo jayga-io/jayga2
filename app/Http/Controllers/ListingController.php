@@ -13,6 +13,7 @@ use App\Models\UserPictures;
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Storage;
 
 class ListingController extends Controller
