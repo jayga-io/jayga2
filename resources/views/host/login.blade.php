@@ -7,6 +7,11 @@
     <title>Jayga | Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+   />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
         <style>
           body {
               background: #f4f4f4;
@@ -120,13 +125,11 @@
                         @csrf
                         <div class="form-group">
                             
-                            <input type="text" id="phone" name="phone" class="form-control" placeholder="Enter your phone" required>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone" required require>
                         </div>
-                        <button type="submit" class="btn btn-warning" style="color: white;">Login</button>
+                        <button type="submit"  class="btn btn-warning" style="color: white;">Login</button>
                     </form>
-                    <div class="signup-link">
-                        <p>Don't have an account? <a href="#">Sign up</a></p>
-                    </div>
+                    
                 </div>
 
                 </div>
@@ -156,6 +159,35 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+  <script>
+          const phoneInputField = document.querySelector("#phone");
+        const phoneInput = window.intlTelInput(phoneInputField, {
+          initialCountry: "bd",
+          utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
+
+
+        function process(event) {
+      event.preventDefault();
+
+      const phoneNumber = phoneInput.getNumber();
+
+      info.style.display = "none";
+      error.style.display = "none";
+
+      if (phoneInput.isValidNumber()) {
+        info.style.display = "";
+        info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
+        return true;
+      } else {
+        error.style.display = "";
+        error.innerHTML = `Invalid phone number.`;
+        return false;
+      }
+      }
+    </script>
+    
 </body>
 
 </html>

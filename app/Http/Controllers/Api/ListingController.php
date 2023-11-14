@@ -81,6 +81,10 @@ class ListingController extends Controller
 
     public function create(Request $request){
 
+        $validated = $request->validate([
+            'lister_id' => 'required'
+        ]);
+
         $check = Listing::where('listing_title', $request->input('listing_title'))->get();
         if(count($check)>0){
             return response()->json([
@@ -88,7 +92,9 @@ class ListingController extends Controller
                 'messege' => 'Listing title can not be same'
             ]);
         }else{
-                Listing::create([
+
+            if($validated){
+                 Listing::create([
                     'lister_id' => $request->input('user_id'),
                     'lister_name' => $request->input('lister_name'),
                     'guest_num' => $request->input('guest_num'),
@@ -114,7 +120,7 @@ class ListingController extends Controller
                 ]);
 
                 
-                $listing_id = Listing::where('listing_title', $request->input('listing_title'))->get();
+                    $listing_id = Listing::where('listing_title', $request->input('listing_title'))->get();
 
                 
                     
@@ -174,6 +180,10 @@ class ListingController extends Controller
                         'id' => $listing_id[0]->listing_id
                     ]
                  ]);
+            }else{
+                return $validated->errors();
+            }
+               
         }
                   
         

@@ -11,6 +11,7 @@ use App\Models\ListingDescribe;
 use App\Models\ListingRestrictions;
 use App\Models\ListerNid;
 use App\Models\UserPictures;
+use Image;
 
 
 class HostController extends Controller
@@ -122,6 +123,7 @@ class HostController extends Controller
            
            
             $nid = $request->file('nid');
+            $nid2= $request->file('nid2');
             $utility = $request->file('utility');
                 foreach ($nid as $value) {
                 $path = $value->store('listings-nid');
@@ -131,6 +133,16 @@ class HostController extends Controller
                         'nid_filename' => $value->hashName(),
                         'nid_targetlocation' => $path,
                     ]);
+            }
+
+            foreach ($nid2 as $identity) {
+                $path2 = $identity->store('listings-nid');
+                ListerNid::create([
+                    'listing_id' => $listing[0]->listing_id,
+                    'lister_id' => $user[0]->id,
+                    'nid_filename' => $identity->hashName(),
+                    'nid_targetlocation' => $path2,
+                ]);
             }
 
             foreach ($utility as $item) {
@@ -207,10 +219,13 @@ class HostController extends Controller
         $user = User::where('phone', $ph)->get();
         $title = $request->session()->get('listing_title');
         $listing = Listing::where('listing_title', $title)->get();
+        
         if(count($listing)>0){
             $images = $request->file('listingimages');
             foreach ($images as $mal) {
+                
                 $path = $mal->store('listings');
+                $img = Image::make($path)->resize(700,500)->save($path);
                 ListingImages::create([
                     'listing_id' => $listing[0]->listing_id,
                     'lister_id' => $user[0]->id,

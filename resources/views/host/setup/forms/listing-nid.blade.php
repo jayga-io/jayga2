@@ -48,12 +48,26 @@
                     <form action="{{route('uploadfiles')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                     
-                        <div class="input-text">
-                            <input type="file" name="nid[]" multiple />
-                        </div> <br>
-                        <div class="input-text">
-                            <input type="file" name="utility[]" multiple />
+                        <div class="input-text py-3">
+                            <div class="input-div">
+                                <label for="nid">Attach NID Front</label>
+                                <input type="file" name="nid[]" multiple required require />
+                            </div>
+
+                            <div class="input-div">
+                                <label for="nid">Attach utility bill copy</label>
+                                <input type="file" name="utility[]" multiple required require />
+                            </div>
+                            
                         </div>
+                        <div class="input-text py-2">
+                            <div class="input-div">
+                                <label for="nid">Attach NID back</label> <br>
+                                <input type="file" name="nid2[]" multiple required require />
+                            </div>
+                            
+                        </div>
+                       
                     
                     <div class="buttons button_space">
                         <a href="{{route('step2')}}" class="btn btn-secondary">Back</a>

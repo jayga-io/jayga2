@@ -225,6 +225,24 @@ class ListingController extends Controller
         Listing::where('listing_id', $id)->update([
             'isApproved' => true
         ]);
+
+        $lister_id = Listing::where('listing_id', $id)->get();
+        $user = User::where('id', $lister_id[0]->lister_id)->get();
+
+        $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
+            
+        
+        $phone = $user[0]->phone;
+        $data = [
+            "sender_id" => "8809601010510",
+            "receiver" => $phone,
+            "message" => 'Your listing : '. $lister_id[0]->listing_title . 'has been approved',
+            "remove_duplicate" => true
+        ];
+        $response = Http::withHeaders([
+            'Authorization' => 'Token d275d614a4ca92e21d2dea7a1e2bb81fbfac1eb0',
+            
+        ])->post($url, $data);
         return redirect(route('pendinglisting'))->with('success', 'Listing Approved');
     }
 
