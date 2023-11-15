@@ -88,8 +88,8 @@
                             <div class="col-md-12 ">
                                 <p class="mt-5">Will you allow short stay?</p>
                                 <div class="input-text">
-                                    <label for="">No</label>
-                                    <input type="checkbox" name="allow_short_stay" value="0" checked>
+                                    
+                                    <input type="hidden" name="allow_short_stay" value="0" >
                                     <label for="">Yes</label>
                                     <input type="checkbox" name="allow_short_stay" value="1" >
                                     
