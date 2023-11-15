@@ -87,7 +87,7 @@
                             </div>
                             <div class="col-md-12 ">
                                 <div class="input-text">
-                                    <p class="mt-5">Will you allow short stay?</p>
+                                    <p >Will you allow short stay?</p>
                                     <div class="input-div">
                                     
                                         <input type="hidden" name="allow_short_stay" value="0" >
