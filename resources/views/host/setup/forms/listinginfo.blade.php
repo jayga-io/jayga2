@@ -87,11 +87,11 @@
                             </div>
                             <div class="col-md-12 ">
                                 <p class="mt-5">Will you allow short stay?</p>
-                                <div class="input-text">
+                                <div class="input-div">
                                     
-                                    <input type="hidden" name="allow_short_stay"  value="0">
-										<input type="checkbox" name="allow_short_stay" value="1" data-toggle="toggle"
-											data-onstyle="success" data-offstyle="danger">
+                                    <input type="hidden" name="allow_short_stay" value="0" >
+                                    <label for="">Yes</label>
+                                    <input type="checkbox" name="allow_short_stay" value="1" >
                                     
                                 </div>
                             </div>
