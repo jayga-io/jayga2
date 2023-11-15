@@ -83,7 +83,7 @@ class ListingController extends Controller
     public function create(Request $request){
 
         $validated = $request->validate([
-            'lister_id' => 'required'
+            'user_id' => 'required'
         ]);
 
         $check = Listing::where('listing_title', $request->input('listing_title'))->get();

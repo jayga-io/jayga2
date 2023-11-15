@@ -225,7 +225,7 @@ class HostController extends Controller
             foreach ($images as $mal) {
                 
                 $path = $mal->store('listings');
-                $img = Image::make($path)->resize(700,500)->save($path);
+               // $img = Image::make($path)->resize(700,500)->save($path);
                 ListingImages::create([
                     'listing_id' => $listing[0]->listing_id,
                     'lister_id' => $user[0]->id,
