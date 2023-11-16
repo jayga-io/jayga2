@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Http;
 class ListingController extends Controller
 {
     public function listings(Request $request){
-        $listing = Listing::where('isApproved', true)->with('images')->get();
+        $listing = Listing::where('isApproved', true)->where('isActive', true)->with('images')->get();
         if(count($listing)>0){
             return response()->json([
                 'status' => 200,
@@ -33,7 +33,7 @@ class ListingController extends Controller
     }
 
     public function filter(Request $request){
-        $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->allowedFilters(['guest_num', 'bed_num', 'district', 'town', 'allow_short_stay', 'listing_type'])->with('images')->with('amenities')->with('restrictions')->get();
+        $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->allowedFilters(['guest_num', 'bed_num', 'district', 'town', 'allow_short_stay', 'listing_type'])->with('images')->with('amenities')->with('restrictions')->get();
         if(count($filtered_listing)>0){
             return response()->json([
                 'status' => 200,
@@ -387,5 +387,24 @@ class ListingController extends Controller
                 'messege' => 'No listing image found'
             ]);
         }
+    }
+
+    public function listing_status(Request $request){
+        $validated = $request->validate([
+            'listing_id' => 'required',
+            'isActive' => 'required|boolean'
+        ]);
+        if($validated){
+            Listing::where('listing_id', $request->input('listing_id'))->update([
+                'isActive' => $request->input('isActive')
+            ]);
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Listing Status Changed'
+            ]);
+        }else{
+           $validated->errors();
+        }
+       
     }
 }

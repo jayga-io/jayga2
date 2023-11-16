@@ -70,3 +70,5 @@ Route::post('/update/listing', [ListingController::class, 'update_listing']);
 Route::get('/listing/image/delete/{id}', [ListingController::class, 'delete_image_listing']);
 
 Route::get('/listing/images/{id}', [ListingController::class, 'get_listing_images']);
+
+Route::post('/change/listing/status', [ListingController::class, 'listing_status']);
