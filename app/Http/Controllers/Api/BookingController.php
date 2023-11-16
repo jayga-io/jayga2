@@ -116,6 +116,41 @@ class BookingController extends Controller
             'booking_status' => 'required',
         ]);
         if($validated){
+            $booking_id = Booking::where('booking_id', $id)->get();
+            if($request->input('booking_status') == 1){
+
+                $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
+                    
+                
+                $phone = $booking_id[0]->phone;
+                $data = [
+                    "sender_id" => "8809601010510",
+                    "receiver" => $phone,
+                    "message" =>  $booking_id[0]->booking_order_name . 'Your booking has been confirmed',
+                    "remove_duplicate" => true
+                ];
+                $response = Http::withHeaders([
+                    'Authorization' => 'Token d275d614a4ca92e21d2dea7a1e2bb81fbfac1eb0',
+                    
+                ])->post($url, $data);
+            }elseif($request->input('booking_status') == 2){
+                
+                $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
+                    
+                
+                $phone = $booking_id[0]->phone;
+                $data = [
+                    "sender_id" => "8809601010510",
+                    "receiver" => $phone,
+                    "message" =>  $booking_id[0]->booking_order_name . 'Your booking has been declined',
+                    "remove_duplicate" => true
+                ];
+                $response = Http::withHeaders([
+                    'Authorization' => 'Token d275d614a4ca92e21d2dea7a1e2bb81fbfac1eb0',
+                    
+                ])->post($url, $data);
+            }
+
              Booking::where('booking_id', $request->input('booking_id'))->update([
                 'booking_status' => $request->input('booking_status'),
                 ]);
