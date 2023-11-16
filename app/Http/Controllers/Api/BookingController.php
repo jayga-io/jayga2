@@ -116,7 +116,7 @@ class BookingController extends Controller
             'booking_status' => 'required',
         ]);
         if($validated){
-            $booking_id = Booking::where('booking_id', $id)->get();
+            $booking_id = Booking::where('booking_id', $request->input('booking_id'))->get();
             if($request->input('booking_status') == 1){
 
                 $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
