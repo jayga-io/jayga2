@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Listing;
 use Illuminate\Support\Facades\Http;
 
 class BookingController extends Controller
