@@ -435,4 +435,21 @@ class ListingController extends Controller
             'Favourites' => $favs
         ]);
     }
+
+    public function del_fav(Request $request, $id){
+        $listing = FavListing::where('id', $id)->get();
+        if(count($listing)>0){
+            FavListing::where('id', $id)->delete();
+         return response()->json([
+            'status' => 200,
+            'messege' => 'Favourite listing removed'
+         ]);
+        }else{
+            return response()->json([
+                'status' =>200,
+                'messege' => 'Listing not found'
+            ]);
+        }
+        
+    }
 }

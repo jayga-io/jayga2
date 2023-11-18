@@ -76,3 +76,5 @@ Route::post('/change/listing/status', [ListingController::class, 'listing_status
 Route::post('/add/fav/listing', [ListingController::class, 'add_fav']);
 
 Route::get('/fav/listings/{id}', [ListingController::class, 'get_fav']);
+
+Route::get('/fav/listing/remove/{id}', [ListingController::class, 'del_fav']);
