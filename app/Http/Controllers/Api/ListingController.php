@@ -429,7 +429,7 @@ class ListingController extends Controller
     }
 
     public function get_fav(Request $request, $id){
-        $favs = FavListing::where('user_id', $id)->groupBy('listing_id')->get();
+        $favs = FavListing::where('user_id', $id)->distinct('listing_id')->get();
         return response()->json([
             'status' => 200,
             'Favourites' => $favs
