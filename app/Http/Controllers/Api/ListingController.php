@@ -11,6 +11,7 @@ use App\Models\ListingGuestAmenities;
 use App\Models\ListingDescribe;
 use App\Models\ListingRestrictions;
 use App\Models\ListingImages;
+use App\Models\FavListing;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
@@ -411,7 +412,27 @@ class ListingController extends Controller
 
     public function add_fav(Request $request){
         $validated = $request->validate([
-            'user_id' => 'required'
+            'user_id' => 'required',
+            'listing_id' => 'required'
+        ]);
+       // $check = FavListing::where('listing_id', $request->input('listing_id'))->get();
+
+       FavListing::create([
+        'user_id' => $request->input('user_id'),
+        'listing_id' => $request->input('listing_id'),
+        'fav_type' => $request->input('fav_type')
+       ]);
+       return response()->json([
+        'status' => 200,
+        'messege' => 'Listing added to favourite'
+       ]);
+    }
+
+    public function get_fav(Request $request, $id){
+        $favs = FavListing::where('user_id', $id)->distinct()->get();
+        return response()->json([
+            'status' => 200,
+            'Favourites' => $favs
         ]);
     }
 }

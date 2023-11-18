@@ -72,3 +72,7 @@ Route::get('/listing/image/delete/{id}', [ListingController::class, 'delete_imag
 Route::get('/listing/images/{id}', [ListingController::class, 'get_listing_images']);
 
 Route::post('/change/listing/status', [ListingController::class, 'listing_status']);
+
+Route::post('/add/fav/listing', [ListingController::class, 'add_fav']);
+
+Route::get('/fav/listings/{id}', [ListingController::class, 'get_fav']);
