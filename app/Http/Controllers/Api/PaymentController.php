@@ -89,11 +89,11 @@ class PaymentController extends Controller
             
         $number = User::where('id', $request->input('lister_id'))->get();
         $listing = Listing::where('listing_id', $request->input('listing_id'))->get();
-        $phone = $user[0]->phone;
+        $phone = $number[0]->phone;
         $data = [
             "sender_id" => "8809601010510",
             "receiver" => $phone,
-            "message" =>  $user[0]->name . ', Your listing: '. $listing[0]->listing_title . 'has a new booking placed',
+            "message" =>  $number[0]->name . ', Your listing: '. $listing[0]->listing_title . 'has a new booking placed',
             "remove_duplicate" => true
         ];
         $response = Http::withHeaders([
