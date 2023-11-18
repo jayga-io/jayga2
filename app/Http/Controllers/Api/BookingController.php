@@ -62,7 +62,7 @@ class BookingController extends Controller
                     'id' => $booked[0]->booking_id,
                     'pay_amount' => $booked[0]->pay_amount,
                     'lister_id' => $booked[0]->lister_id,
-                    'listing_id' => $listing[0]->listing_title,
+                    'listing_id' => $listing[0]->listing_id,
                     'booking_order_name' => $booked[0]->booking_order_name,
                     'transaction_id' => $booked[0]->transaction_id,
                 ]
