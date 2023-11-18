@@ -20,6 +20,7 @@ class BookingController extends Controller
             'short_stay_flag' => 'required',
             'all_day_flag' => 'required',
             'transaction_id' => 'required',
+            'phone' => 'required',
 
         ]);
 
@@ -39,10 +40,9 @@ class BookingController extends Controller
                 'listing_id' => $request->input('listing_id'),
                 'date_enter' => $request->input('date_enter'),
                 'date_exit' => $request->input('date_exit'),
-                'listing_type' => $request->input('listing_type'),
                 'short_stay_flag' => $request->input('short_stay_flag'),
                 'tier' => $request->input('tier'),
-                'total_members' => $request->input('members'),
+                'listing_type' => $request->input('listing_type'),
                 'days_stayed' => $request->input('days_stayed'),
                 'pay_amount' => $request->input('pay_amount'),
                 'all_day_flag' => $request->input('all_day_flag'),
@@ -53,12 +53,15 @@ class BookingController extends Controller
             ]);
 
             $booked = Booking::where('transaction_id', $request->input('transaction_id'))->get();
+            $listing = Listing::where('listing_id', $request->input('listing_id'))->get();
             return response()->json([
                 'status' => 200,
                 'messege' => 'Booking created successfully',
                 'booking_details' => [
                     'id' => $booked[0]->booking_id,
                     'pay_amount' => $booked[0]->pay_amount,
+                    'lister_id' => $booked[0]->lister_id,
+                    'listing_id' => $listing[0]->listing_title,
                     'booking_order_name' => $booked[0]->booking_order_name,
                     'transaction_id' => $booked[0]->transaction_id,
                 ]

@@ -73,12 +73,33 @@ class PaymentController extends Controller
        $validated = $request->validate([
         'booking_id' => 'required',
         'pay_amount' => 'required',
+        'lister_id' => 'required',
+        'listing_id' => 'required',
        ]);
        if($validated){
         Booking::where('booking_id', $request->input('booking_id'))->update([
             'pay_amount' => $request->input('pay_amount'),
             'payment_flag' => true
         ]);
+        
+
+        $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
+            
+        $number = User::where('id', $request->input('lister_id'))->get();
+        $listing = Listing::where('listing_id', $request->input('listing_id'))->get();
+        $phone = $user[0]->phone;
+        $data = [
+            "sender_id" => "8809601010510",
+            "receiver" => $phone,
+            "message" =>  $user[0]->name . ', Your listing: '. $listing[0]->listing_title . 'has a new booking placed',
+            "remove_duplicate" => true
+        ];
+        $response = Http::withHeaders([
+            'Authorization' => 'Token d275d614a4ca92e21d2dea7a1e2bb81fbfac1eb0',
+            
+        ])->post($url, $data);
+
+
         return response()->json([
             'status' => 200,
             'messege' => 'Paid',
