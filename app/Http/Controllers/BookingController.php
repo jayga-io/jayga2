@@ -40,7 +40,7 @@ class BookingController extends Controller
                 Booking::create([
                     'user_id' => $request->input('user'),
                     'booking_order_name' => $request->input('booking_order_name'),
-                    
+                
                     'lister_id' => $lister_id[0]->lister_id,
                     'listing_id' => $request->input('listing'),
                     'date_enter' => $request->input('date_enter'),

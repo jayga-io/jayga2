@@ -407,4 +407,11 @@ class ListingController extends Controller
         }
        
     }
+
+
+    public function add_fav(Request $request){
+        $validated = $request->validate([
+            'user_id' => 'required'
+        ]);
+    }
 }

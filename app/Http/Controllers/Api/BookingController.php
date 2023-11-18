@@ -39,12 +39,17 @@ class BookingController extends Controller
                 'listing_id' => $request->input('listing_id'),
                 'date_enter' => $request->input('date_enter'),
                 'date_exit' => $request->input('date_exit'),
+                'listing_type' => $request->input('listing_type'),
                 'short_stay_flag' => $request->input('short_stay_flag'),
                 'tier' => $request->input('tier'),
+                'total_members' => $request->input('members'),
                 'days_stayed' => $request->input('days_stayed'),
                 'pay_amount' => $request->input('pay_amount'),
                 'all_day_flag' => $request->input('all_day_flag'),
                 'payment_flag' => $request->input('payment_flag'),
+                'email' => $request->input('email'),
+                'phone' => $request->input('phone'),
+                'messeges' => $request->input('messege'),
             ]);
 
             $booked = Booking::where('transaction_id', $request->input('transaction_id'))->get();
