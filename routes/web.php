@@ -5,6 +5,7 @@ use App\Http\Controllers\ListingController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HostController;
+use App\Http\Controllers\ListerDashboardController;
 use App\Models\User;
 use App\Models\Listing;
 use App\Http\Middleware\ensureotp;
@@ -109,3 +110,21 @@ Route::prefix('setup')->group(function(){
         Route::post('/set/address', [HostController::class, 'set_address'])->name('setaddress');
     });
 });
+
+
+//user dashboard
+
+Route::prefix('user')->group(function(){
+    Route::middleware(ensureotp::class)->group(function(){
+        Route::get('/dashboard', [ListerDashboardController::class, 'index'])->name('userdash');
+        Route::get('/manage/bookings', [ListerDashboardController::class, 'bookings']);
+    });
+
+    
+});
+
+
+Route::get('/logout', function(Request $request){
+    $request->session()->flush();
+    return redirect(route('userdash'));
+})->name('logout');

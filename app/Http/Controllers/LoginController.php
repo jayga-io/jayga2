@@ -65,7 +65,7 @@ class LoginController extends Controller
             session([ 'user' => $id[0]->id ]);
            }
             
-            return redirect('/host/setup');
+            return redirect(route('userdash'));
         }else{
             return redirect('/host/login');
         }

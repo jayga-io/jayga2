@@ -5,15 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\ListerDashboard;
 use App\Http\Requests\StoreListerDashboardRequest;
 use App\Http\Requests\UpdateListerDashboardRequest;
+use App\Models\User;
+use App\Models\Listing;
+use App\Models\Booking;
+use Illuminate\Http\Request;
 
 class ListerDashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $phone = $request->session()->get('phone');
+        $id = $request->session()->get('user');
+        $user = User::where('id', $id)->get();
+        $listing = Listing::where('lister_id', $id)->get();
+        
+        return view('host.dashboard.dash')->with('phone', $phone)->with('uid', $id)->with('user', $user)->with('listing', $listing);
     }
 
     /**
@@ -62,5 +71,11 @@ class ListerDashboardController extends Controller
     public function destroy(ListerDashboard $listerDashboard)
     {
         //
+    }
+
+    public function bookings(Request $request){
+        $bookings = Booking::where('isApproved', true)->get();
+        $pending_bookings = Booking::where('isApproved', false)->get();
+        return view('host.bookings.bookings')->with('bookings', $bookings)->with('pendings', $pending_bookings);
     }
 }
