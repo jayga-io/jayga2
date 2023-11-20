@@ -97,6 +97,7 @@
                             <th>Number of members</th>
                             <th>Arrival Date</th>
                             <th>View Details</th>
+                            <th>Booking Made</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -107,8 +108,9 @@
 											<td>{{$item->email}}</td>
 											<td>{{$item->phone }}</td>
 											<td>{{$item->total_members }}</td>
-                                            <td>{{$item->date_enter}}</td>
+                      <td>{{$item->date_enter}}</td>
 											<td><a class="btn btn-primary" href="/admin/view-booking/{{$item->booking_id}}">View Bookings</a></td>
+                      <td>{{$item->created_at->diffForHumans()}}</td>
 											<td> <a class="btn btn-primary" href="/admin/approve-booking/{{$item->booking_id}}">Approve</a> | <a class="btn btn-danger" href="/admin/decline-booking/{{$item->listing_id}}">Decline</a></td>
 										</tr>
 						@endforeach
