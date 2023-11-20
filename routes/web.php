@@ -117,7 +117,7 @@ Route::prefix('setup')->group(function(){
 Route::prefix('user')->group(function(){
     Route::middleware(ensureotp::class)->group(function(){
         Route::get('/dashboard', [ListerDashboardController::class, 'index'])->name('userdash');
-        Route::get('/manage/bookings', [ListerDashboardController::class, 'bookings']);
+        Route::get('/manage/bookings', [ListerDashboardController::class, 'bookings'])->name('managebookings');
     });
 
     
