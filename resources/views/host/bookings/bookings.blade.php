@@ -98,8 +98,8 @@
                             <th>Arrival Date</th>
                             <th>View Details</th>
                             <th>Booking Made</th>
-                            <th>Actions</th>
-                            <th>Delete</th>
+                            <th>Pay Amount</th>
+                            <th>Cancel</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -112,7 +112,12 @@
                       <td>{{$item->date_enter}}</td>
 											<td><a class="btn btn-warning" href="/admin/view-booking/{{$item->booking_id}}">View Bookings</a></td>
                       <td>{{$item->created_at->diffForHumans()}}</td>
-											<td> <a class="btn btn-success" href="/admin/approve-booking/{{$item->booking_id}}">Approve</a> | <a class="btn btn-warning" href="/admin/decline-booking/{{$item->listing_id}}">Decline</a></td>
+                      @if ($item->pay_amount == null)
+                          <td><span class="badge rounded-pill bg-warning">Not paid</span></td>
+                      @else
+                          <td>{{$item->pay_amount}}</td>
+                      @endif
+											<td> <a class="btn btn-danger" href="/user/booking-cancel/{{$item->booking_id}}">Cancel</a></td>
 										</tr>
 						@endforeach
                     </tbody>
@@ -123,24 +128,43 @@
                     <thead>
                         <tr>
                             <th>Name on booking</th>
-                            <th>email</th>
                             <th>phone</th>
-                            <th>Number of members</th>
+                            
                             <th>Arrival Date</th>
-                            <th>View Details</th>
-                            <th>Actions</th>
+                            <th>Number of members</th>
+                            <th>Checkout Date</th>
+                            <th>Payment Status</th>
+                            
+                            <th>is Approved?</th>
+                            <th>Created At</th>
+                            <th>Confirm</th>
+                            <th>Decline</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($pendings as $item)
 										<tr>
 											<td>{{$item->booking_order_name }}</td>
-											<td>{{$item->email}}</td>
+					
 											<td>{{$item->phone }}</td>
+                      <td>{{$item->date_enter}}</td>
 											<td>{{$item->total_members }}</td>
-                                            <td>{{$item->date_enter}}</td>
-											<td><a class="btn btn-warning" href="/admin/view-booking/{{$item->booking_id}}">View Bookings</a></td>
-											<td> <a class="btn btn-success" href="/admin/approve-booking/{{$item->booking_id}}">Approve</a> | <a class="btn btn-warning" href="/admin/decline-booking/{{$item->listing_id}}">Decline</a></td>
+                      <td>{{$item->date_exit}}</td>
+											@if ($item->payment_flag == true)
+                          <td><span class="badge rounded-pill bg-success">Paid</span></td>
+                      @else
+                        <td><span class="badge rounded-pill bg-warning">Due</span></td>
+                      @endif
+                      
+                      @if ($item->isApproved == true)
+                          <td><span class="badge rounded-pill bg-success">Approved</span></td>
+                      @else
+                        <td><span class="badge rounded-pill bg-warning">Not Approved</span></td>
+                      @endif
+                      
+                      <td>{{$item->created_at->diffForHumans()}}</td>
+											<td> <a class="btn btn-success" href="/user/booking-confirm/{{$item->booking_id}}">Confirm</a> </td> 
+                      <td><a class="btn btn-warning" href="/user/booking-deny/{{$item->booking_id}}">Deny</a></td>
 										</tr>
 									@endforeach
                     </tbody>

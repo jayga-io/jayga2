@@ -118,6 +118,9 @@ Route::prefix('user')->group(function(){
     Route::middleware(ensureotp::class)->group(function(){
         Route::get('/dashboard', [ListerDashboardController::class, 'index'])->name('userdash');
         Route::get('/manage/bookings', [ListerDashboardController::class, 'bookings'])->name('managebookings');
+        Route::get('/booking-confirm/{id}', [ListerDashboardController::class, 'confirm'])->name('bookconfirm');
+        Route::get('/booking-deny/{id}', [ListerDashboardController::class, 'deny'])->name('bookdeny');
+        Route::get('/booking-cancel/{id}', [ListerDashboardController::class, 'cancel'])->name('bookcancel');
     });
 
     

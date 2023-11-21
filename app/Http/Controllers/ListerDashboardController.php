@@ -74,10 +74,37 @@ class ListerDashboardController extends Controller
     }
 
     public function bookings(Request $request){
-        $bookings = Booking::where('isApproved', true)->get();
+        $bookings = Booking::where('isApproved', true)->where('booking_status', 1)->get();
        
-        $pending_bookings = Booking::where('isApproved', false)->get();
+        $pending_bookings = Booking::where('isApproved', false)->where('booking_status', 0)->get();
         return view('host.bookings.bookings')->with('bookings', $bookings)->with('pendings', $pending_bookings);
+    }
+
+    public function confirm(Request $request, $id){
+        Booking::where('booking_id', $id)->update([
+            'booking_status' => 1,
+            'isApproved' => true
+        ]);
+        toastr()->addSuccess('Booking has been confirmed');
+        return redirect()->back();
+        
+    }
+
+    public function deny(Request $request, $id){
+        Booking::where('booking_id', $id)->update([
+            'booking_status' => 2,
+            'isApproved' => true
+        ]);
+        toastr()->addWarning('Booking has been declined');
+        return redirect()->back();
+    }
+
+    public function cancel(Request $request, $id){
+        Booking::where('booking_id', $id)->update([
+            'booking_status' => 2,
+        ]);
+        toastr()->addWarning('Booking has been canceled');
+        return redirect()->back();
     }
 
     
