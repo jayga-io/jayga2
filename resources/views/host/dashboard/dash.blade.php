@@ -88,7 +88,7 @@
 
           <h1 class="display-5 fw-bold">Account Details</h1>
           <p class="col-md-8 ">Welcome onboard, (+88 {{ $phone }}). <a href="#">Go to profile</a></p>
-          <button class="btn btn-primary btn-lg" type="button">Example button</button>
+          <button class="btn btn-success btn-lg" type="button">Example button</button>
         </div>
       </div>
       

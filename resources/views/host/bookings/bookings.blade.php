@@ -66,11 +66,11 @@
     </div>
 
     <div class="container">
-      <div class="p-5 mb-4 bg-light rounded-3">
-        <div class="container-fluid py-5">
+      <div class="p-3 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-4">
           <h1 class="display-5 fw-bold"><i class="bi bi-calendar3"></i>  Manage Bookings</h1>
           <p class="col-md-8 fs-4">Manage all your bookings, see pendings & more...</p>
-          <button class="btn btn-primary btn-lg" type="button">Example button</button>
+          <button class="btn btn-warning btn-lg" type="button">Example button</button>
         </div>
       </div>
       
@@ -92,26 +92,27 @@
                     <thead>
                         <tr>
                             <th>Name on booking</th>
-                            <th>email</th>
+                            
                             <th>phone</th>
                             <th>Number of members</th>
                             <th>Arrival Date</th>
                             <th>View Details</th>
                             <th>Booking Made</th>
                             <th>Actions</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($bookings as $item)
+            @foreach ($bookings as $item)
 										<tr>
 											<td>{{$item->booking_order_name }}</td>
-											<td>{{$item->email}}</td>
+											
 											<td>{{$item->phone }}</td>
 											<td>{{$item->total_members }}</td>
                       <td>{{$item->date_enter}}</td>
-											<td><a class="btn btn-primary" href="/admin/view-booking/{{$item->booking_id}}">View Bookings</a></td>
+											<td><a class="btn btn-warning" href="/admin/view-booking/{{$item->booking_id}}">View Bookings</a></td>
                       <td>{{$item->created_at->diffForHumans()}}</td>
-											<td> <a class="btn btn-primary" href="/admin/approve-booking/{{$item->booking_id}}">Approve</a> | <a class="btn btn-danger" href="/admin/decline-booking/{{$item->listing_id}}">Decline</a></td>
+											<td> <a class="btn btn-success" href="/admin/approve-booking/{{$item->booking_id}}">Approve</a> | <a class="btn btn-warning" href="/admin/decline-booking/{{$item->listing_id}}">Decline</a></td>
 										</tr>
 						@endforeach
                     </tbody>
@@ -138,8 +139,8 @@
 											<td>{{$item->phone }}</td>
 											<td>{{$item->total_members }}</td>
                                             <td>{{$item->date_enter}}</td>
-											<td><a class="btn btn-primary" href="/admin/view-booking/{{$item->booking_id}}">View Bookings</a></td>
-											<td> <a class="btn btn-primary" href="/admin/approve-booking/{{$item->booking_id}}">Approve</a> | <a class="btn btn-danger" href="/admin/decline-booking/{{$item->listing_id}}">Decline</a></td>
+											<td><a class="btn btn-warning" href="/admin/view-booking/{{$item->booking_id}}">View Bookings</a></td>
+											<td> <a class="btn btn-success" href="/admin/approve-booking/{{$item->booking_id}}">Approve</a> | <a class="btn btn-warning" href="/admin/decline-booking/{{$item->listing_id}}">Decline</a></td>
 										</tr>
 									@endforeach
                     </tbody>
