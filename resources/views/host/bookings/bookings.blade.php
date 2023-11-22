@@ -55,7 +55,7 @@
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                    <li><a class="dropdown-item" href="{{route('logout')}}">Logout</a></li>
                     
                   </ul>
                 </div>
@@ -70,7 +70,7 @@
         <div class="container-fluid py-4">
           <h1 class="display-5 fw-bold"><i class="bi bi-calendar3"></i>  Manage Bookings</h1>
           <p class="col-md-8 fs-4">Manage all your bookings, see pendings & more...</p>
-          <button class="btn btn-warning btn-lg" type="button">Example button</button>
+          <a class="btn btn-warning btn-lg" href="{{route('userdash')}}" type="button"><i class="bi bi-arrow-left"></i> Return to dashboard</a>
         </div>
       </div>
       

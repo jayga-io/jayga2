@@ -88,7 +88,12 @@
 
           <h1 class="display-5 fw-bold">Account Details</h1>
           <p class="col-md-8 ">Welcome onboard, (+88 {{ $phone }}). <a href="#">Go to profile</a></p>
-          <button class="btn btn-success btn-lg" type="button">Example button</button>
+          @if (count($listing) === 0)
+              <a class="btn btn-success btn-lg" href="/host/setup">Join as a host</a>
+          @else
+            <a class="btn btn-success btn-lg" href="/host/setup"><i class="bi bi-plus"></i>Add a listing</a>
+          @endif
+          
         </div>
       </div>
       
@@ -110,8 +115,15 @@
           <a href="/host/setup" class="card h-100">
             <h4 class="p-3" style="color:#139175; font-weight: 900;"><i class="bi bi-sliders"></i></h4>
             <div class="card-body">
-              <h5 class="card-title">Become a host</h5>
-              <p class="card-text">Become a host on jayga. Start earning money</p>
+                @if (count($listing) === 0)
+                    <h5 class="card-title">Become a host</h5>
+                    <p class="card-text">Become a host on jayga. Start earning money</p>
+                @else
+
+                    <h5 class="card-title">Add another listing</h5>
+                    <p class="card-text">Adding one more listing will increase your revenue</p>
+                @endif
+              
             </div>
           </a>
         </div>
@@ -134,6 +146,27 @@
             </a>
             @endif
           
+        </div>
+
+        <div class="col">
+            @if (count($listing) === 0)
+            <a href="#" class="card h-100 disabled">
+                <h4 class="p-3" style="color:#139175; font-weight: 900;"><i class="bi bi-calendar3"></i></h4>
+                <div class="card-body">
+                    <h5 class="card-title">My Listings</h5>
+                    <p class="card-text">Manage all your listings</p>
+                </div>
+            </a>
+        @else
+        <a href="#" class="card h-100">
+            <h4 class="p-3" style="color:#139175; font-weight: 900;"><i class="bi bi-calendar3"></i></h4>
+            <div class="card-body">
+                <h5 class="card-title">My Listings</h5>
+                <p class="card-text">Manage all your listings</p>
+            </div>
+        </a>
+        @endif
+      
         </div>
        
       </div>
