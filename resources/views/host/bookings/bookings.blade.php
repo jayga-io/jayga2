@@ -110,7 +110,7 @@
 											<td>{{$item->phone }}</td>
 											<td>{{$item->total_members }}</td>
                       <td>{{$item->date_enter}}</td>
-											<td><a class="btn btn-warning" href="/admin/view-booking/{{$item->booking_id}}">View Bookings</a></td>
+											<td><a class="btn btn-warning" href="#">View Bookings</a></td>
                       <td>{{$item->created_at->diffForHumans()}}</td>
                       @if ($item->pay_amount == null)
                           <td><span class="badge rounded-pill bg-warning">Not paid</span></td>
