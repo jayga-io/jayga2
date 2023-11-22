@@ -96,9 +96,11 @@
                             <th>phone</th>
                             <th>Number of members</th>
                             <th>Arrival Date</th>
-                            <th>View Details</th>
+                            <th>Checkout Date</th>
+                            <th>Tier</th>
                             <th>Booking Made</th>
                             <th>Pay Amount</th>
+                            <th>Booking_status</th>
                             <th>Cancel</th>
                         </tr>
                     </thead>
@@ -109,13 +111,24 @@
 											
 											<td>{{$item->phone }}</td>
 											<td>{{$item->total_members }}</td>
-                      <td>{{$item->date_enter}}</td>
-											<td><a class="btn btn-warning" href="#">View Bookings</a></td>
+                      <td><span class="badge rounded-pill bg-success">{{$item->date_enter}}</span></td>
+											<td><span class="badge rounded-pill bg-danger">{{$item->date_exit}}</span></td>
+                      @if ($item->tier === 0) 
+                          <td><span class="badge rounded-pill bg-success">Full Stay</span></td>
+                      @else
+                          <td>{{$item->tier}}</td>
+                      @endif
                       <td>{{$item->created_at->diffForHumans()}}</td>
                       @if ($item->pay_amount == null)
                           <td><span class="badge rounded-pill bg-warning">Not paid</span></td>
                       @else
                           <td>{{$item->pay_amount}}</td>
+                      @endif
+
+                      @if ($item->booking_status === 1)
+                          <td><span class="badge rounded-pill bg-success">Confirmed</span></td>
+                      @elseif($item->booking_status === 2)
+                          <td><span class="badge rounded-pill bg-warning">Denied</span></td>
                       @endif
 											<td> <a class="btn btn-danger" href="/user/booking-cancel/{{$item->booking_id}}">Cancel</a></td>
 										</tr>

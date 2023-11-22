@@ -67,6 +67,7 @@ class ListingController extends Controller
                 'zip_code' => $request->input('zip_code'),
                 'district' => $request->input('district'),
                 'town' => $request->input('town'),
+                
                 'allow_short_stay' => $request->input('allow_short_stay'),
                 'describe_peaceful' => $request->input('describe_peaceful'),
                 'describe_unique' => $request->input('describe_unique'),
