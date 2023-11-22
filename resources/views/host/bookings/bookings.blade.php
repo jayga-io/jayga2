@@ -113,7 +113,7 @@
 											<td>{{$item->total_members }}</td>
                       <td><span class="badge rounded-pill bg-success">{{$item->date_enter}}</span></td>
 											<td><span class="badge rounded-pill bg-danger">{{$item->date_exit}}</span></td>
-                      @if ($item->tier === 0) 
+                      @if ($item->tier == 0) 
                           <td><span class="badge rounded-pill bg-success">Full Stay</span></td>
                       @else
                           <td>{{$item->tier}}</td>
@@ -125,10 +125,8 @@
                           <td>{{$item->pay_amount}}</td>
                       @endif
 
-                      @if ($item->booking_status === 1)
+                      @if ($item->booking_status == 1)
                           <td><span class="badge rounded-pill bg-success">Confirmed</span></td>
-                      @elseif($item->booking_status === 2)
-                          <td><span class="badge rounded-pill bg-warning">Denied</span></td>
                       @endif
 											<td> <a class="btn btn-danger" href="/user/booking-cancel/{{$item->booking_id}}">Cancel</a></td>
 										</tr>
