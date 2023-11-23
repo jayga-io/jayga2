@@ -39,7 +39,7 @@ class ListerUserController extends Controller
         ]);
         if($file = $request->file('profile_picture')){
            $path = $file->store('useravatars');
-            UserPictures::create([
+            UserPictures::updateOrCreate([
                 'user_id' => $id,
                 'user_filename' => $file->hashName(),
                 'user_targetlocation' => $path,
@@ -48,7 +48,7 @@ class ListerUserController extends Controller
 
         if($nids = $request->file('nid')){
             $src = $nids->store('user_nids');
-            UserNid::create([
+            UserNid::updateOrCreate([
                 'user_id' => $id,
                 'user_nid_filename' => $nids->hashName(),
                 'user_nid_targetlocation' => $src,
