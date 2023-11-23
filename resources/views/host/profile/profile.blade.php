@@ -31,7 +31,7 @@
                     @else
                     <img class="rounded-circle mt-0"
                     width="150px"
-                    src="{{asset($dp[0]->user_targetlocation)}}">
+                    src="{{asset('/uploads/'.$dp[0]->user_targetlocation)}}">
                     @endif
                     
                         
