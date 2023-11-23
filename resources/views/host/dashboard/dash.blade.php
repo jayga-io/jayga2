@@ -87,7 +87,7 @@
         <div class="container-fluid py-4">
 
           <h1 class="display-5 fw-bold">Account Details</h1>
-          <p class="col-md-8 ">Welcome onboard, (+88 {{ $phone }}). <a href="#">Go to profile</a></p>
+          <p class="col-md-8 ">Welcome onboard, (+88 {{ $phone }}). <a href="{{route('userprofile')}}">Go to profile</a></p>
           @if (count($listing) === 0)
               <a class="btn btn-success btn-lg" href="/host/setup">Join as a host</a>
           @else
