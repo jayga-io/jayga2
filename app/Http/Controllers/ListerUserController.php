@@ -39,21 +39,44 @@ class ListerUserController extends Controller
         ]);
         if($file = $request->file('profile_picture')){
            $path = $file->store('useravatars');
-            UserPictures::updateOrCreate([
-               [ 'user_id' => $id ],
-               [ 'user_filename' => $file->hashName(),
-                'user_targetlocation' => $path ]
+           $up = UserPictures::where('user_id', $id)->get();
+           if(count($up)>0){
+            UserPictures::where('user_id', $id)->update([
+                'user_id' => $id,
+                'user_filename' => $file->hashName(),
+                'user_targetlocation' => $path
             ]);
+           }else{
+            UserPictures::create([
+                'user_id' => $id,
+                'user_filename' => $file->hashName(),
+                'user_targetlocation' => $path
+            ]);
+           }
+            
         }
 
         if($nids = $request->file('nid')){
             $src = $nids->store('user_nids');
-            UserNid::updateOrCreate([
-               [ 'user_id' => $id ],
-               [ 'user_nid_filename' => $nids->hashName(), 'user_nid_targetlocation' => $src ] 
-               
-                
-            ]);
+            $nid = UserNid::where('user_id', $id)->get();
+            if(count($nid)>0){
+                UserNid::where('user_id', $id)->update([
+                     'user_id' => $id ,
+                     'user_nid_filename' => $nids->hashName(), 
+                     'user_nid_targetlocation' => $src 
+                    
+                     
+                 ]);
+            }else{
+                UserNid::create([
+                    'user_id' => $id ,
+                    'user_nid_filename' => $nids->hashName(), 
+                    'user_nid_targetlocation' => $src 
+                   
+                    
+                ]);
+            }
+          
         }
         toastr()->addSuccess('User information updated');
         return redirect()->back();
