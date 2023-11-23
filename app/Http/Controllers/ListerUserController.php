@@ -5,23 +5,57 @@ namespace App\Http\Controllers;
 use App\Models\ListerUser;
 use App\Http\Requests\StoreListerUserRequest;
 use App\Http\Requests\UpdateListerUserRequest;
+use App\Models\User;
+use App\Models\UserNid;
+use App\Models\UserPictures;
+use Illuminate\Http\Request;
 
 class ListerUserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $id = $request->session()->get('user');
+        $user = User::where('id', $id)->get();
+        $nids = UserNid::where('user_id', $id)->get();
+    
+        return view('host.profile.profile')->with('user', $user)->with('nids', $nids);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $id = $request->session()->get('user');
+        User::where('id', $id)->update([
+            'name' => $request->input('username'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'user_address' => $request->input('address'),
+            'user_dob' => $request->input('dob'),
+        ]);
+        if($file = $request->file('profile_picture')){
+           $path = $file->store('useravatars');
+            UserPictures::create([
+                'user_id' => $id,
+                'user_filename' => $file->hashName(),
+                'user_targetlocation' => $path,
+            ]);
+        }
+
+        if($nids = $request->file('nid')){
+            $src = $nids->store('user_nids');
+            UserNid::create([
+                'user_id' => $id,
+                'user_nid_filename' => $nids->hashName(),
+                'user_nid_targetlocation' => $src,
+            ]);
+        }
+        toastr()->addSuccess('User information updated');
+        return redirect()->back();
     }
 
     /**

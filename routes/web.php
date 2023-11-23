@@ -6,6 +6,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HostController;
 use App\Http\Controllers\ListerDashboardController;
+use App\Http\Controllers\ListerUserController;
 use App\Models\User;
 use App\Models\Listing;
 use App\Http\Middleware\ensureotp;
@@ -120,10 +121,16 @@ Route::prefix('setup')->group(function(){
 Route::prefix('user')->group(function(){
     Route::middleware(ensureotp::class)->group(function(){
         Route::get('/dashboard', [ListerDashboardController::class, 'index'])->name('userdash');
+
+        //booking
         Route::get('/manage/bookings', [ListerDashboardController::class, 'bookings'])->name('managebookings');
         Route::get('/booking-confirm/{id}', [ListerDashboardController::class, 'confirm'])->name('bookconfirm');
         Route::get('/booking-deny/{id}', [ListerDashboardController::class, 'deny'])->name('bookdeny');
         Route::get('/booking-cancel/{id}', [ListerDashboardController::class, 'cancel'])->name('bookcancel');
+
+        //profile
+        Route::get('/profile', [ListerUserController::class, 'index'])->name('userprofile');
+        Route::post('/update/profile', [ListerUserController::class, 'create'])->name('createuserprofile');
     });
 
     
