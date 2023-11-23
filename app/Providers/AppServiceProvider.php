@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot(Request $request): void
     {
         $pending_count = Listing::where('isApproved', false)->get();
         $booking_count = Booking::where('isApproved', false)->get();
