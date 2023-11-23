@@ -30,7 +30,7 @@
                         src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                     @else
                     <img class="rounded-circle mt-0"
-                    width="150px"
+                    width="150px" height="150px"
                     src="{{asset('/uploads/'.$dp[0]->user_targetlocation)}}">
                     @endif
                     

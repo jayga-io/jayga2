@@ -40,18 +40,19 @@ class ListerUserController extends Controller
         if($file = $request->file('profile_picture')){
            $path = $file->store('useravatars');
             UserPictures::updateOrCreate([
-                'user_id' => $id,
-                'user_filename' => $file->hashName(),
-                'user_targetlocation' => $path,
+               [ 'user_id' => $id ],
+               [ 'user_filename' => $file->hashName(),
+                'user_targetlocation' => $path ]
             ]);
         }
 
         if($nids = $request->file('nid')){
             $src = $nids->store('user_nids');
             UserNid::updateOrCreate([
-                'user_id' => $id,
-                'user_nid_filename' => $nids->hashName(),
-                'user_nid_targetlocation' => $src,
+               [ 'user_id' => $id ],
+               [ 'user_nid_filename' => $nids->hashName(), 'user_nid_targetlocation' => $src ] 
+               
+                
             ]);
         }
         toastr()->addSuccess('User information updated');
