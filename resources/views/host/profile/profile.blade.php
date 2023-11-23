@@ -24,14 +24,14 @@
                 <img class="px-3" style="float: right;" src="{{asset('assets/img/logo/Jayga Logo-02.png')}}" width="150"
                     height="130" alt="logo" />
                 <div class="d-flex flex-column  p-2 " style="float: right;">
-                    @if (count($nids) == 0)
+                    @if (count($dp) == 0)
                         <img class="rounded-circle mt-0"
                         width="150px"
                         src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                     @else
                     <img class="rounded-circle mt-0"
                     width="150px"
-                    src="{{asset($nids[0]->user_nid_targetlocation)}}">
+                    src="{{asset($dp[0]->user_targetlocation)}}">
                     @endif
                     
                         

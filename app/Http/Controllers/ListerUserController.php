@@ -19,9 +19,9 @@ class ListerUserController extends Controller
     {
         $id = $request->session()->get('user');
         $user = User::where('id', $id)->get();
-        $nids = UserNid::where('user_id', $id)->get();
+        $dp = UserPictures::where('user_id', $id)->get();
     
-        return view('host.profile.profile')->with('user', $user)->with('nids', $nids);
+        return view('host.profile.profile')->with('user', $user)->with('dp', $dp);
     }
 
     /**
