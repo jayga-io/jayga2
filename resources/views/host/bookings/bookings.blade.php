@@ -80,10 +80,10 @@
     <div class="container">
         <ul class="nav nav-tabs p-4" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">All Bookings ({{ $books }})</button>
+              <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">All Bookings ({{ $bookings->count() }})</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button" role="tab" aria-controls="pending" aria-selected="false">Pending Bookings ({{$pends}})</button>
+              <button class="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button" role="tab" aria-controls="pending" aria-selected="false">Pending Bookings ({{$pendings->count()}})</button>
             </li>
           </ul>
           <div class="tab-content p-4" id="myTabContent">

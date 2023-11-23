@@ -20,16 +20,16 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(Request $request): void
+    public function boot(): void
     {
         $pending_count = Listing::where('isApproved', false)->get();
         $booking_count = Booking::where('isApproved', false)->get();
-        $booking = Booking::where('isApproved', true)->where('booking_status', 1)->where('lister_id', $request->session()->get('user'))->get();
-        $pending = Booking::where('isApproved', false)->where('booking_status', 0)->where('lister_id', $request->session()->get('user'))->get();
+       // $booking = Booking::where('isApproved', true)->where('booking_status', 1)->where('lister_id', $request->session()->get('user'))->get();
+      //  $pending = Booking::where('isApproved', false)->where('booking_status', 0)->where('lister_id', $request->session()->get('user'))->get();
         view()->share('pending_count', $pending_count->count());
         view()->share('time', $pending_count);
         view()->share('booking_count', $booking_count->count());
-        view()->share('books', $booking->count());
-        view()->share('pends', $pending->count());
+       // view()->share('books', $booking->count());
+       // view()->share('pends', $pending->count());
     }
 }
