@@ -54,7 +54,7 @@
                                 placeholder="Name" value="">
                             @else
                                 <input type="text" name="username" class="form-control"
-                                placeholder="{{$user->name}}" value="">
+                                placeholder="{{$user[0]->name}}" value="">
                             @endif
                             
                             </div>
