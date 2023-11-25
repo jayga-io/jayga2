@@ -125,7 +125,7 @@ class UserController extends Controller
                 $nid = UserNid::where('user_id', $request->input('user_id'))->get();
                     if(count($nid)>0){
                         foreach ($file as $f) {
-                            $path = $f->store('nids');
+                            $path = $f->store('user_nids');
                             UserNid::where('user_id', $request->input('user_id'))->update([
                             'user_id' => $request->input('user_id') ,
                             'user_nid_filename' => $f->hashName(), 
@@ -136,7 +136,7 @@ class UserController extends Controller
                         
                     }else{
                         foreach ($file as $f) {
-                            $path = $f->store('nids');
+                            $path = $f->store('user_nids');
                              UserNid::create([
                             'user_id' => $request->input('user_id') ,
                             'user_nid_filename' => $f->hashName(), 
