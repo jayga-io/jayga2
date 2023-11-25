@@ -120,17 +120,33 @@
                     <tbody>
                         @foreach ($listings as $item)
                             <tr>
-                                <td>{{$item->lister_name}}</td>
-                               <td>{{$item->listing_title}}</td>
-                               <td>{{$item->guest_num}}</td>
-                               <td>{{$item->full_day_price_set_by_user}}</td>
-                               <td>{{$item->listing_address}}</td>
-                               <td>{{$item->allow_short_stay}}</td>
-                               <td>{{$item->listing_type}}</td>
-                               <td>{{$item->isApproved}}</td>
-                               <td>{{$item->isActive}}</td>
-                               <td><a href="#">Edit</a></td>
-                               <td><a href="#">Delete</a></td>
+                                <td>{{ $item->lister_name }}</td>
+                                <td>{{ $item->listing_title }}</td>
+                                <td>{{ $item->guest_num }}</td>
+                                <td>{{ $item->full_day_price_set_by_user }}tk/-</td>
+                                <td>{{ $item->listing_address }}</td>
+                                @if ($item->allow_short_stay == true)
+                                    <td><span class="badge rounded-pill bg-success">Allowed</span></td>
+                                @else
+                                    <td><span class="badge rounded-pill bg-danger">Not Allowed</span></td>
+                                @endif
+
+                                <td>{{ $item->listing_type }}</td>
+
+                                @if ($item->isApproved == true)
+                                    <td><span class="badge rounded-pill bg-success">Approved</span></td>
+                                @else
+                                    <td><span class="badge rounded-pill bg-warning">Not Approved</span></td>
+                                @endif
+
+                                @if ($item->isActive == true)
+                                    <td><span class="badge rounded-pill bg-success">Active</span></td>
+                                @else
+                                    <td><span class="badge rounded-pill bg-secondary">Inactive</span></td>
+                                @endif
+                                <td>{{ $item->isActive }}</td>
+                                <td><a href="#" class="btn btn-warning">Edit</a></td>
+                                <td><a href="#" class="btn btn-danger">Delete</a></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -157,17 +173,33 @@
                     <tbody>
                         @foreach ($inactives as $item)
                             <tr>
-                               <td>{{$item->lister_name}}</td>
-                               <td>{{$item->listing_title}}</td>
-                               <td>{{$item->guest_num}}</td>
-                               <td>{{$item->full_day_price_set_by_user}}</td>
-                               <td>{{$item->listing_address}}</td>
-                               <td>{{$item->allow_short_stay}}</td>
-                               <td>{{$item->listing_type}}</td>
-                               <td>{{$item->isApproved}}</td>
-                               <td>{{$item->isActive}}</td>
-                               <td><a href="#">Edit</a></td>
-                               <td><a href="#">Delete</a></td>
+                                <td>{{ $item->lister_name }}</td>
+                                <td>{{ $item->listing_title }}</td>
+                                <td>{{ $item->guest_num }}</td>
+                                <td>{{ $item->full_day_price_set_by_user }}</td>
+                                <td>{{ $item->listing_address }}</td>
+                                @if ($item->allow_short_stay == true)
+                                    <td><span class="badge rounded-pill bg-success">Allowed</span></td>
+                                @else
+                                    <td><span class="badge rounded-pill bg-danger">Not Allowed</span></td>
+                                @endif
+
+                                <td>{{ $item->listing_type }}</td>
+
+                                @if ($item->isApproved == true)
+                                    <td><span class="badge rounded-pill bg-success">Approved</span></td>
+                                @else
+                                    <td><span class="badge rounded-pill bg-warning">Not Approved</span></td>
+                                @endif
+
+                                @if ($item->isActive == true)
+                                    <td><span class="badge rounded-pill bg-success">Active</span></td>
+                                @else
+                                    <td><span class="badge rounded-pill bg-secondary">Inactive</span></td>
+                                @endif
+                                <td>{{ $item->isActive }}</td>
+                                <td><a href="#" class="btn btn-warning">Edit</a></td>
+                                <td><a href="#" class="btn btn-danger">Delete</a></td>
                             </tr>
                         @endforeach
                     </tbody>
