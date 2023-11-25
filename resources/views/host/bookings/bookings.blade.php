@@ -122,7 +122,7 @@
                       @if ($item->pay_amount == null)
                           <td><span class="badge rounded-pill bg-warning">Not paid</span></td>
                       @else
-                          <td>{{$item->pay_amount}}</td>
+                          <td>{{$item->pay_amount}} tk/-</td>
                       @endif
 
                       @if ($item->booking_status == 1)

@@ -123,7 +123,7 @@
                                 <td>{{ $item->lister_name }}</td>
                                 <td>{{ $item->listing_title }}</td>
                                 <td>{{ $item->guest_num }}</td>
-                                <td>{{ $item->full_day_price_set_by_user }}tk/-</td>
+                                <td>{{ $item->full_day_price_set_by_user }} tk/-</td>
                                 <td>{{ $item->listing_address }}</td>
                                 @if ($item->allow_short_stay == true)
                                     <td><span class="badge rounded-pill bg-success">Allowed</span></td>
@@ -145,8 +145,8 @@
                                     <td><span class="badge rounded-pill bg-secondary">Inactive</span></td>
                                 @endif
                                 
-                                <td><a href="#" class="btn btn-warning">Edit</a></td>
-                                <td><a href="#" class="btn btn-danger">Delete</a></td>
+                                <td><a href="#" class="btn btn-success">Edit</a></td>
+                                <td><a href="#" class="btn btn-warning">Delete</a></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -176,7 +176,7 @@
                                 <td>{{ $item->lister_name }}</td>
                                 <td>{{ $item->listing_title }}</td>
                                 <td>{{ $item->guest_num }}</td>
-                                <td>{{ $item->full_day_price_set_by_user }}</td>
+                                <td>{{ $item->full_day_price_set_by_user }} tk/-</td>
                                 <td>{{ $item->listing_address }}</td>
                                 @if ($item->allow_short_stay == true)
                                     <td><span class="badge rounded-pill bg-success">Allowed</span></td>
@@ -198,8 +198,8 @@
                                     <td><span class="badge rounded-pill bg-secondary">Inactive</span></td>
                                 @endif
                                 
-                                <td><a href="#" class="btn btn-warning">Edit</a></td>
-                                <td><a href="#" class="btn btn-danger">Delete</a></td>
+                                <td><a href="#" class="btn btn-success">Edit</a></td>
+                                <td><a href="#" class="btn btn-warning">Delete</a></td>
                             </tr>
                         @endforeach
                     </tbody>
