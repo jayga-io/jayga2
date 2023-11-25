@@ -145,7 +145,7 @@
                                     <td><span class="badge rounded-pill bg-secondary">Inactive</span></td>
                                 @endif
                                 
-                                <td><a href="#" class="btn btn-success">Edit</a></td>
+                                <td><a href="/user/listing/single-item/{{$item->listing_id}}" class="btn btn-success">Edit</a></td>
                                 <td><a href="#" class="btn btn-warning">Delete</a></td>
                             </tr>
                         @endforeach
@@ -198,7 +198,7 @@
                                     <td><span class="badge rounded-pill bg-secondary">Inactive</span></td>
                                 @endif
                                 
-                                <td><a href="#" class="btn btn-success">Edit</a></td>
+                                <td><a href="/user/listing/single-item/{{$item->listing_id}}" class="btn btn-success">Edit</a></td>
                                 <td><a href="#" class="btn btn-warning">Delete</a></td>
                             </tr>
                         @endforeach

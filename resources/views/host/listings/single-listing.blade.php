@@ -19,12 +19,12 @@
     <!-- Listing Details -->
     <div class="mb-3">
       <label for="listingTitle" class="form-label">Listing Title</label>
-      <input type="text" class="form-control" id="listingTitle" name="listingTitle" required>
+      <input type="text" class="form-control" id="listingTitle" name="listingTitle" placeholder="{{$listing[0]->listing_title}}" required>
     </div>
 
     <div class="mb-3">
       <label for="listingDescription" class="form-label">Listing Description</label>
-      <textarea class="form-control" id="listingDescription" name="listingDescription" rows="4" required></textarea>
+      <textarea class="form-control" id="listingDescription" name="listingDescription" placeholder="{{$listing[0]->listing_decription}}" rows="4" required></textarea>
     </div>
 
     <div class="row d-flex">
@@ -36,7 +36,12 @@
       
       
             <input type="hidden" name="wifi" value="0">
-            <input type="checkbox" name="wifi" value="1">
+            @if ($listing[0]->wifi == 0)
+                <input type="checkbox" name="wifi" value="1">
+            @else
+                <input type="checkbox" name="wifi" value="1" checked>
+            @endif
+            
             <label>Wifi</label>
           </div>
           <div class="input-div">

@@ -120,5 +120,14 @@ class ListerDashboardController extends Controller
         return view('host.listings.listing')->with('listings', $listings)->with('inactives', $inactive_listings);
     }
 
+    public function edit_listing(Request $request, $id){
+        $listing = Listing::where('listing_id', $id)->get();
+        return view('host.listings.single-listing')->with('listing', $listing);
+    }
+
+    public function update_listing(Request $request){
+
+    }
+
     
 }
