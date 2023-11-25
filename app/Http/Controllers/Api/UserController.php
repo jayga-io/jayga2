@@ -82,16 +82,16 @@ class UserController extends Controller
                 
                 
                 $path = $file->store('useravatars');
-                $up = UserPictures::where('user_id', $id)->get();
+                $up = UserPictures::where('user_id', $request->input('user_id'))->get();
                 if(count($up)>0){
-                    UserPictures::where('user_id', $id)->update([
-                        'user_id' => $id,
+                    UserPictures::where('user_id', $request->input('user_id'))->update([
+                        'user_id' => $request->input('user_id'),
                         'user_filename' => $file->hashName(),
                         'user_targetlocation' => $path
                     ]);
                 }else{
                     UserPictures::create([
-                        'user_id' => $id,
+                        'user_id' => $request->input('user_id'),
                         'user_filename' => $file->hashName(),
                         'user_targetlocation' => $path
                     ]);
