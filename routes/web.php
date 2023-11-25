@@ -131,6 +131,9 @@ Route::prefix('user')->group(function(){
         //profile
         Route::get('/profile', [ListerUserController::class, 'index'])->name('userprofile');
         Route::post('/update/profile', [ListerUserController::class, 'create'])->name('createuserprofile');
+
+        // listings
+        Route::get('/listings', [ListerDashboardController::class, 'listings'])->name('alllistings');
     });
 
     

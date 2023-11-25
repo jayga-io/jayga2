@@ -89,13 +89,13 @@
         <ul class="nav nav-tabs p-4" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button"
-                    role="tab" aria-controls="all" aria-selected="true">All Bookings
-                    ({{ $bookings->count() }})</button>
+                    role="tab" aria-controls="all" aria-selected="true">All Listings
+                    ({{  }})</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button"
-                    role="tab" aria-controls="pending" aria-selected="false">Pending Bookings
-                    ({{ $pendings->count() }})</button>
+                    role="tab" aria-controls="pending" aria-selected="false">Inactive Listings
+                    ({{  }})</button>
             </li>
         </ul>
         <div class="tab-content p-4" id="myTabContent">
@@ -103,45 +103,34 @@
                 <table id="myTable" class="display">
                     <thead>
                         <tr>
-                            <th>Name on booking</th>
+                            <th>Lister Name</th>
 
-                            <th>phone</th>
-                            <th>Number of members</th>
-                            <th>Arrival Date</th>
-                            <th>Checkout Date</th>
-                            <th>Tier</th>
-                            <th>Booking Made</th>
-                            <th>Pay Amount</th>
-                            <th>Booking_status</th>
-                            <th>Cancel</th>
+                            <th>Listing Title</th>
+                            <th>Number of guest allowed</th>
+                            <th>Full Day Price</th>
+                            <th>Listing Address</th>
+                            <th>Short Stay Allow</th>
+                            <th>Listing Type</th>
+                            <th>Approval Status</th>
+                            <th>Active Status</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($bookings as $item)
+                        @foreach ($listings as $item)
                             <tr>
-                                <td>{{ $item->booking_order_name }}</td>
-
-                                <td>{{ $item->phone }}</td>
-                                <td>{{ $item->total_members }}</td>
-                                <td><span class="badge rounded-pill bg-success">{{ $item->date_enter }}</span></td>
-                                <td><span class="badge rounded-pill bg-danger">{{ $item->date_exit }}</span></td>
-                                @if ($item->tier == 0)
-                                    <td><span class="badge rounded-pill bg-success">Full Stay</span></td>
-                                @else
-                                    <td>{{ $item->tier }}</td>
-                                @endif
-                                <td>{{ $item->created_at->diffForHumans() }}</td>
-                                @if ($item->pay_amount == null)
-                                    <td><span class="badge rounded-pill bg-warning">Not paid</span></td>
-                                @else
-                                    <td>{{ $item->pay_amount }}</td>
-                                @endif
-
-                                @if ($item->booking_status == 1)
-                                    <td><span class="badge rounded-pill bg-success">Confirmed</span></td>
-                                @endif
-                                <td> <a class="btn btn-danger"
-                                        href="/user/booking-cancel/{{ $item->booking_id }}">Cancel</a></td>
+                                <td>{{$item->lister_name}}</td>
+                               <td>{{$item->listing_title}}</td>
+                               <td>{{$item->guest_num}}</td>
+                               <td>{{$item->full_day_price_set_by_user}}</td>
+                               <td>{{$item->listing_address}}</td>
+                               <td>{{$item->allow_short_stay}}</td>
+                               <td>{{$item->listing_type}}</td>
+                               <td>{{$item->isApproved}}</td>
+                               <td>{{$item->isActive}}</td>
+                               <td><a href="#">Edit</a></td>
+                               <td><a href="#">Delete</a></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -151,46 +140,34 @@
                 <table id="myTable2" class="display">
                     <thead>
                         <tr>
-                            <th>Name on booking</th>
-                            <th>phone</th>
+                            <th>Lister Name</th>
 
-                            <th>Arrival Date</th>
-                            <th>Number of members</th>
-                            <th>Checkout Date</th>
-                            <th>Payment Status</th>
-
-                            <th>is Approved?</th>
-                            <th>Created At</th>
-                            <th>Confirm</th>
-                            <th>Decline</th>
+                            <th>Listing Title</th>
+                            <th>Number of guest allowed</th>
+                            <th>Full Day Price</th>
+                            <th>Listing Address</th>
+                            <th>Short Stay Allow</th>
+                            <th>Listing Type</th>
+                            <th>Approval Status</th>
+                            <th>Active Status</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pendings as $item)
+                        @foreach ($inactives as $item)
                             <tr>
-                                <td>{{ $item->booking_order_name }}</td>
-
-                                <td>{{ $item->phone }}</td>
-                                <td>{{ $item->date_enter }}</td>
-                                <td>{{ $item->total_members }}</td>
-                                <td>{{ $item->date_exit }}</td>
-                                @if ($item->payment_flag == true)
-                                    <td><span class="badge rounded-pill bg-success">Paid</span></td>
-                                @else
-                                    <td><span class="badge rounded-pill bg-warning">Due</span></td>
-                                @endif
-
-                                @if ($item->isApproved == true)
-                                    <td><span class="badge rounded-pill bg-success">Approved</span></td>
-                                @else
-                                    <td><span class="badge rounded-pill bg-warning">Not Approved</span></td>
-                                @endif
-
-                                <td>{{ $item->created_at->diffForHumans() }}</td>
-                                <td> <a class="btn btn-success"
-                                        href="/user/booking-confirm/{{ $item->booking_id }}">Confirm</a> </td>
-                                <td><a class="btn btn-warning"
-                                        href="/user/booking-deny/{{ $item->booking_id }}">Deny</a></td>
+                               <td>{{$item->lister_name}}</td>
+                               <td>{{$item->listing_title}}</td>
+                               <td>{{$item->guest_num}}</td>
+                               <td>{{$item->full_day_price_set_by_user}}</td>
+                               <td>{{$item->listing_address}}</td>
+                               <td>{{$item->allow_short_stay}}</td>
+                               <td>{{$item->listing_type}}</td>
+                               <td>{{$item->isApproved}}</td>
+                               <td>{{$item->isActive}}</td>
+                               <td><a href="#">Edit</a></td>
+                               <td><a href="#">Delete</a></td>
                             </tr>
                         @endforeach
                     </tbody>

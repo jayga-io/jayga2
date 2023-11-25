@@ -73,6 +73,8 @@ class ListerDashboardController extends Controller
         //
     }
 
+
+    //Bookings
     public function bookings(Request $request){
         $bookings = Booking::where('isApproved', true)->where('booking_status', 1)->where('lister_id', $request->session()->get('user'))->get();
        
@@ -105,6 +107,17 @@ class ListerDashboardController extends Controller
         ]);
         toastr()->addWarning('Booking has been canceled');
         return redirect()->back();
+    }
+
+
+
+
+    //Listings
+    public function listings(Request $request){
+        $user_id = $request->session()->get('user');
+        $listings = Listing::where('lister_id', $user_id)->get();
+        $inactive_listings = Listing::where('lister_id', $user_id)->where('isActive', false)->get();
+        return view('host.listings.listing')->with('listings', $listings)->with('inactives', $inactive_listings);
     }
 
     
