@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateListerDashboardRequest;
 use App\Models\User;
 use App\Models\Listing;
 use App\Models\Booking;
+use App\Models\ListingGuestAmenities;
 use Illuminate\Http\Request;
 
 class ListerDashboardController extends Controller
@@ -122,7 +123,8 @@ class ListerDashboardController extends Controller
 
     public function edit_listing(Request $request, $id){
         $listing = Listing::where('listing_id', $id)->get();
-        return view('host.listings.single-listing')->with('listing', $listing);
+        $amenities = ListingGuestAmenities::where('listing_id', $id)->get();
+        return view('host.listings.single-listing')->with('listing', $listing)->with('amenities', $amenities);
     }
 
     public function update_listing(Request $request){
