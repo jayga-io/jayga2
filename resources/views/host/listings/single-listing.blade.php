@@ -26,12 +26,17 @@
 
     <div class="mb-3">
       <label for="listingDescription" class="form-label">Listing Description</label>
-      <textarea class="form-control" id="listingDescription" name="listing_description" placeholder="{{$listing[0]->listing_decription}}" rows="4" required></textarea>
+      <textarea class="form-control" id="listingDescription" name="listing_description" placeholder="{{$listing[0]->listing_description}}" rows="4" required></textarea>
     </div>
     <div class="mb-3">
       <label for="listingDescription" class="form-label">Listing Address</label>
       <textarea class="form-control" id="listingDescription" name="listing_address" placeholder="{{$listing[0]->listing_address}}" rows="4" required></textarea>
     </div>
+
+    <div class="mb-3">
+        <label for="listingTitle" class="form-label">Full Day Price</label>
+        <input type="text" class="form-control" id="listingTitle" name="price" placeholder="{{$listing[0]->full_day_price_set_by_user}}" required>
+      </div>
 
     <div class="row d-flex">
       <!-- Amenities Restrictions -->
