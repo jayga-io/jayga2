@@ -135,6 +135,7 @@ Route::prefix('user')->group(function(){
         // listings
         Route::get('/listings', [ListerDashboardController::class, 'listings'])->name('alllistings');
         Route::get('/listing/single-item/{id}', [ListerDashboardController::class, 'edit_listing'])->name('editlisting');
+        Route::post('/update-listing', [ListerDashboardController::class, 'update_listing'])->name('updatelisting');
     });
 
     

@@ -15,7 +15,7 @@
     <h2>Active</h2>
   </div>
   
-  <form action="/update-listing" method="post" enctype="multipart/form-data">
+  <form action="/user/update-listing" method="POST" enctype="multipart/form-data">
     @csrf
     <!-- Listing Details -->
     <input type="hidden" name="listing_id" value="{{$listing[0]->listing_id}}">
@@ -185,29 +185,30 @@
         
             <input type="hidden" name="indoor_smoking" value="0">
             @if ($restrictions[0]->indoor_smoking == 0)
-                
-            @else
-                
-            @endif
-            <input type="checkbox" name="indoor_smoking" value=1 data-toggle="toggle" data-onstyle="success"
+                 <input type="checkbox" name="indoor_smoking" value=1 data-toggle="toggle" data-onstyle="success"
               data-offstyle="danger">
+            @else
+            <input type="checkbox" name="indoor_smoking" value=1 data-toggle="toggle" data-onstyle="success"
+            data-offstyle="danger" checked>
+            @endif
+           
             <label>Indoor Smoking</label>
           </div>
           <div class="input-div">
             <input type="hidden" name="party" value="0">
-            @if ($restrictions[0]->indoor_smoking == 0)
-                
+            @if ($restrictions[0]->party == 0)
+                <input type="checkbox" name="party" value=1 data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
             @else
-                
+            <input type="checkbox" name="party" value=1 data-toggle="toggle" data-onstyle="success" data-offstyle="danger" checked>
             @endif
-            <input type="checkbox" name="party" value=1 data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+            
             <label>Party</label>
           </div>
         </div>
         <div class="input-text">
           <div class="input-div">
             <input type="hidden" name="pets" value="0">
-            @if ($restrictions[0]->indoor_smoking == 0)
+            @if ($restrictions[0]->pets == 0)
                 <input type="checkbox" name="pets" value=1 data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
             @else
             <input type="checkbox" name="pets" value=1 data-toggle="toggle" data-onstyle="success" data-offstyle="danger" checked>
