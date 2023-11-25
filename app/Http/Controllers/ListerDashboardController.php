@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Listing;
 use App\Models\Booking;
 use App\Models\ListingGuestAmenities;
+use App\Models\ListingRestrictions;
 use Illuminate\Http\Request;
 
 class ListerDashboardController extends Controller
