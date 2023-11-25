@@ -33,7 +33,7 @@ Route::get('/listings' , [ListingController::class, 'listings']);
 
 Route::get('/filter-listings', [ListingController::class, 'filter']);
 
-Route::post('/user-nid/upload', [ListingController::class, 'nid']);
+Route::post('/user-nid/upload', [UserController::class, 'nid']);
 
 Route::post('/listing-nid/upload', [ListingController::class, 'listing_nid']);
 

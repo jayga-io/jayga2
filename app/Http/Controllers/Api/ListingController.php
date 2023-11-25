@@ -48,38 +48,7 @@ class ListingController extends Controller
         }
     }
 
-    public function nid(Request $request){
-        $file = $request->file('nid_picture');
-        $validated = $request->validate([
-            'user_id' => 'required',
-            'nid_picture' => 'required'
-        ]);
-        if($validated){
-            if(count($file)>0){
-                
-                foreach ($file as $f) {
-                $path = $f->store('nids');
-                UserNid::create([
-                    'user_id' => $request->input('user_id'),
-                    'user_nid_filename' => $f->hashName(),
-                    'user_nid_targetlocation' => $path,
-                ]);
-                }
-                return response()->json([
-                    'status' => 200,
-                    'messege' => 'Nid Picture uploaded'
-                ]);
-            }else{
-                return response()->json([
-                    'status' => 404,
-                    'messege' => 'No picture uploaded'
-                ], 404);
-            } 
-        }else{
-            return $validated->errors();
-        }
-        
-    }
+    
 
     public function create(Request $request){
 

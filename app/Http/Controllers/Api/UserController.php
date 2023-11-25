@@ -82,15 +82,76 @@ class UserController extends Controller
                 
                 
                 $path = $file->store('useravatars');
-                UserPictures::updateOrCreate([
-                    'user_id' => $request->input('user_id'),
-                    'user_filename' => $file->hashName(),
-                    'user_targetlocation' => $path,
-                ]);
+                $up = UserPictures::where('user_id', $id)->get();
+                if(count($up)>0){
+                    UserPictures::where('user_id', $id)->update([
+                        'user_id' => $id,
+                        'user_filename' => $file->hashName(),
+                        'user_targetlocation' => $path
+                    ]);
+                }else{
+                    UserPictures::create([
+                        'user_id' => $id,
+                        'user_filename' => $file->hashName(),
+                        'user_targetlocation' => $path
+                    ]);
+                }
                 
                 return response()->json([
                     'status' => 200,
                     'messege' => 'User avatar uploaded'
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 404,
+                    'messege' => 'No picture uploaded'
+                ], 404);
+            } 
+        }else{
+            return $validated->errors();
+        }
+        
+    }
+
+    public function nid(Request $request){
+        $file = $request->file('nid_picture');
+        $validated = $request->validate([
+            'user_id' => 'required',
+            'nid_picture' => 'required'
+        ]);
+        if($validated){
+            if(count($file)>0){
+
+                $nid = UserNid::where('user_id', $request->input('user_id'))->get();
+                    if(count($nid)>0){
+                        foreach ($file as $f) {
+                            $path = $f->store('nids');
+                            UserNid::where('user_id', $request->input('user_id'))->update([
+                            'user_id' => $request->input('user_id') ,
+                            'user_nid_filename' => $f->hashName(), 
+                            'user_nid_targetlocation' => $path 
+ 
+                        ]);
+                        }
+                        
+                    }else{
+                        foreach ($file as $f) {
+                            $path = $f->store('nids');
+                             UserNid::create([
+                            'user_id' => $request->input('user_id') ,
+                            'user_nid_filename' => $f->hashName(), 
+                            'user_nid_targetlocation' => $path 
+                        
+                            
+                        ]);
+                        }
+                       
+                    }
+                
+                
+                return response()->json([
+                    'status' => 200,
+                    'messege' => 'Nid Picture uploaded'
                 ]);
             }else{
                 return response()->json([
