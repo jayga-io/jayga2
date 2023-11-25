@@ -90,12 +90,12 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button"
                     role="tab" aria-controls="all" aria-selected="true">All Listings
-                    ({{  }})</button>
+                    ({{ $listings->count() }})</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button"
                     role="tab" aria-controls="pending" aria-selected="false">Inactive Listings
-                    ({{  }})</button>
+                    ({{ $inactives->count() }})</button>
             </li>
         </ul>
         <div class="tab-content p-4" id="myTabContent">
