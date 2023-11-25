@@ -150,7 +150,7 @@
 
         <div class="col">
             @if (count($listing) === 0)
-            <a href="{{route('alllistings')}}" class="card h-100 disabled">
+            <a href="#" class="card h-100 disabled">
                 <h4 class="p-3" style="color:#139175; font-weight: 900;"><i class="bi bi-calendar3"></i></h4>
                 <div class="card-body">
                     <h5 class="card-title">My Listings</h5>
@@ -158,7 +158,7 @@
                 </div>
             </a>
         @else
-        <a href="#" class="card h-100">
+        <a href="{{route('alllistings')}}" class="card h-100">
             <h4 class="p-3" style="color:#139175; font-weight: 900;"><i class="bi bi-calendar3"></i></h4>
             <div class="card-body">
                 <h5 class="card-title">My Listings</h5>
