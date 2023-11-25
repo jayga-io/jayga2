@@ -144,7 +144,7 @@
                                 @else
                                     <td><span class="badge rounded-pill bg-secondary">Inactive</span></td>
                                 @endif
-                                <td>{{ $item->isActive }}</td>
+                                
                                 <td><a href="#" class="btn btn-warning">Edit</a></td>
                                 <td><a href="#" class="btn btn-danger">Delete</a></td>
                             </tr>
@@ -197,7 +197,7 @@
                                 @else
                                     <td><span class="badge rounded-pill bg-secondary">Inactive</span></td>
                                 @endif
-                                <td>{{ $item->isActive }}</td>
+                                
                                 <td><a href="#" class="btn btn-warning">Edit</a></td>
                                 <td><a href="#" class="btn btn-danger">Delete</a></td>
                             </tr>
