@@ -18,7 +18,8 @@
         <div>
           <span>Active</span>
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" name="active" value=0 id="flexSwitchCheckChecked" checked>
+            <input type="hidden" name="active" value=0>
+            <input class="form-check-input" type="checkbox" role="switch" name="active" value=1 id="flexSwitchCheckChecked" checked>
             <label class="form-check-label" for="flexSwitchCheckChecked"></label>
           </div>
         
@@ -27,6 +28,7 @@
       <div>
         <span>In-Active</span>
         <div class="form-check form-switch">
+          <input type="hidden" name="active" value=0>
           <input class="form-check-input" type="checkbox" role="switch" name="active" value=1 id="flexSwitchCheckChecked">
           <label class="form-check-label" for="flexSwitchCheckChecked"></label>
         </div>
