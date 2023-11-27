@@ -12,6 +12,7 @@ use App\Models\ListingGuestAmenities;
 use App\Models\ListingImages;
 use App\Models\ListingRestrictions;
 use Illuminate\Http\Request;
+use Storage;
 
 class ListerDashboardController extends Controller
 {
