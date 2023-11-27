@@ -129,6 +129,8 @@ class ListerDashboardController extends Controller
         return view('host.listings.single-listing')->with('listing', $listing)->with('amenities', $amenities)->with('restrictions', $restrictions);
     }
 
+
+
     public function update_listing(Request $request){
         Listing::where('listing_id', $request->input('listing_id'))->update([
             
@@ -170,6 +172,27 @@ class ListerDashboardController extends Controller
             
             
         ]);
+
+        if($files = $request->file('images')){
+            $imges = ListingImages::where('listing_id', $request->input('listing_id'))->get();
+            if(count($imges)>0){
+                foreach ($imges as $value) {
+                    Storage::delete($value->listing_targetlocation);
+                }
+                
+                ListingImages::where('listing_id', $request->input('listing_id'))->delete();
+            }
+
+            foreach ($files as $file) {
+                $path = $file->store('listings');
+                ListingImages::create([
+                    'listing_id' => $request->input('listing_id'),
+                    'lister_id' => $request->session()->get('user'),
+                    'listing_filename' => $file->hashName(),
+                    'listing_targetlocation' => $path,
+                ]);
+            }
+        }
         toastr()->addSuccess('Listing updated');
         return redirect()->back();
     }

@@ -277,11 +277,12 @@
 
     <!-- Images -->
     <div class="mb-3">
-      <label for="imageUpload" class="form-label">Upload Images</label>
+      <label for="imageUpload" class="form-label">Change listing Images</label>
       <input type="file" class="form-control" id="imageUpload" name="images[]" accept="image/*" multiple>
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-success">Submit</button>
+    <a href="{{route('userdash')}}" class="btn btn-warning">Back to dashboard</a>
   </form>
 </div>
 

@@ -325,6 +325,7 @@ class ListingController extends Controller
             'messege' => 'Listing updated'
         ]);
     }
+    
 
     public function delete_image_listing(Request $request, $id){
         $img = ListingImages::where('listing_img_id', $id)->get();
