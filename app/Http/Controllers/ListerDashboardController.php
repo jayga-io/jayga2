@@ -134,13 +134,14 @@ class ListerDashboardController extends Controller
 
 
     public function update_listing(Request $request){
+        
         Listing::where('listing_id', $request->input('listing_id'))->update([
             
             'listing_title' => $request->input('listing_title'),
             'listing_description' => $request->input('listing_description'),
             'full_day_price_set_by_user' => $request->input('price'),
             'listing_address' => $request->input('listing_address'),
-            
+            'isActive' => $request->input('active'),
             'listing_type' => $request->input('listing_type'),
         ]);
 

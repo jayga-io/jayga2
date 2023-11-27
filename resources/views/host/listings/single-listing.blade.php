@@ -10,13 +10,34 @@
 <body>
 
 <div class="container mt-5">
-  <div class="d-flex justify-content-between">
-    <h2>Edit Listing</h2>
-    <h2>Active</h2>
-  </div>
-  
   <form action="/user/update-listing" method="POST" enctype="multipart/form-data">
     @csrf
+  <div class="d-flex justify-content-between">
+    <h2>Edit Listing</h2>
+    @if ($listing[0]->isActive == true)
+        <div>
+          <span>Active</span>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" name="active" value=0 id="flexSwitchCheckChecked" checked>
+            <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+          </div>
+        
+        </div>
+    @else
+      <div>
+        <span>In-Active</span>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" name="active" value=1 id="flexSwitchCheckChecked">
+          <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+        </div>
+      
+      </div>
+    @endif
+    
+    
+  </div>
+  
+ 
     <!-- Listing Details -->
     <input type="hidden" name="listing_id" value="{{$listing[0]->listing_id}}">
     <div class="mb-3">
@@ -282,7 +303,7 @@
     </div>
 
     <button type="submit" class="btn btn-success">Submit</button>
-    <a href="{{route('userdash')}}" class="btn btn-warning">Back to dashboard</a>
+    <a href="{{route('alllistings')}}" class="btn btn-warning">Back to listing</a>
   </form>
 </div>
 
