@@ -307,7 +307,7 @@
                         <div class="col-lg-4 col-md-12 mt-4 mb-4 mb-lg-0">
                           <img
                             src="{{asset('/uploads/'. $item->listing_targetlocation)}}"
-                            class="w-100 shadow-1-strong rounded mb-4"
+                            class="w-100 h-64 shadow-1-strong rounded mb-4"
                             alt="listing_images"
                           />
                         </div>

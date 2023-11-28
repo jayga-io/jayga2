@@ -92,7 +92,8 @@
                     <thead>
                         <tr>
                             <th>Name on booking</th>
-                            
+                            <th>Listing Title</th>
+                            <th>Listing ID</th>
                             <th>phone</th>
                             <th>Number of members</th>
                             <th>Arrival Date</th>
@@ -108,7 +109,8 @@
             @foreach ($bookings as $item)
 										<tr>
 											<td>{{$item->booking_order_name }}</td>
-											
+											<td>{{$item->listings->listing_title}}</td>
+                      <td>{{$item->listing_id}}</td>
 											<td>{{$item->phone }}</td>
 											<td>{{$item->total_members }}</td>
                       <td><span class="badge rounded-pill bg-success">{{$item->date_enter}}</span></td>
@@ -139,6 +141,7 @@
                     <thead>
                         <tr>
                             <th>Name on booking</th>
+                            <th>Listing Title</th>
                             <th>phone</th>
                             
                             <th>Arrival Date</th>
@@ -156,7 +159,7 @@
                         @foreach ($pendings as $item)
 										<tr>
 											<td>{{$item->booking_order_name }}</td>
-					
+                      <td>{{$item->listings->listing_title}}</td>
 											<td>{{$item->phone }}</td>
                       <td>{{$item->date_enter}}</td>
 											<td>{{$item->total_members }}</td>

@@ -14,4 +14,6 @@ class Booking extends Model
     public function listings(){
         return $this->belongsTo(Listing::class, 'listing_id', 'listing_id');
     }
+
+
 }
