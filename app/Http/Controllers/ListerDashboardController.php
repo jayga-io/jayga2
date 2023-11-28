@@ -201,5 +201,15 @@ class ListerDashboardController extends Controller
         return redirect()->back();
     }
 
-    
+    public function delete(Request $request, $id){
+       $ls = ListingImages::where('listing_id', $id)->get();
+       if(count($ls)>0){
+        foreach ($ls as $item) {
+            Storage::delete($item->listing_targetlocation);
+        }
+       }
+       Listing::where('listing_id', $id)->delete();
+       toastr()->addWarning('Listing Deleted');
+       return redirect()->back();
+    }
 }
