@@ -199,7 +199,7 @@
                                 @endif
                                 
                                 <td><a href="/user/listing/single-item/{{$item->listing_id}}" class="btn btn-success">Edit</a></td>
-                                <td><a href="#" class="btn btn-warning">Delete</a></td>
+                                <td><a href="/user/delete/listing/{{$item->listing_id}}" class="btn btn-warning">Delete</a></td>
                             </tr>
                         @endforeach
                     </tbody>
