@@ -128,7 +128,8 @@ class ListerDashboardController extends Controller
         $listing = Listing::where('listing_id', $id)->get();
         $amenities = ListingGuestAmenities::where('listing_id', $id)->get();
         $restrictions = ListingRestrictions::where('listing_id', $id)->get();
-        return view('host.listings.single-listing')->with('listing', $listing)->with('amenities', $amenities)->with('restrictions', $restrictions);
+        $listing_images = ListingImages::where('listing_id', $id)->get();
+        return view('host.listings.single-listing')->with('listing', $listing)->with('amenities', $amenities)->with('restrictions', $restrictions)->with('images', $listing_images);
     }
 
 
