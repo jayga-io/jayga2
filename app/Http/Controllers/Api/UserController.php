@@ -231,7 +231,7 @@ class UserController extends Controller
 
     public function get_cover(Request $request, $id){
         $cover = UserCoverPhotos::where('user_id', $id)->get();
-        if(count($avatar)>0){
+        if(count($cover)>0){
             return response()->json([
                 'status' => true,
                 'messege' => $cover
