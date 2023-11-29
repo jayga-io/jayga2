@@ -74,7 +74,8 @@ class HostController extends Controller
     public function create_listing(Request $request){
         $ph = $request->session()->get('phone');
         $user = User::where('phone', $ph)->get();
-        if(count($user)>0){
+        $listing = Listing::where('listing_title', $request->input('listing_title'))->get();
+        if(count($listing) == 0){
             Listing::create([
                 'lister_id' => $user[0]->id,
                 'lister_name' => $user[0]->name,
@@ -90,15 +91,17 @@ class HostController extends Controller
             ]);
             return redirect(route('step4'));
         }else{
+            toastr()->persistent()->closeButton()->preventDuplicates(true)->addWarning('Listing title must be different');
             return redirect(route('step3'));
         }
     }
 
+
     public function create_infos(Request $request){
-        $ph = $request->session()->get('phone');
-        $user = User::where('phone', $ph)->get();
+      
         $title = $request->session()->get('listing_title');
         $listing = Listing::where('listing_title', $title)->get();
+        
         if(count($listing)>0){
             Listing::where('listing_id', $listing[0]->listing_id)->update([
                 'guest_num' => $request->input('guest_num'),
