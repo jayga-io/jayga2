@@ -47,6 +47,9 @@
                     <h2>Congratulations!</h2>
                     <p>Thanks Mr./Mrs. <span class="shown_name"></span> your information have been submitted successfully for the future reference we will contact you soon.</p>
                 </div>
+                <div class="mt-3">
+                    <a class="btn btn-success" href="{{route('userdash')}}">Back to Dashboard</a>
+                </div>
             </div>
    
     
