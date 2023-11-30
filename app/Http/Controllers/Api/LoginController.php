@@ -37,6 +37,8 @@ class LoginController extends Controller
                                     'user_id' => $user[0]->id,
                                     'phone' => $user[0]->phone,
                                     'authToken' => $authToken,
+                                    'name' => $user[0]->name,
+                                    'email' => $user[0]->email
 
                                 ]
                                 
@@ -54,7 +56,9 @@ class LoginController extends Controller
                                 'user' => [
                                     'user_id' => $user[0]->id,
                                     'phone' => $user[0]->phone,
-                                    'authToken' => $authToken
+                                    'authToken' => $authToken,
+                                    'name' => $user[0]->name,
+                                    'email' => $user[0]->email
                                 ]
                                 
                             ]);

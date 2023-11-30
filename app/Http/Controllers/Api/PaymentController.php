@@ -94,7 +94,7 @@ class PaymentController extends Controller
         $data = [
             "sender_id" => "8809601010510",
             "receiver" => $phone,
-            "message" =>  $number[0]->name . ', Your listing: '. $listing[0]->listing_title . 'has a new booking placed',
+            "message" =>  $number[0]->name . ', Your listing: '. $listing[0]->listing_title . ' has a new booking placed',
             "remove_duplicate" => true
         ];
         $response = Http::withHeaders([
