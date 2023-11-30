@@ -114,8 +114,8 @@
                       <td>{{$item->listing_id}}</td>
 											<td>{{$item->phone }}</td>
 											<td>{{$item->total_members }}</td>
-                      <td><span class="badge rounded-pill bg-success">{{$item->date_enter}}</span></td>
-											<td><span class="badge rounded-pill bg-danger">{{$item->date_exit}}</span></td>
+                      <td><span class="badge rounded-pill bg-success">{{ strtotime($item->date_enter)}}</span></td>
+											<td><span class="badge rounded-pill bg-danger">{{strtotime($item->date_exit)}}</span></td>
                       @if ($item->tier == 0) 
                           <td><span class="badge rounded-pill bg-success">Full Stay</span></td>
                       @else

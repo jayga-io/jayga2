@@ -26,6 +26,7 @@ class BookingController extends Controller
         ]);
 
         if($validated){
+            
             $check = Booking::where('transaction_id', $request->input('transaction_id'))->get();
             if(count($check)>0){
                 return response()->json([
