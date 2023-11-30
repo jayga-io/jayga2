@@ -35,6 +35,7 @@ return new class extends Migration
             $table->boolean('payment_flag')->default(false);
             $table->bigInteger('booking_status')->default(0);
             $table->boolean('isApproved')->default(false);
+            $table->boolean('isComplete')->default(false);
             $table->string('messeges')->nullable();
             $table->timestamps();
         });

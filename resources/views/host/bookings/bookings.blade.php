@@ -102,6 +102,7 @@
                             <th>Booking Made</th>
                             <th>Pay Amount</th>
                             <th>Booking_status</th>
+                            <th>Complete</th>
                             <th>Cancel</th>
                         </tr>
                     </thead>
@@ -130,6 +131,7 @@
                       @if ($item->booking_status == 1)
                           <td><span class="badge rounded-pill bg-success">Confirmed</span></td>
                       @endif
+                      <td><a class="btn btn-warning" href="/user/booking-complete/{{$item->booking_id}}">Mark as complete</a></td>
 											<td> <a class="btn btn-danger" href="/user/booking-cancel/{{$item->booking_id}}">Cancel</a></td>
 										</tr>
 						@endforeach

@@ -80,9 +80,9 @@ class ListerDashboardController extends Controller
 
     //Bookings
     public function bookings(Request $request){
-        $bookings = Booking::where('booking_status', 1)->where('lister_id', $request->session()->get('user'))->with('listings')->get();
+        $bookings = Booking::where('booking_status', 1)->where('isComplete', false)->where('lister_id', $request->session()->get('user'))->with('listings')->get();
        //dd($bookings);
-        $pending_bookings = Booking::where('booking_status', 0)->where('lister_id', $request->session()->get('user'))->get();
+        $pending_bookings = Booking::where('booking_status', 0)->where('isComplete', false)->where('lister_id', $request->session()->get('user'))->get();
         return view('host.bookings.bookings')->with('bookings', $bookings)->with('pendings', $pending_bookings);
     }
 
@@ -113,6 +113,14 @@ class ListerDashboardController extends Controller
         return redirect()->back();
     }
 
+
+    public function complete(Request $request, $id){
+        Booking::where('booking_id', $id)->update([
+            'isComplete' => true
+        ]);
+        toastr()->addSuccess('Booking has been completed');
+        return redirect()->back();
+    }
 
 
 
@@ -212,4 +220,6 @@ class ListerDashboardController extends Controller
        toastr()->addWarning('Listing Deleted');
        return redirect()->back();
     }
+
+    
 }
