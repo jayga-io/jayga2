@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('listing_title')->nullable();
             $table->string('listing_description')->nullable();
             $table->bigInteger('full_day_price_set_by_user')->nullable();
+            $table->bigInteger('discount_price')->nullable();
             $table->string('listing_address')->nullable();
             $table->string('district')->nullable();
             $table->string('town')->nullable();
@@ -40,6 +41,7 @@ return new class extends Migration
             $table->boolean('breakfast_included')->default(false);
             $table->boolean('unknown_guest_entry')->default(false);
             $table->string('listing_type')->nullable();
+            $table->string('video_link')->nullable();
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
             $table->boolean('isApproved')->default(false);

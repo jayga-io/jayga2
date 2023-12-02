@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('lister_dashboards', function (Blueprint $table) {
             $table->id('id');
-            $table->bigInteger('lister_id')->unsigned();
-            $table->foreign('lister_id')->references('lister_id')->on('lister_users')->onDelete('cascade');
-            $table->bigInteger('earnings');
-            $table->string('past_booking');
+            $table->bigInteger('lister_id')->unsigned()->nullable();
+            $table->foreign('lister_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('earnings')->nullable();
+            $table->bigInteger('withdraws')->nullable();
             $table->timestamps();
         });
     }

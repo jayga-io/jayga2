@@ -88,6 +88,7 @@ class ListingController extends Controller
                     'lat' => $request->input('lati'),
                     'long' => $request->input('longi'),
                     'listing_type' => $request->input('listing_type'),
+                    'video_link' => $request->input('video_link'),
                 ]);
 
                 
@@ -272,6 +273,7 @@ class ListingController extends Controller
             'lat' => $request->input('lati'),
             'long' => $request->input('longi'),
             'listing_type' => $request->input('listing_type'),
+            'video_link' => $request->input('video_link'),
         ]);
 
         ListingDescribe::where('listing_id', $request->input('listing_id'))->update([

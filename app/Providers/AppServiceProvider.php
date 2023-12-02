@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
        // $booking = Booking::where('isApproved', true)->where('booking_status', 1)->where('lister_id', $request->session()->get('user'))->get();
       //  $pending = Booking::where('isApproved', false)->where('booking_status', 0)->where('lister_id', $request->session()->get('user'))->get();
         view()->share('pending_count', $pending_count->count());
-        view()->share('time', $pending_count);
+      //  view()->share('time', $pending_count);
         view()->share('booking_count', $booking_count->count());
        // view()->share('books', $booking->count());
        // view()->share('pends', $pending->count());

@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HostController;
 use App\Http\Controllers\ListerDashboardController;
 use App\Http\Controllers\ListerUserController;
+use App\Http\Controllers\AccountsController;
 use App\Models\User;
 use App\Models\Listing;
 use App\Http\Middleware\ensureotp;
@@ -138,6 +139,9 @@ Route::prefix('user')->group(function(){
         Route::get('/listing/single-item/{id}', [ListerDashboardController::class, 'edit_listing'])->name('editlisting');
         Route::post('/update-listing', [ListerDashboardController::class, 'update_listing'])->name('updatelisting');
         Route::get('/delete/listing/{id}', [ListerDashboardController::class, 'delete'])->name('deletelisting');
+
+        //accounts
+        Route::get('/accounts/center', [AccountsController::class, 'accounts'])->name('acccenter');
     });
 
     
