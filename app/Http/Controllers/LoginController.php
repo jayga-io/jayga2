@@ -20,7 +20,7 @@ class LoginController extends Controller
           //  $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
             
           //  $user_api_url = env('APP_URL').'api/signin';
-          //  $phone = $request->input('phone');
+            $phone = $request->input('phone');
           //  $data = [
           //      "sender_id" => "8809601010510",
           //      "receiver" => $phone,
