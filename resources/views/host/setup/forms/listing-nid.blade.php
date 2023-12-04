@@ -51,19 +51,19 @@
                         <div class="input-text py-3">
                             <div class="input-div">
                                 <label for="nid">Attach NID Front</label>
-                                <input type="file" name="nid[]" multiple required require />
+                                <input type="file" name="nid[]" multiple />
                             </div>
 
                             <div class="input-div">
                                 <label for="nid">Attach utility bill copy</label>
-                                <input type="file" name="utility[]" multiple required require />
+                                <input type="file" name="utility[]" multiple />
                             </div>
                             
                         </div>
                         <div class="input-text py-2">
                             <div class="input-div">
                                 <label for="nid">Attach NID back</label> <br>
-                                <input type="file" name="nid2[]" multiple required require />
+                                <input type="file" name="nid2[]" multiple />
                             </div>
                             
                         </div>

@@ -45,6 +45,7 @@ return new class extends Migration
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
             $table->boolean('isApproved')->default(false);
+            $table->boolean('isActive')->default(true);
             $table->timestamps();
         });
     }
