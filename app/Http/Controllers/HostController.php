@@ -128,6 +128,7 @@ class HostController extends Controller
             $nid = $request->file('nid');
             $nid2= $request->file('nid2');
             $utility = $request->file('utility');
+            if($nid){
                 foreach ($nid as $value) {
                 $path = $value->store('listings-nid');
                     ListerNid::create([
@@ -137,8 +138,10 @@ class HostController extends Controller
                         'nid_targetlocation' => $path,
                     ]);
             }
-
-            foreach ($nid2 as $identity) {
+            }
+                
+            if($nid2){
+                foreach ($nid2 as $identity) {
                 $path2 = $identity->store('listings-nid');
                 ListerNid::create([
                     'listing_id' => $listing[0]->listing_id,
@@ -147,8 +150,10 @@ class HostController extends Controller
                     'nid_targetlocation' => $path2,
                 ]);
             }
-
-            foreach ($utility as $item) {
+            }
+            
+            if($utility){
+                 foreach ($utility as $item) {
                 $road = $item->store('user_files');
                 UserPictures::updateOrCreate([
                     'user_id' => $user[0]->id,
@@ -156,6 +161,8 @@ class HostController extends Controller
                     'user_targetlocation' => $road,
                 ]);
             }
+            }
+           
 
             return redirect(route('step6'));
         }else{
