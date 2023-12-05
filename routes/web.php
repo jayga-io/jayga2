@@ -8,6 +8,7 @@ use App\Http\Controllers\HostController;
 use App\Http\Controllers\ListerDashboardController;
 use App\Http\Controllers\ListerUserController;
 use App\Http\Controllers\AccountsController;
+use App\Http\Controllers\BankDetailsController;
 use App\Models\User;
 use App\Models\Listing;
 use App\Http\Middleware\ensureotp;
@@ -142,6 +143,8 @@ Route::prefix('user')->group(function(){
 
         //accounts
         Route::get('/accounts/center', [AccountsController::class, 'accounts'])->name('acccenter');
+        //bank details
+        Route::post('/add/bank', [BankDetailsController::class, 'store'])->name('addbank');
     });
 
     

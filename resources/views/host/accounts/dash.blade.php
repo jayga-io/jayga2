@@ -207,51 +207,66 @@ section {
   </div>
 
   <div class="container">
-    <div class="p-5 mt-4 mb-4 bg-light rounded-3 d-flex justify-content-between">
-      <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold"><i class="bi bi-calendar3"></i> Bank Details</h1>
-        
-        <button class="btn btn-success btn-lg" type="button"><i class="bi bi-plus"></i>Add Another Bank</button>
-      </div>
-      <div class="card rounded-5 vh-90" style="width: 70%">
-        <div class="card-body">
-          <h5 class="card-title">Account Details</h5>
-          @if (count($bank) == 0)
+    <div class="p-5 mt-4 mb-4 bg-light rounded-3 ">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="container py-5">
+            <h1 class="display-5 fw-bold"><i class="bi bi-calendar3"></i> Bank Details</h1>
+            
+            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop" type="button"><i class="bi bi-plus"></i>Add Another Bank</button>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="card rounded-5" >
+            <div class="card-body">
+              <h5 class="card-title">Account Details</h5>
+              @if (count($bank) == 0)
               <h2 class="card-text">No Bank Details Found</h2>
-          @else
+              @else
               <div class="card-debit">
-            <div class="top">
-              <h2>John Doe</h2>
-              <img src="https://cdn-icons-png.flaticon.com/512/1436/1436392.png" />
-            </div>
-            <div class="infos">
-              <section class="card-number">
-                <p>Card Number</p>
-                <h1>5495 9549 2883 2434</h1>
-              </section>
-              <div class="bottom">
-                <aside class="infos--bottom">
-                  <section>
-                    <p>Expiry date</p>
-                    <h3>08/24</h3>
+                <div class="top">
+                  <h2>{{$bank[0]->acc_name}}</h2>
+          
+                  <img width="50" height="20" src="https://img.icons8.com/fluency/48/bank.png" alt="bank" />
+          
+                </div>
+                <div class="infos">
+                  <section class="card-number">
+                    <p>{{$bank[0]->bank_name}}</p>
+                    <h1>{{$bank[0]->acc_number}}</h1>
                   </section>
-                  <section>
-                    <p>CVV</p>
-                    <h3>748</h3>
-                  </section>
-                </aside>
-                <aside>
-                  
-                </aside>
+                  <div class="bottom">
+                    <aside class="infos--bottom">
+                      <section>
+                        <p>Branch Name</p>
+                        <h3>{{$bank[0]->branch_name}}</h3>
+                      </section>
+                      <section>
+                        <p>Routing Number</p>
+                        @if ($bank[0]->routing_number == null)
+                        <h3>N\A</h3>
+                        @else
+                        <h3>{{$bank[0]->routing_number}}</h3>
+                        @endif
+          
+                      </section>
+                    </aside>
+                    <aside>
+          
+                    </aside>
+                  </div>
+                </div>
               </div>
+              @endif
+          
+          
+          
             </div>
           </div>
-          @endif
-          
-          
-          
         </div>
       </div>
+      
+      
 
     </div>
     
@@ -289,6 +304,48 @@ section {
         </table>
     </div>
    </div>
+</div>
+
+  <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="{{route('addbank')}}" method="POST">
+        @csrf
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Bank Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       
+          @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
+          <label for="bank">Bank Name</label>
+          <input type="text" name="bank_name" class="form-control mb-3">
+          <label for="bank">Name on the account</label>
+          <input type="text" name="acc_name" class="form-control mb-3">
+          <label for="bank">Account Number</label>
+          <input type="number" name="acc_number" class="form-control mb-3">
+          <label for="bank">Routing Number</label>
+          <input type="text" name="routing_number" class="form-control mb-3">
+          <label for="bank">Branch Name</label>
+          <input type="text" name="branch_name" class="form-control mb-3">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success">Add Bank</button>
+      </div>
+      </form>
+    </div>
+  </div>
 </div>
 
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
