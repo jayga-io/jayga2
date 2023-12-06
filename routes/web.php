@@ -148,6 +148,7 @@ Route::prefix('user')->group(function(){
 
         //withdraw
         Route::get('/withdraw', [AccountsController::class, 'withdraw'])->name('withdraw');
+        Route::post('/withdraw/confirm', [AccountsController::class, 'withdraw_request'])->name('withdrawconfirm');
     });
 
     

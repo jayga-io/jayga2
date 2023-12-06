@@ -80,13 +80,35 @@
                 </div>
               </div>
               <div class="mt-4">
-                <h2>Withdraw Amount</h2>
-                <input type="number" class="form-control mb-3 p-2" placeholder="Withdraw amount">
+               
+               
                 @if (count($balance) == 0 )
                     <button class="btn btn-success form-control p-2" disabled>Withdraw</button>
                 @else
                     <button class="btn btn-success form-control p-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Withdraw</button>
                 @endif
+                                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <form action="{{route('withdrawconfirm')}}" method="POST">
+                        @csrf
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Withdraw alert</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <h2>Withdraw Amount</h2>
+                        <input type="number" name="withdraw" class="form-control mb-3 p-2" placeholder="Withdraw amount">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Request Withdraw</button>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
                 
               </div>
             
@@ -94,24 +116,7 @@
       </div>
   </div>
 
-  <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Withdraw alert</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
    
     
