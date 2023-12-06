@@ -192,7 +192,7 @@ section {
             <div class="card-body ">
                 <div class="d-flex justify-content-between">
                     <h5 class="card-title">Remaining Balance</h5>
-                    <a href="#" class="btn btn-warning">Withdraw</a>
+                    <a href="{{route('withdraw')}}" class="btn btn-warning">Withdraw</a>
                 </div>
                 @if (count($details) == 0)
                   <h4 class="card-title">0.00 ৳</h4>

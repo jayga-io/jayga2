@@ -145,6 +145,9 @@ Route::prefix('user')->group(function(){
         Route::get('/accounts/center', [AccountsController::class, 'accounts'])->name('acccenter');
         //bank details
         Route::post('/add/bank', [BankDetailsController::class, 'store'])->name('addbank');
+
+        //withdraw
+        Route::get('/withdraw', [AccountsController::class, 'withdraw'])->name('withdraw');
     });
 
     
