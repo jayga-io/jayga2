@@ -48,11 +48,12 @@
                     <textarea type="text" name="street_address" class="form-control" placeholder="Street address" required require></textarea>
                 </div>
                 <div class="input-text">
-                    <input type="text" name="city" placeholder="City">
-                </div>
-                <div class="input-text">
                     <input type="text" name="town" placeholder="Town">
                 </div>
+                <div class="input-text">
+                    <input type="text" name="city" placeholder="City">
+                </div>
+                
                 <div class="input-text">
                     <input type="number" name="zip" placeholder="Zip code">
                 </div>
