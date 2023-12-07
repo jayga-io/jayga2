@@ -226,7 +226,7 @@ section {
               <div class="card-debit">
                 <div class="top">
                   <h2>{{$bank[0]->acc_name}}</h2>
-                  <p>{{$bank[0]->bank_name}}</p>
+                  <p style="font-size: 15px">{{$bank[0]->bank_name}}</p>
                   <img width="50" height="20" src="https://img.icons8.com/fluency/48/bank.png" alt="bank" />
           
                 </div>
