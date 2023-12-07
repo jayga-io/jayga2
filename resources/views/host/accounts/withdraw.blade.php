@@ -91,7 +91,7 @@
               <div class="mt-4">
                
                
-                @if (count($balance[0]->earnings) == 0 )
+                @if ($balance[0]->earnings == 0 )
                     <button class="btn btn-success form-control p-2" disabled>Withdraw</button>
                 @else
                     <button class="btn btn-success form-control p-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Withdraw</button>
