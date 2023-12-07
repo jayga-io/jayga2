@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id('id');
             $table->bigInteger('lister_id')->unsigned()->nullable();
             $table->foreign('lister_id')->references('id')->on('users')->onDelete('cascade');
-            $table->bigInteger('earnings')->nullable();
-            $table->bigInteger('withdraws')->nullable();
+            $table->double('total_earnings')->nullable();
+            $table->double('earnings')->nullable();
+            $table->double('withdraws')->nullable();
             $table->timestamps();
         });
     }

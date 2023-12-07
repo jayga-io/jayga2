@@ -73,7 +73,7 @@
                   @if (count($balance) == 0)
                     <h4 class="card-title">0.00 ৳</h4>
                   @else
-                       <h4 class="card-title">{{$balance[0]->earnings - $balance[0]->withdraws}} ৳</h4>
+                       <h4 class="card-title">{{$balance[0]->earnings}} ৳</h4>
                   @endif
                  
                   

@@ -232,7 +232,8 @@ class HostController extends Controller
         
         if(count($listing)>0){
             $images = $request->file('listingimages');
-            foreach ($images as $mal) {
+            if($images){
+                foreach ($images as $mal) {
                 
                 $path = $mal->store('listings');
                // $img = Image::make($path)->resize(700,500)->save($path);
@@ -243,6 +244,8 @@ class HostController extends Controller
                     'listing_targetlocation' => $path,
                 ]);
             }
+            }
+            
             return redirect(route('step9'));
         }else{
             return redirect(route('step8'));

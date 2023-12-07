@@ -44,7 +44,7 @@
     <input type="hidden" name="listing_id" value="{{$listing[0]->listing_id}}">
     <div class="mb-3">
       <label for="listingTitle" class="form-label">Listing Title</label>
-      <input type="text" class="form-control" id="listingTitle" name="listing_title" placeholder="{{$listing[0]->listing_title}}" required>
+      <input type="text" class="form-control" id="listingTitle" name="listing_title" value="{{$listing[0]->listing_title}}" required>
     </div>
 
     <div class="mb-3">
@@ -58,7 +58,7 @@
 
     <div class="mb-3">
         <label for="listingTitle" class="form-label">Full Day Price</label>
-        <input type="text" class="form-control" id="listingTitle" name="price" placeholder="{{$listing[0]->full_day_price_set_by_user}}" required>
+        <input type="text" class="form-control" id="listingTitle" name="price" value="{{$listing[0]->full_day_price_set_by_user}}" required>
       </div>
 
     <div class="row d-flex">

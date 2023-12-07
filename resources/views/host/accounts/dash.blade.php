@@ -167,7 +167,7 @@ section {
               @if (count($details) == 0)
                   <h4 class="card-title">0.00 ৳</h4>
               @else
-                  <h4 class="card-title">{{$details[0]->earnings}} ৳</h4>
+                  <h4 class="card-title">{{$details[0]->total_earnings}} ৳</h4>
               @endif
               
               
@@ -197,7 +197,7 @@ section {
                 @if (count($details) == 0)
                   <h4 class="card-title">0.00 ৳</h4>
               @else
-                  <h4 class="card-title">{{$details[0]->earnings - $details[0]->withdraws}} ৳</h4>
+                  <h4 class="card-title">{{$details[0]->earnings}} ৳</h4>
               @endif
               
             </div>
