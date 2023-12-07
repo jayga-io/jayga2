@@ -55,7 +55,7 @@
                 </div>
                 
                 <div class="input-text">
-                    <input type="number" name="zip" placeholder="Zip code">
+                    <input type="number" class="form-control" name="zip" placeholder="Zip code">
                 </div>
                 <div class="input-text">
                     <input type="text" name="price" placeholder="Price for a day">
