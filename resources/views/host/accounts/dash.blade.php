@@ -163,7 +163,7 @@ section {
         <div class="col-sm-12 col-md-4">
           <div class="card text-white rounded-3 bg-success py-2" style="height: 100%;">
             <div class="card-body">
-              <h5 class="card-title">My Earnings</h5>
+              <h5 class="card-title">Total Earnings</h5>
               @if (count($details) == 0)
                   <h4 class="card-title">0.00 ৳</h4>
               @else
