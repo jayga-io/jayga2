@@ -45,7 +45,7 @@
                 <form action="{{route('setaddress')}}" method="POST">
                     @csrf
                 <div class="input-text">
-                    <input type="text" name="street_address" placeholder="Street address">
+                    <textarea type="text" name="street_address" placeholder="Street address" required require></textarea>
                 </div>
                 <div class="input-text">
                     <input type="text" name="city" placeholder="City">
