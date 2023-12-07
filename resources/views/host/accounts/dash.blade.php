@@ -233,6 +233,7 @@ section {
                 <div class="infos">
                   <section class="card-number">
                     <p>{{$bank[0]->bank_name}}</p>
+                    <p>Account Number</p>
                     <h1>{{$bank[0]->acc_number}}</h1>
                   </section>
                   <div class="bottom">
