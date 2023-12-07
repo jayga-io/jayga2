@@ -279,8 +279,8 @@
         <!-- Add more amenities checkboxes as needed -->
         <div class="input-text mt-5">
           <label>Select Listing Type</label>
-          <select name="listing_type" class="form-control">
-              <option>Select</option>
+          <select name="listing_type" class="form-control" >
+              <option value="{{$listing[0]->listing_type}}">{{$listing[0]->listing_type}}</option>
               <option value="room">Room</option>
               <option value="apartment">Apartment</option>
               <option value="hotel">Hotel</option>
