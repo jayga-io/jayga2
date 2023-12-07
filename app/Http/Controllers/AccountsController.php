@@ -44,7 +44,7 @@ class AccountsController extends Controller
             ListerDashboard::where('lister_id', $id)->update([
                 'earnings' => $remaining
             ]);
-           // toastr()->addSuccess('Withdraw requested');
+            toastr()->addSuccess('Withdraw requested');
             return redirect()->back()->with('success', 'Withdrawal usually takes 48 hours to process. please be patient');
         }
     }
