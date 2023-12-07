@@ -65,6 +65,15 @@
     </div>
 
   <div class="container mt-5">
+    @if(session()->has('success'))
+					
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						<strong>{{ session()->get('success') }}</strong>
+						
+					</div>
+					
+					
+					@endif
     <div class="row">
         <div class="col-lg-6 col-md-12 mx-auto">
             <div class="card mb-4 rounded-5" >

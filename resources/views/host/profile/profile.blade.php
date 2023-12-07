@@ -54,7 +54,7 @@
                                 placeholder="Name" value="" required>
                             @else
                                 <input type="text" name="username" class="form-control"
-                                placeholder="{{$user[0]->name}}" value="" required>
+                                placeholder="{{$user[0]->name}}" value="{{$user[0]->name}}" required>
                             @endif
                             
                             </div>
@@ -62,16 +62,16 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12 mb-3"><label class="labels">Mobile Number</label><input type="text"
-                                class="form-control" name="phone" placeholder="{{$user[0]->phone}}" value="" required></div>
+                                class="form-control" name="phone" placeholder="{{$user[0]->phone}}" value="{{$user[0]->phone}}" required></div>
 
                         <div class="col-md-12 mb-3"><label class="labels">Address</label><input type="text"
                                 class="form-control" name="address" placeholder="enter address" value=""></div>
                      
                         <div class="col-md-12 mb-3"><label class="labels">Email</label>
-                            <input type="text" class="form-control" name="email" placeholder="{{$user[0]->email}}" value="" required>
+                            <input type="text" class="form-control" name="email" placeholder="{{$user[0]->email}}" value="{{$user[0]->email}}" required>
                         </div>
                         <div class="col-md-12 mb-3"><label class="labels">Date of Birth</label><input type="date"
-                                class="form-control" name="dob" placeholder="enter dob" value=""></div>
+                                class="form-control" name="dob" placeholder="{{$user[0]->user_dob}}" value="{{$user[0]->user_dob}}"></div>
                         
                     </div>
                     <div class="row mt-3">

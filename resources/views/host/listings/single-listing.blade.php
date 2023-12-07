@@ -71,9 +71,9 @@
       
             <input type="hidden" name="wifi" value="0">
             @if ($amenities[0]->wifi == 0)
-                <input type="checkbox" name="wifi" value="1">
+                <input type="checkbox" name="wifi" value=1>
             @else
-                <input type="checkbox" name="wifi" value="1" checked>
+                <input type="checkbox" name="wifi" value=1 checked>
             @endif
             
             <label>Wifi</label>
