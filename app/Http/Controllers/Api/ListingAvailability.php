@@ -16,13 +16,17 @@ class ListingAvailability extends Controller
         ]);
         $date = $request->input('dates');
         $dates = explode(',', $date);
+
         if($validated){
-            ListingAvailable::create([
+            foreach ($dates as $value) {
+                ListingAvailable::create([
                 'lister_id' => $request->input('lister_id'),
                 'listing_id' => $request->input('listing_id'),
-                'dates' => $dates
+                'dates' => $value
 
             ]);
+            }
+            
             return response()->json([
                 'status' => 200,
                 'messege' => 'Listing availability stored'
