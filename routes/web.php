@@ -129,7 +129,7 @@ Route::prefix('user')->group(function(){
         Route::get('/booking-confirm/{id}', [ListerDashboardController::class, 'confirm'])->name('bookconfirm');
         Route::get('/booking-deny/{id}', [ListerDashboardController::class, 'deny'])->name('bookdeny');
         Route::get('/booking-cancel/{id}', [ListerDashboardController::class, 'cancel'])->name('bookcancel');
-        Route::get('/booking-complete/{id}', [ListerDashboardController::class, 'complete'])->name('completebooking');
+        Route::get('/booking-complete/{id}/{amount}', [ListerDashboardController::class, 'complete'])->name('completebooking');
 
         //profile
         Route::get('/profile', [ListerUserController::class, 'index'])->name('userprofile');

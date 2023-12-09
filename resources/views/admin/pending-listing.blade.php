@@ -105,7 +105,9 @@
 	</div>
 	<script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 	<script>
-		let table = new DataTable('#myTable');
+		let table = new DataTable('#myTable',{
+			scrollX: true
+		});
 	</script>
 	<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 	<script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script>

@@ -114,7 +114,8 @@ class ListerDashboardController extends Controller
     }
 
 
-    public function complete(Request $request, $id){
+    public function complete(Request $request, $id, $amount){
+        dd($amount);
         Booking::where('booking_id', $id)->update([
             'isComplete' => true
         ]);
