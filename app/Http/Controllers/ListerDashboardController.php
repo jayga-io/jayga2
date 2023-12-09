@@ -11,6 +11,7 @@ use App\Models\Booking;
 use App\Models\ListingGuestAmenities;
 use App\Models\ListingImages;
 use App\Models\ListingRestrictions;
+
 use Illuminate\Http\Request;
 use Storage;
 
@@ -119,6 +120,11 @@ class ListerDashboardController extends Controller
         Booking::where('booking_id', $id)->update([
             'isComplete' => true,
             'net_payable' => $amount
+        ]);
+        $earning = ListerDashboard::where('lister_id', $request->session()->get('user'))->get();
+        $update_earnings = $earning[0]->earnings + $amount;
+        ListerDashboard::where('lister_id', $request->session()->get('user'))->update([
+            'earnings' => $update_earnings
         ]);
         toastr()->addSuccess('Booking has been completed');
         return redirect()->back();
