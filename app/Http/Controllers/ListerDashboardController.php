@@ -129,8 +129,9 @@ class ListerDashboardController extends Controller
                 'earnings' => $amount
             ]);
         }else{
-            $update_earnings = $earning[0]->earnings + $amount;
-            ListerDashboard::where('lister_id', $request->session()->get('user'))->update([
+            $money = ListerDashboard::where('lister_id', $user)->get();
+            $update_earnings = $money[0]->earnings + $amount;
+            ListerDashboard::where('lister_id', $user)->update([
                 'earnings' => $update_earnings
             ]);
         }
