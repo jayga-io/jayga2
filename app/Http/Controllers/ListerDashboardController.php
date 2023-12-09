@@ -124,7 +124,9 @@ class ListerDashboardController extends Controller
         $earning = ListerDashboard::where('lister_id', $user)->get();
         if(count($earning)>0){
            $update_earnings = $earning[0]->earnings + $amount;
+           $total_earn = $earning[0]->total_earnings + $amount;
             ListerDashboard::where('lister_id', $user)->update([
+                'total_earnings' => $total_earn,
                 'earnings' => $update_earnings
             ]);
         }else{
