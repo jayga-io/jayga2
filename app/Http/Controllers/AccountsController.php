@@ -41,8 +41,10 @@ class AccountsController extends Controller
                 'withdraw_amount' => $amount
             ]);
             $remaining = $lister[0]->earnings - $amount;
+            $withdrawn = $lister[0]->withdraws + $amount;
             ListerDashboard::where('lister_id', $id)->update([
-                'earnings' => $remaining
+                'earnings' => $remaining,
+                'withdraws' => $withdrawn
             ]);
             toastr()->addSuccess('Withdraw requested');
             return redirect()->back()->with('success', 'Withdrawal usually takes 48 hours to process. please be patient');
