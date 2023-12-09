@@ -37,7 +37,7 @@ class ListingAvailability extends Controller
     }
 
     public function get_dates(Request $request, $id){
-       $dates = ListingAvailable::where('listing_id', $id)->get();
+       $dates = ListingAvailable::where('listing_id', $id)->groupBy('listing_id')->get();
        if(count($dates)>0){
         return response()->json([
             'status' => 200,
