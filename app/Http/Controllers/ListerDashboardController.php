@@ -122,7 +122,7 @@ class ListerDashboardController extends Controller
             'net_payable' => $amount
         ]);
         $earning = ListerDashboard::where('lister_id', $user)->get();
-        if(count($earnings)<0){
+        if(count($earning)<0){
             ListerDashboard::create([
                 'lister_id' => $user,
                 'total_earnings' => $amount,
