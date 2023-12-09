@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('pay_amount')->nullable();
+            $table->string('net_payable')->nullable();
             $table->boolean('payment_flag')->default(false);
             $table->bigInteger('booking_status')->default(0);
             $table->boolean('isApproved')->default(false);

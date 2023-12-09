@@ -115,9 +115,10 @@ class ListerDashboardController extends Controller
 
 
     public function complete(Request $request, $id, $amount){
-        dd($amount);
+        
         Booking::where('booking_id', $id)->update([
-            'isComplete' => true
+            'isComplete' => true,
+            'net_payable' => $amount
         ]);
         toastr()->addSuccess('Booking has been completed');
         return redirect()->back();
