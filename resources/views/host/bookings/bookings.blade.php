@@ -115,7 +115,7 @@
                             <th>Tier</th>
                             <th>Booking Made</th>
                             <th>Pay Amount</th>
-                            <th>Jayga_commision</th>
+                            <th>Jayga_fee</th>
                             <th>Net payable</th>
                             <th>Booking_status</th>
                             <th>Complete</th>
@@ -149,7 +149,7 @@
 
                                 <td>7%</td>
 
-                                <td>{{$item->pay_amount - ($item->pay_amount * 7)/100 }} tk</td>
+                                <td>{{$item->pay_amount - ($item->pay_amount * 7)/100 }} tk/-</td>
 
                                 @if ($item->booking_status == 1)
                                     <td><span class="badge rounded-pill bg-success">Confirmed</span></td>
@@ -223,10 +223,14 @@
 
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script>
-        let table = new DataTable('#myTable');
+        let table = new DataTable('#myTable'){
+          scrollX: true
+        };
     </script>
     <script>
-        let table2 = new DataTable('#myTable2');
+        let table2 = new DataTable('#myTable2'){
+          scrollX: true
+        };
     </script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
