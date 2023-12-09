@@ -116,16 +116,25 @@ class ListerDashboardController extends Controller
 
 
     public function complete(Request $request, $id, $amount){
-        
+        $user = $request->session()->get('user');
         Booking::where('booking_id', $id)->update([
             'isComplete' => true,
             'net_payable' => $amount
         ]);
-        $earning = ListerDashboard::where('lister_id', $request->session()->get('user'))->get();
-        $update_earnings = $earning[0]->earnings + $amount;
-        ListerDashboard::where('lister_id', $request->session()->get('user'))->update([
-            'earnings' => $update_earnings
-        ]);
+        $earning = ListerDashboard::where('lister_id', $user)->get();
+        if(count($earnings)<0){
+            ListerDashboard::create([
+                'lister_id' => $user,
+                'total_earnings' => $amount,
+                'earnings' => $amount
+            ]);
+        }else{
+            $update_earnings = $earning[0]->earnings + $amount;
+            ListerDashboard::where('lister_id', $request->session()->get('user'))->update([
+                'earnings' => $update_earnings
+            ]);
+        }
+        
         toastr()->addSuccess('Booking has been completed');
         return redirect()->back();
     }
