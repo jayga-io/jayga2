@@ -122,18 +122,18 @@ class ListerDashboardController extends Controller
             'net_payable' => $amount
         ]);
         $earning = ListerDashboard::where('lister_id', $user)->get();
-        if(count($earning)<0){
+        if(count($earning)>0){
+           $update_earnings = $earning[0]->earnings + $amount;
+            ListerDashboard::where('lister_id', $user)->update([
+                'earnings' => $update_earnings
+            ]);
+        }else{
             ListerDashboard::create([
                 'lister_id' => $user,
                 'total_earnings' => $amount,
                 'earnings' => $amount
             ]);
-        }else{
-            $money = ListerDashboard::where('lister_id', $user)->get();
-            $update_earnings = $money[0]->earnings + $amount;
-            ListerDashboard::where('lister_id', $user)->update([
-                'earnings' => $update_earnings
-            ]);
+            
         }
         
         toastr()->addSuccess('Booking has been completed');
