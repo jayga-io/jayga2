@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ListingAvailability;
 
 
 /*
