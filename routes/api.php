@@ -84,3 +84,7 @@ Route::get('/user/avatars/{id}', [UserController::class, 'user_avatars']);
 Route::post('/user/set-cover', [UserController::class, 'set_cover']);
 
 Route::get('/user/get-cover/{id}', [UserController::class, 'get_cover']);
+
+Route::post('/add/availability', [ListingAvailability::class, 'store_dates']);
+
+Route::get('/show/availability/{id}', [ListingAvailability::class, 'get_dates']);

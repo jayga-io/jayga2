@@ -42,6 +42,7 @@ class AccountsController extends Controller
             ]);
             $remaining = $lister[0]->earnings - $amount;
             $withdrawn = $lister[0]->withdraws + $amount;
+            
             ListerDashboard::where('lister_id', $id)->update([
                 'earnings' => $remaining,
                 'withdraws' => $withdrawn
