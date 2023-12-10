@@ -40,7 +40,7 @@ class BankDetailsController extends Controller
         if($validated){
            
             BankDetails::create([
-                'user_id' => $request->session()->get('user'),
+                'lister_id' => $request->session()->get('user'),
                 'acc_name' => $request->input('acc_name'),
                 'acc_number' => $request->input('acc_number'),
                 'bank_name' => $request->input('bank_name'),
@@ -48,7 +48,7 @@ class BankDetailsController extends Controller
                 'branch_name' => $request->input('branch_name')
             ]);
             toastr()->addSuccess('Bank Details Saved');
-            return redirect(route('acccenter'));
+            return redirect()->back();
         }else{
             return response()->json(['errors' => $validated->errors()]);
         }

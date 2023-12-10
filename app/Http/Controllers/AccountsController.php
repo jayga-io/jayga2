@@ -13,14 +13,15 @@ class AccountsController extends Controller
     public function accounts(Request $request){
         $user = $request->session()->get('user');
         $details = ListerDashboard::where('lister_id', $user)->get();
-        $bank = BankDetails::where('user_id', $user)->get();
+        $bank = BankDetails::where('lister_id', $user)->get();
         return view('host.accounts.dash')->with('details', $details)->with('bank', $bank);
     }
 
     public function withdraw(Request $request){
         $user = $request->session()->get('user');
         $details = ListerDashboard::where('lister_id', $user)->get();
-        return view('host.accounts.withdraw')->with('balance', $details);
+        $bank = BankDetails::where('lister_id', $user)->get();
+        return view('host.accounts.withdraw')->with('balance', $details)->with('bank', $bank);
     }
 
     public function withdraw_request(Request $request){
@@ -48,7 +49,7 @@ class AccountsController extends Controller
                 'withdraws' => $withdrawn
             ]);
             toastr()->addSuccess('Withdraw requested');
-            return redirect()->back()->with('success', 'Withdrawal usually takes 48 hours to process. please be patient');
+            return redirect()->back()->with('Notice', 'Withdrawal usually takes 48 hours to process. please be patient');
         }
     }
 }

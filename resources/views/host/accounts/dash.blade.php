@@ -196,7 +196,7 @@ section {
                     <button type="button" href="{{route('withdraw')}}" class="btn btn-warning" disabled>Withdraw</a>
                      
                     @else
-                      @if ($details[0]->earnings < 5000)
+                      @if ($details[0]->earnings < 5000 &&  count($bank)<0)
                       
                       <button type="button" href="{{route('withdraw')}}" class="btn btn-warning" disabled>Withdraw</a>
                       @else
