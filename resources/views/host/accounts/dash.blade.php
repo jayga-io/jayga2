@@ -192,7 +192,7 @@ section {
             <div class="card-body ">
                 <div class="d-flex justify-content-between">
                     <h5 class="card-title">Remaining Balance</h5><br>
-                    @if (count($details) == 0 || count($bank)<0)
+                    @if (count($details) == 0 && count($bank)<0)
                     <button type="button" href="{{route('withdraw')}}" class="btn btn-warning" disabled>Withdraw</a>
                      
                     @else
