@@ -317,8 +317,13 @@
                           <span>No images found</span>
                         </div>
         @endif
-
-      <input type="file" name="ls_images" id="dropzone" class="dropzone">
+        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+          <form action="" method="POST" enctype="multipart/form-data"
+                        class="dropzone" id="dropzone">
+                        @csrf
+                    </form>
+        </div>
+      
       </div>
     </div>
     <div class="mb-3">
