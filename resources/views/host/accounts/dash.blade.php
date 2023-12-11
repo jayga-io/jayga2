@@ -190,25 +190,35 @@ section {
         <div class="col-sm-12 col-md-4">
           <div class="card text-white rounded-3 bg-success py-2" style="height: 100%;">
             <div class="card-body ">
+              @if (count($details) == 0)
+                <div class="d-flex justify-content-between">
+                  <h5 class="card-title">Remaining Balance</h5><br>
+                
+                  <button type="button" href="{{route('withdraw')}}" class="btn btn-warning" disabled>Withdraw</button>
+                
+                
+                </div>
+                
+                <h4 class="card-title">0.00 ৳</h4>
+              @else
                 <div class="d-flex justify-content-between">
                     <h5 class="card-title">Remaining Balance</h5><br>
-                    @if (count($details) == 0 && count($bank) == 0)
-                    <button type="button" href="{{route('withdraw')}}" class="btn btn-warning" disabled>Withdraw</a>
-                     
-                    @else
-                     
-                        <a href="{{route('withdraw')}}" class="btn btn-warning" >Withdraw</a>
-                      
-                    @endif
+                  @if ($details[0]->earnings < 5000 && count($bank) == 0)
+                    <button type="button" href="{{route('withdraw')}}" class="btn btn-warning" disabled>Withdraw</button>
+                  @else
+                    <a type="button" href="{{route('withdraw')}}" class="btn btn-warning">Withdraw</a>
+                  @endif
                     
-                 
-                    
-                </div>
-                @if (count($details) == 0)
+                  
+                  
+                  </div>
+                  
                   <h4 class="card-title">0.00 ৳</h4>
-              @else
-                  <h4 class="card-title">{{$details[0]->earnings}} ৳</h4>
               @endif
+                
+             
+                 
+             
               <span>Minimun withdrawal threshold : 5000 BDT</span>
             </div>
           </div>
