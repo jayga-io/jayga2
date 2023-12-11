@@ -319,13 +319,13 @@
                           <span>No images found</span>
                         </div>
         @endif
-        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 px-3">
-          <div style="border: 2px dashed" style="height: 100%; width: 100%">
+        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 px-3" style="border: 2px dashed">
+          
             <label for="">Add more images</label>
             <input type="file" class="form-control">
           </div>
           
-        </div>
+        
       
       </div>
     </div>
