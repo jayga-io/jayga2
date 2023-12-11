@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
-  
+  <link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" />
   <title>Edit Listing</title>
 </head>
 <body>
@@ -304,13 +304,13 @@
       <div class="row">
         @if (count($images)>0)
             @foreach ($images as $item)
-                        <div class="col-lg-4 col-md-12 mt-4 mb-4 mb-lg-0">
-                          <img
-                            src="{{asset('/uploads/'. $item->listing_targetlocation)}}"
-                            class="w-100 h-64 shadow-1-strong rounded mb-4"
-                            alt="listing_images"
-                          />
-                        </div>
+                <div class="col-lg-4 col-md-12 mt-4 mb-4 mb-lg-0">
+                    <img
+                        src="{{asset('/uploads/'. $item->listing_targetlocation)}}"
+                        class="w-100 h-64 shadow-1-strong rounded mb-4"
+                        alt="listing_images"
+                    />
+                </div>
             @endforeach
         @else
                         <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
@@ -318,7 +318,7 @@
                         </div>
         @endif
 
-      
+      <input type="file" name="ls_images" id="dropzone" class="dropzone">
       </div>
     </div>
     <div class="mb-3">
@@ -332,5 +332,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
 </body>
 </html>

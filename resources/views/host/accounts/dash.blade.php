@@ -13,6 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
     
 <title>Jayga | Accounts Center</title>
     <style>
@@ -203,7 +204,7 @@ section {
               @else
                 <div class="d-flex justify-content-between">
                     <h5 class="card-title">Remaining Balance</h5><br>
-                  @if ($details[0]->earnings < 5000 && count($bank) == 0)
+                  @if ($details[0]->earnings < 5000 )
                     <button type="button" href="{{route('withdraw')}}" class="btn btn-warning" disabled>Withdraw</button>
                   @else
                     <a type="button" href="{{route('withdraw')}}" class="btn btn-warning">Withdraw</a>
