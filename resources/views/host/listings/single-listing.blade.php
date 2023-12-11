@@ -321,6 +321,7 @@
           <form action="" method="POST" enctype="multipart/form-data"
                         class="dropzone" id="dropzone">
                         @csrf
+                        <input type="file" name="ls-images" class="form-control" id="">
                     </form>
         </div>
       
