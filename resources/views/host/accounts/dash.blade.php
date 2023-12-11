@@ -213,7 +213,7 @@ section {
                   
                   </div>
                   
-                  <h4 class="card-title">0.00 ৳</h4>
+                  <h4 class="card-title">{{$details[0]->earnings}} ৳</h4>
               @endif
                 
              
