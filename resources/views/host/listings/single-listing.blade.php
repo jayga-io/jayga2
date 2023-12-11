@@ -319,11 +319,11 @@
                           <span>No images found</span>
                         </div>
         @endif
-        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 mx-5 align-middle" style="border: 2px dashed">
-          <div class="align-middle ">
+        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 mx-5" style="border: 2px dashed">
+          
             <label for="">Add more images</label>
-            <input type="file" class="form-control" name="ls-image[]" multiple>
-          </div>
+            <input type="file" class="form-control me-auto" name="ls-image[]" multiple>
+          
             
           </div>
           

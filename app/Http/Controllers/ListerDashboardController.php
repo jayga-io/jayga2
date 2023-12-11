@@ -205,6 +205,18 @@ class ListerDashboardController extends Controller
             
         ]);
 
+        if($filez = $request->input('ls-image')){
+            foreach ($filez as $ls) {
+                $path = $ls->store('listings');
+                ListingImages::create([
+                    'listing_id' => $request->input('listing_id'),
+                    'lister_id' => $request->session()->get('user'),
+                    'listing_filename' => $ls->hashName(),
+                    'listing_targetlocation' => $path,
+                ]);
+            }
+        }
+
         if($files = $request->file('images')){
             $imges = ListingImages::where('listing_id', $request->input('listing_id'))->get();
             if(count($imges)>0){
