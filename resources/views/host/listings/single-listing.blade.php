@@ -319,9 +319,12 @@
                           <span>No images found</span>
                         </div>
         @endif
-        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" style="border: 4px dashed">
-          <label for="">Add more images</label>
-          <input type="file" class="form-control" >
+        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 px-3">
+          <div class="container" style="border: 2px dashed">
+            <label for="">Add more images</label>
+            <input type="file" class="form-control">
+          </div>
+          
         </div>
       
       </div>
