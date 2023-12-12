@@ -309,8 +309,8 @@
                 <div class="col-lg-4 col-md-12 mt-4 mb-4 mb-lg-0">
                     <img
                         src="{{asset('/uploads/'. $item->listing_targetlocation)}}"
-                        class="w-100 h-64 shadow-1-strong rounded mb-4"
-                        alt="listing_images"
+                        class=" shadow-1-strong rounded mb-4"
+                        alt="listing_images" style="width: 100% ; height: 64%; aspect-ratio:3/2; object-fit:contain"
                     />
                 </div>
             @endforeach
@@ -321,9 +321,7 @@
         @endif
         <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 mx-5" style="border: 2px dashed">
           
-            <label for="">Add more images</label>
-            <input type="file" class="form-control me-auto" name="lsadd[]" multiple>
-          
+
             
           </div>
           
