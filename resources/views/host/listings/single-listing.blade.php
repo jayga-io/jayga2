@@ -310,7 +310,7 @@
                     <img
                         src="{{asset('/uploads/'. $item->listing_targetlocation)}}"
                         class=" shadow-1-strong rounded mb-4"
-                        alt="listing_images" style="width: 100% ; height: 64%; aspect-ratio:100%; object-fit:contain"
+                        alt="listing_images" style="width: 100%; aspect-ratio:3/2; object-fit:contain"
                     />
                 </div>
             @endforeach
