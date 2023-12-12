@@ -321,11 +321,11 @@
         @endif
         <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 mx-5">
           
-          <div class="mb-3" style="border: dashed">
+          
             <input type="file" class="form-control text-center p-5 align-items-center" name="lsimages[]" id="lsimage" multiple>
-            <label class="text-center" for="">Add more images</label>
+            <label class=" form-control p-1 text-center" for="">Add more images</label>
             
-          </div>
+         
             
           </div>
           
