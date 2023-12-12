@@ -312,9 +312,9 @@
         @if (count($images)>0)
             @foreach ($images as $item)
                 <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" style="position: relative">
-                  <button type="button" class="close AClass">
+                  <a href="#" class="close AClass btn btn-danger">
                     <span>&times;</span>
-                 </button>
+                  </a>
                     <img
                         src="{{asset('/uploads/'. $item->listing_targetlocation)}}"
                         class=" shadow-1-strong rounded mb-4"
