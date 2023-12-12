@@ -205,7 +205,7 @@ class ListerDashboardController extends Controller
             
         ]);
 
-        if($filez = $request->input('lsadd')){
+        if($filez = $request->file('lsimages')){
             foreach ($filez as $ls) {
                 $path = $ls->store('listings');
                 ListingImages::create([

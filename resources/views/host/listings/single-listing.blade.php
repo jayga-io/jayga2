@@ -303,14 +303,14 @@
     <!-- Images -->
 
     <div class="mb-3">
-      <div class="row d-flex justify-content-between">
+      <div class="row d-flex ">
         @if (count($images)>0)
             @foreach ($images as $item)
                 <div class="col-lg-4 col-md-12 mt-4 mb-4 mb-lg-0">
                     <img
                         src="{{asset('/uploads/'. $item->listing_targetlocation)}}"
                         class=" shadow-1-strong rounded mb-4"
-                        alt="listing_images" style="width: 100% ; height: 64%; aspect-ratio:3/2; object-fit:contain"
+                        alt="listing_images" style="width: 100% ; height: 64%; aspect-ratio:50%; object-fit:contain"
                     />
                 </div>
             @endforeach
@@ -321,7 +321,10 @@
         @endif
         <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 mx-5" style="border: 2px dashed">
           
-
+          <div class="mb-3">
+            <label for="">Add more images</label>
+            <input type="file" name="lsimages[]" id="lsimage" multiple>
+          </div>
             
           </div>
           
