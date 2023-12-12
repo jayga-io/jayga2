@@ -303,7 +303,7 @@
     <!-- Images -->
 
     <div class="mb-3">
-      <div class="row d-flex justify-content-between">
+      <div class="row">
         @if (count($images)>0)
             @foreach ($images as $item)
                 <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
@@ -334,7 +334,7 @@
       </div>
     </div>
     <div class="mb-3">
-      <label for="imageUpload" class="form-label">Change listing Images</label>
+      <label for="imageUpload" class="form-label">Replace all images</label>
       <input type="file" class="form-control" id="imageUpload" name="images[]" accept="image/*" multiple>
     </div>
 
