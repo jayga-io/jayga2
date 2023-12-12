@@ -163,7 +163,7 @@ class ListerDashboardController extends Controller
 
 
     public function update_listing(Request $request){
-        dd($request->input('lsimage'));
+        dd($request->all());
         Listing::where('listing_id', $request->input('listing_id'))->update([
             
             'listing_title' => $request->input('listing_title'),
@@ -205,7 +205,7 @@ class ListerDashboardController extends Controller
             
         ]);
 
-        if($filez = $request->input('ls-image')){
+        if($filez = $request->input('lsadd')){
             foreach ($filez as $ls) {
                 $path = $ls->store('listings');
                 ListingImages::create([
