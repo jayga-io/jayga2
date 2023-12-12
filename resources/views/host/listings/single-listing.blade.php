@@ -7,7 +7,12 @@
   <link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" />
   <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
   <title>Edit Listing</title>
- 
+ <style>
+  .AClass{
+    right:0px;
+    position: absolute;
+}
+ </style>
 </head>
 <body>
 
@@ -306,7 +311,10 @@
       <div class="row">
         @if (count($images)>0)
             @foreach ($images as $item)
-                <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" style="position: relative">
+                  <button type="button" class="close AClass">
+                    <span>&times;</span>
+                 </button>
                     <img
                         src="{{asset('/uploads/'. $item->listing_targetlocation)}}"
                         class=" shadow-1-strong rounded mb-4"
@@ -322,7 +330,7 @@
         <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 mx-5">
           
           
-            <input type="file" class="form-control text-center p-5 align-items-center" name="lsimages[]" id="lsimage" multiple>
+            <input type="file" class="form-control text-center p-5 align-items-center" name="lsimages[]" id="lsimage" multiple placeholder="Add More Images">
             <label class=" form-control p-1 text-center" for="">Add more images</label>
             
          
