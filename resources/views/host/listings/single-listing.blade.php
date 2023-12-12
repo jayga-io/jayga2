@@ -303,7 +303,7 @@
     <!-- Images -->
 
     <div class="mb-3">
-      <div class="row d-flex ">
+      <div class="row d-flex justify-content-between">
         @if (count($images)>0)
             @foreach ($images as $item)
                 <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
