@@ -322,7 +322,7 @@
         <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 mx-5" style="border: 2px dashed">
           
             <label for="">Add more images</label>
-            <input type="file" class="form-control me-auto" name="ls-image[]" multiple>
+            <input type="file" class="form-control me-auto" name="lsimage[]" multiple>
           
             
           </div>
