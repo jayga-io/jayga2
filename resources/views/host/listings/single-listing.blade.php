@@ -310,7 +310,7 @@
                     <img
                         src="{{asset('/uploads/'. $item->listing_targetlocation)}}"
                         class=" shadow-1-strong rounded mb-4"
-                        alt="listing_images" style="width: 100% ; height: 64%; object-fit:contain"
+                        alt="listing_images" style="width: 100% ; height: 64%; aspect-ratio:100%; object-fit:contain"
                     />
                 </div>
             @endforeach
@@ -323,7 +323,7 @@
           
           <div class="mb-3" style="border: dashed">
             <input type="file" class="form-control text-center p-5 align-items-center" name="lsimages[]" id="lsimage" multiple>
-            <label class="m-auto text-center align-items-center" for="form-label">Add more images</label>
+            <label class="text-center" for="">Add more images</label>
             
           </div>
             
