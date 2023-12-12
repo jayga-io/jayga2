@@ -306,7 +306,7 @@
       <div class="row d-flex ">
         @if (count($images)>0)
             @foreach ($images as $item)
-                <div class="col-lg-4 col-md-12 mt-4 mb-4 mb-lg-0">
+                <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
                     <img
                         src="{{asset('/uploads/'. $item->listing_targetlocation)}}"
                         class=" shadow-1-strong rounded mb-4"
@@ -319,11 +319,12 @@
                           <span>No images found</span>
                         </div>
         @endif
-        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 mx-5" style="border: 2px dashed">
+        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 mx-5">
           
-          <div class="mb-3">
-            <label for="">Add more images</label>
-            <input type="file" name="lsimages[]" id="lsimage" multiple>
+          <div class="mb-3" style="border: dashed">
+            <input type="file" class="form-control text-center p-5 align-items-center" name="lsimages[]" id="lsimage" multiple>
+            <label class="m-auto text-center align-items-center" for="form-label">Add more images</label>
+            
           </div>
             
           </div>
