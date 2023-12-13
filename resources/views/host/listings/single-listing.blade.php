@@ -311,7 +311,7 @@
       <div class="row">
         @if (count($images)>0)
             @foreach ($images as $item)
-                <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" style="position: relative">
+                <div class="col-lg-4 col-md-4 col-sm-12 mb-4 mb-lg-0" style="position: relative">
                   <a href="/user/remove/listing-image/{{$item->listing_img_id}}" class="close AClass btn btn-danger">
                     <span>&minus;</span>
                   </a>
@@ -323,11 +323,11 @@
                 </div>
             @endforeach
         @else
-                        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                        <div class="col-lg-4 col-md-4 col-sm-12 mb-4 mb-lg-0">
                           <span>No images found</span>
                         </div>
         @endif
-        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 mx-5">
+        <div class="col-lg-4 col-md-4 col-sm-12 mb-4 mb-lg-0 mx-5">
           
           
             <input type="file" class="form-control text-center p-5 align-items-center" name="lsimages[]" id="lsimage" multiple placeholder="Add More Images">
