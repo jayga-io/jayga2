@@ -253,5 +253,12 @@ class ListerDashboardController extends Controller
        return redirect()->back();
     }
 
+    public function remove_image(Request $request, $id){
+       $file = ListingImages::where('listing_img_id', $id)->get();
+        Storage::delete($file[0]->listing_targetlocation);
+        ListingImages::where('listing_img_id', $id)->delete();
+        toastr()->addSuccess('Listing image removed');
+        return redirect()->back();
+    }
     
 }

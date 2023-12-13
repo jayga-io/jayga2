@@ -312,8 +312,8 @@
         @if (count($images)>0)
             @foreach ($images as $item)
                 <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" style="position: relative">
-                  <a href="#" class="close AClass btn btn-danger">
-                    <span>&times;</span>
+                  <a href="/user/remove/listing-image/{{$item->listing_img_id}}" class="close AClass btn btn-danger">
+                    <span>&minus;</span>
                   </a>
                     <img
                         src="{{asset('/uploads/'. $item->listing_targetlocation)}}"
