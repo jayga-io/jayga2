@@ -45,7 +45,7 @@
                     <h2>Share some info about your place</h2>
                     <p>You'll add more details later</p>
                 </div>
-                <form action="{{route('listinginfo')}}" method="POST">
+                <form action="{{route('changeinfos')}}" method="POST">
                     @csrf
                 
                     <div class="input-text">
@@ -57,7 +57,12 @@
                                 </div>
                                 <div class="input-group w-auto justify-content-end align-items-center">
                                     <input type="button" value="-"  class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " data-field="guest_num">
-                                    <input type="number" step="1" max="10" value="1" name="guest_num" class="quantity-field border-0 text-center w-25">
+                                    @if (Session::get('guest_num') == 0)
+                                        <input type="number" step="1" max="10" value="1" name="guest_num" class="quantity-field border-0 text-center w-25">
+                                    @else
+                                    <input type="number" step="1" max="10" value="{{Session::get('guest_num')}}" name="guest_num" class="quantity-field border-0 text-center w-25">
+                                    @endif
+                                    
                                     <input type="button" value="+"  class="button-plus border rounded-circle icon-shape icon-sm " data-field="guest_num">
                                 </div>
                             </div>
@@ -69,7 +74,12 @@
                                 </div>
                                 <div class="input-group w-auto justify-content-end align-items-center">
                                     <input type="button"  value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " data-field="bed_num">
-                                    <input type="number" step="1" max="10" value="1" name="bed_num" class="quantity-field border-0 text-center w-25">
+                                    @if (Session::get('bed_num') == 0)
+                                        <input type="number" step="1" max="10" value="1" name="bed_num" class="quantity-field border-0 text-center w-25">
+                                    @else
+                                    <input type="number" step="1" max="10" value="{{Session::get('bed_num')}}" name="bed_num" class="quantity-field border-0 text-center w-25">
+                                    @endif
+                                    
                                     <input type="button"  value="+" class="button-plus border rounded-circle icon-shape icon-sm lh-0" data-field="bed_num">
                                 </div>
                             </div>
@@ -81,7 +91,12 @@
                                 </div>
                                 <div class="input-group w-auto justify-content-end align-items-center">
                                     <input type="button" value="-"  class="button-minus border rounded-circle  icon-shape icon-sm mx-1 lh-0" data-field="bathroom_num">
-                                    <input type="number" step="1" max="10" value="1" name="bathroom_num" class="quantity-field border-0 text-center w-25">
+                                    @if (Session::get('bathroom_num') == 0)
+                                        <input type="number" step="1" max="10" value="1" name="bathroom_num" class="quantity-field border-0 text-center w-25">
+                                    @else
+                                    <input type="number" step="1" max="10" value="{{Session::get('bathroom_num')}}" name="bathroom_num" class="quantity-field border-0 text-center w-25">
+                                    @endif
+                                    
                                     <input type="button" value="+"  class="button-plus border rounded-circle icon-shape icon-sm lh-0" data-field="bathroom_num">
                                 </div>
                             </div>
@@ -92,8 +107,12 @@
                                     <div class="input-div">
                                     
                                         <input type="hidden" name="allow_short_stay" value="0" >
+                                        @if (Session::get('allow_short_stay') == 0)
+                                            <input type="checkbox" name="allow_short_stay" value="1" >
+                                        @else
+                                        <input type="checkbox" checked name="allow_short_stay" value="1" >
+                                        @endif
                                         
-                                        <input type="checkbox" name="allow_short_stay" value="1" >
                                         
                                     </div>
                                 </div>

@@ -204,7 +204,7 @@ section {
               @else
                 <div class="d-flex justify-content-between">
                     <h5 class="card-title">Remaining Balance</h5><br>
-                  @if ($details[0]->earnings < 5000 )
+                  @if ($details[0]->earnings < 3000 )
                     <button type="button" href="{{route('withdraw')}}" class="btn btn-warning" disabled>Withdraw</button>
                   @else
                     <a type="button" href="{{route('withdraw')}}" class="btn btn-warning">Withdraw</a>
@@ -220,7 +220,7 @@ section {
              
                  
              
-              <span>Minimun withdrawal threshold : 5000 BDT</span>
+              <span>Minimun withdrawal threshold : 3000 BDT</span>
             </div>
           </div>
         </div>

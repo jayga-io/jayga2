@@ -6,8 +6,8 @@
         <span style="font-weight: 900;">Host Setup</span>
     </div>
     <div class="steps-content">
-        <h3>Step <span class="step-number">5</span></h3>
-        <p class="step-number-content active">Please complete your account information to host your own place.</p>
+        <h3>Step <span class="step-number">4</span></h3>
+        
         <p class="step-number-content d-none">Whether it’s a room for stay or an experience to offer, Jayga has got you covered</p>
         <p class="step-number-content d-none">Provide basic info about your house</p>
         
@@ -19,11 +19,12 @@
        
     </div>
     <ul class="progress-bar">
-        <li class="active">Personal Information</li>
+        
         <li class="active">Hosting Type</li>
         
         <li class="active">Basic Listing info</li>
         <li class="active">Share some info about your place</li>
+        <li class="active">Attach NID Documents</li>
         <li>Amenities for guests</li>
         <li>Restrictions for guests</li>
         <li>Upload Listing Images</li>
@@ -70,7 +71,7 @@
                        
                     
                     <div class="buttons button_space">
-                        <a href="{{route('step2')}}" class="btn btn-secondary">Back</a>
+                        <a href="{{route('correctinfos')}}" class="btn btn-secondary">Back</a>
                         <button type="submit" class="btn btn-primary">Next Step</button>
                     </div>
                 </form>

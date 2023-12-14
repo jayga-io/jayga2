@@ -6,7 +6,7 @@
         <span style="font-weight: 900;">Host Setup</span>
     </div>
     <div class="steps-content">
-        <h3>Step <span class="step-number">2</span></h3>
+        <h3>Step <span class="step-number">3</span></h3>
        
         <p class="step-number-content d-none">Whether it’s a room for stay or an experience to offer, Jayga has got you covered</p>
         <p class="step-number-content active">Provide basic info about your house</p>
@@ -24,7 +24,6 @@
         
         <li class="active">Basic Listing info</li>
         <li>Share some info about your place</li>
-        <li >Attach NID Documents</li>
         <li>Amenities for guests</li>
         <li>Restrictions for guests</li>
         <li>Upload Listing Images</li>
@@ -40,31 +39,38 @@
 
             <div class="main active">
                 <small><img src="{{asset('assets/img/logo/jayga-appicon1.png')}}" style="width: 50px; height: 50px;" alt="" srcset=""></small>
-                <form action="{{route('listingcreate')}}" method="POST">
+                <form action="{{route('changelisting')}}" method="POST">
                     @csrf
                     <div class="text">
                         <h2>Now, let’s give your house a intro</h2>
                         <p>Short titles work best. Have fun with it - you can always change it later</p>
                     </div>
                     <div class="input-text">
-                        <input type="text" name="listing_title" required require>
+                        <input type="text" name="listing_title" placeholder="{{Session::get('listing_title')}}" required require>
                         <span>House Title</span>
                     
                     </div>
                     <div class="input-text">
-                        <textarea type="text" name="listing_description" class="form-control" required require></textarea>
+                        <textarea type="text" name="listing_description" class="form-control" placeholder="{{Session::get('listing_description')}}" required require></textarea>
                         <span>House Description</span>
                     
                     </div>
                     <h2>Describe your house</h2>
                     <div class="input-text">
                         <div class="input-div">
-                                <input type="hidden" name="peaceful" value="0">
+                            <input type="hidden" name="peaceful" value="0">
+                            @if (Session::get('describe_peaceful') == 0)
                                 <input type="checkbox" name="peaceful" value="1">
+                            @else
+                                <input type="checkbox" name="peaceful" checked value="1">
+                            @endif
+                                
+                                
                                 <label>peaceful</label>
                         </div>
                        <div class="input-div">
                             <input type="hidden" name="lively" value="0">
+                            
                             <input type="checkbox" name="lively" value=1 data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
                             <label>Lively</label>
                        </div>
@@ -74,13 +80,24 @@
                     <div class="input-text">
                         <div class="input-div">
                                 <input type="hidden" name="describe_familyfriendly" value="0">
-                            <input type="checkbox" name="describe_familyfriendly" value=1  data-toggle="toggle" data-onstyle="success"
+                                @if (Session::get('describe_familyfriendly') == 0)
+                                    <input type="checkbox" name="describe_familyfriendly" value=1  data-toggle="toggle" data-onstyle="success"
                                 data-offstyle="danger">
+                                @else
+                                <input type="checkbox" name="describe_familyfriendly" value=1 checked  data-toggle="toggle" data-onstyle="success"
+                                data-offstyle="danger">
+                                @endif
+                            
                             <label>Family friendly</label>
                         </div>
                         <div class="input-div">
                             <input type="hidden" name="door_lock" value="0">
-                            <input type="checkbox" name="door_lock" value=1 data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+                            @if (Session::get('door_lock') == 0)
+                                <input type="checkbox" name="door_lock" value=1 data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+                            @else
+                            <input type="checkbox" name="door_lock" value=1 data-toggle="toggle" checked data-onstyle="success" data-offstyle="danger">
+                            @endif
+                            
                             <label>Room Lock available?</label>
                         </div>
                     
@@ -104,7 +121,12 @@
                     <div class="input-text">
                         <label>Select Listing Type</label>
                         <select name="listing_type">
-                            <option>Select</option>
+                            @if (Session::get('listing_type') == 0)
+                                <option>Select</option>
+                            @else
+                                <option value="{{Session::get('listing_type')}}">{{Session::get('listing_type')}}</option>
+                            @endif
+                            
                             <option value="room">Room</option>
                             <option value="apartment">Apartment</option>
                             <option value="hotel">Hotel</option>
@@ -122,7 +144,7 @@
                     
                     <div class="buttons button_space">
                         <a href="{{route('step2')}}" class="btn btn-secondary">Back</a>
-                        <button type="submit" class="next_button">Next Step</button>
+                        <button type="submit" class="btn btn-success">Next Step</button>
                     </div>
                 </form>
                

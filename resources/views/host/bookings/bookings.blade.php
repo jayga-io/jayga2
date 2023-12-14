@@ -149,7 +149,7 @@
 
                                 <td>7%</td>
 
-                                <td>{{$item->pay_amount - ($item->pay_amount * 7)/100 }} tk/-</td>
+                                <td>{{$item->pay_amount - ($item->pay_amount * 6.9)/100 }} tk/-</td>
 
                                 @if ($item->booking_status == 1)
                                     <td><span class="badge rounded-pill bg-success">Confirmed</span></td>

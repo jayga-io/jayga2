@@ -58,6 +58,26 @@ class HostController extends Controller
     }
 
 
+    //edit part
+
+    public function edit_listing(Request $request){
+        
+        return view('host.setup.forms.editforms.edit-listing');
+    }
+
+    public function edit_infos(Request $request){
+        return view('host.setup.forms.editforms.infos');
+    }
+
+    public function edit_amenities(Request $request){
+        return view('host.setup.forms.editforms.amenities');
+    }
+
+    public function edit_restrictions(Request $request){
+        return view('host.setup.forms.editforms.restrictions');
+    }
+
+
     //forms part
     public function user_create(Request $request){
         $phone = $request->session()->get('phone');
@@ -74,7 +94,7 @@ class HostController extends Controller
     public function create_listing(Request $request){
         $ph = $request->session()->get('phone');
         $user = User::where('phone', $ph)->get();
-        $listing = Listing::where('listing_title', $request->input('listing_title'))->get();
+        $listing = Listing::where('listing_title', $request->input('listing_title'))->where('lister_id', $request->session()->get('user'))->get();
         if(count($listing) == 0){
             Listing::create([
                 'lister_id' => $user[0]->id,
@@ -86,8 +106,16 @@ class HostController extends Controller
                 'door_lock' => $request->input('door_lock'),
                 'listing_type' => $request->input('listing_type'),
             ]);
+
+            $id = Listing::where('listing_title', $request->input('listing_title'))->where('lister_id', $request->session()->get('user'))->get();
             session([ 
-                'listing_title' => $request->input('listing_title')
+                'listing_id' => $id[0]->listing_id,
+                'listing_title' => $request->input('listing_title'),
+                'listing_description' => $request->input('listing_description'),
+                'describe_peaceful' => $request->input('peaceful'),
+                'describe_familyfriendly' => $request->input('describe_familyfriendly'),
+                'door_lock' => $request->input('door_lock'),
+                'listing_type' => $request->input('listing_type'),
             ]);
             return redirect(route('step4'));
         }else{
@@ -104,6 +132,12 @@ class HostController extends Controller
         
         if(count($listing)>0){
             Listing::where('listing_id', $listing[0]->listing_id)->update([
+                'guest_num' => $request->input('guest_num'),
+                'bed_num' => $request->input('bed_num'),
+                'bathroom_num' => $request->input('bathroom_num'),
+                'allow_short_stay' => $request->input('allow_short_stay')
+            ]);
+            session([
                 'guest_num' => $request->input('guest_num'),
                 'bed_num' => $request->input('bed_num'),
                 'bathroom_num' => $request->input('bathroom_num'),
@@ -193,6 +227,24 @@ class HostController extends Controller
             'cctv' => $request->input('cctv'),
         ]);
 
+        session([
+            'listing_id' => $listing[0]->listing_id,
+            'wifi' => $request->input('wifi'),
+            'tv' => $request->input('tv'),
+            'kitchen' => $request->input('kitchen'),
+            'washing_machine' => $request->input('washing_machine'),
+            'free_parking' => $request->input('free_parking'),
+            'breakfast_included' => $request->input('breakfast_included'),
+            'air_condition' => $request->input('air_condition'),
+            'dedicated_workspace' => $request->input('dedicated_workspace'),
+            
+            'gym' => $request->input('gym'),
+            'beach_lake_access' => $request->input('beach_lake_access'),
+            
+            'fire_extinguish' => $request->input('fire_extinguish'),
+            'cctv' => $request->input('cctv'),
+        ]);
+
             return redirect(route('step7'));
         }else{
             return redirect(route('step6'));
@@ -213,6 +265,15 @@ class HostController extends Controller
                 'unknown_guest_entry' => $request->input('unknown_guest_entry'),
                 
                 
+            ]);
+
+            ssession([
+                'listing_id' => $listing[0]->listing_id,
+                'indoor_smoking' => $request->input('indoor_smoking'),
+                'party' => $request->input('party'),
+                'pets' => $request->input('pets'),
+                'late_night_entry' => $request->input('late_night_entry'),
+                'unknown_guest_entry' => $request->input('unknown_guest_entry'),
             ]);
 
             return redirect(route('step8'));
@@ -272,5 +333,116 @@ class HostController extends Controller
         }
     }
 
+
+
+
+
+
+
+    public function update_listing(Request $request){
+       
+      
+            Listing::where('listing_id', $request->session()->get('listing_id'))->where('lister_id', $request->session()->get('user'))->update([
+                
+                'listing_title' => $request->input('listing_title'),
+                'listing_description' => $request->input('listing_description'),
+                'describe_peaceful' => $request->input('peaceful'),
+                'describe_familyfriendly' => $request->input('describe_familyfriendly'),
+                'door_lock' => $request->input('door_lock'),
+                'listing_type' => $request->input('listing_type'),
+            ]);
+
+            session([
+                'listing_title' => $request->input('listing_title'),
+                'listing_description' => $request->input('listing_description'),
+                'describe_peaceful' => $request->input('peaceful'),
+                'describe_familyfriendly' => $request->input('describe_familyfriendly'),
+                'door_lock' => $request->input('door_lock'),
+                'listing_type' => $request->input('listing_type'),
+            ]);
+           
+            toastr()->addSuccess('Listing info updated');
+            return redirect(route('step4'));
+    }
+
+    public function update_infos(Request $request){
+        Listing::where('listing_id', $request->session()->get('listing_id'))->update([
+            'guest_num' => $request->input('guest_num'),
+            'bed_num' => $request->input('bed_num'),
+            'bathroom_num' => $request->input('bathroom_num'),
+            'allow_short_stay' => $request->input('allow_short_stay')
+        ]);
+        session([
+            'guest_num' => $request->input('guest_num'),
+            'bed_num' => $request->input('bed_num'),
+            'bathroom_num' => $request->input('bathroom_num'),
+            'allow_short_stay' => $request->input('allow_short_stay')
+        ]);
+        toastr()->addSuccess('Listing info updated');
+            return redirect(route('step5'));
+    }
+
+    public function update_amenities(Request $request){
+        ListingGuestAmenities::where('listing_id', $request->session()->get('listing_id'))->update([
+            
+            'wifi' => $request->input('wifi'),
+            'tv' => $request->input('tv'),
+            'kitchen' => $request->input('kitchen'),
+            'washing_machine' => $request->input('washing_machine'),
+            'free_parking' => $request->input('free_parking'),
+            'breakfast_included' => $request->input('breakfast_included'),
+            'air_condition' => $request->input('air_condition'),
+            'dedicated_workspace' => $request->input('dedicated_workspace'),
+            
+            'gym' => $request->input('gym'),
+            'beach_lake_access' => $request->input('beach_lake_access'),
+            
+            'fire_extinguish' => $request->input('fire_extinguish'),
+            'cctv' => $request->input('cctv'),
+        ]);
+
+        session([
+            'wifi' => $request->input('wifi'),
+            'tv' => $request->input('tv'),
+            'kitchen' => $request->input('kitchen'),
+            'washing_machine' => $request->input('washing_machine'),
+            'free_parking' => $request->input('free_parking'),
+            'breakfast_included' => $request->input('breakfast_included'),
+            'air_condition' => $request->input('air_condition'),
+            'dedicated_workspace' => $request->input('dedicated_workspace'),
+            
+            'gym' => $request->input('gym'),
+            'beach_lake_access' => $request->input('beach_lake_access'),
+            
+            'fire_extinguish' => $request->input('fire_extinguish'),
+            'cctv' => $request->input('cctv'),
+        ]);
+        toastr()->addSuccess('Listing info updated');
+        return redirect(route('step7'));
+    }
+
+    public function update_restrictions(Request $request){
+        ListingRestrictions::where('listing_id', $request->session()->get('listing_id'))->update([
+            
+            'indoor_smoking' => $request->input('indoor_smoking'),
+            'party' => $request->input('party'),
+            'pets' => $request->input('pets'),
+            'late_night_entry' => $request->input('late_night_entry'),
+            'unknown_guest_entry' => $request->input('unknown_guest_entry'),
+            
+            
+        ]);
+
+        session([
+            
+            'indoor_smoking' => $request->input('indoor_smoking'),
+            'party' => $request->input('party'),
+            'pets' => $request->input('pets'),
+            'late_night_entry' => $request->input('late_night_entry'),
+            'unknown_guest_entry' => $request->input('unknown_guest_entry'),
+        ]);
+
+        return redirect(route('step8'));
+    }
 
 }

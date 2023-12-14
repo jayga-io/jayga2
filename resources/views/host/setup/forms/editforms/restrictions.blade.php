@@ -45,43 +45,73 @@
                     <h2>Restrictions</h2>
                     <p>Let the guests know what are not allowed</p>
                 </div>
-                <form action="{{route('restrictions')}}" method="POST">
+                <form action="{{route('changerestrictions')}}" method="POST">
                     @csrf
                 <div class="input-text">
                     <div class="input-div">
                         
                     
                         <input type="hidden" name="indoor_smoking" value="0">
-                        <input type="checkbox" name="indoor_smoking" value=1 data-toggle="toggle" data-onstyle="success"
+                        @if (Session::get('indoor_smoking') == 0)
+                            <input type="checkbox" name="indoor_smoking" value=1 data-toggle="toggle" data-onstyle="success"
                             data-offstyle="danger">
+                        @else
+                        <input type="checkbox" name="indoor_smoking" checked value=1 data-toggle="toggle" data-onstyle="success"
+                        data-offstyle="danger">
+                        @endif
+                        
                         <label>Indoor Smoking</label>
                     </div>
                     <div class="input-div"> 
                         <input type="hidden" name="party" value="0">
-                        <input type="checkbox" name="party" value=1 data-toggle="toggle" data-onstyle="success"
+                        @if (Session::get('party') == 0)
+                            <input type="checkbox" name="party" value=1 data-toggle="toggle" data-onstyle="success"
                             data-offstyle="danger">
+                        @else
+                        <input type="checkbox" name="party" value=1 checked data-toggle="toggle" data-onstyle="success"
+                        data-offstyle="danger">
+                        @endif
+                        
                         <label>Party</label>
                     </div>
                 </div>
                 <div class="input-text">
                     <div class="input-div">
                         <input type="hidden" name="pets" value="0">
-                        <input type="checkbox" name="pets" value=1 data-toggle="toggle" data-onstyle="success"
+                        @if (Session::get('pets') == 0)
+                            <input type="checkbox" name="pets" value=1 data-toggle="toggle" data-onstyle="success"
                             data-offstyle="danger">
+                        @else
+                        <input type="checkbox" name="pets" checked value=1 data-toggle="toggle" data-onstyle="success"
+                        data-offstyle="danger">
+                        @endif
+                        
                         <label>Pets</label>
                     </div>
                     <div class="input-div">
                         <input type="hidden" name="late_night_entry" value="0">
-                        <input type="checkbox" name="late_night_entry" value=1 data-toggle="toggle" data-onstyle="success"
+                        @if (Session::get('late_night_entry') == 0)
+                            <input type="checkbox" name="late_night_entry" value=1 data-toggle="toggle" data-onstyle="success"
                             data-offstyle="danger">
+                        @else
+                        <input type="checkbox" name="late_night_entry" checked value=1 data-toggle="toggle" data-onstyle="success"
+                        data-offstyle="danger">
+                        @endif
+                        
                         <label>Late Night Entry</label>
                     </div>
                 </div>
                 <div class="input-text">
                     <div class="input-div">
                         <input type="hidden" name="unknown_guest_entry" value="0">
-                        <input type="checkbox" name="unknown_guest_entry" value=1 data-toggle="toggle" data-onstyle="success"
-                            data-offstyle="danger">
+                        @if (Session::get('unknown_guest_entry') == 0)
+                           <input type="checkbox" name="unknown_guest_entry" value=1 data-toggle="toggle" data-onstyle="success"
+                            data-offstyle="danger"> 
+                        @else
+                        <input type="checkbox" name="unknown_guest_entry" checked value=1 data-toggle="toggle" data-onstyle="success"
+                        data-offstyle="danger">
+                        @endif
+                        
                         <label >Unknown Guest Entry</label>
                     </div>
                     

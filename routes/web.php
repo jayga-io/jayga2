@@ -113,6 +113,20 @@ Route::prefix('setup')->group(function(){
                 Route::post('/upload/listing/images', [HostController::class, 'upload_listing_images'])->name('listingimages');
                 Route::post('/set/address', [HostController::class, 'set_address'])->name('setaddress');
             });
+
+            Route::prefix('update')->group(function(){
+                Route::get('/listing', [HostController::class, 'edit_listing'])->name('correctlisting');
+                Route::get('/infos', [HostController::class, 'edit_infos'])->name('correctinfos');
+                Route::get('/amenities', [HostController::class, 'edit_amenities'])->name('correctamenities');
+                Route::get('/restrictions', [HostController::class, 'edit_restrictions'])->name('correctrestrictions');
+
+
+                Route::post('/listing/confirm', [HostController::class, 'update_listing'])->name('changelisting');
+                Route::post('infos/confirm', [HostController::class, 'update_infos'])->name('changeinfos');
+                Route::post('amenities/confirm', [HostController::class, 'update_amenities'])->name('changeamenities');
+                Route::post('restrictions/confirm', [HostController::class, 'update_restrictions'])->name('changerestrictions');
+                
+            });
     });
     
 });
