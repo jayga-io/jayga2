@@ -17,7 +17,7 @@ use Image;
 class HostController extends Controller
 {
     public function userform(){
-        return view('host.setup.forms.userform');
+       return redirect(route('step2'));
     }
 
     public function hostypeform(){
@@ -267,7 +267,7 @@ class HostController extends Controller
                 
             ]);
 
-            ssession([
+            session([
                 'listing_id' => $listing[0]->listing_id,
                 'indoor_smoking' => $request->input('indoor_smoking'),
                 'party' => $request->input('party'),
