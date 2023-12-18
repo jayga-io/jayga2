@@ -38,8 +38,10 @@ class BankDetailsController extends Controller
         ]);
 
         if($validated){
-           
-            BankDetails::create([
+           $acc = BankDetails::where('lister_id', $request->session()->get('user'))->get();
+
+           if(count($acc) == 0){
+             BankDetails::create([
                 'lister_id' => $request->session()->get('user'),
                 'acc_name' => $request->input('acc_name'),
                 'acc_number' => $request->input('acc_number'),
@@ -47,6 +49,17 @@ class BankDetailsController extends Controller
                 'routing_number' => $request->input('routing_number'),
                 'branch_name' => $request->input('branch_name')
             ]);
+           }else{
+            BankDetails::where('lister_id', $request->session()->get('user'))->update([
+                
+                'acc_name' => $request->input('acc_name'),
+                'acc_number' => $request->input('acc_number'),
+                'bank_name' => $request->input('bank_name'),
+                'routing_number' => $request->input('routing_number'),
+                'branch_name' => $request->input('branch_name')
+            ]);
+           }
+           
             toastr()->addSuccess('Bank Details Saved');
             return redirect()->back();
         }else{

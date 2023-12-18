@@ -108,6 +108,12 @@ class HostController extends Controller
             ]);
 
             $id = Listing::where('listing_title', $request->input('listing_title'))->where('lister_id', $request->session()->get('user'))->get();
+            ListingGuestAmenities::create([
+                'listing_id' => $id[0]->listing_id
+            ]);
+            ListingRestrictions::create([
+                'listing_id' => $id[0]->listing_id
+            ]);
             session([ 
                 'listing_id' => $id[0]->listing_id,
                 'listing_title' => $request->input('listing_title'),

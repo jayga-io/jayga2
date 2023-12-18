@@ -74,6 +74,8 @@
 					
 					
 					@endif
+
+         
     <div class="row">
         <div class="col-lg-6 col-md-12 mx-auto">
             <div class="card mb-4 rounded-5" >

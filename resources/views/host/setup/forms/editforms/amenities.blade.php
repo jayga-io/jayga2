@@ -2,7 +2,7 @@
 @section('content')
 <div class="left-side">
     <div class="left-heading">
-        <img src="{{asset('assets/img/logo/jayga-01.png')}}" alt="" style="width: 100px; height: 100px;" srcset="">
+        <a href="{{route('userdash')}}"><img src="{{asset('assets/img/logo/jayga-01.png')}}" alt="" style="width: 100px; height: 100px;" srcset=""></a>
         <span style="font-weight: 900;">Host Setup</span>
     </div>
     <div class="steps-content">

@@ -155,7 +155,7 @@
                                     <td><span class="badge rounded-pill bg-success">Confirmed</span></td>
                                 @endif
                                 <td><a class="btn btn-success"
-                                        href="/user/booking-complete/{{ $item->booking_id }}/{{$item->pay_amount - ($item->pay_amount * 7)/100 }}">Mark Complete</a></td>
+                                        href="/user/booking-complete/{{ $item->booking_id }}/{{$item->pay_amount - ($item->pay_amount * 6.9)/100 }}">Mark Complete</a></td>
                                 <td> <a class="btn btn-danger"
                                         href="/user/booking-cancel/{{ $item->booking_id }}">Cancel</a></td>
                             </tr>

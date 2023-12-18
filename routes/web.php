@@ -12,6 +12,7 @@ use App\Http\Controllers\BankDetailsController;
 use App\Models\User;
 use App\Models\Listing;
 use App\Http\Middleware\ensureotp;
+use App\Http\Middleware\HasBankAccount;
 use Illuminate\Http\Request;
 
 /*
@@ -162,7 +163,7 @@ Route::prefix('user')->group(function(){
         Route::post('/add/bank', [BankDetailsController::class, 'store'])->name('addbank');
 
         //withdraw
-        Route::get('/withdraw', [AccountsController::class, 'withdraw'])->name('withdraw');
+        Route::get('/withdraw', [AccountsController::class, 'withdraw'])->name('withdraw')->middleware(HasBankAccount::class);
         Route::post('/withdraw/confirm', [AccountsController::class, 'withdraw_request'])->name('withdrawconfirm');
     });
 

@@ -50,7 +50,7 @@
   border-radius: 16px;
   border: solid 4px rgba(255, 255, 255, 0.1);
 
-  background-image: url("https://products.ls.graphics/mesh-gradients/images/78.-Night-sky.jpg");
+ /* background-image: url("https://products.ls.graphics/mesh-gradients/images/78.-Night-sky.jpg"); */
   background-position: center;
   background-size: cover;
 
@@ -160,6 +160,15 @@ section {
     </div>
 
   <div class="container mt-5">
+    @if(session()->has('note'))
+					
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>{{ session()->get('note') }}</strong>
+      
+    </div>
+    
+    
+    @endif
     <div class="row">
         <div class="col-sm-12 col-md-4">
           <div class="card text-white rounded-3 bg-success py-2" style="height: 100%;">
@@ -246,9 +255,9 @@ section {
               @else
               <div class="card-debit">
                 <div class="top">
-                  <h2>{{$bank[0]->acc_name}}</h2>
+                  <h2>{{$bank[0]->acc_name}} <span style="font-size: 10px">(Name on the account)</span></h2>
                   <p style="font-size: 12px">{{$bank[0]->bank_name}}</p>
-                  <img width="50" height="20" src="https://img.icons8.com/fluency/48/bank.png" alt="bank" />
+                  <i class="bi bi-bank2"></i>
           
                 </div>
                 <div class="infos">
@@ -349,6 +358,12 @@ section {
             </ul>
           </div>
           @endif
+
+          <div class="alert alert-success">
+            <ul>
+              <li>Adding a bank account would replace your previously saved bank account with jayga. Only an account can be used at a time with Jayga</li>
+            </ul>
+          </div>
           <label for="bank">Bank Name</label>
           <input type="text" name="bank_name" class="form-control mb-3">
           <label for="bank">Name on the account</label>
@@ -373,7 +388,9 @@ section {
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     
     <script>
-        let table2 = new DataTable('#myTable2');
+        let table2 = new DataTable('#myTable2', {
+            scrollX: true
+        });
     </script>
 	
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
