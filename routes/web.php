@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Listing;
 use App\Http\Middleware\ensureotp;
 use App\Http\Middleware\HasBankAccount;
+use App\Http\Middleware\HasProfile;
 use Illuminate\Http\Request;
 
 /*
@@ -86,14 +87,15 @@ Route::prefix('host')->group(function(){
     Route::post('/get-otp', [LoginController::class, 'get_otp'])->name('sendotp');
     Route::post('/verify', [LoginController::class, 'otpverify'])->name('otpverify');
     Route::get('/setup', function(){
-        return redirect('/setup/step/1');
-    })->middleware(ensureotp::class);
+        return redirect('/setup/step/2');
+    });
     
 });
 
 Route::prefix('setup')->group(function(){
     Route::middleware(ensureotp::class)->group(function(){
-        Route::get('/step/1', [HostController::class, 'userform'])->name('step1');
+        Route::middleware(HasProfile::class)->group(function(){
+            Route::get('/step/1', [HostController::class, 'userform'])->name('step1');
             Route::get('/step/2', [HostController::class, 'hostypeform'])->name('step2');
             Route::get('/step/3', [HostController::class, 'listingform'])->name('step3');
             Route::get('/step/4', [HostController::class, 'listing_info'])->name('step4');
@@ -128,7 +130,11 @@ Route::prefix('setup')->group(function(){
                 Route::post('restrictions/confirm', [HostController::class, 'update_restrictions'])->name('changerestrictions');
                 
             });
+        });
+        
+            
     });
+
     
 });
 
@@ -137,34 +143,61 @@ Route::prefix('setup')->group(function(){
 
 Route::prefix('user')->group(function(){
     Route::middleware(ensureotp::class)->group(function(){
-        Route::get('/dashboard', [ListerDashboardController::class, 'index'])->name('userdash');
+            Route::get('/dashboard', [ListerDashboardController::class, 'index'])->name('userdash');
 
-        //booking
-        Route::get('/manage/bookings', [ListerDashboardController::class, 'bookings'])->name('managebookings');
-        Route::get('/booking-confirm/{id}', [ListerDashboardController::class, 'confirm'])->name('bookconfirm');
-        Route::get('/booking-deny/{id}', [ListerDashboardController::class, 'deny'])->name('bookdeny');
-        Route::get('/booking-cancel/{id}', [ListerDashboardController::class, 'cancel'])->name('bookcancel');
-        Route::get('/booking-complete/{id}/{amount}', [ListerDashboardController::class, 'complete'])->name('completebooking');
+            //booking
+            Route::get('/manage/bookings', [ListerDashboardController::class, 'bookings'])->name('managebookings');
+            Route::get('/booking-confirm/{id}', [ListerDashboardController::class, 'confirm'])->name('bookconfirm');
+            Route::get('/booking-deny/{id}', [ListerDashboardController::class, 'deny'])->name('bookdeny');
+            Route::get('/booking-cancel/{id}', [ListerDashboardController::class, 'cancel'])->name('bookcancel');
+            Route::get('/booking-complete/{id}/{amount}', [ListerDashboardController::class, 'complete'])->name('completebooking');
 
-        //profile
-        Route::get('/profile', [ListerUserController::class, 'index'])->name('userprofile');
-        Route::post('/update/profile', [ListerUserController::class, 'create'])->name('createuserprofile');
+            //profile
+            Route::get('/profile', [ListerUserController::class, 'index'])->name('userprofile');
+            Route::post('/update/profile', [ListerUserController::class, 'create'])->name('createuserprofile');
 
-        // listings
-        Route::get('/listings', [ListerDashboardController::class, 'listings'])->name('alllistings');
-        Route::get('/listing/single-item/{id}', [ListerDashboardController::class, 'edit_listing'])->name('editlisting');
-        Route::post('/update-listing', [ListerDashboardController::class, 'update_listing'])->name('updatelisting');
-        Route::get('/delete/listing/{id}', [ListerDashboardController::class, 'delete'])->name('deletelisting');
-        Route::get('/remove/listing-image/{id}', [ListerDashboardController::class, 'remove_image']);
+            // listings
+            Route::get('/listings', [ListerDashboardController::class, 'listings'])->name('alllistings');
+            Route::get('/listing/single-item/{id}', [ListerDashboardController::class, 'edit_listing'])->name('editlisting');
+            Route::post('/update-listing', [ListerDashboardController::class, 'update_listing'])->name('updatelisting');
+            Route::get('/delete/listing/{id}', [ListerDashboardController::class, 'delete'])->name('deletelisting');
+            Route::get('/remove/listing-image/{id}', [ListerDashboardController::class, 'remove_image']);
 
-        //accounts
-        Route::get('/accounts/center', [AccountsController::class, 'accounts'])->name('acccenter');
-        //bank details
-        Route::post('/add/bank', [BankDetailsController::class, 'store'])->name('addbank');
+            //accounts
+            Route::get('/accounts/center', [AccountsController::class, 'accounts'])->name('acccenter');
+            //bank details
+            Route::post('/add/bank', [BankDetailsController::class, 'store'])->name('addbank');
 
-        //withdraw
-        Route::get('/withdraw', [AccountsController::class, 'withdraw'])->name('withdraw')->middleware(HasBankAccount::class);
-        Route::post('/withdraw/confirm', [AccountsController::class, 'withdraw_request'])->name('withdrawconfirm');
+            //withdraw
+            Route::get('/withdraw', [AccountsController::class, 'withdraw'])->name('withdraw')->middleware(HasBankAccount::class);
+            Route::post('/withdraw/confirm', [AccountsController::class, 'withdraw_request'])->name('withdrawconfirm'); Route::get('/dashboard', [ListerDashboardController::class, 'index'])->name('userdash');
+
+            //booking
+            Route::get('/manage/bookings', [ListerDashboardController::class, 'bookings'])->name('managebookings');
+            Route::get('/booking-confirm/{id}', [ListerDashboardController::class, 'confirm'])->name('bookconfirm');
+            Route::get('/booking-deny/{id}', [ListerDashboardController::class, 'deny'])->name('bookdeny');
+            Route::get('/booking-cancel/{id}', [ListerDashboardController::class, 'cancel'])->name('bookcancel');
+            Route::get('/booking-complete/{id}/{amount}', [ListerDashboardController::class, 'complete'])->name('completebooking');
+
+            //profile
+            Route::get('/profile', [ListerUserController::class, 'index'])->name('userprofile');
+            Route::post('/update/profile', [ListerUserController::class, 'create'])->name('createuserprofile');
+
+            // listings
+            Route::get('/listings', [ListerDashboardController::class, 'listings'])->name('alllistings');
+            Route::get('/listing/single-item/{id}', [ListerDashboardController::class, 'edit_listing'])->name('editlisting');
+            Route::post('/update-listing', [ListerDashboardController::class, 'update_listing'])->name('updatelisting');
+            Route::get('/delete/listing/{id}', [ListerDashboardController::class, 'delete'])->name('deletelisting');
+            Route::get('/remove/listing-image/{id}', [ListerDashboardController::class, 'remove_image']);
+
+            //accounts
+            Route::get('/accounts/center', [AccountsController::class, 'accounts'])->name('acccenter');
+            //bank details
+            Route::post('/add/bank', [BankDetailsController::class, 'store'])->name('addbank');
+
+            //withdraw
+            Route::get('/withdraw', [AccountsController::class, 'withdraw'])->name('withdraw')->middleware(HasBankAccount::class);
+            Route::post('/withdraw/confirm', [AccountsController::class, 'withdraw_request'])->name('withdrawconfirm');
     });
 
     

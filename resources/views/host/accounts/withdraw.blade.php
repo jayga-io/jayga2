@@ -98,19 +98,30 @@
                 @else
                     <button class="btn btn-success form-control p-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Withdraw</button>
                 @endif
+
+                <a class="btn btn-warning mt-3 form-control p-2" href="{{route('acccenter')}}"><i
+                  class="bi bi-arrow-left"></i> Back to Accounts Center</a>
                                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
+                      
                       <form action="{{route('withdrawconfirm')}}" method="POST">
                         @csrf
                       <div class="modal-header">
+                        
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Withdraw alert</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
                         <h2>Withdraw Amount</h2>
-                        <input type="number" name="withdraw" class="form-control mb-3 p-2" placeholder="Withdraw amount">
+                        <input type="number" name="withdraw" class="form-control mb-3 p-2" placeholder="Withdraw amount" required require>
+                        <input type="hidden" name="acc_name" value="{{$bank[0]->acc_name}}">
+                        <input type="hidden" name="acc_number" value="{{$bank[0]->acc_number}}">
+                        <input type="hidden" name="bank_name" value="{{$bank[0]->bank_name}}">
+                        <input type="hidden" name="bank_id" value="{{$bank[0]->id}}">
+                        <input type="hidden" name="branch_name" value="{{$bank[0]->branch_name}}">
+                        <div class="alert alert-success"><strong>Note: </strong>Default Bank Account Will Be Selected Automatically</div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -310,25 +310,39 @@ section {
         <table id="myTable2" class="display p-2">
             <thead>
                 <tr>
-                    <th>Name on booking</th>
-                    <th>email</th>
-                    <th>phone</th>
-                    <th>Number of members</th>
-                    <th>Arrival Date</th>
-                    <th>View Details</th>
-                    <th>Actions</th>
+                    <th>Lister Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Bank name</th>
+                    <th>Account name</th>
+                    <th>Account number</th>
+                    <th>Branch_name</th>
+                    <th>Withdraw_amount</th>
+                    <th>Withdraw_time</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>No</td>
-                    <td>No</td>
-                    <td>No</td>
-                    <td>No</td>
-                    <td>No</td>
-                    <td>No</td>
-                    <td>No</td>
+              @foreach ($history as $item)
+                  <tr>
+                    <td>{{$user[0]->name}}</td>
+                    <td>{{$user[0]->email}}</td>
+                    <td>{{$user[0]->phone}}</td>
+                    
+                    <td>{{$item->bank_name}}</td>
+                    <td>{{$item->account_name}}</td>
+                    <td>{{$item->acc_number}}</td>
+                    <td>{{$item->branch_name}}</td>
+                    <td>{{$item->transaction_amount}} tk/-</td>
+                    <td>{{$item->created_at->diffForHumans()}}</td>
+                    @if ($item->status == 0)
+                       <td><span class="badge rounded-pill bg-warning">Pending</span></td>
+                    @else
+                        <td><span class="badge rounded-pill bg-success">Paid</span></td>
+                    @endif
                 </tr>
+              @endforeach
+                
                 
                 
             </tbody>

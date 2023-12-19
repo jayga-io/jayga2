@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('bank_details', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('lister_id')->unsigned();
+            $table->foreign('lister_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('acc_name');
             $table->string('acc_number');
             $table->string('bank_name');

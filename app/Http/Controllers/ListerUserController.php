@@ -33,7 +33,7 @@ class ListerUserController extends Controller
         User::where('id', $id)->update([
             'name' => $request->input('username'),
             'email' => $request->input('email'),
-            'phone' => $request->input('phone'),
+            
             'user_address' => $request->input('address'),
             'user_dob' => $request->input('dob'),
         ]);

@@ -12,11 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transaction_histories', function (Blueprint $table) {
-            $table->id();
+            $table->id('transaction_id');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('transaction_amount');
-            $table->string('transaction_time');
+            $table->bigInteger('bank_id');
+            $table->string('account_name');
+            $table->string('acc_number');
+            $table->string('bank_name');
+            $table->string('branch_name');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

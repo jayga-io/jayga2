@@ -18,6 +18,12 @@
     <div class="container rounded bg-white mt-5 mb-5">
         <form action="{{route('createuserprofile')}}" class="form-control" method="POST" enctype="multipart/form-data">
             @csrf
+           @if (session()->has('messege'))
+           <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session()->get('messege') }}</strong>
+            
+        </div> 
+           @endif 
         <div class="row">
             
             <div class="col-md-3 border-right">
@@ -61,8 +67,10 @@
                      
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-12 mb-3"><label class="labels">Mobile Number</label><input type="text"
-                                class="form-control" name="phone" placeholder="{{$user[0]->phone}}" value="{{$user[0]->phone}}" required></div>
+                        <div class="col-md-12 mb-3">
+                            <label class="labels">Mobile Number</label>
+                            <input type="text"
+                                class="form-control" name="phone" placeholder="{{$user[0]->phone}}" value="{{$user[0]->phone}}" disabled></div>
 
                         <div class="col-md-12 mb-3"><label class="labels">Address</label><input type="text"
                                 class="form-control" name="address" placeholder="enter address" value=""></div>
