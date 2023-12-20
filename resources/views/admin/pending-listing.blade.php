@@ -12,9 +12,12 @@
 	<link rel="stylesheet" href="{{asset('assets/css/feathericon.min.css')}}">
 	<link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
 	<link rel="stylesheet" href="{{asset('assets/plugins/morris/morris.css')}}">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="{{asset('assets/css/style.css')}}"> 
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+	
+	
 </head>
 
 <body>
@@ -68,49 +71,73 @@
 				</div>
 				<div class="row">
 					<div class="col">
-						<table id="myTable" class="display">
-								<thead>
+						<table id="myTable2" class="display">
+							<thead>
+								<tr>
+									<th>Lister Name</th>
+		
+									<th>Listing Title</th>
+									<th>Number of guest allowed</th>
+									<th>Full Day Price</th>
+									<th>Listing Address</th>
+									<th>Short Stay Allow</th>
+									<th>Listing Type</th>
+									<th>Approval Status</th>
+									<th>Active Status</th>
+									<th>Edit</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach ($pending as $item)
 									<tr>
-										<th>Lister Name</th>
-										<th>Listing_title</th>
-										<th>Listing Address</th>
-										<th>Price Set by User</th>
-										<th>District/Town</th>
-										<th>View</th>
-										<th>Actions</th>
+										<td>{{ $item->lister_name }}</td>
+										<td>{{ $item->listing_title }}</td>
+										<td>{{ $item->guest_num }}</td>
+										<td>{{ $item->full_day_price_set_by_user }} tk/-</td>
+										<td>{{ $item->listing_address }}</td>
+										@if ($item->allow_short_stay == true)
+											<td><span class="badge rounded-pill bg-success">Allowed</span></td>
+										@else
+											<td><span class="badge rounded-pill bg-danger">Not Allowed</span></td>
+										@endif
+		
+										<td>{{ $item->listing_type }}</td>
+		
+										@if ($item->isApproved == true)
+											<td><span class="badge rounded-pill bg-success">Approved</span></td>
+										@else
+											<td><span class="badge rounded-pill bg-warning">Not Approved</span></td>
+										@endif
+		
+										@if ($item->isActive == true)
+											<td><span class="badge rounded-pill bg-success">Active</span></td>
+										@else
+											<td><span class="badge rounded-pill bg-secondary">Inactive</span></td>
+										@endif
+										
+										<td><a href="/user/listing/single-item/{{$item->listing_id}}" class="btn btn-success">Edit</a></td>
+										<td><a href="/user/delete/listing/{{$item->listing_id}}" class="btn btn-warning">Delete</a></td>
 									</tr>
-								</thead>
-								<tbody>
-									@foreach ($pending as $item)
-										<tr>
-											<td>{{$item->lister_name}}</td>
-											<td>{{$item->listing_title}}</td>
-											<td>{{$item->listing_address}}</td>
-											<td>{{$item->full_day_price_set_by_user}}</td>
-											<td>{{$item->district}}/{{$item->town}}</td>
-											<td><a class="btn btn-primary" href="/admin/view-listing/{{$item->listing_id}}">View Listing</a></td>
-											<td> <a class="btn btn-primary" href="/admin/approve-listing/{{$item->listing_id}}">Approve</a> / <a class="btn btn-danger" href="/admin/decline-listing/{{$item->listing_id}}">Decline</a></td>
-										</tr>
-									@endforeach
-									
-									
-								</tbody>
-							</table>
+								@endforeach
+							</tbody>
+						</table>
 					</div>
 				</div>
 			
-		</div>
+			</div>
 		</div>
 		
 	</div>
+	
 	<script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-	<script>
-		let table = new DataTable('#myTable',{
-			scrollX: true
-		});
-	</script>
+    <script>
+        let table = new DataTable('#myTable',{
+            scrollX: true
+        });
+    </script>
 	<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-	<script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script>
+	
 	<script src="{{asset('assets/js/popper.min.js')}}"></script>
 	<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
@@ -118,4 +145,5 @@
 	<script src="{{asset('assets/plugins/morris/morris.min.js')}}"></script>
 	<script src="{{asset('assets/js/chart.morris.js')}}"></script>
 	<script src="{{asset('assets/js/script.js')}}"></script>
+	
 </body>

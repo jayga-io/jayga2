@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Host;
+use App\Http\Controllers\Controller;
 
 use App\Models\BankDetails;
 use App\Http\Requests\StoreBankDetailsRequest;

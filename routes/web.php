@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ListingController;
-use App\Http\Controllers\BookingController;
+use App\Http\Controllers\Admin\ListingController;
+use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\HostController;
-use App\Http\Controllers\ListerDashboardController;
-use App\Http\Controllers\ListerUserController;
-use App\Http\Controllers\AccountsController;
-use App\Http\Controllers\BankDetailsController;
+use App\Http\Controllers\Host\HostController;
+use App\Http\Controllers\Host\ListerDashboardController;
+use App\Http\Controllers\Host\ListerUserController;
+use App\Http\Controllers\Host\AccountsController;
+use App\Http\Controllers\Host\BankDetailsController;
 use App\Models\User;
 use App\Models\Listing;
 use App\Http\Middleware\ensureotp;

@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Host;
+use App\Http\Controllers\Controller;
 use App\Models\ListerDashboard;
 use App\Http\Requests\StoreListerDashboardRequest;
 use App\Http\Requests\UpdateListerDashboardRequest;
