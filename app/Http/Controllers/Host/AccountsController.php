@@ -43,6 +43,12 @@ class AccountsController extends Controller
                 'user_id' => $id,
                 'user_name' => $user[0]->name,
                 'phone' => $user[0]->phone,
+                'bank_name' => $request->input('bank_name'),
+                'acc_name' => $request->input('acc_name'),
+                'acc_number' => $request->input('acc_number'),
+                'routing_num' => $request->input('routing_num'),
+                'branch_name' => $request->input('branch_name'),
+                
                 'user_balance' => $lister[0]->earnings,
                 'withdraw_amount' => $amount
             ]);

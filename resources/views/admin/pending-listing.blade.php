@@ -15,6 +15,7 @@
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+	<script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 	<link rel="stylesheet" href="{{asset('assets/css/style.css')}}"> 
 	
 	
@@ -71,11 +72,11 @@
 				</div>
 				<div class="row">
 					<div class="col">
-						<table id="myTable2" class="display">
+						<table id="myTable" class="display">
 							<thead>
 								<tr>
+									<th>id</th>
 									<th>Lister Name</th>
-		
 									<th>Listing Title</th>
 									<th>Number of guest allowed</th>
 									<th>Full Day Price</th>
@@ -84,13 +85,16 @@
 									<th>Listing Type</th>
 									<th>Approval Status</th>
 									<th>Active Status</th>
-									<th>Edit</th>
-									<th>Delete</th>
+									<th>View</th>
+									<th>Approve</th>
+									<th>Deny</th>
 								</tr>
 							</thead>
 							<tbody>
+								<?php $counter = 1; ?>
 								@foreach ($pending as $item)
 									<tr>
+										<td>{{ $counter }}</td>
 										<td>{{ $item->lister_name }}</td>
 										<td>{{ $item->listing_title }}</td>
 										<td>{{ $item->guest_num }}</td>
@@ -115,10 +119,11 @@
 										@else
 											<td><span class="badge rounded-pill bg-secondary">Inactive</span></td>
 										@endif
-										
-										<td><a href="/user/listing/single-item/{{$item->listing_id}}" class="btn btn-success">Edit</a></td>
-										<td><a href="/user/delete/listing/{{$item->listing_id}}" class="btn btn-warning">Delete</a></td>
+										<td><a href="/admin/view-listing/{{$item->listing_id}}" class="btn btn-warning"><i class="fa fa-eye"></i></a></td>
+										<td><a href="/admin/approve-listing/{{$item->listing_id}}" class="btn btn-success">Approve</a></td>
+										<td><a href="/admin/decline-listing/{{$item->listing_id}}" class="btn btn-warning">Decline</a></td>
 									</tr>
+									<?php $counter++; ?>
 								@endforeach
 							</tbody>
 						</table>
@@ -130,7 +135,7 @@
 		
 	</div>
 	
-	<script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+	
     <script>
         let table = new DataTable('#myTable',{
             scrollX: true

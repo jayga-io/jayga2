@@ -12,9 +12,13 @@
 	<link rel="stylesheet" href="{{asset('assets/css/feathericon.min.css')}}">
 	<link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
 	<link rel="stylesheet" href="{{asset('assets/plugins/morris/morris.css')}}">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+	<script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 	<link rel="stylesheet" href="{{asset('assets/css/style.css')}}"> 
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+	
+	
 </head>
 
 <body>
@@ -59,70 +63,62 @@
 									</ul>
 								</div>
 							@endif
-							<h3 class="page-title mt-3">Pending Bookings</h3>
+							<h3 class="page-title mt-3">Pending withdraw requests</h3>
 							<ul class="breadcrumb">
-								<li class="breadcrumb-item active">Approve Bookings</li>
+								<li class="breadcrumb-item active">withdraw requests</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col">
-						<table id="myTable" class="display ">
+						<table id="myTable" class="display">
 							<thead>
 								<tr>
 									<th>id</th>
-									<th>Name on booking</th>
-									<th>Listing Title</th>
-		
-									<th>phone</th>
-									<th>Number of members</th>
-									<th>Arrival Date</th>
-									<th>Checkout Date</th>
-									<th>Tier</th>
-									<th>Booking Made</th>
-									<th>Pay Amount</th>
-									<th>Jayga_fee</th>
-									<th>Net payable</th>
-									<th>Booking_status</th>
-									
+									<th>Lister Name</th>
+									<th>Phone</th>
+									<th>Bank Name</th>
+									<th>Account Name</th>
+									<th>Account Number</th>
+									<th>Routing Number</th>
+									<th>Branch Name</th>
+									<th>User Balance</th>
+									<th>Withdraw Amount</th>
+									<th>Status</th>
+									<th>Mark as Paid</th>
+									<th>Created At</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php $counter = 1; ?>
-								@foreach ($pending as $item)
+								@foreach ($withdraws as $item)
 									<tr>
-										<td>{{$counter}}</td>
-										<td>{{ $item->booking_order_name }}</td>
-										<td>{{ $item->listings->listing_title }}</td>
-		
+										<td>{{ $counter }}</td>
+										<td>{{ $item->user_name }}</td>
 										<td>{{ $item->phone }}</td>
-										<td>{{ $item->total_members }}</td>
-										<td><span class="badge rounded-pill bg-success">{{ $item->date_enter }}</span></td>
-										<td><span class="badge rounded-pill bg-danger">{{ $item->date_exit }}</span></td>
-		
-										@if ($item->tier == 0)
-											<td><span class="badge rounded-pill bg-success">Full Stay</span></td>
-										@else
-											<td>{{ $item->tier }}</td>
-										@endif
-		
-										<td>{{ $item->created_at->diffForHumans() }}</td>
+										<td>{{ $item->bank_name }}</td>
+										<td>{{ $item->acc_name }} tk/-</td>
+										<td>{{ $item->acc_number }}</td>
 										
-										@if ($item->pay_amount == null)
-											<td><span class="badge rounded-pill bg-warning">Not paid</span></td>
+										<td>{{$item->routing_num}}</td>
+										
+										<td>{{$item->branch_name}}</td>
+										
+		
+										<td>{{ $item->user_balance }} tk/-</td>
+		
+										
+                                        <td>{{$item->withdraw_amount}} tk/-</td>
+		
+										@if ($item->status == true)
+											<td><span class="badge rounded-pill bg-success">Paid</span></td>
 										@else
-											<td>{{ $item->pay_amount }} tk/-</td>
-										@endif
-		
-										<td>7%</td>
-		
-										<td>{{$item->pay_amount - ($item->pay_amount * 6.9)/100 }} tk/-</td>
-		
-										@if ($item->booking_status == 1)
-											<td><span class="badge rounded-pill bg-success">Confirmed</span></td>
+											<td><span class="badge rounded-pill bg-warning">Not Paid</span></td>
 										@endif
 										
+										<td><a href="#" class="btn btn-success">Mark Paid</a></td>
+										<td>{{$item->created_at->diffForHumans()}}</td>
 									</tr>
 									<?php $counter++; ?>
 								@endforeach
@@ -131,18 +127,19 @@
 					</div>
 				</div>
 			
-		</div>
+			</div>
 		</div>
 		
 	</div>
-	<script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-	<script>
-		let table = new DataTable('#myTable', {
-			scrollX: true
-		});
-	</script>
+	
+	
+    <script>
+        let table = new DataTable('#myTable',{
+            scrollX: true
+        });
+    </script>
 	<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-	<script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script>
+	
 	<script src="{{asset('assets/js/popper.min.js')}}"></script>
 	<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
@@ -150,4 +147,5 @@
 	<script src="{{asset('assets/plugins/morris/morris.min.js')}}"></script>
 	<script src="{{asset('assets/js/chart.morris.js')}}"></script>
 	<script src="{{asset('assets/js/script.js')}}"></script>
+	
 </body>

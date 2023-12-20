@@ -121,6 +121,7 @@
                         <input type="hidden" name="bank_name" value="{{$bank[0]->bank_name}}">
                         <input type="hidden" name="bank_id" value="{{$bank[0]->id}}">
                         <input type="hidden" name="branch_name" value="{{$bank[0]->branch_name}}">
+                        <input type="hidden" name="routing_num" value="{{$bank[0]->routing_number}}">
                         <div class="alert alert-success"><strong>Note: </strong>Default Bank Account Will Be Selected Automatically</div>
                       </div>
                       <div class="modal-footer">

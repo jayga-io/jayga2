@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ListingController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\WithdrawsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Host\HostController;
 use App\Http\Controllers\Host\ListerDashboardController;
@@ -67,6 +68,21 @@ Route::prefix('admin')->group(function(){
     Route::get('/decline-booking/{id}', [bookingController::class, 'destroy']);
 
     Route::get('/view-booking/{id}', [BookingController::class, 'edit']);
+
+
+
+    //withdraw section
+    Route::get('/withdraw/requests', [WithdrawsController::class, 'show'])->name('withdraw_req');
+
+
+
+
+
+
+
+
+
+
 });
 
 Route::post('/create/listing', [ListingController::class, 'create'])->name('create_listing');
