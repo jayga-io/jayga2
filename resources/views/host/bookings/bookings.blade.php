@@ -229,9 +229,7 @@
         })
     </script>
     <script>
-        let table2 = new DataTable('#myTable2',{
-          scrollX: true
-        })
+        let table2 = new DataTable('#myTable2')
     </script>
    
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

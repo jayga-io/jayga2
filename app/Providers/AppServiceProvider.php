@@ -23,11 +23,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $pending_count = Listing::where('isApproved', false)->get();
-        $booking_count = Booking::where('isApproved', false)->get();
+        $withdraw_count = Withdraws::where('status', false)->get();
      
         view()->share('pending_count', $pending_count->count());
       
-        view()->share('booking_count', $booking_count->count());
+        view()->share('withdraw_count', $withdraw_count->count());
       
     }
 }
