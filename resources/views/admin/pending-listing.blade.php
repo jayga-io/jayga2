@@ -101,23 +101,23 @@
 										<td>{{ $item->full_day_price_set_by_user }} tk/-</td>
 										<td>{{ $item->listing_address }}</td>
 										@if ($item->allow_short_stay == true)
-											<td><span class="badge rounded-pill bg-success">Allowed</span></td>
+											<td><span class="badge rounded-pill bg-success" style="opacity: 0.4">Allowed</span></td>
 										@else
-											<td><span class="badge rounded-pill bg-danger">Not Allowed</span></td>
+											<td><span class="badge rounded-pill bg-danger" style="opacity: 0.4">Not Allowed</span></td>
 										@endif
 		
 										<td>{{ $item->listing_type }}</td>
 		
 										@if ($item->isApproved == true)
-											<td><span class="badge rounded-pill bg-success">Approved</span></td>
+											<td><span class="badge rounded-pill bg-success" style="opacity: 0.4">Approved</span></td>
 										@else
-											<td><span class="badge rounded-pill bg-warning">Not Approved</span></td>
+											<td><span class="badge rounded-pill bg-warning" style="opacity: 0.4">Not Approved</span></td>
 										@endif
 		
 										@if ($item->isActive == true)
-											<td><span class="badge rounded-pill bg-success">Active</span></td>
+											<td><span class="badge rounded-pill bg-success" style="opacity: 0.4">Active</span></td>
 										@else
-											<td><span class="badge rounded-pill bg-secondary">Inactive</span></td>
+											<td><span class="badge rounded-pill bg-secondary" style="opacity: 0.4">Inactive</span></td>
 										@endif
 										<td><a href="/admin/view-listing/{{$item->listing_id}}" class="btn btn-warning"><i class="fa fa-eye"></i></a></td>
 										<td><a href="/admin/approve-listing/{{$item->listing_id}}" class="btn btn-success">Approve</a></td>

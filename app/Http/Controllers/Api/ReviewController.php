@@ -45,10 +45,12 @@ class ReviewController extends Controller
                 $total = $total + $value->stars ;
             }
             $avg = $total / count($reviews);
-
+            Reviews::where('listing_id', $id)->update([
+                'avg_rating' => $avg
+            ]);
             return response()->json([
                 'status' => 200,
-                'average_rating' => $avg,
+                
                 'reviews' => $reviews
             ]);
         }else{

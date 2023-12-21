@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <title>Jayga | Booking Management</title>
     <style>
         .nav-link {
@@ -147,7 +148,7 @@
                                     <td>{{ $item->pay_amount }} tk/-</td>
                                 @endif
 
-                                <td>7%</td>
+                                <td>6.9%</td>
 
                                 <td>{{$item->pay_amount - ($item->pay_amount * 6.9)/100 }} tk/-</td>
 
@@ -169,7 +170,7 @@
             <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
                 <table id="myTable2" class="display">
                     <thead>
-                        <tr>
+                        
                             <th>Name on booking</th>
                             <th>Listing Title</th>
                             <th>phone</th>
@@ -183,7 +184,7 @@
                             <th>Created At</th>
                             <th>Confirm</th>
                             <th>Decline</th>
-                        </tr>
+                        
                     </thead>
                     <tbody>
                         @foreach ($pendings as $item)
@@ -221,7 +222,7 @@
         </div>
     </div>
 
-    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    
     <script>
         let table = new DataTable('#myTable',{
           scrollX: true
@@ -232,8 +233,7 @@
           scrollX: true
         })
     </script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+   
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
