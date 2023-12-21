@@ -38,7 +38,7 @@ class ReviewController extends Controller
     }
 
     public function view(Request $request, $id){
-       $reviews = Reviews::where('listing_id', $id)->orderBy('stars')->get();
+       $reviews = Reviews::where('listing_id', $id)->orderBy('stars')->with('user.avatars')->get();
         if(count($reviews)>0){
             $total = 0;
             foreach ($reviews as $value) {
