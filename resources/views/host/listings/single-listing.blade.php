@@ -17,7 +17,7 @@
 <body>
 
 <div class="container mt-5">
-  <form action="/user/update-listing" method="POST" enctype="multipart/form-data">
+  <form action="{{route('updatelisting')}}" method="POST" enctype="multipart/form-data">
     @csrf
   <div class="d-flex justify-content-between">
     <h2>Edit Listing</h2>
@@ -344,6 +344,11 @@
     <div class="mb-3">
       <label for="imageUpload" class="form-label">Replace all images</label>
       <input type="file" class="form-control" id="imageUpload" name="images[]" accept="image/*" multiple>
+    </div>
+
+    <div class="mb-3">
+      <label for="video">Video link</label>
+      <input type="text" class="form-control" name="video_link" placeholder="Enter video link">
     </div>
 
     <button type="submit" class="btn btn-success">Submit</button>

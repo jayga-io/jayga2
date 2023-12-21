@@ -172,6 +172,7 @@ class ListerDashboardController extends Controller
             'listing_address' => $request->input('listing_address'),
             'isActive' => $request->input('active'),
             'listing_type' => $request->input('listing_type'),
+            'video_link' => $request->input('video_link'),
         ]);
 
        
