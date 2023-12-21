@@ -410,7 +410,7 @@ class ListingController extends Controller
     }
 
     public function get_fav(Request $request, $id){
-        $favs = FavListing::where('user_id', $id)->with('listing.images')->get();
+        $favs = FavListing::where('user_id', $id)->with('listing.images')->with('listing.amenities')->with('listing.restrictions')->get();
         return response()->json([
             'status' => 200,
             'Favourites' => $favs
