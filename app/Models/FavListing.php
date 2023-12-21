@@ -11,6 +11,6 @@ class FavListing extends Model
     protected $guarded = [];
 
     public function listing(){
-        return $this->hasOne(Listing::class, 'listing_id', 'listing_id');
+        return $this->hasMany(Listing::class, 'listing_id', 'listing_id');
     }
 }
