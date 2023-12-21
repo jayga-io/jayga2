@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Listing;
 use App\Models\Booking;
+use App\Models\Withdraws;
 
 class AppServiceProvider extends ServiceProvider
 {
