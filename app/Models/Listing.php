@@ -37,7 +37,5 @@ class Listing extends Model
         return $this->hasOne(ListingRestrictions::class, 'listing_id', 'listing_id');
     }
 
-    public function reviews(){
-        return $this->hasMany(Reviews::class, 'listing_id', 'listing_id');
-    }
+  
 }
