@@ -9,6 +9,7 @@ use App\Models\ListingDescribe;
 use App\Models\ListingGuestAmenities;
 use App\Models\ListingRestrictions;
 use App\Models\Booking;
+use App\Models\Reviews;
 
 class Listing extends Model
 {
@@ -34,5 +35,9 @@ class Listing extends Model
 
     public function restrictions(){
         return $this->hasOne(ListingRestrictions::class, 'listing_id', 'listing_id');
+    }
+
+    public function reviews(){
+        return $this->hasMany(Reviews::class, 'user_id', 'lister_id');
     }
 }
