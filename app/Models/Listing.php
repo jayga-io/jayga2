@@ -38,6 +38,6 @@ class Listing extends Model
     }
 
     public function reviews(){
-        return $this->hasMany(Reviews::class, 'user_id', 'lister_id');
+        return $this->hasMany(Reviews::class, 'listing_id', 'listing_id');
     }
 }
