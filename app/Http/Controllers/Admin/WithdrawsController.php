@@ -12,4 +12,12 @@ class WithdrawsController extends Controller
         $withdraws =  Withdraws::where('status', false)->get();
         return view('admin.withdraws.withdraw')->with('withdraws', $withdraws);
     }
+
+    public function mark_paid(Request $request, $id){
+        Withdraws::where('id', $id)->update([
+            'status' => true
+        ]);
+        toastr()->addSuccess('Payment completed');
+        return redirect()->back();
+    }
 }

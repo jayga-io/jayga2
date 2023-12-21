@@ -73,7 +73,7 @@ Route::prefix('admin')->group(function(){
 
     //withdraw section
     Route::get('/withdraw/requests', [WithdrawsController::class, 'show'])->name('withdraw_req');
-
+    Route::get('/withdraw/confirm/{id}', [WithdrawsController::class, 'mark_paid'])->name('withdraw_confirm');
 
 
 

@@ -117,7 +117,7 @@
 											<td><span class="badge rounded-pill bg-warning">Not Paid</span></td>
 										@endif
 										
-										<td><a href="#" class="btn btn-success">Mark Paid</a></td>
+										<td><a href="admin/withdraw/confirm/{{$item->id}}" class="btn btn-success">Mark Paid</a></td>
 										<td>{{$item->created_at->diffForHumans()}}</td>
 									</tr>
 									<?php $counter++; ?>
