@@ -41,6 +41,6 @@ class User extends Authenticatable
     ];
 
     public function avatars(){
-        return $this->hasOne(UserPictures::class, 'id', 'user_id');
+        return $this->hasOne(UserPictures::class, 'user_id', 'id');
     }
 }
