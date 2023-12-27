@@ -9,6 +9,16 @@
         .nav-link{
             color: #158E72;
         }
+        #card-image-view{
+            aspect-ratio: 3/2;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 27.28px;
+        }
+        .card{
+            border: 0;
+        }
     </style>
 </head>
 <body >
@@ -70,7 +80,7 @@
 
         <!--Search topbar-->
         <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-4 mb-3 text-center">
+            <div class="col-md-12 col-lg-12 col-sm-4 text-center">
                 <div style="width: 80%; height: 100%; margin: auto; margin-top: 15px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; ">
                     <!--Options select-->
                     <div class="container py-3 justify-content-between ">
@@ -105,28 +115,39 @@
                                 <!--search inputs-->
                                 <div class="input-group">
         
+                                    <div class="form-floating">
+                                        <select class="form-control" aria-placeholder="Town or City" aria-label="Large select example">
+                                            <option selected>Select a city or town</option>
+                                            <option value="1">Dhaka</option>
+                                            <option value="2">Sylhet</option>
+                                            <option value="3">Chittagong</option>
+                                        </select>
+                                        <label for="formfloating">Select city or town</label>
+                                    </div>
+                                    
         
-                                    <select class="form-control mx-2" aria-placeholder="Town or City"
-                                        aria-label="Large select example">
-                                        <option selected>Select a city or town</option>
-                                        <option value="1">Dhaka</option>
-                                        <option value="2">Sylhet</option>
-                                        <option value="3">Chittagong</option>
-                                    </select>
+                                    <div class="form-floating">
+                                        <input type="date" name="checkin" class="form-control" placeholder="Check-in">
+                                        <label for="form-floating">Check In</label>
+                                    </div>
+                                    
         
+                                    <div class="form-floating">
+                                         <input type="date" name="checkout" class="form-control" placeholder="Check-out">
+                                         <label for="formfloat">Check Out</label>
+                                    </div>
+                                   
         
-                                    <input type="date" name="checkin" class="form-control mx-2" placeholder="Check-in">
-        
-        
-                                    <input type="date" name="checkout" class="form-control mx-2" placeholder="Check-out">
-        
-        
-                                    <select class="form-control mx-2" aria-label="Large select example">
-                                        <option selected>Guests</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
+                                    <div class="form-floating">
+                                        <select class="form-control" aria-label="Large select example">
+                                            <option selected>Select Guests</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                        <label for="formfloat">Guests</label>
+                                    </div>
+                                    
         
         
                                 </div>
@@ -159,11 +180,11 @@
                 <button class="btn btn-secondary">Filters</button>
             </div>
             <div class="row">
-                <div class="col-md-4 p-5">
+                <div class="col-md-3 py-5">
 
 
                     <div class="card" >
-                        <img src="..." class="card-img-top" alt="...">
+                        <img src="../public/assets/img/product/product-03.jpg" class="card-img-top" id="card-image-view" alt="../public/assets/img/product/product-03.jpg">
                         <div class="card-body">
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
@@ -171,11 +192,11 @@
 
                      
                 </div>
-                <div class="col-md-4 p-5 ">
+                <div class="col-md-3 py-5">
 
 
                     <div class="card" >
-                        <img src="..." class="card-img-top" alt="...">
+                        <img src="../public/assets/img/product/product-03.jpg" class="card-img-top" id="card-image-view" alt="../public/assets/img/product/product-03.jpg">
                         <div class="card-body">
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
@@ -183,11 +204,11 @@
 
                      
                 </div>
-                <div class="col-md-4 p-5 ">
+                <div class="col-md-3 py-5">
 
 
                     <div class="card" >
-                        <img src="..." class="card-img-top" alt="...">
+                        <img src="../public/assets/img/product/product-03.jpg" class="card-img-top" id="card-image-view" alt="../public/assets/img/product/product-03.jpg">
                         <div class="card-body">
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
@@ -195,11 +216,11 @@
 
                      
                 </div>
-                <div class="col-md-4 p-5 ">
+                <div class="col-md-3 py-5 ">
 
 
                     <div class="card" >
-                        <img src="..." class="card-img-top" alt="...">
+                        <img src="../public/assets/img/product/product-03.jpg" class="card-img-top" id="card-image-view" alt="../public/assets/img/product/product-03.jpg">
                         <div class="card-body">
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
@@ -207,11 +228,11 @@
 
                      
                 </div>
-                <div class="col-md-4 p-5 ">
+                <div class="col-md-3 py-5 ">
 
 
                     <div class="card" >
-                        <img src="..." class="card-img-top" alt="...">
+                        <img src="../public/assets/img/product/product-03.jpg" class="card-img-top" id="card-image-view" alt="../public/assets/img/product/product-03.jpg">
                         <div class="card-body">
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
@@ -219,11 +240,11 @@
 
                      
                 </div>
-                <div class="col-md-4 p-5 ">
+                <div class="col-md-3 py-5 ">
 
 
                     <div class="card" >
-                        <img src="..." class="card-img-top" alt="...">
+                        <img src="../public/assets/img/product/product-03.jpg" class="card-img-top" id="card-image-view" alt="../public/assets/img/product/product-03.jpg">
                         <div class="card-body">
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
