@@ -270,5 +270,20 @@ class ListingController extends Controller
         return redirect(route('pendinglisting'))->with('success', 'Listing Approved');
     }
 
+    public function delete(Request $request, $id){
+        $images = ListingImages::where('listing_id', $id)->get();
+        $nids = ListerNid::where('listing_id', $id)->get();
+        foreach ($images as $value) {
+           Storage::delete($value->listing_targetlocation);
+        }
+
+        foreach ($nids as $value) {
+            Storage::delete($value->nid_targetlocation);
+        }
+
+        Listing::where('listing_id', $id)->delete();
+        return redirect()->back()->with('deleted', 'Listing Deleted');
+    }
+
    
 }

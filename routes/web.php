@@ -49,12 +49,19 @@ Route::prefix('admin')->group(function(){
         return view('admin.pending-listing')->with('pending', $listings);
     })->name('pendinglisting');
 
+    Route::get('/all-listing', function(){
+        $listings = Listing::all();
+        return view('admin.listings.all-listings')->with('all', $listings);
+    })->name('all_listings');
+
 
     Route::get('/view-listing/{id}', [ListingController::class, 'show']);
 
     Route::get('/approve-listing/{id}', [ListingController::class, 'approve']);
     
     Route::get('/decline-listing/{id}', [ListingController::class, 'destroy']);
+
+    Route::get('/delete-listing/{id}', [ListingController::class, 'delete']);
 
 
     //booking section
@@ -224,3 +231,5 @@ Route::get('/logout', function(Request $request){
     $request->session()->flush();
     return redirect(route('userdash'));
 })->name('logout');
+
+
