@@ -65,7 +65,7 @@
 							@endif
 							<h3 class="page-title mt-3">All Listings</h3>
 							<ul class="breadcrumb">
-								<li class="breadcrumb-item active">Manage all available listings</li>
+								<li class="breadcrumb-item active">Manage all available listings <strong>(Sorted by most recent)</strong></li>
 							</ul>
 						</div>
 					</div>

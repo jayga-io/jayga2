@@ -50,7 +50,7 @@ Route::prefix('admin')->group(function(){
     })->name('pendinglisting');
 
     Route::get('/all-listing', function(){
-        $listings = Listing::all();
+        $listings = Listing::orderBy('created_at', 'DESC')->get();
         return view('admin.listings.all-listings')->with('all', $listings);
     })->name('all_listings');
 
