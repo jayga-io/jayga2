@@ -136,7 +136,7 @@ class BookingController extends Controller
         ]);
 
         $booking_id = Booking::where('booking_id', $id)->get();
-       
+        $listing_name = Listing::where('listing_id', $booking_id[0]->listing_id)->get();
 
         $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
             
@@ -152,6 +152,19 @@ class BookingController extends Controller
             'Authorization' => 'Token d275d614a4ca92e21d2dea7a1e2bb81fbfac1eb0',
             
         ])->post($url, $data);
+
+        
+
+        $notifys = [
+            'user_id' => $booking_id[0]->user_id,
+            'lister_id' => $booking_id[0]->lister_id,
+            'listing_id' => $booking_id[0]->listing_id,
+            'type' => 'Booking',
+            'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been approved'
+           ];
+    
+           notify($notifys);
+
         return redirect(route('pendingbooking'))->with('success', 'Booking Approved');
     }
 
@@ -169,7 +182,7 @@ class BookingController extends Controller
         }
 
         $booking_id = Booking::where('booking_id', $id)->get();
-        
+        $listing_name = Listing::where('listing_id', $booking_id[0]->listing_id)->get();
 
         $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
             
@@ -178,7 +191,7 @@ class BookingController extends Controller
         $data = [
             "sender_id" => "8809601010510",
             "receiver" => $phone,
-            "message" =>  $booking_id[0]->booking_order_name . 'Your booking has been declined',
+            "message" => 'Your Booking: '. $$listing_name[0]->listing_title . 'has been declined',
             "remove_duplicate" => true
         ];
         $response = Http::withHeaders([
@@ -186,6 +199,15 @@ class BookingController extends Controller
             
         ])->post($url, $data);
 
+        $notifys = [
+            'user_id' => $booking_id[0]->user_id,
+            'lister_id' => $booking_id[0]->lister_id,
+            'listing_id' => $booking_id[0]->listing_id,
+            'type' => 'Booking',
+            'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been declined'
+           ];
+    
+           notify($notifys);
 
         Booking::where('booking_id', $id)->delete();
         return redirect(route('pendingbooking'))->with('deleted', 'Booking Declined');
