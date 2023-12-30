@@ -101,17 +101,17 @@
 										<td>{{ $item->full_day_price_set_by_user }} tk/-</td>
 										<td>{{ $item->listing_address }}</td>
 										@if ($item->allow_short_stay == true)
-											<td><span class="badge rounded-pill bg-success" >Allowed</span></td>
+											<td><span class="badge rounded-pill bg-success" style="color: white" >Allowed</span></td>
 										@else
-											<td><span class="badge rounded-pill bg-danger" >Not Allowed</span></td>
+											<td><span class="badge rounded-pill bg-danger" style="color: white" >Not Allowed</span></td>
 										@endif
 		
 										<td>{{ $item->listing_type }}</td>
 		
 										@if ($item->isApproved == true)
-											<td><span class="badge rounded-pill bg-success" >Approved</span></td>
+											<td><span class="badge rounded-pill bg-success" style="color: white" >Approved</span></td>
 										@else
-											<td><span class="badge rounded-pill bg-warning" >Not Approved</span></td>
+											<td><span class="badge rounded-pill bg-warning" style="color: white">Not Approved</span></td>
 										@endif
 		
 										@if ($item->isActive == true)
