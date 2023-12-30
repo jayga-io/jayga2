@@ -159,6 +159,7 @@ class BookingController extends Controller
             'user_id' => $booking_id[0]->user_id,
             'lister_id' => $booking_id[0]->lister_id,
             'listing_id' => $booking_id[0]->listing_id,
+            'booking_id' => $id,
             'type' => 'Booking',
             'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been approved'
            ];
@@ -203,6 +204,7 @@ class BookingController extends Controller
             'user_id' => $booking_id[0]->user_id,
             'lister_id' => $booking_id[0]->lister_id,
             'listing_id' => $booking_id[0]->listing_id,
+            'booking_id' => $id,
             'type' => 'Booking',
             'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been declined'
            ];
