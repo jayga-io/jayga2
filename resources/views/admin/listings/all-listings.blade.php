@@ -115,9 +115,9 @@
 										@endif
 		
 										@if ($item->isActive == true)
-											<td><span class="badge rounded-pill bg-success">Active</span></td>
+											<td><span class="badge rounded-pill bg-success" style="color: white">Active</span></td>
 										@else
-											<td><span class="badge rounded-pill bg-secondary">Inactive</span></td>
+											<td><span class="badge rounded-pill bg-secondary" style="color: white">Inactive</span></td>
 										@endif
 										<td><a href="/admin/view-listing/{{$item->listing_id}}" class="btn btn-warning"><i class="fa fa-eye"></i></a></td>
 										

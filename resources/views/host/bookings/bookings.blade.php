@@ -131,7 +131,7 @@
 
                                 <td>{{ $item->phone }}</td>
                                 <td>{{ $item->total_members }}</td>
-                                <td><span class="badge rounded-pill bg-success">{{ $item->date_enter }}</span></td>
+                                <td><span class="badge rounded-pill bg-success" >{{ $item->date_enter }}</span></td>
                                 <td><span class="badge rounded-pill bg-danger">{{ $item->date_exit }}</span></td>
 
                                 @if ($item->tier == 0)
