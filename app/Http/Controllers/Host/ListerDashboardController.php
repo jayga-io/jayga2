@@ -101,7 +101,7 @@ class ListerDashboardController extends Controller
             'listing_id' => $booking_id[0]->listing_id,
             'booking_id' => $id,
             'type' => 'Booking',
-            'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been approved'
+            'messege' => 'Your Booking : '. $listing_name[0]->listing_title . ' has been approved'
            ];
     
            notify($notifys);
@@ -125,7 +125,7 @@ class ListerDashboardController extends Controller
             'listing_id' => $booking_id[0]->listing_id,
             'booking_id' => $id,
             'type' => 'Booking',
-            'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been approved'
+            'messege' => 'Your Booking : '. $listing_name[0]->listing_title . ' has been declined'
            ];
     
            notify($notifys);

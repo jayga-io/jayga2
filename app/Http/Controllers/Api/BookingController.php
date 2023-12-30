@@ -138,7 +138,7 @@ class BookingController extends Controller
                 $data = [
                     "sender_id" => "8809601010510",
                     "receiver" => $phone,
-                    "message" =>  $booking_id[0]->booking_order_name . 'Your booking has been confirmed',
+                    "message" => 'Your booking' .$listing_name[0]->listing_title . ' has been confirmed',
                     "remove_duplicate" => true
                 ];
                 $response = Http::withHeaders([
@@ -152,7 +152,7 @@ class BookingController extends Controller
                     'listing_id' => $booking_id[0]->listing_id,
                     'booking_id' => $request->input('booking_id'),
                     'type' => 'Booking',
-                    'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been approved'
+                    'messege' => 'Your Booking : '. $listing_name[0]->listing_title . ' has been approved'
                    ];
             
                    notify($notifys);
@@ -167,7 +167,7 @@ class BookingController extends Controller
                 $data = [
                     "sender_id" => "8809601010510",
                     "receiver" => $phone,
-                    "message" =>  $booking_id[0]->booking_order_name . 'Your booking has been declined',
+                    "message" => 'Your booking: '. $booking_id[0]->booking_order_name . ' has been declined',
                     "remove_duplicate" => true
                 ];
                 $response = Http::withHeaders([
@@ -182,7 +182,7 @@ class BookingController extends Controller
                     'listing_id' => $booking_id[0]->listing_id,
                     'booking_id' => $request->input('booking_id'),
                     'type' => 'Booking',
-                    'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been declined'
+                    'messege' => 'Your Booking : '. $listing_name[0]->listing_title . ' has been declined'
                    ];
             
                    notify($notifys);
