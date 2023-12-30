@@ -232,7 +232,7 @@ class ListingController extends Controller
         $data = [
             "sender_id" => "8809601010510",
             "receiver" => $phone,
-            "message" => 'Your listing : '. $lister_id[0]->listing_title . 'has been declined',
+            "message" => 'Your listing : '. $lister_id[0]->listing_title . ' has been declined',
             "remove_duplicate" => true
         ];
         $response = Http::withHeaders([
@@ -247,7 +247,7 @@ class ListingController extends Controller
             'lister_id' => $lister_id[0]->lister_id,
             'listing_id' => $id,
             'type' => 'Listing',
-            'messege' => 'Your listing : '. $lister_id[0]->listing_title . 'has declined'
+            'messege' => 'Your listing : '. $lister_id[0]->listing_title . ' has been declined'
            ];
     
            notify($notifys);
@@ -270,7 +270,7 @@ class ListingController extends Controller
         $data = [
             "sender_id" => "8809601010510",
             "receiver" => $phone,
-            "message" => 'Your listing : '. $lister_id[0]->listing_title . 'has been approved',
+            "message" => 'Your listing : '. $lister_id[0]->listing_title . ' has been approved',
             "remove_duplicate" => true
         ];
         $response = Http::withHeaders([
@@ -283,7 +283,7 @@ class ListingController extends Controller
         'lister_id' => $lister_id[0]->lister_id,
         'listing_id' => $id,
         'type' => 'Listing',
-        'messege' => 'Your listing : '. $lister_id[0]->listing_title . 'has been approved'
+        'messege' => 'Your listing : '. $lister_id[0]->listing_title . ' has been approved'
        ];
 
        notify($notifys);
