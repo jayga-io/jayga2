@@ -242,6 +242,16 @@ class ListingController extends Controller
 
         Listing::where('listing_id', $id)->delete();
 
+        $notifys = [
+            'user_id' => $user[0]->id,
+            'lister_id' => $lister_id[0]->lister_id,
+            'listing_id' => $id,
+            'type' => 'Listing',
+            'messege' => 'Your listing : '. $lister_id[0]->listing_title . 'has declined'
+           ];
+    
+           notify($notifys);
+
         return redirect(route('pendinglisting'))->with('deleted', 'Listing Declined');
     }
 
@@ -267,6 +277,17 @@ class ListingController extends Controller
             'Authorization' => 'Token d275d614a4ca92e21d2dea7a1e2bb81fbfac1eb0',
             
         ])->post($url, $data);
+
+       $notifys = [
+        'user_id' => $user[0]->id,
+        'lister_id' => $lister_id[0]->lister_id,
+        'listing_id' => $id,
+        'type' => 'Listing',
+        'messege' => 'Your listing : '. $lister_id[0]->listing_title . 'has been approved'
+       ];
+
+       notify($notifys);
+
         return redirect(route('pendinglisting'))->with('success', 'Listing Approved');
     }
 
@@ -282,6 +303,7 @@ class ListingController extends Controller
         }
 
         Listing::where('listing_id', $id)->delete();
+
         return redirect()->back()->with('deleted', 'Listing Deleted');
     }
 

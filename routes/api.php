@@ -89,3 +89,5 @@ Route::get('/user/get-cover/{id}', [UserController::class, 'get_cover']);
 Route::post('/add/availability', [ListingAvailability::class, 'store_dates']);
 
 Route::get('/show/availability/{id}', [ListingAvailability::class, 'get_dates']);
+
+Route::get('/show/notifications/{id}', [NotificationController::class, 'show']);
