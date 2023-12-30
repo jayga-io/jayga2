@@ -128,6 +128,7 @@ class BookingController extends Controller
         ]);
         if($validated){
             $booking_id = Booking::where('booking_id', $request->input('booking_id'))->get();
+            $listing_name = Listing::where('listing_id', $booking_id[0]->listing_id)->get();
             if($request->input('booking_status') == 1){
 
                 $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
@@ -144,6 +145,19 @@ class BookingController extends Controller
                     'Authorization' => 'Token d275d614a4ca92e21d2dea7a1e2bb81fbfac1eb0',
                     
                 ])->post($url, $data);
+
+                $notifys = [
+                    'user_id' => $booking_id[0]->user_id,
+                    'lister_id' => $booking_id[0]->lister_id,
+                    'listing_id' => $booking_id[0]->listing_id,
+                    'booking_id' => $id,
+                    'type' => 'Booking',
+                    'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been approved'
+                   ];
+            
+                   notify($notifys);
+
+
             }elseif($request->input('booking_status') == 2){
                 
                 $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
@@ -160,6 +174,18 @@ class BookingController extends Controller
                     'Authorization' => 'Token d275d614a4ca92e21d2dea7a1e2bb81fbfac1eb0',
                     
                 ])->post($url, $data);
+
+
+                $notifys = [
+                    'user_id' => $booking_id[0]->user_id,
+                    'lister_id' => $booking_id[0]->lister_id,
+                    'listing_id' => $booking_id[0]->listing_id,
+                    'booking_id' => $id,
+                    'type' => 'Booking',
+                    'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been approved'
+                   ];
+            
+                   notify($notifys);
             }
 
              Booking::where('booking_id', $request->input('booking_id'))->update([
