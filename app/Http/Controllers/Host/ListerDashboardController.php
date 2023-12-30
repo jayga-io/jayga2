@@ -88,20 +88,47 @@ class ListerDashboardController extends Controller
     }
 
     public function confirm(Request $request, $id){
+        $booking_id = Booking::where('booking_id', $id)->get();
+        $listing_name = Listing::where('listing_id', $booking_id[0]->listing_id)->get();
         Booking::where('booking_id', $id)->update([
             'booking_status' => 1,
             'isApproved' => true
         ]);
+
+        $notifys = [
+            'user_id' => $booking_id[0]->user_id,
+            'lister_id' => $booking_id[0]->lister_id,
+            'listing_id' => $booking_id[0]->listing_id,
+            'booking_id' => $id,
+            'type' => 'Booking',
+            'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been approved'
+           ];
+    
+           notify($notifys);
+
         toastr()->addSuccess('Booking has been confirmed');
         return redirect()->back();
         
     }
 
     public function deny(Request $request, $id){
+        $booking_id = Booking::where('booking_id', $id)->get();
+        $listing_name = Listing::where('listing_id', $booking_id[0]->listing_id)->get();
         Booking::where('booking_id', $id)->update([
             'booking_status' => 2,
             'isApproved' => true
         ]);
+
+        $notifys = [
+            'user_id' => $booking_id[0]->user_id,
+            'lister_id' => $booking_id[0]->lister_id,
+            'listing_id' => $booking_id[0]->listing_id,
+            'booking_id' => $id,
+            'type' => 'Booking',
+            'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been approved'
+           ];
+    
+           notify($notifys);
         toastr()->addWarning('Booking has been declined');
         return redirect()->back();
     }
