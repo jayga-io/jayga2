@@ -123,10 +123,17 @@
                   <div class="login-container ">
                     <form class="login-form" action="{{route('sendotp')}}" method="POST" >
                         @csrf
-                        <div class="form-group">
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">+88</span>
+                          </div>
+                          <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone" required require>
+
+                        </div>
+                      <!--  <div class="form-group">
                             
                             <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone" required require>
-                        </div>
+                        </div> -->
                         <button type="submit"  class="btn btn-warning" style="color: white;">Login</button>
                     </form>
                     
