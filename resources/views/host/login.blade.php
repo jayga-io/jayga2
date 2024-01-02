@@ -166,7 +166,7 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-  <script>
+<!-- <script>
           const phoneInputField = document.querySelector("#phone");
         const phoneInput = window.intlTelInput(phoneInputField, {
           initialCountry: "bd",
@@ -193,7 +193,7 @@
         return false;
       }
       }
-    </script>
+    </script> -->
     
 </body>
 
