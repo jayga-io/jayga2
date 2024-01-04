@@ -34,7 +34,30 @@
             text-align: center;
             
         }
+
+        #input{
+            width: 80%;
+        }
+
+        #mobile{
+            display: none;
+        }
+
+        @media (max-width: 600px) {
         
+        #desk {
+            display: none;
+        }
+
+        #mobile {
+            display: block;
+        }
+        #input{
+            width: 100%;
+        }
+    }
+
+    
     </style>
 </head>
 <body >
@@ -110,38 +133,53 @@
             <!--Search topbar-->
            
                     <div
-                        style="width: 80%; height: 100%; margin: auto; margin-top: 15px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; ">
+                        style="height: 100%; margin: auto; margin-top: 15px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; " id="input">
                         <!--Options select-->
                         <div class="container p-3 ">
-                            <div class="row text-center">
-                                <div class="col-md-2 col-lg-2 col-sm-6">
+                            <div class="row text-center" id="desk">
+                                <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                                     <input type="radio" class="btn-check" name="options-base" id="option5" autocomplete="off" checked>
-                                    <label class="btn" for="option5"><img src="../public/assets/img/meeting_room_24px.png" alt=""> Rooms</label>
+                                    <label class="btn" for="option5"><img class="form-label" src="../public/assets/img/meeting_room_24px.png" alt=""> Rooms</label>
                                 </div>
-                                <div class="col-md-2 col-lg-2 col-sm-6">
+                                <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                                     <input type="radio" class="btn-check" name="options-base" id="option6" autocomplete="off">
-                                    <label class="btn" for="option6"><img src="../public/assets/img/home_24px.png" alt=""> Hotels</label>
+                                    <label class="btn" for="option6"><img class="form-label" src="../public/assets/img/home_24px.png" alt=""> Hotels</label>
                                 </div>
-                                <div class="col-md-2 col-lg-2 col-sm-6">
+                                <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                                     <input type="radio" class="btn-check" name="options-base" id="option7" autocomplete="off">
-                                    <label class="btn" for="option7"><img src="../public/assets/img/business_24px.png" alt=""> Apartments</label>
+                                    <label class="btn" for="option7"><img class="form-label" src="../public/assets/img/business_24px.png" alt=""> Apartments</label>
                                 </div>
-                                <div class="col-md-2 col-lg-2 col-sm-6">
+                                <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                                     <input type="radio" class="btn-check" name="options-base" id="option8" autocomplete="off">
-                                    <label class="btn" for="option8"><img src="../public/assets/img/parking icon.png" alt="">  Parking</label>
+                                    <label class="btn" for="option8"><img class="form-label" src="../public/assets/img/parking icon.png" alt="">  Parking</label>
                                 </div>
-                                <div class="col-md-2 col-lg-2 col-sm-6">
+                                <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                                     <input type="radio" class="btn-check" name="options-base" id="option9" autocomplete="off">
-                                    <label class="btn" for="option9"><img src="../public/assets/img/map_24px.png" alt="">   Experience</label>
+                                    <label class="btn" for="option9"><img class="form-label" src="../public/assets/img/map_24px.png" alt="">   Experience</label>
                                 </div>
-                                <div class="col-md-2 col-lg-2 col-sm-6">
+                                <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                                     <input type="radio" class="btn-check" name="options-base" id="option10" autocomplete="off">
-                                    <label class="btn" for="option10"><img src="../public/assets/img/Cube  24  Outline.png" alt="">  Storage</label>
+                                    <label class="btn" for="option10"><img class="form-label" src="../public/assets/img/Cube  24  Outline.png" alt="">  Storage</label>
                                 </div>
                             </div>
                             
     
-                            
+                            <div class="row px-3 py-2" id="mobile">
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <select class="form-control" aria-placeholder="Town or City"
+                                            aria-label="Large select example">
+                                            <option selected>Rooms</option>
+                                            <option value="1">Hotels</option>
+                                            <option value="2">Apartment</option>
+                                            <option value="3">Parking</option>
+                                            <option value="4">Experience</option>
+                                            <option value="5">Storage</option>
+                                        </select>
+                                        <label for="formfloating">Select Category</label>
+                                    </div>
+                                </div>
+                            </div>
     
                             
     
@@ -259,6 +297,54 @@
                  
             </div>
             <div class="col-md-3 py-5">
+
+
+                <div class="card" >
+                    <img src="../public/assets/img/product/product-03.jpg" class="card-img-top" id="card-image-view" alt="../public/assets/img/product/product-03.jpg">
+                    <div class="card-body">
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+
+                 
+            </div>
+            <div class="col-md-3 py-5 ">
+
+
+                <div class="card" >
+                    <img src="../public/assets/img/product/product-03.jpg" class="card-img-top" id="card-image-view" alt="../public/assets/img/product/product-03.jpg">
+                    <div class="card-body">
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+
+                 
+            </div>
+            <div class="col-md-3 py-5 ">
+
+
+                <div class="card" >
+                    <img src="../public/assets/img/product/product-03.jpg" class="card-img-top" id="card-image-view" alt="../public/assets/img/product/product-03.jpg">
+                    <div class="card-body">
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+
+                 
+            </div>
+            <div class="col-md-3 py-5 ">
+
+
+                <div class="card" >
+                    <img src="../public/assets/img/product/product-03.jpg" class="card-img-top" id="card-image-view" alt="../public/assets/img/product/product-03.jpg">
+                    <div class="card-body">
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+
+                 
+            </div>
+            <div class="col-md-3 py-5 ">
 
 
                 <div class="card" >
