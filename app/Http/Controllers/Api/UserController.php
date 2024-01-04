@@ -56,6 +56,7 @@ class UserController extends Controller
                     'is_lister' => $request->input('is_lister'),
                     'user_long' => $request->input('user_long'),
                     'user_lat' => $request->input('user_lat'),
+                    'about' => $request->input('about'),
                     'FCM_token' => $request->input('FCM_token'),
                     'platform_tag' => $request->input('platform_tag'),
                 ]);

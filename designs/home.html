@@ -34,6 +34,7 @@
             text-align: center;
             
         }
+        
     </style>
 </head>
 <body >
@@ -115,27 +116,27 @@
                             <div class="row text-center">
                                 <div class="col-md-2 col-lg-2 col-sm-6">
                                     <input type="radio" class="btn-check" name="options-base" id="option5" autocomplete="off" checked>
-                                    <label class="btn" for="option5">Rooms</label>
+                                    <label class="btn" for="option5"><img src="../public/assets/img/meeting_room_24px.png" alt=""> Rooms</label>
                                 </div>
                                 <div class="col-md-2 col-lg-2 col-sm-6">
                                     <input type="radio" class="btn-check" name="options-base" id="option6" autocomplete="off">
-                                    <label class="btn" for="option6">Hotels</label>
+                                    <label class="btn" for="option6"><img src="../public/assets/img/home_24px.png" alt=""> Hotels</label>
                                 </div>
                                 <div class="col-md-2 col-lg-2 col-sm-6">
                                     <input type="radio" class="btn-check" name="options-base" id="option7" autocomplete="off">
-                                    <label class="btn" for="option7">Apartments</label>
+                                    <label class="btn" for="option7"><img src="../public/assets/img/business_24px.png" alt=""> Apartments</label>
                                 </div>
                                 <div class="col-md-2 col-lg-2 col-sm-6">
                                     <input type="radio" class="btn-check" name="options-base" id="option8" autocomplete="off">
-                                    <label class="btn" for="option8">Parking</label>
+                                    <label class="btn" for="option8"><img src="../public/assets/img/parking icon.png" alt="">  Parking</label>
                                 </div>
                                 <div class="col-md-2 col-lg-2 col-sm-6">
                                     <input type="radio" class="btn-check" name="options-base" id="option9" autocomplete="off">
-                                    <label class="btn" for="option9">Experience</label>
+                                    <label class="btn" for="option9"><img src="../public/assets/img/map_24px.png" alt="">   Experience</label>
                                 </div>
                                 <div class="col-md-2 col-lg-2 col-sm-6">
                                     <input type="radio" class="btn-check" name="options-base" id="option10" autocomplete="off">
-                                    <label class="btn" for="option10">Storage</label>
+                                    <label class="btn" for="option10"><img src="../public/assets/img/Cube  24  Outline.png" alt="">  Storage</label>
                                 </div>
                             </div>
                             
@@ -287,15 +288,101 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal fade" id="exampleModal" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Filters</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <div class="container">
+                        <div class="input-group mb-3">
+                            <h5 class="input-group title mb-3">Property Type</h5>
+                            <div class="my-3">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                    <label class="form-check-label" for="inlineRadio1">Room</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <label class="form-check-label" for="inlineRadio2">Hotel</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" >
+                                    <label class="form-check-label" for="inlineRadio3">Apartment</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4" >
+                                    <label class="form-check-label" for="inlineRadio4">Parking</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5" >
+                                    <label class="form-check-label" for="inlineRadio5">Experience</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" value="option6" >
+                                    <label class="form-check-label" for="inlineRadio6">Storage</label>
+                                  </div>
+                            </div>
+                            
+                        </div>
+                        <div class="input-group mb-5">
+                            <h5 class="input-group title">Price Range</h5>
+                            <input type="number" class="p-2 my-2" placeholder="min">
+                            <span class="p-2 mx-2">to</span>
+                            <input type="number" class="p-2 my-2" placeholder="max">
+                        </div>
+                        <div class="input-group mb-3">
+                            <h5 class="input-group title mb-3">Rooms & Beds</h5>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                           <p class="text-dark">Bedrooms</p>
+                                        </div>
+                                        <div class="input-group w-auto justify-content-end align-items-center">
+                                           <input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " data-field="bedrooms">
+                                           <input type="number" max="10" value="1" name="bedrooms" class="quantity-field border-0 text-center w-25">
+                                           <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm " data-field="bedrooms">
+                                        </div>
+                                     </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                           <p class="text-dark">Bathrooms</p>
+                                        </div>
+                                        <div class="input-group w-auto justify-content-end align-items-center">
+                                           <input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " data-field="bathrooms">
+                                           <input type="number"  max="10" value="1" name="bathrooms" class="quantity-field border-0 text-center w-25">
+                                           <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm " data-field="bathrooms">
+                                        </div>
+                                     </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                           <p class="text-dark">Guests</p>
+                                        </div>
+                                        <div class="input-group w-auto justify-content-end align-items-center">
+                                           <input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " data-field="guests">
+                                           <input type="number" max="10" value="1" name="guests" class="quantity-field border-0 text-center w-25">
+                                           <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm " data-field="guests">
+                                        </div>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <h5 class="input-group title">Short Stay Allow</h5>
+                            <span>
+                                <input type="hidden" name="shortstay" value="0">
+                                <input type="checkbox" name="shortstay" value="1">
+                            </span>
+                           
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -441,7 +528,43 @@
     </div>
 
 
-
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        function incrementValue(e) {
+            e.preventDefault();
+            var fieldName = $(e.target).data('field');
+            var parent = $(e.target).closest('div');
+            var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+            if (!isNaN(currentVal)) {
+                parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+            } else {
+                parent.find('input[name=' + fieldName + ']').val(0);
+            }
+        }
+
+        function decrementValue(e) {
+            e.preventDefault();
+            var fieldName = $(e.target).data('field');
+            var parent = $(e.target).closest('div');
+            var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+            if (!isNaN(currentVal) && currentVal > 0) {
+                parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+            } else {
+                parent.find('input[name=' + fieldName + ']').val(0);
+            }
+        }
+
+        $('.button-plus').on('click', function (e) {
+            incrementValue(e);
+        });
+
+        $('.button-minus').on('click', function (e) {
+            decrementValue(e);
+        });
+
+    </script>
 </body>
 </html>
