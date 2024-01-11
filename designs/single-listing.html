@@ -272,8 +272,8 @@
                     <a href="#">Show All</a>
                 </div>
                 <!--Amenities-->
-                <div class="card-body">
-                    <div class="row row-cols-2 ">
+                <div class="card-body mb-3">
+                    <div class="row row-cols-2 mb-5">
                         <div class="col-3 ">
                             <button class="btn btn-success ">Amenities</button>
                         </div>
@@ -302,14 +302,20 @@
                 </div>
                 <hr>
                 <!--Jayga Protect-->
-                <div class="card-body my-3 mb-2">
-                    <div><span
-                            style="color: #139175; font-size: 32px; font-weight: 700; word-wrap: break-word">Jayga</span><span
+                <div class="card-body py-3 mb-2">
+                    <div class="mt-3">
+                        <span
+                            style="color: #139175; font-size: 32px; font-weight: 700; word-wrap: break-word">Jayga
+                        </span>
+                        <span
                             style="color: black; font-size: 28.85px; font-family: Montserrat; font-weight: 500; word-wrap: break-word">
-                        </span><span
-                            style="color: black; font-size: 32px;  font-weight: 500; word-wrap: break-word">Protect</span>
+                        </span>
+                        <span
+                            style="color: black; font-size: 32px;  font-weight: 500; word-wrap: break-word">Protect  <span><img src="../public/assets/img/verified-fill.png" class="p-2" alt=""></span>
+                        </span>
+                           
                     </div>
-                    <div
+                    <div class="py-3 mb-4"
                         style="width: 100%; height: 100%; color: black; font-size: 23.08px; font-weight: 300; word-wrap: break-word">
                         Every booking includes free protection from Host cancellations, listing inaccuracies, and other
                         issues like trouble checking in.</div>
@@ -322,7 +328,7 @@
                     <div class="container">
                         <div class="d-flex justify-content-between  my-5">
                             <h2 class="card-title ">
-                                5000 Tk / Night
+                               <span id="price">5000</span> BDT <span class="fs-6">Per day</span>
                             </h2>
                             <div>
                                 <span class="fa fa-star checked"></span>
@@ -340,65 +346,64 @@
                             <div class="col-12">
                                 <div class="card" style="box-sizing: border-box;">
                                     <!--Short stay slot-->
-                                    <div class="accordion" id="accordionExample">
+                                    
+                                    <div class="accordion accordion-flush" id="accordionFlushExample">
                                         <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingOne">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseOne" aria-expanded="true"
-                                                    aria-controls="collapseOne">
-                                                    <input type="hidden" value="0" name="short_stay">
-                                                    <input type="checkbox" value="1" name="short_stay">
-                                                    <span class="mx-2">Short Stay</span>
-                                                </button>
-                                            </h2>
-                                            <div id="collapseOne" class="accordion-collapse collapse show"
-                                                aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                <div class="accordion-body">
-                                                    <div class="row ">
-                                                        <div class="col-12 col-sm-12 justify-content-between">
+                                          <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" id="short_stay_button">
+                                                <input type="hidden" value="0" name="short_stay">
+                                                <input type="checkbox" value="1" name="short_stay" id="short_stay_check">
+                                                <span class="mx-2">Short Stay</span>
+                                            </button>
+                                          </h2>
+                                          <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="row ">
+                                                    <div class="col-12 col-sm-12 justify-content-between">
 
 
-                                                            <div class="d-flex justify-content-between">
-                                                                <div>
-                                                                    <input type="hidden" value="0"
-                                                                        name="short_stay_slot">
-                                                                    <input type="checkbox" value="1"
-                                                                        name="short_stay_slot">
-                                                                    <span class="px-2">Slot 1</span>
-                                                                </div>
-
-
-                                                                <span>12:00 PM - 04:00PM</span>
-
-
-                                                            </div>
-
-                                                        </div>
                                                         <div class="d-flex justify-content-between">
                                                             <div>
-                                                                <input type="hidden" value="0" name="short_stay_slot">
-                                                                <input type="checkbox" value="1" name="short_stay_slot">
+                                                                <input type="hidden" value="0"
+                                                                    name="short_stay_slot">
+                                                                <input type="checkbox" value="1"
+                                                                    name="short_stay_slot" id="s1">
                                                                 <span class="px-2">Slot 1</span>
                                                             </div>
 
 
                                                             <span>12:00 PM - 04:00PM</span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between">
-                                                            <div>
-                                                                <input type="hidden" value="0" name="short_stay_slot">
-                                                                <input type="checkbox" value="1" name="short_stay_slot">
-                                                                <span class="px-2">Slot 1</span>
-                                                            </div>
 
 
-                                                            <span>12:00 PM - 04:00PM</span>
                                                         </div>
+
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <input type="hidden" value="0" name="short_stay_slot">
+                                                            <input type="checkbox" value="1" name="short_stay_slot" id="s2">
+                                                            <span class="px-2">Slot 2</span>
+                                                        </div>
+
+
+                                                        <span>12:00 PM - 04:00PM</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <input type="hidden" value="0" name="short_stay_slot">
+                                                            <input type="checkbox" value="1" name="short_stay_slot" id="s3">
+                                                            <span class="px-2">Slot 3</span>
+                                                        </div>
+
+
+                                                        <span>12:00 PM - 04:00PM</span>
                                                     </div>
                                                 </div>
                                             </div>
+                                          </div>
                                         </div>
-                                    </div>
+                                        
+                                      </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="d-flex justify-content-between py-5">
@@ -745,6 +750,64 @@
             }
 
         }
+    </script>
+
+    <script>
+        var short_stay = document.getElementById('short_stay_button');
+        var short_stay_select = document.getElementById('short_stay_check');
+        short_stay.addEventListener('click', function(){
+           
+                short_stay_select.toggleAttribute('checked');
+            
+            
+        });
+
+        var s1 = document.getElementById('s1');
+        var s2 = document.getElementById('s2');
+        var s3 = document.getElementById('s3');
+        var price = document.getElementById('price');
+        var perday = document.getElementsByClassName('fs-6');
+
+        s1.addEventListener('click', function(){
+            s1.toggleAttribute('checked');
+            s2.toggleAttribute('disabled');
+            s3.toggleAttribute('disabled');
+            var update_price = price.textContent*(1/4);
+            if(price.textContent == 5000){
+                price.innerText = update_price;
+            }else if(price.innerText == 1250){
+                price.innerText = 5000;
+            }
+            
+            
+            
+        });
+
+        s2.addEventListener('click', function(){
+            s1.toggleAttribute('disabled');
+            s2.toggleAttribute('checked');
+            s3.toggleAttribute('disabled');
+            var update_price = price.textContent*(1/4);
+            if(price.textContent == 5000){
+                price.innerText = update_price;
+            }else if(price.innerText == 1250){
+                price.innerText = 5000;
+            }
+        });
+
+        s3.addEventListener('click', function(){
+            s1.toggleAttribute('disabled');
+            s2.toggleAttribute('disabled');
+            s3.toggleAttribute('checked');
+            var update_price = price.textContent*(2/4);
+            if(price.textContent == 5000){
+                price.innerText = update_price;
+            }else if(price.innerText == 2500){
+                price.innerText = 5000;
+            }
+        });
+
+        
     </script>
 </body>
 
