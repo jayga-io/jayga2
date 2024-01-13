@@ -253,7 +253,7 @@
 
         <!--description-->
 
-        <div class="row ">
+        <div class="row justify-content-between">
             <div class="col-md-7 ">
                 <h2 class="card-title mb-3">Description</h2>
                 <p>12 Guests <span>3 bedrooms</span> <span>3 beds</span> <span>3 baths</span></p>
@@ -323,12 +323,12 @@
                 <hr>
 
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4 ">
                 <div class="card px-2" style="width: 100%; height: 100%; border-radius: 25px;">
                     <div class="container">
                         <div class="d-flex justify-content-between  my-5">
                             <h2 class="card-title ">
-                               <span id="price">5000</span> BDT <span class="fs-6">Per day</span>
+                               <span id="price">5000</span><span id="updatePrice"></span> BDT <span class="fs-6" id="slot">Per day</span>
                             </h2>
                             <div>
                                 <span class="fa fa-star checked"></span>
@@ -351,8 +351,8 @@
                                         <div class="accordion-item">
                                           <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" id="short_stay_button">
-                                                <input type="hidden" value="0" name="short_stay">
-                                                <input type="checkbox" value="1" name="short_stay" id="short_stay_check">
+                                                <input type="hidden" value="0" name="short_stay" >
+                                                <input type="checkbox" value="1" name="short_stay" id="short_stay_check" onchange="doprice(this)">
                                                 <span class="mx-2">Short Stay</span>
                                             </button>
                                           </h2>
@@ -428,54 +428,85 @@
                                 <div class="col-12">
                                     <div class="my-3 mx-2">
                                         <p class="text-dark">Guests</p>
-                                        <div class="input-group py-2">
-                                            <input type="button" value="-"
-                                                class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
-                                                data-field="quantity">
-                                            <input type="number" step="1" max="10" value="1" name="quantity"
-                                                class="quantity-field border-0 text-center w-25">
-                                            <input type="button" value="+"
-                                                class="button-plus border rounded-circle icon-shape icon-sm "
-                                                data-field="quantity">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="card-text">Adult</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group py-2">
+                                           
+                                                    <input type="button" value="-"
+                                                        class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
+                                                        data-field="quantity">
+                                                    <input type="number" step="1" max="10" value="1" name="quantity"
+                                                        class="quantity-field border-0 text-center w-25">
+                                                    <input type="button" value="+"
+                                                        class="button-plus border rounded-circle icon-shape icon-sm "
+                                                        data-field="quantity">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="input-group py-2">
-                                            <input type="button" value="-"
-                                                class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
-                                                data-field="quantity">
-                                            <input type="number" step="1" max="10" value="1" name="quantity"
-                                                class="quantity-field border-0 text-center w-25">
-                                            <input type="button" value="+"
-                                                class="button-plus border rounded-circle icon-shape icon-sm "
-                                                data-field="quantity">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="card-text">Children</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group py-2">
+                                           
+                                                    <input type="button" value="-"
+                                                        class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
+                                                        data-field="quantity">
+                                                    <input type="number" step="1" max="10" value="1" name="quantity"
+                                                        class="quantity-field border-0 text-center w-25">
+                                                    <input type="button" value="+"
+                                                        class="button-plus border rounded-circle icon-shape icon-sm "
+                                                        data-field="quantity">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="input-group py-2">
-                                            <input type="button" value="-"
-                                                class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
-                                                data-field="quantity">
-                                            <input type="number" step="1" max="10" value="1" name="quantity"
-                                                class="quantity-field border-0 text-center w-25">
-                                            <input type="button" value="+"
-                                                class="button-plus border rounded-circle icon-shape icon-sm "
-                                                data-field="quantity">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="card-text">Pets</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group py-2">
+                                           
+                                                    <input type="button" value="-"
+                                                        class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
+                                                        data-field="quantity">
+                                                    <input type="number" step="1" max="10" value="1" name="quantity"
+                                                        class="quantity-field border-0 text-center w-25">
+                                                    <input type="button" value="+"
+                                                        class="button-plus border rounded-circle icon-shape icon-sm "
+                                                        data-field="quantity">
+                                                </div>
+                                            </div>
                                         </div>
+
+                                        
                                     </div>
                                 </div>
 
 
 
                                 <hr>
-                                <div class="container  d-flex justify-content-between mb-5">
-                                    <div>Slot </div>
-                                    <span>1</span>
+                                <div class="container d-flex justify-content-between mb-5" >
+                                    
+                                        <div id="slot_name">Slot </div>
+                                        <span id="slot_no">1</span>
+                                    
+                                    
+                                    
                                 </div>
                                 <div class="container  d-flex justify-content-between">
                                     <div>Jayga Fee </div>
-                                    <span>500</span>
+                                    <span>3%</span>
                                 </div>
                                 <hr>
                                 <div class="container p-3 d-flex justify-content-between">
                                     <div style="font-size: 24px; font-weight: 700;">Total </div>
-                                    <span style="font-size: 32px; font-weight: 700;">500</span>
+                                   
+                                    <span style="font-size: 32px; font-weight: 700;" id="pay_amount">5500</span>
                                 </div>
                                 <div class="my-3">
                                     <button class="form-control btn btn-success p-3" style="border-radius: 25px;">Book
@@ -755,29 +786,75 @@
     <script>
         var short_stay = document.getElementById('short_stay_button');
         var short_stay_select = document.getElementById('short_stay_check');
-        short_stay.addEventListener('click', function(){
-           
-                short_stay_select.toggleAttribute('checked');
-            
-            
-        });
-
         var s1 = document.getElementById('s1');
         var s2 = document.getElementById('s2');
         var s3 = document.getElementById('s3');
         var price = document.getElementById('price');
-        var perday = document.getElementsByClassName('fs-6');
+        var perday = document.getElementById('slot');
+       var slot_no = document.getElementById('slot_no');
+       var pay = document.getElementById('pay_amount');
+       var pay_old = document.getElementById('pay_old');
+        
+        short_stay.addEventListener('click', function(){
+           if(short_stay_select.hasAttribute('checked')){
+            short_stay_select.removeAttribute('checked');
+           
+           }else{
+            short_stay_select.setAttribute('checked', true);
+            
+           }
+        });
 
-        s1.addEventListener('click', function(){
+        function doprice(element){
+            if(element.checked){
+                
+                price.style.display = 'none';
+                priceUpdate.style.display = 'block';
+               
+
+            }else{
+                price.style.display = 'block';
+                priceUpdate.style.display = 'none';
+                
+            }
+        }
+
+        
+        var whole_day_price = parseInt(price.textContent);
+        var priceUpdate = document.getElementById('updatePrice');
+        priceUpdate.style.display = 'none';
+
+        s1.addEventListener('change', function(){
             s1.toggleAttribute('checked');
             s2.toggleAttribute('disabled');
             s3.toggleAttribute('disabled');
-            var update_price = price.textContent*(1/4);
-            if(price.textContent == 5000){
-                price.innerText = update_price;
-            }else if(price.innerText == 1250){
-                price.innerText = 5000;
+           
+            if(s1.hasAttribute('checked')){
+                var calc_price = ((whole_day_price*40)/100);
+                var new_price = whole_day_price + calc_price;
+                var update_price = new_price*(1/4);
+                priceUpdate.innerText = update_price;
+                var commision = (whole_day_price*3)/100;
+                perday.innerText = 'per slot';
+                price.style.display = 'none';
+                priceUpdate.style.display = 'block';
+                slot_no.innerText = '1';
+                pay.innerText = update_price + commision;
+               
+
+            }else{
+                var commision = (whole_day_price*3)/100;
+                perday.innerText = 'per day';
+                price.style.display = 'block';
+                priceUpdate.style.display = 'none';
+                slot_no.innerText = '0';
+                pay.innerText = whole_day_price + commision;
             }
+            
+            
+
+
+
             
             
             
@@ -787,11 +864,24 @@
             s1.toggleAttribute('disabled');
             s2.toggleAttribute('checked');
             s3.toggleAttribute('disabled');
-            var update_price = price.textContent*(1/4);
-            if(price.textContent == 5000){
-                price.innerText = update_price;
-            }else if(price.innerText == 1250){
-                price.innerText = 5000;
+            if(s2.hasAttribute('checked')){
+                var calc_price = ((whole_day_price*40)/100);
+                var new_price = whole_day_price + calc_price;
+                var update_price = new_price*(1/4);
+                priceUpdate.innerText = update_price;
+                var commision = (whole_day_price*3)/100;
+                perday.innerText = 'per slot';
+                price.style.display = 'none';
+                priceUpdate.style.display = 'block';
+                slot_no.innerText = '2';
+                pay.innerText = update_price + commision;
+            }else{
+                var commision = (whole_day_price*3)/100;
+                perday.innerText = 'per day';
+                price.style.display = 'block';
+                priceUpdate.style.display = 'none';
+                slot_no.innerText = '0';
+                pay.innerText = whole_day_price + commision;
             }
         });
 
@@ -799,15 +889,65 @@
             s1.toggleAttribute('disabled');
             s2.toggleAttribute('disabled');
             s3.toggleAttribute('checked');
-            var update_price = price.textContent*(2/4);
-            if(price.textContent == 5000){
-                price.innerText = update_price;
-            }else if(price.innerText == 2500){
-                price.innerText = 5000;
+            if(s3.hasAttribute('checked')){
+                var calc_price = ((whole_day_price*40)/100);
+                var new_price = whole_day_price + calc_price;
+                var update_price = new_price*(2/4);
+                priceUpdate.innerText = update_price;
+                var commision = (whole_day_price*3)/100;
+                perday.innerText = 'per slot';
+                price.style.display = 'none';
+                priceUpdate.style.display = 'block';
+                slot_no.innerText = '3';
+                pay.innerText = update_price + commision;
+            }else{
+                var commision = (whole_day_price*3)/100;
+                perday.innerText = 'per day';
+                price.style.display = 'block';
+                priceUpdate.style.display = 'none';
+                slot_no.innerText = '0';
+                pay.innerText = whole_day_price + commision;
             }
         });
 
         
+    </script>
+
+    <script>
+        function incrementValue(e) {
+            e.preventDefault();
+            var fieldName = $(e.target).data('field');
+            var parent = $(e.target).closest('div');
+            var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+            if (!isNaN(currentVal)) {
+                parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+            } else {
+                parent.find('input[name=' + fieldName + ']').val(0);
+            }
+        }
+
+        function decrementValue(e) {
+            e.preventDefault();
+            var fieldName = $(e.target).data('field');
+            var parent = $(e.target).closest('div');
+            var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+            if (!isNaN(currentVal) && currentVal > 0) {
+                parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+            } else {
+                parent.find('input[name=' + fieldName + ']').val(0);
+            }
+        }
+
+        $('.input-group').on('click', '.button-plus', function (e) {
+            incrementValue(e);
+        });
+
+        $('.input-group').on('click', '.button-minus', function (e) {
+            decrementValue(e);
+        });
+
     </script>
 </body>
 
