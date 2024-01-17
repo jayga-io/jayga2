@@ -598,7 +598,7 @@
             <div class="row p-5 my-3 align-items-center">
                 <hr>
                 <div class="col-md-3 col-lg-3 col-sm-12 px-2">
-                    <img src="../public/assets/img/logo/Jayga Logo-02.png" width="80" height="80" alt="Jayga">
+                    <img src="{{asset('assets/img/logo/Jayga Logo-02.png')}}" width="80" height="80" alt="Jayga">
                     <div style="width: 100%; color: black; font-size: 15px;  font-weight: 400; word-wrap: break-word">
                         Bangladesh’s first peer to peer technology enabled spacing solution platform</div>
 
