@@ -10,6 +10,7 @@ use App\Http\Controllers\Host\ListerDashboardController;
 use App\Http\Controllers\Host\ListerUserController;
 use App\Http\Controllers\Host\AccountsController;
 use App\Http\Controllers\Host\BankDetailsController;
+use App\Http\Controllers\Client\ClientController;
 use App\Models\User;
 use App\Models\Listing;
 use App\Http\Middleware\ensureotp;
@@ -28,9 +29,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ClientController::class, 'index']);
 
 Route::get('/link/storage', function(){
     Artisan::call('storage:link');
@@ -226,6 +225,12 @@ Route::prefix('user')->group(function(){
     
 });
 
+
+//client section
+Route::prefix('client')->group(function(){
+    Route::get('/home', [ClientController::class, 'index'])->name('home');
+    Route::post('/search', [ClientController::class, 'search'])->name('searchroute');
+});
 
 Route::get('/logout', function(Request $request){
     $request->session()->flush();
