@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Listing;
+use Illuminate\Support\Facades\Http;
 
 class ClientController extends Controller
 {
@@ -13,8 +14,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $listings = Listing::with('images')->take(8)->get();
-       // dd($listings);
+        $listings = Listing::with('images')->with('reviews')->take(8)->get();
+        
+       // dd($listings[0]->reviews[0]->avg_rating);
        return view('client.home.home')->with('listings', $listings);
     
     }

@@ -5,15 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jayga | Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+
+        .checked {
+            color: orange;
+        }
         .nav-link {
             color: #158E72;
         }
 
         #card-image-view {
-            aspect-ratio: 3/2;
+            
             width: 100%;
             height: 100%;
             object-fit: contain;
@@ -63,6 +67,13 @@
 
         a{
             text-decoration: none;
+        }
+
+        .card:hover{
+          opacity: 1;
+            transition: 0.5s;
+            transform:scale(1.05);
+            
         }
     </style>
 </head>
@@ -289,38 +300,62 @@
             <h3 class="mt-5">Top Listings</h3>
             <a href="" class="mt-5" style="color: #158E72; font-weight: 700;">View all</a>
         </div>
-        <div class="card-header d-flex justify-content-between">
+        <div class="card-header d-flex justify-content-between mb-3">
             <button class="btn btn-secondary">Popularity</button>
             <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Filters</button>
         </div>
         <div class="row mb-5">
             @foreach ($listings as $item)
-                <div class="col-md-3 py-5">
+            <div class="col-md-3 py-2">
 
 
                 <a class="card" href="#">
-                    <img src="{{asset('/uploads/'.$item->images[0]->listing_targetlocation)}}" class="card-img-top" id="card-image-view"
+                    <img src="{{asset('/uploads/'. $item->images[0]->listing_targetlocation)}}" class="card-img-top" id="card-image-view"
                         alt="#">
                     <div class="card-body">
-                        <div class="row justify-content-between">
+                        <div class="row">
                             <div class="col">
-                                <h5 class="card-text">Listing Title</h5>
-                                <p class="card-text">
-                                    Short stay available
-                                </p>
-                                <p class="card-text">
-                                    ৳ 750 <span>/ Night</span>
-                                </p>
+                                <h6 class="card-title">{{$item->listing_title}}</h6>
+                               
                             </div>
-                            <div class="col">
-                                <i class="fa fa-star checked"></i>
-                                <span>4.5</span>
+                            <div class="col" style="text-align: right">
+                                @if (count($item->reviews) > 0)
+
+                                    <div>
+                                        <i class="fa fa-star checked mx-1"></i><span class="card-text"> {{$item->reviews[0]->avg_rating}}</span> 
+                                    </div>
+                                  
+                                    
+                                @else
+
+                                    <div>
+                                        <i class="fa fa-star checked mx-1"></i><span class="text-muted"> 0</span> 
+                                    </div>
+                                    
+                                    
+                                @endif
+                                
                             </div>
                         </div>
+                            @if ($item->allow_short_stay == true )
+                            <p class="card-text">
+                                Short stay available
+                            </p>
+                            @else
+                            <p class="card-text">
+                                Short stay not available
+                            </p>
+                            @endif
+                            
+                            <p class="card-text">{{$item->bed_num}} bedrooms</p>
+                            
+                            <p class="card-text">
+                                ৳ {{$item->full_day_price_set_by_user}} <span>/ Night</span>
+                            </p>
                     </div>
                 </a>
 
-
+                
             </div>
             @endforeach
             
@@ -467,29 +502,29 @@
                 </div>
                 <div class="col-md-6 col-sm-6 col-lg-6">
                     <div class="box d-flex ">
-                        <img src="../public/assets/img/360_24px.png" class="p-3" alt="">
+                        <img src="{{asset('assets/img/360_24px.png')}}" class="p-3" alt="">
                         <p class="text m-3">Relocation assistance in case of unsatisfactory conditions</p>
                     </div>
                     <div class="box d-flex">
-                        <img src="../public/assets/img/local_atm_24px.png" alt="" class="p-3">
+                        <img src="{{asset('assets/img/local_atm_24px.png')}}" alt="" class="p-3">
                         <p class="text m-1">Reimbursements upto 50000 BDT for security breaches and property damage</p>
                     </div>
                     <div class="box d-flex">
-                        <img src="../public/assets/img/verified_user_24px.png" alt="" class="p-3">
+                        <img src="{{asset('assets/img/verified_user_24px.png')}}" alt="" class="p-3">
                         <p class="text m-3">Safety & security helpline</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-lg-6 mb-5">
                     <div class="box d-flex ">
-                        <img src="../public/assets/img/security_24px.png" class="p-3" alt="">
+                        <img src="{{asset('assets/img/security_24px.png')}}" class="p-3" alt="">
                         <p class="text m-3">Full privacy protection</p>
                     </div>
                     <div class="box d-flex">
-                        <img src="../public/assets/img/ring_volume_24px.png" alt="" class="p-3">
+                        <img src="{{asset('assets/img/ring_volume_24px.png')}}" alt="" class="p-3">
                         <p class="text m-3">24/7 desk support</p>
                     </div>
                     <div class="box d-flex">
-                        <img src="../public/assets/img/local_offer_24px.png" alt="" class="p-3">
+                        <img src="{{asset('assets/img/local_offer_24px.png')}}" alt="" class="p-3">
                         <p class="text m-3">Discounts and vouchers available regularly</p>
                     </div>
                 </div>
@@ -501,7 +536,7 @@
     <div class="container">
         <div class="row align-items-center mb-5">
             <div class="col-md-6 col-sm-6 col-lg-6 text-center">
-                <img src="../public/assets/img/Home - with filters.png"
+                <img src="{{asset('assets/img/Home - with filters.png')}}"
                     style="border-style:solid; border: 0px; border-color: black; background-color: black; border-radius: 35px;"
                     width="70%%;" height="70%" class="p-3 mt-5 mb-3" alt="">
             </div>
@@ -511,10 +546,10 @@
                     Start exploring and reserving your favorite spots effortlessly.</div>
 
                 <a href="" class="btn">
-                    <img src="../public/assets/img/Group.png" width="240" height="70" alt="">
+                    <img src="{{asset('assets/img/Group.png')}}" width="240" height="70" alt="">
                 </a>
                 <a href="" class="btn">
-                    <img src="../public/assets/img/Group.png" width="240" height="70" alt="">
+                    <img src="{{asset('assets/img/Group.png')}}" width="240" height="70" alt="">
                 </a>
             </div>
         </div>
