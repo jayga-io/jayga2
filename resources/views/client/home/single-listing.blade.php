@@ -150,6 +150,9 @@
             padding: 10px;
         }
 
+        div.scroll-container img {
+            padding: 2px;
+        }
         
     </style>
 
@@ -241,14 +244,19 @@
 
         <!--Image banner-->
 
-        <div class="row mb-3 p-2">
-            @foreach ($listing[0]->images as $item)
+        <div class="row mb-3">
+            <div class="scroll-container">
+                @foreach ($listing[0]->images as $item)
 
-
-                <a href="{{asset('/uploads/'. $item->listing_targetlocation)}}" data-toggle="lightbox" class="p-2" data-gallery="example-gallery" class="col-sm-4">
-                    <img src="{{asset('/uploads/'. $item->listing_targetlocation)}}" class="img-fluid mx-1">
-                </a>
-            @endforeach
+                   
+                        <a href="https://new.jayga.io/uploads/{{$item->listing_targetlocation}}" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                            <img src="https://new.jayga.io/uploads/{{ $item->listing_targetlocation}}" class="img-fluid mx-1">
+                        </a>
+                   
+                    
+                @endforeach
+            </div>
+           
             
             
         </div>
