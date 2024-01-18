@@ -153,6 +153,8 @@
         
     </style>
 
+
+
 </head>
 
 <body>
@@ -239,17 +241,16 @@
 
         <!--Image banner-->
 
-        <div class="row mb-3" id="image-banner">
-            <div class="col-md-12">
-                <div class="scroll-container">
-                    @foreach ($listing[0]->images as $item)
-                        <img src="{{asset('/uploads/'.$item->listing_targetlocation)}}" class="px-1" id="product-img" alt="#">
-                    @endforeach
-                    
-                
-                </div>
-            </div>
-            
+        <div class="row">
+            <a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                <img src="https://unsplash.it/600.jpg?image=251" class="img-fluid">
+            </a>
+            <a href="https://unsplash.it/1200/768.jpg?image=252" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                <img src="https://unsplash.it/600.jpg?image=252" class="img-fluid">
+            </a>
+            <a href="https://unsplash.it/1200/768.jpg?image=253" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                <img src="https://unsplash.it/600.jpg?image=253" class="img-fluid">
+            </a>
         </div>
 
         <!--description-->
@@ -753,6 +754,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.3/dist/index.bundle.min.js"></script>
     <script>
         function say() {
             var el = document.querySelector('#sy');
