@@ -241,16 +241,14 @@
 
         <!--Image banner-->
 
-        <div class="row">
-            <a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                <img src="https://unsplash.it/600.jpg?image=251" class="img-fluid">
-            </a>
-            <a href="https://unsplash.it/1200/768.jpg?image=252" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                <img src="https://unsplash.it/600.jpg?image=252" class="img-fluid">
-            </a>
-            <a href="https://unsplash.it/1200/768.jpg?image=253" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                <img src="https://unsplash.it/600.jpg?image=253" class="img-fluid">
-            </a>
+        <div class="row mb-3 p-2">
+            @foreach ($listing[0]->images as $item)
+                <a href="{{asset('/uploads/'. $item->listing_targetlocation)}}" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="{{asset('/uploads/'. $item->listing_targetlocation)}}" class="img-fluid">
+                </a>
+            @endforeach
+            
+            
         </div>
 
         <!--description-->
