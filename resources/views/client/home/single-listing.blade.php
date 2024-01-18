@@ -151,7 +151,8 @@
         }
 
         div.scroll-container img {
-            padding: 10px;
+            padding: 5px;
+            
         }
     </style>
 
@@ -241,14 +242,17 @@
 
         <!--Image banner-->
 
-        <div class="mb-3" id="image-banner">
-            <div class="scroll-container">
-                @foreach ($listing[0]->images as $item)
-                    <img src="{{asset('/uploads/'.$item->listing_targetlocation)}}" alt="#">
-                @endforeach
+        <div class="row mb-3" id="image-banner">
+            <div class="col-md-12">
+                <div class="scroll-container">
+                    @foreach ($listing[0]->images as $item)
+                        <img src="{{asset('/uploads/'.$item->listing_targetlocation)}}" id="product-img" alt="#">
+                    @endforeach
+                    
                 
-               
-              </div>
+                </div>
+            </div>
+            
         </div>
 
         <!--description-->
