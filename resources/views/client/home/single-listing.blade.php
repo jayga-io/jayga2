@@ -40,10 +40,7 @@
                 text-align: left;
             }
 
-            #image-banner {
-                overflow-x: scroll;
-                white-space: nowrap;
-            }
+            
             #host_desc{
                 display: none;
             }
@@ -145,6 +142,19 @@
         }
     </style>
 
+    <style>
+        div.scroll-container {
+            background-color: #333;
+            overflow: auto;
+            white-space: nowrap;
+            padding: 10px;
+        }
+
+        div.scroll-container img {
+            padding: 10px;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -231,24 +241,14 @@
 
         <!--Image banner-->
 
-        <div class="row d-flex justify-content-between mb-3" id="image-banner">
-            <div class="col-md-6 m-1">
-
-                <img src="{{asset('/uploads/'. $listing[0]->images[0]->listing_targetlocation)}}" id="product-img" alt="">
-            </div>
-            <div class="col-md-6 m-1">
-                <div class="row row-cols-2">
-                    @foreach ($listing[0]->images as $item)
-                        <div class="col">
-                            <img src="{{asset('/uploads/'. $item->listing_targetlocation)}}" id="product-img" alt="">
-                        </div>
-                    @endforeach
-                    
+        <div class="mb-3" id="image-banner">
+            <div class="scroll-container">
+                @foreach ($listing[0]->images as $item)
+                    <img src="{{asset('/uploads/'.$item->listing_targetlocation)}}" alt="#">
+                @endforeach
                 
-
-                </div>
-
-            </div>
+               
+              </div>
         </div>
 
         <!--description-->
