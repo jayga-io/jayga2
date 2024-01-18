@@ -18,9 +18,9 @@
         }
 
         #product-img {
-            aspect-ratio: 3/2;
+           
             object-fit: contain;
-            border-radius: 20px;
+            border-radius: 27px;
             width: 100%;
             height: 100%;
         }
@@ -232,11 +232,11 @@
         <!--Image banner-->
 
         <div class="row mb-3" id="image-banner">
-            <div class="col m-1">
+            <div class="col-md-6 m-1">
 
                 <img src="{{asset('/uploads/'. $listing[0]->images[0]->listing_targetlocation)}}" id="product-img" alt="">
             </div>
-            <div class="col m-1">
+            <div class="col-md-6 m-1">
                 <div class="row row-cols-2">
                     @foreach ($listing[0]->images as $item)
                         <div class="col">
