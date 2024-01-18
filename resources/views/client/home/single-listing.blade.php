@@ -245,8 +245,8 @@
             @foreach ($listing[0]->images as $item)
 
 
-                <a href="{{asset('/uploads/'. $item->listing_targetlocation)}}" data-toggle="lightbox" class="p-2 m-1" data-gallery="example-gallery" class="col-sm-4">
-                    <img src="{{asset('/uploads/'. $item->listing_targetlocation)}}" class="img-fluid">
+                <a href="{{asset('/uploads/'. $item->listing_targetlocation)}}" data-toggle="lightbox" class="p-2" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="{{asset('/uploads/'. $item->listing_targetlocation)}}" class="img-fluid mx-1">
                 </a>
             @endforeach
             
