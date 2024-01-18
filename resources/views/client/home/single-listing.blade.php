@@ -150,10 +150,7 @@
             padding: 10px;
         }
 
-        div.scroll-container img {
-            padding: 5px;
-            
-        }
+        
     </style>
 
 </head>
@@ -246,7 +243,7 @@
             <div class="col-md-12">
                 <div class="scroll-container">
                     @foreach ($listing[0]->images as $item)
-                        <img src="{{asset('/uploads/'.$item->listing_targetlocation)}}" id="product-img" alt="#">
+                        <img src="{{asset('/uploads/'.$item->listing_targetlocation)}}" class="px-1" id="product-img" alt="#">
                     @endforeach
                     
                 
