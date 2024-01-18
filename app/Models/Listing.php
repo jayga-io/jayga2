@@ -41,5 +41,9 @@ class Listing extends Model
         return $this->hasMany(Reviews::class, 'listing_id', 'listing_id');
     }
 
+    public function host(){
+        return $this->hasOne(User::class, 'id', 'lister_id');
+    }
+
   
 }

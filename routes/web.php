@@ -230,6 +230,7 @@ Route::prefix('user')->group(function(){
 Route::prefix('client')->group(function(){
     Route::get('/home', [ClientController::class, 'index'])->name('home');
     Route::post('/search', [ClientController::class, 'search'])->name('searchroute');
+    Route::get('/single-listing/{id}', [ClientController::class, 'show']);
 });
 
 Route::get('/logout', function(Request $request){

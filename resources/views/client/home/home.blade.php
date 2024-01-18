@@ -309,7 +309,7 @@
             <div class="col-md-3 py-2">
 
 
-                <a class="card" href="#">
+                <a class="card" href="/client/single-listing/{{$item->listing_id}}">
                     <img src="{{asset('/uploads/'. $item->images[0]->listing_targetlocation)}}" class="card-img-top" id="card-image-view"
                         alt="#">
                     <div class="card-body">
