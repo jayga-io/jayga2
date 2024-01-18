@@ -231,7 +231,7 @@
 
         <!--Image banner-->
 
-        <div class="row mb-3" id="image-banner">
+        <div class="row d-flex justify-content-between mb-3" id="image-banner">
             <div class="col-md-6 m-1">
 
                 <img src="{{asset('/uploads/'. $listing[0]->images[0]->listing_targetlocation)}}" id="product-img" alt="">
