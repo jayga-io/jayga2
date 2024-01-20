@@ -56,11 +56,11 @@
 
     <div class="mb-3">
       <label for="listingDescription" class="form-label">Listing Description</label>
-      <textarea class="form-control" id="listingDescription" name="listing_description" placeholder="{{$listing[0]->listing_description}}" rows="4" ></textarea>
+      <textarea class="form-control" id="listingDescription" name="listing_description"  rows="4" >{{$listing[0]->listing_description}}</textarea>
     </div>
     <div class="mb-3">
       <label for="listingDescription" class="form-label">Listing Address</label>
-      <textarea class="form-control" id="listingDescription" name="listing_address" placeholder="{{$listing[0]->listing_address}}" rows="4" ></textarea>
+      <textarea class="form-control" id="listingDescription" name="listing_address"  rows="4" >{{$listing[0]->listing_address}}</textarea>
     </div>
 
     <div class="mb-3">

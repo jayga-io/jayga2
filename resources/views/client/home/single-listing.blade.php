@@ -21,8 +21,9 @@
            
             object-fit: contain;
             border-radius: 27px;
-            width: 100%;
+            width: 600px;
             height: 500px;
+            margin: 0px;
         }
 
         .col {
@@ -144,15 +145,13 @@
 
     <style>
         div.scroll-container {
-            background-color: #333;
+            background-color: #fffefe;
             overflow: auto;
             white-space: nowrap;
-            padding: 10px;
-        }
-
-        div.scroll-container img {
             padding: 2px;
         }
+
+        
         
     </style>
 
@@ -196,12 +195,12 @@
         <!--Image banner-->
 
         <div class="row mb-3">
-            <div class="scroll-container">
+            <div class="scroll-container" style="margin: 0">
                 @foreach ($listing[0]->images as $item)
 
                    
-                        <a href="https://new.jayga.io/uploads/{{$item->listing_targetlocation}}" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                            <img src="https://new.jayga.io/uploads/{{ $item->listing_targetlocation}}" class="img-fluid mx-1">
+                        <a href="https://new.jayga.io/uploads/{{$item->listing_targetlocation}}" data-toggle="lightbox" data-gallery="example-gallery" >
+                            <img src="https://new.jayga.io/uploads/{{ $item->listing_targetlocation}}" id="product-img" >
                         </a>
                    
                     

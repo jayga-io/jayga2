@@ -110,7 +110,7 @@
                                         @if (Session::get('allow_short_stay') == 0)
                                             <input type="checkbox" name="allow_short_stay" value="1" >
                                         @else
-                                        <input type="checkbox" checked name="allow_short_stay" value="1" >
+                                            <input type="checkbox" checked name="allow_short_stay" value="1" onchange="dohide(this)">
                                         @endif
                                         
                                         
@@ -119,6 +119,28 @@
                                 
                                 
                             </div>
+
+                            <div class="col-md-12" id="short_stay_def">
+                                <div class="input-text">
+                                    <p>
+                                        By agreeing to host Short Stays on Jayga you are agreeing to host multiple stays in 1 day, potentially earning more per day.
+                                    </p>
+                                   
+                                </div>
+                                <div class="input-text">
+                                    The slots are:
+                                    <ul>
+                                        <li>11A.M - 2P.M</li>
+                                        <li>3 P.M - 6P.M</li>
+                                        <li>7P.M - 10 A.M</li>
+                                    </ul>
+                                        
+                                        
+                                        
+                                </div>
+                            </div>
+
+
                             </div>
                     </div>
                 

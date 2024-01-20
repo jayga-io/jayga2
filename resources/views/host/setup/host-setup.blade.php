@@ -63,6 +63,25 @@
             });
         
         </script>
+
+    <script>
+        var click = document.getElementById('short_stay_click');
+        var def = document.getElementById('short_stay_def');
+        var confirm = document.getElementById('confirm_btn');
+        def.style.display = 'none';
+        
+        function dohide(el){
+            if(el.checked){
+                def.style.display = 'block';
+                confirm.innerText = 'Confirm';
+                
+            }else{
+                def.style.display = 'none';
+                confirm.innerText = 'Next Step';
+            }
+        }
+        
+    </script>
        
 </body>
 </html>
