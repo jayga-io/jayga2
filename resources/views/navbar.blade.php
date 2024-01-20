@@ -25,7 +25,7 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             @if (Session::has('photo'))
-                               <img src="{{asset('/uploads/'. Session::get('photo'))}}" class="rounded-circle" style="width: 70; height:70;" alt=""> 
+                               <img src="{{asset('/uploads/'.Session::get('photo'))}}" class="rounded-circle" style="width: 20px; height:auto;" alt=""> 
                             @else
                                 Welcome,
                             @endif
