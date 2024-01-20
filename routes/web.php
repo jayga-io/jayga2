@@ -11,6 +11,7 @@ use App\Http\Controllers\Host\ListerUserController;
 use App\Http\Controllers\Host\AccountsController;
 use App\Http\Controllers\Host\BankDetailsController;
 use App\Http\Controllers\Client\ClientController;
+use App\Http\Controllers\Client\ClientLoginController;
 use App\Models\User;
 use App\Models\Listing;
 use App\Http\Middleware\ensureotp;
@@ -257,11 +258,15 @@ Route::prefix('client')->group(function(){
     Route::get('/home', [ClientController::class, 'index'])->name('home');
     Route::post('/search', [ClientController::class, 'search'])->name('searchroute');
     Route::get('/single-listing/{id}', [ClientController::class, 'show']);
+    
+   Route::get('/login', [ClientLoginController::class, 'index'])->name('clientlogin');
+   Route::post('/login-otp', [ClientLoginController::class, 'otp'])->name('clientotp');
+   Route::post('/otp-verify', [ClientLoginController::class, 'verify'])->name('otpverif');
 });
 
 Route::get('/logout', function(Request $request){
     $request->session()->flush();
-    return redirect(route('userdash'));
+    return redirect('/');
 })->name('logout');
 
 

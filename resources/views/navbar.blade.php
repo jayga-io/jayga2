@@ -21,30 +21,50 @@
                 <li class="nav-item mx-3">
                     <a class="nav-link "><img src="{{asset('assets/img/globe.png')}}" alt="" srcset=""> EN</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <button
-                            style="width: 100%; height: 100%; padding-top: 4px; padding-bottom: 4px; padding-left: 28px; padding-right: 29.80px; border-radius: 4.99px; overflow: hidden; border: 0.87px rgba(21, 142, 114, 0.66) solid; justify-content: center; align-items: center; display: inline-flex">
-                            <div
-                                style="color: #158E72; font-size: 16.58px; font-family: Montserrat; font-weight: 500; word-wrap: break-word">
-                                Sign Up
-                            </div>
-                        </button>
-                    </a>
+                @if (Session::has('user_name'))
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            @if (Session::has('photo'))
+                               <img src="{{asset('/uploads/'. Session::get('photo'))}}" class="rounded-circle" style="width: 70; height:70;" alt=""> 
+                            @else
+                                Welcome,
+                            @endif
+                            
+                            <span>{{Session::get('user_name')}}</span>
 
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div
-                            style="width: 100%; height: 100%; padding-top: 4px; padding-bottom: 4px; padding-left: 35.80px; padding-right: 36px; background: #158E72; border-radius: 4.99px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex">
-                            <div
-                                style="color: white; font-size: 16.58px; font-family: Montserrat; font-weight: 500; word-wrap: break-word">
-                                Log In
-                            </div>
-                        </div>
-                    </a>
+                            
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('logout')}}">Logout</a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a href="{{route('clientlogin')}}" class="nav-link">
+                            <button
+                                style="width: 100%; height: 100%; padding-top: 4px; padding-bottom: 4px; padding-left: 28px; padding-right: 29.80px; border-radius: 4.99px; overflow: hidden; border: 0.87px rgba(21, 142, 114, 0.66) solid; justify-content: center; align-items: center; display: inline-flex">
+                                <div
+                                    style="color: #158E72; font-size: 16.58px; font-family: Montserrat; font-weight: 500; word-wrap: break-word">
+                                    Sign Up
+                                </div>
+                            </button>
+                        </a>
 
-                </li>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('clientlogin')}}" class="nav-link">
+                            <div
+                                style="width: 100%; height: 100%; padding-top: 4px; padding-bottom: 4px; padding-left: 35.80px; padding-right: 36px; background: #158E72; border-radius: 4.99px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex">
+                                <div
+                                    style="color: white; font-size: 16.58px; font-family: Montserrat; font-weight: 500; word-wrap: break-word">
+                                    Log In
+                                </div>
+                            </div>
+                        </a>
+
+                    </li> 
+                @endif
+                
             </ul>
         </div>
     </div>

@@ -81,8 +81,8 @@ class ListerDashboardController extends Controller
 
     //Bookings
     public function bookings(Request $request){
-        $bookings = Booking::where('booking_status', 1)->where('isComplete', false)->where('lister_id', $request->session()->get('user'))->with('listings')->get();
-       //dd($bookings);
+        $bookings = Booking::where('booking_status', 1)->where('isComplete', true)->where('lister_id', $request->session()->get('user'))->with('listings')->with('short_stays')->get();
+      // dd($bookings);
         $pending_bookings = Booking::where('booking_status', 0)->where('isComplete', false)->where('lister_id', $request->session()->get('user'))->get();
         return view('host.bookings.bookings')->with('bookings', $bookings)->with('pendings', $pending_bookings);
     }

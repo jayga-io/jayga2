@@ -113,7 +113,8 @@
                             <th>Number of members</th>
                             <th>Arrival Date</th>
                             <th>Checkout Date</th>
-                            <th>Tier</th>
+                            <th>Short_stay_slot</th>
+                            <th>Short_stay_time</th>
                             <th>Booking Made</th>
                             <th>Pay Amount</th>
                             <th>Jayga_fee</th>
@@ -136,10 +137,13 @@
 
                                 @if ($item->tier == 0)
                                     <td><span class="badge rounded-pill bg-success">Full Stay</span></td>
+                                    <td> <span class="badge rounded-pill bg-danger">No slot selected</span></td>
                                 @else
                                     <td>{{ $item->tier }}</td>
+                                    <td>{{$item->short_stays[0]->times}}</td>
                                 @endif
 
+                                
                                 <td>{{ $item->created_at->diffForHumans() }}</td>
                                 
                                 @if ($item->pay_amount == null)

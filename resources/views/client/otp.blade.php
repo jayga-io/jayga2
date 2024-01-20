@@ -7,11 +7,6 @@
     <title>Jayga | Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link
-     rel="stylesheet"
-     href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
-   />
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
         <style>
           body {
               background: #f4f4f4;
@@ -69,11 +64,11 @@
               margin-top: 20px;
           }
 
-          .nav-link{
-            color: #139175;
-            font-size: medium;
-            font-weight: 700;
-          }
+        .nav-link{
+          color: #139175;
+          font-size: medium;
+          font-weight: 700;
+        }
        
       </style>
 </head>
@@ -82,7 +77,7 @@
     
 
       <div class="container">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" >
+        <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5" >
           <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -108,35 +103,28 @@
           </div>
         </nav>
         <div class="row vh-60">
-            <div class="col-sm-4 col-md-4 m-auto ">
+            <div class="col-sm-12 col-md-6 m-auto ">
 
               <div
                 style="width: 100%; height: 100%; background: white; box-shadow: 0px -2px 18px rgba(0, 0, 0, 0.25); border-radius: 32px">
 
                 <div class="py-4 text-center"
                   style="color: #139175; font-size: 38px; font-family: Montserrat; font-weight: 700; word-wrap: break-word ;">
-                  Log-in
+                  Verify OTP
                 </div>
               
                 <div style="width: 100%; height: 178px; position: relative">
 
                   <div class="login-container ">
-                    <form class="login-form" action="{{route('sendotp')}}" method="POST" >
+                    <form class="login-form" action="{{route('otpverif')}}" method="POST" >
                         @csrf
-                        <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">+88</span>
-                          </div>
-                          <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone" required require>
-
-                        </div>
-                      <!--  <div class="form-group">
+                        <div class="form-group">
                             
-                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone" required require>
-                        </div> -->
-                        <button type="submit"  class="btn btn-warning" style="color: white;">Login</button>
+                            <input type="text" id="phone" name="OTP" class="form-control" placeholder="Enter the code we sent you {{ $code }}" required>
+                        </div>
+                        <button type="submit" class="btn btn-warning" style="color: white;">Verify OTP</button>
                     </form>
-                    
+                   
                 </div>
 
                 </div>
@@ -148,15 +136,7 @@
 
              
             </div>
-            <div class="col-md-8 m-auto">
-              <div class="text-center px-5">
-                 
-
-                <dotlottie-player src="https://lottie.host/e36ab65c-9f3f-43d2-9b3f-073fac34b144/PfLAT4Wdxz.json" background="transparent" speed="1" style="width: 100%; height: 619.442px;" loop autoplay></dotlottie-player>
-
-              </div>
-              
-            </div>
+            
         </div>
       </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -166,35 +146,6 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-<!-- <script>
-          const phoneInputField = document.querySelector("#phone");
-        const phoneInput = window.intlTelInput(phoneInputField, {
-          initialCountry: "bd",
-          utilsScript:
-            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-        });
-
-
-        function process(event) {
-      event.preventDefault();
-
-      const phoneNumber = phoneInput.getNumber();
-
-      info.style.display = "none";
-      error.style.display = "none";
-
-      if (phoneInput.isValidNumber()) {
-        info.style.display = "";
-        info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
-        return true;
-      } else {
-        error.style.display = "";
-        error.innerHTML = `Invalid phone number.`;
-        return false;
-      }
-      }
-    </script> -->
-    
 </body>
 
 </html>
