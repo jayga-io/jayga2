@@ -33,14 +33,22 @@ class ClientLoginController extends Controller
         $phone = $request->session()->get('phone');
         if($code == $session){
             $user = User::where('phone', $phone)->get();
-            $photo = UserPictures::where('user_id', $user[0]->id)->get();
+           // 
            if(count($user)>0){
-            session([ 
-                'user' => $user[0]->id,
-                'user_name' => $user[0]->name,
-                'user_email' => $user[0]->email,
-                'photo' => $photo[0]->user_targetlocation,
-            ]);
+            $photo = UserPictures::where('user_id', $user[0]->id)->get();
+            if(count($photo)>0){
+                session([
+                    'photo' => $photo[0]->user_targetlocation,
+                ]);
+            }else{
+                    session([ 
+                    'user' => $user[0]->id,
+                    'user_name' => $user[0]->name,
+                    'user_email' => $user[0]->email,
+                    
+                ]);
+            }
+            
            }else{
             User::create([
                 'phone' => $phone

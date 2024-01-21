@@ -21,7 +21,7 @@
                 <li class="nav-item mx-3">
                     <a class="nav-link "><img src="{{asset('assets/img/globe.png')}}" alt="" srcset=""> EN</a>
                 </li>
-                @if (Session::has('user_name'))
+                @if (Session::has('phone'))
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             @if (Session::has('photo'))
@@ -30,7 +30,13 @@
                                 Welcome,
                             @endif
                             
-                            <span>{{Session::get('user_name')}}</span>
+                            <span>
+                                @if (Session::has('user_name'))
+                                    {{Session::get('user_name')}}
+                                @else
+                                    {{Session::get('phone')}}
+                                @endif
+                            </span>
 
                             
                         </a>
