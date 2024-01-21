@@ -1,5 +1,9 @@
 <div class="container py-5">
-
+    <style>
+        a{
+            color: black;
+        }
+    </style>
     <div class="row p-5 my-3 align-items-center">
         <hr>
         <div class="col-md-3 col-lg-3 col-sm-12 px-2">
@@ -20,8 +24,9 @@
             <h6><strong>Company</strong></h6>
             <ul>
                 <li>About Us</li>
-                <li>Privacy Policy</li>
-                <li>Terms & Conditions</li>
+                <li><a href="https://jayga.io/privacy_policy.html">Privacy Policy</a></li>
+                <li><a href="https://jayga.io/refund.html">Refund Policy</a></li>
+                <li><a href="https://jayga.io/terms_conditions.html">Terms & Conditions</a></li>
             </ul>
         </div>
         <div class="col-md-3 col-lg-3 col-sm-12 mt-5 px-2">
