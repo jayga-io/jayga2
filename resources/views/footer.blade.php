@@ -2,6 +2,7 @@
     <style>
         a{
             color: black;
+            text-decoration: none;
         }
     </style>
     <div class="row p-5 my-3 align-items-center">

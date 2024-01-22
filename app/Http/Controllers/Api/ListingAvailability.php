@@ -50,4 +50,21 @@ class ListingAvailability extends Controller
         ]);
        }
     }
+
+    public function del_dates(Request $request){
+        $date = $request->input('date');
+        $find = ListingAvailable::where('dates', $date)->where('listing_id', $request->input('listing_id'))->where('lister_id', $request->input('lister_id'))->get();
+        if(count($find)>0){
+            ListingAvailable::where('dates', $date)->where('listing_id', $request->input('listing_id'))->where('lister_id', $request->input('lister_id'))->delete();
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Listing date removed'
+            ]);
+        }else{
+            return response()->json([
+                'status' => false,
+                'messege' => 'Listing date not found'
+            ]);
+        }
+    }
 }
