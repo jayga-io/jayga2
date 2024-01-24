@@ -720,8 +720,7 @@
             var checkout = document.getElementById('floatingInput2');
            if(short_stay_select.hasAttribute('checked')){
             short_stay_select.removeAttribute('checked');
-            checkout.setAttribute('value', 'null');
-            checkout.setAttribute('disabled', true);
+            
            
            }else{
             short_stay_select.setAttribute('checked', true);
