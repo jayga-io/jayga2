@@ -219,7 +219,12 @@
                 <p>{{$listing[0]->guest_num}} Guests <span>{{$listing[0]->bed_num}} bedrooms</span> <span>{{$listing[0]->bed_num}} beds</span> <span>{{$listing[0]->bathroom_num}} baths</span></p>
                 <hr>
                 <div class="card-body mt-5">
-                    {{$listing[0]->description}}
+                    @if ($listing[0]->description)
+                        {{$listing[0]->description}}
+                    @else
+                        <p>No description found</p>
+                    @endif
+                    
                 </div>
                 <hr>
                 <div class="card-body mt-5 d-flex justify-content-between">
@@ -265,197 +270,205 @@
             </div>
             <div class="col-md-4 ">
                 <div class="card px-2" style="width: 100%; height: 100%; border-radius: 25px;">
-                    <div class="container">
-                        <div class="d-flex justify-content-between  my-5">
-                            <h2 class="card-title ">
-                               <span id="price">{{$listing[0]->full_day_price_set_by_user}}</span><span id="updatePrice"></span> BDT <span class="fs-6" id="slot">Per day</span>
-                            </h2>
-                            <div>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
+                    <form action="/client/book-listing" method="POST">
+                        @csrf
+                            <div class="container">
+
+                            <div class="d-flex justify-content-between  my-5">
+                                <h2 class="card-title ">
+                                    <input type="hidden" id="input_price" name="net_payable" value="{{$listing[0]->full_day_price_set_by_user}}">
+                                     <span id="price">{{$listing[0]->full_day_price_set_by_user}}</span> ৳<span id="updatePrice"></span> <span class="fs-6" id="slot">/ Per night</span>
+                                </h2>
                                 <div>
-                                    {{count($listing[0]->reviews)}} Reviews
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <div>
+                                        {{count($listing[0]->reviews)}} Reviews
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card" style="box-sizing: border-box;">
-                                    <!--Short stay slot-->
-                                    
-                                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                                        <div class="accordion-item">
-                                          <h2 class="accordion-header">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" id="short_stay_button">
-                                                <input type="hidden" value="0" name="short_stay" >
-                                                <input type="checkbox" value="1" name="short_stay" id="short_stay_check" onchange="doprice(this)">
-                                                <span class="mx-2">Short Stay</span>
-                                            </button>
-                                          </h2>
-                                          <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                            <div class="accordion-body">
-                                                <div class="row ">
-                                                    <div class="col-12 col-sm-12 justify-content-between">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card" style="box-sizing: border-box;">
+                                        <!--Short stay slot-->
+                                        
+                                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                                            <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" id="short_stay_button">
+                                                    <input type="hidden" value="0" name="short_stay" >
+                                                    <input type="checkbox" value="1" name="short_stay" id="short_stay_check" onchange="doprice(this)">
+                                                    <span class="mx-2">Short Stay</span>
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">
+                                                    <div class="row ">
+                                                        <div class="col-12 col-sm-12 justify-content-between">
 
 
+                                                            <div class="d-flex justify-content-between">
+                                                                <div>
+                                                                    <input type="hidden" value="0"
+                                                                        name="short_stay_slot1">
+                                                                    <input type="checkbox" value="1"
+                                                                        name="short_stay_slot1" id="s1">
+                                                                    <span class="px-2">Slot 1</span>
+                                                                </div>
+
+
+                                                                <span>12:00 PM - 04:00PM</span>
+
+
+                                                            </div>
+
+                                                        </div>
                                                         <div class="d-flex justify-content-between">
                                                             <div>
-                                                                <input type="hidden" value="0"
-                                                                    name="short_stay_slot">
-                                                                <input type="checkbox" value="1"
-                                                                    name="short_stay_slot" id="s1">
-                                                                <span class="px-2">Slot 1</span>
+                                                                <input type="hidden" value="0" name="short_stay_slot2">
+                                                                <input type="checkbox" value="1" name="short_stay_slot2" id="s2">
+                                                                <span class="px-2">Slot 2</span>
                                                             </div>
 
 
                                                             <span>12:00 PM - 04:00PM</span>
-
-
                                                         </div>
+                                                        <div class="d-flex justify-content-between">
+                                                            <div>
+                                                                <input type="hidden" value="0" name="short_stay_slot3">
+                                                                <input type="checkbox" value="1" name="short_stay_slot3" id="s3">
+                                                                <span class="px-2">Slot 3</span>
+                                                            </div>
 
-                                                    </div>
-                                                    <div class="d-flex justify-content-between">
-                                                        <div>
-                                                            <input type="hidden" value="0" name="short_stay_slot">
-                                                            <input type="checkbox" value="1" name="short_stay_slot" id="s2">
-                                                            <span class="px-2">Slot 2</span>
+
+                                                            <span>12:00 PM - 04:00PM</span>
                                                         </div>
-
-
-                                                        <span>12:00 PM - 04:00PM</span>
-                                                    </div>
-                                                    <div class="d-flex justify-content-between">
-                                                        <div>
-                                                            <input type="hidden" value="0" name="short_stay_slot">
-                                                            <input type="checkbox" value="1" name="short_stay_slot" id="s3">
-                                                            <span class="px-2">Slot 3</span>
-                                                        </div>
-
-
-                                                        <span>12:00 PM - 04:00PM</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                          </div>
-                                        </div>
-                                        
-                                      </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="d-flex justify-content-between py-5">
-                                        <div class="input-group">
-                                            <div class="form-floating">
-                                                <input type="date" class="form-control"
-                                                    style=" font-weight: 700; font-size: 17px;"
-                                                    id="floatingInput">
-                                                <label for="floatingInput" style="font-weight: 500;">Check In</label>
                                             </div>
-                                            <div class="form-floating">
-                                                <input type="date" class="form-control"
-                                                    style="font-weight: 700; font-size: 17px;"
-                                                    id="floatingInput">
-                                                <label for="floatingInput" style="font-weight: 500;">Check Out</label>
-                                            </div>
+                                            
                                         </div>
-
                                     </div>
-                                </div>
+                                    <div class="col-12">
+                                        <div class="d-flex justify-content-between py-5">
+                                            <div class="input-group">
+                                                <div class="form-floating">
+                                                    <input type="date" class="form-control" name="checkin"
+                                                        style=" font-weight: 700; font-size: 17px;"
+                                                        id="floatingInput1" required>
+                                                    <label for="floatingInput" style="font-weight: 500;">Check In</label>
+                                                </div>
+                                                <div class="form-floating">
+                                                    <input type="date" class="form-control" name="checkout"
+                                                        style="font-weight: 700; font-size: 17px;"
+                                                        id="floatingInput2" onchange="docalcprice(this)">
+                                                    <label for="floatingInput" style="font-weight: 500;">Check Out</label>
+                                                </div>
+                                            </div>
 
-                                <div class="col-12">
-                                    <div class="my-3 mx-2">
-                                        <p class="text-dark">Guests</p>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="card-text">Adult</div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="input-group py-2">
-                                           
-                                                    <input type="button" value="-"
-                                                        class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
-                                                        data-field="quantity">
-                                                    <input type="number" step="1" max="10" value="1" name="quantity"
-                                                        class="quantity-field border-0 text-center w-25">
-                                                    <input type="button" value="+"
-                                                        class="button-plus border rounded-circle icon-shape icon-sm "
-                                                        data-field="quantity">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="card-text">Children</div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="input-group py-2">
-                                           
-                                                    <input type="button" value="-"
-                                                        class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
-                                                        data-field="quantity">
-                                                    <input type="number" step="1" max="10" value="1" name="quantity"
-                                                        class="quantity-field border-0 text-center w-25">
-                                                    <input type="button" value="+"
-                                                        class="button-plus border rounded-circle icon-shape icon-sm "
-                                                        data-field="quantity">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="card-text">Pets</div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="input-group py-2">
-                                           
-                                                    <input type="button" value="-"
-                                                        class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
-                                                        data-field="quantity">
-                                                    <input type="number" step="1" max="10" value="1" name="quantity"
-                                                        class="quantity-field border-0 text-center w-25">
-                                                    <input type="button" value="+"
-                                                        class="button-plus border rounded-circle icon-shape icon-sm "
-                                                        data-field="quantity">
-                                                </div>
-                                            </div>
-                                        </div>
+                                            
 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="my-3 mx-2">
+                                            <p class="text-dark">Guests : <input type="number" name="guest_num" id="guest" style="border: 0;" value="1" ></p>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="card-text">Adult</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group py-2">
+                                            
+                                                        <input type="button" value="-"
+                                                            class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
+                                                            data-field="quantity">
+                                                        <input type="number" step="1" max="10" value="1" name="quantity"
+                                                            class="quantity-field border-0 text-center w-25">
+                                                        <input type="button" value="+"
+                                                            class="button-plus border rounded-circle icon-shape icon-sm "
+                                                            data-field="quantity">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="card-text">Children</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group py-2">
+                                            
+                                                        <input type="button" value="-"
+                                                            class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
+                                                            data-field="quantity">
+                                                        <input type="number" step="1" max="10" value="0" name="quantity"
+                                                            class="quantity-field border-0 text-center w-25">
+                                                        <input type="button" value="+"
+                                                            class="button-plus border rounded-circle icon-shape icon-sm "
+                                                            data-field="quantity">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="card-text">Pets</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group py-2">
+                                            
+                                                        <input type="button" value="-"
+                                                            class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
+                                                            data-field="quantity">
+                                                        <input type="number" step="1" max="10" value="0" name="quantity"
+                                                            class="quantity-field border-0 text-center w-25">
+                                                        <input type="button" value="+"
+                                                            class="button-plus border rounded-circle icon-shape icon-sm "
+                                                            data-field="quantity">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
+                                        </div>
+                                    </div>
+
+
+
+                                    <hr>
+                                    <div class="container d-flex justify-content-between mb-5" >
+                                        
+                                            <div id="slot_name">Slot </div>
+                                            <span id="slot_no">1</span>
+                                        
+                                        
                                         
                                     </div>
-                                </div>
+                                    <div class="container  d-flex justify-content-between">
+                                        <div>Jayga Fee </div>
+                                        <span>3%</span>
+                                    </div>
+                                    <hr>
+                                    <div class="container p-3 d-flex justify-content-between">
+                                        <div style="font-size: 24px; font-weight: 700;">Total </div>
+                                    <input type="hidden" id="total_money" name="total_paid" >
+                                    <span style="font-size: 32px; font-weight: 700;" id="pay_amount">৳ {{($listing[0]->full_day_price_set_by_user)+(($listing[0]->full_day_price_set_by_user * 3)/100)}}</span> 
+                                    </div>
+                                    <div class="my-3">
+                                        <button type="submit" class="form-control btn btn-success p-3" style="border-radius: 25px;">Book
+                                            Now</button>
+                                    </div>
 
-
-
-                                <hr>
-                                <div class="container d-flex justify-content-between mb-5" >
-                                    
-                                        <div id="slot_name">Slot </div>
-                                        <span id="slot_no">1</span>
-                                    
-                                    
-                                    
                                 </div>
-                                <div class="container  d-flex justify-content-between">
-                                    <div>Jayga Fee </div>
-                                    <span>3%</span>
-                                </div>
-                                <hr>
-                                <div class="container p-3 d-flex justify-content-between">
-                                    <div style="font-size: 24px; font-weight: 700;">Total </div>
-                                   
-                                    <span style="font-size: 32px; font-weight: 700;" id="pay_amount">5500</span>
-                                </div>
-                                <div class="my-3">
-                                    <button class="form-control btn btn-success p-3" style="border-radius: 25px;">Book
-                                        Now</button>
-                                </div>
-
                             </div>
                         </div>
-                    </div>
+                    </form>
+                    
 
 
                 </div>
@@ -700,10 +713,15 @@
        var slot_no = document.getElementById('slot_no');
        var pay = document.getElementById('pay_amount');
        var pay_old = document.getElementById('pay_old');
-        
+      
+
         short_stay.addEventListener('click', function(){
+            var checkin = document.getElementById('floatingInput1');
+            var checkout = document.getElementById('floatingInput2');
            if(short_stay_select.hasAttribute('checked')){
             short_stay_select.removeAttribute('checked');
+            checkout.setAttribute('value', 'null');
+            checkout.setAttribute('disabled', true);
            
            }else{
             short_stay_select.setAttribute('checked', true);
@@ -725,12 +743,63 @@
             }
         }
 
+        function docalcprice(el){
+
+            var checkin = document.getElementById('floatingInput1').value;
+            var checkout = document.getElementById('floatingInput2').value;
+            //var pay_amount = document.getElementById('pay_amount');
+            
+            var price = document.getElementById('price').textContent;
+            var slot_name = document.getElementById('slot_name');
+            var slot_no = document.getElementById('slot_no');
+           // console.log(total_money);
+
+
+
+            let date1 = new Date(checkin).getTime();
+            let date2 = new Date(checkout).getTime();
+
+            if(date2 < date1){
+                
+                alert('You can not select invalid dates');
+                location.reload();
+                
+            }else{
+                    let Difference_In_Time =
+                    date2 - date1;
+                
+                // Calculating the no. of days between
+                // two dates
+                let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
+
+                var new_payAmount = parseInt(price);
+                var updated_price = new_payAmount * Difference_In_Days;
+                var fee = (updated_price*3)/100;
+                var total = updated_price + fee;
+
+                total_money.setAttribute('value', total);
+                pay.innerHTML = total;
+
+                slot_name.innerHTML = 'Nights';
+                slot_no.innerHTML = Difference_In_Days;
+            }
+            
+            // Calculating the time difference
+            // of two dates
+           
+        }
+
         
         var whole_day_price = parseInt(price.textContent);
-        var priceUpdate = document.getElementById('updatePrice');
-        priceUpdate.style.display = 'none';
+        
+       // var priceUpdate = document.getElementById('updatePrice');
+       // priceUpdate.style.display = 'none';
 
         s1.addEventListener('change', function(){
+            var checkin = document.getElementById('floatingInput1');
+            var checkout = document.getElementById('floatingInput2');
+            var input_price = document.getElementById('input_price').value;
+            
             s1.toggleAttribute('checked');
             s2.toggleAttribute('disabled');
             s3.toggleAttribute('disabled');
@@ -739,22 +808,28 @@
                 var calc_price = ((whole_day_price*40)/100);
                 var new_price = whole_day_price + calc_price;
                 var update_price = new_price*(1/4);
-                priceUpdate.innerText = update_price;
+               // priceUpdate.innerText = update_price;
                 var commision = (whole_day_price*3)/100;
                 perday.innerText = 'per slot';
-                price.style.display = 'none';
-                priceUpdate.style.display = 'block';
+                price.innerHTML = update_price;
+               // priceUpdate.style.display = 'block';
                 slot_no.innerText = '1';
-                pay.innerText = update_price + commision;
-               
-
+                slot_stay_price = update_price + commision;
+                total_money.setAttribute('value', slot_stay_price);
+                pay.innerHTML = '৳' + slot_stay_price;
+                checkout.setAttribute('value', 'null');
+                checkout.setAttribute('disabled', true);
             }else{
                 var commision = (whole_day_price*3)/100;
                 perday.innerText = 'per day';
-                price.style.display = 'block';
-                priceUpdate.style.display = 'none';
+                price.innerHTML = input_price;
+              //  priceUpdate.style.display = 'none';
                 slot_no.innerText = '0';
-                pay.innerText = whole_day_price + commision;
+                slot_stay_price = whole_day_price + commision;
+                total_money.setAttribute('value', slot_stay_price);
+                pay.innerHTML = '৳' + slot_stay_price;
+                
+                checkout.removeAttribute('disabled');
             }
             
             
@@ -767,6 +842,9 @@
         });
 
         s2.addEventListener('click', function(){
+            var checkin = document.getElementById('floatingInput1');
+            var checkout = document.getElementById('floatingInput2');
+            var input_price = document.getElementById('input_price').value;
             s1.toggleAttribute('disabled');
             s2.toggleAttribute('checked');
             s3.toggleAttribute('disabled');
@@ -774,24 +852,34 @@
                 var calc_price = ((whole_day_price*40)/100);
                 var new_price = whole_day_price + calc_price;
                 var update_price = new_price*(1/4);
-                priceUpdate.innerText = update_price;
+               // priceUpdate.innerText = update_price;
                 var commision = (whole_day_price*3)/100;
                 perday.innerText = 'per slot';
-                price.style.display = 'none';
-                priceUpdate.style.display = 'block';
+                price.innerHTML = update_price;
+               // priceUpdate.style.display = 'block';
                 slot_no.innerText = '2';
-                pay.innerText = update_price + commision;
+                slot_stay_price = update_price + commision;
+                total_money.setAttribute('value', slot_stay_price);
+                pay.innerHTML = '৳' + slot_stay_price;
+                checkout.setAttribute('value', 'null');
+                checkout.setAttribute('disabled', true);
             }else{
                 var commision = (whole_day_price*3)/100;
                 perday.innerText = 'per day';
-                price.style.display = 'block';
-                priceUpdate.style.display = 'none';
+                price.innerHTML = input_price;
+               // priceUpdate.style.display = 'none';
                 slot_no.innerText = '0';
-                pay.innerText = whole_day_price + commision;
+                slot_stay_price = whole_day_price + commision;
+                total_money.setAttribute('value', slot_stay_price);
+                pay.innerHTML = '৳' + slot_stay_price;
+                checkout.removeAttribute('disabled');
             }
         });
 
         s3.addEventListener('click', function(){
+            var checkin = document.getElementById('floatingInput1');
+            var checkout = document.getElementById('floatingInput2');
+            var input_price = document.getElementById('input_price').value;
             s1.toggleAttribute('disabled');
             s2.toggleAttribute('disabled');
             s3.toggleAttribute('checked');
@@ -799,20 +887,27 @@
                 var calc_price = ((whole_day_price*40)/100);
                 var new_price = whole_day_price + calc_price;
                 var update_price = new_price*(2/4);
-                priceUpdate.innerText = update_price;
+               // priceUpdate.innerText = update_price;
                 var commision = (whole_day_price*3)/100;
                 perday.innerText = 'per slot';
-                price.style.display = 'none';
-                priceUpdate.style.display = 'block';
+                price.innerHTML = update_price;
+               // priceUpdate.style.display = 'block';
                 slot_no.innerText = '3';
-                pay.innerText = update_price + commision;
+                slot_stay_price = update_price + commision;
+                total_money.setAttribute('value', slot_stay_price);
+                pay.innerHTML = '৳' + slot_stay_price;
+                checkout.setAttribute('value', 'null');
+                checkout.setAttribute('disabled', true);
             }else{
                 var commision = (whole_day_price*3)/100;
                 perday.innerText = 'per day';
-                price.style.display = 'block';
-                priceUpdate.style.display = 'none';
+                price.innerHTML = input_price;
+               // priceUpdate.style.display = 'none';
                 slot_no.innerText = '0';
-                pay.innerText = whole_day_price + commision;
+                slot_stay_price = whole_day_price + commision;
+                total_money.setAttribute('value', slot_stay_price);
+                pay.innerHTML = '৳' + slot_stay_price;
+                checkout.removeAttribute('disabled');
             }
         });
 
@@ -820,17 +915,25 @@
     </script>
 
     <script>
+        var qty = 1;
+        var guest_numbr = document.getElementById('guest');
         function incrementValue(e) {
             e.preventDefault();
+            
             var fieldName = $(e.target).data('field');
             var parent = $(e.target).closest('div');
             var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
 
             if (!isNaN(currentVal)) {
                 parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+                
+                
             } else {
                 parent.find('input[name=' + fieldName + ']').val(0);
+                qty = 0;
             }
+            qty++;
+            guest_numbr.value = qty;
         }
 
         function decrementValue(e) {
@@ -844,6 +947,8 @@
             } else {
                 parent.find('input[name=' + fieldName + ']').val(0);
             }
+            qty--;
+            guest_numbr.value = qty;
         }
 
         $('.input-group').on('click', '.button-plus', function (e) {
