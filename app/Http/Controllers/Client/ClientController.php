@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Listing;
+use App\Models\Booking;
 use App\Models\ListingGuestAmenities;
 use App\Models\ListingRestrictions;
 use Illuminate\Support\Facades\Http;
@@ -37,7 +38,44 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $shortStay = $request->input('short_stay');
+        $slot  = $request->input('short_stay_slot');
+
+        if($shortStay){
+           Booking::create([
+            'user_id' => $request->input('user_id'),
+            'booking_order_name' => $request->input('booking_order_name'),
+            'listing_id' => $request->input('listing_id'),
+            'lister_id' => $request->input('lister_id'),
+            'net_payable' => $request->input('net_payable'),
+            'pay_amount' => $request->input('total_paid'),
+            'total_members' => $request->input('guest_num'),
+            'date_enter' => $request->input('checkin'),
+            'date_exit' => $request->input('checkout'),
+            'short_stay_flag' => $shortStay,
+            'all_day_flag' => 0,
+            'tier' => $slot,
+        ]); 
+            return redirect()->back()->with('success', 'Booking placed successfully');
+        }else{
+            Booking::create([
+                'user_id' => $request->input('user_id'),
+                'booking_order_name' => $request->input('booking_order_name'),
+                'listing_id' => $request->input('listing_id'),
+                'lister_id' => $request->input('lister_id'),
+                'net_payable' => $request->input('net_payable'),
+                'pay_amount' => $request->input('total_paid'),
+                'total_members' => $request->input('guest_num'),
+                'date_enter' => $request->input('checkin'),
+                'date_exit' => $request->input('checkout'),
+                'short_stay_flag' => 0,
+                'all_day_flag' => 1,
+                'tier' => 0,
+            ]);
+            return redirect()->back()->with('success', 'Booking placed successfully');
+        }
+
+        
     }
 
     /**
@@ -104,4 +142,6 @@ class ClientController extends Controller
     {
         //
     }
+
+
 }

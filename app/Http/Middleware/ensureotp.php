@@ -19,7 +19,7 @@ class ensureotp
         if($check != null){
             return $next($request);
         }else{
-            return redirect('/host/login');
+            return redirect()->back()->with('error', 'You need to login first');
         }
         
     }

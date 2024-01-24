@@ -258,9 +258,7 @@ Route::prefix('client')->group(function(){
     Route::get('/home', [ClientController::class, 'index'])->name('home');
     Route::post('/search', [ClientController::class, 'search'])->name('searchroute');
     Route::get('/single-listing/{id}', [ClientController::class, 'show']);
-    Route::post('/book-listing', function(Request $request){
-        dd($request->all());
-    });
+    Route::post('/book-listing', [ClientController::class, 'store'])->middleware(ensureotp::class);
     
    Route::get('/login', [ClientLoginController::class, 'index'])->name('clientlogin');
    Route::post('/login-otp', [ClientLoginController::class, 'otp'])->name('clientotp');

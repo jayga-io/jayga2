@@ -273,7 +273,10 @@
                     <form action="/client/book-listing" method="POST">
                         @csrf
                             <div class="container">
-
+                                <input type="hidden" name="user_id" value="{{Session::get('user')}}">
+                                <input type="hidden" name="booking_order_name" value="{{Session::get('user_name')}}">
+                                <input type="hidden" name="listing_id" value="{{$listing[0]->listing_id}}">
+                                <input type="hidden" name="lister_id" value="{{$listing[0]->lister_id}}">
                             <div class="d-flex justify-content-between  my-5">
                                 <h2 class="card-title ">
                                     <input type="hidden" id="input_price" name="net_payable" value="{{$listing[0]->full_day_price_set_by_user}}">
@@ -313,10 +316,9 @@
 
                                                             <div class="d-flex justify-content-between">
                                                                 <div>
-                                                                    <input type="hidden" value="0"
-                                                                        name="short_stay_slot1">
+                                                                   
                                                                     <input type="checkbox" value="1"
-                                                                        name="short_stay_slot1" id="s1">
+                                                                        name="short_stay_slot" id="s1">
                                                                     <span class="px-2">Slot 1</span>
                                                                 </div>
 
@@ -329,8 +331,8 @@
                                                         </div>
                                                         <div class="d-flex justify-content-between">
                                                             <div>
-                                                                <input type="hidden" value="0" name="short_stay_slot2">
-                                                                <input type="checkbox" value="1" name="short_stay_slot2" id="s2">
+                                                                
+                                                                <input type="checkbox" value="2" name="short_stay_slot" id="s2">
                                                                 <span class="px-2">Slot 2</span>
                                                             </div>
 
@@ -339,8 +341,8 @@
                                                         </div>
                                                         <div class="d-flex justify-content-between">
                                                             <div>
-                                                                <input type="hidden" value="0" name="short_stay_slot3">
-                                                                <input type="checkbox" value="1" name="short_stay_slot3" id="s3">
+                                                               
+                                                                <input type="checkbox" value="3" name="short_stay_slot" id="s3">
                                                                 <span class="px-2">Slot 3</span>
                                                             </div>
 

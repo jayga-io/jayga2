@@ -38,6 +38,9 @@ class ClientLoginController extends Controller
             $photo = UserPictures::where('user_id', $user[0]->id)->get();
             if(count($photo)>0){
                 session([
+                    'user' => $user[0]->id,
+                    'user_name' => $user[0]->name,
+                    'user_email' => $user[0]->email,
                     'photo' => $photo[0]->user_targetlocation,
                 ]);
             }else{
