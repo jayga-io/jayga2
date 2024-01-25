@@ -41,12 +41,14 @@ class ClientLoginController extends Controller
                     'user' => $user[0]->id,
                     'user_name' => $user[0]->name,
                     'user_email' => $user[0]->email,
+                    'phone' => $user[0]->phone,
                     'photo' => $photo[0]->user_targetlocation,
                 ]);
             }else{
                     session([ 
                     'user' => $user[0]->id,
                     'user_name' => $user[0]->name,
+                    'phone' => $user[0]->phone,
                     'user_email' => $user[0]->email,
                     
                 ]);
@@ -61,6 +63,7 @@ class ClientLoginController extends Controller
             session([ 
                 'user' => $id[0]->id,
                 'user_name' => $id[0]->name,
+                'phone' => $user[0]->phone,
                 'user_email' => $id[0]->email,
                 
             ]);

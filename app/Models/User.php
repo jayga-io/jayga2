@@ -43,4 +43,8 @@ class User extends Authenticatable
     public function avatars(){
         return $this->hasOne(UserPictures::class, 'user_id', 'id');
     }
+
+    public function bookings(){
+        return $this->hasOne(Booking::class, 'user_id', 'id');
+    }
 }

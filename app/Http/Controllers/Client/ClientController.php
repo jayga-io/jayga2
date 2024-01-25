@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\Booking;
+use App\Models\User;
 use App\Models\ListingGuestAmenities;
 use App\Models\ListingRestrictions;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class ClientController extends Controller
 {
@@ -40,6 +42,42 @@ class ClientController extends Controller
     {
         $shortStay = $request->input('short_stay');
         $slot  = $request->input('short_stay_slot');
+        $invoice_number = Str::random(8);
+        
+        $pay = Http::withHeaders([
+            'merchantId' => '4101704973087',
+            'password' => 'J@yGA3087',
+        ])->post('https://api.paystation.com.bd/grant-token');
+
+       // dd(json_decode($pay));
+
+       $payResponse = json_decode($pay);
+       
+        if($payResponse->status == 'success'){
+            $url = 'https://api.paystation.com.bd/create-payment';
+            $data = [
+                'invoice_number' => $invoice_number,
+                'currency' => 'BDT',
+                'payment_amount' => $request->input('total_paid'),
+                'cust_name' => $request->input('booking_order_name'),
+                'cust_phone' => $request->input('phone'),
+                'cust_email' => $request->input('email'),
+                'callback_url' => 'https://new.jayga.io/client/single-listing/'. $request->input('listing_id'),
+
+            ];
+            $make_payment = Http::withHeaders([
+                'token' => $payResponse->token
+            ])->post($url, $data);
+            $make_payment_response = json_decode($make_payment);
+
+            if($make_payment_response->status == 'success'){
+                return redirect($make_payment_response->payment_url);
+            }else{
+                return redirect()->back()->with('errors', 'something went wrong with payment. Try again');
+            }
+        }else{
+            return redirect()->back()->with('errors', 'Unable to generate payment token. Try again');
+        }
 
         if($shortStay){
            Booking::create([
@@ -84,7 +122,8 @@ class ClientController extends Controller
     public function show(Request $request, $id)
     {
         $listing = Listing::where('listing_id', $id)->with('images')->with('reviews')->with('host.avatars')->get();
-       
+        $bookings = User::where('id', $request->session()->get('user'))->with('bookings')->get();
+       // dd($bookings);
             $amenitiesColumnsWithValueOne = [];
             $tableName = (new ListingGuestAmenities)->getTable();
 
@@ -116,7 +155,7 @@ class ClientController extends Controller
 
           // dd($listing);
 
-        return view('client.home.single-listing')->with('listing', $listing)->with('amenities', $amenitiesColumnsWithValueOne)->with('restrictions', $restrictionColumnsWithValueOne);
+        return view('client.home.single-listing')->with('listing', $listing)->with('amenities', $amenitiesColumnsWithValueOne)->with('restrictions', $restrictionColumnsWithValueOne)->with('bookings', $bookings);
     }
 
     /**

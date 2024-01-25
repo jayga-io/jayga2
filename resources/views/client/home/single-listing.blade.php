@@ -268,213 +268,226 @@
                 <hr>
 
             </div>
-            <div class="col-md-4 ">
-                <div class="card px-2" style="width: 100%; height: 100%; border-radius: 25px;">
-                    <form action="/client/book-listing" method="POST">
-                        @csrf
-                            <div class="container">
-                                <input type="hidden" name="user_id" value="{{Session::get('user')}}">
-                                <input type="hidden" name="booking_order_name" value="{{Session::get('user_name')}}">
-                                <input type="hidden" name="listing_id" value="{{$listing[0]->listing_id}}">
-                                <input type="hidden" name="lister_id" value="{{$listing[0]->lister_id}}">
-                            <div class="d-flex justify-content-between  my-5">
-                                <h2 class="card-title ">
-                                    <input type="hidden" id="input_price" name="net_payable" value="{{$listing[0]->full_day_price_set_by_user}}">
-                                     <span id="price">{{$listing[0]->full_day_price_set_by_user}}</span> ৳<span id="updatePrice"></span> <span class="fs-6" id="slot">/ Per night</span>
-                                </h2>
-                                <div>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
+            
+                    <div class="col-md-4 ">
+                    <div class="card px-2" style="width: 100%; height: auto; border-radius: 25px;">
+                        <form action="/client/book-listing" method="POST">
+                            @csrf
+                                <div class="container">
+                                    <input type="hidden" name="user_id" value="{{Session::get('user')}}">
+                                    <input type="hidden" name="booking_order_name" value="{{Session::get('user_name')}}">
+                                    <input type="hidden" name="phone" value="{{Session::get('phone')}}">
+                                    <input type="hidden" name="email" value="{{Session::get('user_email')}}">
+                                    <input type="hidden" name="listing_id" value="{{$listing[0]->listing_id}}">
+                                    <input type="hidden" name="lister_id" value="{{$listing[0]->lister_id}}">
+                                <div class="d-flex justify-content-between  my-5">
+                                    <h2 class="card-title ">
+                                        <input type="hidden" id="input_price" name="net_payable" value="{{$listing[0]->full_day_price_set_by_user}}">
+                                        <span id="price">{{$listing[0]->full_day_price_set_by_user}}</span> ৳<span id="updatePrice"></span> <span class="fs-6" id="slot">/ Per night</span>
+                                    </h2>
                                     <div>
-                                        {{count($listing[0]->reviews)}} Reviews
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <div>
+                                            {{count($listing[0]->reviews)}} Reviews
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card" style="box-sizing: border-box;">
-                                        <!--Short stay slot-->
-                                        
-                                        <div class="accordion accordion-flush" id="accordionFlushExample">
-                                            <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" id="short_stay_button">
-                                                    <input type="hidden" value="0" name="short_stay" >
-                                                    <input type="checkbox" value="1" name="short_stay" id="short_stay_check" onchange="doprice(this)">
-                                                    <span class="mx-2">Short Stay</span>
-                                                </button>
-                                            </h2>
-                                            <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                                <div class="accordion-body">
-                                                    <div class="row ">
-                                                        <div class="col-12 col-sm-12 justify-content-between">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card" style="box-sizing: border-box;">
+                                            <!--Short stay slot-->
+                                            @if ($listing[0]->allow_short_stay)
+                                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                                    <div class="accordion-item">
+                                                    <h2 class="accordion-header">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" id="short_stay_button">
+                                                            <input type="hidden" value="0" name="short_stay" >
+                                                            <input type="checkbox" value="1" name="short_stay" id="short_stay_check" onchange="doprice(this)">
+                                                            <span class="mx-2">Short Stay</span>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                                        <div class="accordion-body">
+                                                            <div class="row ">
+                                                                <div class="col-12 col-sm-12 justify-content-between">
 
 
-                                                            <div class="d-flex justify-content-between">
-                                                                <div>
-                                                                   
-                                                                    <input type="checkbox" value="1"
-                                                                        name="short_stay_slot" id="s1">
-                                                                    <span class="px-2">Slot 1</span>
+                                                                    <div class="d-flex justify-content-between">
+                                                                        <div>
+                                                                        
+                                                                            <input type="checkbox" value="1"
+                                                                                name="short_stay_slot" id="s1">
+                                                                            <span class="px-2">Slot 1</span>
+                                                                        </div>
+
+
+                                                                        <span>12:00 PM - 04:00PM</span>
+
+
+                                                                    </div>
+
                                                                 </div>
+                                                                <div class="d-flex justify-content-between">
+                                                                    <div>
+                                                                        
+                                                                        <input type="checkbox" value="2" name="short_stay_slot" id="s2">
+                                                                        <span class="px-2">Slot 2</span>
+                                                                    </div>
 
 
-                                                                <span>12:00 PM - 04:00PM</span>
+                                                                    <span>12:00 PM - 04:00PM</span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-between">
+                                                                    <div>
+                                                                    
+                                                                        <input type="checkbox" value="3" name="short_stay_slot" id="s3">
+                                                                        <span class="px-2">Slot 3</span>
+                                                                    </div>
 
 
+                                                                    <span>12:00 PM - 04:00PM</span>
+                                                                </div>
                                                             </div>
-
-                                                        </div>
-                                                        <div class="d-flex justify-content-between">
-                                                            <div>
-                                                                
-                                                                <input type="checkbox" value="2" name="short_stay_slot" id="s2">
-                                                                <span class="px-2">Slot 2</span>
-                                                            </div>
-
-
-                                                            <span>12:00 PM - 04:00PM</span>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between">
-                                                            <div>
-                                                               
-                                                                <input type="checkbox" value="3" name="short_stay_slot" id="s3">
-                                                                <span class="px-2">Slot 3</span>
-                                                            </div>
-
-
-                                                            <span>12:00 PM - 04:00PM</span>
                                                         </div>
                                                     </div>
+                                                    </div>
+                                                    
                                                 </div>
-                                            </div>
-                                            </div>
+                                            @else
+                                                <div class="card-text text-center">
+                                                    Short stay not available for this listing
+                                                </div>
+                                                
+                                            @endif
                                             
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="d-flex justify-content-between py-5">
-                                            <div class="input-group">
-                                                <div class="form-floating">
-                                                    <input type="date" class="form-control" name="checkin"
-                                                        style=" font-weight: 700; font-size: 17px;"
-                                                        id="floatingInput1" required>
-                                                    <label for="floatingInput" style="font-weight: 500;">Check In</label>
+
+                                        <div class="col-12">
+                                            <div class="d-flex justify-content-between py-5">
+                                                <div class="input-group">
+                                                    <div class="form-floating">
+                                                        <input type="date" class="form-control" name="checkin"
+                                                            style=" font-weight: 700; font-size: 17px;"
+                                                            id="floatingInput1" required>
+                                                        <label for="floatingInput" style="font-weight: 500;">Check In</label>
+                                                    </div>
+                                                    <div class="form-floating">
+                                                        <input type="date" class="form-control" name="checkout"
+                                                            style="font-weight: 700; font-size: 17px;"
+                                                            id="floatingInput2" onchange="docalcprice(this)">
+                                                        <label for="floatingInput" style="font-weight: 500;">Check Out</label>
+                                                    </div>
                                                 </div>
-                                                <div class="form-floating">
-                                                    <input type="date" class="form-control" name="checkout"
-                                                        style="font-weight: 700; font-size: 17px;"
-                                                        id="floatingInput2" onchange="docalcprice(this)">
-                                                    <label for="floatingInput" style="font-weight: 500;">Check Out</label>
-                                                </div>
+
+                                                
+
                                             </div>
-
-                                            
-
                                         </div>
-                                    </div>
 
-                                    <div class="col-12">
-                                        <div class="my-3 mx-2">
-                                            <p class="text-dark">Guests : <input type="number" name="guest_num" id="guest" style="border: 0;" value="1" ></p>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="card-text">Adult</div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="input-group py-2">
-                                            
-                                                        <input type="button" value="-"
-                                                            class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
-                                                            data-field="quantity">
-                                                        <input type="number" step="1" max="10" value="1" name="quantity"
-                                                            class="quantity-field border-0 text-center w-25">
-                                                        <input type="button" value="+"
-                                                            class="button-plus border rounded-circle icon-shape icon-sm "
-                                                            data-field="quantity">
+                                        <div class="col-12">
+                                            <div class="my-3 mx-2">
+                                                <p class="text-dark">Guests : <input type="number" name="guest_num" id="guest" style="border: 0;" value="1" ></p>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="card-text">Adult</div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="input-group py-2">
+                                                
+                                                            <input type="button" value="-"
+                                                                class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
+                                                                data-field="quantity">
+                                                            <input type="number" step="1" max="10" value="1" name="quantity"
+                                                                class="quantity-field border-0 text-center w-25">
+                                                            <input type="button" value="+"
+                                                                class="button-plus border rounded-circle icon-shape icon-sm "
+                                                                data-field="quantity">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="card-text">Children</div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="input-group py-2">
-                                            
-                                                        <input type="button" value="-"
-                                                            class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
-                                                            data-field="quantity">
-                                                        <input type="number" step="1" max="10" value="0" name="quantity"
-                                                            class="quantity-field border-0 text-center w-25">
-                                                        <input type="button" value="+"
-                                                            class="button-plus border rounded-circle icon-shape icon-sm "
-                                                            data-field="quantity">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="card-text">Children</div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="input-group py-2">
+                                                
+                                                            <input type="button" value="-"
+                                                                class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
+                                                                data-field="quantity">
+                                                            <input type="number" step="1" max="10" value="0" name="quantity"
+                                                                class="quantity-field border-0 text-center w-25">
+                                                            <input type="button" value="+"
+                                                                class="button-plus border rounded-circle icon-shape icon-sm "
+                                                                data-field="quantity">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="card-text">Pets</div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="input-group py-2">
-                                            
-                                                        <input type="button" value="-"
-                                                            class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
-                                                            data-field="quantity">
-                                                        <input type="number" step="1" max="10" value="0" name="quantity"
-                                                            class="quantity-field border-0 text-center w-25">
-                                                        <input type="button" value="+"
-                                                            class="button-plus border rounded-circle icon-shape icon-sm "
-                                                            data-field="quantity">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="card-text">Pets</div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="input-group py-2">
+                                                
+                                                            <input type="button" value="-"
+                                                                class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
+                                                                data-field="quantity">
+                                                            <input type="number" step="1" max="10" value="0" name="quantity"
+                                                                class="quantity-field border-0 text-center w-25">
+                                                            <input type="button" value="+"
+                                                                class="button-plus border rounded-circle icon-shape icon-sm "
+                                                                data-field="quantity">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
+                                                
+                                            </div>
+                                        </div>
+
+
+
+                                        <hr>
+                                        <div class="container d-flex justify-content-between mb-5" >
+                                            
+                                                <div id="slot_name">Slot </div>
+                                                <span id="slot_no">1</span>
+                                            
+                                            
                                             
                                         </div>
-                                    </div>
+                                        <div class="container  d-flex justify-content-between">
+                                            <div>Jayga Fee </div>
+                                            <span>3%</span>
+                                        </div>
+                                        <hr>
+                                        <div class="container p-3 d-flex justify-content-between">
+                                            <div style="font-size: 24px; font-weight: 700;">Total </div>
+                                        <input type="hidden" id="total_money" name="total_paid" value="{{($listing[0]->full_day_price_set_by_user)+(($listing[0]->full_day_price_set_by_user * 3)/100)}}">
+                                        <span style="font-size: 32px; font-weight: 700;" id="pay_amount">৳ {{($listing[0]->full_day_price_set_by_user)+(($listing[0]->full_day_price_set_by_user * 3)/100)}}</span> 
+                                        </div>
+                                        <div class="my-3">
+                                            <button type="submit" class="form-control btn btn-success p-3" style="border-radius: 25px;">Book
+                                                Now</button>
+                                        </div>
 
-
-
-                                    <hr>
-                                    <div class="container d-flex justify-content-between mb-5" >
-                                        
-                                            <div id="slot_name">Slot </div>
-                                            <span id="slot_no">1</span>
-                                        
-                                        
-                                        
                                     </div>
-                                    <div class="container  d-flex justify-content-between">
-                                        <div>Jayga Fee </div>
-                                        <span>3%</span>
-                                    </div>
-                                    <hr>
-                                    <div class="container p-3 d-flex justify-content-between">
-                                        <div style="font-size: 24px; font-weight: 700;">Total </div>
-                                    <input type="hidden" id="total_money" name="total_paid" >
-                                    <span style="font-size: 32px; font-weight: 700;" id="pay_amount">৳ {{($listing[0]->full_day_price_set_by_user)+(($listing[0]->full_day_price_set_by_user * 3)/100)}}</span> 
-                                    </div>
-                                    <div class="my-3">
-                                        <button type="submit" class="form-control btn btn-success p-3" style="border-radius: 25px;">Book
-                                            Now</button>
-                                    </div>
-
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                    
+                        </form>
+                        
 
 
+                    </div>
                 </div>
-            </div>
+            
+            
         </div>
 
         <div class="row mb-5">
@@ -712,9 +725,9 @@
         var s3 = document.getElementById('s3');
         var price = document.getElementById('price');
         var perday = document.getElementById('slot');
-       var slot_no = document.getElementById('slot_no');
-       var pay = document.getElementById('pay_amount');
-       var pay_old = document.getElementById('pay_old');
+        var slot_no = document.getElementById('slot_no');
+        var pay = document.getElementById('pay_amount');
+        var pay_old = document.getElementById('pay_old');
       
 
         short_stay.addEventListener('click', function(){
