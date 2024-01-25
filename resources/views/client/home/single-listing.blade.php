@@ -766,6 +766,7 @@
             var price = document.getElementById('price').textContent;
             var slot_name = document.getElementById('slot_name');
             var slot_no = document.getElementById('slot_no');
+            var input_price = document.getElementById('input_price');
            // console.log(total_money);
 
 
@@ -791,7 +792,9 @@
                 var fee = (updated_price*3)/100;
                 var total = updated_price + fee;
 
+
                 total_money.setAttribute('value', total);
+                input_price.setAttribute('value', updated_price);
                 pay.innerHTML = total;
 
                 slot_name.innerHTML = 'Nights';
