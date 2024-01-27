@@ -42,7 +42,7 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         
-       
+      // dd($request->all());
         
         $shortStay = $request->input('short_stay');
         $slot  = $request->input('short_stay_slot');
@@ -74,6 +74,7 @@ class ClientController extends Controller
          'email' => $request->input('email'),
          'phone' => $request->input('phone'),
          'invoice_number' => $invoice_number,
+         'platform_type' => 'web',
      ]); 
         // return redirect()->back()->with('success', 'Booking placed successfully');
      }else{
@@ -93,6 +94,7 @@ class ClientController extends Controller
              'email' => $request->input('email'),
             'phone' => $request->input('phone'),
             'invoice_number' => $invoice_number,
+            'platform_type' => 'web',
          ]);
         // return redirect()->back()->with('success', 'Booking placed successfully');
      }

@@ -52,6 +52,8 @@ class BookingController extends Controller
                 'email' => $request->input('email'),
                 'phone' => $request->input('phone'),
                 'messeges' => $request->input('messege'),
+                'platform_type' => $request->input('platform_type'),
+                'invoice_number' => $request->input('invoice_number'),
             ]);
 
             $booked = Booking::where('transaction_id', $request->input('transaction_id'))->get();
