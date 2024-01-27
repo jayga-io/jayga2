@@ -42,6 +42,7 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         
+       
         
         $shortStay = $request->input('short_stay');
         $slot  = $request->input('short_stay_slot');
@@ -70,6 +71,9 @@ class ClientController extends Controller
          'short_stay_flag' => $shortStay,
          'all_day_flag' => 0,
          'tier' => $slot,
+         'email' => $request->input('email'),
+         'phone' => $request->input('phone'),
+         'invoice_number' => $invoice_number,
      ]); 
         // return redirect()->back()->with('success', 'Booking placed successfully');
      }else{
@@ -86,6 +90,9 @@ class ClientController extends Controller
              'short_stay_flag' => 0,
              'all_day_flag' => 1,
              'tier' => 0,
+             'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'invoice_number' => $invoice_number,
          ]);
         // return redirect()->back()->with('success', 'Booking placed successfully');
      }
@@ -99,7 +106,7 @@ class ClientController extends Controller
                 'cust_name' => $request->input('booking_order_name'),
                 'cust_phone' => $request->input('phone'),
                 'cust_email' => $request->input('email'),
-                'callback_url' => 'https://new.jayga.io/client/single-listing/'. $request->input('listing_id'),
+                'callback_url' => env('APP_URL'). '/client/update/booking/' . $invoice_number,
 
             ];
             $make_payment = Http::withHeaders([
@@ -178,7 +185,15 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        Booking::where('invoice_number', $id)->update([
+            'payment_flag' => true,
+            'transaction_id' => $request->query('trx_id'),
+        ]);
+
+        $listing_id = Booking::where('invoice_number', $id)->get();
+
+        return redirect('/client/single-listing/'.$listing_id[0]->listing_id)->with('success', 'Booking has been placed');
     }
 
     /**

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ensureotp
+class ClientAuth
 {
     /**
      * Handle an incoming request.
@@ -19,8 +19,7 @@ class ensureotp
         if($check != null){
             return $next($request);
         }else{
-            return redirect('/host/login')->with('error', 'You need to login first');
+            return redirect('/client/login')->with('error', 'You need to login first');
         }
-        
     }
 }

@@ -17,6 +17,7 @@ use App\Models\Listing;
 use App\Http\Middleware\ensureotp;
 use App\Http\Middleware\HasBankAccount;
 use App\Http\Middleware\HasProfile;
+use App\Http\Middleware\ClientAuth;
 use Illuminate\Http\Request;
 
 /*
@@ -258,7 +259,9 @@ Route::prefix('client')->group(function(){
     Route::get('/home', [ClientController::class, 'index'])->name('home');
     Route::post('/search', [ClientController::class, 'search'])->name('searchroute');
     Route::get('/single-listing/{id}', [ClientController::class, 'show']);
-    Route::post('/book-listing', [ClientController::class, 'store'])->middleware(ensureotp::class);
+    Route::post('/book-listing', [ClientController::class, 'store'])->middleware(ClientAuth::class);
+
+    Route::get('/update/booking/{id}', [ClientController::class, 'update']);
     
    Route::get('/login', [ClientLoginController::class, 'index'])->name('clientlogin');
    Route::post('/login-otp', [ClientLoginController::class, 'otp'])->name('clientotp');
