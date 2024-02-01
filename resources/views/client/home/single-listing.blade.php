@@ -235,7 +235,7 @@
                     <div class="row row-cols-2 mb-5">
                         @foreach ($amenities as $item)
                             <div class="col-6 ">
-                                <button class="btn btn-success m-2">{{ Str::upper($item) }}</button>
+                                <button class="btn m-2"><img src="{{asset('assets/img/'.$item.'.svg')}}" class="px-2" style="color:white" alt="" srcset="">{{ Str::upper($item) }}</button>
                             </div>
                         @endforeach
 
@@ -373,22 +373,29 @@
                                     </div>
 
                                     <div class="col-12">
-                                        <div class="d-flex justify-content-between py-5">
-                                            <input type="text" name="daterange" class="form-control"
-                                                value="" />
-
-
+                                        
+                                            <div class="form-floating mt-5 mb-3">
+                                                <input type="text" name="daterange" class="form-control"
+                                                value="" required/>
+                                                <label for="floatingInput">Checkin - Checkout</label>
+                                            
                                             <input type="hidden" class="form-control" name="checkin"
                                                 style=" font-weight: 700; font-size: 17px;" id="floatingInput1"
                                                 required>
 
                                             <input type="hidden" class="form-control" name="checkout"
                                                 style="font-weight: 700; font-size: 17px;" id="floatingInput2"
-                                                onchange="docalcprice(this)">
+                                               >
+                                            
+                                            </div>
+                                            
+
+
+                                            
 
 
 
-                                        </div>
+                                       
                                     </div>
 
                                     <div class="col-12">
@@ -784,54 +791,7 @@
             }
         }
 
-        function docalcprice(el) {
-
-            var checkin = document.getElementById('floatingInput1').value;
-            var checkout = document.getElementById('floatingInput2').value;
-            //var pay_amount = document.getElementById('pay_amount');
-
-            var price = document.getElementById('price').textContent;
-            var slot_name = document.getElementById('slot_name');
-            var slot_no = document.getElementById('slot_no');
-            var input_price = document.getElementById('input_price');
-            // console.log(total_money);
-
-
-
-            let date1 = new Date(checkin).getTime();
-            let date2 = new Date(checkout).getTime();
-
-            if (date2 < date1) {
-
-                alert('You can not select invalid dates');
-                location.reload();
-
-            } else {
-                let Difference_In_Time =
-                    date2 - date1;
-
-                // Calculating the no. of days between
-                // two dates
-                let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
-
-                var new_payAmount = parseInt(price);
-                var updated_price = new_payAmount * Difference_In_Days;
-                var fee = (updated_price * 3) / 100;
-                var total = updated_price + fee;
-
-
-                total_money.setAttribute('value', total);
-                input_price.setAttribute('value', updated_price);
-                pay.innerHTML = total;
-
-                slot_name.innerHTML = 'Nights';
-                slot_no.innerHTML = Difference_In_Days;
-            }
-
-            // Calculating the time difference
-            // of two dates
-
-        }
+       
 
 
         var whole_day_price = parseInt(price.textContent);
@@ -1040,7 +1000,7 @@
 
                 // Calculating the no. of days between
                 // two dates
-                let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
+                let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24)) - 1;
 
                 var new_payAmount = parseInt(price);
                 var updated_price = new_payAmount * Difference_In_Days;
@@ -1050,7 +1010,7 @@
 
                 total_money.setAttribute('value', total);
                 input_price.setAttribute('value', updated_price);
-                pay.innerHTML = total;
+                pay.innerHTML = '৳' + total;
 
                 slot_name.innerHTML = 'Nights';
                 slot_no.innerHTML = Difference_In_Days;

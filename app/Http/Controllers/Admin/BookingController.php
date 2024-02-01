@@ -195,10 +195,8 @@ class BookingController extends Controller
             "message" => 'Your Booking: '. $$listing_name[0]->listing_title . 'has been declined',
             "remove_duplicate" => true
         ];
-        $response = Http::withHeaders([
-            'Authorization' => 'Token d275d614a4ca92e21d2dea7a1e2bb81fbfac1eb0',
-            
-        ])->post($url, $data);
+        
+        send_sms($data);
 
         $notifys = [
             'user_id' => $booking_id[0]->user_id,

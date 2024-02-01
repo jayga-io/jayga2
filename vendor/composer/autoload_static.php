@@ -41,6 +41,7 @@ class ComposerStaticInitaa36d3e860d6aaa1932bacd0f2d9ec32
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
         'c8e519c6abb7362d170206d0f9363574' => __DIR__ . '/../..' . '/app/Helpers/Notification.php',
+        '24d7fa4a05ea9b5b55872590539b56db' => __DIR__ . '/../..' . '/app/Helpers/Sms.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -583,9 +584,12 @@ class ComposerStaticInitaa36d3e860d6aaa1932bacd0f2d9ec32
         'App\\Http\\Controllers\\Api\\ListingAvailability' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ListingAvailability.php',
         'App\\Http\\Controllers\\Api\\ListingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ListingController.php',
         'App\\Http\\Controllers\\Api\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/LoginController.php',
+        'App\\Http\\Controllers\\Api\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/NotificationController.php',
         'App\\Http\\Controllers\\Api\\PaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/PaymentController.php',
         'App\\Http\\Controllers\\Api\\ReviewController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ReviewController.php',
         'App\\Http\\Controllers\\Api\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/UserController.php',
+        'App\\Http\\Controllers\\Client\\ClientController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/ClientController.php',
+        'App\\Http\\Controllers\\Client\\ClientLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/ClientLoginController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FavListingController' => __DIR__ . '/../..' . '/app/Http/Controllers/FavListingController.php',
         'App\\Http\\Controllers\\Host\\AccountsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Host/AccountsController.php',
@@ -614,6 +618,7 @@ class ComposerStaticInitaa36d3e860d6aaa1932bacd0f2d9ec32
         'App\\Http\\Controllers\\WithdrawsController' => __DIR__ . '/../..' . '/app/Http/Controllers/WithdrawsController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
+        'App\\Http\\Middleware\\ClientAuth' => __DIR__ . '/../..' . '/app/Http/Middleware/ClientAuth.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\HasBankAccount' => __DIR__ . '/../..' . '/app/Http/Middleware/HasBankAccount.php',
         'App\\Http\\Middleware\\HasProfile' => __DIR__ . '/../..' . '/app/Http/Middleware/HasProfile.php',

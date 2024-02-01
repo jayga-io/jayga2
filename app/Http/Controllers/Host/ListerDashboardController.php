@@ -11,7 +11,7 @@ use App\Models\Booking;
 use App\Models\ListingGuestAmenities;
 use App\Models\ListingImages;
 use App\Models\ListingRestrictions;
-
+use App\Helpers\Sms;
 use Illuminate\Http\Request;
 use Storage;
 
@@ -95,16 +95,25 @@ class ListerDashboardController extends Controller
             'isApproved' => true
         ]);
 
+        $phone = $booking_id[0]->phone;
+        $data = [
+            "sender_id" => "8809601010510",
+            "receiver" => $phone,
+            "message" => 'Your Stay at : '. $listing_name[0]->listing_title . ' has been approved',
+            "remove_duplicate" => true
+        ];
+
         $notifys = [
             'user_id' => $booking_id[0]->user_id,
             'lister_id' => $booking_id[0]->lister_id,
             'listing_id' => $booking_id[0]->listing_id,
             'booking_id' => $id,
             'type' => 'Booking',
-            'messege' => 'Your Booking : '. $listing_name[0]->listing_title . ' has been approved'
+            'messege' => 'Your Stay at : '. $listing_name[0]->listing_title . ' has been approved'
            ];
     
            notify($notifys);
+           send_sms($data);
 
         toastr()->addSuccess('Booking has been confirmed');
         return redirect()->back();
@@ -119,6 +128,13 @@ class ListerDashboardController extends Controller
             'isApproved' => true
         ]);
 
+        $phone = $booking_id[0]->phone;
+        $data = [
+            "sender_id" => "8809601010510",
+            "receiver" => $phone,
+            "message" => 'Your Booking : '. $listing_name[0]->listing_title . ' has been declined',
+            "remove_duplicate" => true
+        ];
         $notifys = [
             'user_id' => $booking_id[0]->user_id,
             'lister_id' => $booking_id[0]->lister_id,
@@ -129,6 +145,7 @@ class ListerDashboardController extends Controller
            ];
     
            notify($notifys);
+           send_sms($data);
         toastr()->addWarning('Booking has been declined');
         return redirect()->back();
     }
