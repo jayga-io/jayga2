@@ -5,7 +5,7 @@
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#"> <img class="px-3" style="float: right;"
+        <a class="navbar-brand" href="{{route('home')}}"> <img class="px-3" style="float: right;"
                 src="{{asset('assets/img/logo/Jayga Logo-02.png')}}" width="120" height="100" alt="logo" /></a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -16,7 +16,7 @@
                     <a class="nav-link" aria-current="page" href="#">Services</a>
                 </li>
                 <li class="nav-item mx-3">
-                    <a class="nav-link" href="#">List your property</a>
+                    <a class="nav-link" href="{{route('userdash')}}">List your property</a>
                 </li>
                 <li class="nav-item mx-3">
                     <a class="nav-link "><img src="{{asset('assets/img/globe.png')}}" alt="" srcset=""> EN</a>

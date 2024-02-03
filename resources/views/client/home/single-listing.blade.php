@@ -981,7 +981,12 @@
             
 
             $('input[name="daterange"]').daterangepicker({
-                opens: 'left'
+                opens: 'left',
+                isInvalidDate: function(ele) {
+                    var currDate = moment(ele._d).format('YY-MM-DD');
+                    console.log(currDate);
+                    return ["24-02-05", "24-02-09"].indexOf(currDate) != -1;
+                }
             }, function(start, end, label) {
 
 
