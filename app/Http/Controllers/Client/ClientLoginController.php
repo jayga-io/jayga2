@@ -63,7 +63,7 @@ class ClientLoginController extends Controller
             session([ 
                 'user' => $id[0]->id,
                 'user_name' => $id[0]->name,
-                'phone' => $user[0]->phone,
+                'phone' => $id[0]->phone,
                 'user_email' => $id[0]->email,
                 
             ]);
