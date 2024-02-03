@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ListingImages;
 use App\Models\ListingDescribe;
+use App\Models\ListingAvailable;
 use App\Models\ListingGuestAmenities;
 use App\Models\ListingRestrictions;
 use App\Models\Booking;
@@ -43,6 +44,10 @@ class Listing extends Model
 
     public function host(){
         return $this->hasOne(User::class, 'id', 'lister_id');
+    }
+
+    public function available_dates(){
+        return $this->hasMany(ListingAvailable::class, 'listing_id', 'listing_id');
     }
 
   

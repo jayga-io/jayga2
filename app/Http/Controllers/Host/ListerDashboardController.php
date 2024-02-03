@@ -99,7 +99,7 @@ class ListerDashboardController extends Controller
         $data = [
             "sender_id" => "8809601010510",
             "receiver" => $phone,
-            "message" => 'Your Stay at : '. $listing_name[0]->listing_title . ' has been approved',
+            "message" => 'Your stay at : '. $listing_name[0]->listing_title . ' has been approved',
             "remove_duplicate" => true
         ];
 
@@ -109,7 +109,7 @@ class ListerDashboardController extends Controller
             'listing_id' => $booking_id[0]->listing_id,
             'booking_id' => $id,
             'type' => 'Booking',
-            'messege' => 'Your Stay at : '. $listing_name[0]->listing_title . ' has been approved'
+            'messege' => 'Your stay at : '. $listing_name[0]->listing_title . ' has been approved'
            ];
     
            notify($notifys);
@@ -132,7 +132,7 @@ class ListerDashboardController extends Controller
         $data = [
             "sender_id" => "8809601010510",
             "receiver" => $phone,
-            "message" => 'Your Booking : '. $listing_name[0]->listing_title . ' has been declined',
+            "message" => 'Your booking : '. $listing_name[0]->listing_title . ' has been declined',
             "remove_duplicate" => true
         ];
         $notifys = [
@@ -141,7 +141,7 @@ class ListerDashboardController extends Controller
             'listing_id' => $booking_id[0]->listing_id,
             'booking_id' => $id,
             'type' => 'Booking',
-            'messege' => 'Your Booking : '. $listing_name[0]->listing_title . ' has been declined'
+            'messege' => 'Your booking : '. $listing_name[0]->listing_title . ' has been declined'
            ];
     
            notify($notifys);

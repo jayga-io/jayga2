@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\Booking;
 use App\Models\User;
+use App\Models\ListingAvailable;
 use App\Models\ListingGuestAmenities;
 use App\Models\ListingRestrictions;
 use Illuminate\Support\Facades\Http;
@@ -139,7 +140,7 @@ class ClientController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $listing = Listing::where('listing_id', $id)->with('images')->with('reviews')->with('host.avatars')->get();
+        $listing = Listing::where('listing_id', $id)->with('images')->with('reviews')->with('booking')->with('available_dates')->with('host.avatars')->get();
         $bookings = User::where('id', $request->session()->get('user'))->with('bookings')->get();
        // dd($bookings);
             $amenitiesColumnsWithValueOne = [];
@@ -172,8 +173,11 @@ class ClientController extends Controller
            }
 
           // dd($listing);
+          $disable_dates = ListingAvailable::where('listing_id', $id)->get();
 
-        return view('client.home.single-listing')->with('listing', $listing)->with('amenities', $amenitiesColumnsWithValueOne)->with('restrictions', $restrictionColumnsWithValueOne)->with('bookings', $bookings);
+
+         
+        return view('client.home.single-listing')->with('listing', $listing)->with('amenities', $amenitiesColumnsWithValueOne)->with('restrictions', $restrictionColumnsWithValueOne)->with('bookings', $bookings)->with('disable_dates', $disable_dates);
     }
 
     /**

@@ -33,8 +33,9 @@ class ClientLoginController extends Controller
         $phone = $request->session()->get('phone');
         if($code == $session){
             $user = User::where('phone', $phone)->get();
-           // 
+           
            if(count($user)>0){
+            
             $photo = UserPictures::where('user_id', $user[0]->id)->get();
             if(count($photo)>0){
                 session([
@@ -51,7 +52,9 @@ class ClientLoginController extends Controller
                     'phone' => $user[0]->phone,
                     'user_email' => $user[0]->email,
                     
-                ]);
+                    ]);
+
+                   // dd($request->session());
             }
             
            }else{

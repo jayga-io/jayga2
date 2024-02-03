@@ -37,6 +37,14 @@
             margin: 3px;
         }
 
+        .daterangepicker td.disabled{
+            color: #f9f7f7;
+            font-weight: 900;
+            background-color: #F24E1E;
+        }
+
+     
+
         @media (max-width:600px) {
 
             #share {
@@ -722,6 +730,7 @@
         @include('footer')
 
     </div>
+   
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
@@ -977,16 +986,28 @@
             var slot_name = document.getElementById('slot_name');
             var slot_no = document.getElementById('slot_no');
             var input_price = document.getElementById('input_price');
+            
+           var dates = @json($disable_dates);
+           var disabled_dates = [];
+            dates.forEach(element => {
+                disabled_dates.push(element.dates);
+            });
 
             
 
             $('input[name="daterange"]').daterangepicker({
                 opens: 'left',
                 isInvalidDate: function(ele) {
+                   
                     var currDate = moment(ele._d).format('YY-MM-DD');
-                    console.log(currDate);
+                   
                     return ["24-02-05", "24-02-09"].indexOf(currDate) != -1;
+                },
+
+                locale: {
+                    cancelLabel: 'Clear'
                 }
+                
             }, function(start, end, label) {
 
 
@@ -1026,6 +1047,10 @@
 
 
             });
+
+                $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
+                    $(this).val('');
+                });
         });
     </script>
 
