@@ -58,6 +58,16 @@ class BookingController extends Controller
 
             $booked = Booking::where('transaction_id', $request->input('transaction_id'))->get();
             $listing = Listing::where('listing_id', $request->input('listing_id'))->get();
+
+            $data = [
+                "sender_id" => "8809601010510",
+                "receiver" => $booked[0]->phone,
+                "message" => 'Your listing : '. $listing[0]->listing_title . ' has a new booking request',
+                "remove_duplicate" => true
+            ];
+
+            send_sms($data);
+
             return response()->json([
                 'status' => 200,
                 'messege' => 'Booking created successfully',

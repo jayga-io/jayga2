@@ -121,6 +121,13 @@ class ClientController extends Controller
                     // return redirect()->back()->with('success', 'Booking placed successfully');
                  }
                 
+
+                 $phone = Booking::where('listing_id', $request->input('listing_id'))->get();
+                 $listing = Listing::where('listing_id', $request->input('listing_id'))->get();
+
+                 
+
+
                 return redirect($make_payment_response->payment_url);
             }else{
                 return redirect()->back()->with('errors', 'something went wrong with payment. Try again');
@@ -154,6 +161,8 @@ class ClientController extends Controller
                 $count = ListingGuestAmenities::where($columnName, 1)->where('listing_id', $listing[0]->listing_id)->count();
                 if ($count > 0) {
                     $amenitiesColumnsWithValueOne[] = $columnName;
+                }else{
+                    $amenitiesColumnsWithValueOne = [];
                 }
             }
 
@@ -169,6 +178,8 @@ class ClientController extends Controller
                $count = ListingRestrictions::where($columnName, 1)->where('listing_id', $listing[0]->listing_id)->count();
                if ($count > 0) {
                    $restrictionColumnsWithValueOne[] = $columnName;
+               }else{
+                $restrictionColumnsWithValueOne = [];
                }
            }
 
@@ -200,7 +211,16 @@ class ClientController extends Controller
                 'transaction_id' => $request->query('trx_id'),
             ]);
 
-            
+            $listing = Listing::where('listing_id', $listing_id[0]->listing_id)->get();
+
+            $data = [
+                "sender_id" => "8809601010510",
+                "receiver" => $listing_id[0]->phone,
+                "message" => 'Your listing : '. $listing[0]->listing_title . ' has a new booking request',
+                "remove_duplicate" => true
+            ];
+
+            send_sms($data);
 
             return redirect('/client/single-listing/'.$listing_id[0]->listing_id)->with('success', 'Booking has been placed');
        }else{

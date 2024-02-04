@@ -12,15 +12,20 @@
 
             </ul>
             <ul class="navbar-nav mb-lg-0">
+                <!--
                 <li class="nav-item mx-3">
                     <a class="nav-link" aria-current="page" href="#">Services</a>
                 </li>
-                <li class="nav-item mx-3">
-                    <a class="nav-link" href="{{route('userdash')}}">List your property</a>
-                </li>
+                
                 <li class="nav-item mx-3">
                     <a class="nav-link "><img src="{{asset('assets/img/globe.png')}}" alt="" srcset=""> EN</a>
                 </li>
+                -->
+                
+                <li class="nav-item mx-3">
+                    <a class="nav-link" href="{{route('userdash')}}">List your property</a>
+                </li>
+                
                 @if (Session::has('phone'))
                     <li class="nav-item">
                         <a href="#" class="nav-link">
