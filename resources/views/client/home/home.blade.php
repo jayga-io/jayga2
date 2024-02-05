@@ -75,6 +75,10 @@
             transform:scale(1.05);
             
         }
+
+        .image-rotate{
+            transform: rotate(90deg);
+        }
     </style>
 </head>
 
@@ -104,11 +108,11 @@
 
                 <!--Search topbar-->
 
-                <div style="height: 100%; margin: auto; margin-top: 15px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; "
+                <div style="height: 70%; width: 50%; margin: auto; margin-top: 15px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; "
                     id="input">
                     <!--Options select-->
-                    <div class="container p-3 " id="desk">
-                        <div class="row text-center input-group">
+                    <div class="container py-1 text-center" id="desk">
+                        <div class="row mx-auto input-group justify-content-center">
                             <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                                 
                                 <input type="radio" class="btn-check" name="options-base" value="rooms"  id="option5" autocomplete="off"
@@ -126,11 +130,14 @@
                                 <label class="btn" for="option7"><img class="form-label"
                                         src="{{asset('assets/img/business_24px.png')}}" alt=""> Apartments</label>
                             </div>
-                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
+                           
+                            <!--
+                             <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                                 <input type="radio" class="btn-check" name="options-base" value="parking" id="option8" autocomplete="off">
                                 <label class="btn" for="option8"><img class="form-label"
                                         src="{{asset('assets/img/parking icon.png')}}" alt=""> Parking</label>
                             </div>
+                            
                             <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                                 <input type="radio" class="btn-check" name="options-base" value="experience" id="option9" autocomplete="off">
                                 <label class="btn" for="option9"><img class="form-label"
@@ -141,6 +148,9 @@
                                 <label class="btn" for="option10"><img class="form-label"
                                         src="{{asset('assets/img/Cube  24  Outline.png')}}" alt=""> Storage</label>
                             </div>
+                            
+                            -->
+                            
                         </div>
 
 
@@ -488,19 +498,17 @@
             <div class="col-md-6 col-sm-6 col-lg-6 text-center">
                 <img src="{{asset('assets/img/Home - with filters.png')}}"
                     style="border-style:solid; border: 0px; border-color: black; background-color: black; border-radius: 35px;"
-                    width="70%%;" height="70%" class="p-3 mt-5 mb-3" alt="">
+                    width="50%" height="100%" class="p-3 mt-5 mb-3 image-rotate" alt="">
             </div>
             <div class="col-md-6 col-sm-6 col-lg-6">
                 <div class="p-3"
                     style="width: 100%; color: #262626; font-size: 60px; font-family: Epilogue; font-weight: 500; line-height: 80px; word-wrap: break-word">
                     Start exploring and reserving your favorite spots effortlessly.</div>
 
-                <a href="" class="btn">
+                <a href="https://play.google.com/store/apps/details?id=com.jayga.app&pcampaignid=web_share" target="_blank" class="btn">
                     <img src="{{asset('assets/img/Group.png')}}" width="240" height="70" alt="">
                 </a>
-                <a href="" class="btn">
-                    <img src="{{asset('assets/img/Group.png')}}" width="240" height="70" alt="">
-                </a>
+               
             </div>
         </div>
     </div>
@@ -523,20 +531,23 @@
                 <div class="col-md-6 col-lg-6 col-sm-12 p-3 mt-3">
                     <div
                         style="width: 100%; height: 100%; position: relative; background: #ffffff; border-radius: 20px;">
-                        <form class="form-control m-auto p-5" style="border-radius: 20px;">
-                            <div class="mb-3">
+                        <form class="form-control m-auto p-5" style="border-radius: 20px;" >
+                            <div class="mb-3" style="display: none">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                                 <input type="email" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp">
                                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3" style="display: none">
                                 <label for="exampleInputmessege" class="form-label">Messege</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-success form-control">Submit</button>
+                            <button type="submit" class="btn btn-success form-control" style="display: none">Submit</button>
+                            <div class="mb-3">
+                                <img src="{{asset('assets/img/mail.png')}}" width="40px;" height="40px;" class="mx-3" alt=""> Mail us at : info@jayga.io
+                            </div>
                         </form>
                     </div>
                 </div>

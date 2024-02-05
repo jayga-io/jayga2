@@ -83,21 +83,16 @@
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <a class="navbar-brand" href="#">
+              <a class="navbar-brand" href="{{route('home')}}">
                 <h2><img style="float: right;" src="{{asset('assets/img/logo/Jayga Logo-02.png')}}" width="70" height="70" alt="logo"/></h2>
     
               </a>
               <div class="collapse navbar-collapse px-5" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="#">Explore</a>
+                    <a class="nav-link " aria-current="page" href="{{route('home')}}">Explore</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">List your home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" aria-disabled="true">Help Center</a>
-                  </li>
+                 
                 </ul>
                 
               </div>
@@ -111,8 +106,8 @@
 
                 <div class="py-4 text-center"
                   style="color: #139175; font-size: 38px; font-family: Montserrat; font-weight: 700; word-wrap: break-word ;">
-                  Jayga 
-                 <p>Client Login</p>
+                 <img src="{{asset('assets/img/logo.png')}}" height="70px;" width="70px;" alt="" srcset=""> Jayga | <small class="fs-6">Login</small>
+                 
                 </div>
               
                 <div style="width: 100%; height: 178px; position: relative">
@@ -122,7 +117,7 @@
                         @csrf
                         <div class="input-group mb-3">
                           <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">+88</span>
+                           <span class="input-group-text" id="basic-addon1"> <span>🇧🇩</span> +88</span>
                           </div>
                           <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone" required require>
 
@@ -131,7 +126,7 @@
                             
                             <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone" required require>
                         </div> -->
-                        <button type="submit"  class="btn btn-warning" style="color: white;">Login</button>
+                        <button type="submit"  class="btn btn-success" style="color: white;">Login</button>
                     </form>
                     
                 </div>

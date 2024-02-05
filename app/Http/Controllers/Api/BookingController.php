@@ -58,10 +58,11 @@ class BookingController extends Controller
 
             $booked = Booking::where('transaction_id', $request->input('transaction_id'))->get();
             $listing = Listing::where('listing_id', $request->input('listing_id'))->get();
+            $phone = User::where('id', $booked[0]->lister_id)->get();
 
             $data = [
                 "sender_id" => "8809601010510",
-                "receiver" => $booked[0]->phone,
+                "receiver" => $phone[0]->phone,
                 "message" => 'Your listing : '. $listing[0]->listing_title . ' has a new booking request',
                 "remove_duplicate" => true
             ];

@@ -92,11 +92,7 @@
                     role="tab" aria-controls="all" aria-selected="true">All Listings
                     ({{ $listings->count() }})</button>
             </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button"
-                    role="tab" aria-controls="pending" aria-selected="false">Inactive Listings
-                    ({{ $inactives->count() }})</button>
-            </li>
+           
         </ul>
         <div class="tab-content p-4" id="myTabContent">
             <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
@@ -152,60 +148,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-                <table id="myTable2" class="display">
-                    <thead>
-                        <tr>
-                            <th>Lister Name</th>
-
-                            <th>Listing Title</th>
-                            <th>Number of guest allowed</th>
-                            <th>Full Day Price</th>
-                            <th>Listing Address</th>
-                            <th>Short Stay Allow</th>
-                            <th>Listing Type</th>
-                            <th>Approval Status</th>
-                            <th>Active Status</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($inactives as $item)
-                            <tr>
-                                <td>{{ $item->lister_name }}</td>
-                                <td>{{ $item->listing_title }}</td>
-                                <td>{{ $item->guest_num }}</td>
-                                <td>{{ $item->full_day_price_set_by_user }} tk/-</td>
-                                <td>{{ $item->listing_address }}</td>
-                                @if ($item->allow_short_stay == true)
-                                    <td><span class="badge rounded-pill bg-success">Allowed</span></td>
-                                @else
-                                    <td><span class="badge rounded-pill bg-danger">Not Allowed</span></td>
-                                @endif
-
-                                <td>{{ $item->listing_type }}</td>
-
-                                @if ($item->isApproved == true)
-                                    <td><span class="badge rounded-pill bg-success">Approved</span></td>
-                                @else
-                                    <td><span class="badge rounded-pill bg-warning">Not Approved</span></td>
-                                @endif
-
-                                @if ($item->isActive == true)
-                                    <td><span class="badge rounded-pill bg-success">Active</span></td>
-                                @else
-                                    <td><span class="badge rounded-pill bg-secondary">Inactive</span></td>
-                                @endif
-                                
-                                <td><a href="/user/listing/single-item/{{$item->listing_id}}" class="btn btn-success">Edit</a></td>
-                                <td><a href="/user/delete/listing/{{$item->listing_id}}" class="btn btn-warning">Delete</a></td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
-            </div>
+            
 
         </div>
     </div>
@@ -216,11 +159,7 @@
             scrollX: true
         });
     </script>
-    <script>
-        let table2 = new DataTable('#myTable2', {
-            scrollX: true
-        });
-    </script>
+   
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
