@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Listing;
+use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
 class BookingController extends Controller
