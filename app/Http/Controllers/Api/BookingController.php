@@ -155,10 +155,8 @@ class BookingController extends Controller
                     "message" => 'Your booking' .$listing_name[0]->listing_title . ' has been confirmed',
                     "remove_duplicate" => true
                 ];
-                $response = Http::withHeaders([
-                    'Authorization' => 'Token d275d614a4ca92e21d2dea7a1e2bb81fbfac1eb0',
-                    
-                ])->post($url, $data);
+                
+                send_sms($data);
 
                 $notifys = [
                     'user_id' => $booking_id[0]->user_id,
@@ -184,10 +182,8 @@ class BookingController extends Controller
                     "message" => 'Your booking: '. $booking_id[0]->booking_order_name . ' has been declined',
                     "remove_duplicate" => true
                 ];
-                $response = Http::withHeaders([
-                    'Authorization' => 'Token d275d614a4ca92e21d2dea7a1e2bb81fbfac1eb0',
-                    
-                ])->post($url, $data);
+                
+                send_sms($data);
 
 
                 $notifys = [
@@ -217,5 +213,26 @@ class BookingController extends Controller
             return $validated->errors();
         }
 
+    }
+
+    public function mark_complete(Request $request){
+        $validated = $request->validate([
+            'booking_id' => 'required',
+            'is_complete' => 'required',
+        ]);
+
+        if($validated){
+             Booking::where('booking_id', $request->input('booking_id'))->update([
+                'isComplete' => $request->input('is_complete'),
+                ]);
+            
+                return response()->json([
+                    'status' => true,
+                    'bookings' => 'Booking completed'
+                ]);
+           
+        }else{
+           return $validated->errors();
+        }
     }
 }
