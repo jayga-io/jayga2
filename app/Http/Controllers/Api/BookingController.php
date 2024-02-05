@@ -228,7 +228,7 @@ class BookingController extends Controller
             
                 return response()->json([
                     'status' => true,
-                    'bookings' => 'Booking completed'
+                    'messege' => 'Booking completed'
                 ]);
            
         }else{
