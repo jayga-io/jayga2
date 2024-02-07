@@ -130,6 +130,10 @@ Route::get('/payment/failure', function(){
     return view('failed');
 });
 
+Route::get('/back', function(){
+    return redirect(route('home'));
+})->name('backroute');
+
 
 //host 
 Route::prefix('host')->group(function(){
@@ -267,6 +271,7 @@ Route::prefix('client')->group(function(){
    Route::get('/login', [ClientLoginController::class, 'index'])->name('clientlogin');
    Route::post('/login-otp', [ClientLoginController::class, 'otp'])->name('clientotp');
    Route::post('/otp-verify', [ClientLoginController::class, 'verify'])->name('otpverif');
+  
 });
 
 Route::get('/logout', function(Request $request){

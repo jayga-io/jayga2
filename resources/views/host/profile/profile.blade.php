@@ -107,7 +107,7 @@
             </div>
             <div class="m-3 text-center">
                 <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
-                <a href="{{route('userdash')}}" class="btn btn-secondary">Back to dashboard</a>
+                <a href="{{route('backroute')}}" class="btn btn-secondary">Back</a>
             </div>
         </div>
     </form>

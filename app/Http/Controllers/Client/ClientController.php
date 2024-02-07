@@ -48,59 +48,43 @@ class ClientController extends Controller
         $shortStay = $request->input('short_stay');
         $slot  = $request->input('short_stay_slot');
         $invoice_number = Str::random(8);
-        
-        $pay = Http::withHeaders([
-            'merchantId' => '4101704973087',
-            'password' => 'J@yGA3087',
-        ])->post('https://api.paystation.com.bd/grant-token');
 
-       // dd(json_decode($pay));
+        if($request->session()->get('user_name') == null){
+            return redirect(route('userprofile'))->with('messege', 'Please complete your profile');
+        }else{
 
-       $payResponse = json_decode($pay);
-
-       
-       
-        if($payResponse->status == 'success'){
-            $url = 'https://api.paystation.com.bd/create-payment';
-            $data = [
-                'invoice_number' => $invoice_number,
-                'currency' => 'BDT',
-                'payment_amount' => $request->input('total_paid'),
-                'cust_name' => $request->input('booking_order_name'),
-                'cust_phone' => $request->input('phone'),
-                'cust_email' => $request->input('email'),
-                'callback_url' => env('APP_URL'). '/client/update/booking/' . $invoice_number,
-
-            ];
-            $make_payment = Http::withHeaders([
-                'token' => $payResponse->token
-            ])->post($url, $data);
-            $make_payment_response = json_decode($make_payment);
-
-            if($make_payment_response->status == 'success'){
-
-                if($shortStay){
-                    Booking::create([
-                     'user_id' => $request->input('user_id'),
-                     'booking_order_name' => $request->input('booking_order_name'),
-                     'listing_id' => $request->input('listing_id'),
-                     'lister_id' => $request->input('lister_id'),
-                     'net_payable' => $request->input('net_payable'),
-                     'pay_amount' => $request->input('total_paid'),
-                     'total_members' => $request->input('guest_num'),
-                     'date_enter' => $request->input('checkin'),
-                     'date_exit' => $request->input('checkout'),
-                     'short_stay_flag' => $shortStay,
-                     'all_day_flag' => 0,
-                     'tier' => $slot,
-                     'email' => $request->input('email'),
-                     'phone' => $request->input('phone'),
-                     'invoice_number' => $invoice_number,
-                     'platform_type' => 'web',
-                 ]); 
-                    // return redirect()->back()->with('success', 'Booking placed successfully');
-                 }else{
-                     Booking::create([
+            $pay = Http::withHeaders([
+                'merchantId' => '4101704973087',
+                'password' => 'J@yGA3087',
+            ])->post('https://api.paystation.com.bd/grant-token');
+    
+           // dd(json_decode($pay));
+    
+           $payResponse = json_decode($pay);
+    
+           
+           
+            if($payResponse->status == 'success'){
+                $url = 'https://api.paystation.com.bd/create-payment';
+                $data = [
+                    'invoice_number' => $invoice_number,
+                    'currency' => 'BDT',
+                    'payment_amount' => $request->input('total_paid'),
+                    'cust_name' => $request->input('booking_order_name'),
+                    'cust_phone' => $request->input('phone'),
+                    'cust_email' => $request->input('email'),
+                    'callback_url' => env('APP_URL'). '/client/update/booking/' . $invoice_number,
+    
+                ];
+                $make_payment = Http::withHeaders([
+                    'token' => $payResponse->token
+                ])->post($url, $data);
+                $make_payment_response = json_decode($make_payment);
+    
+                if($make_payment_response->status == 'success'){
+    
+                    if($shortStay){
+                        Booking::create([
                          'user_id' => $request->input('user_id'),
                          'booking_order_name' => $request->input('booking_order_name'),
                          'listing_id' => $request->input('listing_id'),
@@ -110,34 +94,57 @@ class ClientController extends Controller
                          'total_members' => $request->input('guest_num'),
                          'date_enter' => $request->input('checkin'),
                          'date_exit' => $request->input('checkout'),
-                         'short_stay_flag' => 0,
-                         'all_day_flag' => 1,
-                         'tier' => 0,
+                         'short_stay_flag' => $shortStay,
+                         'all_day_flag' => 0,
+                         'tier' => $slot,
                          'email' => $request->input('email'),
-                        'phone' => $request->input('phone'),
-                        'invoice_number' => $invoice_number,
-                        'platform_type' => 'web',
-                     ]);
-                    // return redirect()->back()->with('success', 'Booking placed successfully');
-                 }
-                
-
-               
-
-                 
-
-
-                return redirect($make_payment_response->payment_url);
+                         'phone' => $request->input('phone'),
+                         'invoice_number' => $invoice_number,
+                         'platform_type' => 'web',
+                     ]); 
+                        // return redirect()->back()->with('success', 'Booking placed successfully');
+                     }else{
+                         Booking::create([
+                             'user_id' => $request->input('user_id'),
+                             'booking_order_name' => $request->input('booking_order_name'),
+                             'listing_id' => $request->input('listing_id'),
+                             'lister_id' => $request->input('lister_id'),
+                             'net_payable' => $request->input('net_payable'),
+                             'pay_amount' => $request->input('total_paid'),
+                             'total_members' => $request->input('guest_num'),
+                             'date_enter' => $request->input('checkin'),
+                             'date_exit' => $request->input('checkout'),
+                             'short_stay_flag' => 0,
+                             'all_day_flag' => 1,
+                             'tier' => 0,
+                             'email' => $request->input('email'),
+                            'phone' => $request->input('phone'),
+                            'invoice_number' => $invoice_number,
+                            'platform_type' => 'web',
+                         ]);
+                        // return redirect()->back()->with('success', 'Booking placed successfully');
+                     }
+                    
+    
+                   
+    
+                     
+    
+    
+                    return redirect($make_payment_response->payment_url);
+                }else{
+                    return redirect()->back()->with('errors', 'something went wrong with payment. Try again');
+                }
             }else{
-                return redirect()->back()->with('errors', 'something went wrong with payment. Try again');
+                return redirect()->back()->with('errors', 'Unable to generate payment token. Try again');
             }
-        }else{
-            return redirect()->back()->with('errors', 'Unable to generate payment token. Try again');
+    
+           
+            
+    
         }
-
-       
         
-
+        
         
     }
 

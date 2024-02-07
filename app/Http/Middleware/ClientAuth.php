@@ -15,7 +15,7 @@ class ClientAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $check = $request->session()->get('phone');
+        $check = $request->session()->get('phone', 'user_name');
         if($check != null){
             return $next($request);
         }else{

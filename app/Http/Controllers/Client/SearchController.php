@@ -20,7 +20,7 @@ class SearchController extends Controller
            // dd($listing);
            $listing = QueryBuilder::for(Listing::class)->where('isApproved', true)
            ->where('isActive', true)
-           ->orWhere('listing_type', $request->input('options_base'))
+           ->where('listing_type', $request->input('options_base'))
            ->orWhere('district', $request->input('city'))
            ->orWhere('guest_num', $request->input('guests'))
            ->with('images')
@@ -35,7 +35,7 @@ class SearchController extends Controller
           //  dd($listing->count());
           $listing = QueryBuilder::for(Listing::class)->where('isApproved', true)
           ->where('isActive', true)
-           ->orWhere('listing_type', $request->input('options_base'))
+           ->orWhere('listing_type', $request->input('category'))
            ->orWhere('district', $request->input('city'))
            ->orWhere('guest_num', $request->input('guests'))
            ->with('images')

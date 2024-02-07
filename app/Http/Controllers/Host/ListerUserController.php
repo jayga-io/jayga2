@@ -38,6 +38,18 @@ class ListerUserController extends Controller
             'user_address' => $request->input('address'),
             'user_dob' => $request->input('dob'),
         ]);
+
+        $user = User::where('id', $id)->get();
+        session([ 
+            'user' => $user[0]->id,
+            'user_name' => $user[0]->name,
+            'phone' => $user[0]->phone,
+            'user_email' => $user[0]->email,
+            
+            ]);
+
+
+
         if($file = $request->file('profile_picture')){
            $path = $file->store('useravatars');
            $up = UserPictures::where('user_id', $id)->get();
@@ -47,12 +59,27 @@ class ListerUserController extends Controller
                 'user_filename' => $file->hashName(),
                 'user_targetlocation' => $path
             ]);
+
+            $photo = UserPictures::where('user_id', $id)->get();
+            session([
+                
+                'photo' => $photo[0]->user_targetlocation,
+            ]);
+
            }else{
             UserPictures::create([
                 'user_id' => $id,
                 'user_filename' => $file->hashName(),
                 'user_targetlocation' => $path
             ]);
+
+            $photo = UserPictures::where('user_id', $id)->get();
+            session([
+                
+                'photo' => $photo[0]->user_targetlocation,
+            ]);
+
+
            }
             
         }

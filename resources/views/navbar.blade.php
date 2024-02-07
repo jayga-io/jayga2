@@ -27,6 +27,9 @@
                 </li>
                 
                 @if (Session::has('phone'))
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="{{route('userprofile')}}">Profile</a>
+                    </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             @if (Session::has('photo'))
