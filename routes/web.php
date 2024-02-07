@@ -12,6 +12,7 @@ use App\Http\Controllers\Host\AccountsController;
 use App\Http\Controllers\Host\BankDetailsController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Client\ClientLoginController;
+use App\Http\Controllers\Client\SearchController;
 use App\Models\User;
 use App\Models\Listing;
 use App\Http\Middleware\ensureotp;
@@ -257,7 +258,7 @@ Route::prefix('user')->group(function(){
 //client section
 Route::prefix('client')->group(function(){
     Route::get('/home', [ClientController::class, 'index'])->name('home');
-    Route::post('/search', [ClientController::class, 'search'])->name('searchroute');
+    Route::post('/search', [SearchController::class, 'search'])->name('searchroute');
     Route::get('/single-listing/{id}', [ClientController::class, 'show']);
     Route::post('/book-listing', [ClientController::class, 'store'])->middleware(ClientAuth::class);
 

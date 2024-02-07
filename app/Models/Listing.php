@@ -50,5 +50,6 @@ class Listing extends Model
         return $this->hasMany(ListingAvailable::class, 'listing_id', 'listing_id');
     }
 
+    
   
 }

@@ -34,7 +34,7 @@ class ClientController extends Controller
      */
     public function search(Request $request)
     {
-        dd($request->all());
+       // dd($request->all());
     }
 
     /**
@@ -160,8 +160,6 @@ class ClientController extends Controller
                 $count = ListingGuestAmenities::where($columnName, 1)->where('listing_id', $listing[0]->listing_id)->count();
                 if ($count > 0) {
                     $amenitiesColumnsWithValueOne[] = $columnName;
-                }else{
-                    $amenitiesColumnsWithValueOne = [];
                 }
             }
 
@@ -177,8 +175,6 @@ class ClientController extends Controller
                $count = ListingRestrictions::where($columnName, 1)->where('listing_id', $listing[0]->listing_id)->count();
                if ($count > 0) {
                    $restrictionColumnsWithValueOne[] = $columnName;
-               }else{
-                $restrictionColumnsWithValueOne = [];
                }
            }
 

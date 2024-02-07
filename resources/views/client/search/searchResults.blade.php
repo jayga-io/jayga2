@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jayga | Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Jayga | Search Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <style>
-
-        .checked {
-            color: orange;
-        }
-        .nav-link {
+        .nav-link{
             color: #158E72;
         }
-
         #card-image-view {
             
             width: 100%;
@@ -25,12 +18,10 @@
             object-fit: contain;
             border-radius: 27px;
         }
-
-        .card {
+        .card{
             border: 0;
         }
-
-        .box {
+        .box{
             box-sizing: border-box;
             background-color: white;
             padding: 5px;
@@ -38,147 +29,75 @@
             border-radius: 20px;
             align-items: center;
         }
-
-        .text {
+        .text{
             padding: 5px;
             font-size: medium;
             font-weight: 700;
             text-align: center;
-
+            
         }
 
-        #input {
-            width: 80%;
-        }
-
-        #mobile {
+        #hide{
             display: none;
         }
 
+      
         @media (max-width: 600px) {
-
-            #desk {
-                display: none;
-            }
-
-            #mobile {
-                display: block;
-            }
-
+        
+        #hide {
+            display: block;
         }
 
-        a{
-            text-decoration: none;
-        }
+    }
 
-        .card:hover{
-          opacity: 1;
+    a{
+        text-decoration: none;
+    }
+ 
+    .card:hover{
+            opacity: 1;
             transition: 0.5s;
             transform:scale(1.05);
             
         }
-
-        .image-rotate{
-            transform: rotate(90deg);
-        }
+    
     </style>
 </head>
-
-<body>
-
+<body >
+    
 
     <div style="background-color: #F2F2F2; width: 100%;">
         <!--Navbar Section-->
         @include('navbar')
-
         <form action="{{route('searchroute')}}" method="POST" enctype="application/x-www-form-urlencoded">
-            @csrf
-            <!--Search Section-->
-            <div class="container">
-                <!--title-->
-                <div class="mt-5 text-center">
-                    <span
-                        style="color: black; font-size: 50px; font-family: Epilogue; font-weight: 800; word-wrap: break-word">Find
-                        your next </span>
-                    <span
-                        style="color: #158E72; font-size: 50px; font-family: Epilogue; font-weight: 800; word-wrap: break-word">place</span>
-                    <span
-                        style="color: black; font-size: 50px; font-family: Epilogue; font-weight: 800; word-wrap: break-word">
-                        to
-                        stay</span>
-                </div>
-
-                <!--Search topbar-->
-
-                <div style="height: 70%; width: 50%; margin: auto; margin-top: 15px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; "
-                    id="input">
-                    <!--Options select-->
-                    <div class="container py-1 text-center" id="desk">
-                        <div class="row mx-auto input-group justify-content-center">
-                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                                 
-                                <input type="radio" class="btn-check" name="options-base" value="rooms"  id="option5" autocomplete="off"
-                                    checked>
-                                <label class="btn" for="option5"><img class="form-label"
-                                        src="{{asset("assets/img/meeting_room_24px.png")}}" alt=""> Rooms</label>
-                            </div>
-                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                                <input type="radio" class="btn-check" name="options-base" value="hotels" id="option6" autocomplete="off">
-                                <label class="btn" for="option6"><img class="form-label"
-                                        src="{{asset('assets/img/home_24px.png')}}" alt=""> Hotels</label>
-                            </div>
-                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                                <input type="radio" class="btn-check" name="options-base" value="apartments" id="option7" autocomplete="off">
-                                <label class="btn" for="option7"><img class="form-label"
-                                        src="{{asset('assets/img/business_24px.png')}}" alt=""> Apartments</label>
-                            </div>
-                           
-                            <!--
-                             <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                                <input type="radio" class="btn-check" name="options-base" value="parking" id="option8" autocomplete="off">
-                                <label class="btn" for="option8"><img class="form-label"
-                                        src="{{asset('assets/img/parking icon.png')}}" alt=""> Parking</label>
-                            </div>
+            @csrf
+        <!--Search Section-->
+        <div class="container mb-5">
+
+                <!--title-->
+            <div class="mt-5 text-center" id="hide">
+                <span
+                    style="color: black; font-size: 50px; font-family: Epilogue; font-weight: 800; word-wrap: break-word">Find
+                    your next </span>
+                <span
+                    style="color: #158E72; font-size: 50px; font-family: Epilogue; font-weight: 800; word-wrap: break-word">place</span>
+                <span style="color: black; font-size: 50px; font-family: Epilogue; font-weight: 800; word-wrap: break-word">
+                    to
+                    stay</span>
+            </div>
+
+            <div class="row py-2 mt-5">
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div
+                        style="width: 100%;   left: 0px;  background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; overflow: hidden;" class="mb-5">
+                        <div class="container">
+                            <div class="row p-4">
+
                             
-                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                                <input type="radio" class="btn-check" name="options-base" value="experience" id="option9" autocomplete="off">
-                                <label class="btn" for="option9"><img class="form-label"
-                                        src="{{asset('assets/img/map_24px.png')}}" alt=""> Experience</label>
-                            </div>
-                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                                <input type="radio" class="btn-check" name="options-base" value="storage" id="option10" autocomplete="off">
-                                <label class="btn" for="option10"><img class="form-label"
-                                        src="{{asset('assets/img/Cube  24  Outline.png')}}" alt=""> Storage</label>
-                            </div>
-                            
-                            -->
-                            
-                        </div>
-
-
-
-
-
-
-
-
-
-
-
-                    </div>
-                </div>
-
-
-                <div class="row mb-5">
-                    <div class="col-md-12 col-lg-12 col-sm-12">
-                        <div
-                            style="width: 80%;  margin: auto;  background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; overflow: hidden;">
-                            <div class="container">
-                                <div class="row p-3 text-center">
-
-                                    <div class="col-sm-12 p-2" id="mobile">
-                                        <div class="form-floating">
-                                            <select class="form-control" name="category" aria-placeholder="Town or City"
+                                <div class="col-md-2 col-lg-2 col-sm-12 p-2">
+                                    <div class="form-floating">
+                                        <select class="form-control" name="category" aria-placeholder="Town or City"
                                                 aria-label="Large select example">
                                                 <option selected value="default">Select Category</option>
                                                 <option value="rooms">Rooms</option>
@@ -186,26 +105,25 @@
                                                 <option value="apartments">Apartment</option>
                                                
                                             </select>
-                                            <label for="formfloating">Select Category</label>
-                                        </div>
+                                        <label for="formfloating">Select Category</label>
                                     </div>
+                                </div>
 
-
-                                    <div class="col-md-3 col-lg-3 col-sm-12 p-2">
-                                        <!--search inputs-->
-                                        <div class="form-floating">
-                                            <select class="form-control" name="city" aria-placeholder="Town or City"
+                                <div class="col-md-2 col-lg-2 col-sm-12 p-2">
+                                    <!--search inputs-->
+                                    <div class="form-floating">
+                                        <select class="form-control" name="city" aria-placeholder="Town or City"
                                                 aria-label="Large select example">
                                                 <option selected>Select a city or town</option>
                                                 <option value="Dhaka">Dhaka</option>
                                                 <option value="Sylhet">Sylhet</option>
                                                 <option value="Chittagong">Chittagong</option>
                                             </select>
-                                            <label for="formfloating">Select city or town</label>
-                                        </div>
+                                        <label for="formfloating">Select city or town</label>
                                     </div>
+                                </div>
 
-                                    <div class="col-md-6  col-lg-6 col-sm-12 p-2">
+                                    <div class="col-md-2 col-lg-2 col-sm-12 p-2">
                                         <div class="form-floating w-100">
                                             <input type="text" name="daterange" class="form-control"
                                             value="" required/>
@@ -220,51 +138,48 @@
                                             
                                         
                                         </div>
-                                       
                                     </div>
 
+                                    
+                                    
 
-                                  
-
-
-                                    <div class="col-md-3 col-lg-3 col-sm-12 p-2">
+                                    
+                                    <div class="col-md-2 col-lg-2 col-sm-12 p-2">
                                         <div class="form-floating">
                                             <input type="number" name="guests" class="form-control"  placeholder="Guests">
                                             <label class="form-label">Guests</label>
                                             
                                         </div>
-                                        
                                     </div>
+
+                                    <div class="col-md-2 col-sm-12 col-lg-2 text-center py-2">
+                                        
+                                             <button type="submit" class="btn btn-success form-control btn-lg">Search</button>
+                                             
                                     
-
-                                </div>
-
+                                       
+                                    </div>
+                                
                             </div>
-
+    
                         </div>
-                    
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 text-center mt-4 mb-5">
-                                <button type="submit" class="btn btn-success btn-lg px-4">Search</button>
-                            </div>
-
-                        </div>
-
+    
                     </div>
+                   
+    
                 </div>
-
-
             </div>
+    
+    
+        </div>
         </form>
-        
+      </div>
+      
 
-    </div>
-
-
-    <!--Listing section-->
-    <div class="container ">
+     <!--Listing section-->
+     <div class="container ">
         <div class="card-title d-flex justify-content-between mb-3">
-            <h3 class="mt-5">Top Listings</h3>
+            <h3 class="mt-5">{{$listings->count()}} Properties Found</h3>
             <a href="" class="mt-5" style="color: #158E72; font-weight: 700;">View all</a>
         </div>
         <div class="card-header d-flex justify-content-between mb-3">
@@ -459,119 +374,61 @@
     </div>
 
 
-    <!--facilities-->
-    <div style="background-color: #F2F2F2; width: 100%;">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="mb-5 p-2"
-                    style="color: black; font-size: 36px; margin-top: 25px; font-weight: 600; word-wrap: break-word">
-                    Facilities we provide
-                </div>
-                <div class="col-md-6 col-sm-6 col-lg-6">
-                    <div class="box d-flex ">
-                        <img src="{{asset('assets/img/360_24px.png')}}" class="p-3" alt="">
-                        <p class="text m-3">Relocation assistance in case of unsatisfactory conditions</p>
-                    </div>
-                    <div class="box d-flex">
-                        <img src="{{asset('assets/img/local_atm_24px.png')}}" alt="" class="p-3">
-                        <p class="text m-1">Reimbursements upto 50000 BDT for security breaches and property damage</p>
-                    </div>
-                    <div class="box d-flex">
-                        <img src="{{asset('assets/img/verified_user_24px.png')}}" alt="" class="p-3">
-                        <p class="text m-3">Safety & security helpline</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-lg-6 mb-5">
-                    <div class="box d-flex ">
-                        <img src="{{asset('assets/img/security_24px.png')}}" class="p-3" alt="">
-                        <p class="text m-3">Full privacy protection</p>
-                    </div>
-                    <div class="box d-flex">
-                        <img src="{{asset('assets/img/ring_volume_24px.png')}}" alt="" class="p-3">
-                        <p class="text m-3">24/7 desk support</p>
-                    </div>
-                    <div class="box d-flex">
-                        <img src="{{asset('assets/img/local_offer_24px.png')}}" alt="" class="p-3">
-                        <p class="text m-3">Discounts and vouchers available regularly</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--download app-->
-    <div class="container">
-        <div class="row align-items-center mb-5">
-            <div class="col-md-6 col-sm-6 col-lg-6 text-center">
-                <img src="{{asset('assets/img/Home - with filters.png')}}"
-                    style="border-style:solid; border: 0px; border-color: black; background-color: black; border-radius: 35px;"
-                    width="50%" height="100%" class="p-3 mt-5 mb-3 image-rotate" alt="">
-            </div>
-            <div class="col-md-6 col-sm-6 col-lg-6">
-                <div class="p-3"
-                    style="width: 100%; color: #262626; font-size: 60px; font-family: Epilogue; font-weight: 500; line-height: 80px; word-wrap: break-word">
-                    Start exploring and reserving your favorite spots effortlessly.</div>
-
-                <a href="https://play.google.com/store/apps/details?id=com.jayga.app&pcampaignid=web_share" target="_blank" class="btn">
-                    <img src="{{asset('assets/img/Group.png')}}" width="240" height="70" alt="">
-                </a>
-               
-            </div>
-        </div>
-    </div>
 
     <!--send us messege-->
     <div style="background-color: #F2F2F2; width: 100%;">
-        <div class="container">
-            <div class="row align-items-center py-5">
-                <div class="col-md-6 col-lg-6 col-sm-12 text-center p-5 mt-5">
-                    <div
-                        style="width: 100%; color: #262626; font-size: 60px; font-family: Epilogue; font-weight: 500; line-height: 80px; word-wrap: break-word">
-                        Send us a message</div>
-                    <div
-                        style="width: 100%; color: #262626; font-size: 24px; font-family: Montserrat; font-weight: 400; line-height: 41px; word-wrap: break-word">
-                        Your feedback matters! Share your thoughts with us. Your input drives our commitment to customer
-                        satisfaction, shaping our user-centric approach.</div>
+        
+        <!--Footer-->
+        <div class="container py-5">
+            
+            <div class="row p-5 my-3 align-items-center">
+                
+                <div class="col-md-3 col-lg-3 col-sm-12 px-2">
+                    <img src="../public/assets/img/logo/Jayga Logo-02.png" width="80" height="80" alt="Jayga">
+                    <div style="width: 100%; color: black; font-size: 15px;  font-weight: 400; word-wrap: break-word">Bangladesh’s first peer to peer technology enabled spacing solution platform</div>
+                    
                 </div>
-
-
-                <div class="col-md-6 col-lg-6 col-sm-12 p-3 mt-3">
-                    <div
-                        style="width: 100%; height: 100%; position: relative; background: #ffffff; border-radius: 20px;">
-                        <form class="form-control m-auto p-5" style="border-radius: 20px;" >
-                            <div class="mb-3" style="display: none">
-                                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
-                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
-                                </div>
-                            </div>
-                            <div class="mb-3" style="display: none">
-                                <label for="exampleInputmessege" class="form-label">Messege</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            </div>
-
-                            <button type="submit" class="btn btn-success form-control" style="display: none">Submit</button>
-                            <div class="mb-3">
-                                <img src="{{asset('assets/img/mail.png')}}" width="40px;" height="40px;" class="mx-3" alt=""> Mail us at : info@jayga.io
-                            </div>
-                        </form>
-                    </div>
+                <div class="col-md-3 col-lg-3 col-sm-12 mt-5 px-2">
+                    <h6><strong>Explore</strong></h6>
+                    <ul>
+                        <li>Jayga Maps</li>
+                        <li>Community</li>
+                        <li>Listings</li>
+                    </ul>
                 </div>
+                <div class="col-md-3 col-lg-3 col-sm-12 mt-5 px-2">
+                    <h6><strong>Company</strong></h6>
+                    <ul>
+                        <li>About Us</li>
+                        <li>Privacy Policy</li>
+                        <li>Terms & Conditions</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-12 mt-5 px-2">
+                    <h6><strong>Information</strong></h6>
+                    <ul>
+                        <li>FAQ</li>
+                        <li>Services</li>
+                        <li>Booking & Payment</li>
+                    </ul>
+                </div>
+               
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>&copy; Jayga 2024. <span>All Rights Reserved.</span></p>
+                </div>
+                
             </div>
         </div>
-        <!--Footer-->
-       @include('footer')
     </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script>
         function incrementValue(e) {
             e.preventDefault();
@@ -649,5 +506,4 @@
         });
 </script>
 </body>
-
 </html>

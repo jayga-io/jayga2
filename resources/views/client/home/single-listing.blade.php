@@ -236,16 +236,23 @@
                     <h2 class="card-title mb-5">
                         What this place offers
                     </h2>
-                    <a href="#">Show All</a>
+                   <!-- <a href="#">Show All</a> -->
                 </div>
                 <!--Amenities-->
                 <div class="card-body mb-3">
                     <div class="row row-cols-2 mb-5">
-                        @foreach ($amenities as $item)
-                            <div class="col-6 ">
-                                <button class="btn m-2"><img src="{{asset('assets/img/'.$item.'.svg')}}" class="px-2" style="color:white" alt="" srcset="">{{ Str::upper($item) }}</button>
+                        @if (count($amenities) > 0)
+                            @foreach ($amenities as $item)
+                                <div class="col-6 ">
+                                    <button class="btn m-2"><img src="{{asset('assets/img/'.$item.'.svg')}}" class="px-2" style="color:white" alt="" srcset="">{{ Str::upper($item) }}</button>
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="col-6">
+                                <p>No amenities found !</p>
                             </div>
-                        @endforeach
+                        @endif
+                       
 
 
                     </div>
