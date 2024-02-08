@@ -14,4 +14,8 @@ class Reviews extends Model
     public function user(){
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function user_avatar(){
+        return $this->hasOne(UserPictures::class, 'user_id', 'user_id');
+    }
 }

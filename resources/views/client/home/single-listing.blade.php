@@ -365,28 +365,52 @@
                             <!--Highlighted reviews -->
                                 <!-- 
                                 
-                                <div class="card mt-5" style="width: 100%; background-color: #e3e2e2;">
+                                
+                                -->
+                                <div class="mt-5">
+                                    <h5>Highlighted Reviews</h5>
+                                </div>
+                            <div class="card mt-3" style="width: 100%; background-color: #e3e2e2;">
                                 <div class="card-body">
-                                  <div class="card-title">
+                                  
                                     <div class="row justify-content-between">
                                         <div class="col-8 d-flex">
-                                            <img src="{{asset('assets/img/profiles/avatar-06.jpg')}}" class="rounded-circle" style="width: 50px; height: 50px;" alt="">
-                                            <div  class="px-2">
-                                                <h5>Maia</h5>
-                                                <p>Verified User</p>
+
+                                            @if ($user[0]->user_avatar != null)
+                                            
+                                                <img src="{{ asset('/uploads/' . $user[0]->user_avatar->user_targetlocation) }}"
+                                                    class="rounded-circle" style="width: 50px; height: 50px;" alt="">
+                                            @else
+                                                <img src="{{ asset('assets/img/user_with_no_profile_picture.png') }}" class="rounded-circle"
+                                                    style="width: 50px; height: 50px;" alt="" srcset="">
+                                            @endif
+
+                                            
+                                            <div  class="mx-2">
+                                                <h5 style="line-height: 0.5;">{{$user[0]->user->name}}</h5>
+                                                <span class="fs-6 py-0" style="color: #158E72; font-weight: 600">Verified User</span>
+                                                <p class="my-2">{{$user[0]->description}}</p>
                                             </div>
                                             
                                             
                                             
                                         </div>
-                                        <div class="col-4">Reviews</div>
+                                        <div class="col-4">
+                                            <div>{{$user[0]->created_at->diffForHumans()}}</div>
+                                            <div>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                            </div>
+                                            
+                                        </div>
                                     </div>
-                                  </div>
+                                  
                                   
                                 </div>
                             </div>
-                                -->
-                            
 
                             <!-- end -->
         
