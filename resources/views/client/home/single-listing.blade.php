@@ -218,10 +218,10 @@
         <!--description-->
 
         <div class="row justify-content-between">
-            <div class="col-md-7 ">
+            <div class="col-md-8 ">
                 <h2 class="card-title mb-3">Description</h2>
-                <p>{{ $listing[0]->guest_num }} Guests <span>{{ $listing[0]->bed_num }} bedrooms</span>
-                    <span>{{ $listing[0]->bed_num }} beds</span> <span>{{ $listing[0]->bathroom_num }} baths</span></p>
+                <p><img src="{{asset('assets/img/user.svg')}}" alt=""> {{ $listing[0]->guest_num }} Guests <span> &#8901; <img src="{{asset('assets/img/beds.svg')}}" alt="">{{ $listing[0]->bed_num }} bedrooms</span>
+                     <span> &#8901; <img src="{{asset('assets/img/bath.svg')}}" alt="">{{ $listing[0]->bathroom_num }} baths</span></p>
                 <hr>
                 <div class="card-body mt-5">
                     @if ($listing[0]->description)
@@ -243,8 +243,8 @@
                     <div class="row row-cols-2 mb-5">
                         @if (count($amenities) > 0)
                             @foreach ($amenities as $item)
-                                <div class="col-6 ">
-                                    <button class="btn m-2"><img src="{{asset('assets/img/'.$item.'.svg')}}" class="px-2" style="color:white" alt="" srcset="">{{ Str::upper($item) }}</button>
+                                <div class="col-md-4 col-lg-4 col-sm-12">
+                                    <button class="btn btn-outline-dark btn-sm m-1 px-3" style="border-radius: 22px; hover:none;" disabled ><img src="{{asset('assets/img/'.$item.'.svg')}}" class="p-1" style="color:rgb(7, 7, 7)" alt="" srcset="">{{ Str::upper($item) }}</button>
                                 </div>
                             @endforeach
                         @else
@@ -277,6 +277,123 @@
                         Every booking includes free protection from Host cancellations, listing inaccuracies, and other
                         issues like trouble checking in.</div>
                 </div>
+
+                <div class="row mb-5">
+                    <div class="col-md-7 col-sm-12">
+                        <div class="card-body mt-5">
+                            <span class="heading">Reviews</span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+        
+                            @if (count($listing[0]->reviews) > 0)
+                                <div class="review">
+                                    <div class="d-flex justify-content-between">
+                                        <p class="card-title" style="font-size: larger; font-weight: 700;">
+                                            {{ $listing[0]->reviews[0]->avg_rating }} |</p>
+                                        <span><a href="#">Show all reviews</a></span>
+                                    </div>
+        
+                                    <hr style="border:3px solid #f1f1f1">
+        
+                                    <div class="row">
+                                        <div class="side">
+                                            <div>5 star</div>
+                                        </div>
+                                        <div class="middle">
+                                            <div class="bar-container">
+                                                <div class="bar-{{$five}}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="side right">
+                                            <div>{{$five}}</div>
+                                        </div>
+                                        <div class="side">
+                                            <div>4 star</div>
+                                        </div>
+                                        <div class="middle">
+                                            <div class="bar-container">
+                                                <div class="bar-{{$four}}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="side right">
+                                            <div>{{$four}}</div>
+                                        </div>
+                                        <div class="side">
+                                            <div>3 star</div>
+                                        </div>
+                                        <div class="middle">
+                                            <div class="bar-container">
+                                                <div class="bar-{{$three}}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="side right">
+                                            <div>{{$three}}</div>
+                                        </div>
+                                        <div class="side">
+                                            <div>2 star</div>
+                                        </div>
+                                        <div class="middle">
+                                            <div class="bar-container">
+                                                <div class="bar-{{$two}}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="side right">
+                                            <div>{{$two}}</div>
+                                        </div>
+                                        <div class="side">
+                                            <div>1 star</div>
+                                        </div>
+                                        <div class="middle">
+                                            <div class="bar-container">
+                                                <div class="bar-{{$one}}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="side right">
+                                            <div>{{$one}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="review">
+                                    No Reviews Yet
+                                </div>
+                            @endif
+        
+                            <!--Highlighted reviews -->
+                                <!-- 
+                                
+                                <div class="card mt-5" style="width: 100%; background-color: #e3e2e2;">
+                                <div class="card-body">
+                                  <div class="card-title">
+                                    <div class="row justify-content-between">
+                                        <div class="col-8 d-flex">
+                                            <img src="{{asset('assets/img/profiles/avatar-06.jpg')}}" class="rounded-circle" style="width: 50px; height: 50px;" alt="">
+                                            <div  class="px-2">
+                                                <h5>Maia</h5>
+                                                <p>Verified User</p>
+                                            </div>
+                                            
+                                            
+                                            
+                                        </div>
+                                        <div class="col-4">Reviews</div>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                            </div>
+                                -->
+                            
+
+                            <!-- end -->
+        
+                        </div>
+                    </div>
+                </div>
+
                 <hr>
 
             </div>
@@ -339,13 +456,13 @@
                                                                     <div class="d-flex justify-content-between">
                                                                         <div>
 
-                                                                            <input type="checkbox" value="1"
+                                                                            <input type="checkbox" value="{{$slots[0]->time_id}}"
                                                                                 name="short_stay_slot" id="s1">
                                                                             <span class="px-2">Slot 1</span>
                                                                         </div>
 
 
-                                                                        <span>12:00 PM - 04:00PM</span>
+                                                                        <span>{{$slots[0]->times}}</span>
 
 
                                                                     </div>
@@ -354,24 +471,24 @@
                                                                 <div class="d-flex justify-content-between">
                                                                     <div>
 
-                                                                        <input type="checkbox" value="2"
+                                                                        <input type="checkbox" value="{{$slots[1]->time_id}}"
                                                                             name="short_stay_slot" id="s2">
                                                                         <span class="px-2">Slot 2</span>
                                                                     </div>
 
 
-                                                                    <span>12:00 PM - 04:00PM</span>
+                                                                    <span>{{$slots[1]->times}}</span>
                                                                 </div>
                                                                 <div class="d-flex justify-content-between">
                                                                     <div>
 
-                                                                        <input type="checkbox" value="3"
+                                                                        <input type="checkbox" value="{{$slots[2]->time_id}}"
                                                                             name="short_stay_slot" id="s3">
                                                                         <span class="px-2">Slot 3</span>
                                                                     </div>
 
 
-                                                                    <span>12:00 PM - 04:00PM</span>
+                                                                    <span>{{$slots[2]->times}}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -521,95 +638,7 @@
 
         </div>
 
-        <div class="row mb-5">
-            <div class="col-md-7 col-sm-12">
-                <div class="card-body mt-5">
-                    <span class="heading">Reviews</span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-
-                    @if (count($listing[0]->reviews) > 0)
-                        <div class="review">
-                            <div class="d-flex justify-content-between">
-                                <p class="card-title" style="font-size: larger; font-weight: 700;">
-                                    {{ $listing[0]->reviews[0]->avg_rating }} |</p>
-                                <span><a href="#">Show all reviews</a></span>
-                            </div>
-
-                            <hr style="border:3px solid #f1f1f1">
-
-                            <div class="row">
-                                <div class="side">
-                                    <div>5 star</div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-5"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-                                    <div>150</div>
-                                </div>
-                                <div class="side">
-                                    <div>4 star</div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-4"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-                                    <div>63</div>
-                                </div>
-                                <div class="side">
-                                    <div>3 star</div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-3"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-                                    <div>15</div>
-                                </div>
-                                <div class="side">
-                                    <div>2 star</div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-2"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-                                    <div>6</div>
-                                </div>
-                                <div class="side">
-                                    <div>1 star</div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-1"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-                                    <div>20</div>
-                                </div>
-                            </div>
-                        </div>
-                    @else
-                        <div class="review">
-                            No Reviews Yet
-                        </div>
-                    @endif
-
-
-
-                </div>
-            </div>
-        </div>
+        
         <hr>
         <!--location-->
 
@@ -636,7 +665,7 @@
                         </div>
                         <div class="py-3">
                             <i class="fa fa-star checked"></i>
-                            <span>15 Host Reviews</span>
+                            <span>{{ count($listing[0]->reviews) }} Host Reviews</span>
                         </div>
                         <div>
                             <i class="fa fa-user" style="color: #09CA9C;"></i>
@@ -651,11 +680,7 @@
                         </div>
                     @else
                         <div class="card-text">
-                            I am a traveler myself 7 want to help fellow travelers to find the best experiences in
-                            Bangladesh. That is why I started a venture to make people discover the hidden beauties &
-                            experiences in Bangladesh. I find local tourism entrepreneurs who are doing excellent jobs
-                            but cannot produce a profitable business. I work hand in hand with local tourism
-                            entrepreneurs to provide the best experiences to travelers...
+                            <small class="text-muted fs-6 fw-lighter fst-italic">Host description not provided!</small>
                         </div>
                     @endif
 
@@ -679,11 +704,18 @@
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="row row-cols-2 mb-3">
-                                @foreach ($restrictions as $item)
-                                    <div class="col-3 ">
-                                        <button class="btn btn-success ">{{ Str::upper($item) }}</button>
+                                @if (count($restrictions)>0)
+                                    @foreach ($restrictions as $item)
+                                        <div class="col-md-4 col-lg-4 col-sm-12">
+                                            <button class="btn btn-outline-dark btn-sm m-1 px-3" style="border-radius: 22px; hover:none;" disabled ><img src="{{asset('assets/img/'.$item.'.svg')}}" class="p-1" style="color:rgb(7, 7, 7)" alt="" srcset=""> {{ Str::upper($item) }}</button>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="col-6">
+                                        <p>No restrictions found !</p>
                                     </div>
-                                @endforeach
+                                @endif
+                               
 
 
                             </div>

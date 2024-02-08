@@ -192,7 +192,7 @@
 
 
                 <a class="card" href="/client/single-listing/{{$item->listing_id}}">
-                    <img src="#" class="card-img-top" id="card-image-view"
+                    <img src="{{asset('/uploads/'.$item->listing_targetlocation)}}" class="card-img-top" id="card-image-view"
                         alt="#">
                     <div class="card-body">
                         <div class="row">

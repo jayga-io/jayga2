@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\Booking;
 use App\Models\User;
+use App\Models\Reviews;
 use App\Models\ListingAvailable;
 use App\Models\ListingGuestAmenities;
 use App\Models\ListingRestrictions;
+use App\Models\TimeSlotShortstays;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Route;
@@ -186,11 +188,25 @@ class ClientController extends Controller
            }
 
           // dd($listing);
+         // $timeSlots = (new TimeSlotShortstays)->getTable();
+
+          $timeSlots = TimeSlotShortstays::all();
+
+          //dd($timeSlots);
           $disable_dates = ListingAvailable::where('listing_id', $id)->get();
-
-
+           $fivestarcount = Reviews::where('listing_id', $id)->where('stars', 5)->count();
+           $fourstarcount = Reviews::where('listing_id', $id)->where('stars', 4)->count();
+           $threestarcount = Reviews::where('listing_id', $id)->where('stars', 3)->count();
+           $twostarcount = Reviews::where('listing_id', $id)->where('stars', 2)->count();
+           $onestarcount = Reviews::where('listing_id', $id)->where('stars', 1)->count();
+         // dd($fivestarcount);
          
-        return view('client.home.single-listing')->with('listing', $listing)->with('amenities', $amenitiesColumnsWithValueOne)->with('restrictions', $restrictionColumnsWithValueOne)->with('bookings', $bookings)->with('disable_dates', $disable_dates);
+        return view('client.home.single-listing')->with('listing', $listing)->with('amenities', $amenitiesColumnsWithValueOne)->with('restrictions', $restrictionColumnsWithValueOne)->with('slots', $timeSlots)->with('disable_dates', $disable_dates)
+        ->with('five', $fivestarcount)
+        ->with('four', $fourstarcount)
+        ->with('three', $threestarcount)
+        ->with('two', $twostarcount)
+        ->with('one', $onestarcount);
     }
 
     /**

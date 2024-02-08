@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserNid;
 use App\Models\UserPictures;
 use App\Models\UserCoverPhotos;
+use App\Models\Listing;
 use Storage;
 
 class UserController extends Controller
@@ -243,5 +244,14 @@ class UserController extends Controller
                 'messege' => 'No image found'
             ]);
         }
+    }
+
+    public function user_delete(Request $request, $id){
+        User::where('id', $id)->delete();
+        Listing::where('lister_id', $id)->delete();
+        return response()->json([
+            'status' => 200,
+            'messege' => 'User deleted successfully'
+        ]);
     }
 }

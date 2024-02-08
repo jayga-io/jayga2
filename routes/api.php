@@ -96,3 +96,5 @@ Route::get('/show/availability/{id}', [ListingAvailability::class, 'get_dates'])
 Route::get('/show/notifications/{id}', [NotificationController::class, 'show']);
 
 Route::post('/booking/make-complete', [BookingController::class, 'mark_complete']);
+
+Route::get('/user/delete/{id}', [UserController::class, 'user_delete']);
