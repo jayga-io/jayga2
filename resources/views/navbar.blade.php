@@ -6,7 +6,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="{{route('home')}}"> <img class="px-3" style="float: right;"
-                src="{{asset('assets/img/logo/Jayga Logo-02.png')}}" width="100" height="80" alt="logo" /></a>
+                src="{{asset('assets/img/jayga.png')}}"  alt="logo" /></a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 

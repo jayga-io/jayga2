@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Epilogue">
     <style>
         .checked {
             color: orange;
@@ -19,6 +20,10 @@
             text-align: right;
         }
 
+        body{
+            font-family: "Epilogue";
+        }
+        
         #product-img {
 
             object-fit: contain;

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Epilogue">
     <style>
 
         .checked {
@@ -17,6 +18,10 @@
         }
         .nav-link {
             color: #158E72;
+        }
+
+        body{
+            font-family: "Epilogue";
         }
 
         #card-image-view {
@@ -88,7 +93,7 @@
 <body>
 
 
-    <div style="background-color: #F2F2F2; width: 100%; background-image: url({{asset('assets/img/background-home.jpg')}}); backgroud-size: contain; ">
+    <div class="vh-100" style="background-color: #F2F2F2; width: 100%; background-image: url({{asset('assets/img/bg.png')}}); backgroud-size: contain; object-fit:contain">
         <!--Navbar Section-->
         @include('navbar')
 
@@ -97,7 +102,7 @@
             <!--Search Section-->
             <div class="container">
                 <!--title-->
-                <div class="mt-5 text-center">
+                <div class="my-5 text-center py-3">
                     <span
                         style="color: black; font-size: 50px; font-family: Epilogue; font-weight: 800; word-wrap: break-word">Find
                         your next </span>
@@ -111,10 +116,10 @@
 
                 <!--Search topbar-->
 
-                <div style="height: 70%; width: 50%; margin: auto; margin-top: 15px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; "
+                <div style="height: 70%; width: 50%; margin: auto; margin-top: 15px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; opacity: 0.8; background-blend-mode: overlay, normal; backdrop-filter: blur(40px); background: lightgray 0% 0% / 154.22531366348267px 154.22531366348267px repeat, radial-gradient(151.92% 127.02% at 15.32% 21.04%, rgba(165, 239, 255, 0.05) 0%, rgba(110, 191, 244, 0.01) 77.08%, rgba(70, 144, 212, 0.00) 100%);"
                     id="input">
                     <!--Options select-->
-                    <div class="container py-1 text-center" id="desk">
+                    <div class="container py-1 text-center"  id="desk">
                         <div class="row mx-auto input-group justify-content-center">
                             <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                                 
@@ -173,7 +178,7 @@
                 <div class="row mb-5">
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div
-                            style="width: 80%;  margin: auto;  background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; overflow: hidden;">
+                            style="width: 80%;  margin: auto;  background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; overflow: hidden; opacity: 0.8; background-blend-mode: overlay, normal; backdrop-filter: blur(40px); background: lightgray 0% 0% / 154.22531366348267px 154.22531366348267px repeat, radial-gradient(151.92% 127.02% at 15.32% 21.04%, rgba(165, 239, 255, 0.05) 0%, rgba(110, 191, 244, 0.01) 77.08%, rgba(70, 144, 212, 0.00) 100%);">
                             <div class="container">
                                 <div class="row p-3 text-center">
 
@@ -501,12 +506,12 @@
     </div>
 
     <!--download app-->
-    <div class="container">
+   
         <div class="row align-items-center mb-5">
             <div class="col-md-6 col-sm-6 col-lg-6 text-center">
-                <img src="{{asset('assets/img/Home - with filters.png')}}"
-                    style="border-style:solid; border: 0px; border-color: black; background-color: black; border-radius: 35px;"
-                    width="50%" height="100%" class="p-3 mt-5 mb-3 image-rotate" alt="">
+                <img src="{{asset('assets/img/OnePlus.png')}}"
+                    style="width: 100%; height: 60%;"
+                     class=" mt-5 mb-3 " alt="">
             </div>
             <div class="col-md-6 col-sm-6 col-lg-6">
                 <div class="p-3"
@@ -519,7 +524,7 @@
                
             </div>
         </div>
-    </div>
+    
 
     <!--send us messege-->
     <div style="background-color: #F2F2F2; width: 100%;">
