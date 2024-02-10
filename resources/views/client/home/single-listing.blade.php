@@ -188,7 +188,7 @@
                     <span class="px-2">{{ count($listing[0]->reviews) }} Reviews</span>
                     <span>Dhaka, Bangladesh</span>
                 @else
-                    <div class="card-text">No reviews yet</div>
+                    <div class="card-text mx-2">No reviews yet</div>
                 @endif
 
 
@@ -367,50 +367,60 @@
                                 
                                 
                                 -->
+                                
+
+                                @if (isset($user[0]))
+
                                 <div class="mt-5">
                                     <h5>Highlighted Reviews</h5>
                                 </div>
-                            <div class="card mt-3" style="width: 100%; background-color: #e3e2e2;">
-                                <div class="card-body">
-                                  
-                                    <div class="row justify-content-between">
-                                        <div class="col-8 d-flex">
+                                    <div class="card mt-3" style="width: 100%; background-color: #e3e2e2;">
+                                        <div class="card-body">
+                                        
+                                            <div class="row justify-content-between">
+                                                <div class="col-8 d-flex">
 
-                                            @if ($user[0]->user_avatar != null)
-                                            
-                                                <img src="{{ asset('/uploads/' . $user[0]->user_avatar->user_targetlocation) }}"
-                                                    class="rounded-circle" style="width: 50px; height: 50px;" alt="">
-                                            @else
-                                                <img src="{{ asset('assets/img/user_with_no_profile_picture.png') }}" class="rounded-circle"
-                                                    style="width: 50px; height: 50px;" alt="" srcset="">
-                                            @endif
+                                                    @if (isset($user[0]->user_avatar))
+                                                    
+                                                        <img src="{{ asset('/uploads/' . $user[0]->user_avatar->user_targetlocation) }}"
+                                                            class="rounded-circle" style="width: 50px; height: 50px;" alt="">
+                                                    @else
+                                                        <img src="{{ asset('assets/img/user_with_no_profile_picture.png') }}" class="rounded-circle"
+                                                            style="width: 50px; height: 50px;" alt="" srcset="">
+                                                    @endif
 
-                                            
-                                            <div  class="mx-2">
-                                                <h5 style="line-height: 0.5;">{{$user[0]->user->name}}</h5>
-                                                <span class="fs-6 py-0" style="color: #158E72; font-weight: 600">Verified User</span>
-                                                <p class="my-2">{{$user[0]->description}}</p>
+                                                    
+                                                    <div  class="mx-2">
+                                                        <h5 style="line-height: 0.5;">{{$user[0]->user->name}}</h5>
+                                                        <span class="fs-6 py-0" style="color: #158E72; font-weight: 600">Verified User</span>
+                                                        <p class="my-2">{{$user[0]->description}}</p>
+                                                    </div>
+                                                    
+                                                    
+                                                    
+                                                </div>
+                                                <div class="col-4">
+                                                    <div>{{$user[0]->created_at->diffForHumans()}}</div>
+                                                    <div>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star"></span>
+                                                    </div>
+                                                    
+                                                </div>
                                             </div>
-                                            
-                                            
-                                            
-                                        </div>
-                                        <div class="col-4">
-                                            <div>{{$user[0]->created_at->diffForHumans()}}</div>
-                                            <div>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                            </div>
-                                            
+                                        
+                                        
                                         </div>
                                     </div>
-                                  
-                                  
-                                </div>
-                            </div>
+                                @else
+                                    <div>
+
+                                    </div>
+                                @endif
+                            
 
                             <!-- end -->
         
@@ -782,7 +792,7 @@
             <div class="col-12">
                 <div class="d-flex m-3 p-3">
                     <i class="fa fa-flag" style="color: #F24E1E;"></i>
-                    <span class="px-2">Report this posting</span>
+                    <span class="px-2 text-muted">Report this posting</span>
                 </div>
             </div>
         </div>

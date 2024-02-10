@@ -88,7 +88,7 @@
 <body>
 
 
-    <div style="background-color: #F2F2F2; width: 100%;">
+    <div style="background-color: #F2F2F2; width: 100%; background-image: url({{asset('assets/img/background-home.jpg')}}); backgroud-size: contain; ">
         <!--Navbar Section-->
         @include('navbar')
 
