@@ -60,6 +60,14 @@
             transform:scale(1.05);
             
         }
+
+        #card-image-view {
+            
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 27px;
+        }
     
     </style>
 </head>
@@ -192,7 +200,8 @@
 
 
                 <a class="card" href="/client/single-listing/{{$item->listing_id}}">
-                    <img src="https://new.jayga.io/uploads/{{$item->listing_targetlocation}}" class="card-img-top" id="card-image-view"
+                   
+                    <img src="https://new.jayga.io/uploads/{{$item->images[0]->listing_targetlocation}}" class="card-img-top" id="card-image-view"
                         alt="#">
                     <div class="card-body">
                         <div class="row">
@@ -225,7 +234,7 @@
                             </p>
                             @else
                             <p class="card-text">
-                                Short stay not available
+                                
                             </p>
                             @endif
                             

@@ -25,6 +25,9 @@ class ClientController extends Controller
     public function index()
     {
         $listings = Listing::with('images')->with('reviews')->take(8)->get();
+
+      
+
         
        // dd($listings[0]->reviews[0]->avg_rating);
        return view('client.home.home')->with('listings', $listings);
