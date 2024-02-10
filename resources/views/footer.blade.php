@@ -1,3 +1,4 @@
+<img src="{{asset('assets/img/footerimg.png')}}" style="object-fit: contain; border:0;" width="100%" alt="">
 <div class="py-5" style="background-color: #158E72">
     <style>
         a {
