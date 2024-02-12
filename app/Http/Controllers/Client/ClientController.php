@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ClientController extends Controller
 {
@@ -260,6 +261,28 @@ class ClientController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+
+    public function apply_filter(Request $request){
+       // dd($request->all());
+       $filter = Listing::where('listing_type', $request->input('inlineRadioOptions'))
+                        ->orWhere('full_day_price_set_by_user', '>', $request->input('min_price'))
+                        ->orWhere('full_day_price_set_by_user', '<', $request->input('max_price'))
+                        ->orWhere('guest_num', $request->input('guests'))
+                        ->orWhere('bed_num', $request->input('bedrooms'))
+                        ->orWhere('bathroom_num', $request->input('bathrooms'))
+                        ->orWhere('allow_short_stay', $request->input('shortstay'))
+                        ->with('images')
+                        ->get();
+
+                   
+
+          //  $filter = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->allowedFilters([])->with('images')->get();
+        
+            // dd($filter);
+        return view('client.search.searchResults')->with('listings', $filter);
+                        
     }
 
 

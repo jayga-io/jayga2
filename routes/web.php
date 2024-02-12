@@ -271,6 +271,8 @@ Route::prefix('client')->group(function(){
    Route::get('/login', [ClientLoginController::class, 'index'])->name('clientlogin');
    Route::post('/login-otp', [ClientLoginController::class, 'otp'])->name('clientotp');
    Route::post('/otp-verify', [ClientLoginController::class, 'verify'])->name('otpverif');
+
+   Route::post('/apply-filter', [ClientController::class, 'apply_filter'])->name('filterroute');
   
 });
 

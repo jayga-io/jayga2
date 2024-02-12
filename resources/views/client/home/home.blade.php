@@ -347,124 +347,130 @@
         aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
+                <form action="{{route('filterroute')}}" method="POST" enctype="application/x-www-form-urlencoded">
+                    @csrf
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Filters</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="container">
-                        <div class="input-group mb-3">
-                            <h5 class="input-group title mb-3">Property Type</h5>
-                            <div class="my-3">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">Room</label>
+                    
+                        <div class="container">
+                            <div class="input-group mb-3">
+                                <h5 class="input-group title mb-3">Property Type</h5>
+                                <div class="my-3">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio1" value="room">
+                                        <label class="form-check-label" for="inlineRadio1">Room</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio2" value="hotel">
+                                        <label class="form-check-label" for="inlineRadio2">Hotel</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio3" value="apartment">
+                                        <label class="form-check-label" for="inlineRadio3">Apartment</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio4" value="parking">
+                                        <label class="form-check-label" for="inlineRadio4">Parking</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio5" value="experience">
+                                        <label class="form-check-label" for="inlineRadio5">Experience</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio6" value="storage">
+                                        <label class="form-check-label" for="inlineRadio6">Storage</label>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">Hotel</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio3" value="option3">
-                                    <label class="form-check-label" for="inlineRadio3">Apartment</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio4" value="option4">
-                                    <label class="form-check-label" for="inlineRadio4">Parking</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio5" value="option5">
-                                    <label class="form-check-label" for="inlineRadio5">Experience</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio6" value="option6">
-                                    <label class="form-check-label" for="inlineRadio6">Storage</label>
+
+                            </div>
+                            <div class="input-group mb-5">
+                                <h5 class="input-group title">Price Range</h5>
+                                <input type="number" name="min_price" class="p-2 my-2" placeholder="min">
+                                <span class="p-2 mx-2">to</span>
+                                <input type="number" name="max_price" class="p-2 my-2" placeholder="max">
+                            </div>
+                            <div class="input-group mb-3">
+                                <h5 class="input-group title mb-3">Rooms & Beds</h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <p class="text-dark">Bedrooms</p>
+                                            </div>
+                                            <div class="input-group w-auto justify-content-end align-items-center">
+                                                <input type="button" value="-"
+                                                    class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
+                                                    data-field="bedrooms">
+                                                <input type="number" max="10" value="1" name="bedrooms"
+                                                    class="quantity-field border-0 text-center w-25">
+                                                <input type="button" value="+"
+                                                    class="button-plus border rounded-circle icon-shape icon-sm "
+                                                    data-field="bedrooms">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <p class="text-dark">Bathrooms</p>
+                                            </div>
+                                            <div class="input-group w-auto justify-content-end align-items-center">
+                                                <input type="button" value="-"
+                                                    class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
+                                                    data-field="bathrooms">
+                                                <input type="number" max="10" value="1" name="bathrooms"
+                                                    class="quantity-field border-0 text-center w-25">
+                                                <input type="button" value="+"
+                                                    class="button-plus border rounded-circle icon-shape icon-sm "
+                                                    data-field="bathrooms">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <p class="text-dark">Guests</p>
+                                            </div>
+                                            <div class="input-group w-auto justify-content-end align-items-center">
+                                                <input type="button" value="-"
+                                                    class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
+                                                    data-field="guests">
+                                                <input type="number" max="10" value="1" name="guests"
+                                                    class="quantity-field border-0 text-center w-25">
+                                                <input type="button" value="+"
+                                                    class="button-plus border rounded-circle icon-shape icon-sm "
+                                                    data-field="guests">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="input-group mb-3">
+                                <h5 class="input-group title">Short Stay Allow</h5>
+                                <span>
+                                    <input type="hidden" name="shortstay" value="0">
+                                    <input type="checkbox" name="shortstay" value="1">
+                                </span>
 
-                        </div>
-                        <div class="input-group mb-5">
-                            <h5 class="input-group title">Price Range</h5>
-                            <input type="number" class="p-2 my-2" placeholder="min">
-                            <span class="p-2 mx-2">to</span>
-                            <input type="number" class="p-2 my-2" placeholder="max">
-                        </div>
-                        <div class="input-group mb-3">
-                            <h5 class="input-group title mb-3">Rooms & Beds</h5>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <p class="text-dark">Bedrooms</p>
-                                        </div>
-                                        <div class="input-group w-auto justify-content-end align-items-center">
-                                            <input type="button" value="-"
-                                                class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
-                                                data-field="bedrooms">
-                                            <input type="number" max="10" value="1" name="bedrooms"
-                                                class="quantity-field border-0 text-center w-25">
-                                            <input type="button" value="+"
-                                                class="button-plus border rounded-circle icon-shape icon-sm "
-                                                data-field="bedrooms">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <p class="text-dark">Bathrooms</p>
-                                        </div>
-                                        <div class="input-group w-auto justify-content-end align-items-center">
-                                            <input type="button" value="-"
-                                                class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
-                                                data-field="bathrooms">
-                                            <input type="number" max="10" value="1" name="bathrooms"
-                                                class="quantity-field border-0 text-center w-25">
-                                            <input type="button" value="+"
-                                                class="button-plus border rounded-circle icon-shape icon-sm "
-                                                data-field="bathrooms">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <p class="text-dark">Guests</p>
-                                        </div>
-                                        <div class="input-group w-auto justify-content-end align-items-center">
-                                            <input type="button" value="-"
-                                                class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
-                                                data-field="guests">
-                                            <input type="number" max="10" value="1" name="guests"
-                                                class="quantity-field border-0 text-center w-25">
-                                            <input type="button" value="+"
-                                                class="button-plus border rounded-circle icon-shape icon-sm "
-                                                data-field="guests">
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        <div class="input-group mb-3">
-                            <h5 class="input-group title">Short Stay Allow</h5>
-                            <span>
-                                <input type="hidden" name="shortstay" value="0">
-                                <input type="checkbox" name="shortstay" value="1">
-                            </span>
-
-                        </div>
-                    </div>
+                    
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Apply Filter</button>
+                    <button type="submit" class="btn btn-primary">Apply Filter</button>
                 </div>
+            </form>
             </div>
         </div>
     </div>
