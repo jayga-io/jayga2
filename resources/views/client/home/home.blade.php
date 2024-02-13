@@ -92,7 +92,7 @@
 
 
     <div class="vh-100 w-100"
-        style="width: 100%; background-image: url({{ asset('assets/img/bg.png') }}); backgroud-size: contain; object-fit:contain; overflow-x:hidden;">
+        style="width: 100%; background-image: url({{ asset('assets/img/bg.png') }}); backgroud-size: cover; object-fit:contain; overflow-x:hidden;">
         <!--Navbar Section-->
         @include('navbar')
 
