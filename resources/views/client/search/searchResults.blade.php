@@ -1,34 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jayga | Search Results</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Epilogue">
     <style>
-
         body {
             font-family: "Epilogue";
             overflow-x: hidden;
         }
 
-        .nav-link{
+        .checked {
+            color: orange;
+        }
+
+        .nav-link {
             color: #158E72;
         }
+
         #card-image-view {
-            
+
             width: 100%;
             height: 100%;
             object-fit: contain;
             border-radius: 27px;
         }
-        .card{
+
+        .card {
             border: 0;
         }
-        .box{
+
+        .box {
             box-sizing: border-box;
             background-color: white;
             padding: 5px;
@@ -36,170 +45,174 @@
             border-radius: 20px;
             align-items: center;
         }
-        .text{
+
+        .text {
             padding: 5px;
             font-size: medium;
             font-weight: 700;
             text-align: center;
-            
+
         }
 
-        #hide{
+        #hide {
             display: none;
         }
 
-      
+
         @media (max-width: 600px) {
-        
-        #hide {
-            display: block;
+
+            #hide {
+                display: block;
+            }
+
         }
 
-    }
+        a {
+            text-decoration: none;
+        }
 
-    a{
-        text-decoration: none;
-    }
- 
-    .card:hover{
+        .card:hover {
             opacity: 1;
             transition: 0.5s;
-            transform:scale(1.05);
-            
+            transform: scale(1.05);
+
         }
 
         #card-image-view {
-            
+
             width: 100%;
             height: 100%;
             object-fit: contain;
             border-radius: 27px;
         }
-    
     </style>
 </head>
-<body >
-    
 
-    <div style="background-color: #F2F2F2; width: 100%;">
+<body>
+
+
+    <div style="background-image: url({{ asset('assets/img/bg.png') }}); background-size:contain;">
         <!--Navbar Section-->
         @include('navbar')
-        <form action="{{route('searchroute')}}" method="POST" enctype="application/x-www-form-urlencoded">
-                                
+        <form action="{{ route('searchroute') }}" method="POST" enctype="application/x-www-form-urlencoded">
+
             @csrf
-        <!--Search Section-->
-        <div class="container mb-5">
+            <!--Search Section-->
+            <div class="container mb-5">
 
                 <!--title-->
-            <div class="mt-5 text-center" id="hide">
-                <span
-                    style="color: black; font-size: 50px; font-family: Epilogue; font-weight: 800; word-wrap: break-word">Find
-                    your next </span>
-                <span
-                    style="color: #158E72; font-size: 50px; font-family: Epilogue; font-weight: 800; word-wrap: break-word">place</span>
-                <span style="color: black; font-size: 50px; font-family: Epilogue; font-weight: 800; word-wrap: break-word">
-                    to
-                    stay</span>
-            </div>
+                <div class="mt-5 text-center" id="hide">
+                    <span
+                        style="color: black; font-size: 50px; font-family: Epilogue; font-weight: 800; word-wrap: break-word">Find
+                        your next </span>
+                    <span
+                        style="color: #158E72; font-size: 50px; font-family: Epilogue; font-weight: 800; word-wrap: break-word">place</span>
+                    <span
+                        style="color: black; font-size: 50px; font-family: Epilogue; font-weight: 800; word-wrap: break-word">
+                        to
+                        stay</span>
+                </div>
 
-            <div class="row py-2 mt-5">
-                <div class="col-md-12 col-lg-12 col-sm-12">
-                    <div
-                        style="width: 100%;   left: 0px;  background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; overflow: hidden;" class="mb-5">
-                        <div class="container">
-                            <div class="row p-4">
+                <div class="row py-2 mt-5">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div style="width: 100%;   left: 0px;  background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; overflow: hidden;"
+                            class="mb-5">
+                            <div class="container">
+                                <div class="row p-4">
 
-                            
-                                <div class="col-md-2 col-lg-2 col-sm-12 p-2">
-                                    <div class="form-floating">
-                                        <select class="form-control" name="category" aria-placeholder="Town or City"
+
+                                    <div class="col-md-2 col-lg-2 col-sm-12 p-2">
+                                        <div class="form-floating">
+                                            <select class="form-control" name="category" id="category-form" aria-placeholder="Town or City"
                                                 aria-label="Large select example">
                                                 <option selected value="default">Select Category</option>
                                                 <option value="rooms">Rooms</option>
                                                 <option value="hotels">Hotels</option>
                                                 <option value="apartments">Apartment</option>
-                                               
-                                            </select>
-                                        <label for="formfloating">Select Category</label>
-                                    </div>
-                                </div>
 
-                                <div class="col-md-2 col-lg-2 col-sm-12 p-2">
-                                    <!--search inputs-->
-                                    <div class="form-floating">
-                                        <select class="form-control" name="city" aria-placeholder="Town or City"
+                                            </select>
+                                            <label for="formfloating">Select Category</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 col-lg-2 col-sm-12 p-2">
+                                        <!--search inputs-->
+                                        <div class="form-floating">
+                                            <select class="form-control" name="city" id="city" aria-placeholder="Town or City"
                                                 aria-label="Large select example">
                                                 <option selected>Select a city or town</option>
                                                 <option value="Dhaka">Dhaka</option>
                                                 <option value="Sylhet">Sylhet</option>
                                                 <option value="Chittagong">Chittagong</option>
                                             </select>
-                                        <label for="formfloating">Select city or town</label>
+                                            <label for="formfloating">Select city or town</label>
+                                        </div>
                                     </div>
-                                </div>
 
                                     <div class="col-md-2 col-lg-2 col-sm-12 p-2">
                                         <div class="form-floating w-100">
-                                            <input type="text" name="daterange" class="form-control"
-                                            value="" required/>
+                                            <input type="text" name="daterange" id="daterange" class="form-control" value=""
+                                                required />
                                             <label for="floatingInput">Checkin - Checkout</label>
-                                        
+
                                             <input type="hidden" class="form-control" name="checkin"
                                                 style=" font-weight: 700; font-size: 17px;" id="floatingInput1"
                                                 required>
 
                                             <input type="hidden" class="form-control" name="checkout"
-                                                style="font-weight: 700; font-size: 17px;" id="floatingInput2" >
-                                            
-                                        
+                                                style="font-weight: 700; font-size: 17px;" id="floatingInput2">
+
+
                                         </div>
                                     </div>
 
-                                    
-                                    
 
-                                    
+
+
+
                                     <div class="col-md-2 col-lg-2 col-sm-12 p-2">
                                         <div class="form-floating">
-                                            <input type="number" name="guests" class="form-control"  placeholder="Guests">
+                                            <input type="number" name="guests" id="guests" class="form-control"
+                                                placeholder="Guests">
                                             <label class="form-label">Guests</label>
-                                            
+
                                         </div>
                                     </div>
 
                                     <div class="col-md-2 col-sm-12 col-lg-2 text-center py-2">
-                                        
-                                             <button type="submit" class="btn btn-success form-control btn-lg">Search</button>
-                                             
-                                    
-                                       
-                                    </div>
-                                
-                            </div>
-    
-                        </div>
-    
-                    </div>
-                   
-    
-                </div>
-            </div>
-    
-    
-        </div>
-        </form>
-      </div>
-      
 
-     <!--Listing section-->
-     <div class="container ">
+                                        <button type="submit"
+                                            class="btn btn-success form-control btn-lg">Search</button>
+
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+
+
+    <!--Listing section-->
+    <div class="container ">
         <div class="card-title d-flex justify-content-between mb-3">
             @if (isset($latest))
                 <h3 class="mt-5">Showing Latest Listings</h3>
             @else
-                <h3 class="mt-5">{{$listings->count()}} Properties Found</h3>
+                <h3 class="mt-5">{{ $listings->count() }} Properties Found</h3>
             @endif
-            
+
             <a href="" class="mt-5" style="color: #158E72; font-weight: 700;">View all</a>
         </div>
         <div class="card-header d-flex justify-content-between mb-3">
@@ -233,8 +246,8 @@
 
 
                     <a class="card mb-3" href="/client/single-listing/{{ $item->listing_id }}">
-                        <img src="https://new.jayga.io/uploads/{{$item->images[0]->listing_targetlocation}}" class="card-img-top" id="card-image-view"
-                            alt="#">
+                        <img src="https://new.jayga.io/uploads/{{ $item->images[0]->listing_targetlocation }}"
+                            class="card-img-top" id="card-image-view" alt="#">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9">
@@ -283,25 +296,28 @@
 
                 </div>
             @endforeach
-            
-            
+
+
 
         </div>
     </div>
 
 
     <!-- Modal -->
-   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
-                <form action="{{route('filterroute')}}" method="POST" enctype="application/x-www-form-urlencoded">
+                <form action="{{ route('filterroute') }}" method="POST"
+                    enctype="application/x-www-form-urlencoded">
                     @csrf
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Filters</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-    
+
                         <div class="container">
                             <div class="input-group mb-3">
                                 <h5 class="input-group title mb-3">Property Type</h5>
@@ -337,7 +353,7 @@
                                         <label class="form-check-label" for="inlineRadio6">Storage</label>
                                     </div>
                                 </div>
-    
+
                             </div>
                             <div class="input-group mb-5">
                                 <h5 class="input-group title">Price Range</h5>
@@ -407,11 +423,11 @@
                                     <input type="hidden" name="shortstay" value="0">
                                     <input type="checkbox" name="shortstay" value="1">
                                 </span>
-    
+
                             </div>
                         </div>
-    
-    
+
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -427,10 +443,13 @@
     @include('footer')
 
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
     <script>
         function incrementValue(e) {
             e.preventDefault();
@@ -458,54 +477,76 @@
             }
         }
 
-        $('.button-plus').on('click', function (e) {
+        $('.button-plus').on('click', function(e) {
             incrementValue(e);
         });
 
-        $('.button-minus').on('click', function (e) {
+        $('.button-minus').on('click', function(e) {
             decrementValue(e);
         });
-
     </script>
 
-<script>
+    <script>
+        $(function() {
 
-                
-
-    $(function() {
-
-        var date1 = document.getElementById('floatingInput1');
-        var date2 = document.getElementById('floatingInput2');
-       
-        
-      
-
-        
-
-        $('input[name="daterange"]').daterangepicker({
-            opens: 'left',
-           
-
-            locale: {
-                cancelLabel: 'Clear'
-            }
-            
-        }, function(start, end, label) {
-
-
-           // console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
-            date1.value = start.format('YYYY-MM-DD');
-            date2.value = end.format('YYYY-MM-DD');
+            var date1 = document.getElementById('floatingInput1');
+            var date2 = document.getElementById('floatingInput2');
 
 
 
-           
-        });
+
+
+
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'left',
+
+
+                locale: {
+                    cancelLabel: 'Clear'
+                }
+
+            }, function(start, end, label) {
+
+
+                // console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
+                date1.value = start.format('YYYY-MM-DD');
+                date2.value = end.format('YYYY-MM-DD');
+
+
+
+
+            });
 
             $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
                 $(this).val('');
             });
         });
-</script>
+    </script>
+
+    <script>
+        // Function to save form data in localStorage
+        function saveFormData() {
+            const formData = {
+                category: document.getElementById('category-form').value,
+                city: document.getElementById('city').value,
+                daterange: document.getElementById('daterange').value,
+                guests: document.getElementById('guests').value,
+            };
+            localStorage.setItem('formData', JSON.stringify(formData));
+        }
+
+        // Function to load form data from localStorage on page load
+        window.onload = function() {
+            const savedFormData = localStorage.getItem('formData');
+            if (savedFormData) {
+                const formData = JSON.parse(savedFormData);
+                document.getElementById('category-form').value = formData.category;
+                document.getElementById('city').value = formData.city;
+                document.getElementById('daterange').value = formData.daterange;
+                document.getElementById('guests').value = formData.guests;
+            }
+        };
+    </script>
 </body>
+
 </html>
