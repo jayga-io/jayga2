@@ -203,7 +203,7 @@
                         Latest
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="{{ route('latestlistings') }}">Popularity</a></li>
+                        <li><a class="dropdown-item" href="{{ route('popularlistings') }}">Popularity</a></li>
 
                     </ul>
                 @else

@@ -275,6 +275,7 @@ Route::prefix('client')->group(function(){
    Route::post('/apply-filter', [ClientController::class, 'apply_filter'])->name('filterroute');
 
    Route::get('/latest', [ClientController::class, 'latest'])->name('latestlistings');
+   Route::get('/popular', [ClientController::class, 'popular'])->name('popularlistings');
   
 });
 

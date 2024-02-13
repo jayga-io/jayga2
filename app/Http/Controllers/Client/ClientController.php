@@ -292,5 +292,9 @@ class ClientController extends Controller
        return view('client.search.searchResults')->with('listings', $listings)->with('latest', 'latest');
     }
 
+    public function popular(Request $request){
+       return redirect(route('home'));
+    }
+
 
 }
