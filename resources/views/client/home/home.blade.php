@@ -29,12 +29,12 @@
 
             width: 100%;
             height: 100%;
-           
+
             object-fit: contain;
             border-radius: 27px;
         }
 
-        .card{
+        .card {
             border: 0;
         }
 
@@ -272,13 +272,28 @@
 
 
     <!--Listing section-->
-    <div class="container ">
+    <div class="container " id="listings">
         <div class="card-title d-flex justify-content-between mb-3">
-            <h3 class="mt-5">Top Listings</h3>
+           
+                <h3 class="mt-5">Top Listings</h3>
+           
+
             <a href="" class="mt-5" style="color: #158E72; font-weight: 700;">View all</a>
         </div>
         <div class="card-header d-flex justify-content-between mb-3">
-            <button class="btn btn-secondary">Popularity</button>
+            <div class="dropdown">
+                
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Popularity
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="{{ route('latestlistings') }}">Latest</a></li>
+
+                    </ul>
+               
+
+            </div>
             <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Filters</button>
         </div>
         <div class="row mt-5 mb-5">
@@ -287,12 +302,13 @@
 
 
                     <a class="card mb-3" href="/client/single-listing/{{ $item->listing_id }}">
-                        <img src="https://new.jayga.io/uploads/{{ $item->images[0]->listing_targetlocation }}"
-                            class="card-img-top" id="card-image-view" alt="#">
+                        <img src="https://new.jayga.io/uploads/{{$item->images[0]->listing_targetlocation}}" class="card-img-top" id="card-image-view"
+                            alt="#">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9">
-                                    <h6 class="card-title" style="20px; font-weight: 600;">{{ $item->listing_title }}</h6>
+                                    <h6 class="card-title" style="20px; font-weight: 600;">{{ $item->listing_title }}
+                                    </h6>
 
                                 </div>
                                 <div class="col-3" style="text-align: right">
@@ -309,25 +325,26 @@
 
                                 </div>
                             </div>
-                            <p class="card-text" style="font-size: 16px;">{{$item->town}}</p>
+                            <p class="card-text" style="font-size: 16px;">{{ $item->town }}</p>
                             <p class="card-text" style="font-size: 16px;">{{ $item->bed_num }} bedrooms</p>
-                            
+
                             @if ($item->allow_short_stay == true)
                                 <p class="card-text">
-                                   <span style="color: #158E72">Short stay</span> available
+                                    <span style="color: #158E72">Short stay</span> available
 
-                                  
+
                                 </p>
                             @else
                                 <p class="card-text">
-                                    <span style="color: #158E72">{{$item->guest_num}} Guests</span>
+                                    <span style="color: #158E72">{{ $item->guest_num }} Guests</span>
                                 </p>
                             @endif
 
-                           
 
-                            <p class="card-text" >
-                                ৳ <span style="font-size: 20px; font-weight:800;"> {{ $item->full_day_price_set_by_user }}</span>  <span>/ Night</span>
+
+                            <p class="card-text">
+                                ৳ <span style="font-size: 20px; font-weight:800;">
+                                    {{ $item->full_day_price_set_by_user }}</span> <span>/ Night</span>
                             </p>
                         </div>
                     </a>
@@ -347,14 +364,16 @@
         aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
-                <form action="{{route('filterroute')}}" method="POST" enctype="application/x-www-form-urlencoded">
+                <form action="{{ route('filterroute') }}" method="POST"
+                    enctype="application/x-www-form-urlencoded">
                     @csrf
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Filters</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Filters</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
                         <div class="container">
                             <div class="input-group mb-3">
                                 <h5 class="input-group title mb-3">Property Type</h5>
@@ -463,14 +482,14 @@
 
                             </div>
                         </div>
-                    
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Apply Filter</button>
-                </div>
-            </form>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Apply Filter</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -485,31 +504,32 @@
                     Facilities we provide
                 </div>
                 <div class="col-md-6 col-sm-6 col-lg-6">
-                    <div class="box d-flex ">
+                    <div class="box">
                         <img src="{{ asset('assets/img/360_24px.png') }}" class="p-3" alt="">
-                        <p class="text m-3">Relocation assistance in case of unsatisfactory conditions</p>
+                        <span class="text">Relocation assistance in case of unsatisfactory conditions</span>
                     </div>
-                    <div class="box d-flex">
+                    <div class="box">
                         <img src="{{ asset('assets/img/local_atm_24px.png') }}" alt="" class="p-3">
-                        <p class="text m-1">Reimbursements upto 50000 BDT for security breaches and property damage</p>
+                        <span class="text">Reimbursements upto 50000 for security breaches <br> <span
+                                class="mx-5 px-5">and property damage</span> </span>
                     </div>
-                    <div class="box d-flex">
+                    <div class="box">
                         <img src="{{ asset('assets/img/verified_user_24px.png') }}" alt="" class="p-3">
-                        <p class="text m-3">Safety & security helpline</p>
+                        <span class="text">Safety & security helpline</span>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-lg-6 mb-5">
-                    <div class="box d-flex ">
+                    <div class="box ">
                         <img src="{{ asset('assets/img/security_24px.png') }}" class="p-3" alt="">
-                        <p class="text m-3">Full privacy protection</p>
+                        <span class="text">Full privacy protection</span>
                     </div>
-                    <div class="box d-flex">
+                    <div class="box">
                         <img src="{{ asset('assets/img/ring_volume_24px.png') }}" alt="" class="p-3">
-                        <p class="text m-3">24/7 desk support</p>
+                        <span class="text">24/7 desk support</span>
                     </div>
-                    <div class="box d-flex">
+                    <div class="box">
                         <img src="{{ asset('assets/img/local_offer_24px.png') }}" alt="" class="p-3">
-                        <p class="text m-3">Discounts and vouchers available regularly</p>
+                        <span class="text">Discounts and vouchers available regularly</span>
                     </div>
                 </div>
             </div>
@@ -579,14 +599,14 @@
                 </div>
             </div>
         </div>
-        
-           
-        
+
+
+
         <!--Footer-->
         @include('footer')
     </div>
 
-    
+
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

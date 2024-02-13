@@ -187,11 +187,37 @@
      <!--Listing section-->
      <div class="container ">
         <div class="card-title d-flex justify-content-between mb-3">
-            <h3 class="mt-5">{{$listings->count()}} Properties Found</h3>
+            @if (isset($latest))
+                <h3 class="mt-5">Showing Latest Listings</h3>
+            @else
+                <h3 class="mt-5">{{$listings->count()}} Properties Found</h3>
+            @endif
+            
             <a href="" class="mt-5" style="color: #158E72; font-weight: 700;">View all</a>
         </div>
         <div class="card-header d-flex justify-content-between mb-3">
-            <button class="btn btn-secondary">Popularity</button>
+            <div class="dropdown">
+                @if (isset($latest))
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Latest
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="{{ route('latestlistings') }}">Popularity</a></li>
+
+                    </ul>
+                @else
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Popularity
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="{{ route('latestlistings') }}">Latest</a></li>
+
+                    </ul>
+                @endif
+
+            </div>
             <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Filters</button>
         </div>
         <div class="row mb-5">
@@ -201,8 +227,11 @@
 
                 <a class="card" href="/client/single-listing/{{$item->listing_id}}">
                    
-                    <img src="https://new.jayga.io/uploads/{{$item->images[0]->listing_targetlocation}}" class="card-img-top" id="card-image-view"
-                        alt="#">
+                        <img src="https://new.jayga.io/uploads/{{$item->images[0]->listing_targetlocation}}" class="card-img-top" id="card-image-view" alt="#">
+                   
+                    
+                   
+                    
                     <div class="card-body">
                         <div class="row">
                             <div class="col">

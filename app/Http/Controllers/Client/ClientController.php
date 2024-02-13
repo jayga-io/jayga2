@@ -266,13 +266,14 @@ class ClientController extends Controller
 
     public function apply_filter(Request $request){
        // dd($request->all());
-       $filter = Listing::where('listing_type', $request->input('inlineRadioOptions'))
-                        ->orWhere('full_day_price_set_by_user', '>', $request->input('min_price'))
-                        ->orWhere('full_day_price_set_by_user', '<', $request->input('max_price'))
-                        ->orWhere('guest_num', $request->input('guests'))
-                        ->orWhere('bed_num', $request->input('bedrooms'))
-                        ->orWhere('bathroom_num', $request->input('bathrooms'))
-                        ->orWhere('allow_short_stay', $request->input('shortstay'))
+       $filter = Listing::where('isApproved', true)->where('isActive', true)
+                        ->where('listing_type', $request->input('inlineRadioOptions'))
+                        ->where('full_day_price_set_by_user', '>', $request->input('min_price'))
+                        ->where('full_day_price_set_by_user', '<', $request->input('max_price'))
+                        ->where('guest_num', $request->input('guests'))
+                        ->where('bed_num', $request->input('bedrooms'))
+                        ->where('bathroom_num', $request->input('bathrooms'))
+                        ->where('allow_short_stay', $request->input('shortstay'))
                         ->with('images')
                         ->get();
 
@@ -283,6 +284,12 @@ class ClientController extends Controller
             // dd($filter);
         return view('client.search.searchResults')->with('listings', $filter);
                         
+    }
+
+    public function latest(Request $request){
+        $listings = Listing::latest()->with('images')->with('reviews')->get();
+       // dd($listings);
+       return view('client.search.searchResults')->with('listings', $listings)->with('latest', 'latest');
     }
 
 

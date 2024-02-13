@@ -273,6 +273,8 @@ Route::prefix('client')->group(function(){
    Route::post('/otp-verify', [ClientLoginController::class, 'verify'])->name('otpverif');
 
    Route::post('/apply-filter', [ClientController::class, 'apply_filter'])->name('filterroute');
+
+   Route::get('/latest', [ClientController::class, 'latest'])->name('latestlistings');
   
 });
 
