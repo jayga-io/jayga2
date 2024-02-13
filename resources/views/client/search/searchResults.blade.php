@@ -222,61 +222,59 @@
         </div>
         <div class="row mb-5">
             @foreach ($listings as $item)
-            <div class="col-md-3 py-2">
+                <div class="col-md-3">
 
 
-                <a class="card" href="/client/single-listing/{{$item->listing_id}}">
-                   
-                        <img src="https://new.jayga.io/uploads/{{$item->images[0]->listing_targetlocation}}" class="card-img-top" id="card-image-view" alt="#">
-                   
-                    
-                   
-                    
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col">
-                                <h6 class="card-title">{{$item->listing_title}}</h6>
-                               
+                    <a class="card mb-3" href="/client/single-listing/{{ $item->listing_id }}">
+                        <img src="https://new.jayga.io/uploads/{{$item->images[0]->listing_targetlocation}}" class="card-img-top" id="card-image-view"
+                            alt="#">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-9">
+                                    <h6 class="card-title" style="20px; font-weight: 600;">{{ $item->listing_title }}
+                                    </h6>
+
+                                </div>
+                                <div class="col-3" style="text-align: right">
+                                    @if (count($item->reviews) > 0)
+                                        <div>
+                                            <i class="fa fa-star checked mx-1"></i><span class="card-text">
+                                                {{ $item->reviews[0]->avg_rating }}</span>
+                                        </div>
+                                    @else
+                                        <div>
+                                            <i class="fa fa-star checked mx-1"></i><span class="text-muted"> 0</span>
+                                        </div>
+                                    @endif
+
+                                </div>
                             </div>
-                            <div class="col" style="text-align: right">
-                                @if (count($item->reviews) > 0)
+                            <p class="card-text" style="font-size: 16px;">{{ $item->town }}</p>
+                            <p class="card-text" style="font-size: 16px;">{{ $item->bed_num }} bedrooms</p>
 
-                                    <div>
-                                        <i class="fa fa-star checked mx-1"></i><span class="card-text"> {{$item->reviews[0]->avg_rating}}</span> 
-                                    </div>
-                                  
-                                    
-                                @else
+                            @if ($item->allow_short_stay == true)
+                                <p class="card-text">
+                                    <span style="color: #158E72">Short stay</span> available
 
-                                    <div>
-                                        <i class="fa fa-star checked mx-1"></i><span class="text-muted"> 0</span> 
-                                    </div>
-                                    
-                                    
-                                @endif
-                                
-                            </div>
-                        </div>
-                            @if ($item->allow_short_stay == true )
-                            <p class="card-text">
-                                Short stay available
-                            </p>
+
+                                </p>
                             @else
-                            <p class="card-text">
-                                
-                            </p>
+                                <p class="card-text">
+                                    <span style="color: #158E72">{{ $item->guest_num }} Guests</span>
+                                </p>
                             @endif
-                            
-                            <p class="card-text">{{$item->bed_num}} bedrooms</p>
-                            
-                            <p class="card-text">
-                                ৳ {{$item->full_day_price_set_by_user}} <span>/ Night</span>
-                            </p>
-                    </div>
-                </a>
 
-                
-            </div>
+
+
+                            <p class="card-text">
+                                ৳ <span style="font-size: 20px; font-weight:800;">
+                                    {{ $item->full_day_price_set_by_user }}</span> <span>/ Night</span>
+                            </p>
+                        </div>
+                    </a>
+
+
+                </div>
             @endforeach
             
             
