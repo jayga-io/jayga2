@@ -88,7 +88,7 @@
     </style>
 </head>
 
-<body>
+<body style="overflow-x: hidden">
 
 
     <div class="vh-100 w-100"
