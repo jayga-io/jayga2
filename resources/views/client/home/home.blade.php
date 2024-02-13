@@ -22,7 +22,7 @@
 
         body {
             font-family: "Epilogue";
-            overflow-x: hidden;
+
         }
 
         #card-image-view {
@@ -45,7 +45,7 @@
             margin: 30px;
             border-radius: 20px;
             align-items: center;
-           
+
         }
 
         .text {
@@ -66,9 +66,6 @@
 
         @media (max-width: 600px) {
 
-            body{
-                overflow-x: hidden;
-            }
 
             #desk {
                 display: none;
@@ -93,7 +90,7 @@
     </style>
 </head>
 
-<body >
+<body>
 
 
     <div class="vh-100 w-100"
@@ -104,7 +101,7 @@
         <form action="{{ route('searchroute') }}" method="POST" enctype="application/x-www-form-urlencoded">
             @csrf
             <!--Search Section-->
-            
+            <div class="container">
                 <!--title-->
                 <div class="my-5 text-center py-3">
                     <span
@@ -268,35 +265,35 @@
                     </div>
                 </div>
 
+            </div>
 
-            
         </form>
 
-
+    
     </div>
 
 
     <!--Listing section-->
     <div class="container " id="listings">
         <div class="card-title d-flex justify-content-between mb-3">
-           
-                <h3 class="mt-5">Top Listings</h3>
-           
+
+            <h3 class="mt-5">Top Listings</h3>
+
 
             <a href="" class="mt-5" style="color: #158E72; font-weight: 700;">View all</a>
         </div>
         <div class="card-header d-flex justify-content-between mb-3">
             <div class="dropdown">
-                
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Popularity
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="{{ route('latestlistings') }}">Latest</a></li>
 
-                    </ul>
-               
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Popularity
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="{{ route('latestlistings') }}">Latest</a></li>
+
+                </ul>
+
 
             </div>
             <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Filters</button>
@@ -307,8 +304,8 @@
 
 
                     <a class="card mb-3" href="/client/single-listing/{{ $item->listing_id }}">
-                        <img src="https://new.jayga.io/uploads/{{$item->images[0]->listing_targetlocation}}" class="card-img-top" id="card-image-view"
-                            alt="#">
+                        <img src="https://new.jayga.io/uploads/{{ $item->images[0]->listing_targetlocation }}"
+                            class="card-img-top" id="card-image-view" alt="#">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9">
@@ -545,8 +542,8 @@
 
     <div class="row align-items-center mb-5">
         <div class="col-md-6 col-sm-6 col-lg-6 text-center">
-            <img src="{{ asset('assets/img/OnePlus.png') }}" style="max-width: 100%; height: 60%;" class=" mt-5 mb-3 "
-                alt="">
+            <img src="{{ asset('assets/img/OnePlus.png') }}" style="max-width: 100%; height: 60%;"
+                class=" mt-5 mb-3 " alt="">
         </div>
         <div class="col-md-6 col-sm-6 col-lg-6">
             <div class="p-3"
@@ -694,7 +691,7 @@
     </script>
 
 
-    
+
 
 
 
