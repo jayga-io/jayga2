@@ -264,7 +264,10 @@ Route::prefix('client')->group(function(){
     Route::get('/home', [ClientController::class, 'index'])->name('home');
     Route::post('/search', [SearchController::class, 'search'])->name('searchroute');
     Route::get('/single-listing/{id}', [ClientController::class, 'show']);
-    Route::post('/book-listing', [ClientController::class, 'store'])->middleware(ClientAuth::class);
+    Route::middleware(ClientAuth::class)->group(function(){
+        Route::post('/book-listing', [ClientController::class, 'store'])->name('clientbooking');
+    });
+    
 
     Route::get('/update/booking/{id}', [ClientController::class, 'update']);
     

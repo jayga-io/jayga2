@@ -22,6 +22,7 @@
 
         body{
             font-family: "Epilogue";
+            overflow-x: hidden;
         }
 
         #product-img {
@@ -439,7 +440,7 @@
 
             <div class="col-md-4 ">
                 <div class="card px-2" style="width: 100%; height: auto; border-radius: 25px;">
-                    <form action="/client/book-listing" method="POST">
+                    <form action="{{route('clientbooking')}}" method="POST">
                         @csrf
                         <div class="container">
                             <input type="hidden" name="user_id" value="{{ Session::get('user') }}">

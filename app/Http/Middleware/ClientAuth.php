@@ -15,11 +15,12 @@ class ClientAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $check = $request->session()->get('phone', 'user_name');
+        $check = $request->session()->get('phone');
+        
         if($check != null){
             return $next($request);
         }else{
-            return redirect('/client/login')->with('error', 'You need to login first');
+            return redirect(route('clientlogin'))->with('error', 'You need to login first');
         }
     }
 }
