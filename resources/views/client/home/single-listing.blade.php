@@ -1077,6 +1077,7 @@
 
             $('input[name="daterange"]').daterangepicker({
                 opens: 'left',
+                
                 isInvalidDate: function(ele) {
                    
                     var currDate = moment(ele._d).format('YY-MM-DD');

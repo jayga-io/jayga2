@@ -91,8 +91,8 @@
 <body>
 
 
-    <div class="vh-100"
-        style="background-color: #F2F2F2; width: 100%; background-image: url({{ asset('assets/img/bg.png') }}); backgroud-size: contain; object-fit:contain">
+    <div class="vh-100 w-100"
+        style="width: 100%; background-image: url({{ asset('assets/img/bg.png') }}); backgroud-size: contain; object-fit:contain; overflow-x:hidden;">
         <!--Navbar Section-->
         @include('navbar')
 
