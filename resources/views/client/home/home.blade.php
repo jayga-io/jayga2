@@ -45,6 +45,7 @@
             margin: 30px;
             border-radius: 20px;
             align-items: center;
+           
         }
 
         .text {
@@ -64,6 +65,10 @@
         }
 
         @media (max-width: 600px) {
+
+            body{
+                overflow-x: hidden;
+            }
 
             #desk {
                 display: none;
@@ -88,18 +93,18 @@
     </style>
 </head>
 
-<body style="overflow-x: hidden">
+<body >
 
 
     <div class="vh-100 w-100"
-        style="width: 100%; background-image: url({{ asset('assets/img/bg.png') }}); backgroud-size: cover; object-fit:contain; overflow-x:hidden;">
+        style="background-image: url({{ asset('assets/img/bg.png') }}); max-width:100%; background-size: cover; object-fit:contain;">
         <!--Navbar Section-->
         @include('navbar')
 
         <form action="{{ route('searchroute') }}" method="POST" enctype="application/x-www-form-urlencoded">
             @csrf
             <!--Search Section-->
-            <div class="container">
+            
                 <!--title-->
                 <div class="my-5 text-center py-3">
                     <span
@@ -264,7 +269,7 @@
                 </div>
 
 
-            </div>
+            
         </form>
 
 
@@ -540,7 +545,7 @@
 
     <div class="row align-items-center mb-5">
         <div class="col-md-6 col-sm-6 col-lg-6 text-center">
-            <img src="{{ asset('assets/img/OnePlus.png') }}" style="width: 100%; height: 60%;" class=" mt-5 mb-3 "
+            <img src="{{ asset('assets/img/OnePlus.png') }}" style="max-width: 100%; height: 60%;" class=" mt-5 mb-3 "
                 alt="">
         </div>
         <div class="col-md-6 col-sm-6 col-lg-6">
