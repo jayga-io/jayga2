@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>Jayga | Home</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,6 +13,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Epilogue">
     <style>
+
+    body::-webkit-scrollbar {
+            display: none;
+        }
         .checked {
             color: orange;
         }
@@ -21,8 +26,10 @@
         }
 
         body {
+            max-width: 100%;
             font-family: "Epilogue";
-
+            overflow-x: hidden;
+            
         }
 
         #card-image-view {
@@ -41,7 +48,7 @@
         .box {
             box-sizing: border-box;
             background-color: white;
-            padding: 5px;
+
             margin: 30px;
             border-radius: 20px;
             align-items: center;
@@ -49,15 +56,15 @@
         }
 
         .text {
-            padding: 5px;
+
             font-size: medium;
             font-weight: 700;
-            text-align: center;
+
 
         }
 
         #input {
-            width: 80%;
+           padding: 5px;
         }
 
         #mobile {
@@ -68,6 +75,10 @@
 
 
             #desk {
+                display: none;
+            }
+
+            #input {
                 display: none;
             }
 
@@ -93,8 +104,8 @@
 <body>
 
 
-    <div class="vh-100 w-100"
-        style="background-image: url({{ asset('assets/img/bg.png') }}); max-width:100%; background-size: cover; object-fit:contain;">
+    <div class="vh-100"
+        style="background-image: url({{ asset('assets/img/bg.png') }}); width:100%; background-size: cover; object-fit:contain;">
         <!--Navbar Section-->
         @include('navbar')
 
@@ -117,22 +128,22 @@
 
                 <!--Search topbar-->
 
-                <div style="height: 70%; width: 50%; margin: auto; margin-top: 15px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; opacity: 0.8; background-blend-mode: overlay, normal; backdrop-filter: blur(40px); background: lightgray 0% 0% / 154.22531366348267px 154.22531366348267px repeat, radial-gradient(151.92% 127.02% at 15.32% 21.04%, rgba(165, 239, 255, 0.05) 0%, rgba(110, 191, 244, 0.01) 77.08%, rgba(70, 144, 212, 0.00) 100%);"
+                <div style="height: auto; width: 80%; margin: auto;  background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; opacity: 0.8; background-blend-mode: overlay, normal; backdrop-filter: blur(40px); background: lightgray 0% 0% / 154.22531366348267px 154.22531366348267px repeat, radial-gradient(151.92% 127.02% at 15.32% 21.04%, rgba(165, 239, 255, 0.05) 0%, rgba(110, 191, 244, 0.01) 77.08%, rgba(70, 144, 212, 0.00) 100%);"
                     id="input">
                     <!--Options select-->
-                    <div class="container py-1 text-center" id="desk">
-                        <div class="row mx-auto input-group justify-content-center">
+                    <div class="container text-center" id="desk">
+                        <div class="row input-group justify-content-center my-2">
                             <div class="col-md-2 col-lg-2 col-sm-6 p-2">
 
-                                <input type="radio" class="btn-check" name="options-base" value="rooms"
-                                    id="option5" autocomplete="off" checked>
+                                <input type="radio" class="btn-check" name="options-base" value="rooms" id="option5"
+                                    autocomplete="off" checked>
                                 <label class="btn" for="option5"><img class="form-label"
                                         src="{{ asset('assets/img/meeting_room_24px.png') }}" alt="">
                                     Rooms</label>
                             </div>
                             <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                                <input type="radio" class="btn-check" name="options-base" value="hotels"
-                                    id="option6" autocomplete="off">
+                                <input type="radio" class="btn-check" name="options-base" value="hotels" id="option6"
+                                    autocomplete="off">
                                 <label class="btn" for="option6"><img class="form-label"
                                         src="{{ asset('assets/img/home_24px.png') }}" alt=""> Hotels</label>
                             </div>
@@ -145,25 +156,42 @@
                             </div>
 
                             <!--
-                             <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                                <input type="radio" class="btn-check" name="options-base" value="parking" id="option8" autocomplete="off">
-                                <label class="btn" for="option8"><img class="form-label"
-                                        src="{{ asset('assets/img/parking icon.png') }}" alt=""> Parking</label>
-                            </div>
-                            
-                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                                <input type="radio" class="btn-check" name="options-base" value="experience" id="option9" autocomplete="off">
-                                <label class="btn" for="option9"><img class="form-label"
-                                        src="{{ asset('assets/img/map_24px.png') }}" alt=""> Experience</label>
-                            </div>
-                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                                <input type="radio" class="btn-check" name="options-base" value="storage" id="option10" autocomplete="off">
-                                <label class="btn" for="option10"><img class="form-label"
-                                        src="{{ asset('assets/img/Cube  24  Outline.png') }}" alt=""> Storage</label>
-                            </div>
-                            
-                            -->
-
+                                 
+                                
+                                -->
+                                <div class="col-md-2 col-lg-2 col-sm-6 p-2">
+                                    <input type="radio" class="btn-check" name="options-base" value="parking" id="option8" autocomplete="off">
+                                    
+                                    <label class="btn" for="option8"><img class="form-label"
+                                            src="{{ asset('assets/img/parking icon.png') }}" alt=""> Parking
+                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                                                <small>Coming soon</small>
+                                            <span class="visually-hidden"></span>
+                                            </span>
+                                        </label>
+                                        
+                                </div>
+                                
+                                <div class="col-md-2 col-lg-2 col-sm-6 p-2">
+                                    <input type="radio" class="btn-check" name="options-base" value="experience" id="option9" autocomplete="off">
+                                    <label class="btn" for="option9"><img class="form-label"
+                                            src="{{ asset('assets/img/map_24px.png') }}" alt=""> Experience
+                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                                                <small>Coming soon</small>
+                                            <span class="visually-hidden"></span>
+                                            </span>
+                                        </label>
+                                </div>
+                                <div class="col-md-2 col-lg-2 col-sm-6 p-2">
+                                    <input type="radio" class="btn-check" name="options-base" value="storage" id="option10" autocomplete="off">
+                                    <label class="btn" for="option10"><img class="form-label"
+                                            src="{{ asset('assets/img/Cube  24  Outline.png') }}" alt=""> Storage
+                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                                                <small>Coming soon</small>
+                                            <span class="visually-hidden"></span>
+                                            </span>
+                                        </label>
+                                </div>
                         </div>
 
 
@@ -178,6 +206,7 @@
 
                     </div>
                 </div>
+            
 
 
                 <div class="row mb-5">
@@ -189,8 +218,8 @@
 
                                     <div class="col-sm-12 p-2" id="mobile">
                                         <div class="form-floating">
-                                            <select class="form-control" name="category"
-                                                aria-placeholder="Town or City" aria-label="Large select example">
+                                            <select class="form-control" name="category" aria-placeholder="Town or City"
+                                                aria-label="Large select example">
                                                 <option selected value="default">Select Category</option>
                                                 <option value="rooms">Rooms</option>
                                                 <option value="hotels">Hotels</option>
@@ -205,8 +234,8 @@
                                     <div class="col-md-3 col-lg-3 col-sm-12 p-2">
                                         <!--search inputs-->
                                         <div class="form-floating">
-                                            <select class="form-control" name="city"
-                                                aria-placeholder="Town or City" aria-label="Large select example">
+                                            <select class="form-control" name="city" aria-placeholder="Town or City"
+                                                aria-label="Large select example">
                                                 <option selected>Select a city or town</option>
                                                 <option value="Dhaka">Dhaka</option>
                                                 <option value="Sylhet">Sylhet</option>
@@ -218,13 +247,11 @@
 
                                     <div class="col-md-6  col-lg-6 col-sm-12 p-2">
                                         <div class="form-floating w-100">
-                                            <input type="text" name="daterange" class="form-control"
-                                                value="" required />
+                                            <input type="text" name="daterange" class="form-control" value="" required />
                                             <label for="floatingInput">Checkin - Checkout</label>
 
                                             <input type="hidden" class="form-control" name="checkin"
-                                                style=" font-weight: 700; font-size: 17px;" id="floatingInput1"
-                                                required>
+                                                style=" font-weight: 700; font-size: 17px;" id="floatingInput1" required>
 
                                             <input type="hidden" class="form-control" name="checkout"
                                                 style="font-weight: 700; font-size: 17px;" id="floatingInput2">
@@ -240,8 +267,7 @@
 
                                     <div class="col-md-3 col-lg-3 col-sm-12 p-2">
                                         <div class="form-floating">
-                                            <input type="number" name="guests" class="form-control"
-                                                placeholder="Guests">
+                                            <input type="number" name="guests" class="form-control" placeholder="Guests">
                                             <label class="form-label">Guests</label>
 
                                         </div>
@@ -267,11 +293,12 @@
 
             </div>
 
+    
+
         </form>
 
-    
-    </div>
 
+    </div>
 
     <!--Listing section-->
     <div class="container " id="listings">
@@ -300,59 +327,59 @@
         </div>
         <div class="row mt-5 mb-5">
             @foreach ($listings as $item)
-                <div class="col-md-3">
+            <div class="col-md-3">
 
 
-                    <a class="card mb-3" href="/client/single-listing/{{ $item->listing_id }}">
-                        <img src="https://new.jayga.io/uploads/{{ $item->images[0]->listing_targetlocation }}"
-                            class="card-img-top" id="card-image-view" alt="#">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-9">
-                                    <h6 class="card-title" style="20px; font-weight: 600;">{{ $item->listing_title }}
-                                    </h6>
+                <a class="card mb-3" href="/client/single-listing/{{ $item->listing_id }}">
+                    <img src="https://new.jayga.io/uploads/{{ $item->images[0]->listing_targetlocation }}"
+                        class="card-img-top" id="card-image-view" alt="#">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h6 class="card-title" style="20px; font-weight: 600;">{{ $item->listing_title }}
+                                </h6>
 
-                                </div>
-                                <div class="col-3" style="text-align: right">
-                                    @if (count($item->reviews) > 0)
-                                        <div>
-                                            <i class="fa fa-star checked mx-1"></i><span class="card-text">
-                                                {{ $item->reviews[0]->avg_rating }}</span>
-                                        </div>
-                                    @else
-                                        <div>
-                                            <i class="fa fa-star checked mx-1"></i><span class="text-muted"> 0</span>
-                                        </div>
-                                    @endif
-
-                                </div>
                             </div>
-                            <p class="card-text" style="font-size: 16px;">{{ $item->town }}</p>
-                            <p class="card-text" style="font-size: 16px;">{{ $item->bed_num }} bedrooms</p>
+                            <div class="col-3" style="text-align: right">
+                                @if (count($item->reviews) > 0)
+                                <div>
+                                    <i class="fa fa-star checked mx-1"></i><span class="card-text">
+                                        {{ $item->reviews[0]->avg_rating }}</span>
+                                </div>
+                                @else
+                                <div>
+                                    <i class="fa fa-star checked mx-1"></i><span class="text-muted"> 0</span>
+                                </div>
+                                @endif
 
-                            @if ($item->allow_short_stay == true)
-                                <p class="card-text">
-                                    <span style="color: #158E72">Short stay</span> available
-
-
-                                </p>
-                            @else
-                                <p class="card-text">
-                                    <span style="color: #158E72">{{ $item->guest_num }} Guests</span>
-                                </p>
-                            @endif
-
-
-
-                            <p class="card-text">
-                                ৳ <span style="font-size: 20px; font-weight:800;">
-                                    {{ $item->full_day_price_set_by_user }}</span> <span>/ Night</span>
-                            </p>
+                            </div>
                         </div>
-                    </a>
+                        <p class="card-text" style="font-size: 16px;">{{ $item->town }}</p>
+                        <p class="card-text" style="font-size: 16px;">{{ $item->bed_num }} bedrooms</p>
+
+                        @if ($item->allow_short_stay == true)
+                        <p class="card-text">
+                            <span style="color: #158E72">Short stay</span> available
 
 
-                </div>
+                        </p>
+                        @else
+                        <p class="card-text">
+                            <span style="color: #158E72">{{ $item->guest_num }} Guests</span>
+                        </p>
+                        @endif
+
+
+
+                        <p class="card-text">
+                            ৳ <span style="font-size: 20px; font-weight:800;">
+                                {{ $item->full_day_price_set_by_user }}</span> <span>/ Night</span>
+                        </p>
+                    </div>
+                </a>
+
+
+            </div>
             @endforeach
 
 
@@ -362,17 +389,14 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
-                <form action="{{ route('filterroute') }}" method="POST"
-                    enctype="application/x-www-form-urlencoded">
+                <form action="{{ route('filterroute') }}" method="POST" enctype="application/x-www-form-urlencoded">
                     @csrf
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Filters</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
 
@@ -500,38 +524,39 @@
     <!--facilities-->
     <div style="background-color: #F2F2F2; width: 100%;">
         <div class="container">
-            <div class="row mb-5">
-                <div class="mb-5 p-2"
-                    style="color: black; font-size: 36px; margin-top: 25px; font-weight: 600; word-wrap: break-word">
+            <div class="row">
+                <div class="col-8 mb-5 mx-2 p-2"
+                    style="color: black; font-size: 36px; margin-top: 45px; font-weight: 600; word-wrap: break-word">
                     Facilities we provide
                 </div>
+
                 <div class="col-md-6 col-sm-6 col-lg-6">
-                    <div class="box">
-                        <img src="{{ asset('assets/img/360_24px.png') }}" class="p-3" alt="">
-                        <span class="text">Relocation assistance in case of unsatisfactory conditions</span>
+                    <div class="box p-3 d-flex">
+                        <img src="{{ asset('assets/img/360_24px.png') }}" class="px-2" alt="">
+                        <span class="text mx-1">Relocation assistance in case of unsatisfactory conditions</span>
                     </div>
-                    <div class="box">
-                        <img src="{{ asset('assets/img/local_atm_24px.png') }}" alt="" class="p-3">
-                        <span class="text">Reimbursements upto 50000 for security breaches <br> <span
-                                class="mx-5 px-5">and property damage</span> </span>
+                    <div class="box p-3 d-flex">
+                        <img src="{{ asset('assets/img/local_atm_24px.png') }}" alt="" class="px-2">
+                        <span class="text mx-1">Reimbursements upto 50000 for security breaches and property damage
+                        </span>
                     </div>
-                    <div class="box">
-                        <img src="{{ asset('assets/img/verified_user_24px.png') }}" alt="" class="p-3">
-                        <span class="text">Safety & security helpline</span>
+                    <div class="box p-3 d-flex">
+                        <img src="{{ asset('assets/img/verified_user_24px.png') }}" alt="" class="px-2">
+                        <span class="text mx-1">Safety & security helpline</span>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-lg-6 mb-5">
-                    <div class="box ">
-                        <img src="{{ asset('assets/img/security_24px.png') }}" class="p-3" alt="">
-                        <span class="text">Full privacy protection</span>
+                    <div class="box p-3 d-flex">
+                        <img src="{{ asset('assets/img/security_24px.png') }}" class="px-2" alt="">
+                        <span class="text mx-1">Full privacy protection</span>
                     </div>
-                    <div class="box">
-                        <img src="{{ asset('assets/img/ring_volume_24px.png') }}" alt="" class="p-3">
-                        <span class="text">24/7 desk support</span>
+                    <div class="box p-3 d-flex">
+                        <img src="{{ asset('assets/img/ring_volume_24px.png') }}" alt="" class="px-2">
+                        <span class="text mx-1">24/7 desk support</span>
                     </div>
-                    <div class="box">
-                        <img src="{{ asset('assets/img/local_offer_24px.png') }}" alt="" class="p-3">
-                        <span class="text">Discounts and vouchers available regularly</span>
+                    <div class="box p-3 d-flex">
+                        <img src="{{ asset('assets/img/local_offer_24px.png') }}" alt="" class="px-2">
+                        <span class="text mx-1">Discounts and vouchers available regularly</span>
                     </div>
                 </div>
             </div>
@@ -540,18 +565,18 @@
 
     <!--download app-->
 
-    <div class="row align-items-center mb-5">
+    <div class="row align-items-center">
         <div class="col-md-6 col-sm-6 col-lg-6 text-center">
-            <img src="{{ asset('assets/img/OnePlus.png') }}" style="max-width: 100%; height: 60%;"
-                class=" mt-5 mb-3 " alt="">
+            <img src="{{ asset('assets/img/OnePlus.png') }}" style="width: 100%; height: 60%;" class=" mb-3 "
+                alt="">
         </div>
         <div class="col-md-6 col-sm-6 col-lg-6">
             <div class="p-3"
                 style="width: 100%; color: #262626; font-size: 60px; font-family: Epilogue; font-weight: 500; line-height: 80px; word-wrap: break-word">
                 Start exploring and reserving your favorite spots effortlessly.</div>
 
-            <a href="https://play.google.com/store/apps/details?id=com.jayga.app&pcampaignid=web_share"
-                target="_blank" class="btn">
+            <a href="https://play.google.com/store/apps/details?id=com.jayga.app&pcampaignid=web_share" target="_blank"
+                class="btn">
                 <img src="{{ asset('assets/img/Group.png') }}" width="240" height="70" alt="">
             </a>
 
@@ -593,8 +618,8 @@
                             <button type="submit" class="btn btn-success form-control"
                                 style="display: none">Submit</button>
                             <div class="mb-3">
-                                <img src="{{ asset('assets/img/mail.png') }}" width="40px;" height="40px;"
-                                    class="mx-3" alt=""> Mail us at : info@jayga.io
+                                <img src="{{ asset('assets/img/mail.png') }}" width="40px;" height="40px;" class="mx-3"
+                                    alt=""> Mail us at : info@jayga.io
                             </div>
                         </form>
                     </div>

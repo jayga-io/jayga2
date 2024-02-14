@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>Jayga | Search Results</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -12,7 +13,13 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Epilogue">
     <style>
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
         body {
+            max-width: 100%;
             font-family: "Epilogue";
             overflow-x: hidden;
         }
@@ -28,9 +35,9 @@
         #card-image-view {
 
             width: 100%;
-            height: 100%;
+            aspect-ratio: 4/3;
             object-fit: contain;
-            border-radius: 27px;
+           border-radius: 30px;
         }
 
         .card {
@@ -78,13 +85,7 @@
 
         }
 
-        #card-image-view {
-
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 27px;
-        }
+        
     </style>
 </head>
 
@@ -240,14 +241,14 @@
             </div>
             <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Filters</button>
         </div>
-        <div class="row mb-5">
+        <div class="row mt-5 mb-5">
             @foreach ($listings as $item)
                 <div class="col-md-3">
 
 
-                    <a class="card mb-3" href="/client/single-listing/{{ $item->listing_id }}">
+                    <a class="card mb-3" style="height: 100%" href="/client/single-listing/{{ $item->listing_id }}">
                         <img src="https://new.jayga.io/uploads/{{ $item->images[0]->listing_targetlocation }}"
-                            class="card-img-top" id="card-image-view" alt="#">
+                            id="card-image-view" alt="#">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9">

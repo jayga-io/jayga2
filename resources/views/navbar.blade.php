@@ -12,16 +12,24 @@
 
             </ul>
             <ul class="navbar-nav mb-lg-0">
+                <li class="nav-item mx-3">
+                    <a class="nav-link" aria-current="page" href="#">Why Jayga?</a>
+                </li>
                 <!--
-                <li class="nav-item mx-3">
-                    <a class="nav-link" aria-current="page" href="#">Services</a>
-                </li>
                 
-                <li class="nav-item mx-3">
-                    <a class="nav-link "><img src="{{asset('assets/img/globe.png')}}" alt="" srcset=""> EN</a>
-                </li>
+                
+                
                 -->
-                
+                <li class="nav-item mx-3">
+                   
+                    <a class="nav-link position-relative">
+                        <img src="{{asset('assets/img/globe.png')}}" alt="" srcset=""> EN
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                            <small>Coming soon</small>
+                            <span class="visually-hidden"></span>
+                          </span>
+                    </a>
+                </li>
                 <li class="nav-item mx-3">
                     <a class="nav-link " href="{{route('userdash')}}">
                         
