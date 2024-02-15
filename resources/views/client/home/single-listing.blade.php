@@ -576,10 +576,10 @@
                                         
                                             <div class="form-floating mt-5 mb-3">
                                                 <input type="text" name="daterange" class="form-control"
-                                                value="" required/>
+                                                value="" id="daterangeinput" required/>
                                                 <label for="floatingInput">Checkin - Checkout</label>
                                             
-                                            <input type="hidden" class="form-control" name="checkin"
+                                            <input type="date" class="form-control" name="checkin"
                                                 style=" font-weight: 700; font-size: 17px;" id="floatingInput1"
                                                 required>
 
@@ -883,11 +883,11 @@
         var slot_no = document.getElementById('slot_no');
         var pay = document.getElementById('pay_amount');
         var pay_old = document.getElementById('pay_old');
-
+        
+        
 
         short_stay.addEventListener('click', function() {
-            var checkin = document.getElementById('floatingInput1');
-            var checkout = document.getElementById('floatingInput2');
+            
             if (short_stay_select.hasAttribute('checked')) {
                 short_stay_select.removeAttribute('checked');
 
@@ -924,10 +924,12 @@
             var checkin = document.getElementById('floatingInput1');
             var checkout = document.getElementById('floatingInput2');
             var input_price = document.getElementById('input_price').value;
+            
 
             s1.toggleAttribute('checked');
             s2.toggleAttribute('disabled');
             s3.toggleAttribute('disabled');
+            
 
             if (s1.hasAttribute('checked')) {
                 var calc_price = ((whole_day_price * 40) / 100);
