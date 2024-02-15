@@ -693,7 +693,7 @@
             <div class="d-flex justify-content-between mb-5">
                 <div class="col-md-6 col-sm-12 d-flex">
                     @if ($listing[0]->host->avatars)
-                    @dd($listing[0]->host->avatars->user_targetloction)
+                    @dd($listing[0]->host->avatars)
                         <img src="https://new.jayga.io/uploads/{{  $listing[0]->host->avatars->user_targetloction }}"
                             class="rounded-circle" style="width: 120px; height: 120px;" alt="">
                     @else
