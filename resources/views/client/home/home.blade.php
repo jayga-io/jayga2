@@ -13,10 +13,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Epilogue">
     <style>
-
-    body::-webkit-scrollbar {
+        body::-webkit-scrollbar {
             display: none;
         }
+
         .checked {
             color: orange;
         }
@@ -29,7 +29,7 @@
             max-width: 100%;
             font-family: "Epilogue";
             overflow-x: hidden;
-            
+
         }
 
         #card-image-view {
@@ -64,7 +64,7 @@
         }
 
         #input {
-           padding: 5px;
+            padding: 5px;
         }
 
         #mobile {
@@ -98,13 +98,52 @@
             transform: scale(1.05);
 
         }
+
+
+        #myBtn {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Fixed/sticky position */
+            bottom: 20px;
+            /* Place the button at the bottom of the page */
+            right: 30px;
+            /* Place the button 30px from the right */
+            z-index: 99;
+            /* Make sure it does not overlap */
+            border: none;
+            /* Remove borders */
+            outline: none;
+            /* Remove outline */
+            background-color: #158E72;
+            /* Set a background color */
+            color: white;
+            /* Text color */
+            cursor: pointer;
+            /* Add a mouse pointer on hover */
+            padding: 15px;
+            /* Some padding */
+            border-radius: 10px;
+            /* Rounded corners */
+            font-size: 18px;
+            /* Increase font size */
+        }
+
+        #myBtn:hover {
+            background-color: #555;
+            /* Add a dark-grey background on hover */
+        }
+
+        .accordion-item{
+            width: 100%;
+        }
     </style>
 </head>
 
 <body>
 
 
-    <div class="vh-100"
+    <div class="vh-100 "
         style="background-image: url({{ asset('assets/img/bg.png') }}); width:100%; background-size: cover; object-fit:contain;">
         <!--Navbar Section-->
         @include('navbar')
@@ -135,15 +174,15 @@
                         <div class="row input-group justify-content-center my-2">
                             <div class="col-md-2 col-lg-2 col-sm-6 p-2">
 
-                                <input type="radio" class="btn-check" name="options-base" value="rooms" id="option5"
-                                    autocomplete="off" checked>
+                                <input type="radio" class="btn-check" name="options-base" value="rooms"
+                                    id="option5" autocomplete="off" checked>
                                 <label class="btn" for="option5"><img class="form-label"
                                         src="{{ asset('assets/img/meeting_room_24px.png') }}" alt="">
                                     Rooms</label>
                             </div>
                             <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                                <input type="radio" class="btn-check" name="options-base" value="hotels" id="option6"
-                                    autocomplete="off">
+                                <input type="radio" class="btn-check" name="options-base" value="hotels"
+                                    id="option6" autocomplete="off">
                                 <label class="btn" for="option6"><img class="form-label"
                                         src="{{ asset('assets/img/home_24px.png') }}" alt=""> Hotels</label>
                             </div>
@@ -159,39 +198,45 @@
                                  
                                 
                                 -->
-                                <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                                    <input type="radio" class="btn-check" name="options-base" value="parking" id="option8" autocomplete="off">
-                                    
-                                    <label class="btn" for="option8"><img class="form-label"
-                                            src="{{ asset('assets/img/parking icon.png') }}" alt=""> Parking
-                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                                                <small>Coming soon</small>
-                                            <span class="visually-hidden"></span>
-                                            </span>
-                                        </label>
-                                        
-                                </div>
-                                
-                                <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                                    <input type="radio" class="btn-check" name="options-base" value="experience" id="option9" autocomplete="off">
-                                    <label class="btn" for="option9"><img class="form-label"
-                                            src="{{ asset('assets/img/map_24px.png') }}" alt=""> Experience
-                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                                                <small>Coming soon</small>
-                                            <span class="visually-hidden"></span>
-                                            </span>
-                                        </label>
-                                </div>
-                                <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                                    <input type="radio" class="btn-check" name="options-base" value="storage" id="option10" autocomplete="off">
-                                    <label class="btn" for="option10"><img class="form-label"
-                                            src="{{ asset('assets/img/Cube  24  Outline.png') }}" alt=""> Storage
-                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                                                <small>Coming soon</small>
-                                            <span class="visually-hidden"></span>
-                                            </span>
-                                        </label>
-                                </div>
+                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
+                                <input type="radio" class="btn-check" name="options-base" value="parking"
+                                    id="option8" autocomplete="off">
+
+                                <label class="btn" for="option8"><img class="form-label"
+                                        src="{{ asset('assets/img/parking icon.png') }}" alt=""> Parking
+                                    <span
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                                        <small>Coming soon</small>
+                                        <span class="visually-hidden"></span>
+                                    </span>
+                                </label>
+
+                            </div>
+
+                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
+                                <input type="radio" class="btn-check" name="options-base" value="experience"
+                                    id="option9" autocomplete="off">
+                                <label class="btn" for="option9"><img class="form-label"
+                                        src="{{ asset('assets/img/map_24px.png') }}" alt=""> Experience
+                                    <span
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                                        <small>Coming soon</small>
+                                        <span class="visually-hidden"></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
+                                <input type="radio" class="btn-check" name="options-base" value="storage"
+                                    id="option10" autocomplete="off">
+                                <label class="btn" for="option10"><img class="form-label"
+                                        src="{{ asset('assets/img/Cube  24  Outline.png') }}" alt=""> Storage
+                                    <span
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                                        <small>Coming soon</small>
+                                        <span class="visually-hidden"></span>
+                                    </span>
+                                </label>
+                            </div>
                         </div>
 
 
@@ -206,7 +251,7 @@
 
                     </div>
                 </div>
-            
+
 
 
                 <div class="row mb-5">
@@ -218,8 +263,8 @@
 
                                     <div class="col-sm-12 p-2" id="mobile">
                                         <div class="form-floating">
-                                            <select class="form-control" name="category" aria-placeholder="Town or City"
-                                                aria-label="Large select example">
+                                            <select class="form-control" name="category"
+                                                aria-placeholder="Town or City" aria-label="Large select example">
                                                 <option selected value="default">Select Category</option>
                                                 <option value="rooms">Rooms</option>
                                                 <option value="hotels">Hotels</option>
@@ -234,8 +279,8 @@
                                     <div class="col-md-3 col-lg-3 col-sm-12 p-2">
                                         <!--search inputs-->
                                         <div class="form-floating">
-                                            <select class="form-control" name="city" aria-placeholder="Town or City"
-                                                aria-label="Large select example">
+                                            <select class="form-control" name="city"
+                                                aria-placeholder="Town or City" aria-label="Large select example">
                                                 <option selected>Select a city or town</option>
                                                 <option value="Dhaka">Dhaka</option>
                                                 <option value="Sylhet">Sylhet</option>
@@ -247,11 +292,13 @@
 
                                     <div class="col-md-6  col-lg-6 col-sm-12 p-2">
                                         <div class="form-floating w-100">
-                                            <input type="text" name="daterange" class="form-control" value="" required />
+                                            <input type="text" name="daterange" class="form-control"
+                                                value="" required />
                                             <label for="floatingInput">Checkin - Checkout</label>
 
                                             <input type="hidden" class="form-control" name="checkin"
-                                                style=" font-weight: 700; font-size: 17px;" id="floatingInput1" required>
+                                                style=" font-weight: 700; font-size: 17px;" id="floatingInput1"
+                                                required>
 
                                             <input type="hidden" class="form-control" name="checkout"
                                                 style="font-weight: 700; font-size: 17px;" id="floatingInput2">
@@ -267,7 +314,8 @@
 
                                     <div class="col-md-3 col-lg-3 col-sm-12 p-2">
                                         <div class="form-floating">
-                                            <input type="number" name="guests" class="form-control" placeholder="Guests">
+                                            <input type="number" name="guests" class="form-control"
+                                                placeholder="Guests">
                                             <label class="form-label">Guests</label>
 
                                         </div>
@@ -293,7 +341,7 @@
 
             </div>
 
-    
+
 
         </form>
 
@@ -327,59 +375,59 @@
         </div>
         <div class="row mt-5 mb-5">
             @foreach ($listings as $item)
-            <div class="col-md-3">
+                <div class="col-md-3">
 
 
-                <a class="card mb-3" href="/client/single-listing/{{ $item->listing_id }}">
-                    <img src="https://new.jayga.io/uploads/{{ $item->images[0]->listing_targetlocation }}"
-                        class="card-img-top" id="card-image-view" alt="#">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-9">
-                                <h6 class="card-title" style="20px; font-weight: 600;">{{ $item->listing_title }}
-                                </h6>
+                    <a class="card mb-3" href="/client/single-listing/{{ $item->listing_id }}">
+                        <img src="https://new.jayga.io/uploads/{{ $item->images[0]->listing_targetlocation }}"
+                            class="card-img-top" id="card-image-view" alt="#">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-9">
+                                    <h6 class="card-title" style="20px; font-weight: 600;">{{ $item->listing_title }}
+                                    </h6>
 
-                            </div>
-                            <div class="col-3" style="text-align: right">
-                                @if (count($item->reviews) > 0)
-                                <div>
-                                    <i class="fa fa-star checked mx-1"></i><span class="card-text">
-                                        {{ $item->reviews[0]->avg_rating }}</span>
                                 </div>
-                                @else
-                                <div>
-                                    <i class="fa fa-star checked mx-1"></i><span class="text-muted"> 0</span>
-                                </div>
-                                @endif
+                                <div class="col-3" style="text-align: right">
+                                    @if (count($item->reviews) > 0)
+                                        <div>
+                                            <i class="fa fa-star checked mx-1"></i><span class="card-text">
+                                                {{ $item->reviews[0]->avg_rating }}</span>
+                                        </div>
+                                    @else
+                                        <div>
+                                            <i class="fa fa-star checked mx-1"></i><span class="text-muted"> 0</span>
+                                        </div>
+                                    @endif
 
+                                </div>
                             </div>
+                            <p class="card-text" style="font-size: 16px;">{{ $item->town }}</p>
+                            <p class="card-text" style="font-size: 16px;">{{ $item->bed_num }} bedrooms</p>
+
+                            @if ($item->allow_short_stay == true)
+                                <p class="card-text">
+                                    <span style="color: #158E72">Short stay</span> available
+
+
+                                </p>
+                            @else
+                                <p class="card-text">
+                                    <span style="color: #158E72">{{ $item->guest_num }} Guests</span>
+                                </p>
+                            @endif
+
+
+
+                            <p class="card-text">
+                                ৳ <span style="font-size: 20px; font-weight:800;">
+                                    {{ $item->full_day_price_set_by_user }}</span> <span>/ Night</span>
+                            </p>
                         </div>
-                        <p class="card-text" style="font-size: 16px;">{{ $item->town }}</p>
-                        <p class="card-text" style="font-size: 16px;">{{ $item->bed_num }} bedrooms</p>
-
-                        @if ($item->allow_short_stay == true)
-                        <p class="card-text">
-                            <span style="color: #158E72">Short stay</span> available
+                    </a>
 
 
-                        </p>
-                        @else
-                        <p class="card-text">
-                            <span style="color: #158E72">{{ $item->guest_num }} Guests</span>
-                        </p>
-                        @endif
-
-
-
-                        <p class="card-text">
-                            ৳ <span style="font-size: 20px; font-weight:800;">
-                                {{ $item->full_day_price_set_by_user }}</span> <span>/ Night</span>
-                        </p>
-                    </div>
-                </a>
-
-
-            </div>
+                </div>
             @endforeach
 
 
@@ -389,14 +437,17 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
-                <form action="{{ route('filterroute') }}" method="POST" enctype="application/x-www-form-urlencoded">
+                <form action="{{ route('filterroute') }}" method="POST"
+                    enctype="application/x-www-form-urlencoded">
                     @csrf
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Filters</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
 
@@ -532,11 +583,11 @@
 
                 <div class="col-md-6 col-sm-6 col-lg-6">
                     <div class="box p-3 d-flex">
-                        <img src="{{ asset('assets/img/360_24px.png') }}" class="px-2" alt="">
+                        <img src="{{ asset('assets/img/360_24px.png') }}"  class="px-2" alt="">
                         <span class="text mx-1">Relocation assistance in case of unsatisfactory conditions</span>
                     </div>
                     <div class="box p-3 d-flex">
-                        <img src="{{ asset('assets/img/local_atm_24px.png') }}" alt="" class="px-2">
+                        <img src="{{ asset('assets/img/local_atm_24px.png') }}"  alt="" class="px-2">
                         <span class="text mx-1">Reimbursements upto 50000 for security breaches and property damage
                         </span>
                     </div>
@@ -563,6 +614,103 @@
         </div>
     </div>
 
+    <!--faq-->
+    <div style="background-color: #F2F2F2; width: 100%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-5 mx-2 p-2 "
+                    style="color: black; font-size: 36px; margin-top: 45px; font-weight: 600; word-wrap: break-word">
+                    Frequently Asked Question
+                </div>
+
+                <div class="accordion accordion-flush d-flex" id="accordionFlushExample">
+                   
+                    <div class="col-md-6 col-sm-6 col-lg-6">
+                        <div class="box p-3 d-flex">
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>&ensp; How do I list my property on Jayga?
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                  <div class="accordion-body">- Both our app and website include detailed guides and step by step procedure on how to list your property</div>
+                                </div>
+                              </div>
+                            
+                        </div>
+                        <div class="box p-3 d-flex">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>&ensp; What should I do if I receive a booking request on Jayga?
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                  <div class="accordion-body">- User will receive a notification on their phone app and web where you can accept the booking for the Guest’s stay.</div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="box p-3 d-flex">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>&ensp;  How does Jayga handle payments and payouts for hosts?
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                  <div class="accordion-body">- All guests pay in advance, as soon as the stay is complete, the amount is added to the Host’s account balance from where they can request for withdrawal, every withdrawal takes 2-3 working days.</div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-lg-6 mb-5">
+                        <div class="box p-3 d-flex">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>&ensp; How to communicate with guests on Jayga?
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                  <div class="accordion-body">- Hosts are advised to not get in touch with the guests unless it is an immediate emergency, all communications and queries shall be handled by Jayga support team. Sharing of numbers is strictly prohibited.</div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="box p-3 d-flex">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>&ensp; What is the Jayga Protect program, and how can I claim it?
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                  <div class="accordion-body">- Jayga Protect is the insurance program that Jayga offers to its hosts in case of any physical damage to their homes/belongings while a guest is at stay for a small monthly fee. Every damage must be reported within the next 12 hours or the right before the immediate booking in case consecutive reservations.</div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="box p-3 d-flex">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseThree">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>&ensp; How do I handle guest reviews and ratings on Jayga?
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                  <div class="accordion-body">- Maintaining cleanliness and proving all working amenities will always help in getting 5 star reviews.</div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                    
+                  </div>
+
+               
+            </div>
+        </div>
+    </div>
+
     <!--download app-->
 
     <div class="row align-items-center">
@@ -575,8 +723,8 @@
                 style="width: 100%; color: #262626; font-size: 60px; font-family: Epilogue; font-weight: 500; line-height: 80px; word-wrap: break-word">
                 Start exploring and reserving your favorite spots effortlessly.</div>
 
-            <a href="https://play.google.com/store/apps/details?id=com.jayga.app&pcampaignid=web_share" target="_blank"
-                class="btn">
+            <a href="https://play.google.com/store/apps/details?id=com.jayga.app&pcampaignid=web_share"
+                target="_blank" class="btn">
                 <img src="{{ asset('assets/img/Group.png') }}" width="240" height="70" alt="">
             </a>
 
@@ -618,8 +766,8 @@
                             <button type="submit" class="btn btn-success form-control"
                                 style="display: none">Submit</button>
                             <div class="mb-3">
-                                <img src="{{ asset('assets/img/mail.png') }}" width="40px;" height="40px;" class="mx-3"
-                                    alt=""> Mail us at : info@jayga.io
+                                <img src="{{ asset('assets/img/mail.png') }}" width="40px;" height="40px;"
+                                    class="mx-3" alt=""> Mail us at : info@jayga.io
                             </div>
                         </form>
                     </div>
@@ -633,7 +781,8 @@
         @include('footer')
     </div>
 
-
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"
+            aria-hidden="true"></i></button>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -716,9 +865,31 @@
     </script>
 
 
+    <!--go to top btn -->
 
+    <script>
+        // Get the button:
+        let mybutton = document.getElementById("myBtn");
 
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
 
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
 
 
 

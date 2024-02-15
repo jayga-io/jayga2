@@ -7,9 +7,9 @@
         }
     </style>
     <div class="container" style="color: whitesmoke">
-        <div class="row my-2 align-items-center">
+        <div class="row my-2 align-items-center justify-content-between">
 
-            
+            <!--
             <div class="col-md-3 col-lg-3 col-sm-12 mt-5 px-2">
                 <h6><strong>Explore</strong></h6>
                 <ul>
@@ -18,10 +18,12 @@
                     <li>Listings</li>
                 </ul>
             </div>
+            -->
+            
 
             
 
-            <div class="col-md-3 col-lg-3 col-sm-12 mt-5 px-2">
+            <div class="col-md-6 col-lg-6 col-sm-12 mt-5 px-2">
                 <h6><strong>Company</strong></h6>
                 <ul>
                     <li>About Us</li>
@@ -30,16 +32,24 @@
                     <li><a href="https://jayga.io/terms_conditions.html">Terms & Conditions</a></li>
                 </ul>
             </div>
-            <div class="col-md-3 col-lg-3 col-sm-12 mt-5 px-2">
-                <h6><strong>Information</strong></h6>
-                <ul>
-                    <li>FAQ</li>
-                    <li>Services</li>
-                    <li>Booking & Payment</li>
-                </ul>
-            </div>
+            
+                   <!-- 
+                    <div class="col-md-3 col-lg-3 col-sm-12 mt-5 px-2">
+                        <h6><strong>Information</strong></h6>
+                        <ul>
+                            <li>FAQ</li>
 
-            <div class="col-md-3 col-lg-3 col-sm-12 px-2">
+                            <li>Services</li>
+                            <li>Booking & Payment</li>
+                                            
+                         </ul>
+                    </div>
+
+
+                    --> 
+                    
+
+            <div class="col-md-6 col-lg-6 col-sm-12 px-2">
                 <img src="{{ asset('assets/img/logo/jayga-01.png') }}" width="80" height="80" alt="Jayga">
                 <div style="width: 100%;  font-size: 15px;  font-weight: 400; word-wrap: break-word">
                     Bangladesh’s first peer to peer technology enabled spacing solution platform</div>
