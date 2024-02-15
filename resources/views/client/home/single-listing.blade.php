@@ -693,8 +693,8 @@
             <div class="d-flex justify-content-between mb-5">
                 <div class="col-md-6 col-sm-12 d-flex">
                     @if ($listing[0]->host->avatars)
-                    @dd($listing[0]->host->avatars)
-                        <img src="https://new.jayga.io/uploads/{{  $listing[0]->host->avatars->user_targetloction }}"
+                    
+                        <img src="https://new.jayga.io/uploads/{{  $listing[0]->host->avatars->user_targetlocation }}"
                             class="rounded-circle" style="width: 120px; height: 120px;" alt="">
                     @else
                         <img src="{{ asset('assets/img/user_with_no_profile_picture.png') }}" class="rounded-circle"
