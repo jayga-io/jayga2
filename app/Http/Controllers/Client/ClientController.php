@@ -25,7 +25,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $listings = Listing::with('images')->with('reviews')->take(8)->get();
+        $listings = Listing::where('isApproved', true)->where('isActive', true)->with('images')->with('reviews')->take(8)->get();
 
       
 
@@ -287,7 +287,7 @@ class ClientController extends Controller
     }
 
     public function latest(Request $request){
-        $listings = Listing::latest()->with('images')->with('reviews')->get();
+        $listings = Listing::where('isApproved', true)->where('isActive', true)->latest()->with('images')->with('reviews')->get();
        // dd($listings);
        return view('client.search.searchResults')->with('listings', $listings)->with('latest', 'latest');
     }
