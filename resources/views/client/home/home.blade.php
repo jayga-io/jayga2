@@ -623,9 +623,9 @@
                     Frequently Asked Question
                 </div>
 
-                <div class="accordion accordion-flush d-flex" id="accordionFlushExample">
+                <div class="row accordion accordion-flush d-flex" id="accordionFlushExample">
                    
-                    <div class="col-md-6 col-sm-6 col-lg-6">
+                    <div class="col-md-6 col-sm-12 col-lg-6">
                         <div class="box p-3 d-flex">
                             
                             <div class="accordion-item">
@@ -656,7 +656,7 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>&ensp;  How does Jayga handle payments and payouts for hosts?
+                                    <i class="fa fa-plus" aria-hidden="true"></i>&ensp;How does Jayga handle payments and payouts for hosts?
                                   </button>
                                 </h2>
                                 <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -665,7 +665,7 @@
                               </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-lg-6 mb-5">
+                    <div class="col-md-6 col-sm-12 col-lg-6 mb-5">
                         <div class="box p-3 d-flex">
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
@@ -682,7 +682,7 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>&ensp; What is the Jayga Protect program, and how can I claim it?
+                                    <i class="fa fa-plus" aria-hidden="true"></i>&ensp; What is Jayga Protect, and how can I claim it?
                                   </button>
                                 </h2>
                                 <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">

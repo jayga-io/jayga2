@@ -465,7 +465,7 @@
                 <hr>
 
             </div>
-
+            <!-- Booking Form -->
             <div class="col-md-4 ">
                 <div class="card px-2" style="width: 100%; height: auto; border-radius: 25px;">
                     <form action="{{route('clientbooking')}}" method="POST">
@@ -481,8 +481,9 @@
                                 <h2 class="card-title ">
                                     <input type="hidden" id="input_price" name="net_payable"
                                         value="{{ $listing[0]->full_day_price_set_by_user }}">
-                                    <span id="price">{{ $listing[0]->full_day_price_set_by_user }}</span> ৳<span
-                                        id="updatePrice"></span> <span class="fs-6" id="slot">/ Per night</span>
+                                    <span id="price">{{ $listing[0]->full_day_price_set_by_user }}</span> 
+                                    ৳ <span id="updatePrice"></span> 
+                                    <span class="fs-6" id="slot">/ Per night</span>
                                 </h2>
                                 <div>
                                     <span class="fa fa-star checked"></span>
@@ -576,16 +577,10 @@
                                         
                                             <div class="form-floating mt-5 mb-3">
                                                 <input type="text" name="daterange" class="form-control"
-                                                value="" id="daterangeinput" required/>
+                                                 id="daterangeinput" required/>
                                                 <label for="floatingInput">Checkin - Checkout</label>
                                             
-                                            <input type="date" class="form-control" name="checkin"
-                                                style=" font-weight: 700; font-size: 17px;" id="floatingInput1"
-                                                required>
-
-                                            <input type="hidden" class="form-control" name="checkout"
-                                                style="font-weight: 700; font-size: 17px;" id="floatingInput2"
-                                               >
+                                           
                                             
                                             </div>
                                             
@@ -1094,31 +1089,32 @@
 
         $(function() {
 
-            var date1 = document.getElementById('floatingInput1');
-            var date2 = document.getElementById('floatingInput2');
+          //  var date1 = document.getElementById('floatingInput1');
+          //  var date2 = document.getElementById('floatingInput2');
             var price = document.getElementById('price').textContent;
             var slot_name = document.getElementById('slot_name');
             var slot_no = document.getElementById('slot_no');
             var input_price = document.getElementById('input_price');
             
-           var dates = @json($disable_dates);
-           var disabled_dates = [];
-            dates.forEach(element => {
-                disabled_dates.push(element.dates);
-            });
+          // var dates = @json($disable_dates);
+          // var disabled_dates = [];
+         //   dates.forEach(element => {
+          //      disabled_dates.push(element.dates);
+          //  });
 
             
 
             $('input[name="daterange"]').daterangepicker({
                 opens: 'left',
                 
-                isInvalidDate: function(ele) {
+               // isInvalidDate: function(ele) {
                    
-                    var currDate = moment(ele._d).format('YY-MM-DD');
+                //    var currDate = moment(ele._d).format('YY-MM-DD');
                    
-                    return ["24-02-05", "24-02-09"].indexOf(currDate) != -1;
-                },
+                //    return ["24-02-05", "24-02-09"].indexOf(currDate) != -1;
+               // },
 
+               startDate : new Date(),
                 locale: {
                     cancelLabel: 'Clear'
                 }
@@ -1127,8 +1123,8 @@
 
 
                // console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
-                date1.value = start.format('YYYY-MM-DD');
-                date2.value = end.format('YYYY-MM-DD');
+               // date1 = start.format('YYYY-MM-DD');
+              //  date2 = end.format('YYYY-MM-DD');
 
 
 

@@ -48,8 +48,9 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        
-      // dd($request->all());
+        $daterange = $request->input('daterange');
+        $dates = explode("-", $daterange);
+       //dd($dates);
         
         $shortStay = $request->input('short_stay');
         $slot  = $request->input('short_stay_slot');
@@ -89,7 +90,7 @@ class ClientController extends Controller
     
                 if($make_payment_response->status == 'success'){
     
-                    if($shortStay){
+                    if(isset($shortStay) && isset($slot)){
                         Booking::create([
                          'user_id' => $request->input('user_id'),
                          'booking_order_name' => $request->input('booking_order_name'),
@@ -98,8 +99,8 @@ class ClientController extends Controller
                          'net_payable' => $request->input('net_payable'),
                          'pay_amount' => $request->input('total_paid'),
                          'total_members' => $request->input('guest_num'),
-                         'date_enter' => $request->input('checkin'),
-                         'date_exit' => $request->input('checkout'),
+                         'date_enter' => $dates[0],
+                         'date_exit' => $dates[1],
                          'short_stay_flag' => $shortStay,
                          'all_day_flag' => 0,
                          'tier' => $slot,
@@ -118,8 +119,8 @@ class ClientController extends Controller
                              'net_payable' => $request->input('net_payable'),
                              'pay_amount' => $request->input('total_paid'),
                              'total_members' => $request->input('guest_num'),
-                             'date_enter' => $request->input('checkin'),
-                             'date_exit' => $request->input('checkout'),
+                             'date_enter' => $dates[0],
+                             'date_exit' => $dates[1],
                              'short_stay_flag' => 0,
                              'all_day_flag' => 1,
                              'tier' => 0,
