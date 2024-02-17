@@ -227,13 +227,18 @@
     <!--Listing section-->
     <div class="container ">
         <div class="card-title d-flex justify-content-between mb-3">
+            
             @if (isset($latest))
                 <h3 class="mt-5">Showing Latest Listings</h3>
+            @elseif(isset($top))
+                <h3 class="mt-5">Showing Top {{$listings->count() }} listings of all time</span></h3>
+                
             @else
-                <h3 class="mt-5">{{ $listings->count() }} Properties Found</h3>
+                 <h3 class="mt-5">{{ $listings->count() }} Properties Found</h3>
+
             @endif
 
-            <a href="" class="mt-5" style="color: #158E72; font-weight: 700;">View all</a>
+          <!--  <a href="#" class="mt-5" style="color: #158E72; font-weight: 700;">View all</a> -->
         </div>
         <div class="card-header d-flex justify-content-between mb-3">
             <div class="dropdown">

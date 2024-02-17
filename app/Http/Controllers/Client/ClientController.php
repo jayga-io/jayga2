@@ -293,8 +293,13 @@ class ClientController extends Controller
        return view('client.search.searchResults')->with('listings', $listings)->with('latest', 'latest');
     }
 
-    public function popular(Request $request){
-       return redirect(route('home'));
+
+
+    public function top(Request $request){
+        $listings = Listing::where('isApproved', true)->where('isActive', true)->with('images')->with('reviews')->withCount('reviews')->orderBy('reviews_count', 'desc')->take(25)->get();
+       // dd($listings);
+
+       return view('client.search.searchResults')->with('listings', $listings)->with('top', 'top');
     }
 
 

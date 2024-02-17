@@ -355,7 +355,7 @@
             <h3 class="mt-5">Top Listings</h3>
 
 
-            <a href="" class="mt-5" style="color: #158E72; font-weight: 700;">View all</a>
+            <a href="{{route('popularlistings')}}" class="mt-5" style="color: #158E72; font-weight: 700;">View all</a>
         </div>
         <div class="card-header d-flex justify-content-between mb-3">
             <div class="dropdown">
