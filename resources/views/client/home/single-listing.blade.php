@@ -702,8 +702,25 @@
         </div>
 
         
-        <hr>
+        
         <!--location-->
+
+        <div class="row my-5">
+
+            <div class="col-12">
+
+                @if (isset($listing[0]->lat) && isset($listing[0]->long))
+
+                    <h2>Location</h2>
+                    <div id="map" style="width:100%;height:400px;"></div>
+                @else
+                    <div>Location not found</div>
+                @endif
+               
+                
+            </div>
+
+        </div>
 
         <!--Need to be done-->
 
@@ -1191,6 +1208,71 @@
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
 </script>
+
+<!-- google map -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script>
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: <?php echo $listing[0]->lat; ?>, lng: <?php echo $listing[0]->long; ?> },
+          zoom: 15,
+        });
+        const request = {
+          placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4",
+          fields: ["name", "formatted_address", "place_id", "geometry"],
+        };
+        const infowindow = new google.maps.InfoWindow();
+        const service = new google.maps.places.PlacesService(map);
+
+        service.getDetails(request, (place, status) => {
+          if (
+            status === google.maps.places.PlacesServiceStatus.OK 
+          ) {
+            const marker = new google.maps.Marker({
+              map,
+              position: { lat: <?php echo $listing[0]->lat; ?>, lng: <?php echo $listing[0]->long; ?> },
+            });
+
+            google.maps.event.addListener(marker, "click", () => {
+              const content = document.createElement("div");
+              const nameElement = document.createElement("h2");
+
+              nameElement.textContent = <?php echo json_encode($listing[0]->listing_title); ?>;
+              content.appendChild(nameElement);
+
+             // const placeIdElement = document.createElement("p");
+
+             // placeIdElement.textContent = place.place_id;
+            //  content.appendChild(placeIdElement);
+
+              const placeAddressElement = document.createElement("p");
+
+              placeAddressElement.textContent = <?php echo json_encode($listing[0]->listing_address); ?>;
+              content.appendChild(placeAddressElement);
+
+                const imageElement = document.createElement("img");
+                imageElement.src = "https://new.jayga.io/uploads/" + <?php echo json_encode($listing[0]->images[0]->listing_targetlocation); ?>;
+                content.appendChild(imageElement);
+
+              infowindow.setContent(content);
+              infowindow.open(map, marker);
+            });
+          }
+        });
+      }
+
+      window.initMap = initMap;
+    </script>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8IAuH-Yz4b3baxmK1iw81BH5vE4HsSs&callback=initMap&libraries=places&v=weekly&solution_channel=GMP_CCS_placedetails_v1"></script>
 
 </body>
 

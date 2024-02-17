@@ -77,31 +77,7 @@
     
 
       <div class="container">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" >
-          <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="#">
-              <h2><img style="float: right;" src="{{asset('assets/img/logo/Jayga Logo-02.png')}}" width="70" height="70" alt="logo"/></h2>
-  
-            </a>
-            <div class="collapse navbar-collapse px-5" id="navbarTogglerDemo03">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link " aria-current="page" href="#">Explore</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">List your home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" aria-disabled="true">Help Center</a>
-                </li>
-              </ul>
-              
-            </div>
-          </div>
-        </nav>
+        @include('host.nav')
         <div class="row vh-60">
             <div class="col-sm-4 col-md-4 m-auto ">
 
