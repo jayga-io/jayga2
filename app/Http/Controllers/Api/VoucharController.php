@@ -23,7 +23,7 @@ class VoucharController extends Controller
                 return response()->json([
                     'status' => 404,
                     'messege' => 'Vouchar not found'
-                ]);
+                ], 404);
             }
         }else{
             return $validated->errors();
