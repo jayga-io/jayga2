@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ListingAvailability;
 use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\VoucharController;
 
 
 /*
@@ -98,3 +99,6 @@ Route::get('/show/notifications/{id}', [NotificationController::class, 'show']);
 Route::post('/booking/make-complete', [BookingController::class, 'mark_complete']);
 
 Route::get('/user/delete/{id}', [UserController::class, 'user_delete']);
+
+//vouchar api
+Route::post('/get/vouchar', [VoucharController::class, 'get_vouchar']);

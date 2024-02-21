@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Listing;
 use App\Models\User;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Http;
 
 class BookingController extends Controller
@@ -58,6 +59,18 @@ class BookingController extends Controller
             ]);
 
             $booked = Booking::where('transaction_id', $request->input('transaction_id'))->get();
+
+            Notification::create([
+                'user_id' => $request->input('user_id'),
+                'lister_id' => $request->input('lister_id'),
+                'listing_id' => $request->input('listing_id'),
+                'booking_id' => $booked[0]->booking_id,
+                'type' => $request->input('notif_type'),
+                'messege' => $request->input('messege'),
+
+            ]);
+
+            
             $listing = Listing::where('listing_id', $request->input('listing_id'))->get();
             $phone = User::where('id', $booked[0]->lister_id)->get();
 
