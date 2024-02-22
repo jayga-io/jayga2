@@ -50,7 +50,7 @@ class ClientController extends Controller
     {
         $daterange = $request->input('daterange');
         $dates = explode("-", $daterange);
-       //dd($dates);
+       //dd($dates[1]);
         
         $shortStay = $request->input('short_stay');
         $slot  = $request->input('short_stay_slot');
@@ -100,7 +100,7 @@ class ClientController extends Controller
                          'pay_amount' => $request->input('total_paid'),
                          'total_members' => $request->input('guest_num'),
                          'date_enter' => $dates[0],
-                         'date_exit' => $dates[1],
+                         
                          'short_stay_flag' => $shortStay,
                          'all_day_flag' => 0,
                          'tier' => $slot,

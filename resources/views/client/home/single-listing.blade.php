@@ -24,7 +24,8 @@
         body::-webkit-scrollbar {
             display: none;
         }
-        body{
+
+        body {
             font-family: "Epilogue";
             overflow-x: hidden;
         }
@@ -47,13 +48,13 @@
             margin: 3px;
         }
 
-        .daterangepicker td.disabled{
+        .daterangepicker td.disabled {
             color: #f9f7f7;
             font-weight: 900;
             background-color: #F24E1E;
         }
 
-     
+
 
         @media (max-width:600px) {
 
@@ -164,27 +165,38 @@
 
 
         #myBtn {
-            display: none; /* Hidden by default */
-            position: fixed; /* Fixed/sticky position */
-            bottom: 20px; /* Place the button at the bottom of the page */
-            right: 30px; /* Place the button 30px from the right */
-            z-index: 99; /* Make sure it does not overlap */
-            border: none; /* Remove borders */
-            outline: none; /* Remove outline */
-            background-color: #158E72; /* Set a background color */
-            color: white; /* Text color */
-            cursor: pointer; /* Add a mouse pointer on hover */
-            padding: 15px; /* Some padding */
-            border-radius: 10px; /* Rounded corners */
-            font-size: 18px; /* Increase font size */
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Fixed/sticky position */
+            bottom: 20px;
+            /* Place the button at the bottom of the page */
+            right: 30px;
+            /* Place the button 30px from the right */
+            z-index: 99;
+            /* Make sure it does not overlap */
+            border: none;
+            /* Remove borders */
+            outline: none;
+            /* Remove outline */
+            background-color: #158E72;
+            /* Set a background color */
+            color: white;
+            /* Text color */
+            cursor: pointer;
+            /* Add a mouse pointer on hover */
+            padding: 15px;
+            /* Some padding */
+            border-radius: 10px;
+            /* Rounded corners */
+            font-size: 18px;
+            /* Increase font size */
         }
 
         #myBtn:hover {
-            background-color: #555; /* Add a dark-grey background on hover */
+            background-color: #555;
+            /* Add a dark-grey background on hover */
         }
-
-
-
     </style>
 
     <style>
@@ -254,8 +266,12 @@
         <div class="row justify-content-between">
             <div class="col-md-8 ">
                 <h2 class="card-title mb-3">Description</h2>
-                <p><img src="{{asset('assets/img/user.svg')}}" alt=""> {{ $listing[0]->guest_num }} Guests <span> &#8901; <img src="{{asset('assets/img/beds.svg')}}" alt="">{{ $listing[0]->bed_num }} bedrooms</span>
-                     <span> &#8901; <img src="{{asset('assets/img/bath.svg')}}" alt="">{{ $listing[0]->bathroom_num }} baths</span></p>
+                <p><img src="{{ asset('assets/img/user.svg') }}" alt=""> {{ $listing[0]->guest_num }} Guests
+                    <span> &#8901; <img src="{{ asset('assets/img/beds.svg') }}"
+                            alt="">{{ $listing[0]->bed_num }} bedrooms</span>
+                    <span> &#8901; <img src="{{ asset('assets/img/bath.svg') }}"
+                            alt="">{{ $listing[0]->bathroom_num }} baths</span>
+                </p>
                 <hr>
                 <div class="card-body mt-5">
                     @if ($listing[0]->description)
@@ -270,7 +286,7 @@
                     <h2 class="card-title mb-5">
                         What this place offers
                     </h2>
-                   <!-- <a href="#">Show All</a> -->
+                    <!-- <a href="#">Show All</a> -->
                 </div>
                 <!--Amenities-->
                 <div class="card-body mb-3">
@@ -278,7 +294,11 @@
                         @if (count($amenities) > 0)
                             @foreach ($amenities as $item)
                                 <div class="col-md-4 col-lg-4 col-sm-12">
-                                    <button class="btn btn-outline-dark btn-sm m-1 px-3" style="border-radius: 22px; hover:none;" disabled ><img src="{{asset('assets/img/'.$item.'.svg')}}" class="p-1" style="color:rgb(7, 7, 7)" alt="" srcset="">{{ Str::upper($item) }}</button>
+                                    <button class="btn btn-outline-dark btn-sm m-1 px-3"
+                                        style="border-radius: 22px; hover:none;" disabled><img
+                                            src="{{ asset('assets/img/' . $item . '.svg') }}" class="p-1"
+                                            style="color:rgb(7, 7, 7)" alt=""
+                                            srcset="">{{ Str::upper($item) }}</button>
                                 </div>
                             @endforeach
                         @else
@@ -286,7 +306,7 @@
                                 <p>No amenities found !</p>
                             </div>
                         @endif
-                       
+
 
 
                     </div>
@@ -321,7 +341,7 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star"></span>
-        
+
                             @if (count($listing[0]->reviews) > 0)
                                 <div class="review">
                                     <div class="d-flex justify-content-between">
@@ -329,64 +349,64 @@
                                             {{ $listing[0]->reviews[0]->avg_rating }} |</p>
                                         <span><a href="#">Show all reviews</a></span>
                                     </div>
-        
+
                                     <hr style="border:3px solid #f1f1f1">
-        
+
                                     <div class="row">
                                         <div class="side">
                                             <div>5 star</div>
                                         </div>
                                         <div class="middle">
                                             <div class="bar-container">
-                                                <div class="bar-{{$five}}"></div>
+                                                <div class="bar-{{ $five }}"></div>
                                             </div>
                                         </div>
                                         <div class="side right">
-                                            <div>{{$five}}</div>
+                                            <div>{{ $five }}</div>
                                         </div>
                                         <div class="side">
                                             <div>4 star</div>
                                         </div>
                                         <div class="middle">
                                             <div class="bar-container">
-                                                <div class="bar-{{$four}}"></div>
+                                                <div class="bar-{{ $four }}"></div>
                                             </div>
                                         </div>
                                         <div class="side right">
-                                            <div>{{$four}}</div>
+                                            <div>{{ $four }}</div>
                                         </div>
                                         <div class="side">
                                             <div>3 star</div>
                                         </div>
                                         <div class="middle">
                                             <div class="bar-container">
-                                                <div class="bar-{{$three}}"></div>
+                                                <div class="bar-{{ $three }}"></div>
                                             </div>
                                         </div>
                                         <div class="side right">
-                                            <div>{{$three}}</div>
+                                            <div>{{ $three }}</div>
                                         </div>
                                         <div class="side">
                                             <div>2 star</div>
                                         </div>
                                         <div class="middle">
                                             <div class="bar-container">
-                                                <div class="bar-{{$two}}"></div>
+                                                <div class="bar-{{ $two }}"></div>
                                             </div>
                                         </div>
                                         <div class="side right">
-                                            <div>{{$two}}</div>
+                                            <div>{{ $two }}</div>
                                         </div>
                                         <div class="side">
                                             <div>1 star</div>
                                         </div>
                                         <div class="middle">
                                             <div class="bar-container">
-                                                <div class="bar-{{$one}}"></div>
+                                                <div class="bar-{{ $one }}"></div>
                                             </div>
                                         </div>
                                         <div class="side right">
-                                            <div>{{$one}}</div>
+                                            <div>{{ $one }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -395,69 +415,71 @@
                                     No Reviews Yet
                                 </div>
                             @endif
-        
+
                             <!--Highlighted reviews -->
-                                <!-- 
+                            <!--
                                 
                                 
                                 -->
-                                
 
-                                @if (isset($user[0]))
+
+                            @if (isset($user[0]))
 
                                 <div class="mt-5">
                                     <h5>Highlighted Reviews</h5>
                                 </div>
-                                    <div class="card mt-3" style="width: 100%; background-color: #e3e2e2;">
-                                        <div class="card-body">
-                                        
-                                            <div class="row justify-content-between">
-                                                <div class="col-8 d-flex">
+                                <div class="card mt-3" style="width: 100%; background-color: #e3e2e2;">
+                                    <div class="card-body">
 
-                                                    @if (isset($user[0]->user_avatar))
-                                                    
-                                                        <img src="{{ asset('/uploads/' . $user[0]->user_avatar->user_targetlocation) }}"
-                                                            class="rounded-circle" style="width: 50px; height: 50px;" alt="">
-                                                    @else
-                                                        <img src="{{ asset('assets/img/user_with_no_profile_picture.png') }}" class="rounded-circle"
-                                                            style="width: 50px; height: 50px;" alt="" srcset="">
-                                                    @endif
+                                        <div class="row justify-content-between">
+                                            <div class="col-8 d-flex">
 
-                                                    
-                                                    <div  class="mx-2">
-                                                        <h5 style="line-height: 0.5;">{{$user[0]->user->name}}</h5>
-                                                        <span class="fs-6 py-0" style="color: #158E72; font-weight: 600">Verified User</span>
-                                                        <p class="my-2">{{$user[0]->description}}</p>
-                                                    </div>
-                                                    
-                                                    
-                                                    
+                                                @if (isset($user[0]->user_avatar))
+                                                    <img src="{{ asset('/uploads/' . $user[0]->user_avatar->user_targetlocation) }}"
+                                                        class="rounded-circle" style="width: 50px; height: 50px;"
+                                                        alt="">
+                                                @else
+                                                    <img src="{{ asset('assets/img/user_with_no_profile_picture.png') }}"
+                                                        class="rounded-circle" style="width: 50px; height: 50px;"
+                                                        alt="" srcset="">
+                                                @endif
+
+
+                                                <div class="mx-2">
+                                                    <h5 style="line-height: 0.5;">{{ $user[0]->user->name }}</h5>
+                                                    <span class="fs-6 py-0"
+                                                        style="color: #158E72; font-weight: 600">Verified User</span>
+                                                    <p class="my-2">{{ $user[0]->description }}</p>
                                                 </div>
-                                                <div class="col-4">
-                                                    <div>{{$user[0]->created_at->diffForHumans()}}</div>
-                                                    <div>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </div>
-                                                    
-                                                </div>
+
+
+
                                             </div>
-                                        
-                                        
+                                            <div class="col-4">
+                                                <div>{{ $user[0]->created_at->diffForHumans() }}</div>
+                                                <div>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                </div>
+
+                                            </div>
                                         </div>
-                                    </div>
-                                @else
-                                    <div>
+
 
                                     </div>
-                                @endif
-                            
+                                </div>
+                            @else
+                                <div>
+
+                                </div>
+                            @endif
+
 
                             <!-- end -->
-        
+
                         </div>
                     </div>
                 </div>
@@ -468,7 +490,7 @@
             <!-- Booking Form -->
             <div class="col-md-4 ">
                 <div class="card px-2" style="width: 100%; height: auto; border-radius: 25px;">
-                    <form action="{{route('clientbooking')}}" method="POST">
+                    <form action="{{ route('clientbooking') }}" method="POST">
                         @csrf
                         <div class="container">
                             <input type="hidden" name="user_id" value="{{ Session::get('user') }}">
@@ -481,8 +503,8 @@
                                 <h2 class="card-title ">
                                     <input type="hidden" id="input_price" name="net_payable"
                                         value="{{ $listing[0]->full_day_price_set_by_user }}">
-                                    <span id="price">{{ $listing[0]->full_day_price_set_by_user }}</span> 
-                                    ৳ <span id="updatePrice"></span> 
+                                    <span id="price">{{ $listing[0]->full_day_price_set_by_user }}</span>
+                                    ৳ <span id="updatePrice"></span>
                                     <span class="fs-6" id="slot">/ Per night</span>
                                 </h2>
                                 <div>
@@ -511,7 +533,7 @@
                                                             aria-controls="flush-collapseOne" id="short_stay_button">
                                                             <input type="hidden" value="0" name="short_stay">
                                                             <input type="checkbox" value="1" name="short_stay"
-                                                                id="short_stay_check" onchange="doprice(this)">
+                                                                id="short_stay_check">
                                                             <span class="mx-2">Short Stay</span>
                                                         </button>
                                                     </h2>
@@ -525,13 +547,14 @@
                                                                     <div class="d-flex justify-content-between">
                                                                         <div>
 
-                                                                            <input type="checkbox" value="{{$slots[0]->time_id}}"
+                                                                            <input type="checkbox"
+                                                                                value="{{ $slots[0]->time_id }}"
                                                                                 name="short_stay_slot" id="s1">
                                                                             <span class="px-2">Slot 1</span>
                                                                         </div>
 
 
-                                                                        <span>{{$slots[0]->times}}</span>
+                                                                        <span>{{ $slots[0]->times }}</span>
 
 
                                                                     </div>
@@ -540,24 +563,26 @@
                                                                 <div class="d-flex justify-content-between">
                                                                     <div>
 
-                                                                        <input type="checkbox" value="{{$slots[1]->time_id}}"
+                                                                        <input type="checkbox"
+                                                                            value="{{ $slots[1]->time_id }}"
                                                                             name="short_stay_slot" id="s2">
                                                                         <span class="px-2">Slot 2</span>
                                                                     </div>
 
 
-                                                                    <span>{{$slots[1]->times}}</span>
+                                                                    <span>{{ $slots[1]->times }}</span>
                                                                 </div>
                                                                 <div class="d-flex justify-content-between">
                                                                     <div>
 
-                                                                        <input type="checkbox" value="{{$slots[2]->time_id}}"
+                                                                        <input type="checkbox"
+                                                                            value="{{ $slots[2]->time_id }}"
                                                                             name="short_stay_slot" id="s3">
                                                                         <span class="px-2">Slot 3</span>
                                                                     </div>
 
 
-                                                                    <span>{{$slots[2]->times}}</span>
+                                                                    <span>{{ $slots[2]->times }}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -574,23 +599,23 @@
                                     </div>
 
                                     <div class="col-12">
-                                        
-                                            <div class="form-floating mt-5 mb-3">
-                                                <input type="text" name="daterange" class="form-control"
-                                                 id="daterangeinput" required/>
-                                                <label for="floatingInput">Checkin - Checkout</label>
-                                            
-                                           
-                                            
-                                            </div>
-                                            
 
-
-                                            
+                                        <div class="form-floating mt-5 mb-3">
+                                            <input type="text" name="daterange" class="form-control"
+                                                id="daterangeinput" required />
+                                            <label for="floatingInput">Checkin - Checkout</label>
 
 
 
-                                       
+                                        </div>
+
+
+
+
+
+
+
+
                                     </div>
 
                                     <div class="col-12">
@@ -701,8 +726,8 @@
 
         </div>
 
-        
-        
+
+
         <!--location-->
 
         <div class="row my-5">
@@ -710,14 +735,13 @@
             <div class="col-12">
 
                 @if (isset($listing[0]->lat) && isset($listing[0]->long))
-
                     <h2>Location</h2>
                     <div id="map" style="width:100%;height:400px;"></div>
                 @else
                     <div>Location not found</div>
                 @endif
-               
-                
+
+
             </div>
 
         </div>
@@ -729,8 +753,7 @@
             <div class="d-flex justify-content-between mb-5">
                 <div class="col-md-6 col-sm-12 d-flex">
                     @if ($listing[0]->host->avatars)
-                    
-                        <img src="https://new.jayga.io/uploads/{{  $listing[0]->host->avatars->user_targetlocation }}"
+                        <img src="https://new.jayga.io/uploads/{{ $listing[0]->host->avatars->user_targetlocation }}"
                             class="rounded-circle" style="width: 120px; height: 120px;" alt="">
                     @else
                         <img src="{{ asset('assets/img/user_with_no_profile_picture.png') }}" class="rounded-circle"
@@ -785,10 +808,14 @@
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="row row-cols-2 mb-3">
-                                @if (count($restrictions)>0)
+                                @if (count($restrictions) > 0)
                                     @foreach ($restrictions as $item)
                                         <div class="col-md-4 col-lg-4 col-sm-12">
-                                            <button class="btn btn-outline-dark btn-sm m-1 px-3" style="border-radius: 22px; hover:none;" disabled ><img src="{{asset('assets/img/'.$item.'.svg')}}" class="p-1" style="color:rgb(7, 7, 7)" alt="" srcset=""> {{ Str::upper($item) }}</button>
+                                            <button class="btn btn-outline-dark btn-sm m-1 px-3"
+                                                style="border-radius: 22px; hover:none;" disabled><img
+                                                    src="{{ asset('assets/img/' . $item . '.svg') }}" class="p-1"
+                                                    style="color:rgb(7, 7, 7)" alt="" srcset="">
+                                                {{ Str::upper($item) }}</button>
                                         </div>
                                     @endforeach
                                 @else
@@ -796,7 +823,7 @@
                                         <p>No restrictions found !</p>
                                     </div>
                                 @endif
-                               
+
 
 
                             </div>
@@ -846,15 +873,15 @@
 
         <hr>
 
-        
+
 
     </div>
     <!--Footer-->
     @include('footer')
 
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"
-        aria-hidden="true"></i></button>
-   
+            aria-hidden="true"></i></button>
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
@@ -895,37 +922,13 @@
         var slot_no = document.getElementById('slot_no');
         var pay = document.getElementById('pay_amount');
         var pay_old = document.getElementById('pay_old');
-        
-        
+
+
 
         short_stay.addEventListener('click', function() {
-            
-            if (short_stay_select.hasAttribute('checked')) {
-                short_stay_select.removeAttribute('checked');
 
-
-            } else {
-                short_stay_select.setAttribute('checked', true);
-
-            }
+            short_stay_select.toggleAttribute('checked');
         });
-
-        function doprice(element) {
-            if (element.checked) {
-
-                price.style.display = 'none';
-                priceUpdate.style.display = 'block';
-
-
-            } else {
-                price.style.display = 'block';
-                priceUpdate.style.display = 'none';
-
-            }
-        }
-
-       
-
 
         var whole_day_price = parseInt(price.textContent);
 
@@ -933,15 +936,14 @@
         // priceUpdate.style.display = 'none';
 
         s1.addEventListener('change', function() {
-            var checkin = document.getElementById('floatingInput1');
-            var checkout = document.getElementById('floatingInput2');
-            var input_price = document.getElementById('input_price').value;
-            
+
+            var listing_price = <?php echo $listing[0]->full_day_price_set_by_user; ?>;
+
 
             s1.toggleAttribute('checked');
             s2.toggleAttribute('disabled');
             s3.toggleAttribute('disabled');
-            
+
 
             if (s1.hasAttribute('checked')) {
                 var calc_price = ((whole_day_price * 40) / 100);
@@ -956,19 +958,81 @@
                 slot_stay_price = update_price + commision;
                 total_money.setAttribute('value', slot_stay_price);
                 pay.innerHTML = '৳' + slot_stay_price;
-                checkout.setAttribute('value', 'null');
-                checkout.setAttribute('disabled', true);
+
+                $('input[name="daterange"]').daterangepicker({
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                });
+
             } else {
                 var commision = (whole_day_price * 3) / 100;
                 perday.innerText = 'per day';
-                price.innerHTML = input_price;
+                price.innerHTML = listing_price;
                 //  priceUpdate.style.display = 'none';
                 slot_no.innerText = '0';
                 slot_stay_price = whole_day_price + commision;
                 total_money.setAttribute('value', slot_stay_price);
                 pay.innerHTML = '৳' + slot_stay_price;
 
-                checkout.removeAttribute('disabled');
+                $('input[name="daterange"]').daterangepicker({
+                    opens: 'left',
+
+                    // isInvalidDate: function(ele) {
+
+                    //    var currDate = moment(ele._d).format('YY-MM-DD');
+
+                    //    return ["24-02-05", "24-02-09"].indexOf(currDate) != -1;
+                    // },
+
+                    startDate: new Date(),
+                    locale: {
+                        cancelLabel: 'Clear'
+                    }
+
+                }, function(start, end, label) {
+
+
+                    // console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
+                    // date1 = start.format('YYYY-MM-DD');
+                    //  date2 = end.format('YYYY-MM-DD');
+
+
+
+                    let checkin = new Date(start).getTime();
+                    let checkout = new Date(end).getTime();
+
+                    // console.log(checkin);
+                    let Difference_In_Time =
+                        checkout - checkin;
+
+                    // Calculating the no. of days between
+                    // two dates
+                    let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24)) - 1;
+
+                    var new_payAmount = parseInt(price);
+                    var updated_price = new_payAmount * Difference_In_Days;
+                    var fee = (updated_price * 3) / 100;
+                    var total = updated_price + fee;
+
+
+                    total_money.setAttribute('value', total);
+                    input_price.setAttribute('value', updated_price);
+                    pay.innerHTML = '৳' + total;
+
+                    slot_name.innerHTML = 'Nights';
+                    slot_no.innerHTML = Difference_In_Days;
+
+
+
+
+
+
+                });
+
+                $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
+                    $(this).val('');
+                });
+
             }
 
 
@@ -981,9 +1045,9 @@
         });
 
         s2.addEventListener('click', function() {
-            var checkin = document.getElementById('floatingInput1');
-            var checkout = document.getElementById('floatingInput2');
-            var input_price = document.getElementById('input_price').value;
+            var listing_price = <?php echo $listing[0]->full_day_price_set_by_user; ?>;
+
+
             s1.toggleAttribute('disabled');
             s2.toggleAttribute('checked');
             s3.toggleAttribute('disabled');
@@ -1000,28 +1064,90 @@
                 slot_stay_price = update_price + commision;
                 total_money.setAttribute('value', slot_stay_price);
                 pay.innerHTML = '৳' + slot_stay_price;
-                checkout.setAttribute('value', 'null');
-                checkout.setAttribute('disabled', true);
+
+                $('input[name="daterange"]').daterangepicker({
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                });
+
             } else {
                 var commision = (whole_day_price * 3) / 100;
                 perday.innerText = 'per day';
-                price.innerHTML = input_price;
+                price.innerHTML = listing_price;
                 // priceUpdate.style.display = 'none';
                 slot_no.innerText = '0';
                 slot_stay_price = whole_day_price + commision;
                 total_money.setAttribute('value', slot_stay_price);
                 pay.innerHTML = '৳' + slot_stay_price;
-                checkout.removeAttribute('disabled');
+                $('input[name="daterange"]').daterangepicker({
+                    opens: 'left',
+
+                    // isInvalidDate: function(ele) {
+
+                    //    var currDate = moment(ele._d).format('YY-MM-DD');
+
+                    //    return ["24-02-05", "24-02-09"].indexOf(currDate) != -1;
+                    // },
+
+                    startDate: new Date(),
+                    locale: {
+                        cancelLabel: 'Clear'
+                    }
+
+                }, function(start, end, label) {
+
+
+                    // console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
+                    // date1 = start.format('YYYY-MM-DD');
+                    //  date2 = end.format('YYYY-MM-DD');
+
+
+
+                    let checkin = new Date(start).getTime();
+                    let checkout = new Date(end).getTime();
+
+                    // console.log(checkin);
+                    let Difference_In_Time =
+                        checkout - checkin;
+
+                    // Calculating the no. of days between
+                    // two dates
+                    let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24)) - 1;
+
+                    var new_payAmount = parseInt(price);
+                    var updated_price = new_payAmount * Difference_In_Days;
+                    var fee = (updated_price * 3) / 100;
+                    var total = updated_price + fee;
+
+
+                    total_money.setAttribute('value', total);
+                    input_price.setAttribute('value', updated_price);
+                    pay.innerHTML = '৳' + total;
+
+                    slot_name.innerHTML = 'Nights';
+                    slot_no.innerHTML = Difference_In_Days;
+
+
+
+
+
+
+                });
+
+                $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
+                    $(this).val('');
+                });
+
             }
         });
 
         s3.addEventListener('click', function() {
-            var checkin = document.getElementById('floatingInput1');
-            var checkout = document.getElementById('floatingInput2');
-            var input_price = document.getElementById('input_price').value;
+            var listing_price = <?php echo $listing[0]->full_day_price_set_by_user; ?>;
+
             s1.toggleAttribute('disabled');
             s2.toggleAttribute('disabled');
             s3.toggleAttribute('checked');
+
             if (s3.hasAttribute('checked')) {
                 var calc_price = ((whole_day_price * 40) / 100);
                 var new_price = whole_day_price + calc_price;
@@ -1035,23 +1161,87 @@
                 slot_stay_price = update_price + commision;
                 total_money.setAttribute('value', slot_stay_price);
                 pay.innerHTML = '৳' + slot_stay_price;
-                checkout.setAttribute('value', 'null');
-                checkout.setAttribute('disabled', true);
+
+                $('input[name="daterange"]').daterangepicker({
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                });
+
             } else {
                 var commision = (whole_day_price * 3) / 100;
                 perday.innerText = 'per day';
-                price.innerHTML = input_price;
+                price.innerHTML = listing_price;
                 // priceUpdate.style.display = 'none';
                 slot_no.innerText = '0';
                 slot_stay_price = whole_day_price + commision;
                 total_money.setAttribute('value', slot_stay_price);
                 pay.innerHTML = '৳' + slot_stay_price;
-                checkout.removeAttribute('disabled');
+
+                $('input[name="daterange"]').daterangepicker({
+                    opens: 'left',
+
+                    // isInvalidDate: function(ele) {
+
+                    //    var currDate = moment(ele._d).format('YY-MM-DD');
+
+                    //    return ["24-02-05", "24-02-09"].indexOf(currDate) != -1;
+                    // },
+
+                    startDate: new Date(),
+                    locale: {
+                        cancelLabel: 'Clear'
+                    }
+
+                }, function(start, end, label) {
+
+
+                    // console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
+                    // date1 = start.format('YYYY-MM-DD');
+                    //  date2 = end.format('YYYY-MM-DD');
+
+
+
+                    let checkin = new Date(start).getTime();
+                    let checkout = new Date(end).getTime();
+
+                    // console.log(checkin);
+                    let Difference_In_Time =
+                        checkout - checkin;
+
+                    // Calculating the no. of days between
+                    // two dates
+                    let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24)) - 1;
+
+                    var new_payAmount = parseInt(price);
+                    var updated_price = new_payAmount * Difference_In_Days;
+                    var fee = (updated_price * 3) / 100;
+                    var total = updated_price + fee;
+
+
+                    total_money.setAttribute('value', total);
+                    input_price.setAttribute('value', updated_price);
+                    pay.innerHTML = '৳' + total;
+
+                    slot_name.innerHTML = 'Nights';
+                    slot_no.innerHTML = Difference_In_Days;
+
+
+
+
+
+
+                });
+
+                $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
+                    $(this).val('');
+                });
+
+
             }
         });
     </script>
 
-    <!--script for guest number calculation -->
+
     <script>
         var qty = 1;
         var guest_numbr = document.getElementById('guest');
@@ -1101,47 +1291,44 @@
 
     <!--date range picker -->
     <script>
-
-                
-
         $(function() {
 
-          //  var date1 = document.getElementById('floatingInput1');
-          //  var date2 = document.getElementById('floatingInput2');
+            //  var date1 = document.getElementById('floatingInput1');
+            //  var date2 = document.getElementById('floatingInput2');
             var price = document.getElementById('price').textContent;
             var slot_name = document.getElementById('slot_name');
             var slot_no = document.getElementById('slot_no');
             var input_price = document.getElementById('input_price');
-            
-          // var dates = @json($disable_dates);
-          // var disabled_dates = [];
-         //   dates.forEach(element => {
-          //      disabled_dates.push(element.dates);
-          //  });
 
-            
+            // var dates = @json($disable_dates);
+            // var disabled_dates = [];
+            //   dates.forEach(element => {
+            //      disabled_dates.push(element.dates);
+            //  });
+
+
 
             $('input[name="daterange"]').daterangepicker({
                 opens: 'left',
-                
-               // isInvalidDate: function(ele) {
-                   
-                //    var currDate = moment(ele._d).format('YY-MM-DD');
-                   
-                //    return ["24-02-05", "24-02-09"].indexOf(currDate) != -1;
-               // },
 
-               startDate : new Date(),
+                // isInvalidDate: function(ele) {
+
+                //    var currDate = moment(ele._d).format('YY-MM-DD');
+
+                //    return ["24-02-05", "24-02-09"].indexOf(currDate) != -1;
+                // },
+
+                startDate: new Date(),
                 locale: {
                     cancelLabel: 'Clear'
                 }
-                
+
             }, function(start, end, label) {
 
 
-               // console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
-               // date1 = start.format('YYYY-MM-DD');
-              //  date2 = end.format('YYYY-MM-DD');
+                // console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
+                // date1 = start.format('YYYY-MM-DD');
+                //  date2 = end.format('YYYY-MM-DD');
 
 
 
@@ -1170,109 +1357,117 @@
                 slot_no.innerHTML = Difference_In_Days;
 
 
-               
+
 
 
 
             });
 
-                $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
-                    $(this).val('');
-                });
+            $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+            });
         });
     </script>
 
 
- <!--go to top btn -->
+    <!--go to top btn -->
 
- <script>
-    // Get the button:
-    let mybutton = document.getElementById("myBtn");
-
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {
-        scrollFunction()
-    };
-
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            mybutton.style.display = "block";
-        } else {
-            mybutton.style.display = "none";
-        }
-    }
-
-    // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
-</script>
-
-<!-- google map -->
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script>
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-      function initMap() {
-        const map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: <?php echo $listing[0]->lat; ?>, lng: <?php echo $listing[0]->long; ?> },
-          zoom: 15,
-        });
-        const request = {
-          placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4",
-          fields: ["name", "formatted_address", "place_id", "geometry"],
+        // Get the button:
+        let mybutton = document.getElementById("myBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
         };
-        const infowindow = new google.maps.InfoWindow();
-        const service = new google.maps.places.PlacesService(map);
 
-        service.getDetails(request, (place, status) => {
-          if (
-            status === google.maps.places.PlacesServiceStatus.OK 
-          ) {
-            const marker = new google.maps.Marker({
-              map,
-              position: { lat: <?php echo $listing[0]->lat; ?>, lng: <?php echo $listing[0]->long; ?> },
-            });
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
 
-            google.maps.event.addListener(marker, "click", () => {
-              const content = document.createElement("div");
-              const nameElement = document.createElement("h2");
-
-              nameElement.textContent = <?php echo json_encode($listing[0]->listing_title); ?>;
-              content.appendChild(nameElement);
-
-             // const placeIdElement = document.createElement("p");
-
-             // placeIdElement.textContent = place.place_id;
-            //  content.appendChild(placeIdElement);
-
-              const placeAddressElement = document.createElement("p");
-
-              placeAddressElement.textContent = <?php echo json_encode($listing[0]->listing_address); ?>;
-              content.appendChild(placeAddressElement);
-
-                const imageElement = document.createElement("img");
-                imageElement.src = "https://new.jayga.io/uploads/" + <?php echo json_encode($listing[0]->images[0]->listing_targetlocation); ?>;
-                content.appendChild(imageElement);
-
-              infowindow.setContent(content);
-              infowindow.open(map, marker);
-            });
-          }
-        });
-      }
-
-      window.initMap = initMap;
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
     </script>
-    
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8IAuH-Yz4b3baxmK1iw81BH5vE4HsSs&callback=initMap&libraries=places&v=weekly&solution_channel=GMP_CCS_placedetails_v1"></script>
+
+    <!-- google map -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script>
+        /**
+         * @license
+         * Copyright 2019 Google LLC. All Rights Reserved.
+         * SPDX-License-Identifier: Apache-2.0
+         */
+        // This example requires the Places library. Include the libraries=places
+        // parameter when you first load the API. For example:
+        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: {
+                    lat: <?php echo $listing[0]->lat; ?>,
+                    lng: <?php echo $listing[0]->long; ?>
+                },
+                zoom: 15,
+            });
+            const request = {
+                placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4",
+                fields: ["name", "formatted_address", "place_id", "geometry"],
+            };
+            const infowindow = new google.maps.InfoWindow();
+            const service = new google.maps.places.PlacesService(map);
+
+            service.getDetails(request, (place, status) => {
+                if (
+                    status === google.maps.places.PlacesServiceStatus.OK
+                ) {
+                    const marker = new google.maps.Marker({
+                        map,
+                        position: {
+                            lat: <?php echo $listing[0]->lat; ?>,
+                            lng: <?php echo $listing[0]->long; ?>
+                        },
+                    });
+
+                    google.maps.event.addListener(marker, "click", () => {
+                        const content = document.createElement("div");
+                        const nameElement = document.createElement("h2");
+
+                        nameElement.textContent = <?php echo json_encode($listing[0]->listing_title); ?>;
+                        content.appendChild(nameElement);
+
+                        // const placeIdElement = document.createElement("p");
+
+                        // placeIdElement.textContent = place.place_id;
+                        //  content.appendChild(placeIdElement);
+
+                        const placeAddressElement = document.createElement("p");
+
+                        placeAddressElement.textContent = <?php echo json_encode($listing[0]->listing_address); ?>;
+                        content.appendChild(placeAddressElement);
+
+                        const imageElement = document.createElement("img");
+                        imageElement.src = "https://new.jayga.io/uploads/" + <?php echo json_encode($listing[0]->images[0]->listing_targetlocation); ?>;
+                        content.appendChild(imageElement);
+
+                        infowindow.setContent(content);
+                        infowindow.open(map, marker);
+                    });
+                }
+            });
+        }
+
+        window.initMap = initMap;
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG8IAuH-Yz4b3baxmK1iw81BH5vE4HsSs&callback=initMap&libraries=places&v=weekly&solution_channel=GMP_CCS_placedetails_v1">
+    </script>
 
 </body>
 
