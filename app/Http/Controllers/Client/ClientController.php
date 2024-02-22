@@ -160,7 +160,7 @@ class ClientController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $listing = Listing::where('listing_id', $id)->with('images')->with('reviews')->with('booking')->with('available_dates')->with('host.avatars')->get();
+        $listing = Listing::where('listing_id', $id)->where('isApproved', true)->where('isActive', true)->with('images')->with('reviews')->with('booking')->with('available_dates')->with('host.avatars')->get();
         $bookings = User::where('id', $request->session()->get('user'))->with('bookings')->get();
        // dd($bookings);
             $amenitiesColumnsWithValueOne = [];

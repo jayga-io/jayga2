@@ -144,7 +144,7 @@
 
 
     <div 
-        style="background-image: url({{ asset('assets/img/bg.png') }}); width:100%; background-size: cover; object-fit:contain;">
+        style="background-image: url({{ asset('assets/img/bg.png') }}); width:100%; background-size: cover; object-fit:contain; ">
         <!--Navbar Section-->
         @include('navbar')
 

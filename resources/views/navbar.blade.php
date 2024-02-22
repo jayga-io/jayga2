@@ -36,7 +36,7 @@
                         <div
                                 style="width: 100%; height: 100%; padding-top: 4px; padding-bottom: 4px; padding-left: 36px; padding-right: 36px; background: #f6f8f8; border-radius: 4.99px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex; opacity: 0.9">
                                 <div
-                                    style="color: #158E72; font-size: 16.58px; font-family: Montserrat; font-weight: 500; word-wrap: break-word">
+                                    style="color: #158E72; font-size: 16.58px; font-family: epilogue; font-weight: 500; word-wrap: break-word">
                                     List your property
                                 </div>
                             </div>

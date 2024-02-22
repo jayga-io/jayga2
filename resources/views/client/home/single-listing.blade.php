@@ -1451,9 +1451,13 @@
                         placeAddressElement.textContent = <?php echo json_encode($listing[0]->listing_address); ?>;
                         content.appendChild(placeAddressElement);
 
-                        const imageElement = document.createElement("img");
-                        imageElement.src = "https://new.jayga.io/uploads/" + <?php echo json_encode($listing[0]->images[0]->listing_targetlocation); ?>;
-                        content.appendChild(imageElement);
+                       const listingPrice = document.createElement("p");
+                       listingPrice.textContent = "৳ " + <?php echo json_encode($listing[0]->full_day_price_set_by_user); ?> + " per day";
+                       content.appendChild(listingPrice);
+
+                       const reviews = document.createElement("p");
+                       reviews.textContent = <?php echo json_encode($listing[0]->reviews->count()); ?> + " reviews";
+                       content.appendChild(reviews);
 
                         infowindow.setContent(content);
                         infowindow.open(map, marker);
