@@ -146,9 +146,9 @@
                                             <select class="form-control" name="category" id="category-form" aria-placeholder="Town or City"
                                                 aria-label="Large select example">
                                                 <option selected value="default">Select Category</option>
-                                                <option value="rooms">Rooms</option>
-                                                <option value="hotels">Hotels</option>
-                                                <option value="apartments">Apartment</option>
+                                                <option value="room">Rooms</option>
+                                                <option value="hotel">Hotels</option>
+                                                <option value="apartment">Apartment</option>
 
                                             </select>
                                             <label for="formfloating">Select Category</label>

@@ -14,13 +14,13 @@ class SearchController extends Controller
     public function search(Request $request){
         $category = $request->input('category');
        // $booking = Booking::whereNot('date_enter', $request->input('checkin'))->whereNot('date_exit', $request->input('checkout'))->get();
-      // dd($request->all());
-       if($category === 'default'){
+      // dd($request->input('options-base'));
+       if($category == 'default'){
            // $listing = Listing::where('listing_type', $request->input('options_base'))->orWhere('district', $request->input('city'))->orWhere('guest_num', $request->input('guests'))->with('images')->get();
-           // dd($listing);
+           
            $listing = QueryBuilder::for(Listing::class)->where('isApproved', true)
            ->where('isActive', true)
-           ->where('listing_type', $request->input('options_base'))
+           ->where('listing_type', $request->input('options-base'))
            ->where('district', $request->input('city'))
            ->where('guest_num', $request->input('guests'))
            ->with('images')
@@ -28,11 +28,11 @@ class SearchController extends Controller
            ->with('restrictions')
            ->with('reviews')
            ->get();
-           
+          // dd($listing);
            return view('client.search.searchResults')->with('listings', $listing);
         }else{
-          //  $listing = Listing::where('listing_type', $request->input('category'))->orWhere('district', $request->input('city'))->orWhere('guest_num', $request->input('guests'))->get();
-          //  dd($listing->count());
+           // $listing = Listing::where('listing_type', $request->input('category'))->orWhere('district', $request->input('city'))->orWhere('guest_num', $request->input('guests'))->get();
+           // dd($listing->count());
           $listing = QueryBuilder::for(Listing::class)->where('isApproved', true)
           ->where('isActive', true)
            ->where('listing_type', $request->input('category'))

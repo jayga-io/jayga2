@@ -174,20 +174,20 @@
                         <div class="row input-group justify-content-center my-2">
                             <div class="col-md-2 col-lg-2 col-sm-6 p-2">
 
-                                <input type="radio" class="btn-check" name="options-base" value="rooms"
+                                <input type="radio" class="btn-check" name="options-base" value="room"
                                     id="option5" autocomplete="off" checked>
                                 <label class="btn" for="option5"><img class="form-label"
                                         src="{{ asset('assets/img/meeting_room_24px.png') }}" alt="">
                                     Rooms</label>
                             </div>
                             <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                                <input type="radio" class="btn-check" name="options-base" value="hotels"
+                                <input type="radio" class="btn-check" name="options-base" value="hotel"
                                     id="option6" autocomplete="off">
                                 <label class="btn" for="option6"><img class="form-label"
                                         src="{{ asset('assets/img/home_24px.png') }}" alt=""> Hotels</label>
                             </div>
                             <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                                <input type="radio" class="btn-check" name="options-base" value="apartments"
+                                <input type="radio" class="btn-check" name="options-base" value="apartment"
                                     id="option7" autocomplete="off">
                                 <label class="btn" for="option7"><img class="form-label"
                                         src="{{ asset('assets/img/business_24px.png') }}" alt="">
@@ -266,9 +266,9 @@
                                             <select class="form-control" name="category"
                                                 aria-placeholder="Town or City" aria-label="Large select example">
                                                 <option selected value="default">Select Category</option>
-                                                <option value="rooms">Rooms</option>
-                                                <option value="hotels">Hotels</option>
-                                                <option value="apartments">Apartment</option>
+                                                <option value="room">Rooms</option>
+                                                <option value="hotel">Hotels</option>
+                                                <option value="apartment">Apartment</option>
 
                                             </select>
                                             <label for="formfloating">Select Category</label>
@@ -296,12 +296,7 @@
                                                 value="" required />
                                             <label for="floatingInput">Checkin - Checkout</label>
 
-                                            <input type="hidden" class="form-control" name="checkin"
-                                                style=" font-weight: 700; font-size: 17px;" id="floatingInput1"
-                                                required>
-
-                                            <input type="hidden" class="form-control" name="checkout"
-                                                style="font-weight: 700; font-size: 17px;" id="floatingInput2">
+                                          
 
 
                                         </div>
