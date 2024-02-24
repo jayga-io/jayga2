@@ -289,7 +289,7 @@
 
                                 </div>
                             </div>
-                            <p class="card-text" style="font-size: 16px;">{{ $item->district }}</p>
+                            <p class="card-text" style="font-size: 16px;">{{$item->town}} &#8901; {{ $item->district }}</p>
                             <p class="card-text" style="font-size: 16px; line-height: 0.5">{{ $item->bed_num }} bedrooms</p>
 
                             @if ($item->allow_short_stay == true)

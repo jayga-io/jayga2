@@ -18,7 +18,7 @@
         .card:hover {
             opacity: 1;
             transition: 0.5s;
-            transform: scale(1.1);
+            transform: scale(1.05);
 
         }
 
