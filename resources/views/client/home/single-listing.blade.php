@@ -930,7 +930,7 @@
             short_stay_select.toggleAttribute('checked');
         });
 
-        var whole_day_price = parseInt(price.textContent);
+        var whole_day_price = <?php echo $listing[0]->full_day_price_set_by_user;?>;
 
         // var priceUpdate = document.getElementById('updatePrice');
         // priceUpdate.style.display = 'none';
@@ -1009,12 +1009,12 @@
                     // two dates
                     let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24)) - 1;
 
-                    var new_payAmount = parseInt(price);
+                    var new_payAmount = <?php echo $listing[0]->full_day_price_set_by_user;?>;
                     var updated_price = new_payAmount * Difference_In_Days;
                     var fee = (updated_price * 3) / 100;
                     var total = updated_price + fee;
 
-
+                   
                     total_money.setAttribute('value', total);
                     input_price.setAttribute('value', updated_price);
                     pay.innerHTML = '৳' + total;
@@ -1114,7 +1114,7 @@
                     // two dates
                     let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24)) - 1;
 
-                    var new_payAmount = parseInt(price);
+                    var new_payAmount = <?php echo $listing[0]->full_day_price_set_by_user;?>;
                     var updated_price = new_payAmount * Difference_In_Days;
                     var fee = (updated_price * 3) / 100;
                     var total = updated_price + fee;
@@ -1212,7 +1212,7 @@
                     // two dates
                     let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24)) - 1;
 
-                    var new_payAmount = parseInt(price);
+                    var new_payAmount = <?php echo $listing[0]->full_day_price_set_by_user; ?>;
                     var updated_price = new_payAmount * Difference_In_Days;
                     var fee = (updated_price * 3) / 100;
                     var total = updated_price + fee;
@@ -1295,7 +1295,7 @@
 
             //  var date1 = document.getElementById('floatingInput1');
             //  var date2 = document.getElementById('floatingInput2');
-            var price = document.getElementById('price').textContent;
+           
             var slot_name = document.getElementById('slot_name');
             var slot_no = document.getElementById('slot_no');
             var input_price = document.getElementById('input_price');
@@ -1343,7 +1343,7 @@
                 // two dates
                 let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24)) - 1;
 
-                var new_payAmount = parseInt(price);
+                var new_payAmount = <?php echo $listing[0]->full_day_price_set_by_user;?>;
                 var updated_price = new_payAmount * Difference_In_Days;
                 var fee = (updated_price * 3) / 100;
                 var total = updated_price + fee;

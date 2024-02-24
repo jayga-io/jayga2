@@ -23,6 +23,7 @@
 
         .nav-link {
             color: #158E72;
+            font-weight: 700;
         }
 
         body {
@@ -397,7 +398,7 @@
 
                                 </div>
                             </div>
-                            <p class="card-text" style="font-size: 16px;">{{ $item->town }}</p>
+                            <p class="card-text" style="font-size: 16px;">{{ $item->district }}</p>
                             <p class="card-text" style="font-size: 16px;">{{ $item->bed_num }} bedrooms</p>
 
                             @if ($item->allow_short_stay == true)
@@ -485,9 +486,9 @@
                             </div>
                             <div class="input-group mb-5">
                                 <h5 class="input-group title">Price Range</h5>
-                                <input type="number" name="min_price" class="p-2 my-2" placeholder="min">
+                                <input type="number" name="min_price" class="p-2 my-2" placeholder="min" required>
                                 <span class="p-2 mx-2">to</span>
-                                <input type="number" name="max_price" class="p-2 my-2" placeholder="max">
+                                <input type="number" name="max_price" class="p-2 my-2" placeholder="max" required>
                             </div>
                             <div class="input-group mb-3">
                                 <h5 class="input-group title mb-3">Rooms & Beds</h5>
@@ -825,14 +826,6 @@
     <script>
         $(function() {
 
-            var date1 = document.getElementById('floatingInput1');
-            var date2 = document.getElementById('floatingInput2');
-
-
-
-
-
-
             $('input[name="daterange"]').daterangepicker({
                 opens: 'left',
 
@@ -845,9 +838,9 @@
 
 
                 // console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
-                date1.value = start.format('YYYY-MM-DD');
-                date2.value = end.format('YYYY-MM-DD');
-
+               // date1.value = start.format('YYYY-MM-DD');
+              //  date2.value = end.format('YYYY-MM-DD');
+                return true;
 
 
 
