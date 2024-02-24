@@ -70,6 +70,16 @@ class BookingController extends Controller
 
             ]);
 
+            Notification::create([
+                'user_id' => $request->input('lister_id'),
+                'lister_id' => $request->input('lister_id'),
+                'listing_id' => $request->input('listing_id'),
+                'booking_id' => $booked[0]->booking_id,
+                'type' => $request->input('notif_type'),
+                'messege' => $request->input('messege'),
+
+            ]);
+
             
             $listing = Listing::where('listing_id', $request->input('listing_id'))->get();
             $phone = User::where('id', $booked[0]->lister_id)->get();

@@ -9,7 +9,8 @@ use App\Models\Notification;
 class NotificationController extends Controller
 {
     public function show(Request $request, $id){
-      $notis =  Notification::where('user_id', $id)->with('listings')->with('bookings')->orderBy('id', 'DESC')->get();
+      $user_notis =  Notification::where('user_id', $id)->with('listings')->with('bookings')->orderBy('id', 'DESC')->get();
+     // $lister_notis = Notification::where('lister_id', $user_notis[0]->)
         if(count($notis)>0){
             return response()->json([
                 'status' => 200,
