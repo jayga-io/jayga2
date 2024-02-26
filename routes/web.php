@@ -263,13 +263,13 @@ Route::prefix('user')->group(function(){
 Route::prefix('client')->group(function(){
     Route::get('/home', [ClientController::class, 'index'])->name('home');
     Route::post('/search', [SearchController::class, 'search'])->name('searchroute');
-    Route::get('/single-listing/{id}', [ClientController::class, 'show']);
+    Route::get('/single-listing/{id}', [ClientController::class, 'show'])->name('singlelisting');
     Route::middleware(ClientAuth::class)->group(function(){
         Route::post('/book-listing', [ClientController::class, 'store'])->name('clientbooking');
+        Route::get('/my-bookings', [ClientController::class, 'my_bookings'])->name('mybookings');
     });
     
-
-    Route::get('/update/booking/{id}', [ClientController::class, 'update']);
+   Route::get('/update/booking/{id}', [ClientController::class, 'update']);
     
    Route::get('/login', [ClientLoginController::class, 'index'])->name('clientlogin');
    Route::post('/login-otp', [ClientLoginController::class, 'otp'])->name('clientotp');
@@ -279,6 +279,8 @@ Route::prefix('client')->group(function(){
 
    Route::get('/latest', [ClientController::class, 'latest'])->name('latestlistings');
    Route::get('/popular', [ClientController::class, 'top'])->name('popularlistings');
+
+   
 
    
   

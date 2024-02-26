@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Epilogue">
@@ -700,6 +701,7 @@
                                         <span>3%</span>
                                     </div>
                                     <hr>
+                                    <input type="hidden" name="days_stay" id="numbr_days">
                                     <div class="container p-3 d-flex justify-content-between">
                                         <div style="font-size: 24px; font-weight: 700;">Total </div>
                                         <input type="hidden" id="total_money" name="total_paid"
@@ -1299,6 +1301,7 @@
             var slot_name = document.getElementById('slot_name');
             var slot_no = document.getElementById('slot_no');
             var input_price = document.getElementById('input_price');
+            var day_stayed = document.getElementById('numbr_days');
 
             // var dates = @json($disable_dates);
             // var disabled_dates = [];
@@ -1348,7 +1351,7 @@
                 var fee = (updated_price * 3) / 100;
                 var total = updated_price + fee;
 
-
+                day_stayed.setAttribute('value', Difference_In_Days);
                 total_money.setAttribute('value', total);
                 input_price.setAttribute('value', updated_price);
                 pay.innerHTML = '৳' + total;

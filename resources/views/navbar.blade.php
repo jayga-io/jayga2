@@ -20,6 +20,7 @@
                 
                 
                 -->
+                
                 <li class="nav-item mx-3">
                    
                     <a class="nav-link position-relative">
@@ -30,6 +31,79 @@
                           </span>
                     </a>
                 </li>
+                
+                
+                @if (Session::has('phone'))
+
+                    <li class="nav-item mx-3">
+                        <a class="nav-link " href="{{route('userdash')}}">
+                            <!-- 
+                                <div
+                                        style="width: 100%; height: 100%; padding-top: 4px; padding-bottom: 4px; padding-left: 36px; padding-right: 36px; background: #f6f8f8; border-radius: 4.99px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex; opacity: 0.9">
+                                        <div
+                                            style="color: #158E72; font-size: 16.58px; font-family: epilogue; font-weight: 500; word-wrap: break-word">
+                                            List your property
+                                        </div>
+                                    </div>
+                            -->
+                        Manage your listing
+                        
+                        </a>
+                    </li>
+
+
+                    <!--
+                        <li class="nav-item mx-3">
+                            <a class="nav-link" href="{{--route('userprofile')}}">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                               {{-- @if (Session::has('photo')) --}}
+                                <img src="{{-- asset('/uploads/'.Session::get('photo'))}}" class="rounded-circle" style="width: 20px; height:auto;" alt=""> 
+                                @else
+                                    Welcome,
+                                @endif
+                                
+                                <span>
+                                    @if (Session::has('user_name'))
+                                        {{Session::get('user_name')}}
+                                    @else
+                                        {{Session::get('phone')}}
+                                    @endif
+                                </span>
+
+                                
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('logout') --}}">Logout</a>
+                        </li>
+                    -->
+                    <li class="nav-item mx-3">
+                        <div class="dropdown">
+                            <a href="#" class="btn btn-outline-success dropdown-toggle" type="button"
+                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                @if (Session::has('photo'))
+                                   <img src="{{asset('/uploads/'.Session::get('photo'))}}" class="rounded-circle" style="width: 20px; height:auto;" alt=""> 
+                                @else
+                                   <i class="bi bi-person-circle"></i>
+                                @endif
+                                
+            
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="{{route('userprofile')}}">Profile </a></li>
+                                <li><a class="dropdown-item" href="{{route('mybookings')}}">My Bookings </a></li>
+                                <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
+            
+                            </ul>
+                        </div>
+                    </li>
+
+                    
+                @else
+
                 <li class="nav-item mx-3">
                     <a class="nav-link " href="{{route('userdash')}}">
                         <!-- 
@@ -41,45 +115,18 @@
                                     </div>
                                 </div>
                         -->
-                       List your property
+                       Become a host
                     
                     </a>
                 </li>
-                
-                @if (Session::has('phone'))
-                    <li class="nav-item mx-3">
-                        <a class="nav-link" href="{{route('userprofile')}}">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            @if (Session::has('photo'))
-                               <img src="{{asset('/uploads/'.Session::get('photo'))}}" class="rounded-circle" style="width: 20px; height:auto;" alt=""> 
-                            @else
-                                Welcome,
-                            @endif
-                            
-                            <span>
-                                @if (Session::has('user_name'))
-                                    {{Session::get('user_name')}}
-                                @else
-                                    {{Session::get('phone')}}
-                                @endif
-                            </span>
 
-                            
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('logout')}}">Logout</a>
-                    </li>
-                @else
                     
                     <li class="nav-item">
                         <a href="{{route('clientlogin')}}" class="nav-link">
                             <div
                                 style="width: 100%; height: 100%; padding-top: 4px; padding-bottom: 4px; padding-left: 35.80px; padding-right: 36px; background: #158E72; border-radius: 4.99px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex">
                                 <div
-                                    style="color: white; font-size: 16.58px; font-family: Montserrat; font-weight: 500; word-wrap: break-word">
+                                    style="color: white; font-size: 16.58px; font-family: epilogue; font-weight: 500; word-wrap: break-word">
                                     Login
                                 </div>
                             </div>

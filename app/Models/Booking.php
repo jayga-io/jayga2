@@ -20,5 +20,9 @@ class Booking extends Model
         return $this->hasMany(TimeSlotShortstays::class, 'time_id', 'tier');
     }
 
+    public function listing_images(){
+        return $this->hasMany(ListingImages::class, 'listing_id', 'listing_id');
+    }
+
 
 }

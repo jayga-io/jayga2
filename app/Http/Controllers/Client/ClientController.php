@@ -51,7 +51,7 @@ class ClientController extends Controller
         $daterange = $request->input('daterange');
         $dates = explode("-", $daterange);
        //dd($dates[1]);
-        
+       // dd($request->all());
         $shortStay = $request->input('short_stay');
         $slot  = $request->input('short_stay_slot');
         $invoice_number = Str::random(8);
@@ -100,7 +100,7 @@ class ClientController extends Controller
                          'pay_amount' => $request->input('total_paid'),
                          'total_members' => $request->input('guest_num'),
                          'date_enter' => $dates[0],
-                         
+                         'days_stayed' => $request->input('days_stay'),
                          'short_stay_flag' => $shortStay,
                          'all_day_flag' => 0,
                          'tier' => $slot,
@@ -121,6 +121,7 @@ class ClientController extends Controller
                              'total_members' => $request->input('guest_num'),
                              'date_enter' => $dates[0],
                              'date_exit' => $dates[1],
+                             'days_stayed' => $request->input('days_stay'),
                              'short_stay_flag' => 0,
                              'all_day_flag' => 1,
                              'tier' => 0,
@@ -300,6 +301,16 @@ class ClientController extends Controller
        // dd($listings);
 
        return view('client.search.searchResults')->with('listings', $listings)->with('top', 'top');
+    }
+
+
+    public function my_bookings(Request $request){
+       
+       $user = $request->session()->get('user');
+       $books = Booking::where('user_id', $user)->with('listings')->with('listing_images')->get();
+       
+       // dd($books);
+       return view('client.bookings.mybooking')->with('listings', $books);
     }
 
 
