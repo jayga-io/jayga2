@@ -267,7 +267,7 @@
                                         <div class="form-floating">
                                             <select class="form-control" name="category"
                                                 aria-placeholder="Town or City" aria-label="Large select example">
-                                                <option selected value="default">Select Category</option>
+                                                <option value="default">Select Category</option>
                                                 <option value="room">Rooms</option>
                                                 <option value="hotel">Hotels</option>
                                                 <option value="apartment">Apartment</option>
@@ -282,8 +282,8 @@
                                         <!--search inputs-->
                                         <div class="form-floating">
                                             <select class="form-control" name="city"
-                                                aria-placeholder="Town or City" aria-label="Large select example">
-                                                <option selected>Select a city or town</option>
+                                                aria-placeholder="Town or City" aria-label="Large select example" required>
+                                                <option value="">Select a city or town</option>
                                                 <option value="Dhaka">Dhaka</option>
                                                 <option value="Sylhet">Sylhet</option>
                                                 <option value="Chittagong">Chittagong</option>
