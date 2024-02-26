@@ -275,7 +275,7 @@ Route::prefix('client')->group(function(){
    Route::post('/login-otp', [ClientLoginController::class, 'otp'])->name('clientotp');
    Route::post('/otp-verify', [ClientLoginController::class, 'verify'])->name('otpverif');
 
-   Route::post('/apply-filter', [ClientController::class, 'apply_filter'])->name('filterroute');
+   Route::get('/apply-filter', [ClientController::class, 'apply_filter'])->name('filterroute');
 
    Route::get('/latest', [ClientController::class, 'latest'])->name('latestlistings');
    Route::get('/popular', [ClientController::class, 'top'])->name('popularlistings');

@@ -438,7 +438,7 @@
         aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
-                <form action="{{ route('filterroute') }}" method="POST"
+                <form action="{{route('filterroute')}}" method="GET"
                     enctype="application/x-www-form-urlencoded">
                     @csrf
                     <div class="modal-header">
@@ -453,32 +453,32 @@
                                 <h5 class="input-group title mb-3">Property Type</h5>
                                 <div class="my-3">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        <input class="form-check-input" type="radio" name="listing_type"
                                             id="inlineRadio1" value="room">
                                         <label class="form-check-label" for="inlineRadio1">Room</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        <input class="form-check-input" type="radio" name="listing_type"
                                             id="inlineRadio2" value="hotel">
                                         <label class="form-check-label" for="inlineRadio2">Hotel</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        <input class="form-check-input" type="radio" name="listing_type"
                                             id="inlineRadio3" value="apartment">
                                         <label class="form-check-label" for="inlineRadio3">Apartment</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        <input class="form-check-input" type="radio" name="listing_type"
                                             id="inlineRadio4" value="parking">
                                         <label class="form-check-label" for="inlineRadio4">Parking</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        <input class="form-check-input" type="radio" name="listing_type"
                                             id="inlineRadio5" value="experience">
                                         <label class="form-check-label" for="inlineRadio5">Experience</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        <input class="form-check-input" type="radio" name="listing_type"
                                             id="inlineRadio6" value="storage">
                                         <label class="form-check-label" for="inlineRadio6">Storage</label>
                                     </div>
@@ -502,12 +502,12 @@
                                             <div class="input-group w-auto justify-content-end align-items-center">
                                                 <input type="button" value="-"
                                                     class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
-                                                    data-field="bedrooms">
-                                                <input type="number" max="10" value="1" name="bedrooms"
+                                                    data-field="bed_num">
+                                                <input type="number" max="10" value="1" name="bed_num"
                                                     class="quantity-field border-0 text-center w-25">
                                                 <input type="button" value="+"
                                                     class="button-plus border rounded-circle icon-shape icon-sm "
-                                                    data-field="bedrooms">
+                                                    data-field="bed_num">
                                             </div>
                                         </div>
                                     </div>
@@ -519,12 +519,12 @@
                                             <div class="input-group w-auto justify-content-end align-items-center">
                                                 <input type="button" value="-"
                                                     class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
-                                                    data-field="bathrooms">
-                                                <input type="number" max="10" value="1" name="bathrooms"
+                                                    data-field="bathroom_num">
+                                                <input type="number" max="10" value="1" name="bathroom_num"
                                                     class="quantity-field border-0 text-center w-25">
                                                 <input type="button" value="+"
                                                     class="button-plus border rounded-circle icon-shape icon-sm "
-                                                    data-field="bathrooms">
+                                                    data-field="bathroom_num">
                                             </div>
                                         </div>
                                     </div>
@@ -536,12 +536,12 @@
                                             <div class="input-group w-auto justify-content-end align-items-center">
                                                 <input type="button" value="-"
                                                     class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
-                                                    data-field="guests">
-                                                <input type="number" max="10" value="1" name="guests"
+                                                    data-field="guest_num">
+                                                <input type="number" max="10" value="1" name="guest_num"
                                                     class="quantity-field border-0 text-center w-25">
                                                 <input type="button" value="+"
                                                     class="button-plus border rounded-circle icon-shape icon-sm "
-                                                    data-field="guests">
+                                                    data-field="guest_num">
                                             </div>
                                         </div>
                                     </div>
@@ -550,8 +550,8 @@
                             <div class="input-group mb-3">
                                 <h5 class="input-group title">Short Stay Allow</h5>
                                 <span>
-                                    <input type="hidden" name="shortstay" value="0">
-                                    <input type="checkbox" name="shortstay" value="1">
+                                    <input type="hidden" name="allow_short_stay" value="0">
+                                    <input type="checkbox" name="allow_short_stay" value="1">
                                 </span>
 
                             </div>
