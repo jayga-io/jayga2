@@ -17,6 +17,15 @@ class ClientLoginController extends Controller
     public function otp(Request $request){
         $otp = random_int(1000,9999);
         $phone = $request->input('phone');
+
+        $data = [
+                 "sender_id" => "8809601010510",
+                  "receiver" => $phone,
+                  "message" => "Your Jayga OTP is:".$otp,
+                  "remove_duplicate" => true
+              ];
+
+              send_sms($data);
         session([
             'otp' => $otp,
             'phone' => $phone,

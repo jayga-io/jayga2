@@ -307,7 +307,7 @@ class ClientController extends Controller
     public function my_bookings(Request $request){
        
        $user = $request->session()->get('user');
-       $books = Booking::where('user_id', $user)->with('listings')->with('listing_images')->get();
+       $books = Booking::where('user_id', $user)->with('listings')->with('listing_images')->orderBy('created_at', 'DESC')->get();
        
        // dd($books);
        return view('client.bookings.mybooking')->with('listings', $books);

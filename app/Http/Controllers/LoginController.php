@@ -22,12 +22,14 @@ class LoginController extends Controller
             
           //  $user_api_url = env('APP_URL').'api/signin';
             $phone = $request->input('phone');
-          //  $data = [
-          //      "sender_id" => "8809601010510",
-          //      "receiver" => $phone,
-          //      "message" => "Your Jayga OTP is:".$otp,
-          //      "remove_duplicate" => true
-          //  ];
+            $data = [
+                "sender_id" => "8809601010510",
+                "receiver" => $phone,
+                "message" => "Your Jayga OTP is:".$otp,
+                "remove_duplicate" => true
+            ];
+
+            send_sms($data);
           //  $response = Http::withHeaders([
           //      'Authorization' => 'Token d275d614a4ca92e21d2dea7a1e2bb81fbfac1eb0',
                 
