@@ -230,14 +230,27 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $listing_id = Booking::where('invoice_number', $id)->get();
+        $listing_id = Booking::where('invoice_number', $id)->with('listings')->get();
+        $user = $request->session()->get('user');
        if($request->query('trx_id') != null){
             Booking::where('invoice_number', $id)->update([
                 'payment_flag' => true,
                 'transaction_id' => $request->query('trx_id'),
             ]);
 
+            
+
             $listing = Listing::where('listing_id', $listing_id[0]->listing_id)->get();
+
+            Notification::create([
+                'user_id' => $user,
+                'lister_id' => $listing_id[0]->lister_id,
+                'listing_id' => $listing_id[0]->listing_id,
+                'booking_id' => $listing_id[0]->booking_id,
+                'type' => 'booking',
+                'messege' => 'Your Booking at : '.$listing[0]->listing_title. ' has been placed',
+
+            ]);
             $phone = User::where('id', $listing_id[0]->lister_id)->get();
             $data = [
                 "sender_id" => "8809601010510",

@@ -80,7 +80,9 @@
                         </li>
                     -->
                     <li class="nav-item mx-3">
+                        
                         <div class="dropdown">
+                           
                             <a href="#" class="btn btn-outline-success dropdown-toggle" type="button"
                                 id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
     
@@ -93,8 +95,11 @@
             
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="{{route('userprofile')}}">Profile </a></li>
+
                                 <li><a class="dropdown-item" href="{{route('mybookings')}}">My Bookings </a></li>
+                                <li><a class="dropdown-item" href="{{route('mynotifs')}}">Notifications </a></li>
+                                <li><a class="dropdown-item" href="{{route('userprofile')}}">Profile </a></li>
+                                
                                 <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
             
                             </ul>

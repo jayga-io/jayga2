@@ -108,7 +108,7 @@ class ListerDashboardController extends Controller
             'lister_id' => $booking_id[0]->lister_id,
             'listing_id' => $booking_id[0]->listing_id,
             'booking_id' => $id,
-            'type' => 'Booking',
+            'type' => 'booking',
             'messege' => 'Your stay at : '. $listing_name[0]->listing_title . ' has been approved'
            ];
     

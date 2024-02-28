@@ -12,6 +12,7 @@ use App\Http\Controllers\Host\AccountsController;
 use App\Http\Controllers\Host\BankDetailsController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Client\ClientLoginController;
+use App\Http\Controllers\Client\ClientNotificationController;
 use App\Http\Controllers\Client\SearchController;
 use App\Models\User;
 use App\Models\Listing;
@@ -267,9 +268,13 @@ Route::prefix('client')->group(function(){
     Route::middleware(ClientAuth::class)->group(function(){
         Route::post('/book-listing', [ClientController::class, 'store'])->name('clientbooking');
         Route::get('/my-bookings', [ClientController::class, 'my_bookings'])->name('mybookings');
+        Route::get('/my-notifications', [ClientNotificationController::class, 'show_notif'])->name('mynotifs');
+
+        Route::get('/clear-notifs', [ClientNotificationController::class, 'clear_notifs'])->name('clearnotifs');
+        Route::get('/update/booking/{id}', [ClientController::class, 'update']);
     });
     
-   Route::get('/update/booking/{id}', [ClientController::class, 'update']);
+   
     
    Route::get('/login', [ClientLoginController::class, 'index'])->name('clientlogin');
    Route::post('/login-otp', [ClientLoginController::class, 'otp'])->name('clientotp');
@@ -280,7 +285,6 @@ Route::prefix('client')->group(function(){
    Route::get('/latest', [ClientController::class, 'latest'])->name('latestlistings');
    Route::get('/popular', [ClientController::class, 'top'])->name('popularlistings');
 
-   
 
    
   
