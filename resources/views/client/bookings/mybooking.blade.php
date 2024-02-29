@@ -32,7 +32,17 @@
                 <div class="card my-5">
                    
                     <div class="card-header d-flex justify-content-between">
-                        <p>Status: <span>Approved</span></p>
+                        <p>Status: 
+                            @if ($item->isApproved == true)
+                                <span>&#128994; Approved</span>
+                            @elseif($item->booking_status == 2)
+                                <span>&#128308; Denied</span>
+                            @else
+                                <span>&#128993; Pending</span>
+                            @endif
+
+                           
+                        </p>
                         <p>{{$item->created_at->diffForHumans()}}</p>
                     </div>
                     <div class="card-body">

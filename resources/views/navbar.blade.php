@@ -98,7 +98,7 @@
 
                                 <li><a class="dropdown-item" href="{{route('mybookings')}}">My Bookings </a></li>
                                 <li><a class="dropdown-item" href="{{route('mynotifs')}}">Notifications </a></li>
-                                <li><a class="dropdown-item" href="{{route('userprofile')}}">Profile </a></li>
+                                <li><a class="dropdown-item" href="{{route('userdash')}}">Account </a></li>
                                 
                                 <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
             

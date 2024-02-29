@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Listing;
+use App\Models\ListingImages;
 use App\Models\Booking;
 
 class Notification extends Model
@@ -18,5 +19,9 @@ class Notification extends Model
 
     public function bookings(){
         return $this->hasOne(Booking::class, 'booking_id', 'booking_id');
+    }
+
+    public function listing_image(){
+        return $this->hasMany(ListingImages::class, 'listing_id', 'listing_id');
     }
 }

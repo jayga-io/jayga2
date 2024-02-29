@@ -10,7 +10,7 @@ class ClientNotificationController extends Controller
 {
     public function show_notif(Request $request){
         $user = $request->session()->get('user');
-        $notif = Notification::where('user_id', $user)->where('type', 'booking')->get();
+        $notif = Notification::where('user_id', $user)->where('type', 'booking')->with('listing_image')->orderBy('created_at', 'DESC')->get();
        // dd($notif);
        return view('client.notifications.mynotifications')->with('notifs', $notif);
     }

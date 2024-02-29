@@ -259,7 +259,7 @@
                 <div class="row mb-5">
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div
-                            style="width: 80%;  margin: auto;  background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; overflow: hidden; opacity: 0.8; background-blend-mode: overlay, normal; backdrop-filter: blur(40px); background: lightgray 0% 0% / 154.22531366348267px 154.22531366348267px repeat, radial-gradient(151.92% 127.02% at 15.32% 21.04%, rgba(165, 239, 255, 0.05) 0%, rgba(110, 191, 244, 0.01) 77.08%, rgba(70, 144, 212, 0.00) 100%);">
+                            style="width: 80%;  margin: auto;  background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px;  background-blend-mode: overlay, normal;  background: lightgray 0% 0% / 154.22531366348267px 154.22531366348267px repeat, radial-gradient(151.92% 127.02% at 15.32% 21.04%, rgba(165, 239, 255, 0.05) 0%, rgba(110, 191, 244, 0.01) 77.08%, rgba(70, 144, 212, 0.00) 100%);">
                             <div class="container">
                                 <div class="row p-3 text-center">
 
@@ -434,9 +434,9 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal fade modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" >
+        <div class="modal-dialog modal-lg modal-dialog-centered " >
             <div class="modal-content">
                 <form action="{{route('filterroute')}}" method="GET"
                     enctype="application/x-www-form-urlencoded">

@@ -36,12 +36,16 @@
                         <p>{{$item->created_at->diffForHumans()}}</p>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-            
+                        <div class="row" style="align-items: center">
                             
-                            <div class="col-md-12 border-right d-flex justify-content-between">
+                            <div class="col-md-2 border-right">
+                                <img src="https://new.jayga.io/uploads/{{$item->listing_image[0]->listing_targetlocation}}"
+                                    style="width: 100%; height:100%; object-fit:contain" alt="">
+                            </div>
+                            
+                            <div class="col-md-10 border-right d-flex justify-content-between">
                                 <h5>{{$item->messege}}</h5>
-                                <p><span>{{$item->created_at->diffForHumans()}}</span></p>
+                               
                                
                                
                             </div>

@@ -294,7 +294,7 @@ class ClientController extends Controller
 
                    
 
-                    $filter = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->where('full_day_price_set_by_user', '>=', $request->query('min_price'))->where('full_day_price_set_by_user', '<=', $request->query('max_price'))->allowedFilters(['guest_num', 'bed_num', 'bathroom_num', 'allow_short_stay', 'listing_type'])->with('images')->with('amenities')->with('restrictions')->with('reviews')->get();
+                    $filter = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->where('listing_type', $request->query('listing_type'))->where('full_day_price_set_by_user', '>=', $request->query('min_price'))->where('full_day_price_set_by_user', '<=', $request->query('max_price'))->allowedFilters(['guest_num', 'bed_num', 'bathroom_num', 'allow_short_stay'])->with('images')->with('amenities')->with('restrictions')->with('reviews')->get();
         
             // dd($filter);
         return view('client.search.searchResults')->with('listings', $filter);
