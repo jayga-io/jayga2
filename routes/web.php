@@ -13,6 +13,7 @@ use App\Http\Controllers\Host\BankDetailsController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Client\ClientLoginController;
 use App\Http\Controllers\Client\ClientNotificationController;
+use App\Http\Controllers\Client\FavouritesController;
 use App\Http\Controllers\Client\SearchController;
 use App\Models\User;
 use App\Models\Listing;
@@ -272,6 +273,8 @@ Route::prefix('client')->group(function(){
 
         Route::get('/clear-notifs', [ClientNotificationController::class, 'clear_notifs'])->name('clearnotifs');
         Route::get('/update/booking/{id}', [ClientController::class, 'update']);
+
+        Route::get('/my-favourites', [FavouritesController::class, 'show_favs'])->name('showfavs');
     });
     
    
@@ -285,7 +288,7 @@ Route::prefix('client')->group(function(){
    Route::get('/latest', [ClientController::class, 'latest'])->name('latestlistings');
    Route::get('/popular', [ClientController::class, 'top'])->name('popularlistings');
 
-
+ Route::get('/remove/favourite/{id}', [FavouritesController::class, 'remove']);
    
   
 });

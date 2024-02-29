@@ -8,6 +8,7 @@ use App\Models\Listing;
 use App\Models\Booking;
 use App\Models\User;
 use App\Models\Reviews;
+use App\Models\FavListing;
 use App\Models\ListingAvailable;
 use App\Models\ListingGuestAmenities;
 use App\Models\ListingRestrictions;
@@ -209,7 +210,11 @@ class ClientController extends Controller
            $onestarcount = Reviews::where('listing_id', $id)->where('stars', 1)->count();
           //dd($reviews);
          
+           $favcheck = FavListing::where('user_id', $request->session()->get('user'))->where('listing_id', $id)->get();
+
+
         return view('client.home.single-listing')->with('listing', $listing)->with('amenities', $amenitiesColumnsWithValueOne)->with('restrictions', $restrictionColumnsWithValueOne)->with('slots', $timeSlots)->with('disable_dates', $disable_dates)->with('user', $reviews)
+        ->with('fav', $favcheck)
         ->with('five', $fivestarcount)
         ->with('four', $fourstarcount)
         ->with('three', $threestarcount)

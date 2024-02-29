@@ -241,7 +241,12 @@
 
             </div>
             <div class="col-md-6 p-2" id="share">
-                <span class="px-2"><i class="fa fa-heart-o" onclick="say()" id="sy"></i> Save</span>
+                @if (count($fav) > 0)
+                    <span class="px-2" id="un" key="{{$fav[0]->id}}"><i class="fa fa-heart" ></i> UnSave</span>
+                @else
+                    <span class="px-2" id="sy"><i class="fa fa-heart-o" ></i> Save</span>
+                @endif
+
                 <span class="px-2"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</span>
             </div>
         </div>
@@ -894,25 +899,37 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.3/dist/index.bundle.min.js"></script>
+   
     <script>
-        function say() {
-            var el = document.querySelector('#sy');
-            if (el.classList[1] == 'fa-heart-o') {
-                el.classList.remove('fa');
-                el.classList.remove('fa-heart-o');
-                el.classList.add('fa');
-                el.classList.add('fa-heart');
-            } else if (el.classList[1] == 'fa-heart') {
-                el.classList.remove('fa');
-                el.classList.remove('fa-heart');
-                el.classList.add('fa');
-                el.classList.add('fa-heart-o');
-            }
+        $("#sy").click(function() {
+            $.post("http://localhost:8000/api/add/fav/listing", {
+                    user_id: <?php echo Session::get('user'); ?>,
+                    listing_id: <?php echo $listing[0]->listing_id; ?>
+                },
+                function(data, status) {
 
-        }
+                    alert("Messege: " + data.messege);
+                    location.reload();
+                });
+        });
     </script>
 
-    <!--short stay calculation -->
+    <script>
+        $("#un").click(function() {
+            var id = document.getElementById('un').getAttribute('key');
+            
+            $.get("http://localhost:8000/api/fav/listing/remove/"+id,
+                function(data, status) {
+
+                    alert("Messege: " + data.messege);
+                    location.reload();
+                });
+        });
+    </script>
+
+
+
+
     <script>
         var short_stay = document.getElementById('short_stay_button');
         var short_stay_select = document.getElementById('short_stay_check');
@@ -932,7 +949,7 @@
             short_stay_select.toggleAttribute('checked');
         });
 
-        var whole_day_price = <?php echo $listing[0]->full_day_price_set_by_user;?>;
+        var whole_day_price = <?php echo $listing[0]->full_day_price_set_by_user; ?>;
 
         // var priceUpdate = document.getElementById('updatePrice');
         // priceUpdate.style.display = 'none';
@@ -1011,12 +1028,12 @@
                     // two dates
                     let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24)) - 1;
 
-                    var new_payAmount = <?php echo $listing[0]->full_day_price_set_by_user;?>;
+                    var new_payAmount = <?php echo $listing[0]->full_day_price_set_by_user; ?>;
                     var updated_price = new_payAmount * Difference_In_Days;
                     var fee = (updated_price * 3) / 100;
                     var total = updated_price + fee;
 
-                   
+
                     total_money.setAttribute('value', total);
                     input_price.setAttribute('value', updated_price);
                     pay.innerHTML = '৳' + total;
@@ -1116,7 +1133,7 @@
                     // two dates
                     let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24)) - 1;
 
-                    var new_payAmount = <?php echo $listing[0]->full_day_price_set_by_user;?>;
+                    var new_payAmount = <?php echo $listing[0]->full_day_price_set_by_user; ?>;
                     var updated_price = new_payAmount * Difference_In_Days;
                     var fee = (updated_price * 3) / 100;
                     var total = updated_price + fee;
@@ -1297,7 +1314,7 @@
 
             //  var date1 = document.getElementById('floatingInput1');
             //  var date2 = document.getElementById('floatingInput2');
-           
+
             var slot_name = document.getElementById('slot_name');
             var slot_no = document.getElementById('slot_no');
             var input_price = document.getElementById('input_price');
@@ -1346,7 +1363,7 @@
                 // two dates
                 let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24)) - 1;
 
-                var new_payAmount = <?php echo $listing[0]->full_day_price_set_by_user;?>;
+                var new_payAmount = <?php echo $listing[0]->full_day_price_set_by_user; ?>;
                 var updated_price = new_payAmount * Difference_In_Days;
                 var fee = (updated_price * 3) / 100;
                 var total = updated_price + fee;
@@ -1410,8 +1427,8 @@
         // This example requires the Places library. Include the libraries=places
         // parameter when you first load the API. For example:
         // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-        function initMap() {
-            const map = new google.maps.Map(document.getElementById("map"), {
+       async function initMap() {
+            const map = await new google.maps.Map(document.getElementById("map"), {
                 center: {
                     lat: <?php echo $listing[0]->lat; ?>,
                     lng: <?php echo $listing[0]->long; ?>
@@ -1454,13 +1471,13 @@
                         placeAddressElement.textContent = <?php echo json_encode($listing[0]->listing_address); ?>;
                         content.appendChild(placeAddressElement);
 
-                       const listingPrice = document.createElement("p");
-                       listingPrice.textContent = "৳ " + <?php echo json_encode($listing[0]->full_day_price_set_by_user); ?> + " per day";
-                       content.appendChild(listingPrice);
+                        const listingPrice = document.createElement("p");
+                        listingPrice.textContent = "৳ " + <?php echo json_encode($listing[0]->full_day_price_set_by_user); ?> + " per day";
+                        content.appendChild(listingPrice);
 
-                       const reviews = document.createElement("p");
-                       reviews.textContent = <?php echo json_encode($listing[0]->reviews->count()); ?> + " reviews";
-                       content.appendChild(reviews);
+                        const reviews = document.createElement("p");
+                        reviews.textContent = <?php echo json_encode($listing[0]->reviews->count()); ?> + " reviews";
+                        content.appendChild(reviews);
 
                         infowindow.setContent(content);
                         infowindow.open(map, marker);

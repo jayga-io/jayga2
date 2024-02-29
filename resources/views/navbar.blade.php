@@ -97,6 +97,7 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
                                 <li><a class="dropdown-item" href="{{route('mybookings')}}">My Bookings </a></li>
+                                <li><a class="dropdown-item" href="{{route('showfavs')}}">My Favourites </a></li>
                                 <li><a class="dropdown-item" href="{{route('mynotifs')}}">Notifications </a></li>
                                 <li><a class="dropdown-item" href="{{route('userdash')}}">Account </a></li>
                                 

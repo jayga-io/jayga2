@@ -434,9 +434,9 @@
 
 
     <!-- Modal -->
-    <div class="modal fade modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true" >
-        <div class="modal-dialog modal-lg modal-dialog-centered " >
+        <div class="modal-dialog modal-lg modal-dialog-centered" >
             <div class="modal-content">
                 <form action="{{route('filterroute')}}" method="GET"
                     enctype="application/x-www-form-urlencoded">
@@ -446,7 +446,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body modal-dialog-scrollable">
 
                         <div class="container">
                             <div class="input-group mb-3">
@@ -454,7 +454,7 @@
                                 <div class="my-3">
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="listing_type"
-                                            id="inlineRadio1" value="room">
+                                            id="inlineRadio1" value="room" checked>
                                         <label class="form-check-label" for="inlineRadio1">Room</label>
                                     </div>
                                     <div class="form-check form-check-inline">
