@@ -902,7 +902,7 @@
    
     <script>
         $("#sy").click(function() {
-            $.post("http://localhost:8000/api/add/fav/listing", {
+            $.post("https://new.jayga.io/api/add/fav/listing", {
                     user_id: <?php echo Session::get('user'); ?>,
                     listing_id: <?php echo $listing[0]->listing_id; ?>
                 },
@@ -918,7 +918,7 @@
         $("#un").click(function() {
             var id = document.getElementById('un').getAttribute('key');
             
-            $.get("http://localhost:8000/api/fav/listing/remove/"+id,
+            $.get("https://new.jayga.io/api/fav/listing/remove/"+id,
                 function(data, status) {
 
                     alert("Messege: " + data.messege);
