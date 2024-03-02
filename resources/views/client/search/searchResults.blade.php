@@ -345,7 +345,7 @@
                                 <div class="my-3">
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="listing_type"
-                                            id="inlineRadio1" value="room">
+                                            id="inlineRadio1" value="room" checked>
                                         <label class="form-check-label" for="inlineRadio1">Room</label>
                                     </div>
                                     <div class="form-check form-check-inline">

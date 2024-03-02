@@ -13,6 +13,7 @@ use App\Models\ListingAvailable;
 use App\Models\ListingGuestAmenities;
 use App\Models\ListingRestrictions;
 use App\Models\TimeSlotShortstays;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Route;
@@ -24,15 +25,15 @@ class ClientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $listings = Listing::where('isApproved', true)->where('isActive', true)->with('images')->with('reviews')->take(8)->get();
 
-      
+        $notifs = Notification::where('user_id', $request->session()->get('user'))->where('type', 'booking')->count();
 
         
        // dd($listings[0]->reviews[0]->avg_rating);
-       return view('client.home.home')->with('listings', $listings);
+       return view('client.home.home')->with('listings', $listings)->with('notifcount', $notifs);
     
     }
 

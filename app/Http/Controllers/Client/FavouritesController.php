@@ -18,6 +18,6 @@ class FavouritesController extends Controller
     public function remove(Request $request, $id){
         FavListing::where('id', $id)->delete();
 
-        return redirect(route('showfavs'));
+        return redirect(route('showfavs'))->with('messege', 'Favourite listing removed');
     }
 }

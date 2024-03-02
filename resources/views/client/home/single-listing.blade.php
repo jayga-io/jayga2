@@ -902,12 +902,12 @@
    
     <script>
         $("#sy").click(function() {
-            $.post("https://new.jayga.io/api/add/fav/listing", {
+            $.post("<?php echo env('APP_URL');?>/api/add/fav/listing", {
                     user_id: <?php echo Session::get('user'); ?>,
                     listing_id: <?php echo $listing[0]->listing_id; ?>
                 },
                 function(data, status) {
-
+                    
                     alert("Messege: " + data.messege);
                     location.reload();
                 });
@@ -918,7 +918,7 @@
         $("#un").click(function() {
             var id = document.getElementById('un').getAttribute('key');
             
-            $.get("https://new.jayga.io/api/fav/listing/remove/"+id,
+            $.get("<?php echo env('APP_URL');?>/api/fav/listing/remove/"+id,
                 function(data, status) {
 
                     alert("Messege: " + data.messege);

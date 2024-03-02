@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $pending_count = Listing::where('isApproved', false)->get();
         $withdraw_count = Withdraws::where('status', false)->get();
-
+        
        // $notifs = Notification::where('user_id', \Session::get('user'))->get();
      
         view()->share('pending_count', $pending_count->count());
