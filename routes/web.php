@@ -288,6 +288,8 @@ Route::prefix('client')->group(function(){
    Route::get('/latest', [ClientController::class, 'latest'])->name('latestlistings');
    Route::get('/popular', [ClientController::class, 'top'])->name('popularlistings');
 
+   Route::get('/all/listings', [ClientController::class, 'all_listing'])->name('all_listing');
+
  Route::get('/remove/favourite/{id}', [FavouritesController::class, 'remove']);
    
   

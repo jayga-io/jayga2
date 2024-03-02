@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class ClientController extends Controller
 {
@@ -286,7 +287,7 @@ class ClientController extends Controller
 
 
     public function apply_filter(Request $request){
-       // dd($request->all());
+       // dd($request->query('allow_short_stay'));
       // $filter = Listing::where('isApproved', true)->where('isActive', true)
                     //    ->orWhere('listing_type', $request->input('inlineRadioOptions'))
                    //     ->orWhere('full_day_price_set_by_user', '>', $request->input('min_price'))
@@ -300,7 +301,7 @@ class ClientController extends Controller
 
                    
 
-                    $filter = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->where('listing_type', $request->query('listing_type'))->where('full_day_price_set_by_user', '>=', $request->query('min_price'))->where('full_day_price_set_by_user', '<=', $request->query('max_price'))->allowedFilters(['guest_num', 'bed_num', 'bathroom_num', 'allow_short_stay'])->with('images')->with('amenities')->with('restrictions')->with('reviews')->get();
+                    $filter = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->where('listing_type', $request->query('listing_type'))->where('full_day_price_set_by_user', '>=', $request->query('min_price'))->where('full_day_price_set_by_user', '<=', $request->query('max_price'))->where('allow_short_stay', $request->query('allow_short_stay'))->allowedFilters(['guest_num', 'bed_num', 'bathroom_num'])->with('images')->with('amenities')->with('restrictions')->with('reviews')->get();
         
             // dd($filter);
         return view('client.search.searchResults')->with('listings', $filter);
@@ -308,7 +309,7 @@ class ClientController extends Controller
     }
 
     public function latest(Request $request){
-        $listings = Listing::where('isApproved', true)->where('isActive', true)->latest()->with('images')->with('reviews')->get();
+        $listings = Listing::where('isApproved', true)->where('isActive', true)->orderBy('created_at', 'DESC')->with('images')->with('reviews')->get();
        // dd($listings);
        return view('client.search.searchResults')->with('listings', $listings)->with('latest', 'latest');
     }
@@ -316,7 +317,7 @@ class ClientController extends Controller
 
 
     public function top(Request $request){
-        $listings = Listing::where('isApproved', true)->where('isActive', true)->with('images')->with('reviews')->withCount('reviews')->orderBy('reviews_count', 'desc')->take(25)->get();
+        $listings = Listing::where('isApproved', true)->where('isActive', true)->with('images')->with('reviews')->withCount('reviews')->orderBy('reviews_count', 'DESC')->take(25)->get();
        // dd($listings);
 
        return view('client.search.searchResults')->with('listings', $listings)->with('top', 'top');
@@ -330,6 +331,11 @@ class ClientController extends Controller
        
        // dd($books);
        return view('client.bookings.mybooking')->with('listings', $books);
+    }
+
+    public function all_listing(Request $request){
+        $ls = Listing::where('isApproved', true)->where('isActive', true)->paginate(40);
+        return view('client.search.all-listings')->with('listings', $ls);
     }
 
 

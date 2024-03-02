@@ -352,7 +352,7 @@
             <h3 class="mt-5">Top Listings</h3>
 
 
-            <a href="{{route('popularlistings')}}" class="mt-5" style="color: #158E72; font-weight: 700;">View all</a>
+            <a href="{{route('all_listing')}}" class="mt-5" style="color: #158E72; font-weight: 700;">View all</a>
         </div>
         <div class="card-header d-flex justify-content-between mb-3">
             <div class="dropdown">
@@ -550,8 +550,8 @@
                             <div class="input-group mb-3">
                                 <h5 class="input-group title">Short Stay Allow</h5>
                                 <span>
-                                   
-                                    <input type="checkbox" name="allow_short_stay" value="true">
+                                    <input type="hidden" name="allow_short_stay" value="0">
+                                    <input type="checkbox" name="allow_short_stay" value="1">
                                 </span>
 
                             </div>

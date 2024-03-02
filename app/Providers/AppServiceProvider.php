@@ -9,6 +9,7 @@ use App\Models\Listing;
 use App\Models\Booking;
 use App\Models\Withdraws;
 use App\Models\Notification;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Request $request): void
     {
+        Paginator::useBootstrapFive();
         $pending_count = Listing::where('isApproved', false)->get();
         $withdraw_count = Withdraws::where('status', false)->get();
         

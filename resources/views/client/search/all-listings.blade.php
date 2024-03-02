@@ -321,7 +321,7 @@
 
 
         </div>
-        
+        {{ $listings->links() }}
     </div>
 
     
