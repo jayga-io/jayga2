@@ -487,9 +487,9 @@
                             </div>
                             <div class="input-group mb-5">
                                 <h5 class="input-group title">Price Range</h5>
-                                <input type="number" name="min_price" class="p-2 my-2" placeholder="min" required>
+                                <input type="number" name="min_price" class="p-2 my-2" value="20" placeholder="min" required>
                                 <span class="p-2 mx-2">to</span>
-                                <input type="number" name="max_price" class="p-2 my-2" placeholder="max" required>
+                                <input type="number" name="max_price" class="p-2 my-2" value="20000" placeholder="max" required>
                             </div>
                             <div class="input-group mb-3">
                                 <h5 class="input-group title mb-3">Rooms & Beds</h5>
@@ -550,8 +550,8 @@
                             <div class="input-group mb-3">
                                 <h5 class="input-group title">Short Stay Allow</h5>
                                 <span>
-                                    <input type="hidden" name="allow_short_stay" value="0">
-                                    <input type="checkbox" name="allow_short_stay" value="1">
+                                   
+                                    <input type="checkbox" name="allow_short_stay" value="true">
                                 </span>
 
                             </div>

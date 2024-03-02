@@ -215,6 +215,9 @@ class ListerDashboardController extends Controller
             'full_day_price_set_by_user' => $request->input('price'),
             'listing_address' => $request->input('listing_address'),
             'isActive' => $request->input('active'),
+            'guest_num' => $request->input('guest_num'),
+            'bed_num' => $request->input('bed_num'),
+            'bathroom_num' => $request->input('bathroom_num'),
             'listing_type' => $request->input('listing_type'),
             'video_link' => $request->input('video_link'),
         ]);
