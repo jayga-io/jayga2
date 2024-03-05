@@ -101,7 +101,7 @@
 
                 <a class="btn btn-warning mt-3 form-control p-2" href="{{route('acccenter')}}"><i
                   class="bi bi-arrow-left"></i> Back to Accounts Center</a>
-                                <!-- Modal -->
+            <!-- Modal -->
                 <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">

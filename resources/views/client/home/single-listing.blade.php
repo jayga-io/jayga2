@@ -244,7 +244,7 @@
                 @if (count($fav) > 0)
                     <span class="px-2" id="un" key="{{$fav[0]->id}}"><i class="fa fa-heart" ></i> UnSave</span>
                 @else
-                    <span class="px-2" id="sy"><i class="fa fa-heart-o" ></i> Save</span>
+                    <span class=" px-2" id="sy"><i class="fa fa-heart-o" ></i> Save</span>
                 @endif
 
                 <span class="px-2"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</span>

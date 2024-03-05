@@ -13,6 +13,9 @@ use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\VoucharController;
 
 
+use App\Http\Controllers\Frontend\ListingController2;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -102,3 +105,14 @@ Route::get('/user/delete/{id}', [UserController::class, 'user_delete']);
 
 //vouchar api
 Route::post('/get/vouchar', [VoucharController::class, 'get_vouchar']);
+
+
+
+
+//Front side apis
+
+//listing side apis
+Route::prefix('listings')->group(function(){
+    Route::get('/sort', [ListingController2::class, 'listing_sort'])->name('listing_sort');
+    Route::get('/filter-listing', [ListingController2::class, 'filter_list'])->name('filterlisting');
+});

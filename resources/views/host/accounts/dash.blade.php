@@ -16,109 +16,108 @@
 
     
 <title>Jayga | Accounts Center</title>
-    <style>
-      .nav-link{
-          color: #139175;
-          font-size: medium;
-          font-weight: 700;
-        }
-        .wrapper {
-            width: 100%;
-            height: 100%;
-            display: grid;
-            place-items: center;
-            background: #2b2d2f;
-        }
+<style>
+  .nav-link {
+    color: #139175;
+    font-size: medium;
+    font-weight: 700;
+  }
 
-.title {
-  text-align: center;
-  margin-top: 55px;
-  color: #fff;
-  font-size: 25px;
-}
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    background: #2b2d2f;
+  }
 
-.card-debit {
-  position: relative;
-  width: 100%;
-  height: 188px;
-  padding: 12px;
+  .title {
+    text-align: center;
+    margin-top: 55px;
+    color: #fff;
+    font-size: 25px;
+  }
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  .card-debit {
+    position: relative;
+    width: 100%;
+    height: 188px;
+    padding: 12px;
 
-  border-radius: 16px;
-  border: solid 4px rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
- /* background-image: url("https://products.ls.graphics/mesh-gradients/images/78.-Night-sky.jpg"); */
-  background-position: center;
-  background-size: cover;
+    border-radius: 16px;
+    border: solid 4px rgba(255, 255, 255, 0.1);
 
-  box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px,
-    rgba(255, 255, 255, 0.12) 0px -12px 30px,
-    rgba(255, 255, 255, 0.12) 0px 4px 6px,
-    rgba(255, 255, 255, 0.17) 0px 12px 13px,
-    rgba(255, 255, 255, 0.09) 0px -3px 5px;
-}
+    /* background-image: url("https://products.ls.graphics/mesh-gradients/images/78.-Night-sky.jpg"); */
+    background-position: center;
+    background-size: cover;
 
-h1 {
-  font-size: 20px;
-}
+    box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px,
+      rgba(255, 255, 255, 0.12) 0px -12px 30px,
+      rgba(255, 255, 255, 0.12) 0px 4px 6px,
+      rgba(255, 255, 255, 0.17) 0px 12px 13px,
+      rgba(255, 255, 255, 0.09) 0px -3px 5px;
+  }
 
-h2 {
-  font-size: 16px;
-}
+  h1 {
+    font-size: 20px;
+  }
 
-h3 {
-  font-size: 11px;
-}
+  h2 {
+    font-size: 16px;
+  }
 
-p {
-  font-size: 8px;
-}
+  h3 {
+    font-size: 11px;
+  }
 
-section {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
+  p {
+    font-size: 8px;
+  }
 
-.top,
-.bottom {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
 
-.top img {
-  width: 20px;
-}
+  .top,
+  .bottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.brand {
-  height: 20px;
-  mix-blend-mode: overlay;
-}
+  .top img {
+    width: 20px;
+  }
 
-.infos {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
+  .brand {
+    height: 20px;
+    mix-blend-mode: overlay;
+  }
 
-.infos--bottom {
-  display: flex;
-  gap: 20px;
-}
+  .infos {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 
-.card-number {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
+  .infos--bottom {
+    display: flex;
+    gap: 20px;
+  }
 
-      
-    </style>
+  .card-number {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+</style>
 </head>
 <body>
     <div class="container">

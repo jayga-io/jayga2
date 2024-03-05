@@ -34,11 +34,11 @@
                    
                     <div class="card-header d-flex justify-content-between">
                         <p>Status: 
-                            @if ($item->isApproved == true)
+                            @if ($item->booking_status == 1)
                                 <span>&#128994; Approved</span>
                             @elseif($item->booking_status == 2)
                                 <span>&#128308; Denied</span>
-                            @else
+                            @elseif($item->booking_status == 0)
                                 <span>&#128993; Pending</span>
                             @endif
 
@@ -63,6 +63,10 @@
                                 </div>
                                 <a class="btn btn-success my-3" href="/client/single-listing/{{$item->listings->listing_id}}">Review
                                     Listing</a>
+                                @if ($item->booking_status == 2)
+                                <button class="btn btn-success my-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Claim Refund</button>
+                                
+                                @endif
                             </div>
                             <div class="col-md-3 d-flex my-5">
                                 <div class="mx-3">
@@ -86,9 +90,64 @@
             
                 @endforeach
             </div>
+
+         <!-- Modal -->
+        <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <form action="#" method="POST">
+                        @csrf
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Refund Request</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+        
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+        
+                            <div class="alert alert-success">
+                                <ul>
+                                    <li>Please fill the form carefully to submit a refund request. Successfull refund claim usually takes 2-3 working days. Please be patient meanwhile.</li>
+                                </ul>
+                            </div>
+                            <label for="user">User Name</label>
+                            <input type="text" name="user_name" class="form-control mb-3">
+                            <label for="bank">Bank Name</label>
+                            <input type="text" name="bank_name" class="form-control mb-3">
+                            <label for="bank">Name on the account</label>
+                            <input type="text" name="acc_name" class="form-control mb-3">
+                            <label for="bank">Account Number</label>
+                            <input type="number" name="acc_number" class="form-control mb-3">
+                            <label for="bank">Routing Number</label>
+                            <input type="text" name="routing_number" class="form-control mb-3">
+                            <label for="bank">Branch Name</label>
+                            <input type="text" name="branch_name" class="form-control mb-3">
+                            <label for="messege">Reason for refund</label>
+                            <textarea name="messege" id="" cols="30" rows="10" class="form-control mb-3" placeholder="Please tell us the reason for refund (Optional)"></textarea>
+        
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Add Bank</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
             
             
-            <div class="m-3 text-center">
+            
+            
+              <div class="m-3 text-center">
             
                 <a href="{{route('backroute')}}" class="btn btn-secondary">Back to home</a>
                 <a href="{{route('userdash')}}" class="btn btn-success">Back to Dashboard</a>
