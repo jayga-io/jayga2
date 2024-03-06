@@ -23,6 +23,8 @@ use App\Http\Middleware\HasProfile;
 use App\Http\Middleware\ClientAuth;
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,18 +68,16 @@ Route::get('/config-cache', function() {
       return 'View cache has been cleared';
   });
 
+
+
+  // admin section
 Route::prefix('admin')->group(function(){
 
-    Route::get('/', function(){
-        return view('admin.dashboard');
-    });
+    Route::get('/', [AdminController::class, 'index'])->name('adminhome');
     
     Route::get('/add-listing', [ListingController::class, 'index'])->name('addlisting');
 
-    Route::get('/pending-listing', function(){
-        $listings = Listing::where('isApproved', false)->get();
-        return view('admin.pending-listing')->with('pending', $listings);
-    })->name('pendinglisting');
+    Route::get('/pending-listing', [ListingController::class, 'pending_listings'])->name('pendinglistings');
 
     Route::get('/all-listing', function(){
         $listings = Listing::orderBy('created_at', 'DESC')->get();
@@ -121,6 +121,12 @@ Route::prefix('admin')->group(function(){
 
 
 });
+
+
+
+
+
+//admin section end
 
 Route::post('/create/listing', [ListingController::class, 'create'])->name('create_listing');
 

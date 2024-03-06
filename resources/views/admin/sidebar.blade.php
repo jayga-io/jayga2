@@ -1,6 +1,6 @@
 <div class="header">
     <div class="header-left">
-        <a href="index.php" class="logo"> <img src="assets/img/logo/Jayga Logo-02.png" width="50" height="70" alt="logo"> <span class="logoclass">Jayga Admin</span> </a>
+        <a href="index.php" class="logo"> <img src="{{asset('assets/img/logo/Jayga Logo-02.png')}}" width="50" height="70" alt="logo"> <span class="logoclass">Jayga Admin</span> </a>
         <a href="index.php" class="logo logo-small"> <img src="assets/img/hotel_logo.png" alt="Logo" width="30" height="30"> </a>
     </div>
     <a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i> </a>
@@ -13,7 +13,7 @@
                 <div class="noti-content">
                     <ul class="notification-list">
                         <li class="notification-message">
-                            <a href="{{ route('pendinglisting') }}">
+                            <a href="{{ route('pendinglistings') }}">
                                 <div class="media">
                                     <div class="media-body">
                                        @if ($pending_count > 0)
@@ -60,14 +60,13 @@
                 <li> <a href="/admin"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
                 
                 <li class="list-divider"></li>
-                <li class="active"> <a href="{{ route('pendinglisting') }}"><i class="fas fa-tachometer-alt"></i> <span>Pending Listings ({{ $pending_count }})</span></a> </li>
+                <li class="active"> <a href="{{ route('pendinglistings') }}"><i class="fas fa-tachometer-alt"></i> <span>Pending Listings ({{ $pending_count }})</span></a> </li>
                <li class="active"><a href="{{route('withdraw_req')}}">Withdraw Requests ({{ $withdraw_count }})</a></li>
                 <li class="list-divider"></li>
                 <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="all-booking.php"> All Booking </a></li>
-                        <li><a href="edit-booking.php"> Edit Booking </a></li>
-                        <li><a href={{route('addbooking')}}> Add Booking </a></li>
+                        
                     </ul>
                 </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Listings </span> <span class="menu-arrow"></span></a>

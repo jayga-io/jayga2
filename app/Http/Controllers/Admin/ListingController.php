@@ -160,6 +160,10 @@ class ListingController extends Controller
         } 
     }
 
+    public function pending_listings(Request $request){
+        $listings = Listing::where('isActive', true)->where('isApproved', false)->get();
+        return view('admin.listings.pending-listing')->with('pending', $listings);
+    }
     /**
      * Store a newly created resource in storage.
      */
