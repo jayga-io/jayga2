@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\VoucharController;
 
 
 use App\Http\Controllers\Frontend\ListingController2;
+use App\Http\Controllers\Frontend\UserloginController;
 
 
 /*
@@ -116,4 +117,11 @@ Route::prefix('listings')->group(function(){
     Route::get('/sort', [ListingController2::class, 'listing_sort'])->name('listing_sort');
     Route::get('/filter-listing', [ListingController2::class, 'filter_list'])->name('filterlisting');
     Route::get('/search-listing', [ListingController2::class, 'search_list'])->name('searchlisting');
+});
+
+//user login apis
+
+Route::prefix('auth')->group(function(){
+    Route::post('/login', [UserloginController::class, 'login'])->name('authuser');
+    Route::post('/otp-verify', [UserloginController::class, 'verify_otp'])->name('otpauthuserverify');
 });
