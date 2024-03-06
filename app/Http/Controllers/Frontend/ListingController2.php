@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Listing;
+use Spatie\QueryBuilder\QueryBuilder;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 
 class ListingController2 extends Controller
 {
@@ -105,10 +108,19 @@ class ListingController2 extends Controller
            ->with('reviews')
            ->get();
 
-           return response()->json([
-            'status' => 200,
-            'listings' => $listing
-           ]);
+           if(count($listing)>0){
+                return response()->json([
+                    'status' => 200,
+                    'listings' => $listing
+                ]);
+           }else{
+            return response()->json([
+                'status' => 404,
+                'listings' => 'No Listing Found'
+            ], 404);
+           }
+
+           
         }else{
             return $validated->errors();
         }
