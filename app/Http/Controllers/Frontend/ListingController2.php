@@ -56,7 +56,8 @@ class ListingController2 extends Controller
 
         $validated = $request->validate([
             'listing_type' => 'required',
-            'full_day_price_set_by_user' => 'required',
+            'min_price' => 'required',
+            'max_price' => 'required',
             'allow_short_stay' => 'required',
             'guest_num' => 'required',
             'bed_num' => 'required',
