@@ -82,4 +82,37 @@ class ListingController2 extends Controller
         }
         
     }
+
+    public function search_list(Request $request){
+        $validated = $request->validate([
+            'listing_type' => 'required',
+            'district' => 'required',
+            'city' => 'string',
+            'guest_num' => 'integer',
+            'checkin' => 'date',
+            'checkout' => 'date',
+        ]);
+
+        if($validated){
+            $listing = QueryBuilder::for(Listing::class)->where('isApproved', true)
+           ->where('isActive', true)
+           ->where('listing_type', $request->query('listing_type'))
+           ->where('district', $request->query('district'))
+           ->where('guest_num', $request->query('guest_num'))
+           ->with('images')
+           ->with('amenities')
+           ->with('restrictions')
+           ->with('reviews')
+           ->get();
+
+           return response()->json([
+            'status' => 200,
+            'listings' => $listing
+           ]);
+        }else{
+            return $validated->errors();
+        }
+
+        
+    }
 }
