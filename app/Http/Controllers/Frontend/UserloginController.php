@@ -24,6 +24,15 @@ class UserloginController extends Controller
             if(count($user)>0){
 
                 User::where('id', $user[0]->id)->update([ 'access_token' => $authToken ]);
+
+                $data = [
+                    "sender_id" => "8809601010510",
+                     "receiver" => $request->input('phone'),
+                     "message" => "Your Jayga OTP is:".$otp,
+                     "remove_duplicate" => true
+                 ];
+
+                 send_sms($data);
                 
                 return response()->json([
                     'status' => '200',
@@ -38,6 +47,15 @@ class UserloginController extends Controller
                     'phone' => $request->input('phone'),
                     'access_token' => $authToken
                 ]);
+
+                $data = [
+                    "sender_id" => "8809601010510",
+                     "receiver" => $request->input('phone'),
+                     "message" => "Your Jayga OTP is:".$otp,
+                     "remove_duplicate" => true
+                 ];
+
+                 send_sms($data);
                 
                 return response()->json([
                     'status' => '200',
