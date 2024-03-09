@@ -256,7 +256,7 @@ class ListingController extends Controller
     
            notify($notifys);
 
-        return redirect(route('pendinglistings'))->with('deleted', 'Listing Declined');
+        return redirect(route('pendinglisting'))->with('deleted', 'Listing Declined');
     }
 
     public function approve(Request $request, $id){

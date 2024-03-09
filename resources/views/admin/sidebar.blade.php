@@ -13,7 +13,7 @@
                 <div class="noti-content">
                     <ul class="notification-list">
                         <li class="notification-message">
-                            <a href="{{ route('pendinglistings') }}">
+                            <a href="{{ route('pendinglisting') }}">
                                 <div class="media">
                                     <div class="media-body">
                                        @if ($pending_count > 0)
@@ -60,8 +60,9 @@
                 <li> <a href="/admin"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
                 
                 <li class="list-divider"></li>
-                <li class="active"> <a href="{{ route('pendinglistings') }}"><i class="fas fa-tachometer-alt"></i> <span>Pending Listings ({{ $pending_count }})</span></a> </li>
+                <li class="active"> <a href="{{ route('pendinglisting') }}"><i class="fas fa-tachometer-alt"></i> <span>Pending Listings ({{ $pending_count }})</span></a> </li>
                <li class="active"><a href="{{route('withdraw_req')}}">Withdraw Requests ({{ $withdraw_count }})</a></li>
+               <li class="active"><a href="{{route('show_refunds')}}">Refund Requests</a></li>
                 <li class="list-divider"></li>
                 <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">

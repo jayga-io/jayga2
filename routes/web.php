@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ListingController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\WithdrawsController;
+use App\Http\Controllers\Admin\RefundsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Host\HostController;
 use App\Http\Controllers\Host\ListerDashboardController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Client\ClientLoginController;
 use App\Http\Controllers\Client\ClientNotificationController;
 use App\Http\Controllers\Client\FavouritesController;
 use App\Http\Controllers\Client\SearchController;
+use App\Http\Controllers\Client\RefundController;
 use App\Models\User;
 use App\Models\Listing;
 use App\Http\Middleware\ensureotp;
@@ -77,7 +79,7 @@ Route::prefix('admin')->group(function(){
     
     Route::get('/add-listing', [ListingController::class, 'index'])->name('addlisting');
 
-    Route::get('/pending-listing', [ListingController::class, 'pending_listings'])->name('pendinglistings');
+    Route::get('/pending-listing', [ListingController::class, 'pending_listings'])->name('pendinglisting');
 
     Route::get('/all-listing', function(){
         $listings = Listing::orderBy('created_at', 'DESC')->get();
@@ -116,8 +118,11 @@ Route::prefix('admin')->group(function(){
     Route::get('/withdraw/requests', [WithdrawsController::class, 'show'])->name('withdraw_req');
     Route::get('/withdraw/confirm/{id}', [WithdrawsController::class, 'mark_paid'])->name('withdraw_confirm');
 
+    //Refund section
 
-
+    Route::get('/refunds', [RefundsController::class, 'show_refunds'])->name('show_refunds');
+    Route::get('/refund-complete/{id}', [RefundsController::class, 'paid'])->name('refundcomplete');
+    Route::get('/delete/refund/{id}', [RefundsController::class, 'delete'])->name('refund_del');
 
 
 
@@ -285,6 +290,8 @@ Route::prefix('client')->group(function(){
         Route::get('/update/booking/{id}', [ClientController::class, 'update']);
 
         Route::get('/my-favourites', [FavouritesController::class, 'show_favs'])->name('showfavs');
+
+        Route::post('/refund-claim', [RefundController::class, 'refund_submit'])->name('claimrefund');
     });
     
    
