@@ -86,7 +86,7 @@
 									<th>Approval Status</th>
 									<th>Active Status</th>
 									<th>View</th>
-									
+									<th>Disable</th>
 									<th>Delete</th>
 								</tr>
 							</thead>
@@ -120,6 +120,12 @@
 											<td><span class="badge rounded-pill bg-secondary" style="color: white">Inactive</span></td>
 										@endif
 										<td><a href="/admin/view-listing/{{$item->listing_id}}" class="btn btn-warning"><i class="fa fa-eye"></i></a></td>
+										@if ($item->isApproved == false)
+										<td><a href="/admin/enable-listing/{{$item->listing_id}}" class="btn btn-success">Enable</a></td>
+										@else
+										<td><a href="/admin/disable-listing/{{$item->listing_id}}" class="btn btn-warning">Disable</a></td>
+										@endif
+										
 										
 										<td><a href="/admin/delete-listing/{{$item->listing_id}}" class="btn btn-warning">Delete</a></td>
 									</tr>

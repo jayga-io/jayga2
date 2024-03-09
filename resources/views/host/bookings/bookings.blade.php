@@ -100,7 +100,7 @@
                                     <td> <span class="badge rounded-pill bg-danger">No slot selected</span></td>
                                 @else
                                     <td>{{ $item->tier }}</td>
-                                    <td>{{$item->short_stays[0]->times}}</td>
+                                    <td>{{$item->short_stays->times}}</td>
                                 @endif
 
                                 

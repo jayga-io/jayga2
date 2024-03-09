@@ -187,7 +187,7 @@ class ListingController extends Controller
         $lister_image = UserPictures::where('user_id', $listing[0]->lister_id)->get();
         $lister_nid = ListerNid::where('listing_id', $id)->get();
        
-        return view('admin.view-listing')
+        return view('admin.listings.view-listing')
         ->with('listing_images', $listingImages)->with('listing', $listing)->with('lister', $lister)
         ->with('lister_image', $lister_image)->with('describes', $describes)->with('restrictions', $restrictions)
         ->with('amenities', $amenities)->with('lister_nid', $lister_nid);
@@ -244,7 +244,7 @@ class ListingController extends Controller
             
         ])->post($url, $data);
 
-        Listing::where('listing_id', $id)->delete();
+       // Listing::where('listing_id', $id)->delete();
 
         $notifys = [
             'user_id' => $user[0]->id,
@@ -256,7 +256,7 @@ class ListingController extends Controller
     
            notify($notifys);
 
-        return redirect(route('pendinglisting'))->with('deleted', 'Listing Declined');
+        return redirect(route('pendinglistings'))->with('deleted', 'Listing Declined');
     }
 
     public function approve(Request $request, $id){
@@ -309,6 +309,47 @@ class ListingController extends Controller
         Listing::where('listing_id', $id)->delete();
 
         return redirect()->back()->with('deleted', 'Listing Deleted');
+    }
+
+    public function enable(Request $request, $id){
+        $ls = Listing::where('listing_id', $id)->get();
+        $notifys = [
+            'user_id' => $ls[0]->lister_id,
+            'lister_id' => $ls[0]->lister_id,
+            'listing_id' => $id,
+            
+            'type' => 'Listing',
+            'messege' => 'Your Listing : '. $ls[0]->listing_title . ' has been enabled'
+           ];
+
+           notify($notifys);
+        Listing::where('listing_id', $id)->update([
+            'isApproved' => true,
+            'isActive' => true,
+        ]);
+
+        return redirect()->back()->with('success', 'Listing Enabled');
+    }
+
+
+    public function disable(Request $request, $id){
+        $ls = Listing::where('listing_id', $id)->with('booking')->get();
+        $notifys = [
+            'user_id' => $ls[0]->lister_id,
+            'lister_id' => $ls[0]->lister_id,
+            'listing_id' => $id,
+            
+            'type' => 'Listing',
+            'messege' => 'Your Listing : '. $ls[0]->listing_title . ' has been disabled'
+           ];
+
+           notify($notifys);
+        Listing::where('listing_id', $id)->update([
+            'isApproved' => false,
+            'isActive' => false,
+        ]);
+
+        return redirect()->back()->with('errors', 'Listing disabled');
     }
 
    

@@ -93,6 +93,10 @@ Route::prefix('admin')->group(function(){
 
     Route::get('/delete-listing/{id}', [ListingController::class, 'delete']);
 
+    Route::get('/enable-listing/{id}', [ListingController::class, 'enable']);
+
+    Route::get('/disable-listing/{id}', [ListingController::class, 'disable']);
+
 
     //booking section
     Route::get('/add-booking', [BookingController::class, 'index'])->name('addbooking');
