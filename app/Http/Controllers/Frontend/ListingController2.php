@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Listing;
+use App\Models\Reviews;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
@@ -126,5 +127,32 @@ class ListingController2 extends Controller
         }
 
         
+    }
+
+    public function single_listing(Request $request, $id){
+        $ls = Listing::where('listing_id', $id)->with('images')->with('amenities')->with('restrictions')->with('reviews')->with('host')->with('available_dates')->get();
+        $fivestarcount = Reviews::where('listing_id', $id)->where('stars', 5)->count();
+        $fourstarcount = Reviews::where('listing_id', $id)->where('stars', 4)->count();
+        $threestarcount = Reviews::where('listing_id', $id)->where('stars', 3)->count();
+        $twostarcount = Reviews::where('listing_id', $id)->where('stars', 2)->count();
+        $onestarcount = Reviews::where('listing_id', $id)->where('stars', 1)->count();
+        if(count($ls)>0){
+            return response()->json([
+                'status' => 200,
+                'listing_details' => $ls,
+                'star_count' => [
+                    'five_stars' => $fivestarcount,
+                    'four_stars' => $fourstarcount,
+                    'three_stars' => $threestarcount,
+                    'two_stars' => $twostarcount,
+                    'one_stars' => $onestarcount,
+                ]
+            ]);
+        }else{
+            return response()->json([
+                'status' => 404,
+                'listing_details' => 'No listing found'
+            ], 404);
+        }
     }
 }
