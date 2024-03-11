@@ -67,7 +67,7 @@ class BookingController extends Controller
                 'listing_id' => $request->input('listing_id'),
                 'booking_id' => $booked[0]->booking_id,
                 'type' => 'booking',
-                'messege' => 'Your Booking at : '.$listing[0]->listing_title. ' has been placed',
+                'messege' => 'Your Booking request at : '.$listing[0]->listing_title. ' has been sent for approval',
 
             ]);
 
