@@ -49,6 +49,8 @@
                                     <span>&#128308; Denied</span>
                                 @elseif($item->booking_status == 0)
                                     <span>&#128993; Pending</span>
+                                @elseif($item->booking_status == 5)
+                                    <span>&#128994; Refunded</span>
                                 @endif
 
 
@@ -75,7 +77,11 @@
                                         Listing</a>
                                     @if ($item->booking_status == 2)
                                         <button class="btn btn-success my-3" data-bs-toggle="modal"
-                                            data-bs-target="#staticBackdrop">Claim Refund</button>
+                                            data-bs-target="#staticBackdrop" id="refund_button" 
+                                            listing-id="{{$item->listing_id}}" 
+                                            lister-id="{{$item->lister_id}}" 
+                                            booking-id="{{$item->booking_id}}"
+                                            refund-amount="{{$item->pay_amount}}" onclick="refund_calc(this)" >Claim Refund</button>
                                     @endif
                                 </div>
                                 <div class="col-md-3 d-flex my-5">
@@ -99,112 +105,103 @@
                     </div>
 
 
-                    <!-- Modal -->
-                    <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <form action="{{ route('claimrefund') }}" method="POST">
-                                    @csrf
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Refund Request</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-
-
-
-                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                            <li class="nav-item" role="presentation">
-                                                <button class="nav-link active" id="bank-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#home-tab-pane" type="button" role="tab"
-                                                    aria-controls="home-tab-pane" aria-selected="true">Bank</button>
-                                            </li>
-
-                                            <li class="nav-item" role="presentation">
-                                                <button class="nav-link" id="bkash-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#bkash-tab-pane" type="button" role="tab"
-                                                    aria-controls="bkash-tab-pane" aria-selected="false">Bkash</button>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
-                                                aria-labelledby="home-tab" tabindex="0">
-                                                <div class="alert alert-success p-2">
-                                                    <ul>
-                                                        <li>Please fill the form carefully to submit a refund request.
-                                                            Successfull refund claim usually takes 2-3 working days.
-                                                            Please be patient meanwhile.</li>
-                                                    </ul>
-                                                </div>
-                                                <input type="hidden" value="{{ Session::get('user') }}"
-                                                    name="user_id">
-                                                <input type="hidden" value="{{ $item->lister_id }}" name="lister_id">
-                                                <input type="hidden" value="{{ $item->listing_id }}"
-                                                    name="listing_id">
-                                                <input type="hidden" value="{{ $item->booking_id }}"
-                                                    name="booking_id">
-                                                <input type="hidden" name="refund_amount"
-                                                    value="{{ $item->pay_amount }}">
-
-                                                <label for="bank">Bank Name</label>
-                                                <input type="text" name="bank_name" class="form-control mb-3">
-                                                <label for="bank">Name on the account</label>
-                                                <input type="text" name="acc_name" class="form-control mb-3">
-                                                <label for="bank">Account Number</label>
-                                                <input type="number" name="acc_number" class="form-control mb-3">
-                                                <label for="bank">Routing Number</label>
-                                                <input type="text" name="routing_num" class="form-control mb-3">
-                                                <label for="bank">Branch Name</label>
-                                                <input type="text" name="branch_name" class="form-control mb-3">
-                                                <label for="messege">Reason for refund</label>
-                                                <textarea name="messege" id="" cols="30" rows="10" class="form-control mb-3"
-                                                    placeholder="Please tell us the reason for refund (Optional)"></textarea>
-                                            </div>
-
-                                            <div class="tab-pane fade" id="bkash-tab-pane" role="tabpanel"
-                                                aria-labelledby="bkash-tab" tabindex="0">
-                                                <div class="my-2">
-                                                    <input type="hidden" value="{{ Session::get('user') }}"
-                                                        name="user_id">
-                                                    <input type="hidden" value="{{ $item->lister_id }}"
-                                                        name="lister_id">
-                                                    <input type="hidden" value="{{ $item->listing_id }}"
-                                                        name="listing_id">
-                                                    <input type="hidden" value="{{ $item->booking_id }}"
-                                                        name="booking_id">
-                                                    <input type="hidden" name="refund_amount"
-                                                        value="{{ $item->pay_amount }}">
-                                                    <label for="bkash" class="form-label">Bkash Number</label>
-                                                    <input type="number" name="bkash_num" class="form-control"
-                                                        placeholder="Enter your bkash account number">
-                                                    <label for="messege">Reason for refund</label>
-                                                    <textarea name="messege" id="" cols="30" rows="10" class="form-control mb-3"
-                                                        placeholder="Please tell us the reason for refund (Optional)"></textarea>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-warning"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-success">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    
                 @endforeach
             </div>
 
 
+            <!-- Modal -->
+            <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form action="{{ route('claimrefund') }}" method="POST">
+                        @csrf
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Refund Request</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
 
+                                    <input type="hidden" value="{{ Session::get('user') }}"
+                                        name="user_id">
+                                    <input type="hidden"  name="lister_id" id="lister_id">
+                                    <input type="hidden"
+                                        name="listing_id" id="listing_id">
+                                    <input type="hidden" 
+                                        name="booking_id" id="booking_id">
+                                    <input type="hidden" name="refund_amount"
+                                        id="refund_amount">
+
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="bank-tab" data-bs-toggle="tab"
+                                        data-bs-target="#home-tab-pane" type="button" role="tab"
+                                        aria-controls="home-tab-pane" aria-selected="true">Bank</button>
+                                </li>
+
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="bkash-tab" data-bs-toggle="tab"
+                                        data-bs-target="#bkash-tab-pane" type="button" role="tab"
+                                        aria-controls="bkash-tab-pane" aria-selected="false">Bkash</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
+                                    aria-labelledby="home-tab" tabindex="0">
+                                    <div class="alert alert-success p-2">
+                                        <ul>
+                                            <li>Please fill the form carefully to submit a refund request.
+                                                Successfull refund claim usually takes 2-3 working days.
+                                                Please be patient meanwhile.</li>
+                                        </ul>
+                                    </div>
+                                    
+
+                                    <label for="bank">Bank Name</label>
+                                    <input type="text" name="bank_name" class="form-control mb-3">
+                                    <label for="bank">Name on the account</label>
+                                    <input type="text" name="acc_name" class="form-control mb-3">
+                                    <label for="bank">Account Number</label>
+                                    <input type="number" name="acc_number" class="form-control mb-3">
+                                    <label for="bank">Routing Number</label>
+                                    <input type="text" name="routing_num" class="form-control mb-3">
+                                    <label for="bank">Branch Name</label>
+                                    <input type="text" name="branch_name" class="form-control mb-3">
+                                    <label for="messege">Reason for refund</label>
+                                    <textarea name="messege" id="" cols="30" rows="10" class="form-control mb-3"
+                                        placeholder="Please tell us the reason for refund (Optional)"></textarea>
+                                </div>
+
+                                <div class="tab-pane fade" id="bkash-tab-pane" role="tabpanel"
+                                    aria-labelledby="bkash-tab" tabindex="0">
+                                    <div class="my-2">
+                                        
+                                        <label for="bkash" class="form-label">Bkash Number</label>
+                                        <input type="number" name="bkash_num" class="form-control"
+                                            placeholder="Enter your bkash account number">
+                                        <label for="messege">Reason for refund</label>
+                                        <textarea name="messege" id="" cols="30" rows="10" class="form-control mb-3"
+                                            placeholder="Please tell us the reason for refund (Optional)"></textarea>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning"
+                                data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -237,6 +234,35 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
+
+
+    <script>
+        var refund_button = document.getElementById("refund_button");
+        var listing_id = document.getElementById('listing_id');
+        var lister_id = document.getElementById('lister_id');
+        var booking_id = document.getElementById('booking_id');
+        var refund_amount = document.getElementById('refund_amount');
+
+        
+
+       
+
+        function refund_calc(e){
+          // console.log(e.getAttribute('listing-id'));
+            listing_id.setAttribute('value', e.getAttribute('listing-id'));
+            lister_id.setAttribute('value', e.getAttribute('lister-id'));
+            booking_id.setAttribute('value', e.getAttribute('booking-id'));
+            refund_amount.setAttribute('value', e.getAttribute('refund-amount'));
+        }
+    </script>
+
+
+
+
+
+
+
+
 </body>
 
 </html>
