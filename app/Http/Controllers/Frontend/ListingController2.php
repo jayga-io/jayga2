@@ -131,18 +131,21 @@ class ListingController2 extends Controller
     }
 
     public function single_listing(Request $request, $id){ 
-        $ls = Listing::where('listing_id', $id)->with('images')->with('amenities')->with('restrictions')->with('reviews')->with('host')->with('booking')->with('disable_dates')->get();
+        $ls = Listing::where('listing_id', $id)->with('images')->with('amenities')->with('restrictions')->with('reviews')->with('host')->with('booking')->get();
         $fivestarcount = Reviews::where('listing_id', $id)->where('stars', 5)->count();
         $fourstarcount = Reviews::where('listing_id', $id)->where('stars', 4)->count();
         $threestarcount = Reviews::where('listing_id', $id)->where('stars', 3)->count();
         $twostarcount = Reviews::where('listing_id', $id)->where('stars', 2)->count();
         $onestarcount = Reviews::where('listing_id', $id)->where('stars', 1)->count();
         $dis_dates = Booking::where('listing_id', $id)->get();
-        $checkindates = [];
-        $checkoutdates = [];
+        $dates = [];
+        
         foreach ($dis_dates as $value) {
-            array_push($checkindates, $value->date_enter);
-            array_push($checkoutdates, $value->date_exit);
+            array_push($dates, [
+                'checkin' => $value->date_enter,
+                'checkout' => $value->date_exit
+            ]);
+           
         }
        // dd($checkindates);
         if(count($ls)>0){
@@ -156,10 +159,7 @@ class ListingController2 extends Controller
                     'two_stars' => $twostarcount,
                     'one_stars' => $onestarcount,
                 ],
-                'disable_dates' => [
-                    'checkin_dates' => $checkindates,
-                    'checkout_dates' => $checkoutdates,
-                ]
+                'disable_dates' => $dates
             ]);
         }else{
             return response()->json([
