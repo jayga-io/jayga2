@@ -66,7 +66,7 @@ class BookingController extends Controller
                 'lister_id' => $request->input('lister_id'),
                 'listing_id' => $request->input('listing_id'),
                 'booking_id' => $booked[0]->booking_id,
-                'type' => 'booking',
+                'type' => 'booking placed',
                 'messege' => 'Your Booking request at : '.$listing[0]->listing_title. ' has been sent for approval',
 
             ]);
@@ -76,7 +76,7 @@ class BookingController extends Controller
                 'lister_id' => $request->input('lister_id'),
                 'listing_id' => $request->input('listing_id'),
                 'booking_id' => $booked[0]->booking_id,
-                'type' => 'booking',
+                'type' => 'booking placed',
                 'messege' => 'Your Listing : '.$listing[0]->listing_title. ' has a new booking request',
 
             ]);
