@@ -46,7 +46,7 @@ class Listing extends Model
         return $this->hasOne(User::class, 'id', 'lister_id');
     }
 
-    public function available_dates(){
+    public function disable_dates(){
         return $this->hasMany(ListingAvailable::class, 'listing_id', 'listing_id');
     }
 
