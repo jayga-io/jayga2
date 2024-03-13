@@ -126,7 +126,7 @@
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <a class="navbar-brand d-flex align-items-center" href="#">
+              <a class="navbar-brand d-flex align-items-center" href="{{route('userdash')}}">
                 <img class="px-3" style="float: right;" src="{{asset('assets/img/logo/Jayga Logo-02.png')}}" width="100" height="80" alt="logo"/>
                 <span class="">Accounts Center</span class="">
               </a>

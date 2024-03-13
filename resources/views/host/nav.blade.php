@@ -5,7 +5,7 @@
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="{{route('home')}}">
+        <a class="navbar-brand" href="{{route('userdash')}}">
             <h2><img class="px-3" style="float: right;" src="{{ asset('assets/img/logo/Jayga Logo-02.png') }}"
                     width="100" height="80" alt="logo" /></h2>
 
