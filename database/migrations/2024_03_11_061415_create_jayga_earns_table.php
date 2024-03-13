@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('jayga_earns', function (Blueprint $table) {
             $table->id();
-            
+            $table->string('invoice');
+            $table->bigInteger('listing_id')->unsigned();
+            $table->foreign('listing_id')->references('listing_id')->on('listings')->onDelete('cascade');
+            $table->bigInteger('booking_id')->unsigned();
+            $table->foreign('booking_id')->references('booking_id')->on('bookings')->onDelete('cascade');
+            $table->string('listing_fee');
+            $table->string('booking_fee');
+            $table->string('total');
             $table->timestamps();
         });
     }

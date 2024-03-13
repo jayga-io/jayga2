@@ -130,6 +130,20 @@ class ListingController extends Controller
                         'first_aid' => $request->input('first_aid'),
                         'fire_extinguish' => $request->input('fire_extinguish'),
                         'cctv' => $request->input('cctv'),
+                        'room_service' => $request->input('room_service'),
+                        'pet_friendly' => $request->input('pet_friendly'),
+                        'airport_shuttle' => $request->input('airport_shuttle'),
+                        'fitness_center' => $request->input('fitness_center'),
+                        'spa' => $request->input('spa'),
+                        'business_center' => $request->input('business_center'),
+                        'bar/lounge' => $request->input('bar/lounge'),
+                        'consierge_services' => $request->input('consierge_services'),
+                        'laundry_service' => $request->input('laundry_service'),
+                        'meeting_rooms' => $request->input('meeting_rooms'),
+                        'outdoor_pool' => $request->input('outdoor_pool'),
+                        'restaurant' => $request->input('restaurant'),
+                        'smoke_free_property' => $request->input('smoke_free_property'),
+                        'kid_friendly' => $request->input('kid_friendly'),
                     ]);
 
                     ListingRestrictions::create([
@@ -310,6 +324,20 @@ class ListingController extends Controller
             'first_aid' => $request->input('first_aid'),
             'fire_extinguish' => $request->input('fire_extinguish'),
             'cctv' => $request->input('cctv'),
+            'room_service' => $request->input('room_service'),
+            'pet_friendly' => $request->input('pet_friendly'),
+            'airport_shuttle' => $request->input('airport_shuttle'),
+            'fitness_center' => $request->input('fitness_center'),
+            'spa' => $request->input('spa'),
+            'business_center' => $request->input('business_center'),
+            'bar/lounge' => $request->input('bar/lounge'),
+            'consierge_services' => $request->input('consierge_services'),
+            'laundry_service' => $request->input('laundry_service'),
+            'meeting_rooms' => $request->input('meeting_rooms'),
+            'outdoor_pool' => $request->input('outdoor_pool'),
+            'restaurant' => $request->input('restaurant'),
+            'smoke_free_property' => $request->input('smoke_free_property'),
+            'kid_friendly' => $request->input('kid_friendly'),
         ]);
 
         ListingRestrictions::where('listing_id', $request->input('listing_id'))->update([

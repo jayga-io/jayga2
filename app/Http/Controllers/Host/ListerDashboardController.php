@@ -11,6 +11,7 @@ use App\Models\Booking;
 use App\Models\ListingGuestAmenities;
 use App\Models\ListingImages;
 use App\Models\ListingRestrictions;
+use App\Models\JaygaEarn;
 use App\Helpers\Sms;
 use Illuminate\Http\Request;
 use Storage;
@@ -99,7 +100,7 @@ class ListerDashboardController extends Controller
         $data = [
             "sender_id" => "8809601010510",
             "receiver" => $phone,
-            "message" => 'Your stay at : '. $listing_name[0]->listing_title . ' has been approved',
+            "message" => 'Dear user, your booking for : '. $listing_name[0]->listing_title . 'with jayga has been approved by the host',
             "remove_duplicate" => true
         ];
 
@@ -132,7 +133,7 @@ class ListerDashboardController extends Controller
         $data = [
             "sender_id" => "8809601010510",
             "receiver" => $phone,
-            "message" => 'Your booking : '. $listing_name[0]->listing_title . ' has been declined',
+            "message" => 'Dear user, your booking for : '. $listing_name[0]->listing_title . ' has been declined by the host',
             "remove_duplicate" => true
         ];
         $notifys = [
@@ -161,14 +162,23 @@ class ListerDashboardController extends Controller
 
     public function complete(Request $request, $id, $amount){
         $user = $request->session()->get('user');
+        $paid_amount = $amount;
+        $lister_fee = ($amount * 6.9) /100;
+        $booking_fee = ($amount * 3) / 100;
+
+        $lister_earn = $amount - $lister_fee;
+        $jayga_earn = $amount - $booking_fee;
+
+        $jayga_total = $lister_fee + $booking_fee ;
+
         Booking::where('booking_id', $id)->update([
             'isComplete' => true,
-            'net_payable' => $amount
+            'net_payable' => $lister_earn
         ]);
         $earning = ListerDashboard::where('lister_id', $user)->get();
         if(count($earning)>0){
-           $update_earnings = $earning[0]->earnings + $amount;
-           $total_earn = $earning[0]->total_earnings + $amount;
+           $update_earnings = $earning[0]->earnings + $lister_earn;
+           $total_earn = $earning[0]->total_earnings + $lister_earn;
             ListerDashboard::where('lister_id', $user)->update([
                 'total_earnings' => $total_earn,
                 'earnings' => $update_earnings
@@ -176,11 +186,22 @@ class ListerDashboardController extends Controller
         }else{
             ListerDashboard::create([
                 'lister_id' => $user,
-                'total_earnings' => $amount,
-                'earnings' => $amount
+                'total_earnings' => $lister_earn,
+                'earnings' => $lister_earn
             ]);
             
         }
+
+        $books = Booking::where('booking_id', $id)->get();
+
+        JaygaEarn::create([
+            'invoice' => $books[0]->invoice_number,
+            'listing_id' => $books[0]->listing_id,
+            'booking_id' => $id,
+            'listing_fee' => $lister_fee,
+            'booking_fee' => $booking_fee,
+            'total' => $jayga_total
+        ]);
         
         toastr()->addSuccess('Booking has been completed');
         return redirect()->back();

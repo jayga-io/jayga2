@@ -236,7 +236,7 @@ class ListingController extends Controller
         $data = [
             "sender_id" => "8809601010510",
             "receiver" => $phone,
-            "message" => 'Your listing : '. $lister_id[0]->listing_title . ' has been declined',
+            "message" => 'Dear user, your request for new listing : '. $lister_id[0]->listing_title . ' has been declined by Jayga',
             "remove_duplicate" => true
         ];
         $response = Http::withHeaders([
@@ -274,7 +274,7 @@ class ListingController extends Controller
         $data = [
             "sender_id" => "8809601010510",
             "receiver" => $phone,
-            "message" => 'Your listing : '. $lister_id[0]->listing_title . ' has been approved',
+            "message" => 'Dear user, your request for new listing : '. $lister_id[0]->listing_title . 'with jayga has been approved',
             "remove_duplicate" => true
         ];
         $response = Http::withHeaders([
@@ -306,7 +306,9 @@ class ListingController extends Controller
             Storage::delete($value->nid_targetlocation);
         }
 
+        
         Listing::where('listing_id', $id)->delete();
+        
 
         return redirect()->back()->with('deleted', 'Listing Deleted');
     }
