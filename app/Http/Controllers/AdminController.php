@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\JaygaEarn;
+use App\Models\Booking;
+use App\Models\Listing;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
 
@@ -13,7 +16,13 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $tk = JaygaEarn::all();
+        $total_earned = JaygaEarn::sum('total');
+        $booking_count = Booking::where('isComplete', false)->where('booking_status', 1)->count();
+        $listings = Listing::where('isApproved', true)->count();
+        $rooms = Listing::where('listing_type', 'room')->count();
+       // dd($total_earned);
+        return view('admin.dashboard')->with('tk', $tk)->with('total', $total_earned)->with('bookings', $booking_count)->with('listings', $listings)->with('rooms', $rooms);
     }
 
     /**

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ListingController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\WithdrawsController;
 use App\Http\Controllers\Admin\RefundsController;
+use App\Http\Controllers\Admin\EarningsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Host\HostController;
 use App\Http\Controllers\Host\ListerDashboardController;
@@ -56,18 +57,29 @@ Route::get('/route-cache', function() {
     });
 
 
-//Clear config cache:
 
-Route::get('/config-cache', function() {
-    Artisan::call('config:cache');
-    return 'Config cache has been cleared';
-  });
 
   // Clear view cache:
   
   Route::get('/view-clear', function() {
       Artisan::call('view:clear');
       return 'View cache has been cleared';
+  });
+
+
+  Route::get('/clear/controllers', function(){
+    Artisan::call('remove:controllers');
+    return 'Controllers cleared';
+  });
+
+  Route::get('/clear/models', function(){
+    Artisan::call('remove:models');
+    return 'Models cleared';
+  });
+
+  Route::get('/clear/database', function(){
+    Artisan::call('remove:database');
+    return 'Database cleared';
   });
 
 
@@ -124,7 +136,8 @@ Route::prefix('admin')->group(function(){
     Route::get('/refund-complete/{id}', [RefundsController::class, 'paid'])->name('refundcomplete');
     Route::get('/delete/refund/{id}', [RefundsController::class, 'delete'])->name('refund_del');
 
-
+    //earning section
+   // Route::get('/earnings', [EarningsController::class, 'show_earnings'])->name('earnings');
 
 
 

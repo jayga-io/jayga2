@@ -78,6 +78,8 @@
                         <li><a href="{{ route('addlisting')}}"> Add Listing </a></li>
                     </ul>
                 </li>
+                <!-- 
+                
                 <li class="submenu"> <a href="#"><i class="fas fa-key"></i> <span> Stays </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="all-rooms.php">All Stays </a></li>
@@ -85,6 +87,9 @@
                         <li><a href="add-room.php"> Add Stays </a></li>
                     </ul>
                 </li>
+                
+                -->
+                
                 <!-- <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Staff </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="all-staff.php">All Staff </a></li>
@@ -120,7 +125,9 @@
                         <li><a href="attendance.php">Attendance </a></li>
                     </ul>
                 </li> -->
-                <li class="submenu"> <a href="#"><i class="far fa-money-bill-alt"></i> <span> Accounts </span> <span class="menu-arrow"></span></a>
+                
+                    <!--
+                    <li class="submenu"> <a href="#"><i class="far fa-money-bill-alt"></i> <span> Accounts </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="invoices.php">Invoices </a></li>
                         <li><a href="payments.php">Payments </a></li>
@@ -128,7 +135,10 @@
                         <li><a href="taxes.php">Taxes </a></li>
                         <li><a href="provident-fund.php">Provident Fund </a></li>
                     </ul>
-                </li>
+                    </li>
+                    -->
+                    
+                
                 <!-- <li class="submenu"> <a href="#"><i class="fas fa-book"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="salary.php">Employee Salary </a></li>
