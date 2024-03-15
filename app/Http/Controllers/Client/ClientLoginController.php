@@ -83,6 +83,7 @@ class ClientLoginController extends Controller
            // dd(session()->all());
             return redirect(route('home'));
         }else{
+            $request->session()->flush();
             return redirect(route('clientlogin'));
         }
     }

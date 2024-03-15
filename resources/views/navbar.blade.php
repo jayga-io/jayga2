@@ -32,7 +32,8 @@
                 </li>
 
 
-                @if (Session::has('phone'))
+
+                @if (Session::has('user'))
 
                     <li class="nav-item mx-3">
                         <a class="nav-link " href="{{ route('userdash') }}">

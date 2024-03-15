@@ -98,6 +98,7 @@ class LoginController extends Controller
             
             return redirect(route('userdash'));
         }else{
+            $request->session()->flush();
             return redirect('/host/login');
         }
     }
