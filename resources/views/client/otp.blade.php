@@ -120,7 +120,7 @@
                         @csrf
                         <div class="form-group">
                             
-                            <input type="text" id="phone" name="OTP" class="form-control" placeholder="Enter the code we sent you {{$code}}" required>
+                            <input type="text" id="phone" name="OTP" class="form-control" placeholder="Enter the code we sent you" required>
                         </div>
                         <button type="submit" class="btn btn-warning" style="color: white;">Verify OTP</button>
                     </form>
