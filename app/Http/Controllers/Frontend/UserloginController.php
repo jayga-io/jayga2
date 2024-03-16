@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserPictures;
+use App\Models\UserNid;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
@@ -92,6 +94,93 @@ class UserloginController extends Controller
             }
         }else{
             return $validated->errors();
+        }
+    }
+
+
+
+    public function get_user(Request $request){
+        $us = User::where('phone', $request->input('phone'))->with('avatars')->with('nids')->get();
+        if(count($us)>0){
+            return response()->json([
+                'status' => 200,
+                'user' => $us
+            ]);
+        }else{
+            return response()->json([
+                'status' => 404,
+                'user' => 'No user found'
+            ], 404);
+        }
+    }
+
+    public function update_user(Request $request){
+        $validated = $request->validate([
+            'user_id' => 'required'
+        ]);
+
+        if($validated){
+            $id = $request->input('user_id');
+            User::where('id', $id)->update([
+                'name' => $request->input('username'),
+                'email' => $request->input('email'),
+            
+                'user_address' => $request->input('address'),
+                'user_dob' => $request->input('dob'),
+            ]);
+
+            if($file = $request->file('photo')){
+                $avatar = UserPictures::where('user_id', $id)->get();
+                if(count($avatar)>0){
+                    Storage::delete($avatar[0]->user_targetlocation);
+                    $path = $file->store('useravatars');
+                    UserPictures::where('user_id', $id)->update([
+                        'user_id' => $id,
+                        'user_filename' => $file->hashName(),
+                        'user_targetlocation' => $path
+                    ]);
+                }else{
+                    $path = $file->store('useravatars');
+                    UserPictures::create([
+                        'user_id' => $id,
+                        'user_filename' => $file->hashName(),
+                        'user_targetlocation' => $path
+                    ]);
+                }
+            }
+
+            if($nid = $request->file('nid')){
+                $nids = UserNid::where('user_id')->get();
+                if(count($nids)>0){
+                    foreach ($nids as $value) {
+                        Storage::delete($value->user_nid_targetlocation);
+                    }
+                    UserNid::where('user_id', $id)->delete();
+
+                    foreach ($nid as $value) {
+                        $path = $nid->store('user_nids');
+                        UserNid::create([
+                            'user_id' => $id ,
+                            'user_nid_filename' => $nids->hashName(), 
+                            'user_nid_targetlocation' => $path 
+                           
+                            
+                        ]);
+                    }
+
+                }else{
+                    foreach ($nid as $value) {
+                        $path = $nid->store('user_nids');
+                        UserNid::create([
+                            'user_id' => $id ,
+                            'user_nid_filename' => $nids->hashName(), 
+                            'user_nid_targetlocation' => $path 
+                           
+                            
+                        ]);
+                    }
+                }
+            }
         }
     }
 }

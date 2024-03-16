@@ -120,9 +120,11 @@ Route::prefix('listings')->group(function(){
     Route::get('/single-listing/{id}', [ListingController2::class, 'single_listing'])->name('single-listing');
 });
 
-//user login apis
+//user login and details apis
 
 Route::prefix('auth')->group(function(){
     Route::post('/login', [UserloginController::class, 'login'])->name('authuser');
     Route::post('/otp-verify', [UserloginController::class, 'verify_otp'])->name('otpauthuserverify');
+    Route::post('/get-user', [UserloginController::class, 'get_user'])->name('fetchuser');
+    Route::post('/update-user', [UserLoginController::class, 'update_user'])->name('update_user');
 });

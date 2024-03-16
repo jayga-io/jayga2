@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\UserPictures;
+use App\Models\UserNid;
 
 class User extends Authenticatable
 {
@@ -46,5 +47,9 @@ class User extends Authenticatable
 
     public function bookings(){
         return $this->hasOne(Booking::class, 'user_id', 'id');
+    }
+
+    public function nids(){
+        return $this->hasMany(UserNid::class, 'user_id', 'id');
     }
 }
