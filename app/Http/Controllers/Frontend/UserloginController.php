@@ -100,7 +100,7 @@ class UserloginController extends Controller
 
 
     public function get_user(Request $request){
-        $us = User::where('phone', $request->input('phone'))->with('avatars')->with('nids')->get();
+        $us = User::where('phone', $request->query('phone'))->with('avatars')->with('nids')->get();
         if(count($us)>0){
             return response()->json([
                 'status' => 200,
@@ -116,7 +116,10 @@ class UserloginController extends Controller
 
     public function update_user(Request $request){
         $validated = $request->validate([
-            'user_id' => 'required'
+            'user_id' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'dob' => 'required'
         ]);
 
         if($validated){
@@ -181,6 +184,13 @@ class UserloginController extends Controller
                     }
                 }
             }
+
+            return response()->json([
+                'status' => 200,
+                'message' => 'User information updated'
+            ]);
+        }else{
+            return $validated->errors();
         }
     }
 }

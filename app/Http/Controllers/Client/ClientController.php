@@ -202,7 +202,17 @@ class ClientController extends Controller
           $timeSlots = TimeSlotShortstays::all();
 
           //dd($timeSlots);
-          $disable_dates = ListingAvailable::where('listing_id', $id)->get();
+         // $disable_dates = ListingAvailable::where('listing_id', $id)->get();
+         $dis_dates = Booking::where('listing_id', $id)->get();
+        $dates = [];
+        
+        foreach ($dis_dates as $value) {
+            array_push($dates, [
+                'checkin' => $value->date_enter,
+                'checkout' => $value->date_exit
+            ]);
+           
+        }
            $reviews = Reviews::where('listing_id', $id)->with('user')->with('user_avatar')->get();
 
            $fivestarcount = Reviews::where('listing_id', $id)->where('stars', 5)->count();
@@ -215,7 +225,7 @@ class ClientController extends Controller
            $favcheck = FavListing::where('user_id', $request->session()->get('user'))->where('listing_id', $id)->get();
 
 
-        return view('client.home.single-listing')->with('listing', $listing)->with('amenities', $amenitiesColumnsWithValueOne)->with('restrictions', $restrictionColumnsWithValueOne)->with('slots', $timeSlots)->with('disable_dates', $disable_dates)->with('user', $reviews)
+        return view('client.home.single-listing')->with('listing', $listing)->with('amenities', $amenitiesColumnsWithValueOne)->with('restrictions', $restrictionColumnsWithValueOne)->with('slots', $timeSlots)->with('disable_dates', $dates)->with('user', $reviews)
         ->with('fav', $favcheck)
         ->with('five', $fivestarcount)
         ->with('four', $fourstarcount)
