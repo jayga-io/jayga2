@@ -8,7 +8,7 @@ use App\Models\Listing;
 use App\Models\TimeSlotShortstays;
 use App\Models\ListingImages;
 
-class Booking extends Model
+class BookingHistory extends Model
 {
     use HasFactory;
     protected $guarded = [];
@@ -24,6 +24,4 @@ class Booking extends Model
     public function listing_images(){
         return $this->hasMany(ListingImages::class, 'listing_id', 'listing_id');
     }
-
-
 }

@@ -12,6 +12,7 @@ use App\Models\ListingGuestAmenities;
 use App\Models\ListingImages;
 use App\Models\ListingRestrictions;
 use App\Models\JaygaEarn;
+use App\Models\BookingHistory;
 use App\Helpers\Sms;
 use Illuminate\Http\Request;
 use Storage;
@@ -192,7 +193,7 @@ class ListerDashboardController extends Controller
             
         }
 
-        $books = Booking::where('booking_id', $id)->get();
+        $books = Booking::where('booking_id', $id)->with('listings')->get();
 
         JaygaEarn::create([
             'invoice' => $books[0]->invoice_number,
@@ -202,6 +203,31 @@ class ListerDashboardController extends Controller
             'booking_fee' => $booking_fee,
             'total' => $jayga_total
         ]);
+
+        BookingHistory::create([
+            'user_id' => $user,
+            'listing_id' => $books[0]->listing_id,
+            'booking_id' => $books[0]->booking_id,
+            'lister_id' => $books[0]->lister_id,
+            'listing_title' => $books[0]->listings->listing_title,
+            'listing_type' => $books[0]->listings->listing_type,
+            'short_stay_flag' => $books[0]->short_stay_flag,
+            'transaction_id' => $books[0]->transaction_id,
+            'date_enter' => $books[0]->date_enter,
+            'date_exit' => $books[0]->date_exit,
+            'tier' => $books[0]->tier,
+            'total_members' => $books[0]->total_members,
+            'email' => $books[0]->email,
+            'phone' => $books[0]->phone,
+            'pay_amount' => $books[0]->pay_amount,
+            'net_payable' => $books[0]->net_payable,
+            'payment_flag' => $books[0]->payment_flag,
+            'booking_status' => $books[0]->booking_status,
+            'isApproved' => $books[0]->isApproved,
+            'isComplete' => $books[0]->isComplete,
+        ]);
+
+        Booking::where('booking_id', $id)->delete();
         
         toastr()->addSuccess('Booking has been completed');
         return redirect()->back();

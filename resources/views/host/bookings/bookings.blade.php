@@ -66,6 +66,7 @@
                   <table id="myTable" class="display ">
                     <thead>
                         <tr>
+                            <th>Booking ID</th>
                             <th>Name on booking</th>
                             <th>Listing Title</th>
 
@@ -87,6 +88,7 @@
                     <tbody>
                         @foreach ($bookings as $item)
                             <tr>
+                                <td>{{$item->booking_id}}</td>
                                 <td>{{ $item->booking_order_name }}</td>
                                 <td>{{ $item->listings->listing_title }}</td>
 
@@ -134,7 +136,7 @@
             <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
                 <table id="myTable2" class="display">
                     <thead>
-                        
+                            <th>Booking ID</th>
                             <th>Name on booking</th>
                             <th>Listing Title</th>
                             <th>phone</th>
@@ -153,6 +155,7 @@
                     <tbody>
                         @foreach ($pendings as $item)
                             <tr>
+                                <td>{{$item->booking_id}}</td>
                                 <td>{{ $item->booking_order_name }}</td>
                                 <td>{{ $item->listings->listing_title }}</td>
                                 <td>{{ $item->phone }}</td>

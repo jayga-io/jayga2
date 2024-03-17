@@ -14,6 +14,7 @@ use App\Models\ListingGuestAmenities;
 use App\Models\ListingRestrictions;
 use App\Models\TimeSlotShortstays;
 use App\Models\Notification;
+use App\Models\BookingHistory;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Route;
@@ -359,9 +360,9 @@ class ClientController extends Controller
        
        $user = $request->session()->get('user');
        $books = Booking::where('user_id', $user)->with('listings')->with('listing_images')->orderBy('created_at', 'DESC')->get();
-       
+       $past_bookings = BookingHistory::where('user_id', $user)->with('listings')->with('listing_images')->orderBy('created_at', 'DESC')->get();
        // dd($books);
-       return view('client.bookings.mybooking')->with('listings', $books);
+       return view('client.bookings.mybooking')->with('listings', $books)->with('past_bookings', $past_bookings);
     }
 
     public function all_listing(Request $request){
