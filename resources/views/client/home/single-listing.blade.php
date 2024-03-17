@@ -1314,7 +1314,7 @@
             var slot_no = document.getElementById('slot_no');
             var input_price = document.getElementById('input_price');
             var day_stayed = document.getElementById('numbr_days');
-
+            var firstDayOfMonth = moment().startOf('month');
             // var dates = @json($disable_dates);
             // var disabled_dates = [];
             //   dates.forEach(element => {
@@ -1325,7 +1325,7 @@
 
             $('input[name="daterange"]').daterangepicker({
                 opens: 'left',
-
+                
                 // isInvalidDate: function(ele) {
 
                 //    var currDate = moment(ele._d).format('YY-MM-DD');
@@ -1333,8 +1333,7 @@
                 //    return ["24-02-05", "24-02-09"].indexOf(currDate) != -1;
                 // },
 
-                startDate: new Date(),
-                
+                autoUpdateInput: true,
                 isInvalidDate: function(date) {
                         // Function to specify invalid date ranges
                         var disabledRanges = <?php echo $disable_dates; ?>;
@@ -1354,6 +1353,7 @@
                     cancelLabel: 'Cancel',
                     
                 },
+               
 
             }, function(start, end, label) {
 
@@ -1395,6 +1395,7 @@
 
             });
 
+                
             $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
                 $(this).val('');
             });

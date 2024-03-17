@@ -56,12 +56,26 @@ class ClientController extends Controller
         $dates = explode("-", $daterange);
        //dd($dates[1]);
        // dd($request->all());
+      // dd($dates[0] === $dates[1]);
+
+      $date1 = strtotime($dates[0]);
+      $date2 = strtotime($dates[1]);
+
+      $checkin = date('m-d-Y', $date1);
+      $checkout = date('m-d-Y', $date2);
+
+     // dd($checkin === $checkout);
+      
+          
         $shortStay = $request->input('short_stay');
         $slot  = $request->input('short_stay_slot');
         $invoice_number = Str::random(8);
 
         if($request->session()->get('user_name') == null && $request->session()->get('user_email') == null){
             return redirect(route('userprofile'))->with('messege', 'Please complete your profile');
+        }elseif($checkin === $checkout){
+            
+            return redirect()->back()->with('error', 'Invalid date selection');
         }else{
 
             $pay = Http::withHeaders([
@@ -103,7 +117,7 @@ class ClientController extends Controller
                          'net_payable' => $request->input('net_payable'),
                          'pay_amount' => $request->input('total_paid'),
                          'total_members' => $request->input('guest_num'),
-                         'date_enter' => $dates[0],
+                         'date_enter' => $checkin,
                          'days_stayed' => $request->input('days_stay'),
                          'short_stay_flag' => $shortStay,
                          'all_day_flag' => 0,
@@ -123,8 +137,8 @@ class ClientController extends Controller
                              'net_payable' => $request->input('net_payable'),
                              'pay_amount' => $request->input('total_paid'),
                              'total_members' => $request->input('guest_num'),
-                             'date_enter' => $dates[0],
-                             'date_exit' => $dates[1],
+                             'date_enter' => $checkin,
+                             'date_exit' => $checkout,
                              'days_stayed' => $request->input('days_stay'),
                              'short_stay_flag' => 0,
                              'all_day_flag' => 1,
