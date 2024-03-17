@@ -15,7 +15,8 @@ class ensureotp
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $check = $request->session()->get('phone');
+        $check = $request->session()->get('user');
+        
         if($check != null){
             return $next($request);
         }else{
