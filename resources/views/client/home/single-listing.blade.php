@@ -227,24 +227,24 @@
         <div class="row mb-3">
             <div class="col-md-6 p-2">
                 @if (count($listing[0]->reviews) > 0)
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="px-2">{{ count($listing[0]->reviews) }} Reviews</span>
-                    <span>Dhaka, Bangladesh</span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="px-2">{{ count($listing[0]->reviews) }} Reviews</span>
+                <span>Dhaka, Bangladesh</span>
                 @else
-                    <div class="card-text mx-2">No reviews yet</div>
+                <div class="card-text mx-2">No reviews yet</div>
                 @endif
 
 
             </div>
             <div class="col-md-6 p-2" id="share">
                 @if (count($fav) > 0)
-                    <span class="px-2" id="un" key="{{$fav[0]->id}}"><i class="fa fa-heart" ></i> UnSave</span>
+                <span class="px-2" id="un" key="{{$fav[0]->id}}"><i class="fa fa-heart"></i> UnSave</span>
                 @else
-                    <span class=" px-2" id="sy"><i class="fa fa-heart-o" ></i> Save</span>
+                <span class=" px-2" id="sy"><i class="fa fa-heart-o"></i> Save</span>
                 @endif
 
                 <span class="px-2"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</span>
@@ -256,10 +256,10 @@
         <div class="row mb-3">
             <div class="scroll-container" style="margin: 0">
                 @foreach ($listing[0]->images as $item)
-                    <a href="https://new.jayga.io/uploads/{{ $item->listing_targetlocation }}" data-toggle="lightbox"
-                        data-gallery="example-gallery">
-                        <img src="https://new.jayga.io/uploads/{{ $item->listing_targetlocation }}" id="product-img">
-                    </a>
+                <a href="https://new.jayga.io/uploads/{{ $item->listing_targetlocation }}" data-toggle="lightbox"
+                    data-gallery="example-gallery">
+                    <img src="https://new.jayga.io/uploads/{{ $item->listing_targetlocation }}" id="product-img">
+                </a>
                 @endforeach
             </div>
 
@@ -273,17 +273,17 @@
             <div class="col-md-8 ">
                 <h2 class="card-title mb-3">Description</h2>
                 <p><img src="{{ asset('assets/img/user.svg') }}" alt=""> {{ $listing[0]->guest_num }} Guests
-                    <span> &#8901; <img src="{{ asset('assets/img/beds.svg') }}"
-                            alt="">{{ $listing[0]->bed_num }} bedrooms</span>
-                    <span> &#8901; <img src="{{ asset('assets/img/bath.svg') }}"
-                            alt="">{{ $listing[0]->bathroom_num }} baths</span>
+                    <span> &#8901; <img src="{{ asset('assets/img/beds.svg') }}" alt="">{{ $listing[0]->bed_num }}
+                        bedrooms</span>
+                    <span> &#8901; <img src="{{ asset('assets/img/bath.svg') }}" alt="">{{ $listing[0]->bathroom_num }}
+                        baths</span>
                 </p>
                 <hr>
                 <div class="card-body mt-5">
                     @if ($listing[0]->description)
-                        {{ $listing[0]->description }}
+                    {{ $listing[0]->description }}
                     @else
-                        <p>No description found</p>
+                    <p>No description found</p>
                     @endif
 
                 </div>
@@ -298,19 +298,18 @@
                 <div class="card-body mb-3">
                     <div class="row row-cols-2 mb-5">
                         @if (count($amenities) > 0)
-                            @foreach ($amenities as $item)
-                                <div class="col-md-4 col-lg-4 col-sm-12">
-                                    <button class="btn btn-outline-dark btn-sm m-1 px-3"
-                                        style="border-radius: 22px; hover:none;" disabled><img
-                                            src="{{ asset('assets/img/' . $item . '.svg') }}" class="p-1"
-                                            style="color:rgb(7, 7, 7)" alt=""
-                                            srcset="">{{ Str::upper($item) }}</button>
-                                </div>
-                            @endforeach
+                        @foreach ($amenities as $item)
+                        <div class="col-md-4 col-lg-4 col-sm-12">
+                            <button class="btn btn-outline-dark btn-sm m-1 px-3"
+                                style="border-radius: 22px; hover:none;" disabled><img
+                                    src="{{ asset('assets/img/' . $item . '.svg') }}" class="p-1"
+                                    style="color:rgb(7, 7, 7)" alt="" srcset="">{{ Str::upper($item) }}</button>
+                        </div>
+                        @endforeach
                         @else
-                            <div class="col-6">
-                                <p>No amenities found !</p>
-                            </div>
+                        <div class="col-6">
+                            <p>No amenities found !</p>
+                        </div>
                         @endif
 
 
@@ -327,8 +326,7 @@
                             style="color: black; font-size: 28.85px; font-family: Montserrat; font-weight: 500; word-wrap: break-word">
                         </span>
                         <span style="color: black; font-size: 32px;  font-weight: 500; word-wrap: break-word">Protect
-                            <span><img src="{{ asset('assets/img/verified-fill.png') }}" class="p-2"
-                                    alt=""></span>
+                            <span><img src="{{ asset('assets/img/verified-fill.png') }}" class="p-2" alt=""></span>
                         </span>
 
                     </div>
@@ -349,77 +347,77 @@
                             <span class="fa fa-star"></span>
 
                             @if (count($listing[0]->reviews) > 0)
-                                <div class="review">
-                                    <div class="d-flex justify-content-between">
-                                        <p class="card-title" style="font-size: larger; font-weight: 700;">
-                                            {{ $listing[0]->reviews[0]->avg_rating }} |</p>
-                                        <span><a href="#">Show all reviews</a></span>
+                            <div class="review">
+                                <div class="d-flex justify-content-between">
+                                    <p class="card-title" style="font-size: larger; font-weight: 700;">
+                                        {{ $listing[0]->reviews[0]->avg_rating }} |</p>
+                                    <span><a href="#">Show all reviews</a></span>
+                                </div>
+
+                                <hr style="border:3px solid #f1f1f1">
+
+                                <div class="row">
+                                    <div class="side">
+                                        <div>5 star</div>
                                     </div>
-
-                                    <hr style="border:3px solid #f1f1f1">
-
-                                    <div class="row">
-                                        <div class="side">
-                                            <div>5 star</div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-{{ $five }}"></div>
                                         </div>
-                                        <div class="middle">
-                                            <div class="bar-container">
-                                                <div class="bar-{{ $five }}"></div>
-                                            </div>
+                                    </div>
+                                    <div class="side right">
+                                        <div>{{ $five }}</div>
+                                    </div>
+                                    <div class="side">
+                                        <div>4 star</div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-{{ $four }}"></div>
                                         </div>
-                                        <div class="side right">
-                                            <div>{{ $five }}</div>
+                                    </div>
+                                    <div class="side right">
+                                        <div>{{ $four }}</div>
+                                    </div>
+                                    <div class="side">
+                                        <div>3 star</div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-{{ $three }}"></div>
                                         </div>
-                                        <div class="side">
-                                            <div>4 star</div>
+                                    </div>
+                                    <div class="side right">
+                                        <div>{{ $three }}</div>
+                                    </div>
+                                    <div class="side">
+                                        <div>2 star</div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-{{ $two }}"></div>
                                         </div>
-                                        <div class="middle">
-                                            <div class="bar-container">
-                                                <div class="bar-{{ $four }}"></div>
-                                            </div>
+                                    </div>
+                                    <div class="side right">
+                                        <div>{{ $two }}</div>
+                                    </div>
+                                    <div class="side">
+                                        <div>1 star</div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-{{ $one }}"></div>
                                         </div>
-                                        <div class="side right">
-                                            <div>{{ $four }}</div>
-                                        </div>
-                                        <div class="side">
-                                            <div>3 star</div>
-                                        </div>
-                                        <div class="middle">
-                                            <div class="bar-container">
-                                                <div class="bar-{{ $three }}"></div>
-                                            </div>
-                                        </div>
-                                        <div class="side right">
-                                            <div>{{ $three }}</div>
-                                        </div>
-                                        <div class="side">
-                                            <div>2 star</div>
-                                        </div>
-                                        <div class="middle">
-                                            <div class="bar-container">
-                                                <div class="bar-{{ $two }}"></div>
-                                            </div>
-                                        </div>
-                                        <div class="side right">
-                                            <div>{{ $two }}</div>
-                                        </div>
-                                        <div class="side">
-                                            <div>1 star</div>
-                                        </div>
-                                        <div class="middle">
-                                            <div class="bar-container">
-                                                <div class="bar-{{ $one }}"></div>
-                                            </div>
-                                        </div>
-                                        <div class="side right">
-                                            <div>{{ $one }}</div>
-                                        </div>
+                                    </div>
+                                    <div class="side right">
+                                        <div>{{ $one }}</div>
                                     </div>
                                 </div>
+                            </div>
                             @else
-                                <div class="review">
-                                    No Reviews Yet
-                                </div>
+                            <div class="review">
+                                No Reviews Yet
+                            </div>
                             @endif
 
                             <!--Highlighted reviews -->
@@ -431,56 +429,55 @@
 
                             @if (isset($user[0]))
 
-                                <div class="mt-5">
-                                    <h5>Highlighted Reviews</h5>
-                                </div>
-                                <div class="card mt-3" style="width: 100%; background-color: #e3e2e2;">
-                                    <div class="card-body">
+                            <div class="mt-5">
+                                <h5>Highlighted Reviews</h5>
+                            </div>
+                            <div class="card mt-3" style="width: 100%; background-color: #e3e2e2;">
+                                <div class="card-body">
 
-                                        <div class="row justify-content-between">
-                                            <div class="col-8 d-flex">
+                                    <div class="row justify-content-between">
+                                        <div class="col-8 d-flex">
 
-                                                @if (isset($user[0]->user_avatar))
-                                                    <img src="{{ asset('/uploads/' . $user[0]->user_avatar->user_targetlocation) }}"
-                                                        class="rounded-circle" style="width: 50px; height: 50px;"
-                                                        alt="">
-                                                @else
-                                                    <img src="{{ asset('assets/img/user_with_no_profile_picture.png') }}"
-                                                        class="rounded-circle" style="width: 50px; height: 50px;"
-                                                        alt="" srcset="">
-                                                @endif
-
-
-                                                <div class="mx-2">
-                                                    <h5 style="line-height: 0.5;">{{ $user[0]->user->name }}</h5>
-                                                    <span class="fs-6 py-0"
-                                                        style="color: #158E72; font-weight: 600">Verified User</span>
-                                                    <p class="my-2">{{ $user[0]->description }}</p>
-                                                </div>
+                                            @if (isset($user[0]->user_avatar))
+                                            <img src="{{ asset('/uploads/' . $user[0]->user_avatar->user_targetlocation) }}"
+                                                class="rounded-circle" style="width: 50px; height: 50px;" alt="">
+                                            @else
+                                            <img src="{{ asset('assets/img/user_with_no_profile_picture.png') }}"
+                                                class="rounded-circle" style="width: 50px; height: 50px;" alt=""
+                                                srcset="">
+                                            @endif
 
 
-
+                                            <div class="mx-2">
+                                                <h5 style="line-height: 0.5;">{{ $user[0]->user->name }}</h5>
+                                                <span class="fs-6 py-0"
+                                                    style="color: #158E72; font-weight: 600">Verified User</span>
+                                                <p class="my-2">{{ $user[0]->description }}</p>
                                             </div>
-                                            <div class="col-4">
-                                                <div>{{ $user[0]->created_at->diffForHumans() }}</div>
-                                                <div>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star"></span>
-                                                </div>
 
-                                            </div>
+
+
                                         </div>
+                                        <div class="col-4">
+                                            <div>{{ $user[0]->created_at->diffForHumans() }}</div>
+                                            <div>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                            </div>
 
-
+                                        </div>
                                     </div>
-                                </div>
-                            @else
-                                <div>
+
 
                                 </div>
+                            </div>
+                            @else
+                            <div>
+
+                            </div>
                             @endif
 
 
@@ -530,76 +527,76 @@
                                     <div class="card" style="box-sizing: border-box;">
                                         <!--Short stay slot-->
                                         @if ($listing[0]->allow_short_stay)
-                                            <div class="accordion accordion-flush" id="accordionFlushExample">
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse"
-                                                            data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                                            aria-controls="flush-collapseOne" id="short_stay_button">
-                                                            <input type="hidden" value="0" name="short_stay">
-                                                            <input type="checkbox" value="1" name="short_stay"
-                                                                id="short_stay_check">
-                                                            <span class="mx-2">Short Stay</span>
-                                                        </button>
-                                                    </h2>
-                                                    <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordionFlushExample">
-                                                        <div class="accordion-body">
-                                                            <div class="row ">
-                                                                <div class="col-12 col-sm-12 justify-content-between">
+                                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                                        aria-expanded="false" aria-controls="flush-collapseOne"
+                                                        id="short_stay_button">
+                                                        <input type="hidden" value="0" name="short_stay">
+                                                        <input type="checkbox" value="1" name="short_stay"
+                                                            id="short_stay_check">
+                                                        <span class="mx-2">Short Stay</span>
+                                                    </button>
+                                                </h2>
+                                                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordionFlushExample">
+                                                    <div class="accordion-body">
+                                                        <div class="row ">
+                                                            <div class="col-12 col-sm-12 justify-content-between">
 
 
-                                                                    <div class="d-flex justify-content-between">
-                                                                        <div>
-
-                                                                            <input type="checkbox"
-                                                                                value="{{ $slots[0]->time_id }}"
-                                                                                name="short_stay_slot" id="s1">
-                                                                            <span class="px-2">Slot 1</span>
-                                                                        </div>
-
-
-                                                                        <span>{{ $slots[0]->times }}</span>
-
-
-                                                                    </div>
-
-                                                                </div>
                                                                 <div class="d-flex justify-content-between">
                                                                     <div>
 
                                                                         <input type="checkbox"
-                                                                            value="{{ $slots[1]->time_id }}"
-                                                                            name="short_stay_slot" id="s2">
-                                                                        <span class="px-2">Slot 2</span>
+                                                                            value="{{ $slots[0]->time_id }}"
+                                                                            name="short_stay_slot" id="s1">
+                                                                        <span class="px-2">Slot 1</span>
                                                                     </div>
 
 
-                                                                    <span>{{ $slots[1]->times }}</span>
+                                                                    <span>{{ $slots[0]->times }}</span>
+
+
                                                                 </div>
-                                                                <div class="d-flex justify-content-between">
-                                                                    <div>
 
-                                                                        <input type="checkbox"
-                                                                            value="{{ $slots[2]->time_id }}"
-                                                                            name="short_stay_slot" id="s3">
-                                                                        <span class="px-2">Slot 3</span>
-                                                                    </div>
+                                                            </div>
+                                                            <div class="d-flex justify-content-between">
+                                                                <div>
 
-
-                                                                    <span>{{ $slots[2]->times }}</span>
+                                                                    <input type="checkbox"
+                                                                        value="{{ $slots[1]->time_id }}"
+                                                                        name="short_stay_slot" id="s2">
+                                                                    <span class="px-2">Slot 2</span>
                                                                 </div>
+
+
+                                                                <span>{{ $slots[1]->times }}</span>
+                                                            </div>
+                                                            <div class="d-flex justify-content-between">
+                                                                <div>
+
+                                                                    <input type="checkbox"
+                                                                        value="{{ $slots[2]->time_id }}"
+                                                                        name="short_stay_slot" id="s3">
+                                                                    <span class="px-2">Slot 3</span>
+                                                                </div>
+
+
+                                                                <span>{{ $slots[2]->times }}</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                            </div>
+                                        </div>
                                         @else
-                                            <div class="card-text text-center">
-                                                Short stay not available for this listing
-                                            </div>
+                                        <div class="card-text text-center">
+                                            Short stay not available for this listing
+                                        </div>
                                         @endif
 
                                     </div>
@@ -607,8 +604,8 @@
                                     <div class="col-12">
 
                                         <div class="form-floating mt-5 mb-3">
-                                            <input type="text" name="daterange" class="form-control"
-                                                id="daterangeinput" required />
+                                            <input type="text" name="daterange" class="form-control" id="daterangeinput"
+                                                required />
                                             <label for="floatingInput">Checkin - Checkout</label>
 
 
@@ -638,8 +635,7 @@
                                                         <input type="button" value="-"
                                                             class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
                                                             data-field="quantity">
-                                                        <input type="number" step="1" max="10"
-                                                            value="1" name="quantity"
+                                                        <input type="number" step="1" max="10" value="1" name="quantity"
                                                             class="quantity-field border-0 text-center w-25">
                                                         <input type="button" value="+"
                                                             class="button-plus border rounded-circle icon-shape icon-sm "
@@ -657,8 +653,7 @@
                                                         <input type="button" value="-"
                                                             class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
                                                             data-field="quantity">
-                                                        <input type="number" step="1" max="10"
-                                                            value="0" name="quantity"
+                                                        <input type="number" step="1" max="10" value="0" name="quantity"
                                                             class="quantity-field border-0 text-center w-25">
                                                         <input type="button" value="+"
                                                             class="button-plus border rounded-circle icon-shape icon-sm "
@@ -676,8 +671,7 @@
                                                         <input type="button" value="-"
                                                             class="button-minus border rounded-circle  icon-shape icon-sm mx-1 "
                                                             data-field="quantity">
-                                                        <input type="number" step="1" max="10"
-                                                            value="0" name="quantity"
+                                                        <input type="number" step="1" max="10" value="0" name="quantity"
                                                             class="quantity-field border-0 text-center w-25">
                                                         <input type="button" value="+"
                                                             class="button-plus border rounded-circle icon-shape icon-sm "
@@ -712,7 +706,8 @@
                                         <input type="hidden" id="total_money" name="total_paid"
                                             value="{{ $listing[0]->full_day_price_set_by_user + ($listing[0]->full_day_price_set_by_user * 3) / 100 }}">
                                         <span style="font-size: 32px; font-weight: 700;" id="pay_amount">৳
-                                            {{ $listing[0]->full_day_price_set_by_user + ($listing[0]->full_day_price_set_by_user * 3) / 100 }}</span>
+                                            {{ $listing[0]->full_day_price_set_by_user +
+                                            ($listing[0]->full_day_price_set_by_user * 3) / 100 }}</span>
                                     </div>
                                     <div class="my-3">
                                         <button type="submit" class="form-control btn btn-success p-3"
@@ -742,10 +737,10 @@
             <div class="col-12">
 
                 @if (isset($listing[0]->lat) && isset($listing[0]->long))
-                    <h2>Location</h2>
-                    <div id="map" style="width:100%;height:400px;"></div>
+                <h2>Location</h2>
+                <div id="map" style="width:100%;height:400px;"></div>
                 @else
-                    <div>Location not found</div>
+                <div>Location not found</div>
                 @endif
 
 
@@ -760,11 +755,11 @@
             <div class="d-flex justify-content-between mb-5">
                 <div class="col-md-6 col-sm-12 d-flex">
                     @if ($listing[0]->host->avatars)
-                        <img src="https://new.jayga.io/uploads/{{ $listing[0]->host->avatars->user_targetlocation }}"
-                            class="rounded-circle" style="width: 120px; height: 120px;" alt="">
+                    <img src="https://new.jayga.io/uploads/{{ $listing[0]->host->avatars->user_targetlocation }}"
+                        class="rounded-circle" style="width: 120px; height: 120px;" alt="">
                     @else
-                        <img src="{{ asset('assets/img/user_with_no_profile_picture.png') }}" class="rounded-circle"
-                            style="width: 120px; height: 120px;" alt="" srcset="">
+                    <img src="{{ asset('assets/img/user_with_no_profile_picture.png') }}" class="rounded-circle"
+                        style="width: 120px; height: 120px;" alt="" srcset="">
                     @endif
 
                     <div class="container mx-5">
@@ -786,13 +781,13 @@
                 </div>
                 <div class="col-md-6" id="host_desc">
                     @if ($listing[0]->host->about)
-                        <div class="card-text">
-                            {{ $listing[0]->host->about }}
-                        </div>
+                    <div class="card-text">
+                        {{ $listing[0]->host->about }}
+                    </div>
                     @else
-                        <div class="card-text">
-                            <small class="text-muted fs-6 fw-lighter fst-italic">Host description not provided!</small>
-                        </div>
+                    <div class="card-text">
+                        <small class="text-muted fs-6 fw-lighter fst-italic">Host description not provided!</small>
+                    </div>
                     @endif
 
                 </div>
@@ -816,19 +811,19 @@
                         <div class="accordion-body">
                             <div class="row row-cols-2 mb-3">
                                 @if (count($restrictions) > 0)
-                                    @foreach ($restrictions as $item)
-                                        <div class="col-md-4 col-lg-4 col-sm-12">
-                                            <button class="btn btn-outline-dark btn-sm m-1 px-3"
-                                                style="border-radius: 22px; hover:none;" disabled><img
-                                                    src="{{ asset('assets/img/' . $item . '.svg') }}" class="p-1"
-                                                    style="color:rgb(7, 7, 7)" alt="" srcset="">
-                                                {{ Str::upper($item) }}</button>
-                                        </div>
-                                    @endforeach
+                                @foreach ($restrictions as $item)
+                                <div class="col-md-4 col-lg-4 col-sm-12">
+                                    <button class="btn btn-outline-dark btn-sm m-1 px-3"
+                                        style="border-radius: 22px; hover:none;" disabled><img
+                                            src="{{ asset('assets/img/' . $item . '.svg') }}" class="p-1"
+                                            style="color:rgb(7, 7, 7)" alt="" srcset="">
+                                        {{ Str::upper($item) }}</button>
+                                </div>
+                                @endforeach
                                 @else
-                                    <div class="col-6">
-                                        <p>No restrictions found !</p>
-                                    </div>
+                                <div class="col-6">
+                                    <p>No restrictions found !</p>
+                                </div>
                                 @endif
 
 
@@ -899,7 +894,7 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.3/dist/index.bundle.min.js"></script>
-   
+
     <script>
         $("#sy").click(function() {
             $.post("<?php echo env('APP_URL');?>/api/add/fav/listing", {
@@ -1339,9 +1334,26 @@
                 // },
 
                 startDate: new Date(),
-                locale: {
-                    cancelLabel: 'Clear'
-                }
+                
+                isInvalidDate: function(date) {
+                        // Function to specify invalid date ranges
+                        var disabledRanges = <?php echo $disable_dates; ?>;
+
+                        for (var i = 0; i < disabledRanges.length; i++) {
+                            if (date.isBetween(disabledRanges[i].checkin, disabledRanges[i].checkout, null, '[]')) {
+                                return true;
+                            }
+                        }
+                       // return false;
+                },
+              
+               locale: {
+                    //format: 'YYYY-MM-DD',
+                    
+                    applyLabel: 'Apply',
+                    cancelLabel: 'Cancel',
+                    
+                },
 
             }, function(start, end, label) {
 

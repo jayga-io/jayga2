@@ -51,6 +51,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+       // dd($request->all());
         $daterange = $request->input('daterange');
         $dates = explode("-", $daterange);
        //dd($dates[1]);
@@ -59,7 +60,7 @@ class ClientController extends Controller
         $slot  = $request->input('short_stay_slot');
         $invoice_number = Str::random(8);
 
-        if($request->session()->get('user_name') == null){
+        if($request->session()->get('user_name') == null && $request->session()->get('user_email') == null){
             return redirect(route('userprofile'))->with('messege', 'Please complete your profile');
         }else{
 
@@ -213,6 +214,12 @@ class ClientController extends Controller
             ]);
            
         }
+
+        $newDates = json_encode($dates);
+        $midDates = json_decode($newDates);
+        $decodDates = collect($midDates);
+       // dd($decodDates[0]->checkin);
+
            $reviews = Reviews::where('listing_id', $id)->with('user')->with('user_avatar')->get();
 
            $fivestarcount = Reviews::where('listing_id', $id)->where('stars', 5)->count();
@@ -225,7 +232,7 @@ class ClientController extends Controller
            $favcheck = FavListing::where('user_id', $request->session()->get('user'))->where('listing_id', $id)->get();
 
 
-        return view('client.home.single-listing')->with('listing', $listing)->with('amenities', $amenitiesColumnsWithValueOne)->with('restrictions', $restrictionColumnsWithValueOne)->with('slots', $timeSlots)->with('disable_dates', $dates)->with('user', $reviews)
+        return view('client.home.single-listing')->with('listing', $listing)->with('amenities', $amenitiesColumnsWithValueOne)->with('restrictions', $restrictionColumnsWithValueOne)->with('slots', $timeSlots)->with('disable_dates', $decodDates)->with('user', $reviews)
         ->with('fav', $favcheck)
         ->with('five', $fivestarcount)
         ->with('four', $fourstarcount)
