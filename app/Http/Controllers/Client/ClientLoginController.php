@@ -25,7 +25,7 @@ class ClientLoginController extends Controller
                   "remove_duplicate" => true
               ];
 
-             // send_sms($data);
+              send_sms($data);
         session([
             'otp' => $otp,
             'phone' => $phone,
