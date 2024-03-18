@@ -8,6 +8,7 @@ use App\Models\Booking;
 use App\Models\Listing;
 use App\Models\User;
 use App\Models\Notification;
+use App\Models\BookingHistory;
 use Illuminate\Support\Facades\Http;
 
 class BookingController extends Controller
@@ -120,10 +121,13 @@ class BookingController extends Controller
 
         if($validated){
             $bookings = Booking::where('user_id', $request->input('user_id'))->with('listings')->with('listings.images')->get();
-            if(count($bookings)>0){
+            $past_bookings = BookingHistory::where('user_id', $request->input('user_id'))->with('listings')->with('listings.images')->get();
+            
+            if(count($bookings)>0 || count($past_bookings)>0){
                 return response()->json([
                     'status' => true,
-                    'bookings' => $bookings
+                    'bookings' => $bookings,
+                    'past_bookings' => $past_bookings
                 ]);
             }else{
                 return response()->json([
