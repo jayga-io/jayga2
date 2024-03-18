@@ -59,11 +59,7 @@ class ClientController extends Controller
        // dd($request->all());
       // dd($dates[0] === $dates[1]);
 
-      $date1 = strtotime($dates[0]);
-      $date2 = strtotime($dates[1]);
-
-      $checkin = date('m-d-Y', $date1);
-      $checkout = date('m-d-Y', $date2);
+     
 
      // dd($checkin === $checkout);
       
@@ -74,9 +70,6 @@ class ClientController extends Controller
 
         if($request->session()->get('user_name') == null && $request->session()->get('user_email') == null){
             return redirect(route('userprofile'))->with('messege', 'Please complete your profile');
-        }elseif($checkin === $checkout){
-            
-            return redirect()->back()->with('error', 'Invalid date selection');
         }else{
 
             $pay = Http::withHeaders([
@@ -110,6 +103,11 @@ class ClientController extends Controller
                 if($make_payment_response->status == 'success'){
     
                     if(isset($shortStay) && isset($slot)){
+                        $date1 = strtotime($dates[0]);
+                       // $date2 = strtotime($dates[1]);
+                  
+                        $checkin = date('m-d-Y', $date1);
+                      //  $checkout = date('m-d-Y', $date2);
                         Booking::create([
                          'user_id' => $request->input('user_id'),
                          'booking_order_name' => $request->input('booking_order_name'),
@@ -119,6 +117,7 @@ class ClientController extends Controller
                          'pay_amount' => $request->input('total_paid'),
                          'total_members' => $request->input('guest_num'),
                          'date_enter' => $checkin,
+                         'date_exit' => $checkin,
                          'days_stayed' => $request->input('days_stay'),
                          'short_stay_flag' => $shortStay,
                          'all_day_flag' => 0,
@@ -130,7 +129,15 @@ class ClientController extends Controller
                      ]); 
                         // return redirect()->back()->with('success', 'Booking placed successfully');
                      }else{
-                         Booking::create([
+                        $date1 = strtotime($dates[0]);
+                        $date2 = strtotime($dates[1]);
+                  
+                        $checkin = date('m-d-Y', $date1);
+                        $checkout = date('m-d-Y', $date2);
+                        if($checkin === $checkout){
+                            return redirect()->back()->with('error', 'Invalid date selection');
+                        }else{
+                            Booking::create([
                              'user_id' => $request->input('user_id'),
                              'booking_order_name' => $request->input('booking_order_name'),
                              'listing_id' => $request->input('listing_id'),
@@ -149,6 +156,8 @@ class ClientController extends Controller
                             'invoice_number' => $invoice_number,
                             'platform_type' => 'web',
                          ]);
+                        }
+                         
                         // return redirect()->back()->with('success', 'Booking placed successfully');
                      }
                     

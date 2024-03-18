@@ -976,7 +976,27 @@
                 $('input[name="daterange"]').daterangepicker({
                     singleDatePicker: true,
                     showDropdowns: true,
-                });
+                    autoUpdateInput: true,
+                    isInvalidDate: function(date) {
+                        // Function to specify invalid date ranges
+                        var disabledRanges = <?php echo $disable_dates; ?>;
+
+                        for (var i = 0; i < disabledRanges.length; i++) {
+                            if (date.isBetween(disabledRanges[i].checkin, disabledRanges[i].checkout, null, '[]')) {
+                                return true;
+                            }
+                        }
+                       // return false;
+                },
+              
+               locale: {
+                    //format: 'YYYY-MM-DD',
+                    
+                    applyLabel: 'Apply',
+                    cancelLabel: 'Cancel',
+                    
+                },
+            });
 
             } else {
                 var commision = (whole_day_price * 3) / 100;
@@ -999,9 +1019,27 @@
                     // },
 
                     startDate: new Date(),
-                    locale: {
-                        cancelLabel: 'Clear'
-                    }
+
+                    autoUpdateInput: true,
+                    isInvalidDate: function(date) {
+                        // Function to specify invalid date ranges
+                        var disabledRanges = <?php echo $disable_dates; ?>;
+
+                        for (var i = 0; i < disabledRanges.length; i++) {
+                            if (date.isBetween(disabledRanges[i].checkin, disabledRanges[i].checkout, null, '[]')) {
+                                return true;
+                            }
+                        }
+                       // return false;
+                },
+              
+               locale: {
+                    //format: 'YYYY-MM-DD',
+                    
+                    applyLabel: 'Apply',
+                    cancelLabel: 'Cancel',
+                    
+                },
 
                 }, function(start, end, label) {
 
@@ -1082,7 +1120,27 @@
                 $('input[name="daterange"]').daterangepicker({
                     singleDatePicker: true,
                     showDropdowns: true,
-                });
+                    autoUpdateInput: true,
+                    isInvalidDate: function(date) {
+                        // Function to specify invalid date ranges
+                        var disabledRanges = <?php echo $disable_dates; ?>;
+
+                        for (var i = 0; i < disabledRanges.length; i++) {
+                            if (date.isBetween(disabledRanges[i].checkin, disabledRanges[i].checkout, null, '[]')) {
+                                return true;
+                            }
+                        }
+                       // return false;
+                },
+              
+               locale: {
+                    //format: 'YYYY-MM-DD',
+                    
+                    applyLabel: 'Apply',
+                    cancelLabel: 'Cancel',
+                    
+                },
+            });
 
             } else {
                 var commision = (whole_day_price * 3) / 100;
@@ -1104,9 +1162,26 @@
                     // },
 
                     startDate: new Date(),
-                    locale: {
-                        cancelLabel: 'Clear'
-                    }
+                    autoUpdateInput: true,
+                    isInvalidDate: function(date) {
+                        // Function to specify invalid date ranges
+                        var disabledRanges = <?php echo $disable_dates; ?>;
+
+                        for (var i = 0; i < disabledRanges.length; i++) {
+                            if (date.isBetween(disabledRanges[i].checkin, disabledRanges[i].checkout, null, '[]')) {
+                                return true;
+                            }
+                        }
+                       // return false;
+                },
+              
+               locale: {
+                    //format: 'YYYY-MM-DD',
+                    
+                    applyLabel: 'Apply',
+                    cancelLabel: 'Cancel',
+                    
+                },
 
                 }, function(start, end, label) {
 
@@ -1179,7 +1254,27 @@
                 $('input[name="daterange"]').daterangepicker({
                     singleDatePicker: true,
                     showDropdowns: true,
-                });
+                    autoUpdateInput: true,
+                    isInvalidDate: function(date) {
+                        // Function to specify invalid date ranges
+                        var disabledRanges = <?php echo $disable_dates; ?>;
+
+                        for (var i = 0; i < disabledRanges.length; i++) {
+                            if (date.isBetween(disabledRanges[i].checkin, disabledRanges[i].checkout, null, '[]')) {
+                                return true;
+                            }
+                        }
+                       // return false;
+                },
+              
+               locale: {
+                    //format: 'YYYY-MM-DD',
+                    
+                    applyLabel: 'Apply',
+                    cancelLabel: 'Cancel',
+                    
+                },
+            });
 
             } else {
                 var commision = (whole_day_price * 3) / 100;
@@ -1202,11 +1297,28 @@
                     // },
 
                     startDate: new Date(),
-                    locale: {
-                        cancelLabel: 'Clear'
-                    }
+                    autoUpdateInput: true,
+                    isInvalidDate: function(date) {
+                        // Function to specify invalid date ranges
+                        var disabledRanges = <?php echo $disable_dates; ?>;
 
-                }, function(start, end, label) {
+                        for (var i = 0; i < disabledRanges.length; i++) {
+                            if (date.isBetween(disabledRanges[i].checkin, disabledRanges[i].checkout, null, '[]')) {
+                                return true;
+                            }
+                        }
+                       // return false;
+                },
+              
+               locale: {
+                    //format: 'YYYY-MM-DD',
+                    
+                    applyLabel: 'Apply',
+                    cancelLabel: 'Cancel',
+                    
+                },
+
+            }, function(start, end, label) {
 
 
                     // console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
