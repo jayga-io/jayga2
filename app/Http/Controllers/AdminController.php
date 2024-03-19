@@ -8,6 +8,7 @@ use App\Models\Booking;
 use App\Models\Listing;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -28,9 +29,9 @@ class AdminController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function login(Request $request)
     {
-        //
+        return view('admin.login.login');
     }
 
     /**

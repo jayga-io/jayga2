@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 
 class ClientController extends Controller
 {
@@ -106,7 +108,7 @@ class ClientController extends Controller
                         $date1 = strtotime($dates[0]);
                        // $date2 = strtotime($dates[1]);
                   
-                        $checkin = date('m-d-Y', $date1);
+                        $checkin = date('Y-m-d', $date1);
                       //  $checkout = date('m-d-Y', $date2);
                         Booking::create([
                          'user_id' => $request->input('user_id'),
@@ -127,13 +129,34 @@ class ClientController extends Controller
                          'invoice_number' => $invoice_number,
                          'platform_type' => 'web',
                      ]); 
+
+                     $booked = Booking::where('invoice_number', $invoice_number)->get();
+                     ListingAvailable::create([
+                        'lister_id' => $request->input('lister_id'),
+                        'listing_id' => $request->input('listing_id'),
+                        'booking_id' => $booked[0]->booking_id,
+                        'dates' => $checkin
+    
+                    ]);
+
                         // return redirect()->back()->with('success', 'Booking placed successfully');
                      }else{
                         $date1 = strtotime($dates[0]);
                         $date2 = strtotime($dates[1]);
                   
-                        $checkin = date('m-d-Y', $date1);
-                        $checkout = date('m-d-Y', $date2);
+                        $checkin = date('Y-m-d', $date1);
+                        $checkout = date('Y-m-d', $date2);
+
+
+                        
+
+                       $bet1 =  Carbon::parse($checkin);
+                         $bet2 =  Carbon::parse($checkout);
+
+                        $periods = CarbonPeriod::create($bet1, $bet2);
+
+                      //  dd($periods);
+
                         if($checkin === $checkout){
                             return redirect()->back()->with('error', 'Invalid date selection');
                         }else{
@@ -156,14 +179,34 @@ class ClientController extends Controller
                             'invoice_number' => $invoice_number,
                             'platform_type' => 'web',
                          ]);
+
+                        // Array to store the dates between $start and $end
+                        $intrvl = [];
+
+                        $booked = Booking::where('invoice_number', $invoice_number)->get();
+
+                        // Iterate over each date in the period and add it to the $dateRange array
+                        foreach ($periods as $d) {
+                            $intrvl[] = $d->toDateString();
+                        }
+                            foreach ($intrvl as $key => $value) {
+                                ListingAvailable::create([
+                                    'lister_id' => $request->input('lister_id'),
+                                    'listing_id' => $request->input('listing_id'),
+                                    'booking_id' => $booked[0]->booking_id,
+                                    'dates' => $value
+                
+                                ]);
+                            }
                         }
                          
                         // return redirect()->back()->with('success', 'Booking placed successfully');
                      }
                     
+                    
     
-                   
-    
+
+                     
                      
     
     

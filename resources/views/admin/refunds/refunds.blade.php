@@ -12,7 +12,7 @@
 
         <div class="row">
             <div class="col">
-                <table id="myTable" class="display">
+                <table id="myTableRefunds" class="display">
                     <thead>
                         <tr>
                             <th>id</th>
@@ -104,6 +104,10 @@
                 </table>
             </div>
         </div>
+
+      
+           
+        
 
     </div>
 @endsection

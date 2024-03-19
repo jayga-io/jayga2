@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Refunds;
 use App\Models\Booking;
+use App\Models\BookingHistory;
 
 class RefundsController extends Controller
 {
@@ -19,7 +20,7 @@ class RefundsController extends Controller
             'isPaid' => true
         ]);
         $book = Refunds::where('id', $id)->get();
-        Booking::where('booking_id', $book[0]->booking_id)->update([
+        BookingHistory::where('booking_id', $book[0]->booking_id)->update([
             'booking_status' => 5
         ]);
         return redirect()->back()->with('success', 'Refund cleared');

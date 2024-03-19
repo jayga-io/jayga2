@@ -89,6 +89,8 @@ Route::prefix('admin')->group(function(){
 
     Route::get('/', [AdminController::class, 'index'])->name('adminhome');
     
+    Route::get('/login', [AdminController::class, 'login'])->name('adminlogin');
+    
     Route::get('/add-listing', [ListingController::class, 'index'])->name('addlisting');
 
     Route::get('/pending-listing', [ListingController::class, 'pending_listings'])->name('pendinglisting');

@@ -12,6 +12,7 @@ use App\Models\ListingGuestAmenities;
 use App\Models\ListingImages;
 use App\Models\ListingRestrictions;
 use App\Models\JaygaEarn;
+use App\Models\ListingAvailable;
 use App\Models\BookingHistory;
 use App\Helpers\Sms;
 use Illuminate\Http\Request;
@@ -127,8 +128,10 @@ class ListerDashboardController extends Controller
         $listing_name = Listing::where('listing_id', $booking_id[0]->listing_id)->get();
         Booking::where('booking_id', $id)->update([
             'booking_status' => 2,
-            'isApproved' => true
+            'isApproved' => false
         ]);
+
+        ListingAvailable::where('booking_id', $id)->delete();
 
         $phone = $booking_id[0]->phone;
         $data = [
@@ -145,9 +148,38 @@ class ListerDashboardController extends Controller
             'type' => 'Booking',
             'messege' => 'Your booking : '. $listing_name[0]->listing_title . ' has been declined'
            ];
+
+           $books = Booking::where('booking_id', $id)->with('listings')->get();
+           
+           BookingHistory::create([
+            'user_id' => $books[0]->user_id,
+            'listing_id' => $books[0]->listing_id,
+            'booking_id' => $books[0]->booking_id,
+            'lister_id' => $books[0]->lister_id,
+            'listing_title' => $books[0]->listings->listing_title,
+            'listing_type' => $books[0]->listings->listing_type,
+            'short_stay_flag' => $books[0]->short_stay_flag,
+            'transaction_id' => $books[0]->transaction_id,
+            'date_enter' => $books[0]->date_enter,
+            'date_exit' => $books[0]->date_exit,
+            'tier' => $books[0]->tier,
+            'total_members' => $books[0]->total_members,
+            'email' => $books[0]->email,
+            'phone' => $books[0]->phone,
+            'pay_amount' => $books[0]->pay_amount,
+            'net_payable' => $books[0]->net_payable,
+            'payment_flag' => $books[0]->payment_flag,
+            'booking_status' => $books[0]->booking_status,
+            'isApproved' => $books[0]->isApproved,
+            'isComplete' => $books[0]->isComplete,
+        ]);
+        notify($notifys);
+
+        Booking::where('booking_id', $id)->delete();
     
-           notify($notifys);
+          
            send_sms($data);
+           
         toastr()->addWarning('Booking has been declined');
         return redirect()->back();
     }
@@ -156,6 +188,7 @@ class ListerDashboardController extends Controller
         Booking::where('booking_id', $id)->update([
             'booking_status' => 2,
         ]);
+        ListingAvailable::where('booking_id', $id)->delete();
         toastr()->addWarning('Booking has been canceled');
         return redirect()->back();
     }
@@ -228,6 +261,7 @@ class ListerDashboardController extends Controller
         ]);
 
         Booking::where('booking_id', $id)->delete();
+        ListingAvailable::where('booking_id', $id)->delete();
         
         toastr()->addSuccess('Booking has been completed');
         return redirect()->back();

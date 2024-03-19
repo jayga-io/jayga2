@@ -31,6 +31,11 @@
 	<script>
 		let table = new DataTable('#myTable');
 	</script>
+	<script>
+		let table2 = new DataTable('#myTableRefunds',{
+			  scrollX: true
+			});
+	</script>
    
 	<script src="{{asset('assets/js/popper.min.js')}}"></script>
 	<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>

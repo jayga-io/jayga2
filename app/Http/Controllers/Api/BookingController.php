@@ -9,6 +9,7 @@ use App\Models\Listing;
 use App\Models\User;
 use App\Models\Notification;
 use App\Models\BookingHistory;
+use App\Models\ListingAvailable;
 use Illuminate\Support\Facades\Http;
 
 class BookingController extends Controller
@@ -25,6 +26,7 @@ class BookingController extends Controller
             'all_day_flag' => 'required',
             'transaction_id' => 'required',
             'phone' => 'required',
+            'disable_dates' => 'required',
 
         ]);
 
@@ -81,6 +83,19 @@ class BookingController extends Controller
                 'messege' => 'Your Listing : '.$listing[0]->listing_title. ' has a new booking request',
 
             ]);
+
+            $date = $request->input('disable_dates');
+            $dates = explode(',', $date);
+            foreach ($dates as $key => $value) {
+                ListingAvailable::create([
+                    'lister_id' => $request->input('lister_id'),
+                    'listing_id' => $request->input('listing_id'),
+                    'booking_id' => $booked[0]->booking_id,
+                    'dates' => $value
+
+                ]);
+            }
+           
 
             
             $listing = Listing::where('listing_id', $request->input('listing_id'))->get();
@@ -173,14 +188,17 @@ class BookingController extends Controller
             $listing_name = Listing::where('listing_id', $booking_id[0]->listing_id)->get();
             if($request->input('booking_status') == 1){
 
-                $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
+              Booking::where('booking_id', $request->input('booking_id'))->update([
+                'booking_status' => 1,
+                'isApproved' => true
+              ]);
                     
                 
                 $phone = $booking_id[0]->phone;
                 $data = [
                     "sender_id" => "8809601010510",
                     "receiver" => $phone,
-                    "message" => 'Your booking' .$listing_name[0]->listing_title . ' has been confirmed',
+                    "message" => 'Dear user, Your booking at: ' .$listing_name[0]->listing_title . ' has been confirmed by the host',
                     "remove_duplicate" => true
                 ];
                 
@@ -200,14 +218,41 @@ class BookingController extends Controller
 
             }elseif($request->input('booking_status') == 2){
                 
-                $url = 'https://sysadmin.muthobarta.com/api/v1/send-sms';
+                Booking::where('booking_id', $request->input('booking_id'))->update([
+                    'booking_status' => 2,
+                    'isApproved' => false
+                ]);
+                $books = Booking::where('booking_id', $request->input('booking_id'))->with('listings')->get();
+           
+                BookingHistory::create([
+                     'user_id' => $books[0]->user_id,
+                     'listing_id' => $books[0]->listing_id,
+                     'booking_id' => $books[0]->booking_id,
+                     'lister_id' => $books[0]->lister_id,
+                     'listing_title' => $books[0]->listings->listing_title,
+                     'listing_type' => $books[0]->listings->listing_type,
+                     'short_stay_flag' => $books[0]->short_stay_flag,
+                     'transaction_id' => $books[0]->transaction_id,
+                     'date_enter' => $books[0]->date_enter,
+                     'date_exit' => $books[0]->date_exit,
+                     'tier' => $books[0]->tier,
+                     'total_members' => $books[0]->total_members,
+                     'email' => $books[0]->email,
+                     'phone' => $books[0]->phone,
+                     'pay_amount' => $books[0]->pay_amount,
+                     'net_payable' => $books[0]->net_payable,
+                     'payment_flag' => $books[0]->payment_flag,
+                     'booking_status' => $books[0]->booking_status,
+                     'isApproved' => $books[0]->isApproved,
+                     'isComplete' => $books[0]->isComplete,
+                 ]);
                     
                 
                 $phone = $booking_id[0]->phone;
                 $data = [
                     "sender_id" => "8809601010510",
                     "receiver" => $phone,
-                    "message" => 'Your booking: '. $booking_id[0]->booking_order_name . ' has been declined',
+                    "message" => 'Dear user, Your booking at: '. $booking_id[0]->booking_order_name . ' has been declined by the host.',
                     "remove_duplicate" => true
                 ];
                 
@@ -224,11 +269,14 @@ class BookingController extends Controller
                    ];
             
                    notify($notifys);
+                   ListingAvailable::where('booking_id', $request->input('booking_id'))->delete();
+                   Booking::where('booking_id', $request->input('booking_id'))->delete();
             }
 
-             Booking::where('booking_id', $request->input('booking_id'))->update([
-                'booking_status' => $request->input('booking_status'),
-                ]);
+           
+
+
+           
             
                 return response()->json([
                     'status' => true,
