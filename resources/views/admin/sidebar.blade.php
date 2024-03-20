@@ -39,10 +39,14 @@
                 <div class="user-header">
                     <!-- <div class="avatar avatar-sm"> <img src="assets/img/logo/jayga_app_small.png" alt="User Image" class="avatar-img rounded-circle"> </div> -->
                     <div class="user-text">
-                        <h6>ADMIN, AK</h6>
+                        
+                        <h6>Welcome, ADMIN ({{ Session::get('admin')}})</h6>
                         <p class="text-muted mb-0">Administrator</p>
                     </div>
-                </div> <a class="dropdown-item" href="profile.php">My Profile</a> <a class="dropdown-item" href="settings.php">Account Settings</a> <a class="dropdown-item" href="crud/logout.php">Logout</a> </div>
+                </div> 
+                <a class="dropdown-item" href="profile.php">My Profile</a> 
+                <a class="dropdown-item" href="settings.php">Account Settings</a> 
+                <a class="dropdown-item" href="{{route('logout')}}">Logout</a> </div>
         </li>
     </ul>
     <div class="top-nav-search">

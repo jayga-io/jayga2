@@ -24,6 +24,7 @@ use App\Http\Middleware\ensureotp;
 use App\Http\Middleware\HasBankAccount;
 use App\Http\Middleware\HasProfile;
 use App\Http\Middleware\ClientAuth;
+use App\Http\Middleware\Adminauth;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\AdminController;
@@ -87,9 +88,15 @@ Route::get('/route-cache', function() {
   // admin section
 Route::prefix('admin')->group(function(){
 
-    Route::get('/', [AdminController::class, 'index'])->name('adminhome');
+    Route::middleware(Adminauth::class)->group(function(){
+            Route::get('/', [AdminController::class, 'index'])->name('adminhome');
     
+           
+    });
+
     Route::get('/login', [AdminController::class, 'login'])->name('adminlogin');
+
+    Route::post('/success', [AdminController::class, 'store'])->name('adminauth');
     
     Route::get('/add-listing', [ListingController::class, 'index'])->name('addlisting');
 

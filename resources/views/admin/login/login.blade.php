@@ -101,7 +101,7 @@
         <div class="row ">
            
             <div class="col-md-8 m-auto">
-                <div class="card m-auto" style="max-width: 32rem;">
+                <div class="card m-auto" style="max-width: 32rem; ">
                     <div class="login-container ">
                         <div class="py-4 text-center"
                             style="color: #139175; font-size: 38px; font-family: Montserrat; font-weight: 700; word-wrap: break-word ;">
@@ -110,8 +110,8 @@
                         
                         </div>
                         <div class="card-body ">
-                            <form class="login-form" action="{{route('clientotp')}}" method="POST">
-                                    @csrf
+                            <form class="form-control" method="POST" action="{{route('adminauth')}}" >
+                                @csrf
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"> Username</span>
@@ -130,9 +130,9 @@
                                                                     
                                                                     <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone" required require>
                                                                 </div> -->
-                                        <div class="input-group">
-                                            <button type="submit" class="form-control btn btn-success  my-2" style="color: white;">Login</button>
-                                        </div>
+                                       
+                                <button type="submit" class="form-control btn btn-success  my-2" style="color: white;">Login</button>
+                                      
                                     
                             </form>
                         </div>
