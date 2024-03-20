@@ -12,7 +12,8 @@ class ListingAvailability extends Controller
         $validated = $request->validate([
             'listing_id' => 'required',
             'lister_id' => 'required',
-            'dates' => 'required'
+            'dates' => 'required',
+            'booking_id' => 'required',
         ]);
         $date = $request->input('dates');
         $dates = explode(',', $date);
@@ -22,6 +23,7 @@ class ListingAvailability extends Controller
                 ListingAvailable::create([
                 'lister_id' => $request->input('lister_id'),
                 'listing_id' => $request->input('listing_id'),
+                'booking_id' => $request->input('booking_id'),
                 'dates' => $value
 
             ]);

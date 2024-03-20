@@ -26,7 +26,7 @@ class BookingController extends Controller
             'all_day_flag' => 'required',
             'transaction_id' => 'required',
             'phone' => 'required',
-            'disable_dates' => 'required',
+            
 
         ]);
 
@@ -84,17 +84,7 @@ class BookingController extends Controller
 
             ]);
 
-            $date = $request->input('disable_dates');
-            $dates = explode(',', $date);
-            foreach ($dates as $key => $value) {
-                ListingAvailable::create([
-                    'lister_id' => $request->input('lister_id'),
-                    'listing_id' => $request->input('listing_id'),
-                    'booking_id' => $booked[0]->booking_id,
-                    'dates' => $value
-
-                ]);
-            }
+            
            
 
             
