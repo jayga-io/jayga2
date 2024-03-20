@@ -13,7 +13,7 @@ class ListingAvailability extends Controller
             'listing_id' => 'required',
             'lister_id' => 'required',
             'dates' => 'required',
-            'booking_id' => 'required',
+            //'booking_id' => 'required',
         ]);
         $date = $request->input('dates');
         $dates = explode(',', $date);
