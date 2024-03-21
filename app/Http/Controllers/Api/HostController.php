@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BankDetails;
+use App\Models\Withdraws;
 
 class HostController extends Controller
 {
