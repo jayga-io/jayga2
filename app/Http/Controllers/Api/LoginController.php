@@ -47,6 +47,7 @@ class LoginController extends Controller
                         }else{
                             User::create([
                                 'phone' => $request->input('phone'),
+                                'access_token' => $authToken,
                                 'FCM_token' => $request->input('FCM_token'),
                             ]);
                             $user = User::where('phone', $request->input('phone'))->get();
@@ -74,56 +75,36 @@ class LoginController extends Controller
             'user_name' => 'required',
             'user_email' => 'required',
             'user_dob' => 'required',
-            
+            'acc_token' => 'required',
            ]);
 
            
 
-            $user = User::where('access_token', $request->input('acc_token'))->get();
-            if(count($user)>0){
-                User::where('id', $user[0]->id)->update([
-                    'name' => $request->input('user_name'),
-                    'email' => $request->input('user_email'),
-                    'user_dob' => $request->input('user_dob'),
-                    'phone' => $request->input('phone'),
-                    
-                    'user_address' => $request->input('user_address'),
-                    'is_lister' => $request->input('is_lister'),
-                    'user_long' => $request->input('user_long'),
-                    'user_lat' => $request->input('user_lat'),
-                    'FCM_token' => $request->input('FCM_token'),
-                    'platform_tag' => $request->input('platform_tag'),
-                ]);
+           // $user = User::where('access_token', $request->input('acc_token'))->get();
+           if($validated){
+                User::where('access_token', $request->input('acc_token'))->update([
+                        'name' => $request->input('user_name'),
+                        'email' => $request->input('user_email'),
+                        'user_dob' => $request->input('user_dob'),
+                        'phone' => $request->input('phone'),
+                        
+                        'user_address' => $request->input('user_address'),
+                        'is_lister' => $request->input('is_lister'),
+                        'user_long' => $request->input('user_long'),
+                        'user_lat' => $request->input('user_lat'),
+                        'FCM_token' => $request->input('FCM_token'),
+                        'platform_tag' => $request->input('platform_tag'),
+                    ]);
                 return response()->json([
-                    'status' => 200,
-                    'messege' => 'user info updated'
-                ]);
-            }else{
-
-               User::create([
-                'name' => $request->input('user_name'),
-                'email' => $request->input('user_email'),
-                'phone' => $request->input('phone'),
-                'user_dob' => $request->input('user_dob'),
-                'user_address' => $request->input('user_address'),
-                'is_lister' => $request->input('is_lister'),
-                'user_long' => $request->input('user_long'),
-                'user_lat' => $request->input('user_lat'),
-                'FCM_token' => $request->input('FCM_token'),
-                'platform_tag' => $request->input('platform_tag'),
-            ]);
-
-                return response()->json([
-                    'status' => 200,
-                    'message' => 'User Registered Successfully',
-                                
-                ]);
-
-            }
+                        'status' => 200,
+                        'messege' => 'user info updated'
+                    ]);
+           }else{
+                return $validated->errors();
+           }
+                
             
-            
-            
-            
+  
            
     }
 }

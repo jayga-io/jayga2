@@ -13,8 +13,9 @@ use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\VoucharController;
 
 
-use App\Http\Controllers\Frontend\ListingController2;
-use App\Http\Controllers\Frontend\UserloginController;
+use App\Http\Controllers\Frontend\common\ListingController2;
+use App\Http\Controllers\Frontend\user\UserloginController;
+use App\Http\Controllers\Frontend\user\UserdetailsController;
 
 
 /*
@@ -128,3 +129,10 @@ Route::prefix('auth')->group(function(){
     Route::get('/get-user', [UserloginController::class, 'get_user'])->name('fetchuser');
     Route::post('/update-user', [UserLoginController::class, 'update_user'])->name('update_user');
 });
+
+
+Route::prefix('client')->group(function(){
+    Route::get('/notifications', [UserdetailsController::class, 'notifications'])->name('usernotifs');
+    Route::get('/bookings', [UserdetailsController::class, 'my_bookings'])->name('userbookings');
+});
+
