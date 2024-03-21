@@ -1,0 +1,85 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\BankDetails;
+
+class HostController extends Controller
+{
+    //bank add
+    public function add_bank(Request $request){
+        $validated = $request->validate([
+            'lister_id' => 'required',
+            'acc_name' => 'required',
+            'acc_number' => 'required',
+            'bank_name' => 'required',
+            'routing_number' => 'required',
+            'branch_name' => 'required',
+        ]);
+        if($validated){
+            BankDetails::create([
+                'lister_id' => $request->input('lister_id'),
+                'acc_name' => $request->input('acc_name'),
+                'acc_number' => $request->input('acc_number'),
+                'bank_name' => $request->input('bank_name'),
+                'routing_number' => $request->input('routing_number'),
+                'branch_name' => $request->input('branch_name'),
+            ]);
+            
+            return response()->json([
+                'status' => 200,
+                'message' => 'Bank details added successfully'
+            ]);
+        }else{
+            return $validated->errors();
+        }
+    }
+
+    //get bank
+    public function get_bank(Request $request){
+        $validated = $request->validate([
+            'lister_id' => 'required',
+        ]);
+
+        if($validated){
+            $bank = BankDetails::where('lister_id', $request->query('lister_id'))->get();
+            if(count($bank)>0){
+                return response()->json([
+                    'status' => 200,
+                    'bank_details' => $bank
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 404,
+                    'bank_details' => 'No details found'
+                ], 404);
+            }
+        }else{
+            return $validated->errors();
+        }
+    }
+
+    //withdraw history
+    public function withdraw_history(Request $request){
+        $validated = $request->validate([
+            'lister_id' => 'required',
+        ]);
+
+        if($validated){
+            $wh = Withdraws::where('user_id', $request->query('lister_id'))->get();
+            if(count($wh)>0){
+                return response()->json([
+                    'status' => 200,
+                    'withdraws' => $wh
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 404,
+                    'withdraws' => 'No withdrawal history found'
+                ], 404);
+            }
+        }
+    }
+}

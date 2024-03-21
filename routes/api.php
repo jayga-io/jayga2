@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ListingAvailability;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\VoucharController;
+use App\Http\Controllers\Api\HostController;
 
 
 use App\Http\Controllers\Frontend\common\ListingController2;
@@ -108,7 +109,14 @@ Route::get('/user/delete/{id}', [UserController::class, 'user_delete']);
 //vouchar api
 Route::post('/get/vouchar', [VoucharController::class, 'get_vouchar']);
 
-//
+//add bank info
+Route::post('/add/bank', [HostController::class, 'add_bank']);
+
+//get bank info
+Route::get('/get/bank', [HostController::class, 'get_bank']);
+
+//withdraw history
+Route::get('/wh/history', [HostController::class, 'withdraw_history']);
 
 
 
