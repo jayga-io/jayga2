@@ -18,6 +18,7 @@ class HostController extends Controller
             'bank_name' => 'required',
             'routing_number' => 'required',
             'branch_name' => 'required',
+            'type' => 'required',
         ]);
         if($validated){
             BankDetails::create([
@@ -26,6 +27,7 @@ class HostController extends Controller
                 'acc_number' => $request->input('acc_number'),
                 'bank_name' => $request->input('bank_name'),
                 'routing_number' => $request->input('routing_number'),
+                'type' => $request->input('type'),
                 'branch_name' => $request->input('branch_name'),
             ]);
             
