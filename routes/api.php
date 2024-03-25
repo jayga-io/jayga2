@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\ListingAvailability;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\VoucharController;
 use App\Http\Controllers\Api\HostController;
+use App\Http\Controllers\Api\AmenitiesRestrictionsController;
 
 
 use App\Http\Controllers\Frontend\common\ListingController2;
@@ -117,6 +118,12 @@ Route::get('/get/bank', [HostController::class, 'get_bank']);
 
 //withdraw history
 Route::get('/wh/history', [HostController::class, 'withdraw_history']);
+
+//amenity list
+Route::get('/amenities/all', [AmenitiesRestrictionsController::class, 'get_amenities']);
+
+//restrictions
+Route::get('/retrictions/all', [AmenitiesRestrictionsController::class, 'get_restricts']);
 
 
 
