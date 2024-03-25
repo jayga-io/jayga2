@@ -24,7 +24,7 @@ class AmenitiesListController extends Controller
        // dd($file);
         $data = [
             'amenities_name' => $request->input('amenity_name'),
-            'amenities_icon' => $path->hashName(),
+            'amenities_icon' => $file->hashName(),
             'amenities_category' => $request->input('amenities_category')
         ];
 

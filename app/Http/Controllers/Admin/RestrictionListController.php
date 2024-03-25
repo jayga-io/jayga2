@@ -21,7 +21,7 @@ class RestrictionListController extends Controller
         // dd($file);
          $data = [
              'restriction_name' => $request->input('restriction_name'),
-             'restriction_icon' => $path->hashName(),
+             'restriction_icon' => $file->hashName(),
          ];
  
          restrictions($data);
