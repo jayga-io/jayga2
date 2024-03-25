@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\AmenitiesList;
+//use App\Helpers\Amenities;
 use Storage;
 
 
@@ -22,13 +23,13 @@ class AmenitiesListController extends Controller
 
         $path = $file->store('amenities');
        // dd($file);
-        $data = [
+       
+
+        AmenitiesList::create([
             'amenities_name' => $request->input('amenity_name'),
             'amenities_icon' => $file->hashName(),
             'amenities_category' => $request->input('amenities_category')
-        ];
-
-        amenities($data);
+        ]);
         return redirect()->back()->with('success', 'Amenities Added Successfully.');
     }
 

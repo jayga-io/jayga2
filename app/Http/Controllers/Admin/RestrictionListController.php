@@ -19,12 +19,11 @@ class RestrictionListController extends Controller
  
          $path = $file->store('restrictions');
         // dd($file);
-         $data = [
-             'restriction_name' => $request->input('restriction_name'),
-             'restriction_icon' => $file->hashName(),
-         ];
- 
-         restrictions($data);
+         
+         RestrictionList::create([
+            'restriction_name' => $request->input('restriction_name'),
+            'restriction_icon' => $file->hashName(),
+         ]);
          return redirect()->back()->with('success', 'Restrictions Added Successfully.');
      }
 
