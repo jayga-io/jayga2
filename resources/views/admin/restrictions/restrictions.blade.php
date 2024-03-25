@@ -49,7 +49,7 @@
 							<td>{{ $counter }}</td>
 							<td>{{ $item->restriction_name }}</td>
 							
-                            @if (count($item->restriction_icon) > 0)
+                            @if ($item->restriction_icon)
                                 <td><img src="https://new.jayga.io/uploads/{{ $item->restriction_icon }}" alt=""></td>
                             @else
                                 <td>No icon found</td>

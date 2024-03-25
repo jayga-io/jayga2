@@ -58,7 +58,7 @@
 							<td>{{ $counter }}</td>
 							<td>{{ $item->amenities_name }}</td>
 							<td>{{ $item->amenities_category }}</td>
-                            @if (count($item->amenities_icon) > 0)
+                            @if ($item->amenities_icon)
                                 <td><img src="https://new.jayga.io/uploads/{{ $item->amenities_icon }}" alt=""></td>
                             @else
                                 <td>No icon found</td>
