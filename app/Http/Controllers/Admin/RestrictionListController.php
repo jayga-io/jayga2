@@ -22,7 +22,7 @@ class RestrictionListController extends Controller
          
          RestrictionList::create([
             'restriction_name' => $request->input('restriction_name'),
-            'restriction_icon' => $file->hashName(),
+            'restriction_icon' => $path,
          ]);
          return redirect()->back()->with('success', 'Restrictions Added Successfully.');
      }

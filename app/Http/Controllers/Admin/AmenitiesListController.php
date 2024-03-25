@@ -27,7 +27,7 @@ class AmenitiesListController extends Controller
 
         AmenitiesList::create([
             'amenities_name' => $request->input('amenity_name'),
-            'amenities_icon' => $file->hashName(),
+            'amenities_icon' => $path,
             'amenities_category' => $request->input('amenities_category')
         ]);
         return redirect()->back()->with('success', 'Amenities Added Successfully.');
