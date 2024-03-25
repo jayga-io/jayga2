@@ -1,52 +1,56 @@
 <div class="header">
     <div class="header-left">
-        <a href="index.php" class="logo"> <img src="{{asset('assets/img/logo/Jayga Logo-02.png')}}" width="50" height="70" alt="logo"> <span class="logoclass">Jayga Admin</span> </a>
-        <a href="index.php" class="logo logo-small"> <img src="assets/img/hotel_logo.png" alt="Logo" width="30" height="30"> </a>
+        <a href="index.php" class="logo"> <img src="{{asset('assets/img/logo/Jayga Logo-02.png')}}" width="50"
+                height="70" alt="logo"> <span class="logoclass">Jayga Admin</span> </a>
+        <a href="index.php" class="logo logo-small"> <img src="assets/img/hotel_logo.png" alt="Logo" width="30"
+                height="30"> </a>
     </div>
     <a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i> </a>
     <a class="mobile_btn" id="mobile_btn"> <i class="fas fa-bars"></i> </a>
     <ul class="nav user-menu">
         <li class="nav-item dropdown noti-dropdown">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <i class="fe fe-bell"></i> <span class="badge badge-pill">{{ $pending_count }}</span> </a>
-             <div class="dropdown-menu notifications">
-                <div class="topnav-dropdown-header"> <span class="notification-title">Notifications</span>  </div>
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <i class="fe fe-bell"></i> <span
+                    class="badge badge-pill"></span> </a>
+            <div class="dropdown-menu notifications">
+                <div class="topnav-dropdown-header"> <span class="notification-title">Notifications</span> </div>
                 <div class="noti-content">
                     <ul class="notification-list">
                         <li class="notification-message">
                             <a href="{{ route('pendinglisting') }}">
                                 <div class="media">
                                     <div class="media-body">
-                                       @if ($pending_count > 0)
-                                           <p class="noti-details"><span class="noti-title">{{ $pending_count }} New Listings to approve</span></p>
-                                       @else
-                                           <p class="noti-details">No new listing found</p>
-                                       @endif
-                                        
-                                        
+
+
+                                        <p class="noti-details">No new listing found</p>
+
+
+
                                     </div>
                                 </div>
                             </a>
                         </li>
-                        
+
                     </ul>
                 </div>
                 <div class="topnav-dropdown-footer"> <a href="#"></a> </div>
-            </div> 
+            </div>
         </li>
         <li class="nav-item dropdown has-arrow">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img"><img class="rounded-circle" src="assets/img/logo/jayga-appicon1.png" width="31" alt=""></span> </a>
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img"><img
+                        class="rounded-circle" src="assets/img/logo/jayga-appicon1.png" width="31" alt=""></span> </a>
             <div class="dropdown-menu">
                 <div class="user-header">
                     <!-- <div class="avatar avatar-sm"> <img src="assets/img/logo/jayga_app_small.png" alt="User Image" class="avatar-img rounded-circle"> </div> -->
                     <div class="user-text">
-                        
+
                         <h6>Welcome, ADMIN ({{ Session::get('admin')}})</h6>
                         <p class="text-muted mb-0">Administrator</p>
                     </div>
-                </div> 
-                <a class="dropdown-item" href="profile.php">My Profile</a> 
-                <a class="dropdown-item" href="settings.php">Account Settings</a> 
-                <a class="dropdown-item" href="{{route('logout')}}">Logout</a> </div>
+                </div>
+                <a class="dropdown-item" href="profile.php">My Profile</a>
+                <a class="dropdown-item" href="settings.php">Account Settings</a>
+                <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
+            </div>
         </li>
     </ul>
     <div class="top-nav-search">
@@ -62,25 +66,34 @@
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
                 <li> <a href="/admin"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
-                
+
                 <li class="list-divider"></li>
-                <li class="active"> <a href="{{ route('pendinglisting') }}"><i class="fas fa-tachometer-alt"></i> <span>Pending Listings ({{ $pending_count }})</span></a> </li>
-               <li class="active"><a href="{{route('withdraw_req')}}">Withdraw Requests ({{ $withdraw_count }})</a></li>
-               <li class="active"><a href="{{route('show_refunds')}}">Refund Requests</a></li>
+                <li class="submenu"> <a href="{{ route('pendinglisting') }}"> Pending Listings </a> </li>
+                <li class="submenu"><a href="{{route('withdraw_req')}}">Withdraw Requests </a></li>
+                <li class="submenu"><a href="{{route('show_refunds')}}">Refund Requests</a></li>
                 <li class="list-divider"></li>
-                <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span class="menu-arrow"></span></a>
+                <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span
+                            class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="all-booking.php"> All Booking </a></li>
-                        
+
                     </ul>
                 </li>
-                <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Listings </span> <span class="menu-arrow"></span></a>
+                <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Listings </span> <span
+                            class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        
+
                         <li><a href="{{route('all_listings')}}"> All Listing </a></li>
-                        
+
                         <li><a href="{{ route('addlisting')}}"> Add Listing </a></li>
                     </ul>
+                </li>
+
+                <li>
+                    <a href="{{route('adminamenities')}}"><i class="fas fa-list"></i><span>Amenities</span></a>
+                </li>
+                <li>
+                    <a href="{{route('adminrestrictions')}}"><i class="fas fa-stop"></i><span>Restrictions</span></a>
                 </li>
                 <!-- 
                 
@@ -93,7 +106,7 @@
                 </li>
                 
                 -->
-                
+
                 <!-- <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Staff </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="all-staff.php">All Staff </a></li>
@@ -129,8 +142,8 @@
                         <li><a href="attendance.php">Attendance </a></li>
                     </ul>
                 </li> -->
-                
-                    <!--
+
+                <!--
                     <li class="submenu"> <a href="#"><i class="far fa-money-bill-alt"></i> <span> Accounts </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="invoices.php">Invoices </a></li>
@@ -141,8 +154,8 @@
                     </ul>
                     </li>
                     -->
-                    
-                
+
+
                 <!-- <li class="submenu"> <a href="#"><i class="fas fa-book"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="salary.php">Employee Salary </a></li>
@@ -160,7 +173,8 @@
                 </li> -->
                 <!-- <li> <a href="assets.php"><i class="fas fa-cube"></i> <span>Assests</span></a> </li> -->
                 <li> <a href="activities.php"><i class="far fa-bell"></i> <span>Experiences</span></a> </li>
-                <li class="submenu"> <a href="#"><i class="fe fe-table"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
+                <li class="submenu"> <a href="#"><i class="fe fe-table"></i> <span> Reports </span> <span
+                            class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="expense-reports.php">Expense Report </a></li>
                         <li><a href="invoice-reports.php">Invoice Report </a></li>

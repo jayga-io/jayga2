@@ -32,7 +32,9 @@
         },
         "files": [
             "app/Helpers/Notification.php",
-            "app/Helpers/Sms.php"
+            "app/Helpers/Sms.php",
+            "app/Helpers/Amenities",
+            "app/Helpers/Restrictions"
         ]
             
         

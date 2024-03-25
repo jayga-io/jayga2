@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\WithdrawsController;
 use App\Http\Controllers\Admin\RefundsController;
 use App\Http\Controllers\Admin\EarningsController;
+use App\Http\Controllers\Admin\AmenitiesListController;
+use App\Http\Controllers\Admin\RestrictionListController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Host\HostController;
 use App\Http\Controllers\Host\ListerDashboardController;
@@ -90,7 +92,17 @@ Route::prefix('admin')->group(function(){
 
     Route::middleware(Adminauth::class)->group(function(){
             Route::get('/', [AdminController::class, 'index'])->name('adminhome');
-    
+
+            //Amenities
+            Route::get('/amenities-list', [AmenitiesListController::class, 'index'])->name('adminamenities');
+            Route::post('/add/amenities', [AmenitiesListController::class, 'create'])->name('createamenities');
+            Route::get('/delete/amenities/{id}', [AmenitiesListController::class, 'delete'])->name('deleteamenities');
+
+            //Restrictions
+            Route::get('/restriction-list', [RestrictionListController::class, 'index'])->name('adminrestrictions');
+            Route::post('/add/restriction', [RestrictionListController::class, 'create'])->name('createrestriction');
+            Route::get('/delete/restriction/{id}', [RestrictionListController::class, 'delete'])->name('deleterestrictions');
+
            
     });
 
