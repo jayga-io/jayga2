@@ -6,30 +6,45 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserPictures;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Message;
 
 
 class ClientLoginController extends Controller
 {
     public function index(){
         return view('client.login');
-    }
+    } 
 
     public function otp(Request $request){
+       // dd($request->all());
         $otp = random_int(1000,9999);
-        $phone = $request->input('phone');
+        $logindetail = $request->input('txt');
+        $pattern = '/^\S+@\S+\.\S+$/';
 
-        $data = [
-                 "sender_id" => "8809601010510",
-                  "receiver" => $phone,
-                  "message" => "Your Jayga OTP is:".$otp,
-                  "remove_duplicate" => true
-              ];
+        if(is_numeric($logindetail)){
+                $data = [
+                    
+                    "receiver" => $logindetail,
+                    "message" => "Your Jayga OTP is:".$otp,
+                    "remove_duplicate" => true
+                ];
 
-              send_sms($data);
-        session([
-            'otp' => $otp,
-            'phone' => $phone,
-        ]); 
+                send_sms($data);
+            session([
+                'otp' => $otp,
+                'phone' => $logindetail,
+            ]); 
+        }elseif(preg_match($pattern, $logindetail)){
+           // dd('Email Valid');
+           Mail::raw('Hello world', function (Message $message) {
+                $message->to('avoid.zoha@gmail.com')->from('mail@jayga.io');
+            });
+        }else{
+            dd('Invalid email');
+        }
+        
+       
 
     
         return view('client.otp')->with('code', $otp);

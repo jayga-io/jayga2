@@ -1,155 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Jayga | Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link
-     rel="stylesheet"
-     href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
-   />
-    <style>
-        body {
-            background: #f4f4f4;
-        }
-
-        .login-container {
-            width: 100%;
-            margin: 0 auto;
-            padding: 30px;
-            background: #fff;
-           /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); */
-            border-radius: 5px;
-        }
-
-        .login-container h2 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .login-form {
-            margin-top: 20px;
-            
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            font-weight: bold;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .login-btn {
-            background: #007BFF;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .login-btn:hover {
-            background: #0056b3;
-        }
-
-        .signup-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .nav-link{
-          color: #139175;
-          font-size: medium;
-          font-weight: 700;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+  <title>Jayga | Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Epilogue">
+  <style>
+    body{
+      background-image: url({{asset('assets/img/login-bg.jpg')}});
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-family: "Epilogue";
+      overflow-y: hidden;
+    }
+   .container{
+      display: flex; /* Use flexbox */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      height: 100vh; /* Set height of container, adjust as needed */
+   }
+    .row{
      
-    </style>
+      width: 100%;
+      align-items: center;
+    }
+
+    .card-text{
+      color: azure;
+    }
+
+    .col{
+      padding: 0 0px;
+      font-size: 18px;
+      
+    }
+
+    #exampleFormControlInput1::placeholder{
+      color: #999;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5" >
-            <div class="container-fluid">
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <a class="navbar-brand" href="{{route('home')}}">
-                <h2><img style="float: right;" src="{{asset('assets/img/logo/Jayga Logo-02.png')}}" width="70" height="70" alt="logo"/></h2>
-    
-              </a>
-              <div class="collapse navbar-collapse px-5" id="navbarTogglerDemo03">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="{{route('home')}}">Explore</a>
-                  </li>
-                 
-                </ul>
-                
-              </div>
+  
+  <div class="container" >
+    <div class="row justify-content-between">
+      <div class="col-md-5 col-lg-5">
+        <div class="card p-4 text-center" style="border: 0; background-color: rgba(255, 255, 255, 0.01); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-blend-mode: overlay,normal; backdrop-filter: blur(1px);">
+          <img src="{{asset('assets/img/logo/jayga-01.png')}}" class="m-auto" style="width: 100px; height: 100px;"  alt="">
+          <!--card header-->
+          <h1 class="card-text" style="font-weight: 700; font-size: 50px;">Welcome</h1>
+          <div class="card-text mb-3" style="font-size: 20px;">
+            Explore stays, experiences, <br> and storage spaces easily
+          </div>
+          <div class="card-text my-3">
+            <div class="row mb-3">
+              <div class="col">Rooms</div>
+              <div class="col">Apartments</div>
+              <div class="col">Hotels</div>
             </div>
-          </nav>
-        <div class="row vh-60">
-            <div class="col-sm-12 col-md-6 m-auto " >
-
-              <div
-                style="width: 100%; height: 100%; background: white; box-shadow: 0px -2px 18px rgba(0, 0, 0, 0.25); border-radius: 32px">
-
-                <div class="py-4 text-center"
-                  style="color: #139175; font-size: 38px; font-family: Montserrat; font-weight: 700; word-wrap: break-word ;">
-                 <img src="{{asset('assets/img/logo.png')}}" height="70px;" width="70px;" alt="" srcset=""> Jayga | <small class="fs-6">Login</small>
-                 
-                </div>
-              
-                <div style="width: 100%; height: 178px; position: relative">
-
-                  <div class="login-container ">
-                    <form class="login-form" action="{{route('clientotp')}}" method="POST" >
-                        @csrf
-                        <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                           <span class="input-group-text" id="basic-addon1"> <span>🇧🇩</span> +88</span>
-                          </div>
-                          <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone" required require>
-
-                        </div>
-                      <!--  <div class="form-group">
-                            
-                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone" required require>
-                        </div> -->
-                        <button type="submit"  class="btn btn-success" style="color: white;">Login</button>
-                    </form>
-                    
-                </div>
-
-                </div>
-              
-              </div>
-
-
-
-
-             
+            <div class="row mb-3">
+              <div class="col">Parking</div>
+              <div class="col">Experience</div>
+              <div class="col">Storage</div>
             </div>
-           
+          </div>
+
+          <a class="card-text" style="text-decoration: none; font-size: 24px;"><span class="px-3"><img src="{{asset('assets/img/QR Code.png')}}" style="width: 42px; height: 42px;" alt=""></span>Get the app</a>
+          <!--card header-->
+
         </div>
-        
       </div>
-      
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
+      <div class="col-md-5 col-lg-5 col-sm-12">
+        <div class="card p-4" style="background-color: rgba(0, 0, 0, 0.332); background-blend-mode: overlay, normal;
+        backdrop-filter: blur(40px);">
+          <div class="card-title">
+            <h2 class="card-text">Sign in</h2>
+            </div>
+            <form action="{{route('clientotp')}}" method="POST" >
+              @csrf
+             
+              <div class="input-group mb-3">
+                <!--<span class="input-group-text" style="background-color: rgb(0, 0, 1); color: azure; " id="basic-addon1">🇧🇩 +880</span> -->
+                
+                <input type="text" class="form-control p-3" style="background-color: rgb(0, 0, 1); color: azure; " id="exampleFormControlInput1" placeholder="phone number or email" name="txt">
+              </div>
+              <div class="mb-3">
+                <button class="form-control" style="background-color: rgba(0, 0, 0, 0.332); color: azure;" type="submit">Sign in</button>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
