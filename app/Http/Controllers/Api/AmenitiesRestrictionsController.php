@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AmenitiesList;
 use App\Models\RestrictionList;
+use App\Models\ListingAmenities;
+use App\Models\ListingRestricts;
 
 class AmenitiesRestrictionsController extends Controller
 {
@@ -36,6 +38,55 @@ class AmenitiesRestrictionsController extends Controller
                 'status' => 404,
                 'restrictions' => 'No restrictions found'
             ], 404);
+        }
+    }
+
+    public function add_amenities(Request $request){
+        $validated = $request->validate([
+            'listing_id' => 'required',
+            'amenities_id' => 'array|required',
+        ]);
+
+        if($validated){
+            $amenities = $request->input('amenities_id');
+            foreach ($amenities as $value) {
+                ListingAmenities::create([
+                    'listing_id' => $request->input('listing_id'),
+                    'amenities_id' => $value
+                ]);
+            }
+
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Amenities Added'
+            ]);
+        }else{
+            return $validated->errors();
+        }
+    }
+
+
+    public function add_restricts(Request $request){
+        $validated = $request->validate([
+            'listing_id' => 'required',
+            'restriction_id' => 'array|required',
+        ]);
+
+        if($validated){
+            $restrictions = $request->input('restriction_id');
+            foreach ($restrictions as $value) {
+                ListingRestricts::create([
+                    'listing_id' => $request->input('listing_id'),
+                    'restriction_id' => $value
+                ]);
+            }
+
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Restrictions Added'
+            ]);
+        }else{
+            return $validated->errors();
         }
     }
 }

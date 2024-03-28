@@ -11,6 +11,8 @@ use App\Models\ListingGuestAmenities;
 use App\Models\ListingRestrictions;
 use App\Models\Booking;
 use App\Models\Reviews;
+use App\Models\ListingAmenities;
+use App\Models\ListingRestricts;
 
 class Listing extends Model
 {
@@ -22,8 +24,12 @@ class Listing extends Model
         return $this->hasMany(ListingImages::class, 'listing_id', 'listing_id');
     }
 
-    public function describes(){
-        return $this->hasOne(ListingDescribe::class, 'listing_id', 'listing_id');
+    public function newAmenities(){
+        return $this->hasMany(ListingAmenities::class, 'listing_id', 'listing_id');
+    }
+
+    public function newRestrictions(){
+        return $this->hasMany(ListingRestricts::class, 'listing_id', 'listing_id');
     }
 
     public function booking(){

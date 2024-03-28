@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Http;
 class ListingController extends Controller
 {
     public function listings(Request $request){
-        $listing = Listing::where('isApproved', true)->where('isActive', true)->with('images')->get();
+        $listing = Listing::where('isApproved', true)->where('isActive', true)->with('newAmenities')->with('newRestrictions')->with('images')->get();
         if(count($listing)>0){
             return response()->json([
                 'status' => 200,

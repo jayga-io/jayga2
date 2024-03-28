@@ -129,6 +129,12 @@ Route::get('/retrictions/all', [AmenitiesRestrictionsController::class, 'get_res
 //refund claim
 Route::post('/claim/refund', [RefundsController::class, 'claim_refund']);
 
+// add amenities with listingid
+Route::post('/add/listing/amenities', [AmenitiesRestrictionsController::class, 'add_amenities']);
+
+//add restrictions with listing
+Route::post('/add/listing/restrictions', [AmenitiesRestrictionsController::class, 'add_restricts']);
+
 
 
 
