@@ -22,6 +22,8 @@ class ClientLoginController extends Controller
         $logindetail = $request->input('txt');
         $pattern = '/^\S+@\S+\.\S+$/';
 
+        
+
         if(is_numeric($logindetail)){
                 $data = [
                     
@@ -31,20 +33,26 @@ class ClientLoginController extends Controller
                 ];
 
                 send_sms($data);
-            session([
-                'otp' => $otp,
-                'phone' => $logindetail,
-            ]); 
+            
         }elseif(preg_match($pattern, $logindetail)){
            // dd('Email Valid');
-           Mail::raw('Hello world', function (Message $message) {
-                $message->to('avoid.zoha@gmail.com')->from('mail@jayga.io');
+           $to_email = $request->input('txt');
+            $subject = 'Jayga OTP';
+            $message = 'Your OTP for Jayga is: '. $otp;
+
+            // Send email
+            Mail::raw($message, function($message) use ($to_email, $subject) {
+                $message->to($to_email)->subject($subject);
             });
+             
         }else{
-            dd('Invalid email');
+            return redirect()->back()->with('error', 'Invalid email');
         }
         
-       
+        session([
+            'otp' => $otp,
+            'login' => $logindetail,
+        ]); 
 
     
         return view('client.otp')->with('code', $otp);
@@ -54,9 +62,10 @@ class ClientLoginController extends Controller
     public function verify(Request $request){
         $code = $request->input('OTP');
         $session = $request->session()->get('otp');
-        $phone = $request->session()->get('phone');
+        $auth = $request->session()->get('login');
+        $pattern = '/^\S+@\S+\.\S+$/';
         if($code == $session){
-            $user = User::where('phone', $phone)->get();
+            $user = User::where('phone', $auth)->orWhere('email', $auth)->get();
            
            if(count($user)>0){
             
@@ -82,10 +91,21 @@ class ClientLoginController extends Controller
             }
             
            }else{
-            User::create([
-                'phone' => $phone
-            ]);
-            $id = User::where('phone', $phone)->get();
+
+                    if(is_numeric($auth)){
+                       
+                        User::create([
+                            'phone' => $auth
+                        ]);
+                    
+                    }elseif(preg_match($pattern, $auth)){
+                        
+                        User::create([
+                            'email' => $auth
+                        ]);
+                    }
+
+            $id = User::where('phone', $auth)->orWhere('email', $auth)->get();
            
             session([ 
                 'user' => $id[0]->id,
