@@ -158,8 +158,19 @@ Route::prefix('auth')->group(function(){
 Route::prefix('client')->group(function(){
     Route::get('/notifications', [UserdetailsController::class, 'notifications'])->name('usernotifs');
     Route::get('/bookings', [UserdetailsController::class, 'my_bookings'])->name('userbookings');
+    //user refunds claim
+    Route::post('/claim/refund', [RefundsController::class, 'claim_refund']);
+    //submit review
+    Route::post('/submit/review', [ReviewController::class, 'create']);
+    //get reviews
+    Route::get('/get/reviews', [ReviewController::class, 'view']);
+
 });
 
-//user refunds claim
-Route::post('/user/claim/refund', [RefundsController::class, 'claim_refund']);
+Route::prefix('host')->group(function(){
+    Route::post('/booking/complete', [BookingController::class, 'mark_complete']);
+    Route::post('/booking-status', [BookingController::class, 'booking_status']);
+});
+
+
 
