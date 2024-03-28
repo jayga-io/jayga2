@@ -116,10 +116,10 @@ class UserloginController extends Controller
 
     public function update_user(Request $request){
         $validated = $request->validate([
-            'user_id' => 'required',
-            'username' => 'required',
-            'email' => 'required',
-            'dob' => 'required'
+            'user_id' => 'integer',
+            'username' => 'string',
+            'email' => 'string',
+            'phone' => 'string',
         ]);
 
         if($validated){
@@ -127,7 +127,7 @@ class UserloginController extends Controller
             User::where('id', $id)->update([
                 'name' => $request->input('username'),
                 'email' => $request->input('email'),
-            
+                'phone' => $request->input('phone'),
                 'user_address' => $request->input('address'),
                 'user_dob' => $request->input('dob'),
             ]);

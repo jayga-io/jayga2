@@ -35,9 +35,6 @@ class UserdetailsController extends Controller
     }
 
 
-
-
-
     public function my_bookings(Request $request){
         $validated = $request->validate([
             'user_id' => 'required'

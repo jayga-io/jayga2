@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\VoucharController;
 use App\Http\Controllers\Api\HostController;
 use App\Http\Controllers\Api\AmenitiesRestrictionsController;
+use App\Http\Controllers\Api\RefundsController;
 
 
 use App\Http\Controllers\Frontend\common\ListingController2;
@@ -125,6 +126,11 @@ Route::get('/amenities/all', [AmenitiesRestrictionsController::class, 'get_ameni
 //restrictions
 Route::get('/retrictions/all', [AmenitiesRestrictionsController::class, 'get_restricts']);
 
+//refund claim
+Route::post('/claim/refund', [RefundsController::class, 'claim_refund']);
+
+
+
 
 
 
@@ -140,6 +146,7 @@ Route::prefix('listings')->group(function(){
 
 //user login and details apis
 
+//user info update
 Route::prefix('auth')->group(function(){
     Route::post('/login', [UserloginController::class, 'login'])->name('authuser');
     Route::post('/otp-verify', [UserloginController::class, 'verify_otp'])->name('otpauthuserverify');
@@ -147,9 +154,12 @@ Route::prefix('auth')->group(function(){
     Route::post('/update-user', [UserLoginController::class, 'update_user'])->name('update_user');
 });
 
-
+//user notifications & bookings
 Route::prefix('client')->group(function(){
     Route::get('/notifications', [UserdetailsController::class, 'notifications'])->name('usernotifs');
     Route::get('/bookings', [UserdetailsController::class, 'my_bookings'])->name('userbookings');
 });
+
+//user refunds claim
+Route::post('/user/claim/refund', [RefundsController::class, 'claim_refund']);
 
