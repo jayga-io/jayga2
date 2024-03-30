@@ -97,16 +97,7 @@ class ListingController extends Controller
 
                 
                     
-                    ListingDescribe::create([
-                        'listing_id' => $listing_id[0]->listing_id,
-                        'apartments' => $request->input('apartments'),
-                        'cabin' => $request->input('cabin'),
-                        'lounge' => $request->input('lounge'),
-                        'farm' => $request->input('farm'),
-                        'campsite' => $request->input('campsite'),
-                        'hotel' => $request->input('hotel'),
-                        'bread_breakfast' => $request->input('bread_breakfast'),
-                    ]);
+                  
 
                     ListingGuestAmenities::create([
                         'listing_id' => $listing_id[0]->listing_id,

@@ -68,9 +68,9 @@
                 <li> <a href="/admin"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
 
                 <li class="list-divider"></li>
-                <li class="submenu"> <a href="{{ route('pendinglisting') }}"> Pending Listings </a> </li>
-                <li class="submenu"><a href="{{route('withdraw_req')}}">Withdraw Requests </a></li>
-                <li class="submenu"><a href="{{route('show_refunds')}}">Refund Requests</a></li>
+                <li > <a href="{{ route('pendinglisting') }}"> Pending Listings </a> </li>
+                <li ><a href="{{route('withdraw_req')}}">Withdraw Requests </a></li>
+                <li ><a href="{{route('show_refunds')}}">Refund Requests</a></li>
                 <li class="list-divider"></li>
                 <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span
                             class="menu-arrow"></span></a>

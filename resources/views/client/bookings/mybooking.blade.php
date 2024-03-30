@@ -215,7 +215,7 @@
                                                     <input type="hidden" name="listing_id" id="listing_id">
                                                     <input type="hidden" name="booking_id" value="{{$item->booking_id}}" id="booking_id">
                                                     <input type="hidden" name="refund_amount" id="refund_amount">
-                                
+                                                    
                                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                                         <li class="nav-item" role="presentation">
                                                             <button class="nav-link active" id="bank-tab" data-bs-toggle="tab"
@@ -260,8 +260,8 @@
                                                             tabindex="0">
                                                             <div class="my-2">
                                 
-                                                                <label for="bkash" class="form-label">Bkash Number</label>
-                                                                <input type="number" name="bkash_num" class="form-control"
+                                                                <label for="bkash" class="form-label">MFS (Bkash/Nogod/Upay)</label>
+                                                                <input type="number" name="mfs_num" class="form-control"
                                                                     placeholder="Enter your bkash account number">
                                                                 <label for="messege">Reason for refund</label>
                                                                 <textarea name="messege" id="" cols="30" rows="10" class="form-control mb-3"
