@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Http;
 class ListingController extends Controller
 {
     public function listings(Request $request){
-        $listing = Listing::where('isApproved', true)->where('isActive', true)->with('newAmenities')->with('newRestrictions')->with('images')->get();
+        $listing = Listing::where('isApproved', true)->where('isActive', true)->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('images')->get();
         if(count($listing)>0){
             return response()->json([
                 'status' => 200,
@@ -35,7 +35,7 @@ class ListingController extends Controller
 
 
     public function filter(Request $request){
-        $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->allowedFilters(['guest_num', 'bed_num', 'district', 'town', 'allow_short_stay', 'listing_type'])->with('images')->with('amenities')->with('restrictions')->with('reviews')->get();
+        $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->allowedFilters(['guest_num', 'bed_num', 'district', 'town', 'allow_short_stay', 'listing_type'])->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
         if(count($filtered_listing)>0){
             return response()->json([
                 'status' => 200,
@@ -94,7 +94,7 @@ class ListingController extends Controller
 
                 
         
-                
+               // $listing_id = Listing::where('')
 
                 
 
@@ -102,7 +102,7 @@ class ListingController extends Controller
                     'status' => true,
                     'messege' => 'Listing created and submitted for review',
                     'listing_id' => [
-                        'id' => $listing_id[0]->listing_id
+                        'id' => $check[0]->listing_id
                     ]
                  ]);
             }else{
