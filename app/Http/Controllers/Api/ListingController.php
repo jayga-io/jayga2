@@ -89,15 +89,15 @@ class ListingController extends Controller
 
                 
         
-               // $listing_id = Listing::where('')
-
+                $listing_id = Listing::where('listing_title', $request->input('listing_title'))->get();
+              //  dd($check[0]);
                 
 
                 return response()->json([
                     'status' => true,
                     'messege' => 'Listing created and submitted for review',
                     'listing_id' => [
-                        'id' => $check[0]->listing_id
+                        'id' => $listing_id[0]->listing_id
                     ]
                  ]);
             }else{
