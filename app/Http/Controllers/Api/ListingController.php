@@ -80,12 +80,7 @@ class ListingController extends Controller
                     'district' => $request->input('district'),
                     'town' => $request->input('town'),
                     'allow_short_stay' => $request->input('allow_short_stay'),
-                    'describe_peaceful' => $request->input('describe_peaceful'),
-                    'describe_unique' => $request->input('describe_unique'),
-                    'describe_familyfriendly' => $request->input('describe_familyfriendly'),
-                    'describe_stylish' => $request->input('describe_stylish'),
-                    'describe_central' => $request->input('describe_central'),
-                    'describe_spacious' => $request->input('describe_spacious'),
+                    
                     'lat' => $request->input('lati'),
                     'long' => $request->input('longi'),
                     'listing_type' => $request->input('listing_type'),
