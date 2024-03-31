@@ -71,7 +71,7 @@ class AmenitiesRestrictionsController extends Controller
     public function add_restricts(Request $request){
         $validated = $request->validate([
             'listing_id' => 'required',
-            'restrictions' => 'array|required',
+            'restriction_id' => 'array|required',
         ]);
 
         if($validated){
