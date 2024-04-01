@@ -70,7 +70,7 @@ class ClientController extends Controller
         $slot  = $request->input('short_stay_slot');
         $invoice_number = Str::random(8);
 
-        if($request->session()->get('user_name') == null && $request->session()->get('user_email') == null && $request->session()->get('phone') == null){
+        if($request->session()->get('user_name') == null || $request->session()->get('user_email') || null || $request->session()->get('phone') == null){
             return redirect(route('userprofile'))->with('messege', 'Please complete your profile. Name, Email, Phone & NID fields are mandatory');
         }else{
 
