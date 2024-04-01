@@ -57,7 +57,9 @@
 
 							
 
-							<td><a class="btn btn-danger" href="/admin/delete/restriction/{{ $item->id }}">Delete</a></td>
+							<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop" id="editbtn"
+                                restriction-id ="{{$item->id}}" restriction-name="{{$item->restriction_name}}" 
+                                onclick="editRestrictions(this)">Edit</button></td>
 
 							
 							
@@ -69,6 +71,55 @@
 				</tbody>
 			</table>
         </div>
+        <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Restriction</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('restrictionupdate')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row my-1">
+                        <input type="hidden" id="restriction_id" name="restriction_id">
+                        <div class="col-12">
+                            <label for="restrictionname" class="form-label">Restriction name</label>
+                            <input type="text" class="form-control" id="restriction_name" name="restriction_name">
+                        </div>
+                        
+                        <div class="col-12 mb-3">
+                            <label for="restrictionicon" class="form-label">Restriction Icon</label>
+                            <input type="file" class="form-control" id="restriction_icon" name="restriction_icon">
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+<script>
+    var modalName = document.querySelector('#restriction_name');
+    
+    var modalID = document.querySelector('#restriction_id');
+    function editRestrictions(e){
+        modalID.setAttribute('value', e.getAttribute('restriction-id'));
+        modalName.setAttribute('value', e.getAttribute('restriction-name'));
+       
+    }
+   
+</script>
     </div>
     
 @endsection

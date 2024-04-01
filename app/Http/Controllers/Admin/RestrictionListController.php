@@ -27,8 +27,33 @@ class RestrictionListController extends Controller
          return redirect()->back()->with('success', 'Restrictions Added Successfully.');
      }
 
-     public function delete(Request $request, $id){
+    public function delete(Request $request, $id){
         RestrictionList::where('id', $id)->delete();
         return redirect()->back()->with('success', 'Restrictions Deleted');
     }
+
+    public function update_restriction(Request $request){
+        // dd($request->all());
+ 
+        if($request->hasFile('restriction_icon')){
+ 
+             $file = $request->file('restriction_icon');
+             $path = $file->store('restrictions');
+
+             RestrictionList::where('id', $request->input('restriction_id'))->update([
+                'restriction_name' => $request->input('restriction_name'),
+                'restriction_icon' => $path,
+             ]);
+ 
+            
+             
+        }else{
+            RestrictionList::where('id', $request->input('restriction_id'))->update([
+                'restriction_name' => $request->input('restriction_name'),
+                
+             ]);
+        }
+ 
+        return redirect()->back()->with('success', 'Restriction Updated');
+     }
 }

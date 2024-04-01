@@ -37,4 +37,29 @@ class AmenitiesListController extends Controller
         AmenitiesList::where('id', $id)->delete();
         return redirect()->back()->with('success', 'Amenities Deleted');
     }
+
+    public function update_amenity(Request $request){
+       // dd($request->all());
+
+       if($request->hasFile('amenity_icon')){
+
+            $file = $request->file('amenity_icon');
+            $path = $file->store('amenities');
+
+            AmenitiesList::where('id', $request->input('amenity_id'))->update([
+                'amenities_name' => $request->input('amenity_name'),
+                'amenities_icon' => $path,
+                'amenities_category' => $request->input('amenities_category')
+            ]);
+            
+       }else{
+        AmenitiesList::where('id', $request->input('amenity_id'))->update([
+            'amenities_name' => $request->input('amenity_name'),
+            
+            'amenities_category' => $request->input('amenities_category')
+        ]);
+       }
+
+       return redirect()->back()->with('success', 'Amenity Updated');
+    }
 }

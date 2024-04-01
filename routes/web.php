@@ -97,11 +97,13 @@ Route::prefix('admin')->group(function(){
             Route::get('/amenities-list', [AmenitiesListController::class, 'index'])->name('adminamenities');
             Route::post('/add/amenities', [AmenitiesListController::class, 'create'])->name('createamenities');
             Route::get('/delete/amenities/{id}', [AmenitiesListController::class, 'delete'])->name('deleteamenities');
+            Route::post('/update-amenity', [AmenitiesListController::class, 'update_amenity'])->name('amenityupdate');
 
             //Restrictions
             Route::get('/restriction-list', [RestrictionListController::class, 'index'])->name('adminrestrictions');
             Route::post('/add/restriction', [RestrictionListController::class, 'create'])->name('createrestriction');
             Route::get('/delete/restriction/{id}', [RestrictionListController::class, 'delete'])->name('deleterestrictions');
+            Route::post('/update-restriction', [RestrictionListController::class, 'update_restriction'])->name('restrictionupdate');
 
            
     });
