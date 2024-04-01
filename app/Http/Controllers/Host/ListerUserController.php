@@ -50,7 +50,7 @@ class ListerUserController extends Controller
 
 
 
-        if($file = $request->hasFile('profile_picture')){
+        if($file = $request->file('profile_picture')){
            $path = $file->store('useravatars');
            $up = UserPictures::where('user_id', $id)->get();
            if(count($up)>0){
@@ -84,7 +84,7 @@ class ListerUserController extends Controller
             
         }
 
-        if($nids = $request->hasFile('nid')){
+        if($nids = $request->file('nid')){
             $src = $nids->store('user_nids');
             $nid = UserNid::where('user_id', $id)->get();
             if(count($nid)>0){
