@@ -130,9 +130,10 @@ class UserloginController extends Controller
                 'phone' => $request->input('phone'),
                 'user_address' => $request->input('address'),
                 'user_dob' => $request->input('dob'),
+                'about' => $request->input('about'),
             ]);
 
-            if($file = $request->file('photo')){
+            if($file = $request->hasFile('photo')){
                 $avatar = UserPictures::where('user_id', $id)->get();
                 if(count($avatar)>0){
                     Storage::delete($avatar[0]->user_targetlocation);
@@ -152,7 +153,7 @@ class UserloginController extends Controller
                 }
             }
 
-            if($nid = $request->file('nid')){
+            if($nid = $request->hasFile('nid')){
                 $nids = UserNid::where('user_id')->get();
                 if(count($nids)>0){
                     foreach ($nids as $value) {

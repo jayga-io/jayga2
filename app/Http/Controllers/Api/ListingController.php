@@ -224,65 +224,7 @@ class ListingController extends Controller
             'video_link' => $request->input('video_link'),
         ]);
 
-        ListingDescribe::where('listing_id', $request->input('listing_id'))->update([
-            
-            'apartments' => $request->input('apartments'),
-            'cabin' => $request->input('cabin'),
-            'lounge' => $request->input('lounge'),
-            'farm' => $request->input('farm'),
-            'campsite' => $request->input('campsite'),
-            'hotel' => $request->input('hotel'),
-            'bread_breakfast' => $request->input('bread_breakfast'),
-        ]);
-
-        ListingGuestAmenities::where('listing_id', $request->input('listing_id'))->update([
-            
-            'wifi' => $request->input('wifi'),
-            'tv' => $request->input('tv'),
-            'kitchen' => $request->input('kitchen'),
-            'washing_machine' => $request->input('washing_machine'),
-            'free_parking' => $request->input('free_parking'),
-            'breakfast_included' => $request->input('breakfast_included'),
-            'air_condition' => $request->input('air_condition'),
-            'dedicated_workspace' => $request->input('dedicated_workspace'),
-            'pool' => $request->input('pool'),
-            'hot_tub' => $request->input('hot_tub'),
-            'patio' => $request->input('patio'),
-            'bbq_grill' => $request->input('bbq_grill'),
-            'outdooring' => $request->input('outdooring'),
-            'fire_pit' => $request->input('fire_pit'),
-            'gym' => $request->input('gym'),
-            'beach_lake_access' => $request->input('beach_lake_access'),
-            'smoke_alarm' => $request->input('smoke_alarm'),
-            'first_aid' => $request->input('first_aid'),
-            'fire_extinguish' => $request->input('fire_extinguish'),
-            'cctv' => $request->input('cctv'),
-            'room_service' => $request->input('room_service'),
-            'pet_friendly' => $request->input('pet_friendly'),
-            'airport_shuttle' => $request->input('airport_shuttle'),
-            'fitness_center' => $request->input('fitness_center'),
-            'spa' => $request->input('spa'),
-            'business_center' => $request->input('business_center'),
-            'bar/lounge' => $request->input('bar/lounge'),
-            'consierge_services' => $request->input('consierge_services'),
-            'laundry_service' => $request->input('laundry_service'),
-            'meeting_rooms' => $request->input('meeting_rooms'),
-            'outdoor_pool' => $request->input('outdoor_pool'),
-            'restaurant' => $request->input('restaurant'),
-            'smoke_free_property' => $request->input('smoke_free_property'),
-            'kid_friendly' => $request->input('kid_friendly'),
-        ]);
-
-        ListingRestrictions::where('listing_id', $request->input('listing_id'))->update([
-            
-            'indoor_smoking' => $request->input('indoor_smoking'),
-            'party' => $request->input('party'),
-            'pets' => $request->input('pets'),
-            'late_night_entry' => $request->input('late_night_entry'),
-            'unknown_guest_entry' => $request->input('unknown_guest_entry'),
-            'specific_requirement' => $request->input('specific_requirement'),
-            
-        ]);
+        
 
         return response()->json([
             'status' => 200,
@@ -371,7 +313,7 @@ class ListingController extends Controller
     }
 
     public function get_fav(Request $request, $id){
-        $favs = FavListing::where('user_id', $id)->with('listing.images')->with('listing.amenities')->with('listing.restrictions')->get();
+        $favs = FavListing::where('user_id', $id)->with('listing.images')->with('listing.newAmenities.amenity')->with('listing.newRestrictions.restrictions')->get();
         return response()->json([
             'status' => 200,
             'Favourites' => $favs
