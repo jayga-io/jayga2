@@ -34,7 +34,7 @@ class ListerUserController extends Controller
         User::where('id', $id)->update([
             'name' => $request->input('username'),
             'email' => $request->input('email'),
-            
+            'phone' => $request->input('phone'),
             'user_address' => $request->input('address'),
             'user_dob' => $request->input('dob'),
         ]);
@@ -50,7 +50,7 @@ class ListerUserController extends Controller
 
 
 
-        if($file = $request->file('profile_picture')){
+        if($file = $request->hasFile('profile_picture')){
            $path = $file->store('useravatars');
            $up = UserPictures::where('user_id', $id)->get();
            if(count($up)>0){
@@ -84,7 +84,7 @@ class ListerUserController extends Controller
             
         }
 
-        if($nids = $request->file('nid')){
+        if($nids = $request->hasFile('nid')){
             $src = $nids->store('user_nids');
             $nid = UserNid::where('user_id', $id)->get();
             if(count($nid)>0){

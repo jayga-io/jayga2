@@ -70,7 +70,7 @@
                         <div class="col-md-12 mb-3">
                             <label class="labels">Mobile Number</label>
                             <input type="text"
-                                class="form-control" name="phone" placeholder="{{$user[0]->phone}}" value="{{$user[0]->phone}}" disabled></div>
+                                class="form-control" name="phone" placeholder="{{$user[0]->phone}}" value="{{$user[0]->phone}}" ></div>
 
                         <div class="col-md-12 mb-3"><label class="labels">Address</label><input type="text"
                                 class="form-control" name="address" placeholder="enter address" value=""></div>
@@ -99,7 +99,7 @@
                     <div class="col-md-12">
                         <label class="labels">Upload User NID (Front)</label>
                         <input type="file" name="nid"
-                            class="form-control" />
+                            class="form-control" required/>
                         </div> <br>
                     <div class="col-md-12"><label class="labels">Additional Details</label><input type="text"
                             class="form-control" placeholder="additional details" value=""></div>
