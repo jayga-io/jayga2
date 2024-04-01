@@ -97,10 +97,12 @@
                             </div>
                             <br>
                     <div class="col-md-12">
+                        
                         <label class="labels">Upload User NID (Front)</label>
                         <input type="file" name="nid"
-                            class="form-control" required/>
-                        </div> <br>
+                            class="form-control" />
+                    </div> 
+                    <br>
                     <div class="col-md-12"><label class="labels">Additional Details</label><input type="text"
                             class="form-control" placeholder="additional details" value=""></div>
                 </div>

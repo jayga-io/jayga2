@@ -19,7 +19,7 @@ class ListerUserController extends Controller
     public function index(Request $request)
     {
         $id = $request->session()->get('user');
-        $user = User::where('id', $id)->get();
+        $user = User::where('id', $id)->with('avatars')->with('nids')->get();
         $dp = UserPictures::where('user_id', $id)->get();
     
         return view('host.profile.profile')->with('user', $user)->with('dp', $dp);
