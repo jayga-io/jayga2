@@ -15,7 +15,7 @@ class AccountDashboardController extends Controller
         ]);
 
         if($valid){
-            $dash = ListerDashboard::where('lister_id', $request->input('lister_id'))->get();
+            $dash = ListerDashboard::where('lister_id', $request->query('lister_id'))->get();
             if(count($dash)>0){
                 return response()->json([
                     'status' => 200,
