@@ -70,7 +70,7 @@ class ClientController extends Controller
         $slot  = $request->input('short_stay_slot');
         $invoice_number = Str::random(8);
 
-        if($request->session()->get('user_name') == null && $request->session()->get('user_email') == null){
+        if($request->session()->get('user_name') == null && $request->session()->get('user_email') == null && $request->session()->get('phone') == null){
             return redirect(route('userprofile'))->with('messege', 'Please complete your profile');
         }else{
 
@@ -157,7 +157,7 @@ class ClientController extends Controller
 
                       //  dd($periods);
 
-                        if($checkin === $checkout){
+                        if($checkin == $checkout){
                             return redirect()->back()->with('error', 'Invalid date selection');
                         }else{
                             Booking::create([

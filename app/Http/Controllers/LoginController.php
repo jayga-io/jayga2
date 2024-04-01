@@ -11,7 +11,7 @@ use App\Models\UserPictures;
 class LoginController extends Controller
 {
     public function login(){
-        return view('host.login');
+        return view('client.login');
     }
 
     public function get_otp(Request $request){

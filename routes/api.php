@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\VoucharController;
 use App\Http\Controllers\Api\HostController;
 use App\Http\Controllers\Api\AmenitiesRestrictionsController;
 use App\Http\Controllers\Api\RefundsController;
+use App\Http\Controllers\Api\AccountDashboardController;
 
 
 use App\Http\Controllers\Frontend\common\ListingController2;
@@ -135,6 +136,8 @@ Route::post('/add/listing/amenities', [AmenitiesRestrictionsController::class, '
 //add restrictions with listing
 Route::post('/add/listing/restrictions', [AmenitiesRestrictionsController::class, 'add_restricts']);
 
+//dashboard info
+Route::get('/lister-dashboard', [AccountDashboardController::class, 'dashboard']);
 
 
 
