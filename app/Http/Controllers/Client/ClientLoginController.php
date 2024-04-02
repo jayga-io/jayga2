@@ -38,8 +38,10 @@ class ClientLoginController extends Controller
            // dd('Email Valid');
            $to_email = $request->input('txt');
             $subject = 'Jayga OTP';
-            $message = 'Dear User,
+            $message = '
 
+            Dear user,
+            
             Your One-Time Password (OTP) for accessing your Jayga account is:  '.$otp.' .
             
             Please enter this code on the login page to complete the verification process.
