@@ -9,7 +9,7 @@ use App\Models\UserPictures;
 use App\Models\UserNid;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
-
+use Storage;
 class UserloginController extends Controller
 {
     public function login(Request $request){
