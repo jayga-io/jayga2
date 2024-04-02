@@ -38,7 +38,18 @@ class ClientLoginController extends Controller
            // dd('Email Valid');
            $to_email = $request->input('txt');
             $subject = 'Jayga OTP';
-            $message = 'Your OTP for Jayga is: '. $otp;
+            $message = 'Dear User,
+
+            Your One-Time Password (OTP) for accessing your Jayga account is:  '.$otp.' .
+            
+            Please enter this code on the login page to complete the verification process.
+            
+            Please note that this OTP is valid for a single use only and should not be shared with anyone. If you did not request this OTP, please disregard this message.
+            
+            Thank you for using Jayga!
+            
+            Best regards,
+            The Jayga Team';
 
             // Send email
             Mail::raw($message, function($message) use ($to_email, $subject) {

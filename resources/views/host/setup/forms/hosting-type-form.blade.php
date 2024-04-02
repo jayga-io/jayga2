@@ -45,7 +45,7 @@
                     <p>Whether it’s a room for stay or an experience to offer, Jayga has got you covered</p>
                 </div>
                 <div class="input-text">
-                    <select name="type_select">
+                    <select name="type_select" required>
                         <option>Select hosting type</option>
                         <option>Accomodation</option>
                         <option>Experience</option>
