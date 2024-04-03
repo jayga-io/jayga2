@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Console Routes
@@ -52,3 +54,5 @@ Artisan::command('remove:database', function(){
         $this->error('Can not delete, file not found');
     }
 });
+
+
