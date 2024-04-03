@@ -91,4 +91,40 @@ class AmenitiesRestrictionsController extends Controller
             return $validated->errors();
         }
     }
+
+
+    public function delete_amenities(Request $request){
+        $validated = $request->validate([
+            'listing_id' => 'required',
+            'amenities_id' => 'required',
+        ]);
+
+        if($validated){
+            ListingAmenities::where('listing_id', $request->query('listing_id'))->where('amenities_id', $request->query('amenities_id'))->delete();
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Amenities Removed'
+            ]);
+        }else{
+            return $validated->errors();
+        }
+    }
+
+    public function delete_restrictions(Request $request){
+        $validated = $request->validate([
+            'listing_id' => 'required',
+            'restriction_id' => 'required',
+        ]);
+
+        if($validated){
+            ListingRestricts::where('listing_id', $request->query('listing_id'))->where('restriction_id', $request->query('restriction_id'))->delete();
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Restriction Removed'
+            ]);
+        }else{
+            return $validated->errors();
+        }
+    }
+    
 }

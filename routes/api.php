@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\HostController;
 use App\Http\Controllers\Api\AmenitiesRestrictionsController;
 use App\Http\Controllers\Api\RefundsController;
 use App\Http\Controllers\Api\AccountDashboardController;
+use App\Http\Controllers\Api\WithdrawsController;
 
 
 use App\Http\Controllers\Frontend\common\ListingController2;
@@ -138,6 +139,21 @@ Route::post('/add/listing/restrictions', [AmenitiesRestrictionsController::class
 
 //dashboard info
 Route::get('/lister-dashboard', [AccountDashboardController::class, 'dashboard']);
+
+//withdraw submit
+Route::post('/request/withdraw', [WithdrawsController::class, 'postRequest']);
+
+//remove bank
+Route::get('/remove/card', [HostController::class, 'delBank']);
+
+//completed boookings
+Route::get('/completed/bookings', [BookingController::class, 'completed_bookings']);
+
+//remove amenties
+Route::get('/remove/amenity', [AmenitiesRestrictionsController::class, 'delete_amenities']);
+
+//remove retrictions
+Route::get('/remove/restrictions', [AmenitiesRestrictionsController::class, 'delete_restrictions']);
 
 
 

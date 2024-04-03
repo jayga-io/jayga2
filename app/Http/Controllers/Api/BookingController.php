@@ -309,4 +309,28 @@ class BookingController extends Controller
            return $validated->errors();
         }
     }
+
+    public function completed_bookings(Request $request){
+        $validated = $request->validate([
+            'lister_id' => 'required'
+        ]);
+
+        if($validated){
+            $completed = Booking::where('lister_id', $request->query('lister_id'))->where('isComplete', true)->get();
+
+            if(count($completed)>0){
+                return response()->json([
+                    'status' => 200,
+                    'bookings' => $completed
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 404,
+                    'bookings' => 'No Bookings Found'
+                ],404);
+            }
+        }else{
+            $validated->errors();
+        }
+    }
 }

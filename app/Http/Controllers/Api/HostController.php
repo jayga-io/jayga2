@@ -85,4 +85,23 @@ class HostController extends Controller
             }
         }
     }
+
+    //delete bank
+    public function delBank(Request $request){
+        $valid = $request->validate([
+            'bank_id' => 'required',
+        ]);
+
+        if($valid){
+            BankDetails::where('id', $request->query('bank_id'))->delete();
+
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Bank Details Removed'
+            ]);
+        }else{
+            return $valid->errors();
+        }
+        
+    }
 }
