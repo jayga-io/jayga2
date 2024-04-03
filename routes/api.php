@@ -189,6 +189,8 @@ Route::prefix('client')->group(function(){
     Route::post('/submit/review', [ReviewController::class, 'create']);
     //get reviews
     Route::get('/get/reviews', [ReviewController::class, 'view']);
+    //vouchar
+    Route::get('/vouchars', [VoucharController::class, 'get_vouchar']);
 
 });
 
