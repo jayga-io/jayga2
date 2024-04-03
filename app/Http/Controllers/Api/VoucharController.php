@@ -9,9 +9,11 @@ use App\Models\Vouchar;
 class VoucharController extends Controller
 {
     public function get_vouchar(Request $request){
-        $validated = [
+        $validated = $request->validate([
             'vouchar_code' => 'required'
-        ];
+        ]);
+            
+        
         if($validated){
             $vouchars = Vouchar::where('vouchar_code', $request->input('vouchar_code'))->get();
             if(count($vouchars) > 0){
