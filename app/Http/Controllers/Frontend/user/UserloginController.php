@@ -154,7 +154,7 @@ class UserloginController extends Controller
             }
 
             if($nid = $request->file('nid')){
-                $nids = UserNid::where('user_id')->get();
+                $nids = UserNid::where('user_id', $id)->get();
                 if(count($nids)>0){
                     foreach ($nids as $value) {
                         Storage::delete($value->user_nid_targetlocation);
