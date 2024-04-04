@@ -21,15 +21,29 @@ class HostController extends Controller
             'type' => 'required',
         ]);
         if($validated){
-            BankDetails::create([
-                'lister_id' => $request->input('lister_id'),
-                'acc_name' => $request->input('acc_name'),
-                'acc_number' => $request->input('acc_number'),
-                'bank_name' => $request->input('bank_name'),
-                'routing_number' => $request->input('routing_number'),
-                'type' => $request->input('type'),
-                'branch_name' => $request->input('branch_name'),
-            ]);
+           $checkBank = BankDetails::where('acc_number', $request->input('acc_number'))->where('lister_id', $request->input('lister_id'))->get();
+           if($checkBank > 0){
+                BankDetails::where('lister_id', $request->input('lister_id'))->update([
+                    'lister_id' => $request->input('lister_id'),
+                    'acc_name' => $request->input('acc_name'),
+                    'acc_number' => $request->input('acc_number'),
+                    'bank_name' => $request->input('bank_name'),
+                    'routing_number' => $request->input('routing_number'),
+                    'type' => $request->input('type'),
+                    'branch_name' => $request->input('branch_name'),
+                ]);
+           }else{
+                BankDetails::create([
+                    'lister_id' => $request->input('lister_id'),
+                    'acc_name' => $request->input('acc_name'),
+                    'acc_number' => $request->input('acc_number'),
+                    'bank_name' => $request->input('bank_name'),
+                    'routing_number' => $request->input('routing_number'),
+                    'type' => $request->input('type'),
+                    'branch_name' => $request->input('branch_name'),
+                ]);
+           }
+           
             
             return response()->json([
                 'status' => 200,

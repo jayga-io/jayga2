@@ -159,13 +159,14 @@ class UserloginController extends Controller
                     foreach ($nids as $value) {
                         Storage::delete($value->user_nid_targetlocation);
                     }
-                    UserNid::where('user_id', $id)->delete();
+                   // UserNid::where('user_id', $id)->delete();
 
-                    foreach ($nid as $value) {
-                        $path = $value->store('user_nids');
-                        UserNid::create([
+                    foreach ($nid as $values) {
+                        $path = $values->store('user_nids');
+                        
+                        UserNid::where('user_id', $id)->update([
                             'user_id' => $id ,
-                            'user_nid_filename' => $value->hashName(), 
+                            'user_nid_filename' => $values->hashName(), 
                             'user_nid_targetlocation' => $path 
                            
                             
@@ -173,11 +174,11 @@ class UserloginController extends Controller
                     }
 
                 }else{
-                    foreach ($nid as $value) {
-                        $path = $value->store('user_nids');
+                    foreach ($nid as $item) {
+                        $path = $item->store('user_nids');
                         UserNid::create([
                             'user_id' => $id ,
-                            'user_nid_filename' => $value->hashName(), 
+                            'user_nid_filename' => $item->hashName(), 
                             'user_nid_targetlocation' => $path 
                            
                             
