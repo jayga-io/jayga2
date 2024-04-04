@@ -162,10 +162,10 @@ class UserloginController extends Controller
                     UserNid::where('user_id', $id)->delete();
 
                     foreach ($nid as $value) {
-                        $path = $nid->store('user_nids');
+                        $path = $value->store('user_nids');
                         UserNid::create([
                             'user_id' => $id ,
-                            'user_nid_filename' => $nids->hashName(), 
+                            'user_nid_filename' => $value->hashName(), 
                             'user_nid_targetlocation' => $path 
                            
                             
@@ -174,10 +174,10 @@ class UserloginController extends Controller
 
                 }else{
                     foreach ($nid as $value) {
-                        $path = $nid->store('user_nids');
+                        $path = $value->store('user_nids');
                         UserNid::create([
                             'user_id' => $id ,
-                            'user_nid_filename' => $nids->hashName(), 
+                            'user_nid_filename' => $value->hashName(), 
                             'user_nid_targetlocation' => $path 
                            
                             
