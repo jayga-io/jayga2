@@ -36,7 +36,7 @@ class ClientController extends Controller
 
         $notifs = Notification::where('user_id', $request->session()->get('user'))->where('type', 'booking')->count();
 
-       // Artisan::call('schedule:work');
+        Artisan::call('schedule:run');
        // dd($listings);
        // dd($listings[0]->reviews[0]->avg_rating);
        return view('client.home.home')->with('listings', $listings)->with('notifcount', $notifs);
@@ -72,7 +72,7 @@ class ClientController extends Controller
         $slot  = $request->input('short_stay_slot');
         $invoice_number = Str::random(8);
 
-        if($request->session()->get('user_name') == null || $request->session()->get('user_email') || null || $request->session()->get('phone') == null){
+        if($request->session()->get('user_name') == null || $request->session()->get('user_email') == null || $request->session()->get('phone') == null){
             return redirect(route('userprofile'))->with('messege', 'Please complete your profile. Name, Email, Phone & NID fields are mandatory');
         }else{
 

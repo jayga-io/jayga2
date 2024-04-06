@@ -59,7 +59,7 @@ class Kernel extends ConsoleKernel
                     'lister_id' => $value->lister_id,
                     'listing_id' => $value->listing_id,
                     'booking_id' => $value->booking_id,
-                    'type' => 'Booking Expired',
+                    'type' => 'booking',
                     'messege' => 'Your Booking request for : '.$value->listings->listing_title. ' has been expired',
     
                 ]);
@@ -70,7 +70,7 @@ class Kernel extends ConsoleKernel
                     'lister_id' => $value->lister_id,
                     'listing_id' => $value->listing_id,
                     'booking_id' => $value->booking_id,
-                    'type' => 'Booking Expired',
+                    'type' => 'booking',
                     'messege' => 'Your Booking request at : '.$value->listings->listing_title. ' has been expired',
     
                 ]);
@@ -84,7 +84,7 @@ class Kernel extends ConsoleKernel
 
            
            
-        })->everyMinute();
+        })->hourly();
     }
 
     /**
