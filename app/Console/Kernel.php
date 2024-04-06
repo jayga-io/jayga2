@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Models\Listing;
 use App\Models\ListingAvailable;
 use App\Models\BookingHistory;
+use App\Models\Notification;
 
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -21,40 +22,67 @@ class Kernel extends ConsoleKernel
              // Query pending booking requests created more than 48 hours ago
                 $pendingBookings = Booking::where('booking_status', 0)
                 ->where('created_at', '<', now()->subHours(48))
+                ->with('listings')
                 ->get();
                // dd($pendingBookings);
 
             // Update status to declined for each pending booking
-            foreach ($pendingBookings as $booking) {
+            foreach ($pendingBookings as $key => $value) {
                 
                 BookingHistory::create([
-                    'user_id' => $booking->user_id,
-                    'listing_id' => $booking->listing_id,
-                    'booking_id' => $booking->booking_id,
-                    'lister_id' => $booking->lister_id,
-                    'listing_title' => $booking->listings->listing_title,
-                    'listing_type' => $booking->listings->listing_type,
-                    'short_stay_flag' => $booking->short_stay_flag,
-                    'transaction_id' => $booking->transaction_id,
-                    'date_enter' => $booking->date_enter,
-                    'date_exit' => $booking->date_exit,
-                    'tier' => $booking->tier,
-                    'total_members' => $booking->total_members,
-                    'email' => $booking->email,
-                    'phone' => $booking->phone,
-                    'pay_amount' => $booking->pay_amount,
-                    'net_payable' => $booking->net_payable,
-                    'payment_flag' => $booking->payment_flag,
-                    'booking_status' => $booking->booking_status,
-                    'isApproved' => $booking->isApproved,
-                    'isComplete' => $booking->isComplete,
+                    'user_id' => $value->user_id,
+                    'listing_id' => $value->listing_id,
+                    'booking_id' => $value->booking_id,
+                    'lister_id' => $value->lister_id,
+                    'listing_title' => $value->listings->listing_title,
+                    'listing_type' => $value->listings->listing_type,
+                    'short_stay_flag' => $value->short_stay_flag,
+                    'transaction_id' => $value->transaction_id,
+                    'date_enter' => $value->date_enter,
+                    'date_exit' => $value->date_exit,
+                    'tier' => $value->tier,
+                    'total_members' => $value->total_members,
+                    'email' => $value->email,
+                    'phone' => $value->phone,
+                    'pay_amount' => $value->pay_amount,
+                    'net_payable' => $value->net_payable,
+                    'payment_flag' => $value->payment_flag,
+                    'booking_status' => 2,
+                    'isApproved' => $value->isApproved,
+                    'isComplete' => $value->isComplete,
                     'messeges' => 'Expired',
                 ]);
-                // notify($notifys);
-                // $booking->save();
-               // $booking->delete();
-                $booking->delete();
+
+                //Notification for user
+                Notification::create([
+                    'user_id' => $value->user_id,
+                    'lister_id' => $value->lister_id,
+                    'listing_id' => $value->listing_id,
+                    'booking_id' => $value->booking_id,
+                    'type' => 'Booking Expired',
+                    'messege' => 'Your Booking request for : '.$value->listings->listing_title. ' has been expired',
+    
+                ]);
+    
+                //notification for lister
+                Notification::create([
+                    'user_id' => $value->lister_id,
+                    'lister_id' => $value->lister_id,
+                    'listing_id' => $value->listing_id,
+                    'booking_id' => $value->booking_id,
+                    'type' => 'Booking Expired',
+                    'messege' => 'Your Booking request at : '.$value->listings->listing_title. ' has been expired',
+    
+                ]);
+
+               // $value->delete();
             }
+
+            Booking::where('booking_status', 0)
+                ->where('created_at', '<', now()->subHours(48))
+                ->delete();
+
+           
            
         })->everyMinute();
     }
