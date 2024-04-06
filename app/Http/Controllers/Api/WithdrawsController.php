@@ -56,6 +56,16 @@ class WithdrawsController extends Controller
                 'branch_name' => $bank[0]->branch_name,
             ]);
 
+            $notifys = [
+                'user_id' => $request->input('lister_id'),
+                'lister_id' => $request->input('lister_id'),
+                
+                'type' => 'Withdrawal Processed : '.$request->input('amount'),
+                'messege' => 'Your withdrawal request for '.$request->input('amount').' has been successfully processed. You should see the funds reflected in your account shortly.'
+            ];
+        
+               notify($notifys);
+
             return response()->json([
                 'status' => 200,
                 'messege' => 'Withdraw Request Submitted'

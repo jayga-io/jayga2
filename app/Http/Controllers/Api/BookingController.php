@@ -78,8 +78,8 @@ class BookingController extends Controller
                 'lister_id' => $request->input('lister_id'),
                 'listing_id' => $request->input('listing_id'),
                 'booking_id' => $booked[0]->booking_id,
-                'type' => 'Booking Placed',
-                'messege' => 'Your Booking request at : '.$listing[0]->listing_title. ' has been sent for approval',
+                'type' => 'New Booking Request : '.$listing[0]->listing_title,
+                'messege' => 'Your Booking request at : '.$listing[0]->listing_title. ' has been placed',
 
             ]);
 
@@ -88,8 +88,8 @@ class BookingController extends Controller
                 'lister_id' => $request->input('lister_id'),
                 'listing_id' => $request->input('listing_id'),
                 'booking_id' => $booked[0]->booking_id,
-                'type' => 'Booking Request',
-                'messege' => 'Your Listing : '.$listing[0]->listing_title. ' has a new booking request',
+                'type' => 'New Booking Request : '.$listing[0]->listing_title,
+                'messege' => 'Your have a new booking request for : '.$listing[0]->listing_title,
 
             ]);
 
@@ -197,7 +197,8 @@ class BookingController extends Controller
                 $data = [
                     "sender_id" => "8809601010510",
                     "receiver" => $phone,
-                    "message" => 'Dear user, Your booking at: ' .$listing_name[0]->listing_title . ' has been confirmed by the host',
+                    "message" => 'Your booking request for ' .$listing_name[0]->listing_title . ' has been approved. Check-in: '. $booking_id[0]->date_enter .' , Check-out: '. $booking_id[0]->date_exit .'. For assistance, contact Jayga support. ',
+                    
                     "remove_duplicate" => true
                 ];
                 
@@ -208,8 +209,8 @@ class BookingController extends Controller
                     'lister_id' => $booking_id[0]->lister_id,
                     'listing_id' => $booking_id[0]->listing_id,
                     'booking_id' => $request->input('booking_id'),
-                    'type' => 'Booking Approval',
-                    'messege' => 'Your Booking : '. $listing_name[0]->listing_title . ' has been approved'
+                    'type' => 'Booking Request Confirmed',
+                    'messege' => 'Your Booking : '. $listing_name[0]->listing_title . ' is confirmed'
                    ];
             
                    notify($notifys);
@@ -251,7 +252,8 @@ class BookingController extends Controller
                 $data = [
                     "sender_id" => "8809601010510",
                     "receiver" => $phone,
-                    "message" => 'Dear user, Your booking at: '. $booking_id[0]->booking_order_name . ' has been declined by the host.',
+                    
+                    "message" => 'Your booking request for '. $booking_id[0]->booking_order_name .' has been declined. Please apply for a refund from “My bookings”. We are sorry for any inconvenience caused. For assistance, contact Jayga support.  ',
                     "remove_duplicate" => true
                 ];
                 
@@ -263,9 +265,9 @@ class BookingController extends Controller
                     'lister_id' => $booking_id[0]->lister_id,
                     'listing_id' => $booking_id[0]->listing_id,
                     'booking_id' => $request->input('booking_id'),
-                    'type' => 'Booking Decline',
-                    'messege' => 'Your Booking : '. $listing_name[0]->listing_title . ' has been declined'
-                   ];
+                    'type' => 'Booking Request Declined: '. $listing_name[0]->listing_title,
+                    'messege' => 'Your Booking : '. $listing_name[0]->listing_title . ' is declined'
+                ];
             
                    notify($notifys);
                    ListingAvailable::where('booking_id', $request->input('booking_id'))->delete();

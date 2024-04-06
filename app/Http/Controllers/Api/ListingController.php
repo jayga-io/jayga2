@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Listing;
+use App\Models\User;
 use App\Models\UserNid;
 use App\Models\ListerNid;
 use App\Models\ListingGuestAmenities;
@@ -91,6 +92,63 @@ class ListingController extends Controller
         
                 $listing_id = Listing::where('listing_title', $request->input('listing_title'))->get();
               //  dd($check[0]);
+
+              $usr = User::where('id', $request->input('user_id'))->get();
+
+              if($usr[0]->phone == null){
+                $to_email = $usr[0]->email;
+                $subject = 'Booking Request Sent';
+                $message = '
+
+                    Dear user,
+
+                    Thank you for listing your property, '.$request->input('listing_title').', on Jayga! We are currently reviewing your listing to ensure it meets our quality standards. You will receive an update once the review process is complete.
+
+                    In the meantime, if you have any questions or need assistance, feel free to contact us.
+            
+                    Best regards,
+                    The Jayga Team';
+
+                // Send email
+                Mail::raw($message, function($message) use ($to_email, $subject) {
+                    $message->to($to_email)->subject($subject);
+                });
+              }elseif($usr[0]->email == null){
+                $data = [
+                    "sender_id" => "8809601010510",
+                    "receiver" => $usr[0]->phone,
+                    "message" => 'Your listing : '. $request->input('listing_title') . ' has a new booking request',
+                    "remove_duplicate" => true
+                ];
+                send_sms($data);
+              }else{
+                $to_email = $usr[0]->email;
+                $subject = 'Booking Request Sent';
+                $message = '
+
+                    Dear user,
+
+                    Thank you for listing your property, '.$request->input('listing_title').', on Jayga! We are currently reviewing your listing to ensure it meets our quality standards. You will receive an update once the review process is complete.
+
+                    In the meantime, if you have any questions or need assistance, feel free to contact us.
+            
+                    Best regards,
+                    The Jayga Team';
+
+                // Send email
+                Mail::raw($message, function($message) use ($to_email, $subject) {
+                    $message->to($to_email)->subject($subject);
+                });
+
+                $data = [
+                    "sender_id" => "8809601010510",
+                    "receiver" => $usr[0]->phone,
+                    "message" => 'Your listing : '. $request->input('listing_title') . ' has a new booking request',
+                    "remove_duplicate" => true
+                ];
+                send_sms($data);
+              }
+
                 
 
                 return response()->json([

@@ -35,6 +35,18 @@ class RefundsController extends Controller
                 'type' => Str::lower($request->input('type')),
                ]);
 
+               
+               $notifys = [
+                'user_id' => $request->input('user_id'),
+                'lister_id' => $request->input('lister_id'),
+                'listing_id' => $request->input('listing_id'),
+                'booking_id' => $request->input('booking_id'),
+                'type' => 'Refund Processed: '.$request->input('booking_id'),
+                'messege' => 'Your refund for booking '.$request->input('booking_id').' has been successfully processed. You should see the refund reflected in your account shortly.'
+            ];
+        
+               notify($notifys);
+
                return response()->json([
                     'status' => 200,
                     'messege' => 'Refund Request Submitted'
