@@ -8,6 +8,7 @@ use App\Models\Listing;
 use App\Models\ListingAvailable;
 use App\Models\BookingHistory;
 use App\Models\Notification;
+use App\Models\User;
 
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -85,6 +86,39 @@ class Kernel extends ConsoleKernel
            
            
         })->hourly();
+
+
+        $schedule->call(function (){
+
+            $pend_books = Booking::where('booking_status', 0)
+            ->where('created_at', '<', now()->subHours(24))
+            ->with('lister')
+            ->get();
+
+           foreach ($pend_books as $key => $value) {
+            
+            $data = [
+                "sender_id" => "8809601010510",
+                 "receiver" => $value->lister->phone,
+                 "message" => "You have a pending booking against your listing at Jayga. Please confirm before it expires",
+                 "remove_duplicate" => true
+             ];
+
+             send_sms($data);
+           }
+            
+           
+        })->hourly();
+
+
+        $schedule->call(function (){
+            User::where('updated_at', '<=', now()->subMinutes(15))->update([
+                'access_token' => NULL
+            ]);
+        })->everyMinute();
+
+        
+       
     }
 
     /**

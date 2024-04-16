@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Message;
 
 class LoginController extends Controller
 {
@@ -21,8 +23,34 @@ class LoginController extends Controller
             ]);
                     $authKey = 'jayga_user';
                     $authToken = Hash::make($authKey);
-                   
-                    $user = User::where('phone', $request->phone)->get();
+                    $pattern = '/^\S+@\S+\.\S+$/';
+                    $txt = $request->input('phone');
+
+                    if(preg_match($pattern, $txt)){
+                        $to_email = $request->input('phone');
+                        $subject = 'Jayga OTP';
+                        $message = '
+
+                        Dear user,
+                        
+                        Your One-Time Password (OTP) for accessing your Jayga account is:  '.$otp.' .
+                        
+                        Please enter this code on the login page to complete the verification process.
+                        
+                        Please note that this OTP is valid for a single use only and should not be shared with anyone. If you did not request this OTP, please disregard this message.
+                        
+                        Thank you for using Jayga!
+                        
+                        Best regards,
+                        The Jayga Team';
+
+                        // Send email
+                        Mail::raw($message, function($message) use ($to_email, $subject) {
+                            $message->to($to_email)->subject($subject);
+                        });
+                    }
+
+                    $user = User::where('phone', $request->phone)->orWhere('email', $request->phone)->get();
                     
                     
                     
@@ -45,12 +73,21 @@ class LoginController extends Controller
                             ]);
     
                         }else{
-                            User::create([
-                                'phone' => $request->input('phone'),
-                                'access_token' => $authToken,
-                                'FCM_token' => $request->input('FCM_token'),
-                            ]);
-                            $user = User::where('phone', $request->input('phone'))->get();
+                            if(is_numeric($txt)){
+                                User::create([
+                                    'phone' => $request->input('phone'),
+                                    'access_token' => $authToken,
+                                    'FCM_token' => $request->input('FCM_token'),
+                                ]);
+                            }elseif(preg_match($pattern, $txt)){
+                                User::create([
+                                    'email' => $request->input('phone'),
+                                    'access_token' => $authToken,
+                                    'FCM_token' => $request->input('FCM_token'),
+                                ]);
+                            }
+                            
+                            $user = User::where('phone', $request->input('phone'))->orWhere('email', $request->input('phone'))->get();
                             return response()->json([
                                 'status' => '200',
                                 'messege' => 'New user registered successfully',

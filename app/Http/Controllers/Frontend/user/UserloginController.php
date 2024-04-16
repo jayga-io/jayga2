@@ -9,7 +9,10 @@ use App\Models\UserPictures;
 use App\Models\UserNid;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Message;
 use Storage;
+
 class UserloginController extends Controller
 {
     public function login(Request $request){
@@ -18,15 +21,15 @@ class UserloginController extends Controller
         ]);
 
         if($validated){
-            $user = User::where('phone', $request->input('phone'))->get();
+            $user = User::where('phone', $request->input('phone'))->orWhere('email', $request->input('phone'))->get();
             $authKey = 'jayga_user';
             $authToken = Hash::make($authKey);
             $otp = random_int(1000,9999);
+            $pattern = '/^\S+@\S+\.\S+$/';
 
-            if(count($user)>0){
+            $txt = $request->input('phone');
 
-                User::where('id', $user[0]->id)->update([ 'access_token' => $authToken ]);
-
+            if(is_numeric($txt)){
                 $data = [
                     "sender_id" => "8809601010510",
                      "receiver" => $request->input('phone'),
@@ -35,6 +38,35 @@ class UserloginController extends Controller
                  ];
 
                  send_sms($data);
+            }elseif(preg_match($pattern, $txt)){
+                $to_email = $request->input('phone');
+                $subject = 'Jayga OTP';
+                $message = '
+    
+                Dear user,
+                
+                Your One-Time Password (OTP) for accessing your Jayga account is:  '.$otp.' .
+                
+                Please enter this code on the login page to complete the verification process.
+                
+                Please note that this OTP is valid for a single use only and should not be shared with anyone. If you did not request this OTP, please disregard this message.
+                
+                Thank you for using Jayga!
+                
+                Best regards,
+                The Jayga Team';
+    
+                // Send email
+                Mail::raw($message, function($message) use ($to_email, $subject) {
+                    $message->to($to_email)->subject($subject);
+                });
+            }
+
+            if(count($user)>0){
+
+                User::where('id', $user[0]->id)->update([ 'access_token' => $authToken ]);
+
+                
                 
                 return response()->json([
                     'status' => '200',
@@ -46,19 +78,20 @@ class UserloginController extends Controller
                 ]);
 
             }else{
-                User::create([
-                    'phone' => $request->input('phone'),
-                    'access_token' => $authToken
-                ]);
+                if(is_numeric($txt)){
+                    User::create([
+                        'phone' => $request->input('phone'),
+                        'access_token' => $authToken
+                    ]);
+                }elseif(preg_match($pattern, $txt)){
+                    User::create([
+                        'email' => $request->input('phone'),
+                        'access_token' => $authToken
+                    ]);
+                }
+                
 
-                $data = [
-                    "sender_id" => "8809601010510",
-                     "receiver" => $request->input('phone'),
-                     "message" => "Your Jayga OTP is:".$otp,
-                     "remove_duplicate" => true
-                 ];
-
-                 send_sms($data);
+             
                 
                 return response()->json([
                     'status' => '200',

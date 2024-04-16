@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Listing;
+use App\Models\User;
 use App\Models\TimeSlotShortstays;
 use App\Models\ListingImages;
 
@@ -23,6 +24,10 @@ class Booking extends Model
 
     public function listing_images(){
         return $this->hasMany(ListingImages::class, 'listing_id', 'listing_id');
+    }
+
+    public function lister(){
+        return $this->hasOne(User::class, 'id', 'lister_id');
     }
 
 
