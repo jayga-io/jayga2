@@ -49,7 +49,7 @@ class Listing extends Model
     }
 
     public function host(){
-        return $this->hasOne(User::class, 'id', 'lister_id');
+        return $this->belongsTo(User::class, 'id', 'lister_id');
     }
 
     public function disable_dates(){

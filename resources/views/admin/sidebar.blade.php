@@ -172,7 +172,16 @@
                     </ul>
                 </li> -->
                 <!-- <li> <a href="assets.php"><i class="fas fa-cube"></i> <span>Assests</span></a> </li> -->
-                <li> <a href="activities.php"><i class="far fa-bell"></i> <span>Experiences</span></a> </li>
+                <li> <a href="#"><i class="far fa-bell"></i> <span>Experiences</span></a> </li>
+                <li class="submenu"> <a href="#"><i class="fe fe-user"></i> <span> Users </span><span
+                    class="menu-arrow"></span></a> 
+                
+                    <ul class="submenu_class">
+                        <li><a href="{{route('allusers')}}"> All Users </a></li>
+                        <li><a href="{{route('allhosts')}}"> Hosts </a></li>
+                    </ul>
+                
+                </li>
                 <li class="submenu"> <a href="#"><i class="fe fe-table"></i> <span> Reports </span> <span
                             class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">

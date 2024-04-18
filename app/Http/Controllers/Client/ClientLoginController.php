@@ -82,26 +82,32 @@ class ClientLoginController extends Controller
            
            if(count($user)>0){
             
-            $photo = UserPictures::where('user_id', $user[0]->id)->get();
-            if(count($photo)>0){
-                session([
-                    'user' => $user[0]->id,
-                    'user_name' => $user[0]->name,
-                    'user_email' => $user[0]->email,
-                    'phone' => $user[0]->phone,
-                    'photo' => $photo[0]->user_targetlocation,
-                ]);
+            if($user[0]->isSuspended == true){
+                return redirect(route('clientlogin'))->with('error', 'User account suspended. Please contact Jayga Support');
             }else{
-                    session([ 
-                    'user' => $user[0]->id,
-                    'user_name' => $user[0]->name,
-                    'phone' => $user[0]->phone,
-                    'user_email' => $user[0]->email,
-                    
+                $photo = UserPictures::where('user_id', $user[0]->id)->get();
+                if(count($photo)>0){
+                    session([
+                        'user' => $user[0]->id,
+                        'user_name' => $user[0]->name,
+                        'user_email' => $user[0]->email,
+                        'phone' => $user[0]->phone,
+                        'photo' => $photo[0]->user_targetlocation,
                     ]);
+                }else{
+                        session([ 
+                        'user' => $user[0]->id,
+                        'user_name' => $user[0]->name,
+                        'phone' => $user[0]->phone,
+                        'user_email' => $user[0]->email,
+                        
+                        ]);
 
-                   // dd($request->session());
+                    // dd($request->session());
+                }
             }
+            
+            
             
            }else{
 

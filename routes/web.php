@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RefundsController;
 use App\Http\Controllers\Admin\EarningsController;
 use App\Http\Controllers\Admin\AmenitiesListController;
 use App\Http\Controllers\Admin\RestrictionListController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Host\HostController;
 use App\Http\Controllers\Host\ListerDashboardController;
@@ -27,6 +28,7 @@ use App\Http\Middleware\HasBankAccount;
 use App\Http\Middleware\HasProfile;
 use App\Http\Middleware\ClientAuth;
 use App\Http\Middleware\Adminauth;
+use App\Http\Middleware\SuspendedUser;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\AdminController;
@@ -104,6 +106,11 @@ Route::prefix('admin')->group(function(){
             Route::post('/add/restriction', [RestrictionListController::class, 'create'])->name('createrestriction');
             Route::get('/delete/restriction/{id}', [RestrictionListController::class, 'delete'])->name('deleterestrictions');
             Route::post('/update-restriction', [RestrictionListController::class, 'update_restriction'])->name('restrictionupdate');
+
+            //users
+            Route::get('/users', [UsersController::class, 'index'])->name('allusers');
+            Route::get('/hosts', [UsersController::class, 'hosts'])->name('allhosts');
+            Route::get('/user/suspend/{id}', [UsersController::class, 'destroy'])->name('suspenduser');
 
            
     });
