@@ -56,21 +56,30 @@ class LoginController extends Controller
                     
                         if(count($user)>0){
 
-                            User::where('id', $user[0]->id)->update([ 'access_token' => $authToken, 'FCM_token' => $request->input('FCM_token')]);
-                            
-                            return response()->json([
-                                'status' => '200',
-                                'messege' => 'User already exist',
-                                'user' => [
-                                    'user_id' => $user[0]->id,
-                                    'phone' => $user[0]->phone,
-                                    'authToken' => $authToken,
-                                    'name' => $user[0]->name,
-                                    'email' => $user[0]->email
-
-                                ]
+                            if($user[0]->isSuspended == true){
+                                return response()->json([
+                                    'status' => 403,
+                                    'messege' => 'User account suspended. Please contact with Jayga support'
+                                ], 403);
+                            }else{
+                                User::where('id', $user[0]->id)->update([ 'access_token' => $authToken, 'FCM_token' => $request->input('FCM_token')]);
                                 
-                            ]);
+                                return response()->json([
+                                    'status' => '200',
+                                    'messege' => 'User already exist',
+                                    'user' => [
+                                        'user_id' => $user[0]->id,
+                                        'phone' => $user[0]->phone,
+                                        'authToken' => $authToken,
+                                        'name' => $user[0]->name,
+                                        'email' => $user[0]->email
+
+                                    ]
+                                    
+                                ]);
+                            }
+
+                            
     
                         }else{
                             if(is_numeric($txt)){

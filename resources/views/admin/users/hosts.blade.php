@@ -48,7 +48,7 @@
 
                             <td>{{$item->created_at->format('F j, Y')}}</td>
                             <td><button class="btn-samll btn-primary">View</button></td>
-                            <td><button class="btn-small btn-warning">Suspend</button></td>
+                            <td><a class="btn-small btn-warning" href="/admin/user/suspend/{{$item->id}}">Suspend</a></td>
                             <td><button class="btn-small btn-success fs-6">Messege</button></td>
                         </tr>
                         <?php $counter++; ?>

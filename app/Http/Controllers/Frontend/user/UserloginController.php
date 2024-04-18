@@ -115,10 +115,18 @@ class UserloginController extends Controller
         if($validated){
             $user = User::where('access_token', $request->input('access_token'))->with('avatars')->get();
             if(count($user)>0){
-                return response()->json([
-                    'status' => 200,
-                    'user' => $user
-                ]);
+                if($user[0]->isSuspended == true){
+                    return response()->json([
+                        'status' => 403,
+                        'messege' => 'User account suspended. Please contact with Jayga support'
+                    ], 403);
+                }else{
+                    return response()->json([
+                        'status' => 200,
+                        'user' => $user
+                    ]);
+                }
+                
             }else{
                 return response()->json([
                     'status' => 404,
@@ -135,10 +143,18 @@ class UserloginController extends Controller
     public function get_user(Request $request){
         $us = User::where('phone', $request->query('phone'))->orWhere('email', $request->query('phone'))->with('avatars')->with('nids')->get();
         if(count($us)>0){
-            return response()->json([
-                'status' => 200,
-                'user' => $us
-            ]);
+            if($user[0]->isSuspended == true){
+                return response()->json([
+                    'status' => 403,
+                    'messege' => 'User account suspended. Please contact with Jayga support'
+                ], 403);
+            }else{
+                return response()->json([
+                    'status' => 200,
+                    'user' => $us
+                ]);
+            }
+            
         }else{
             return response()->json([
                 'status' => 404,
