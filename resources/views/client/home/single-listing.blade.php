@@ -754,7 +754,7 @@
         <div class="row my-5">
             <div class="d-flex justify-content-between mb-5">
                 <div class="col-md-6 col-sm-12 d-flex">
-                    @if ($listing[0]->host->avatars)
+                    @if ($listing[0]->hostdp->avatars)
                     <img src="https://new.jayga.io/uploads/{{ $listing[0]->host->avatars->user_targetlocation }}"
                         class="rounded-circle" style="width: 120px; height: 120px;" alt="">
                     @else
@@ -767,7 +767,7 @@
                             style="width: 100%;  color: #838383; font-size: 18px;  font-weight: 300;  word-wrap: break-word">
                             Hosted by</div>
                         <div class="card-title" style="font-size: 32px; font-weight: 500;">
-                            {{ $listing[0]->host->name }}
+                            {{ $listing[0]->hostdp->name }}
                         </div>
                         <div class="py-3">
                             <i class="fa fa-star checked"></i>
@@ -780,9 +780,9 @@
                     </div>
                 </div>
                 <div class="col-md-6" id="host_desc">
-                    @if ($listing[0]->host->about)
+                    @if ($listing[0]->hostdp->about)
                     <div class="card-text">
-                        {{ $listing[0]->host->about }}
+                        {{ $listing[0]->hostdp->about }}
                     </div>
                     @else
                     <div class="card-text">

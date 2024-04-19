@@ -143,7 +143,7 @@ class UserloginController extends Controller
     public function get_user(Request $request){
         $us = User::where('phone', $request->query('phone'))->orWhere('email', $request->query('phone'))->with('avatars')->with('nids')->get();
         if(count($us)>0){
-            if($user[0]->isSuspended == true){
+            if($us[0]->isSuspended == true){
                 return response()->json([
                     'status' => 403,
                     'messege' => 'User account suspended. Please contact with Jayga support'

@@ -52,6 +52,12 @@ class Listing extends Model
         return $this->belongsTo(User::class, 'id', 'lister_id');
     }
 
+    public function hostdp(){
+        return $this->hasOne(User::class, 'id', 'lister_id');
+    }
+
+    
+
     public function disable_dates(){
         return $this->hasMany(ListingAvailable::class, 'listing_id', 'listing_id');
     }
