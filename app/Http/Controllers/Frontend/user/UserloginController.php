@@ -165,15 +165,33 @@ class UserloginController extends Controller
 
     public function update_user(Request $request){
         $validated = $request->validate([
-            'user_id' => 'integer',
-            'username' => 'string',
+            'id' => 'integer',
+            'name' => 'string',
             'email' => 'string',
             'phone' => 'string',
+            /*
+            'user_nid' => 'Integer',
+            'user_dob' => 'string',
+            'user_address' => 'string',
+            'user_lat' => 'double',
+            'user_long' => 'double',
+            'about' => 'string',
+            'platform_tag' => 'string',
+            */
         ]);
 
         if($validated){
-            $id = $request->input('user_id');
-            User::where('id', $id)->update($request->all());
+            $id = $request->input('id');
+            User::where('id', $id)->update([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'phone' => $request->input('phone'),
+                'about' => $request->input('about'),
+                'platform_tag' => 'web',
+                'user_lat' => $request->input('user_lat'),
+                'user_long' => $request->input('user_long'),
+                'user_address' => $request->input('user_address'),
+            ]);
 
             if($file = $request->file('photo')){
                 $avatar = UserPictures::where('user_id', $id)->get();
