@@ -256,8 +256,10 @@ class ListingController extends Controller
     }
 
     public function update_listing(Request $request){
-        Listing::where('listing_id', $request->input('listing_id'))->update([
-            'lister_id' => $request->input('user_id'),
+        Listing::where('listing_id', $request->input('listing_id'))->update($request->all());
+
+        /* 
+        'lister_id' => $request->input('user_id'),
             'lister_name' => $request->input('lister_name'),
             'guest_num' => $request->input('guest_num'),
             'bed_num' => $request->input('bed_num'),
@@ -280,7 +282,7 @@ class ListingController extends Controller
             'long' => $request->input('longi'),
             'listing_type' => $request->input('listing_type'),
             'video_link' => $request->input('video_link'),
-        ]);
+            */
 
         
 
