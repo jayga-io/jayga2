@@ -36,31 +36,12 @@ class UserController extends Controller
     public function editUser(Request $request){
         $validated = $request->validate([
             'user_id' => 'required',
-            'user_name' => 'required',
-            'user_email' => 'required',
-            'user_dob' => 'required',
-            'user_nid' => 'required',
-            'user_address' => 'required',
             
-            'is_lister' => 'required',
             
            ]);
 
            if($validated){
-                    User::where('id', $request->input('user_id'))->update([
-                    'name' => $request->input('user_name'),
-                    'email' => $request->input('user_email'),
-                    'user_dob' => $request->input('user_dob'),
-                    'phone' => $request->input('phone'),
-                    'user_nid' => $request->input('user_nid'),
-                    'user_address' => $request->input('user_address'),
-                    'is_lister' => $request->input('is_lister'),
-                    'user_long' => $request->input('user_long'),
-                    'user_lat' => $request->input('user_lat'),
-                    'about' => $request->input('about'),
-                    'FCM_token' => $request->input('FCM_token'),
-                    'platform_tag' => $request->input('platform_tag'),
-                ]);
+                    User::where('id', $request->input('user_id'))->update($request->all());
 
              
 
