@@ -47,9 +47,15 @@
                             <td>{{$item->listings->count()}}</td>
 
                             <td>{{$item->created_at->format('F j, Y')}}</td>
-                            <td><button class="btn-samll btn-primary">View</button></td>
-                            <td><a class="btn-small btn-warning" href="/admin/user/suspend/{{$item->id}}">Suspend</a></td>
-                            <td><button class="btn-small btn-success fs-6">Messege</button></td>
+                            <td><button class="btn btn-primary">View</button></td>
+
+                            @if ($item->isSuspended == true)
+                            <td><a class="btn btn-warning" href="/admin/user/unsuspend/{{$item->id}}">Un Suspend</a></td>
+                            @else
+                            <td><a class="btn btn-warning" href="/admin/user/suspend/{{$item->id}}">Suspend</a></td>
+                            @endif
+                            
+                            <td><button class="btn btn-success fs-6" data-toggle="modal" data-target="#exampleModal">Messege</button></td>
                         </tr>
                         <?php $counter++; ?>
                     @endforeach
@@ -58,6 +64,35 @@
                     
                 </tbody>
             </table>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Send Messege</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <form action="{{route('sendmessege')}}" method="POST">
+                        @csrf
+                        <div class="modal-body">
+                            
+                                <label for="contact" class="form-label">Enter contact address</label>
+                                <input type="text" class="form-control" placeholder="Enter phone/email" name="contactaddress">
+                                <label class="form-label my-2" for="messege">Enter Messege</label>
+                                <textarea class="form-control" rows="5" type="text" name="messege" placeholder="Enter Messege"></textarea>
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </div>
+                    </form>
+                </div>
+                </div>
+            </div>
         </div>
        
     </div>

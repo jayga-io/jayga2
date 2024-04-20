@@ -110,7 +110,9 @@ Route::prefix('admin')->group(function(){
             //users
             Route::get('/users', [UsersController::class, 'index'])->name('allusers');
             Route::get('/hosts', [UsersController::class, 'hosts'])->name('allhosts');
-            Route::get('/user/suspend/{id}', [UsersController::class, 'destroy'])->name('suspenduser');
+            Route::get('/user/suspend/{id}', [UsersController::class, 'suspend'])->name('suspenduser');
+            Route::get('/user/unsuspend/{id}', [UsersController::class, 'unsuspend'])->name('unsuspenduser');
+            Route::post('/user/send/messege', [UsersController::class, 'sendMessege'])->name('sendmessege');
 
            
     });

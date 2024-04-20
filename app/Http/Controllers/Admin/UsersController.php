@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Listing;
 use App\Models\Booking;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Message;
 
 class UsersController extends Controller
 {
@@ -64,7 +66,7 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id)
+    public function suspend(Request $request, $id)
     {
         User::where('id', $id)->update([
             'isSuspended' => true
@@ -80,5 +82,49 @@ class UsersController extends Controller
         $request->session()->forget('user');
 
         return redirect()->back()->with('success', 'User Suspended');
+    }
+
+    public function unsuspend(Request $request, $id){
+        User::where('id', $id)->update([
+            'isSuspended' => false
+        ]);
+
+        Listing::where('lister_id', $id)->update([
+            'isApproved' => true,
+            'isActive' => true
+        ]);
+
+        return redirect()->back()->with('success', 'User Unsuspended');
+    }
+
+    public function sendMessege(Request $request){
+        $contact_address = $request->input('contactaddress');
+        $messege = $request->input('messege');
+        $pattern = '/^\S+@\S+\.\S+$/';
+
+        if(is_numeric($contact_address)){
+            $data = [
+                    
+                "receiver" => $contact_address,
+                "message" => $messege,
+                "remove_duplicate" => true
+            ];
+
+            send_sms($data);
+
+            return redirect()->back()->with('success', 'Messege successfully sent!');
+
+        }elseif(preg_match($pattern, $contact_address)){
+            $to_email = $contact_address;
+            $subject = 'Jayga Support';
+            $message = $messege;
+    
+                // Send email
+                Mail::raw($message, function($message) use ($to_email, $subject) {
+                    $message->to($to_email)->subject($subject);
+                });
+
+            return redirect()->back()->with('success', 'Messege successfully sent!');
+        }
     }
 }
