@@ -141,7 +141,7 @@ class UserloginController extends Controller
 
 
     public function get_user(Request $request){
-        $us = User::where('phone', $request->query('phone'))->orWhere('email', $request->query('phone'))->with('avatars')->with('nids')->get();
+        $us = User::where('phone', $request->query('phone'))->orWhere('email', $request->query('email'))->with('avatars')->with('nids')->get();
         if(count($us)>0){
             if($us[0]->isSuspended == true){
                 return response()->json([
