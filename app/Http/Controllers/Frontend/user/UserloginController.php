@@ -141,26 +141,36 @@ class UserloginController extends Controller
 
 
     public function get_user(Request $request){
-        $us = User::where('phone', $request->query('phone'))->orWhere('email', $request->query('email'))->with('avatars')->with('nids')->get();
-        if(count($us)>0){
-            if($us[0]->isSuspended == true){
-                return response()->json([
-                    'status' => 403,
-                    'messege' => 'User account suspended. Please contact with Jayga support'
-                ], 403);
-            }else{
-                return response()->json([
-                    'status' => 200,
-                    'user' => $us
-                ]);
-            }
-            
+        $validated = $request->validate([
+            'phoneOrEmail' => 'required'
+        ]);
+
+        if($validated){
+            $us = User::where('phone', $request->query('phoneOrEmail'))->orWhere('email', $request->query('phoneOrEmail'))->with('avatars')->with('nids')->get();
+                if(count($us)>0){
+                    if($us[0]->isSuspended == true){
+                        return response()->json([
+                            'status' => 403,
+                            'messege' => 'User account suspended. Please contact with Jayga support'
+                        ], 403);
+                    }else{
+                        return response()->json([
+                            'status' => 200,
+                            'user' => $us
+                        ]);
+                    }
+                    
+                }else{
+                    return response()->json([
+                        'status' => 404,
+                        'user' => 'No user found'
+                    ], 404);
+                }
         }else{
-            return response()->json([
-                'status' => 404,
-                'user' => 'No user found'
-            ], 404);
+            return $validated->errors();
         }
+
+        
     }
 
     public function update_user(Request $request){
