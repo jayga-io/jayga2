@@ -177,6 +177,8 @@ Route::prefix('auth')->group(function(){
     Route::post('/otp-verify', [UserloginController::class, 'verify_otp'])->name('otpauthuserverify');
     Route::get('/get-user', [UserloginController::class, 'get_user'])->name('fetchuser');
     Route::post('/update-user', [UserLoginController::class, 'update_user'])->name('update_user');
+    Route::post('/update/user/image', [UserController::class, 'photos'])->name('updateuserimage');
+    Route::post('/update/user/nid', [UserController::class, 'nid'])->name('updateusernid');
 });
 
 //user notifications & bookings

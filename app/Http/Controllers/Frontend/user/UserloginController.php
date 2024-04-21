@@ -165,11 +165,12 @@ class UserloginController extends Controller
 
     public function update_user(Request $request){
         $validated = $request->validate([
-            'id' => 'integer',
+            'id' => 'integer|required',
+            
+            /*
             'name' => 'string',
             'email' => 'string',
             'phone' => 'string',
-            /*
             'user_nid' => 'Integer',
             'user_dob' => 'string',
             'user_address' => 'string',
@@ -182,17 +183,9 @@ class UserloginController extends Controller
 
         if($validated){
             $id = $request->input('id');
-            User::where('id', $id)->update([
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
-                'phone' => $request->input('phone'),
-                'about' => $request->input('about'),
-                'platform_tag' => 'web',
-                'user_lat' => $request->input('user_lat'),
-                'user_long' => $request->input('user_long'),
-                'user_address' => $request->input('user_address'),
-            ]);
+            User::where('id', $id)->update($request->all());
 
+            /*
             if($file = $request->file('photo')){
                 $avatar = UserPictures::where('user_id', $id)->get();
                 if(count($avatar)>0){
@@ -244,6 +237,7 @@ class UserloginController extends Controller
                     }
                 }
             }
+            */
 
             return response()->json([
                 'status' => 200,
