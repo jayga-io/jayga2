@@ -31,6 +31,7 @@
 
         .nav-link {
             color: #158E72;
+            font-weight: 700;
         }
 
         #card-image-view {
@@ -112,7 +113,7 @@
 <body>
 
 
-    <div style="background-image: url({{ asset('assets/img/bg.png') }}); background-size:contain;">
+    <div style="background-image: url({{ asset('assets/img/bg.png') }}); background-size:contain">
         <!--Navbar Section-->
         @include('navbar')
         <form action="{{ route('searchroute') }}" method="POST" enctype="application/x-www-form-urlencoded">

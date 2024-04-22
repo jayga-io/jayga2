@@ -31,6 +31,7 @@
 
         .nav-link {
             color: #158E72;
+            font-weight: 700;
         }
 
         #card-image-view {

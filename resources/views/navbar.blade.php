@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg" >
     <div class="container">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="{{ route('home') }}"> <img class="px-3" style="float: right;"
-                src="{{ asset('assets/img/logo/jayga-01.png') }}" width="120px" height="85px" alt="logo" /></a>
+                src="{{ asset('assets/img/jayga.png') }}" alt="logo" /></a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
@@ -156,7 +156,7 @@
                     </li>
                 @else
                     <li class="nav-item mx-3">
-                        <a class="nav-link " href="{{ route('userdash') }}">
+                        <a class="nav-link" href="{{ route('userdash') }}">
                             <!--
                             <div
                                     style="width: 100%; height: 100%; padding-top: 4px; padding-bottom: 4px; padding-left: 36px; padding-right: 36px; background: #f6f8f8; border-radius: 4.99px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex; opacity: 0.9">
@@ -166,7 +166,7 @@
                                     </div>
                                 </div>
                         -->
-                            Become a host
+                           List your property
 
                         </a>
                     </li>

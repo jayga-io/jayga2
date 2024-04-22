@@ -55,7 +55,10 @@
             background-color: #F24E1E;
         }
 
-
+        .nav-link{
+            color: #158E72;
+            font-weight: 700;
+        }
 
         @media (max-width:600px) {
 

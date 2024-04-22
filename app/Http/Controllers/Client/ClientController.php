@@ -35,11 +35,11 @@ class ClientController extends Controller
         $listings = Listing::where('isApproved', true)->where('isActive', true)->with('images')->with('reviews')->take(8)->get();
 
         $notifs = Notification::where('user_id', $request->session()->get('user'))->where('type', 'booking')->count();
-
+        $locations = \File::json('locations.json');
         Artisan::call('schedule:run');
        // dd($listings);
        // dd($listings[0]->reviews[0]->avg_rating);
-       return view('client.home.home')->with('listings', $listings)->with('notifcount', $notifs);
+       return view('client.home.home')->with('listings', $listings)->with('notifcount', $notifs)->with('cities', $locations);
     
     }
 

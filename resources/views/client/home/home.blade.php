@@ -95,6 +95,12 @@
 
         }
 
+        /* Extra small devices (phones, 600px and down) */
+        @media only screen and (max-width: 600px) {
+            .vh-100-mobile {
+                height: 100vh !important;
+            }
+        }
 
         #myBtn {
             display: none;
@@ -139,7 +145,7 @@
 <body>
 
 
-    <div 
+    <div class="vh-100 vh-100-mobile" 
         style="background-image: url({{ asset('assets/img/banner-update-2-CtFTzztk.jpg') }}); width:100%; background-size: cover; object-fit:contain; ">
         <!--Navbar Section-->
         @include('navbar')
@@ -147,7 +153,7 @@
         <form action="{{ route('searchroute') }}" method="POST" enctype="application/x-www-form-urlencoded">
             @csrf
             <!--Search Section-->
-            <div class="container  " style="padding-bottom: 90px;">
+            <div class="container " style="padding-top:50px; padding-bottom: 50px;">
                 <!--title-->
                 <div class="my-5 text-center">
                     <span
@@ -260,9 +266,11 @@
                                     <select class="form-control" name="city"
                                         aria-placeholder="Town or City" aria-label="Large select example" required>
                                         <option value="">Select a city or town</option>
-                                        <option value="Dhaka">Dhaka</option>
-                                        <option value="Sylhet">Sylhet</option>
-                                        <option value="Chittagong">Chittagong</option>
+                                        @foreach ($cities as $item)
+                                            <option value="{{$item['name']}}">{{$item['name']}}</option>
+                                        @endforeach
+                                       
+                                        
                                     </select>
                                     <label for="formfloating">Select city or town</label>
                                 </div>
