@@ -270,8 +270,14 @@
 
 
                     <a class="card mb-3" style="height: 100%" href="/client/single-listing/{{ $item->listing_id }}">
-                        <img src="https://new.jayga.io/uploads/{{ $item->images[0]->listing_targetlocation }}"
-                            id="card-image-view" alt="#">
+
+                        @if (count($item->images)>0)
+                            <img src="https://new.jayga.io/uploads/{{ $item->images[0]->listing_targetlocation }}"
+                                id="card-image-view" alt="#">
+                        @else
+                            <p>No listing image found</p>
+                        @endif
+                        
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9">
