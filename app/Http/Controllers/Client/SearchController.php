@@ -29,7 +29,7 @@ class SearchController extends Controller
            ->with('reviews')
            ->get();
           // dd($listing);
-           return view('client.search.searchResults')->with('listings', $listing);
+           return view('client.search.searchResults')->with('listings', $listing)->with('cities', $locations);
         }else{
            // $listing = Listing::where('listing_type', $request->input('category'))->orWhere('district', $request->input('city'))->orWhere('guest_num', $request->input('guests'))->get();
            // dd($listing->count());
