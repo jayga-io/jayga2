@@ -191,36 +191,36 @@
 
             <!--Search topbar-->
 
-            <div style="height: 100%; margin: auto; margin-top: 15px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; "
+            <div class="mb-5" style="height: 100%; margin: auto; margin-top: 15px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; "
                 id="input">
                 <!--Options select-->
                 <div class="container p-3 " id="desk">
+                    <!--options-->
                     <div class="row text-center input-group">
                         <div class="col-md-2 col-lg-2 col-sm-6 p-2">
-                            <input type="radio" class="btn-check" name="options-base" id="option5" autocomplete="off"
-                                checked>
+                            <input type="radio" class="btn-check" name="options-base" id="option5" autocomplete="off" checked>
                             <label class="btn" for="option5"><img class="form-label"
                                     src="../public/assets/img/meeting_room_24px.png" alt=""> Rooms</label>
                         </div>
                         <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                             <input type="radio" class="btn-check" name="options-base" id="option6" autocomplete="off">
-                            <label class="btn" for="option6"><img class="form-label"
-                                    src="../public/assets/img/home_24px.png" alt=""> Hotels</label>
+                            <label class="btn" for="option6"><img class="form-label" src="../public/assets/img/home_24px.png"
+                                    alt=""> Hotels</label>
                         </div>
                         <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                             <input type="radio" class="btn-check" name="options-base" id="option7" autocomplete="off">
-                            <label class="btn" for="option7"><img class="form-label"
-                                    src="../public/assets/img/business_24px.png" alt=""> Apartments</label>
+                            <label class="btn" for="option7"><img class="form-label" src="../public/assets/img/business_24px.png"
+                                    alt=""> Apartments</label>
                         </div>
                         <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                             <input type="radio" class="btn-check" name="options-base" id="option8" autocomplete="off">
-                            <label class="btn" for="option8"><img class="form-label"
-                                    src="../public/assets/img/parking icon.png" alt=""> Parking</label>
+                            <label class="btn" for="option8"><img class="form-label" src="../public/assets/img/parking icon.png"
+                                    alt=""> Parking</label>
                         </div>
                         <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                             <input type="radio" class="btn-check" name="options-base" id="option9" autocomplete="off">
-                            <label class="btn" for="option9"><img class="form-label"
-                                    src="../public/assets/img/map_24px.png" alt=""> Experience</label>
+                            <label class="btn" for="option9"><img class="form-label" src="../public/assets/img/map_24px.png" alt="">
+                                Experience</label>
                         </div>
                         <div class="col-md-2 col-lg-2 col-sm-6 p-2">
                             <input type="radio" class="btn-check" name="options-base" id="option10" autocomplete="off">
@@ -228,100 +228,80 @@
                                     src="../public/assets/img/Cube  24  Outline.png" alt=""> Storage</label>
                         </div>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-                </div>
-            </div>
-
-
-            <div class="row mb-5">
-                <div class="col-md-12 col-lg-12 col-sm-12">
-                    <div
-                        style="width: 100%;   left: 0px;  background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; overflow: hidden;">
-                        <div class="container">
-                            <div class="row p-4">
-
-                                <div class="col-sm-12 p-2" id="mobile">
-                                    <div class="form-floating">
-                                        <select class="form-control" aria-placeholder="Town or City"
-                                            aria-label="Large select example">
-                                            <option selected>Rooms</option>
-                                            <option value="1">Hotels</option>
-                                            <option value="2">Apartment</option>
-                                            <option value="3">Parking</option>
-                                            <option value="4">Experience</option>
-                                            <option value="5">Storage</option>
-                                        </select>
-                                        <label for="formfloating">Select Category</label>
-                                    </div>
+                    <!--search form-->
+                    <div class="container">
+                        <div class="row p-4">
+            
+                            <div class="col-sm-12 p-2" id="mobile">
+                                <div class="form-floating">
+                                    <select class="form-control" aria-placeholder="Town or City" aria-label="Large select example">
+                                        <option selected>Rooms</option>
+                                        <option value="1">Hotels</option>
+                                        <option value="2">Apartment</option>
+                                        <option value="3">Parking</option>
+                                        <option value="4">Experience</option>
+                                        <option value="5">Storage</option>
+                                    </select>
+                                    <label for="formfloating">Select Category</label>
                                 </div>
-
-
-                                <div class="col-md-3 col-lg-3 col-sm-12 p-2">
-                                    <!--search inputs-->
-                                    <div class="form-floating">
-                                        <select class="form-control" name="city" aria-placeholder="Town or City"
-                                        aria-label="Large select example">
-                                            <option selected>Select a city or town</option>
-                                            <option value="Dhaka">Dhaka</option>
-                                            <option value="Sylhet">Sylhet</option>
-                                            <option value="Chittagong">Chittagong</option>
-                                        </select>
-                                    <label for="formfloating">Select city or town</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 col-lg-3 col-sm-12 p-2">
-                                    <div class="form-floating">
-                                        <input type="date" name="checkin" class="form-control" placeholder="Check-in">
-                                        <label for="form-floating">Check In</label>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-3 col-lg-3 col-sm-12 p-2">
-                                    <div class="form-floating">
-                                        <input type="date" name="checkout" class="form-control" placeholder="Check-out">
-                                        <label for="formfloat">Check Out</label>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-3 col-lg-3 col-sm-12 p-2">
-                                    <div class="form-floating">
-                                        <select class="form-control" aria-label="Large select example">
-                                            <option selected>Select Guests</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                        <label for="formfloat">Guests</label>
-                                    </div>
-                                </div>
-
                             </div>
-
+            
+            
+                            <div class="col-md-3 col-lg-3 col-sm-12 p-2">
+                                <!--search inputs-->
+                                <div class="form-floating">
+                                    <select class="form-control" name="city" aria-placeholder="Town or City"
+                                        aria-label="Large select example">
+                                        <option selected>Select a city or town</option>
+                                        <option value="Dhaka">Dhaka</option>
+                                        <option value="Sylhet">Sylhet</option>
+                                        <option value="Chittagong">Chittagong</option>
+                                    </select>
+                                    <label for="formfloating">Select city or town</label>
+                                </div>
+                            </div>
+            
+                            <div class="col-md-3 col-lg-3 col-sm-12 p-2">
+                                <div class="form-floating">
+                                    <input type="date" name="checkin" class="form-control" placeholder="Check-in">
+                                    <label for="form-floating">Check In</label>
+                                </div>
+                            </div>
+            
+            
+                            <div class="col-md-3 col-lg-3 col-sm-12 p-2">
+                                <div class="form-floating">
+                                    <input type="date" name="checkout" class="form-control" placeholder="Check-out">
+                                    <label for="formfloat">Check Out</label>
+                                </div>
+                            </div>
+            
+            
+                            <div class="col-md-3 col-lg-3 col-sm-12 p-2">
+                                <div class="form-floating">
+                                    <select class="form-control" aria-label="Large select example">
+                                        <option selected>Select Guests</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                    <label for="formfloat">Guests</label>
+                                </div>
+                            </div>
+            
                         </div>
-
+            
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 text-center mt-4 mb-5">
-                            <button class="btn btn-success btn-lg px-4">Search</button>
-                        </div>
-
-                    </div>
-
+                    
                 </div>
+                
             </div>
+
+            <!--search btn-->
+            <div class="text-center" style="margin-top: -65px;">
+                <button class="btn btn-success btn-lg px-4">Search</button>
+            </div>
+            
 
 
         </div>
@@ -330,7 +310,7 @@
 
 
     <!--Listing section-->
-    <div class="container ">
+    <div class="container">
         <div class="card-title d-flex justify-content-between mb-3">
             <h3 class="mt-5">Top Listings</h3>
             <a href="" class="mt-5" style="color: #158E72; font-weight: 700;">View all</a>

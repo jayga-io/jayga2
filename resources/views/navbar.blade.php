@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="{{ route('home') }}"> <img class="px-3" style="float: right;"
-                src="{{ asset('assets/img/jayga.png') }}" alt="logo" /></a>
+                src="{{ asset('assets/img/logo/jayga-01.png') }}" width="120px" height="85px" alt="logo" /></a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
@@ -24,10 +24,13 @@
 
                     <a class="nav-link position-relative">
                         <img src="{{ asset('assets/img/globe.png') }}" alt="" srcset=""> EN
+                        <!-- 
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
                             <small>Coming soon</small>
                             <span class="visually-hidden"></span>
                         </span>
+                        -->
+                        
                     </a>
                 </li>
 

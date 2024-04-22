@@ -28,7 +28,7 @@
         }
 
         body {
-            max-width: 100%;
+            width: 100%;
             font-family: "Epilogue";
             overflow-x: hidden;
 
@@ -75,15 +75,9 @@
 
         @media (max-width: 600px) {
 
-
-            #desk {
+            #desk{
                 display: none;
             }
-
-            #input {
-                display: none;
-            }
-
             #mobile {
                 display: block;
             }
@@ -146,16 +140,16 @@
 
 
     <div 
-        style="background-image: url({{ asset('assets/img/bg.png') }}); width:100%; background-size: cover; object-fit:contain; ">
+        style="background-image: url({{ asset('assets/img/banner-update-2-CtFTzztk.jpg') }}); width:100%; background-size: cover; object-fit:contain; ">
         <!--Navbar Section-->
         @include('navbar')
 
         <form action="{{ route('searchroute') }}" method="POST" enctype="application/x-www-form-urlencoded">
             @csrf
             <!--Search Section-->
-            <div class="container">
+            <div class="container  " style="padding-bottom: 90px;">
                 <!--title-->
-                <div class="my-5 text-center py-3">
+                <div class="my-5 text-center">
                     <span
                         style="color: black; font-size: 50px; font-family: Epilogue; font-weight: 800; word-wrap: break-word">Find
                         your next </span>
@@ -169,12 +163,12 @@
 
                 <!--Search topbar-->
 
-                <div style="height: auto; width: 80%; margin: auto;  background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px; opacity: 0.8; background-blend-mode: overlay, normal; backdrop-filter: blur(40px); background: lightgray 0% 0% / 154.22531366348267px 154.22531366348267px repeat, radial-gradient(151.92% 127.02% at 15.32% 21.04%, rgba(165, 239, 255, 0.05) 0%, rgba(110, 191, 244, 0.01) 77.08%, rgba(70, 144, 212, 0.00) 100%);"
-                    id="input">
+                <div style="height: 100%; width: 100%; padding:20px; margin-bottom:70px; background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 10px; "
+                    >
                     <!--Options select-->
-                    <div class="container text-center" id="desk">
-                        <div class="row input-group justify-content-center my-2">
-                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
+                    <div class="container text-center" id="desk" >
+                        <div class="row d-flex input-group justify-content-center my-1">
+                            <div class="col-md-2 col-lg-2 col-sm-4">
 
                                 <input type="radio" class="btn-check" name="options-base" value="room"
                                     id="option5" autocomplete="off" checked>
@@ -182,13 +176,13 @@
                                         src="{{ asset('assets/img/meeting_room_24px.png') }}" alt="">
                                     Rooms</label>
                             </div>
-                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
+                            <div class="col-md-2 col-lg-2 col-sm-4">
                                 <input type="radio" class="btn-check" name="options-base" value="hotel"
                                     id="option6" autocomplete="off">
                                 <label class="btn" for="option6"><img class="form-label"
                                         src="{{ asset('assets/img/home_24px.png') }}" alt=""> Hotels</label>
                             </div>
-                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
+                            <div class="col-md-2 col-lg-2 col-sm-4">
                                 <input type="radio" class="btn-check" name="options-base" value="apartment"
                                     id="option7" autocomplete="off">
                                 <label class="btn" for="option7"><img class="form-label"
@@ -196,11 +190,8 @@
                                     Apartments</label>
                             </div>
 
-                            <!--
-                                 
-                                
-                                -->
-                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
+                            
+                                <div class="col-md-2 col-lg-2 col-sm-4 p-2">
                                 <input type="radio" class="btn-check" name="options-base" value="parking"
                                     id="option8" autocomplete="off">
 
@@ -215,7 +206,7 @@
 
                             </div>
 
-                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
+                            <div class="col-md-2 col-lg-2 col-sm-4 p-2">
                                 <input type="radio" class="btn-check" name="options-base" value="experience"
                                     id="option9" autocomplete="off">
                                 <label class="btn" for="option9"><img class="form-label"
@@ -227,7 +218,7 @@
                                     </span>
                                 </label>
                             </div>
-                            <div class="col-md-2 col-lg-2 col-sm-6 p-2">
+                            <div class="col-md-2 col-lg-2 col-sm-4 p-2">
                                 <input type="radio" class="btn-check" name="options-base" value="storage"
                                     id="option10" autocomplete="off">
                                 <label class="btn" for="option10"><img class="form-label"
@@ -238,104 +229,79 @@
                                         <span class="visually-hidden"></span>
                                     </span>
                                 </label>
-                            </div>
+                            </div> 
+                                
+                                
+                            
                         </div>
-
-
-
-
-
-
-
-
-
-
-
                     </div>
-                </div>
+                    <!--Search form-->
+                    <div class="container">
+                        <div class="row p-3 text-center">
+
+                            <div class="col-sm-12 p-2" id="mobile">
+                                <div class="form-floating">
+                                    <select class="form-control" name="category"
+                                        aria-placeholder="Town or City" aria-label="Large select example">
+                                        <option value="default">Select Category</option>
+                                        <option value="room">Rooms</option>
+                                        <option value="hotel">Hotels</option>
+                                        <option value="apartment">Apartment</option>
+
+                                    </select>
+                                    <label for="formfloating">Select Category</label>
+                                </div>
+                            </div>
 
 
+                            <div class="col-md-3 col-lg-3 col-sm-12 p-2">
+                                <!--search inputs-->
+                                <div class="form-floating">
+                                    <select class="form-control" name="city"
+                                        aria-placeholder="Town or City" aria-label="Large select example" required>
+                                        <option value="">Select a city or town</option>
+                                        <option value="Dhaka">Dhaka</option>
+                                        <option value="Sylhet">Sylhet</option>
+                                        <option value="Chittagong">Chittagong</option>
+                                    </select>
+                                    <label for="formfloating">Select city or town</label>
+                                </div>
+                            </div>
 
-                <div class="row mb-5">
-                    <div class="col-md-12 col-lg-12 col-sm-12">
-                        <div
-                            style="width: 80%;  margin: auto;  background: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); border-radius: 30px;  background-blend-mode: overlay, normal;  background: lightgray 0% 0% / 154.22531366348267px 154.22531366348267px repeat, radial-gradient(151.92% 127.02% at 15.32% 21.04%, rgba(165, 239, 255, 0.05) 0%, rgba(110, 191, 244, 0.01) 77.08%, rgba(70, 144, 212, 0.00) 100%);">
-                            <div class="container">
-                                <div class="row p-3 text-center">
+                            <div class="col-md-6  col-lg-6 col-sm-12 p-2">
+                                <div class="form-floating w-100">
+                                    <input type="text" name="daterange" class="form-control"
+                                        value="" required />
+                                    <label for="floatingInput">Checkin - Checkout</label>
 
-                                    <div class="col-sm-12 p-2" id="mobile">
-                                        <div class="form-floating">
-                                            <select class="form-control" name="category"
-                                                aria-placeholder="Town or City" aria-label="Large select example">
-                                                <option value="default">Select Category</option>
-                                                <option value="room">Rooms</option>
-                                                <option value="hotel">Hotels</option>
-                                                <option value="apartment">Apartment</option>
-
-                                            </select>
-                                            <label for="formfloating">Select Category</label>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-3 col-lg-3 col-sm-12 p-2">
-                                        <!--search inputs-->
-                                        <div class="form-floating">
-                                            <select class="form-control" name="city"
-                                                aria-placeholder="Town or City" aria-label="Large select example" required>
-                                                <option value="">Select a city or town</option>
-                                                <option value="Dhaka">Dhaka</option>
-                                                <option value="Sylhet">Sylhet</option>
-                                                <option value="Chittagong">Chittagong</option>
-                                            </select>
-                                            <label for="formfloating">Select city or town</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6  col-lg-6 col-sm-12 p-2">
-                                        <div class="form-floating w-100">
-                                            <input type="text" name="daterange" class="form-control"
-                                                value="" required />
-                                            <label for="floatingInput">Checkin - Checkout</label>
-
-                                          
-
-
-                                        </div>
-
-                                    </div>
-
-
-
-
-
-                                    <div class="col-md-3 col-lg-3 col-sm-12 p-2">
-                                        <div class="form-floating">
-                                            <input type="number" name="guests" class="form-control"
-                                                placeholder="Guests">
-                                            <label class="form-label">Guests</label>
-
-                                        </div>
-
-                                    </div>
+                                  
 
 
                                 </div>
 
                             </div>
 
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 text-center mt-4 mb-5">
-                                <button type="submit" class="btn btn-success btn-lg px-4">Search</button>
+                            <div class="col-md-3 col-lg-3 col-sm-12 p-2">
+                                <div class="form-floating">
+                                    <input type="number" name="guests" class="form-control"
+                                        placeholder="Guests">
+                                    <label class="form-label">Guests</label>
+
+                                </div>
+
                             </div>
+
 
                         </div>
 
                     </div>
+                     
                 </div>
-
+                <!--search btn-->
+                <div class="col-md-12 col-lg-12 col-sm-12 text-center" style="margin-top: -85px;" >
+                    <button type="submit" class="btn btn-success btn-lg btn-block px-5">Search</button>
+                </div>
             </div>
 
 
