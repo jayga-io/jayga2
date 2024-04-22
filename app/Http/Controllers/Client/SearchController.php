@@ -13,6 +13,7 @@ class SearchController extends Controller
 {
     public function search(Request $request){
         $category = $request->input('category');
+        $locations = \File::json('locations.json');
        // $booking = Booking::whereNot('date_enter', $request->input('checkin'))->whereNot('date_exit', $request->input('checkout'))->get();
       // dd($request->input('options-base'));
        if($category == 'default'){
@@ -42,7 +43,7 @@ class SearchController extends Controller
            ->with('reviews')
            ->get();
            
-           return view('client.search.searchResults')->with('listings', $listing);
+           return view('client.search.searchResults')->with('listings', $listing)->with('cities', $locations);
         }
     }
 }

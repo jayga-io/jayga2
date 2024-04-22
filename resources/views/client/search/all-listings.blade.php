@@ -163,9 +163,11 @@
                                             <select class="form-control" name="city" id="city" aria-placeholder="Town or City"
                                                 aria-label="Large select example" required>
                                                 <option value="">Select a city or town</option>
-                                                <option value="Dhaka">Dhaka</option>
-                                                <option value="Sylhet">Sylhet</option>
-                                                <option value="Chittagong">Chittagong</option>
+                                                @foreach ($cities as $item)
+                                                    <option value="{{$item['name']}}">{{$item['name']}}</option>
+                                                @endforeach
+                                                
+                                                
                                             </select>
                                             <label for="formfloating">Select city or town</label>
                                         </div>

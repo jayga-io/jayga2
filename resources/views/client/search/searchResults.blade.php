@@ -163,9 +163,11 @@
                                             <select class="form-control" name="city" id="city" aria-placeholder="Town or City"
                                                 aria-label="Large select example" required>
                                                 <option value="">Select a city or town</option>
-                                                <option value="Dhaka">Dhaka</option>
-                                                <option value="Sylhet">Sylhet</option>
-                                                <option value="Chittagong">Chittagong</option>
+                                                @foreach ($cities as $item)
+                                                    <option value="{{$item['name']}}">{{$item['name']}}</option>
+                                                @endforeach
+                                                
+                                               
                                             </select>
                                             <label for="formfloating">Select city or town</label>
                                         </div>
@@ -268,8 +270,13 @@
 
 
                     <a class="card mb-3" style="height: 100%" href="/client/single-listing/{{ $item->listing_id }}">
-                        <img src="https://new.jayga.io/uploads/{{ $item->images[0]->listing_targetlocation }}"
+                        @if ($item->images[0]->listing_targetlocation != null)
+                            <img src="https://new.jayga.io/uploads/{{ $item->images[0]->listing_targetlocation }}"
                             id="card-image-view" alt="#">
+                        @else
+                            <p>No listing image found</p>
+                        @endif
+                        
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9">

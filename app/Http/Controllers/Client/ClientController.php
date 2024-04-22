@@ -388,16 +388,17 @@ class ClientController extends Controller
                    
 
                     $filter = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->where('listing_type', $request->query('listing_type'))->where('full_day_price_set_by_user', '>=', $request->query('min_price'))->where('full_day_price_set_by_user', '<=', $request->query('max_price'))->where('allow_short_stay', $request->query('allow_short_stay'))->allowedFilters(['guest_num', 'bed_num', 'bathroom_num'])->with('images')->with('amenities')->with('restrictions')->with('reviews')->get();
-        
+                    $locations = \File::json('locations.json');
             // dd($filter);
-        return view('client.search.searchResults')->with('listings', $filter);
+        return view('client.search.searchResults')->with('listings', $filter)->with('cities', $locations);
                         
     }
 
     public function latest(Request $request){
         $listings = Listing::where('isApproved', true)->where('isActive', true)->orderBy('created_at', 'DESC')->with('images')->with('reviews')->get();
-       // dd($listings);
-       return view('client.search.searchResults')->with('listings', $listings)->with('latest', 'latest');
+        $locations = \File::json('locations.json');
+        // dd($listings);
+       return view('client.search.searchResults')->with('listings', $listings)->with('latest', 'latest')->with('cities', $locations);
     }
 
 
@@ -405,8 +406,9 @@ class ClientController extends Controller
     public function top(Request $request){
         $listings = Listing::where('isApproved', true)->where('isActive', true)->with('images')->with('reviews')->withCount('reviews')->orderBy('reviews_count', 'DESC')->take(25)->get();
        // dd($listings);
+       $locations = \File::json('locations.json');
 
-       return view('client.search.searchResults')->with('listings', $listings)->with('top', 'top');
+       return view('client.search.searchResults')->with('listings', $listings)->with('top', 'top')->with('cities', $locations);
     }
 
 
@@ -421,7 +423,8 @@ class ClientController extends Controller
 
     public function all_listing(Request $request){
         $ls = Listing::where('isApproved', true)->where('isActive', true)->paginate(40);
-        return view('client.search.all-listings')->with('listings', $ls);
+        $locations = \File::json('locations.json');
+        return view('client.search.all-listings')->with('listings', $ls)->with('cities', $locations);
     }
 
 
