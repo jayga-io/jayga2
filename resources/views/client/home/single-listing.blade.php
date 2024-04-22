@@ -221,7 +221,7 @@
     @include('navbar')
 
     <!--Listing title-->
-    <div class="container ">
+    <div class="container " style="padding-top: 100px;">
         <div class="row mt-5">
             <div class="col-md-12">
                 <h1 class="card-title">{{ $listing[0]->listing_title }}</h1>

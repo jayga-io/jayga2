@@ -112,10 +112,10 @@
 
 <body>
 
-
-    <div style="background-image: url({{ asset('assets/img/bg.png') }}); background-size:contain">
+    @include('navbar')
+    <div style="background-image: url({{ asset('assets/img/bg.png') }}); padding-top:100px; background-size:contain;">
         <!--Navbar Section-->
-        @include('navbar')
+        
         <form action="{{ route('searchroute') }}" method="POST" enctype="application/x-www-form-urlencoded">
 
             @csrf

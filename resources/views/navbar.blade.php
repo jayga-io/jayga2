@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg" >
+<nav class="navbar fixed-top navbar-expand-lg" style="background-color:rgb(252, 253, 253)">
     <div class="container">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">

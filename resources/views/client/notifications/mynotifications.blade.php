@@ -15,7 +15,7 @@
 
 <body>
     @include('navbar')
-    <div class="container rounded bg-white mt-5 mb-5">
+    <div class="container rounded bg-white mt-5 mb-5" style="padding-top: 100px;">
 
         @if (session()->has('messege'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
