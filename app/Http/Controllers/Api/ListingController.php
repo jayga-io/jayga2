@@ -16,6 +16,8 @@ use App\Models\FavListing;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Message;
 
 class ListingController extends Controller
 {
@@ -59,6 +61,7 @@ class ListingController extends Controller
         ]);
 
         $check = Listing::where('listing_title', $request->input('listing_title'))->get();
+        $user = User::where('id', $request->input('user_id'))->get();
         if(count($check)>0){
             return response()->json([
                 'status' => false,
@@ -69,7 +72,7 @@ class ListingController extends Controller
             if($validated){
                  Listing::create([
                     'lister_id' => $request->input('user_id'),
-                    'lister_name' => $request->input('lister_name'),
+                    'lister_name' => $user[0]->name,
                     'guest_num' => $request->input('guest_num'),
                     'bed_num' => $request->input('bed_num'),
                     'bathroom_num' => $request->input('bathroom_num'),
@@ -93,10 +96,10 @@ class ListingController extends Controller
                 $listing_id = Listing::where('listing_title', $request->input('listing_title'))->get();
               //  dd($check[0]);
 
-              $usr = User::where('id', $request->input('user_id'))->get();
+             // $user = User::where('id', $request->input('user_id'))->get();
 
-              if($usr[0]->phone == null){
-                $to_email = $usr[0]->email;
+              if($user[0]->phone == null){
+                $to_email = $user[0]->email;
                 $subject = 'Booking Request Sent';
                 $message = '
 
@@ -113,16 +116,16 @@ class ListingController extends Controller
                 Mail::raw($message, function($message) use ($to_email, $subject) {
                     $message->to($to_email)->subject($subject);
                 });
-              }elseif($usr[0]->email == null){
+              }elseif($user[0]->email == null){
                 $data = [
                     "sender_id" => "8809601010510",
-                    "receiver" => $usr[0]->phone,
+                    "receiver" => $user[0]->phone,
                     "message" => 'Your listing : '. $request->input('listing_title') . ' has a new booking request',
                     "remove_duplicate" => true
                 ];
                 send_sms($data);
               }else{
-                $to_email = $usr[0]->email;
+                $to_email = $user[0]->email;
                 $subject = 'Booking Request Sent';
                 $message = '
 
@@ -142,7 +145,7 @@ class ListingController extends Controller
 
                 $data = [
                     "sender_id" => "8809601010510",
-                    "receiver" => $usr[0]->phone,
+                    "receiver" => $user[0]->phone,
                     "message" => 'Your listing : '. $request->input('listing_title') . ' has a new booking request',
                     "remove_duplicate" => true
                 ];
