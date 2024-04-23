@@ -60,7 +60,7 @@ class ListingController extends Controller
             'user_id' => 'required'
         ]);
 
-        $check = Listing::where('listing_title', $request->input('listing_title'))->get();
+        $check = Listing::where('listing_title', $request->input('listing_title'))->where('lister_id', $request->input('user_id'))->get();
         $user = User::where('id', $request->input('user_id'))->get();
         if(count($check)>0){
             return response()->json([
@@ -100,12 +100,16 @@ class ListingController extends Controller
 
               if($user[0]->phone == null){
                 $to_email = $user[0]->email;
-                $subject = 'Booking Request Sent';
+                $subject = 'Listing creation review';
                 $message = '
 
-                    Dear user,
+                    Dear '.$user[0]->name.',
 
-                    Thank you for listing your property, '.$request->input('listing_title').', on Jayga! We are currently reviewing your listing to ensure it meets our quality standards. You will receive an update once the review process is complete.
+                    Thank you for listing your property, '.$request->input('listing_title').', on Jayga!
+                    
+                    We are currently reviewing your listing to ensure it meets our quality standards.
+                    
+                    You will receive an update once the review process is complete.
 
                     In the meantime, if you have any questions or need assistance, feel free to contact us.
             
@@ -126,10 +130,10 @@ class ListingController extends Controller
                 send_sms($data);
               }else{
                 $to_email = $user[0]->email;
-                $subject = 'Booking Request Sent';
+                $subject = 'Listing creation review';
                 $message = '
 
-                    Dear user,
+                    Dear '.$user[0]->name.',
 
                     Thank you for listing your property, '.$request->input('listing_title').', on Jayga! We are currently reviewing your listing to ensure it meets our quality standards. You will receive an update once the review process is complete.
 

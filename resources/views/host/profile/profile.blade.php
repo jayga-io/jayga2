@@ -99,7 +99,13 @@
                     <div class="col-md-12">
                         
                         <label class="labels">Upload User NID (Front)</label>
-                        <input type="file" name="nid"
+                        <input type="file" name="nid1"
+                            class="form-control" />
+                    </div> 
+                    <div class="col-md-12 mt-3">
+                        
+                        <label class="labels">Upload User NID (Back)</label>
+                        <input type="file" name="nid2"
                             class="form-control" />
                     </div> 
                     <br>

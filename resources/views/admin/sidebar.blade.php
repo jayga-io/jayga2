@@ -69,13 +69,15 @@
 
                 <li class="list-divider"></li>
                 <li > <a href="{{ route('pendinglisting') }}"> Pending Listings </a> </li>
+                
                 <li ><a href="{{route('withdraw_req')}}">Withdraw Requests </a></li>
                 <li ><a href="{{route('show_refunds')}}">Refund Requests</a></li>
+
                 <li class="list-divider"></li>
                 <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span
                             class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        <li><a href="all-booking.php"> All Booking </a></li>
+                        <li><a href="{{route('pendingbooking')}}"> Pending Bookings </a></li>
 
                     </ul>
                 </li>

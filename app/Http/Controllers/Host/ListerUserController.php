@@ -84,7 +84,7 @@ class ListerUserController extends Controller
             
         }
 
-        if($nids = $request->file('nid')){
+        if($nids = $request->file('nid1')){
             $src = $nids->store('user_nids');
             $nid = UserNid::where('user_id', $id)->get();
             if(count($nid)>0){

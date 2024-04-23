@@ -105,7 +105,7 @@ class BookingController extends Controller
      */
     public function show()
     {
-        $bookings = Booking::where('isApproved', false)->get();
+        $bookings = Booking::where('isApproved', false)->where('booking_status', 0)->where('isComplete', false)->get();
         return view('admin.booking.pending-booking')->with('pending', $bookings);
     }
 

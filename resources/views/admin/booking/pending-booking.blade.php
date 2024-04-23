@@ -62,6 +62,8 @@
 					<th>Net payable</th>
 					<th>Booking_status</th>
 
+					<th>Created At</th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -98,6 +100,8 @@
 					@if ($item->booking_status == 1)
 					<td><span class="badge rounded-pill bg-success">Confirmed</span></td>
 					@endif
+
+					<td>{{$item->created_at->diffForHuman()}}</td>
 
 				</tr>
 				<?php $counter++; ?>
