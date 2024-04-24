@@ -99,58 +99,47 @@ class ListingController extends Controller
              // $user = User::where('id', $request->input('user_id'))->get();
 
               if($user[0]->phone == null){
-                $to_email = $user[0]->email;
-                $subject = 'Listing creation review';
-                $message = '
+                $receipent = $user[0]->email;
+                $subject = 'Listing Creation Under Review';
 
-                    Dear '.$user[0]->name.',
+                 Mail::plain(
+                    view: 'mailTemplates.ListingCreation',
+                    data: [
+                        'username' => $user[0]->name,
+                        'listing_title' => $request->input('listing_title')
+                    ],
+                    callback: function (Message $message) use ($receipent, $subject) {
+                        $message->to($receipent)->subject($subject);
+                    }
+                );
 
-                    Thank you for listing your property, '.$request->input('listing_title').', on Jayga!
-                    
-                    We are currently reviewing your listing to ensure it meets our quality standards.
-                    
-                    You will receive an update once the review process is complete.
-
-                    In the meantime, if you have any questions or need assistance, feel free to contact us.
-            
-                    Best regards,
-                    The Jayga Team';
-
-                // Send email
-                Mail::raw($message, function($message) use ($to_email, $subject) {
-                    $message->to($to_email)->subject($subject);
-                });
               }elseif($user[0]->email == null){
                 $data = [
                     "sender_id" => "8809601010510",
                     "receiver" => $user[0]->phone,
-                    "message" => 'Your listing : '. $request->input('listing_title') . ' has a new booking request',
+                    "message" => 'Your listing : '. $request->input('listing_title') . ' is created and submitted to review',
                     "remove_duplicate" => true
                 ];
                 send_sms($data);
               }else{
-                $to_email = $user[0]->email;
-                $subject = 'Listing creation review';
-                $message = '
+                $receipent = $user[0]->email;
+                $subject = 'Listing Creation Under Review';
 
-                    Dear '.$user[0]->name.',
-
-                    Thank you for listing your property, '.$request->input('listing_title').', on Jayga! We are currently reviewing your listing to ensure it meets our quality standards. You will receive an update once the review process is complete.
-
-                    In the meantime, if you have any questions or need assistance, feel free to contact us.
-            
-                    Best regards,
-                    The Jayga Team';
-
-                // Send email
-                Mail::raw($message, function($message) use ($to_email, $subject) {
-                    $message->to($to_email)->subject($subject);
-                });
+                 Mail::plain(
+                    view: 'mailTemplates.ListingCreation',
+                    data: [
+                        'username' => $user[0]->name,
+                        'listing_title' => $request->input('listing_title')
+                    ],
+                    callback: function (Message $message) use ($receipent, $subject) {
+                        $message->to($receipent)->subject($subject);
+                    }
+                );
 
                 $data = [
                     "sender_id" => "8809601010510",
                     "receiver" => $user[0]->phone,
-                    "message" => 'Your listing : '. $request->input('listing_title') . ' has a new booking request',
+                    "message" => 'Your listing : '. $request->input('listing_title') . ' is created and submitted for review',
                     "remove_duplicate" => true
                 ];
                 send_sms($data);

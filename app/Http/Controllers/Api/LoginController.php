@@ -21,95 +21,79 @@ class LoginController extends Controller
             
              
             ]);
+
+            if($validated){
                     $authKey = 'jayga_user';
-                    $authToken = Hash::make($authKey);
-                    $pattern = '/^\S+@\S+\.\S+$/';
-                    $txt = $request->input('phone');
+                        $authToken = Hash::make($authKey);
+                        $pattern = '/^\S+@\S+\.\S+$/';
+                        $txt = $request->input('phone');
 
-                    if(preg_match($pattern, $txt)){
-                        $to_email = $request->input('phone');
-                        $subject = 'Jayga OTP';
-                        $message = '
+                        
 
-                        Dear user,
+                        $user = User::where('phone', $request->phone)->orWhere('email', $request->phone)->get();
                         
-                        Your One-Time Password (OTP) for accessing your Jayga account is:  '.$otp.' .
                         
-                        Please enter this code on the login page to complete the verification process.
                         
-                        Please note that this OTP is valid for a single use only and should not be shared with anyone. If you did not request this OTP, please disregard this message.
-                        
-                        Thank you for using Jayga!
-                        
-                        Best regards,
-                        The Jayga Team';
+                            if(count($user)>0){
 
-                        // Send email
-                        Mail::raw($message, function($message) use ($to_email, $subject) {
-                            $message->to($to_email)->subject($subject);
-                        });
-                    }
+                                if($user[0]->isSuspended == true){
+                                    return response()->json([
+                                        'status' => 403,
+                                        'messege' => 'User account suspended. Please contact with Jayga support'
+                                    ], 403);
+                                }else{
+                                    User::where('id', $user[0]->id)->update([ 'access_token' => $authToken, 'FCM_token' => $request->input('FCM_token')]);
+                                    
+                                    return response()->json([
+                                        'status' => '200',
+                                        'messege' => 'User already exist',
+                                        'user' => [
+                                            'user_id' => $user[0]->id,
+                                            'phone' => $user[0]->phone,
+                                            'authToken' => $authToken,
+                                            'name' => $user[0]->name,
+                                            'email' => $user[0]->email
 
-                    $user = User::where('phone', $request->phone)->orWhere('email', $request->phone)->get();
-                    
-                    
-                    
-                        if(count($user)>0){
+                                        ]
+                                        
+                                    ]);
+                                }
 
-                            if($user[0]->isSuspended == true){
-                                return response()->json([
-                                    'status' => 403,
-                                    'messege' => 'User account suspended. Please contact with Jayga support'
-                                ], 403);
-                            }else{
-                                User::where('id', $user[0]->id)->update([ 'access_token' => $authToken, 'FCM_token' => $request->input('FCM_token')]);
                                 
+        
+                            }else{
+                                if(is_numeric($txt)){
+                                    User::create([
+                                        'phone' => $request->input('phone'),
+                                        'access_token' => $authToken,
+                                        'FCM_token' => $request->input('FCM_token'),
+                                    ]);
+                                }elseif(preg_match($pattern, $txt)){
+                                    User::create([
+                                        'email' => $request->input('phone'),
+                                        'access_token' => $authToken,
+                                        'FCM_token' => $request->input('FCM_token'),
+                                    ]);
+                                }
+                                
+                                $user = User::where('phone', $request->input('phone'))->orWhere('email', $request->input('phone'))->get();
                                 return response()->json([
                                     'status' => '200',
-                                    'messege' => 'User already exist',
+                                    'messege' => 'New user registered successfully',
                                     'user' => [
                                         'user_id' => $user[0]->id,
                                         'phone' => $user[0]->phone,
                                         'authToken' => $authToken,
                                         'name' => $user[0]->name,
                                         'email' => $user[0]->email
-
                                     ]
                                     
                                 ]);
                             }
-
-                            
-    
-                        }else{
-                            if(is_numeric($txt)){
-                                User::create([
-                                    'phone' => $request->input('phone'),
-                                    'access_token' => $authToken,
-                                    'FCM_token' => $request->input('FCM_token'),
-                                ]);
-                            }elseif(preg_match($pattern, $txt)){
-                                User::create([
-                                    'email' => $request->input('phone'),
-                                    'access_token' => $authToken,
-                                    'FCM_token' => $request->input('FCM_token'),
-                                ]);
-                            }
-                            
-                            $user = User::where('phone', $request->input('phone'))->orWhere('email', $request->input('phone'))->get();
-                            return response()->json([
-                                'status' => '200',
-                                'messege' => 'New user registered successfully',
-                                'user' => [
-                                    'user_id' => $user[0]->id,
-                                    'phone' => $user[0]->phone,
-                                    'authToken' => $authToken,
-                                    'name' => $user[0]->name,
-                                    'email' => $user[0]->email
-                                ]
-                                
-                            ]);
-                        }
+            }else{
+                return $validated->errors();
+            }
+                    
     
                     
            

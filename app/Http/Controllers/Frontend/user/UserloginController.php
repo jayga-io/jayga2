@@ -39,27 +39,18 @@ class UserloginController extends Controller
 
                  send_sms($data);
             }elseif(preg_match($pattern, $txt)){
-                $to_email = $request->input('phone');
+                $receipent = $txt;
                 $subject = 'Jayga OTP';
-                $message = '
-    
-                Dear user,
-                
-                Your One-Time Password (OTP) for accessing your Jayga account is:  '.$otp.' .
-                
-                Please enter this code on the login page to complete the verification process.
-                
-                Please note that this OTP is valid for a single use only and should not be shared with anyone. If you did not request this OTP, please disregard this message.
-                
-                Thank you for using Jayga!
-                
-                Best regards,
-                The Jayga Team';
-    
-                // Send email
-                Mail::raw($message, function($message) use ($to_email, $subject) {
-                    $message->to($to_email)->subject($subject);
-                });
+     
+                 Mail::plain(
+                    view: 'mailTemplates.Otp',
+                    data: [
+                        'otp' => $otp
+                    ],
+                    callback: function (Message $message) use ($receipent, $subject) {
+                        $message->to($receipent)->subject($subject);
+                    }
+                );
             }
 
             if(count($user)>0){
@@ -71,7 +62,7 @@ class UserloginController extends Controller
                 return response()->json([
                     'status' => '200',
                     'messege' => 'User already exist',
-                    'phone' => $request->input('phone'),
+                    'phone/email' => $request->input('phone'),
                     'otp' => $otp,
                     'access_token' => $authToken
                     
@@ -96,7 +87,7 @@ class UserloginController extends Controller
                 return response()->json([
                     'status' => '200',
                     'messege' => 'New user registered successfully',
-                    'phone' => $request->input('phone'),
+                    'phone/email' => $request->input('phone'),
                     'otp' => $otp,
                     'access_token' => $authToken
                     
