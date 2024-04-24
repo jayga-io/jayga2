@@ -62,7 +62,7 @@ class UserloginController extends Controller
                 return response()->json([
                     'status' => '200',
                     'messege' => 'User already exist',
-                    'phone/email' => $request->input('phone'),
+                    'phone' => $request->input('phone'),
                     'otp' => $otp,
                     'access_token' => $authToken
                     
@@ -87,7 +87,7 @@ class UserloginController extends Controller
                 return response()->json([
                     'status' => '200',
                     'messege' => 'New user registered successfully',
-                    'phone/email' => $request->input('phone'),
+                    'phone' => $request->input('phone'),
                     'otp' => $otp,
                     'access_token' => $authToken
                     
