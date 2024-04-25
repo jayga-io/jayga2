@@ -92,18 +92,14 @@ class ListingController2 extends Controller
         $validated = $request->validate([
             'listing_type' => 'required',
             'district' => 'required',
-            'city' => 'string',
-            'guest_num' => 'integer',
-            'checkin' => 'date',
-            'checkout' => 'date',
+            
         ]);
 
         if($validated){
             $listing = QueryBuilder::for(Listing::class)->where('isApproved', true)
            ->where('isActive', true)
-           ->where('listing_type', $request->query('listing_type'))
-           ->where('district', $request->query('district'))
-           ->where('guest_num', $request->query('guest_num'))
+           ->where('listing_type', 'like', '%'.$request->query('listing_type').'%')
+           ->where('district', 'like', '%'.$request->query('district').'%')
            ->with('images')
            ->with('amenities')
            ->with('restrictions')

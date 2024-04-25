@@ -31,13 +31,31 @@ class ListerUserController extends Controller
     public function create(Request $request)
     {
         $id = $request->session()->get('user');
-        User::where('id', $id)->update([
-            'name' => $request->input('username'),
-            'email' => $request->input('email'),
-            'phone' => $request->input('phone'),
-            'user_address' => $request->input('address'),
-            'user_dob' => $request->input('dob'),
-        ]);
+        $chkConflict = User::where('phone', $request->input('phone'))->orWhere('email', $request->input('email'))->get();
+        $existing_data = User::where('id', $id)->get();
+        if(count($chkConflict)>0){
+            if($chkConflict[0]->id == $existing_data[0]->id){
+                User::where('id', $id)->update([
+                    'name' => $request->input('username'),
+                    'email' => $request->input('email'),
+                    'phone' => $request->input('phone'),
+                    'user_address' => $request->input('address'),
+                    'user_dob' => $request->input('dob'),
+                ]);
+            }else{
+                return redirect()->back()->with('error', 'Phone / Email already taken');
+            }
+            
+        }else{
+            User::where('id', $id)->update([
+                'name' => $request->input('username'),
+                'email' => $request->input('email'),
+                'phone' => $request->input('phone'),
+                'user_address' => $request->input('address'),
+                'user_dob' => $request->input('dob'),
+            ]);
+        }
+        
 
         $user = User::where('id', $id)->get();
         session([ 

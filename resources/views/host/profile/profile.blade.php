@@ -76,7 +76,7 @@
                                 class="form-control" name="address" placeholder="enter address" value=""></div>
                      
                         <div class="col-md-12 mb-3"><label class="labels">Email</label>
-                            <input type="text" class="form-control" name="email" placeholder="{{$user[0]->email}}" value="{{$user[0]->email}}" required>
+                            <input type="text" class="form-control" name="email" placeholder="{{$user[0]->email}}" value="{{$user[0]->email}}" >
                         </div>
                         <div class="col-md-12 mb-3"><label class="labels">Date of Birth</label><input type="date"
                                 class="form-control" name="dob" placeholder="{{$user[0]->user_dob}}" value="{{$user[0]->user_dob}}"></div>
