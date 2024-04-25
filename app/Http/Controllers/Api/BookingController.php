@@ -177,7 +177,7 @@ class BookingController extends Controller
                 $data = [
                     "sender_id" => "8809601010510",
                     "receiver" => $user[0]->phone,
-                    "message" => 'Dear user, Your listing : '. $listing[0]->listing_title . ' has a new booking request',
+                    "message" => 'Dear user, Your booking at : '. $listing[0]->listing_title . ' has sent to the host for review',
                     "remove_duplicate" => true
                 ];
 
@@ -203,7 +203,7 @@ class BookingController extends Controller
                 $data = [
                     "sender_id" => "8809601010510",
                     "receiver" => $user[0]->phone,
-                    "message" => 'Dear user, Your listing : '. $listing[0]->listing_title . ' has a new booking request',
+                    "message" => 'Dear user, Your listing : '. $listing[0]->listing_title . ' has sent to the host for review',
                     "remove_duplicate" => true
                 ];
 
