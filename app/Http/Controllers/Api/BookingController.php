@@ -128,6 +128,31 @@ class BookingController extends Controller
                     ];
 
                 send_sms($data);
+          }else{
+            //mail
+            $receipent = $lister[0]->email;
+                $subject = 'New Booking Request';
+
+                 Mail::plain(
+                    view: 'mailTemplates.NewBookingRequest',
+                    data: [
+                        'lister' => $lister[0]->name,
+                        'listing_title' => $listing[0]->listing_title
+                    ],
+                    callback: function (Message $message) use ($receipent, $subject) {
+                        $message->to($receipent)->subject($subject);
+                    }
+                );
+
+                //messege
+                $data = [
+                    "sender_id" => "8809601010510",
+                    "receiver" => $lister[0]->phone,
+                    "message" => 'Dear user, Your listing : '. $listing[0]->listing_title . ' has a new booking request',
+                    "remove_duplicate" => true
+                ];
+
+            send_sms($data);
           }
 
           if($user[0]->phone == null){
@@ -147,6 +172,32 @@ class BookingController extends Controller
                }
            );
           }elseif($user[0]->email == null){
+                $data = [
+                    "sender_id" => "8809601010510",
+                    "receiver" => $user[0]->phone,
+                    "message" => 'Dear user, Your listing : '. $listing[0]->listing_title . ' has a new booking request',
+                    "remove_duplicate" => true
+                ];
+
+            send_sms($data);
+          }else{
+            //mail
+            $subject = 'Booking Request Sent';
+            $receipent = $user[0]->email;
+
+            Mail::plain(
+               view: 'mailTemplates.BookingRequestSent',
+               data: [
+                   'user' => $user[0]->name,
+                   'listing_title' => $listing[0]->listing_title,
+                   'checkin' => $booked[0]->date_enter->format('F j, Y'),
+                   'checkout' => $booked[0]->date_exit->format('F j, Y'),
+               ],
+               callback: function (Message $message) use ($receipent, $subject) {
+                   $message->to($receipent)->subject($subject);
+               }
+           );
+           //messege
                 $data = [
                     "sender_id" => "8809601010510",
                     "receiver" => $user[0]->phone,
