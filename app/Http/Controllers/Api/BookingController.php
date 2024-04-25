@@ -40,7 +40,8 @@ class BookingController extends Controller
         if($validated){
             
             $check = Booking::where('transaction_id', $request->input('transaction_id'))->get();
-            $user = User::where('id', $request->input('lister_id'))->get();
+            $user = User::where('id', $request->input('user_id'))->get();
+            $lister = User::where('id', $request->input('lister_id'))->get();
             if(count($check)>0){
                 return response()->json([
                     'status' => false,
@@ -101,15 +102,15 @@ class BookingController extends Controller
            // $listing = Listing::where('listing_id', $request->input('listing_id'))->get();
           //  $phone = User::where('id', $booked[0]->lister_id)->get();
 
-          if($user[0]->phone == null){
+          if($lister[0]->phone == null){
 
-                $receipent = $user[0]->email;
+                $receipent = $lister[0]->email;
                 $subject = 'New Booking Request';
 
                  Mail::plain(
-                    view: 'mailTemplates.BookingRequest',
+                    view: 'mailTemplates.NewBookingRequest',
                     data: [
-                        'lister' => $user[0]->name,
+                        'lister' => $lister[0]->name,
                         'listing_title' => $listing[0]->listing_title
                     ],
                     callback: function (Message $message) use ($receipent, $subject) {
@@ -118,15 +119,42 @@ class BookingController extends Controller
                 );
 
 
-          }elseif($user[0]->email == null){
+          }elseif($lister[0]->email == null){
                     $data = [
                         "sender_id" => "8809601010510",
-                        "receiver" => $user[0]->phone,
+                        "receiver" => $lister[0]->phone,
                         "message" => 'Dear user, Your listing : '. $listing[0]->listing_title . ' has a new booking request',
                         "remove_duplicate" => true
                     ];
 
                 send_sms($data);
+          }
+
+          if($user[0]->phone == null){
+            $subject = 'Booking Request Sent';
+            $receipent = $user[0]->email;
+
+            Mail::plain(
+               view: 'mailTemplates.BookingRequestSent',
+               data: [
+                   'user' => $user[0]->name,
+                   'listing_title' => $listing[0]->listing_title,
+                   'checkin' => $booked[0]->date_enter->format('F j, Y'),
+                   'checkout' => $booked[0]->date_exit->format('F j, Y'),
+               ],
+               callback: function (Message $message) use ($receipent, $subject) {
+                   $message->to($receipent)->subject($subject);
+               }
+           );
+          }elseif($user[0]->email == null){
+                $data = [
+                    "sender_id" => "8809601010510",
+                    "receiver" => $user[0]->phone,
+                    "message" => 'Dear user, Your listing : '. $listing[0]->listing_title . ' has a new booking request',
+                    "remove_duplicate" => true
+                ];
+
+            send_sms($data);
           }
 
             
