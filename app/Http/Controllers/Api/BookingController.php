@@ -11,6 +11,8 @@ use App\Models\Notification;
 use App\Models\BookingHistory;
 use App\Models\ListingAvailable;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Message;
 
 class BookingController extends Controller
 {
