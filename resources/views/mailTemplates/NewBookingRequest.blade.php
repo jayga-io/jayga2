@@ -1,12 +1,12 @@
-Dear {{$lister}},
+Dear Host,
 
-Your Listing : {{$listing_title}}
+We're pleased to inform you that a new booking request has been placed for your listing, {{$listing_title}}. The reservation details are as follows:
 
-has a new booking request.
+- Check-in Date: {{$checkin}}
+- Check-out Date: {{$checkout}}
+- Guest: {{$guest_name}}
 
-Please login to Jayga app to accept or decline.
-
-Please remember booking requests are valid for only 48 hours. After 48 hours booking requests will automatically get declined.
+Please prepare the property for the guest's arrival and ensure a smooth check-in process.
 
 Best regards,
 The Jayga Team

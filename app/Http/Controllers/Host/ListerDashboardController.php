@@ -98,13 +98,7 @@ class ListerDashboardController extends Controller
             'isApproved' => true
         ]);
 
-        $phone = $booking_id[0]->phone;
-        $data = [
-            "sender_id" => "8809601010510",
-            "receiver" => $phone,
-            "message" => 'Dear user, your booking for : '. $listing_name[0]->listing_title . 'with jayga has been approved by the host',
-            "remove_duplicate" => true
-        ];
+        
 
         $notifys = [
             'user_id' => $booking_id[0]->user_id,
@@ -116,7 +110,67 @@ class ListerDashboardController extends Controller
            ];
     
            notify($notifys);
-           send_sms($data);
+
+           if($booking_id[0]->phone == null){
+
+            $receipent = $booking_id[0]->email;
+                $subject = 'Booking Request Approved';
+
+                 Mail::plain(
+                    view: 'mailTemplates.bookingApprove',
+                    data: [
+                        'user' => $booking_id[0]->booking_order_name,
+                        'listing_title' => $listing_name[0]->listing_title,
+                        'checkin' => $booking_id[0]->date_enter,
+                        'checkout' => $booking_id[0]->date_exit,
+                        
+                    ],
+                    callback: function (Message $message) use ($receipent, $subject) {
+                        $message->to($receipent)->subject($subject);
+                    }
+                );
+
+           }elseif($booking_id[0]->email == null){
+
+            $data = [
+                "sender_id" => "8809601010510",
+                "receiver" => $booking_id[0]->phone,
+                "message" => 'Dear user, your booking for : '. $listing_name[0]->listing_title . 'with jayga has been approved by the host',
+                "remove_duplicate" => true
+            ];
+            send_sms($data);
+
+           }else{
+            //mail
+            $receipent = $booking_id[0]->email;
+                $subject = 'Booking Request Approved';
+
+                 Mail::plain(
+                    view: 'mailTemplates.bookingApprove',
+                    data: [
+                        'user' => $booking_id[0]->booking_order_name,
+                        'listing_title' => $listing_name[0]->listing_title,
+                        'checkin' => $booking_id[0]->date_enter,
+                        'checkout' => $booking_id[0]->date_exit,
+                        
+                    ],
+                    callback: function (Message $message) use ($receipent, $subject) {
+                        $message->to($receipent)->subject($subject);
+                    }
+                );
+
+                //messege
+                $data = [
+                    "sender_id" => "8809601010510",
+                    "receiver" => $booking_id[0]->phone,
+                    "message" => 'Dear user, your booking for : '. $listing_name[0]->listing_title . 'with jayga has been approved by the host',
+                    "remove_duplicate" => true
+                ];
+                send_sms($data);
+           }
+
+
+           
 
         toastr()->addSuccess('Booking has been confirmed');
         return redirect()->back();
@@ -133,13 +187,8 @@ class ListerDashboardController extends Controller
 
         ListingAvailable::where('booking_id', $id)->delete();
 
-        $phone = $booking_id[0]->phone;
-        $data = [
-            "sender_id" => "8809601010510",
-            "receiver" => $phone,
-            "message" => 'Dear user, your booking for : '. $listing_name[0]->listing_title . ' has been declined by the host',
-            "remove_duplicate" => true
-        ];
+        
+        
         $notifys = [
             'user_id' => $booking_id[0]->user_id,
             'lister_id' => $booking_id[0]->lister_id,
@@ -175,10 +224,67 @@ class ListerDashboardController extends Controller
         ]);
         notify($notifys);
 
+        if($booking_id[0]->phone == null){
+
+            $receipent = $booking_id[0]->email;
+                $subject = 'Booking Request Declined';
+
+                 Mail::plain(
+                    view: 'mailTemplates.bookingDecline',
+                    data: [
+                        'user' => $booking_id[0]->booking_order_name,
+                        'listing_title' => $listing_name[0]->listing_title,
+                        
+                        
+                    ],
+                    callback: function (Message $message) use ($receipent, $subject) {
+                        $message->to($receipent)->subject($subject);
+                    }
+                );
+
+
+
+        }elseif($booking_id[0]->email == null){
+            $data = [
+                "sender_id" => "8809601010510",
+                "receiver" => $booking_id[0]->phone,
+                "message" => 'Dear user, your booking for : '. $listing_name[0]->listing_title . ' has been declined by the host',
+                "remove_duplicate" => true
+            ];
+            send_sms($data);
+        }else{
+            //messege
+            $data = [
+                "sender_id" => "8809601010510",
+                "receiver" => $phone,
+                "message" => 'Dear user, your booking for : '. $listing_name[0]->listing_title . ' has been declined by the host',
+                "remove_duplicate" => true
+            ];
+            send_sms($data);
+
+            //mail
+            $receipent = $booking_id[0]->email;
+                $subject = 'Booking Request Declined';
+
+                 Mail::plain(
+                    view: 'mailTemplates.bookingDecline',
+                    data: [
+                        'user' => $booking_id[0]->booking_order_name,
+                        'listing_title' => $listing_name[0]->listing_title,
+                        
+                        
+                    ],
+                    callback: function (Message $message) use ($receipent, $subject) {
+                        $message->to($receipent)->subject($subject);
+                    }
+                );
+
+        }
+
         Booking::where('booking_id', $id)->delete();
     
           
-           send_sms($data);
+        
            
         toastr()->addWarning('Booking has been declined');
         return redirect()->back();

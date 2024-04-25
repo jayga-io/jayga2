@@ -27,11 +27,11 @@ class BookingController extends Controller
             'short_stay_flag' => 'required',
             'all_day_flag' => 'required',
             'transaction_id' => 'required',
-            'phone' => 'required',
+            //'phone' => 'required',
             'platform_type' => 'required',
             'invoice_number' => 'required',
             'guest_num' => 'required',
-            'email' => 'required',
+            //'email' => 'required',
             'pay_amount' => 'required',
             'listing_price' => 'required',
             'payment_flag' => 'boolean|required',
@@ -67,8 +67,8 @@ class BookingController extends Controller
                 'net_payable' => $request->input('listing_price'),
                 'all_day_flag' => $request->input('all_day_flag'),
                 'payment_flag' => $request->input('payment_flag'),
-                'email' => $request->input('email'),
-                'phone' => $request->input('phone'),
+                'email' => $user[0]->email,
+                'phone' => $user[0]->phone,
                 'messeges' => $request->input('messege'),
                 'platform_type' => $request->input('platform_type'),
                 'invoice_number' => $request->input('invoice_number'),
@@ -97,12 +97,7 @@ class BookingController extends Controller
 
             ]);
 
-            
-           
 
-            
-           // $listing = Listing::where('listing_id', $request->input('listing_id'))->get();
-          //  $phone = User::where('id', $booked[0]->lister_id)->get();
 
           if($lister[0]->phone == null){
 
@@ -113,7 +108,10 @@ class BookingController extends Controller
                     view: 'mailTemplates.NewBookingRequest',
                     data: [
                         'lister' => $lister[0]->name,
-                        'listing_title' => $listing[0]->listing_title
+                        'listing_title' => $listing[0]->listing_title,
+                        'checkin' => $booked[0]->date_enter,
+                        'checkout' => $booked[0]->date_exit,
+                        'guest_name' => $user[0]->name,
                     ],
                     callback: function (Message $message) use ($receipent, $subject) {
                         $message->to($receipent)->subject($subject);
@@ -139,7 +137,10 @@ class BookingController extends Controller
                     view: 'mailTemplates.NewBookingRequest',
                     data: [
                         'lister' => $lister[0]->name,
-                        'listing_title' => $listing[0]->listing_title
+                        'listing_title' => $listing[0]->listing_title,
+                        'checkin' => $booked[0]->date_enter,
+                        'checkout' => $booked[0]->date_exit,
+                        'guest_name' => $user[0]->name,
                     ],
                     callback: function (Message $message) use ($receipent, $subject) {
                         $message->to($receipent)->subject($subject);
@@ -203,7 +204,7 @@ class BookingController extends Controller
                 $data = [
                     "sender_id" => "8809601010510",
                     "receiver" => $user[0]->phone,
-                    "message" => 'Dear user, Your listing : '. $listing[0]->listing_title . ' has sent to the host for review',
+                    "message" => 'Dear user, Your booking at : '. $listing[0]->listing_title . ' has sent to the host for review',
                     "remove_duplicate" => true
                 ];
 
