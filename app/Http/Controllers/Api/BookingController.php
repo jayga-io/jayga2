@@ -166,8 +166,8 @@ class BookingController extends Controller
                data: [
                    'user' => $user[0]->name,
                    'listing_title' => $listing[0]->listing_title,
-                   'checkin' => $booked[0]->date_enter->format('F j, Y'),
-                   'checkout' => $booked[0]->date_exit->format('F j, Y'),
+                   'checkin' => $booked[0]->date_enter,
+                   'checkout' => $booked[0]->date_exit,
                ],
                callback: function (Message $message) use ($receipent, $subject) {
                    $message->to($receipent)->subject($subject);
