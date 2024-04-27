@@ -69,6 +69,28 @@ class AccountsController extends Controller
                 'bank_name' => $request->input('bank_name'),
                 'branch_name' => $request->input('branch_name'),
             ]);
+
+            if($user[0]->email != null){
+                $receipent = $user[0]->email;
+                $subject = 'New withdraw Request';
+                $time = date("Y-m-d H:i:s");
+                
+                $destinationaccount = $request->input('acc_number');
+                 Mail::plain(
+                    view: 'mailTemplates.withdrawprocess',
+                    data: [
+                        'lister' => $user[0]->name,
+                        'withdraw_date' => $time,
+                        'withdraw_amount' => $amount,
+                        'destinationaccount' => $destinationaccount,
+                        
+                    ],
+                    callback: function (Message $message) use ($receipent, $subject) {
+                        $message->to($receipent)->subject($subject);
+                    }
+                );
+
+            }
             toastr()->addSuccess('Withdraw requested');
             return redirect()->back()->with('Notice', 'Withdrawal usually takes 48 hours to process. please be patient');
         }
