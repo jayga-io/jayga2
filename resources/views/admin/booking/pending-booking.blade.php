@@ -99,7 +99,12 @@
 
 					@if ($item->booking_status == 1)
 					<td><span class="badge rounded-pill bg-success">Confirmed</span></td>
-					@endif
+					@elseif($item->booking_status == 0)
+					<td><span class="badge rounded-pill bg-success">Pending</span></td>
+					@elseif($item->booking_status == 2)
+					<td><span class="badge rounded-pill bg-success">Denied</span></td>
+					@elseif($item->booking_status == 5)
+					<td><span class="badge rounded-pill bg-success">Refunded</span></td>
 
 					<td>{{$item->created_at->diffForHumans()}}</td>
 
