@@ -22,7 +22,7 @@ class HostController extends Controller
         ]);
         if($validated){
            $checkBank = BankDetails::where('acc_number', $request->input('acc_number'))->where('lister_id', $request->input('lister_id'))->get();
-           if($checkBank > 0){
+           if(count($checkBank)>0){
                 BankDetails::where('lister_id', $request->input('lister_id'))->update([
                     'lister_id' => $request->input('lister_id'),
                     'acc_name' => $request->input('acc_name'),
