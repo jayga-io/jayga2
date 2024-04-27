@@ -36,6 +36,11 @@
 			  scrollX: true
 			});
 	</script>
+	<script>
+		let table3 = new DataTable('#pendingTable',{
+			  scrollX: true
+			});
+	</script>
    
 	<script src="{{asset('assets/js/popper.min.js')}}"></script>
 	<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
