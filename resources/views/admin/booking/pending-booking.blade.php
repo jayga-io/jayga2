@@ -105,6 +105,7 @@
 					<td><span class="badge rounded-pill bg-success">Denied</span></td>
 					@elseif($item->booking_status == 5)
 					<td><span class="badge rounded-pill bg-success">Refunded</span></td>
+					@endif
 
 					<td>{{$item->created_at->diffForHumans()}}</td>
 
