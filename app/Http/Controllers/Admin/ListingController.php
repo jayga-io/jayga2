@@ -181,7 +181,7 @@ class ListingController extends Controller
         $listingImages = ListingImages::where('listing_id', $id)->get();
         $amenities = ListingGuestAmenities::where('listing_id', $id)->get();
         $restrictions = ListingRestrictions::where('listing_id', $id)->get();
-        $describes = ListingDescribe::where('listing_id', $id)->get();
+       // $describes = ListingDescribe::where('listing_id', $id)->get();
         $listing = Listing::where('listing_id', $id)->get();
         $lister = User::where('id', $listing[0]->lister_id)->get();
         $lister_image = UserPictures::where('user_id', $listing[0]->lister_id)->get();
@@ -189,7 +189,7 @@ class ListingController extends Controller
        
         return view('admin.listings.view-listing')
         ->with('listing_images', $listingImages)->with('listing', $listing)->with('lister', $lister)
-        ->with('lister_image', $lister_image)->with('describes', $describes)->with('restrictions', $restrictions)
+        ->with('lister_image', $lister_image)->with('restrictions', $restrictions)
         ->with('amenities', $amenities)->with('lister_nid', $lister_nid);
     }
 
