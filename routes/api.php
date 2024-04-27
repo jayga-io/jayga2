@@ -155,6 +155,9 @@ Route::get('/remove/amenity', [AmenitiesRestrictionsController::class, 'delete_a
 //remove retrictions
 Route::get('/remove/restrictions', [AmenitiesRestrictionsController::class, 'delete_restrictions']);
 
+//update bank details
+Route::post('/update/user/bank-details', [HostController::class, 'update_bank']);
+
 
 
 

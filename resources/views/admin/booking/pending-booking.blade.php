@@ -101,7 +101,7 @@
 					<td><span class="badge rounded-pill bg-success">Confirmed</span></td>
 					@endif
 
-					<td>{{$item->created_at->diffForHuman()}}</td>
+					<td>{{$item->created_at->diffForHumans()}}</td>
 
 				</tr>
 				<?php $counter++; ?>

@@ -118,4 +118,22 @@ class HostController extends Controller
         }
         
     }
+
+    public function update_bank(Request $request){
+        $validated = $request->validate([
+            'user_id' => 'required',
+            'bank_id' => 'required'
+        ]);
+
+        if($validated){
+            BankDetails::where('lister_id', $request->input('user_id'))->where('id', $request->input('bank_id'))->update($request->all());
+
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Bank Details updated'
+            ]);
+        }else{
+            return $validated->errors();
+        }
+    }
 }
