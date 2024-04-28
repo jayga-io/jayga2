@@ -14,15 +14,14 @@ use Storage;
 class UserController extends Controller
 {
     public function getUser(Request $request, $id){
-        $user = User::where('id', $id)->get();
-        $images = UserPictures::where('user_id', $id)->get();
-        $nid = UserNid::where('user_id', $id)->get();
+        $user = User::where('id', $id)->with('avatars')->with('nids')->get();
+       // $images = UserPictures::where('user_id', $id)->get();
+      //  $nid = UserNid::where('user_id', $id)->get();
 
         if(count($user)>0){
             return response()->json([
             'user_data' => $user,
-            'user_nid' => $nid,
-            'user_pictures' => $images
+            
         ]);
         }else{
             return response()->json([
