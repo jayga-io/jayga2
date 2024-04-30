@@ -72,6 +72,7 @@ class BookingController extends Controller
                 'messeges' => $request->input('messege'),
                 'platform_type' => $request->input('platform_type'),
                 'invoice_number' => $request->input('invoice_number'),
+                'created_on' => date('Y-m-d H:i:s')
             ]);
 
             $booked = Booking::where('transaction_id', $request->input('transaction_id'))->get();
@@ -350,6 +351,7 @@ class BookingController extends Controller
                      'booking_status' => $books[0]->booking_status,
                      'isApproved' => $books[0]->isApproved,
                      'isComplete' => $books[0]->isComplete,
+                     'created_on' => date('Y-m-d H:i:s')
                  ]);
                     
                 

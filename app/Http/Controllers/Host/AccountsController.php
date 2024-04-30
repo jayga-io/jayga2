@@ -50,7 +50,8 @@ class AccountsController extends Controller
                 'branch_name' => $request->input('branch_name'),
                 
                 'user_balance' => $lister[0]->earnings,
-                'withdraw_amount' => $amount
+                'withdraw_amount' => $amount,
+                'created_on' => date('Y-m-d H:i:s')
             ]);
             $remaining = $lister[0]->earnings - $amount;
             $withdrawn = $lister[0]->withdraws + $amount;
@@ -68,6 +69,7 @@ class AccountsController extends Controller
                 'acc_number' => $request->input('acc_number'),
                 'bank_name' => $request->input('bank_name'),
                 'branch_name' => $request->input('branch_name'),
+                'created_on' => date('Y-m-d H:i:s')
             ]);
 
             if($user[0]->email != null){

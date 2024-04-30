@@ -130,6 +130,7 @@ class ClientController extends Controller
                          'phone' => $request->input('phone'),
                          'invoice_number' => $invoice_number,
                          'platform_type' => 'web',
+                         'created_on' => date('Y-m-d H:i:s')
                      ]); 
 
                      $booked = Booking::where('invoice_number', $invoice_number)->get();
@@ -180,6 +181,7 @@ class ClientController extends Controller
                             'phone' => $request->input('phone'),
                             'invoice_number' => $invoice_number,
                             'platform_type' => 'web',
+                            'created_on' => date('Y-m-d H:i:s')
                          ]);
 
                         // Array to store the dates between $start and $end
@@ -342,6 +344,7 @@ class ClientController extends Controller
                 'booking_id' => $listing_id[0]->booking_id,
                 'type' => 'booking',
                 'messege' => 'Your Booking at : '.$listing[0]->listing_title. ' has been placed',
+                'created_on' => date('Y-m-d H:i:s')
 
             ]);
             $phone = User::where('id', $listing_id[0]->lister_id)->get();

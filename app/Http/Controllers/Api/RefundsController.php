@@ -42,7 +42,8 @@ class RefundsController extends Controller
                 'listing_id' => $request->input('listing_id'),
                 'booking_id' => $request->input('booking_id'),
                 'type' => 'Refund Processed: '.$request->input('booking_id'),
-                'messege' => 'Your refund for booking '.$request->input('booking_id').' has been successfully processed. You should see the refund reflected in your account shortly.'
+                'messege' => 'Your refund for booking '.$request->input('booking_id').' has been successfully processed. You should see the refund reflected in your account shortly.',
+                'created_on' => date('Y-m-d H:i:s')
             ];
         
                notify($notifys);

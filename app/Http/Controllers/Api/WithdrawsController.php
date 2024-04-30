@@ -35,7 +35,8 @@ class WithdrawsController extends Controller
                 'routing_num' => $bank[0]->routing_number,
                 'branch_name' => $bank[0]->branch_name,
                 'user_balance' => $lister[0]->earnings,
-                'withdraw_amount' => $request->input('amount')
+                'withdraw_amount' => $request->input('amount'),
+                'created_on' => date('Y-m-d H:i:s')
             ]);
 
             $remaining = $lister[0]->earnings - $amount;
@@ -54,6 +55,7 @@ class WithdrawsController extends Controller
                 'acc_number' => $bank[0]->acc_number,
                 'bank_name' => $bank[0]->bank_name,
                 'branch_name' => $bank[0]->branch_name,
+                'created_on' => date('Y-m-d H:i:s')
             ]);
 
             $notifys = [

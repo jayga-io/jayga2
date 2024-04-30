@@ -24,6 +24,7 @@ class RefundController extends Controller
             'routing_num' => $request->input('routing_num'),
             'messege' => $request->input('messege'),
             'type' => 'bank',
+            'created_on' => date('Y-m-d H:i:s')
         ]);
        }else{
         Refunds::create([
@@ -39,6 +40,7 @@ class RefundController extends Controller
             'routing_num' => $request->input('routing_num'),
             'messege' => $request->input('messege'),
             'type' => 'mfs',
+            'created_on' => date('Y-m-d H:i:s')
         ]);
        }
        
