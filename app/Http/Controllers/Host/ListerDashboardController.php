@@ -106,7 +106,8 @@ class ListerDashboardController extends Controller
             'listing_id' => $booking_id[0]->listing_id,
             'booking_id' => $id,
             'type' => 'booking',
-            'messege' => 'Your stay at : '. $listing_name[0]->listing_title . ' has been approved'
+            'messege' => 'Your stay at : '. $listing_name[0]->listing_title . ' has been approved',
+            'created_on' => date('Y-m-d H:i:s')
            ];
     
            notify($notifys);
@@ -195,7 +196,8 @@ class ListerDashboardController extends Controller
             'listing_id' => $booking_id[0]->listing_id,
             'booking_id' => $id,
             'type' => 'Booking',
-            'messege' => 'Your booking : '. $listing_name[0]->listing_title . ' has been declined'
+            'messege' => 'Your booking : '. $listing_name[0]->listing_title . ' has been declined',
+            'created_on' => date('Y-m-d H:i:s')
            ];
 
            $books = Booking::where('booking_id', $id)->with('listings')->get();
@@ -221,6 +223,7 @@ class ListerDashboardController extends Controller
             'booking_status' => $books[0]->booking_status,
             'isApproved' => $books[0]->isApproved,
             'isComplete' => $books[0]->isComplete,
+            'created_on' => date('Y-m-d H:i:s')
         ]);
         notify($notifys);
 
@@ -364,6 +367,7 @@ class ListerDashboardController extends Controller
             'booking_status' => $books[0]->booking_status,
             'isApproved' => $books[0]->isApproved,
             'isComplete' => $books[0]->isComplete,
+            'created_on' => date('Y-m-d H:i:s')
         ]);
 
         Booking::where('booking_id', $id)->delete();

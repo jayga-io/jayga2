@@ -291,7 +291,8 @@ class ListingController extends Controller
                     'lister_id' => $lister_id[0]->lister_id,
                     'listing_id' => $id,
                     'type' => 'Listing',
-                    'messege' => 'Your listing : '. $lister_id[0]->listing_title . ' has been approved'
+                    'messege' => 'Your listing : '. $lister_id[0]->listing_title . ' has been approved',
+                    'created_on' => date('Y-m-d H:i:s')
                 ];
 
                 notify($notifys);

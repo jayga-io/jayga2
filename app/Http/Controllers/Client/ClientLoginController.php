@@ -28,7 +28,7 @@ class ClientLoginController extends Controller
                 $data = [
                     
                     "receiver" => $logindetail,
-                    "message" => "Your Jayga OTP is:".$otp,
+                    "message" => "Your Jayga OTP is:".$otp. "Please do not share this OTP with anyone for security reasons.",
                     "remove_duplicate" => true
                 ];
 

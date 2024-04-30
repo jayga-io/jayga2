@@ -108,7 +108,7 @@ class Kernel extends ConsoleKernel
            }
             
            
-        })->hourly();
+        })->daily();
 
 
         $schedule->call(function (){

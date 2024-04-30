@@ -63,7 +63,8 @@ class WithdrawsController extends Controller
                 'lister_id' => $request->input('lister_id'),
                 
                 'type' => 'Withdrawal Processed : '.$request->input('amount'),
-                'messege' => 'Your withdrawal request for '.$request->input('amount').' has been successfully processed. You should see the funds reflected in your account shortly.'
+                'messege' => 'Your withdrawal request for '.$request->input('amount').' has been successfully processed. You should see the funds reflected in your account shortly.',
+                'created_on' => date('Y-m-d H:i:s')
             ];
         
                notify($notifys);

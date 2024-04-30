@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Listing;
 use App\Models\TimeSlotShortstays;
 use App\Models\ListingImages;
+use App\Models\User;
 
 class BookingHistory extends Model
 {
@@ -23,5 +24,9 @@ class BookingHistory extends Model
 
     public function listing_images(){
         return $this->hasMany(ListingImages::class, 'listing_id', 'listing_id');
+    }
+
+    public function user(){
+        return $this->hasOne(User::class, 'user_id', 'id');
     }
 }
