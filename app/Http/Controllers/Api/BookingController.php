@@ -76,7 +76,7 @@ class BookingController extends Controller
 
             $booked = Booking::where('transaction_id', $request->input('transaction_id'))->get();
             $listing = Listing::where('listing_id', $booked[0]->listing_id)->get();
-
+           // $time = date('Y-m-d H:i:s');
             Notification::create([
                 'user_id' => $request->input('user_id'),
                 'lister_id' => $request->input('lister_id'),
@@ -84,6 +84,7 @@ class BookingController extends Controller
                 'booking_id' => $booked[0]->booking_id,
                 'type' => 'New Booking Request : '.$listing[0]->listing_title,
                 'messege' => 'Your Booking request at : '.$listing[0]->listing_title. ' has been placed',
+                'created_on' => date('Y-m-d H:i:s')
 
             ]);
 
@@ -94,7 +95,7 @@ class BookingController extends Controller
                 'booking_id' => $booked[0]->booking_id,
                 'type' => 'New Booking Request : '.$listing[0]->listing_title,
                 'messege' => 'Your have a new booking request for : '.$listing[0]->listing_title,
-
+                'created_on' => date('Y-m-d H:i:s')
             ]);
 
 

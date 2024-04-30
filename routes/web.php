@@ -196,6 +196,10 @@ Route::get('/back', function(){
     return redirect(route('home'));
 })->name('backroute');
 
+Route::get('/get-time', function(){
+    echo date('Y-m-d H:i:s');
+});
+
 
 //host 
 Route::prefix('host')->group(function(){
