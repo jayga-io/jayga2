@@ -262,8 +262,8 @@ class ListingController extends Controller
     public function approve(Request $request, $id){
 
         $checkimg = ListingImages::where('listing_id', $id)->get();
-
-        if(count($checkimg)<0){
+       // dd($checkimg)
+        if(count($checkimg) == 0){
             return redirect()->back()->with('error', 'Listing has no image.');
         }else{
             Listing::where('listing_id', $id)->update([
