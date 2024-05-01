@@ -1,6 +1,6 @@
 <div class="header">
     <div class="header-left">
-        <a href="index.php" class="logo"> <img src="{{asset('assets/img/logo/Jayga Logo-02.png')}}" width="50"
+        <a href="{{route('adminhome')}}" class="logo"> <img src="{{asset('assets/img/logo/Jayga Logo-02.png')}}" width="50"
                 height="70" alt="logo"> <span class="logoclass">Jayga Admin</span> </a>
         <a href="index.php" class="logo logo-small"> <img src="assets/img/hotel_logo.png" alt="Logo" width="30"
                 height="30"> </a>

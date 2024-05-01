@@ -76,11 +76,11 @@
                     <div class="col-md-6">
                         <div class="container mt-5">
                             <div class="card">
-                                <div class="carousel-container">
+                                <div class="carousel-container" style="width: 100%">
                                      @if (count($listing_images)>0)
                                         <div class="carousel">
                                             @foreach ($listing_images as $key => $item)
-                                                <div class="carousel-slide"><img src="{{ asset('/uploads/'. $item->listing_targetlocation)}}" alt="Image"></div>
+                                                <div class="carousel-slide"><img src="{{ asset('/uploads/'. $item->listing_targetlocation)}}" alt="Image" style="object-fit: contain"></div>
                                             @endforeach
                                         </div>
                                         <div class="carousel-controls">
