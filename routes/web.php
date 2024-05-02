@@ -32,6 +32,7 @@ use App\Http\Middleware\SuspendedUser;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -181,6 +182,8 @@ Route::prefix('admin')->group(function(){
 
 
 //admin section end
+
+Route::get('/all/districts', [LocationController::class, 'index']);
 
 Route::post('/create/listing', [ListingController::class, 'create'])->name('create_listing');
 
