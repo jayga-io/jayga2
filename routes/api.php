@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\AmenitiesRestrictionsController;
 use App\Http\Controllers\Api\RefundsController;
 use App\Http\Controllers\Api\AccountDashboardController;
 use App\Http\Controllers\Api\WithdrawsController;
+use App\Http\Controllers\LocationController;
 
 
 use App\Http\Controllers\Frontend\common\ListingController2;
@@ -159,7 +160,8 @@ Route::get('/remove/restrictions', [AmenitiesRestrictionsController::class, 'del
 Route::post('/update/user/bank-details', [HostController::class, 'update_bank']);
 
 
-
+//location api
+Route::get('/all/districts', [LocationController::class, 'index']);
 
 
 //Front side apis
