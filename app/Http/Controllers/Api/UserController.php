@@ -50,7 +50,7 @@ class UserController extends Controller
                     ]);
                 }else{
                     $checkConflict = User::where('phone', $request->input('phone'))->orWhere('email', $request->input('email'))->get();
-                    if($checkConflict > 0){
+                    if(count($checkConflict) > 0){
                         return response()->json([
                             'status' => 403,
                             'messege' => 'Email or phone exists'
