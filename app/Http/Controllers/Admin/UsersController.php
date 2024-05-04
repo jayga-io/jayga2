@@ -81,6 +81,25 @@ class UsersController extends Controller
 
         $request->session()->forget('user');
 
+        $suspend_user = User::where('id', $id)->get();
+
+        $receipent = $suspend_user[0]->email;
+        $subject = 'Account Suspended';
+       // $time = date("Y-m-d H:i:s");
+        
+       // $destinationaccount = $;
+         Mail::plain(
+            view: 'mailTemplates.usersuspended',
+            data: [
+                'user' =>$suspend_user[0]->name,
+                
+                
+            ],
+            callback: function (Message $message) use ($receipent, $subject) {
+                $message->to($receipent)->subject($subject);
+            }
+        );
+
         return redirect()->back()->with('success', 'User Suspended');
     }
 

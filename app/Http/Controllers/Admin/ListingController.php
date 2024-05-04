@@ -273,6 +273,7 @@ class ListingController extends Controller
                     $lister_id = Listing::where('listing_id', $id)->get();
                     $user = User::where('id', $lister_id[0]->lister_id)->get();
 
+                   
                 
                         
                     
