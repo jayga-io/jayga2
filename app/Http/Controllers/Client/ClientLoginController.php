@@ -105,7 +105,8 @@ class ClientLoginController extends Controller
                     if(is_numeric($auth)){
                        
                         User::create([
-                            'phone' => $auth
+                            'phone' => $auth,
+                           // 'email' => 'test.'.$otp. '@mail',
                         ]);
                     
                     }elseif(preg_match($pattern, $auth)){

@@ -27,7 +27,7 @@ class LoginController extends Controller
                         $authToken = Hash::make($authKey);
                         $pattern = '/^\S+@\S+\.\S+$/';
                         $txt = $request->input('phone');
-
+                        $otp = random_int(1000,9999);
                         
 
                         $user = User::where('phone', $request->phone)->orWhere('email', $request->phone)->get();
@@ -65,6 +65,7 @@ class LoginController extends Controller
                                 if(is_numeric($txt)){
                                     User::create([
                                         'phone' => $request->input('phone'),
+                                        //'email' => 'test.'.$otp. '@mail',
                                         'access_token' => $authToken,
                                         'FCM_token' => $request->input('FCM_token'),
                                     ]);
@@ -106,6 +107,7 @@ class LoginController extends Controller
             'user_email' => 'required',
             'user_dob' => 'required',
             'acc_token' => 'required',
+            'phone' => 'required',
            ]);
 
            

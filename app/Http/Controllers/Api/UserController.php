@@ -41,12 +41,21 @@ class UserController extends Controller
 
            if($validated){
 
-                $checkConflict = User::where('phone', $request->input('phone'))->orWhere('email', $request->input('email'))->get();
+                $checkConflict = User::where('phone', $request->input('phone'))->orWhere('email', $request->input('email'))->first();
                 if(count($checkConflict)>0){
-                    return response()->json([
-                        'status' => 403,
-                        'messege' => 'Phone number / Email already taken'
-                    ], 403);
+                    if($checkConflict[0]->phone == null || $checkConflict[0]->email == null){
+                        User::where('id', $request->input('id'))->update($request->all());
+                        return response()->json([
+                            'status' => 200,
+                            'messege' => 'User information updated'
+                        ]);
+                    }else{
+                        return response()->json([
+                            'status' => 403,
+                            'messege' => 'Phone number / Email already taken'
+                        ], 403);
+                    }
+                    
                 }else{
                     User::where('id', $request->input('id'))->update($request->all());
                     return response()->json([
