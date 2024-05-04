@@ -41,31 +41,29 @@ class UserController extends Controller
 
            if($validated){
 
-                
-                if($request->input('phone') == null && $request->input('email') == null){
+            if($request->input('phone') == null && $request->input('email') == null){
+                User::where('id', $request->input('id'))->update($request->all());
+                return response()->json([
+                    'status' => 200,
+                    'messege' => 'User information updated'
+                ]);
+            }else{
+                $checkUser = User::where('phone', $request->input('phone'))->orWhere('email', $request->input('email'))->get();
+                if(count($checkUser) > 0){
+                    return response()->json([
+                        'status' => 200,
+                        'messege' => 'Email / Phone exists'
+                    ]);
+                }else{
                     User::where('id', $request->input('id'))->update($request->all());
                     return response()->json([
                         'status' => 200,
                         'messege' => 'User information updated'
                     ]);
-                }else{
-                    $checkConflict = User::where('phone', $request->input('phone'))->orWhere('email', $request->input('email'))->get();
-                    if(count($checkConflict) > 0){
-                        return response()->json([
-                            'status' => 403,
-                            'messege' => 'Email or phone exists'
-                        ], 403);
-                    }else{
-                        User::where('id', $request->input('id'))->update($request->all());
-                        return response()->json([
-                            'status' => 200,
-                            'messege' => 'User information updated'
-                        ]);
-                    }
-                   
                 }
-                    
-                
+            }
+
+          
 
            }else{
                 return $validated->errors();
