@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function editUser(Request $request){
         $validated = $request->validate([
-            'user_id' => 'required',
+            'id' => 'required',
             
             
            ]);
@@ -43,7 +43,7 @@ class UserController extends Controller
 
                 
                 if($request->input('phone') == null && $request->input('email') == null){
-                    User::where('id', $request->input('user_id'))->update($request->all());
+                    User::where('id', $request->input('id'))->update($request->all());
                     return response()->json([
                         'status' => 200,
                         'messege' => 'User information updated'
@@ -56,7 +56,7 @@ class UserController extends Controller
                             'messege' => 'Email or phone exists'
                         ], 403);
                     }else{
-                        User::where('id', $request->input('user_id'))->update($request->all());
+                        User::where('id', $request->input('id'))->update($request->all());
                         return response()->json([
                             'status' => 200,
                             'messege' => 'User information updated'
