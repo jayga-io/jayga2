@@ -127,7 +127,8 @@ class ListingController2 extends Controller
     }
 
     public function single_listing(Request $request, $id){ 
-        $ls = Listing::where('listing_id', $id)->with('images')->with('amenities')->with('restrictions')->with('reviews')->with('host')->with('booking')->get();
+
+        $ls = Listing::where('listing_id', $id)->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->with('host')->with('booking')->get();
         $fivestarcount = Reviews::where('listing_id', $id)->where('stars', 5)->count();
         $fourstarcount = Reviews::where('listing_id', $id)->where('stars', 4)->count();
         $threestarcount = Reviews::where('listing_id', $id)->where('stars', 3)->count();
