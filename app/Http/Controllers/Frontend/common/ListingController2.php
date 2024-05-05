@@ -135,15 +135,24 @@ class ListingController2 extends Controller
         $twostarcount = Reviews::where('listing_id', $id)->where('stars', 2)->count();
         $onestarcount = Reviews::where('listing_id', $id)->where('stars', 1)->count();
         $dis_dates = Booking::where('listing_id', $id)->get();
+        $userunavailables = ListingAvailable::where('listing_id', $id)->get();
         $dates = [];
+        $userdisabled_dates = [];
         
-        foreach ($dis_dates as $value) {
+        foreach ($dis_dates as $key => $value) {
             array_push($dates, [
                 'checkin' => $value->date_enter,
                 'checkout' => $value->date_exit
             ]);
            
         }
+
+        foreach ($userunavailables as $key => $value) {
+           array_push($userdisabled_dates, [
+            'disabled_dates_by_host' => $value->dates
+           ]);
+        }
+
        // dd($checkindates);
         if(count($ls)>0){
             return response()->json([
@@ -156,7 +165,8 @@ class ListingController2 extends Controller
                     'two_stars' => $twostarcount,
                     'one_stars' => $onestarcount,
                 ],
-                'disable_dates' => $dates
+                'booked_dates' => $dates,
+                'host_disable_dates' => $userdisabled_dates,
             ]);
         }else{
             return response()->json([
