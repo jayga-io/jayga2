@@ -16,6 +16,8 @@ use App\Models\ListingAvailable;
 use App\Models\BookingHistory;
 use App\Helpers\Sms;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Message;
 use Storage;
 
 class ListerDashboardController extends Controller

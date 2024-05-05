@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend\common;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Listing;
+use App\Models\ListingAvailable;
 use App\Models\Reviews;
 use App\Models\Booking;
 use Spatie\QueryBuilder\QueryBuilder;
