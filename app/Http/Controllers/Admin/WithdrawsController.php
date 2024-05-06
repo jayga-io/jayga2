@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Withdraws;
 use App\Models\TransactionHistory;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Message;
 
 class WithdrawsController extends Controller
 {

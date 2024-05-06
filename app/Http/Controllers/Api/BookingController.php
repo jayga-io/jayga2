@@ -426,7 +426,7 @@ class BookingController extends Controller
         ]);
 
         if($validated){
-            $completed = Booking::where('lister_id', $request->query('lister_id'))->where('isComplete', true)->get();
+            $completed = BookingHistory::where('lister_id', $request->query('lister_id'))->where('isComplete', true)->get();
 
             if(count($completed)>0){
                 return response()->json([
