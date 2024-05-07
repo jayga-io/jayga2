@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\RefundsController;
 use App\Http\Controllers\Api\AccountDashboardController;
 use App\Http\Controllers\Api\WithdrawsController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\Api\ListingUtilityController;
 
 
 use App\Http\Controllers\Frontend\common\ListingController2;
@@ -200,6 +201,9 @@ Route::prefix('client')->group(function(){
     Route::get('/vouchars', [VoucharController::class, 'get_vouchar']);
 
 });
+
+//Listing utility bill add
+Route::post('/add/listing-utility', [ListingUtilityController::class, 'create']);
 
 Route::prefix('host')->group(function(){
     Route::post('/booking/complete', [BookingController::class, 'mark_complete']);
