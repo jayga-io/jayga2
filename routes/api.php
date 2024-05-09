@@ -173,6 +173,7 @@ Route::prefix('listings')->group(function(){
     Route::get('/filter-listing', [ListingController2::class, 'filter_list'])->name('filterlisting');
     Route::get('/search-listing', [ListingController2::class, 'search_list'])->name('searchlisting');
     Route::get('/single-listing/{id}', [ListingController2::class, 'single_listing'])->name('single-listing');
+    
 });
 
 //user login and details apis
