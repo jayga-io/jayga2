@@ -1,6 +1,6 @@
-Dear [Host],
+Dear {{$user}},
 
-We are delighted to inform you that your new listing "[Listing Name]" has been approved and is now live on our platform! Congratulations on successfully listing your property.
+We are delighted to inform you that your new listing "{{$listing_title}}" has been approved and is now live on our platform! Congratulations on successfully listing your property.
 
 Users can now discover and book your space, providing them with memorable experiences while benefiting from your offering.
 

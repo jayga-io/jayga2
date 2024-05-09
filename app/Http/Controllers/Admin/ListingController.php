@@ -17,6 +17,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Storage;
 
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Message;
+
 class ListingController extends Controller
 {
     /**
@@ -239,10 +242,7 @@ class ListingController extends Controller
             "message" => 'Dear user, your request for new listing : '. $lister_id[0]->listing_title . ' has been declined by Jayga',
             "remove_duplicate" => true
         ];
-        $response = Http::withHeaders([
-            'Authorization' => 'Token d275d614a4ca92e21d2dea7a1e2bb81fbfac1eb0',
-            
-        ])->post($url, $data);
+        send_sms($data);
 
        // Listing::where('listing_id', $id)->delete();
 
@@ -255,6 +255,21 @@ class ListingController extends Controller
            ];
     
            notify($notifys);
+
+           $receipent = $user[0]->email;
+            $subject = 'Listing declined';
+
+            Mail::plain(
+                 view: 'mailTemplates.listingdecline',
+                    data: [
+                            'user' => $user[0]->name,
+                           
+                            
+                        ],
+                    callback: function (Message $message) use ($receipent, $subject) {
+                            $message->to($receipent)->subject($subject);
+                        }
+                    );
 
         return redirect(route('pendinglisting'))->with('deleted', 'Listing Declined');
     }
@@ -287,6 +302,8 @@ class ListingController extends Controller
                     
                     send_sms($data);
 
+                    
+
                 $notifys = [
                     'user_id' => $user[0]->id,
                     'lister_id' => $lister_id[0]->lister_id,
@@ -297,6 +314,22 @@ class ListingController extends Controller
                 ];
 
                 notify($notifys);
+
+                $receipent = $user[0]->email;
+                $subject = 'Listing approved';
+
+                    Mail::plain(
+                        view: 'mailTemplates.listingapprove',
+                        data: [
+                            'user' => $user[0]->name,
+                            'listing_title' => $lister_id[0]->listing_title,
+                            
+                        ],
+                        callback: function (Message $message) use ($receipent, $subject) {
+                            $message->to($receipent)->subject($subject);
+                        }
+                    );
+
                 return redirect(route('pendinglisting'))->with('success', 'Listing Approved');
         }
 
