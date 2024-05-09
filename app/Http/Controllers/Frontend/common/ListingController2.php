@@ -156,6 +156,10 @@ class ListingController2 extends Controller
 
        // dd($checkindates);
         if(count($ls)>0){
+            $initial_count = Listing::where('listing_id', $id)->get();
+            Listing::where('listing_id', $id)->update([
+                'count' => $initial_count[0]->count + 1
+            ]);
             return response()->json([
                 'status' => 200,
                 'listing_details' => $ls,
