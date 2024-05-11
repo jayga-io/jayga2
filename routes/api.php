@@ -164,6 +164,9 @@ Route::post('/update/user/bank-details', [HostController::class, 'update_bank'])
 //location api
 Route::get('/all/districts', [LocationController::class, 'index']);
 
+//timeslots api
+Route::get('/short-stay/slots', [TimeSlotsController::class, 'timeslots']);
+
 
 //Front side apis
 
