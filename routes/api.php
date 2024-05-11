@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\AccountDashboardController;
 use App\Http\Controllers\Api\WithdrawsController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\Api\ListingUtilityController;
+use App\Http\Controllers\Api\TimeSlotsController;
 
 
 use App\Http\Controllers\Frontend\common\ListingController2;
