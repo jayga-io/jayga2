@@ -111,7 +111,7 @@ Route::get('/show/notifications/{id}', [NotificationController::class, 'show']);
 
 Route::post('/booking/make-complete', [BookingController::class, 'mark_complete']);
 
-Route::get('/user/delete/{id}', [UserController::class, 'user_delete']);
+Route::post('/user/delete', [UserController::class, 'user_delete']);
 
 //vouchar api
 Route::post('/get/vouchar', [VoucharController::class, 'get_vouchar']);

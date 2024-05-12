@@ -184,71 +184,24 @@ class UserController extends Controller
         }
     }
 
-    public function set_cover(Request $request){
+    
+
+
+    public function user_delete(Request $request){
         $validated = $request->validate([
-            'user_id' => 'required',
-            'photo' => 'required'
+            'user_id' => 'required'
         ]);
+
         if($validated){
-            $file = $request->file('photo');
-            if($file){
-                
-                
-                $path = $file->store('usercovers');
-                $up = UserCoverPhotos::where('user_id', $request->input('user_id'))->get();
-                if(count($up)>0){
-                    foreach ($up as $value) {
-                        Storage::delete($value->user_targetlocation);
-                    }
-                    UserCoverPhotos::where('user_id', $request->input('user_id'))->update([
-                        'user_id' => $request->input('user_id'),
-                        'user_filename' => $file->hashName(),
-                        'user_targetlocation' => $path
-                    ]);
-                }else{
-                    UserCoverPhotos::create([
-                        'user_id' => $request->input('user_id'),
-                        'user_filename' => $file->hashName(),
-                        'user_targetlocation' => $path
-                    ]);
-                }
-                
-                return response()->json([
-                    'status' => 200,
-                    'messege' => 'User Cover photo uploaded'
-                ]);
-            }else{
-                return response()->json([
-                    'status' => 404,
-                    'messege' => 'No picture uploaded'
-                ], 404);
-            } 
+            User::where('id', $request->input('user_id'))->delete();
+            Listing::where('lister_id', $request->input('user_id'))->delete();
+            return response()->json([
+                'status' => 200,
+                'messege' => 'User deleted successfully'
+            ]);
         }else{
             return $validated->errors();
         }
-    }
-
-    public function get_cover(Request $request, $id){
-        $cover = UserCoverPhotos::where('user_id', $id)->get();
-        if(count($cover)>0){
-            return response()->json([
-                'status' => true,
-                'messege' => $cover
-            ]);
-        }else{
-            return response()->json([
-                'status' => false,
-                'messege' => 'No image found'
-            ]);
-        }
-    }
-
-    public function user_delete(Request $request, $id){
-        User::where('id', $id)->delete();
-        Listing::where('lister_id', $id)->delete();
-        return response()->json([
-            'status' => 200,
-            'messege' => 'User deleted successfully'
-        ]);
+        
     }
 }
