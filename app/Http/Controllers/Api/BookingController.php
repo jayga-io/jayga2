@@ -407,8 +407,8 @@ class BookingController extends Controller
     public function mark_complete(Request $request){
         $validated = $request->validate([
             'booking_id' => 'required',
-            'amount' => 'required'
-            
+            'amount' => 'required',
+            'lister_id' => 'required'
         ]); 
 
         if($validated){
@@ -427,17 +427,17 @@ class BookingController extends Controller
                 'isComplete' => true,
                 'net_payable' => $lister_earn
             ]);
-            $earning = ListerDashboard::where('lister_id', $user)->get();
+            $earning = ListerDashboard::where('lister_id', $request->input('lister_id'))->get();
             if(count($earning)>0){
                $update_earnings = $earning[0]->earnings + $lister_earn;
                $total_earn = $earning[0]->total_earnings + $lister_earn;
-                ListerDashboard::where('lister_id', $user)->update([
+                ListerDashboard::where('lister_id', $request->input('lister_id'))->update([
                     'total_earnings' => $total_earn,
                     'earnings' => $update_earnings
                 ]);
             }else{
                 ListerDashboard::create([
-                    'lister_id' => $user,
+                    'lister_id' => $request->input('lister_id'),
                     'total_earnings' => $lister_earn,
                     'earnings' => $lister_earn
                 ]);
@@ -456,10 +456,10 @@ class BookingController extends Controller
             ]);
     
             BookingHistory::create([
-                'user_id' => $user,
+                'user_id' => $books[0]->user_id,
                 'listing_id' => $books[0]->listing_id,
                 'booking_id' => $books[0]->booking_id,
-                'lister_id' => $books[0]->lister_id,
+                'lister_id' => $request->input('lister_id'),
                 'listing_title' => $books[0]->listings->listing_title,
                 'listing_type' => $books[0]->listings->listing_type,
                 'short_stay_flag' => $books[0]->short_stay_flag,
