@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Refunds;
+use App\Models\BookingHistory;
 use Illuminate\Support\Str;
 
 class RefundsController extends Controller
@@ -35,6 +36,9 @@ class RefundsController extends Controller
                 'type' => Str::lower($request->input('type')),
                ]);
 
+               BookingHistory::where('booking_id', $request->input('booking_id'))->update([
+                'booking_status' => 4,
+               ]);
                
                $notifys = [
                 'user_id' => $request->input('user_id'),
