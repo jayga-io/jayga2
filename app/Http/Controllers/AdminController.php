@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\JaygaEarn;
 use App\Models\Booking;
+use App\Models\BookingHistory;
 use App\Models\Listing;
 use App\Models\User;
 use App\Http\Requests\StoreAdminRequest;
@@ -21,7 +22,8 @@ class AdminController extends Controller
     {
         $tk = JaygaEarn::all();
         $total_earned = JaygaEarn::sum('total');
-        $booking_count = Booking::where('isComplete', false)->where('booking_status', 1)->count();
+        $booking_count = BookingHistory::count();
+       // dd($booking_count);
         $listings = Listing::where('isApproved', true)->count();
         $rooms = Listing::where('listing_type', 'room')->count();
        // dd($total_earned);
@@ -50,28 +52,13 @@ class AdminController extends Controller
 
         if(count($admin_exists)>0){
             if(Hash::check($password, $admin_exists[0]->admin_pass)){
-                $user = User::where('name', $admin)->get();
-                if(count($user)>0){
+                
                     Session([
                         'adminaccess' => 'true',
                         'admin' => $admin_exists[0]->admin_name,
                         
                     ]);
                     
-                }else{
-                    User::create([
-                        'name' => 'Admin',
-                        'phone' => $admin,
-                        'user_role' => 'admin',
-                        'about' => 'admin'
-                    ]);
-                    Session([
-                        'adminaccess' => 'true',
-                        'admin' => $admin_exists[0]->admin_name,
-                        
-                    ]);
-                   
-                }
                 return redirect(route('adminhome'));
                
             }else{

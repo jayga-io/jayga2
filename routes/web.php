@@ -118,59 +118,59 @@ Route::prefix('admin')->group(function(){
             //create listing
             Route::post('/create-listing', [ListingController::class, 'create'])->name('createlistingadmin');
 
-           
+            Route::get('/add-listing', [ListingController::class, 'index'])->name('addlisting');
+
+            Route::get('/pending-listing', [ListingController::class, 'pending_listings'])->name('pendinglisting');
+
+            Route::get('/all-listing', function(){
+                    $listings = Listing::orderBy('created_at', 'DESC')->get();
+                    return view('admin.listings.all-listings')->with('all', $listings);
+                })->name('all_listings');
+
+
+        Route::get('/view-listing/{id}', [ListingController::class, 'show']);
+
+        Route::get('/approve-listing/{id}', [ListingController::class, 'approve']);
+        
+        Route::get('/decline-listing/{id}', [ListingController::class, 'destroy']);
+
+        Route::get('/delete-listing/{id}', [ListingController::class, 'delete']);
+
+        Route::get('/enable-listing/{id}', [ListingController::class, 'enable']);
+
+        Route::get('/disable-listing/{id}', [ListingController::class, 'disable']);
+
+
+        //booking section
+        Route::get('/add-booking', [BookingController::class, 'index'])->name('addbooking');
+
+        Route::post('/create-booking', [BookingController::class, 'create'])->name('createbooking');
+
+        Route::get('/pending-booking', [BookingController::class, 'show'])->name('pendingbooking');
+        Route::get('/approve-booking/{id}', [BookingController::class, 'approve']);
+        
+        Route::get('/decline-booking/{id}', [bookingController::class, 'destroy']);
+
+        Route::get('/view-booking/{id}', [BookingController::class, 'edit']);
+
+
+
+        //withdraw section
+        Route::get('/withdraw/requests', [WithdrawsController::class, 'show'])->name('withdraw_req');
+        Route::get('/withdraw/confirm/{id}', [WithdrawsController::class, 'mark_paid'])->name('withdraw_confirm');
+
+        //Refund section
+
+        Route::get('/refunds', [RefundsController::class, 'show_refunds'])->name('show_refunds');
+        Route::get('/refund-complete/{id}', [RefundsController::class, 'paid'])->name('refundcomplete');
+        Route::get('/delete/refund/{id}', [RefundsController::class, 'delete'])->name('refund_del');
     });
 
     Route::get('/login', [AdminController::class, 'login'])->name('adminlogin');
 
     Route::post('/success', [AdminController::class, 'store'])->name('adminauth');
     
-    Route::get('/add-listing', [ListingController::class, 'index'])->name('addlisting');
-
-    Route::get('/pending-listing', [ListingController::class, 'pending_listings'])->name('pendinglisting');
-
-    Route::get('/all-listing', function(){
-        $listings = Listing::orderBy('created_at', 'DESC')->get();
-        return view('admin.listings.all-listings')->with('all', $listings);
-    })->name('all_listings');
-
-
-    Route::get('/view-listing/{id}', [ListingController::class, 'show']);
-
-    Route::get('/approve-listing/{id}', [ListingController::class, 'approve']);
     
-    Route::get('/decline-listing/{id}', [ListingController::class, 'destroy']);
-
-    Route::get('/delete-listing/{id}', [ListingController::class, 'delete']);
-
-    Route::get('/enable-listing/{id}', [ListingController::class, 'enable']);
-
-    Route::get('/disable-listing/{id}', [ListingController::class, 'disable']);
-
-
-    //booking section
-    Route::get('/add-booking', [BookingController::class, 'index'])->name('addbooking');
-
-    Route::post('/create-booking', [BookingController::class, 'create'])->name('createbooking');
-
-    Route::get('/pending-booking', [BookingController::class, 'show'])->name('pendingbooking');
-    Route::get('/approve-booking/{id}', [BookingController::class, 'approve']);
-    
-    Route::get('/decline-booking/{id}', [bookingController::class, 'destroy']);
-
-    Route::get('/view-booking/{id}', [BookingController::class, 'edit']);
-
-
-
-    //withdraw section
-    Route::get('/withdraw/requests', [WithdrawsController::class, 'show'])->name('withdraw_req');
-    Route::get('/withdraw/confirm/{id}', [WithdrawsController::class, 'mark_paid'])->name('withdraw_confirm');
-
-    //Refund section
-
-    Route::get('/refunds', [RefundsController::class, 'show_refunds'])->name('show_refunds');
-    Route::get('/refund-complete/{id}', [RefundsController::class, 'paid'])->name('refundcomplete');
-    Route::get('/delete/refund/{id}', [RefundsController::class, 'delete'])->name('refund_del');
 
     //earning section
    // Route::get('/earnings', [EarningsController::class, 'show_earnings'])->name('earnings');
