@@ -10,7 +10,7 @@
 
 						<div class="mb-3">
 							<label for="userselect" class="form-label">Select a user</label>
-							<select class="form-select" class="form-control" aria-label="Default select example">
+							<select class="form-select" class="form-control" name="user" aria-label="Default select example">
 								<option selected>Select user to assign</option>
 								@foreach ($users as $item)
 									<option value="{{$item->id}}">{{$item->name}}</option>

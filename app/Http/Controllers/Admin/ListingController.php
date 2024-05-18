@@ -38,10 +38,11 @@ class ListingController extends Controller
      */
     public function create(Request $request)
     {
+        $user = User::where('id', $request->input('user'))->get();
        // dd($request);
        Listing::create([
-        //'lister_id' => $request->input('')
-        'lister_name' => 'admin',
+        'lister_id' => $request->input('user'),
+        'lister_name' => $user[0]->name,
         'guest_num' => $request->input('guest_num'),
         'bed_num' => $request->input('bed_num'),
         'bathroom_num' => $request->input('bathroom_num'),
