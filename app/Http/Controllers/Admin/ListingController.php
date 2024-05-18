@@ -40,6 +40,7 @@ class ListingController extends Controller
     {
        // dd($request);
        Listing::create([
+        //'lister_id' => $request->input('')
         'lister_name' => 'admin',
         'guest_num' => $request->input('guest_num'),
         'bed_num' => $request->input('bed_num'),
