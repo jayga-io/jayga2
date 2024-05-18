@@ -115,6 +115,9 @@ Route::prefix('admin')->group(function(){
             Route::get('/user/unsuspend/{id}', [UsersController::class, 'unsuspend'])->name('unsuspenduser');
             Route::post('/user/send/messege', [UsersController::class, 'sendMessege'])->name('sendmessege');
 
+            //create listing
+            Route::post('/create-listing', [ListingController::class, 'create'])->name('createlistingadmin');
+
            
     });
 
@@ -185,7 +188,7 @@ Route::prefix('admin')->group(function(){
 
 
 
-Route::post('/create/listing', [ListingController::class, 'create'])->name('create_listing');
+
 
 Route::get('/payment/success', function(){
     return view('success');

@@ -60,7 +60,7 @@ class AdminController extends Controller
                     
                 }else{
                     User::create([
-                        'name' => $admin,
+                        'name' => 'Admin',
                         'phone' => $admin,
                         'user_role' => 'admin',
                         'about' => 'admin'

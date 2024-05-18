@@ -87,7 +87,7 @@
 
                         <li><a href="{{route('all_listings')}}"> All Listing </a></li>
 
-                        <li><a href="{{ route('addlisting')}}"> Add Listing </a></li>
+                        <li><a href="{{ route('addlisting')}}"> Create a listing </a></li>
                     </ul>
                 </li>
 

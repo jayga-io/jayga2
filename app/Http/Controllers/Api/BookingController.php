@@ -271,7 +271,7 @@ class BookingController extends Controller
         ]);
 
         if($validated){
-            $bookings = Booking::where('lister_id', $request->input('lister_id'))->with('listings')->with('listings.images')->get();
+            $bookings = BookingHistory::where('lister_id', $request->input('lister_id'))->with('listings')->with('listings.images')->get();
             if(count($bookings)>0){
                 return response()->json([
                     'status' => true,

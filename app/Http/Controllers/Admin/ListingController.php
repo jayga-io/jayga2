@@ -30,7 +30,7 @@ class ListingController extends Controller
         $user = User::whereNotNull('name')->get();
         $locations = \File::json('locations.json');
  
-        return view('admin.add-listing')->with('users', $user)->with('locations', $locations);
+        return view('admin.listings.add-listing')->with('users', $user)->with('locations', $locations);
     }
 
     /**
@@ -38,129 +38,24 @@ class ListingController extends Controller
      */
     public function create(Request $request)
     {
-      if($request->method() == 'POST'){
-       // dd($request->all());
-       $lister = $request->input('lister_id');
-       
-       if($lister === null){
-        return redirect()->back()->with('errors', 'No Lister found');
-       }else{
-        $lister = explode(',', $lister);
-        $lister_name = $lister[1];
-        $lister_id = $lister[0];
-        $images = [];
-        //check 
-        $check = Listing::where('listing_title', $request->input('listing_title'))->get();
-        if(count($check)>0){
-            return response()->json([
-                'status' => 200,
-                'messege' => 'Listing title can not be same'
-            ]);
-        }else{
+       // dd($request);
+       Listing::create([
+        'lister_name' => 'admin',
+        'guest_num' => $request->input('guest_num'),
+        'bed_num' => $request->input('bed_num'),
+        'bathroom_num' => $request->input('bathroom_num'),
+        'listing_title' => $request->input('listing_title'),
+        'listing_description' => $request->input('listing_desc'),
+        'full_day_price_set_by_user' => $request->input('listing_price'),
+        'listing_address' => $request->input('listing_address'),
+        'district' => $request->input('district'),
+        'zip_code' => $request->input('zip'),
+        'allow_short_stay' => $request->input('short_stay'),
+        'listing_type' => $request->input('listing_type'),
+       ]);
 
-            Listing::create([
-                'lister_id' => $lister_id,
-                'lister_name' => $lister_name,
-                'guest_num' => $request->input('guest_num'),
-                'bed_num' => $request->input('bed_num'),
-                'bathroom_num' => $request->input('bathroom_num'),
-                'listing_title' => $request->input('listing_title'),
-                'listing_description' => $request->input('listing_description'),
-                'full_day_price_set_by_user' => $request->input('full_day_price_set_by_user'),
-                'listing_address' => $request->input('listing_address'),
-                'zip_code' => $request->input('zip_code'),
-                'district' => $request->input('district'),
-                'town' => $request->input('town'),
-                
-                'allow_short_stay' => $request->input('allow_short_stay'),
-                'describe_peaceful' => $request->input('describe_peaceful'),
-                'describe_unique' => $request->input('describe_unique'),
-                'describe_familyfriendly' => $request->input('describe_familyfriendly'),
-                'describe_stylish' => $request->input('describe_stylish'),
-                'describe_central' => $request->input('describe_central'),
-                'describe_spacious' => $request->input('describe_spacious'),
-                'lat' => $request->input('lati'),
-                'long' => $request->input('longi'),
-                'listing_type' => $request->input('listing_type'),
-            ]);
-
-            
-            $listing_id = Listing::where('listing_title', $request->input('listing_title'))->get();
-
-            
-                
-                ListingDescribe::create([
-                    'listing_id' => $listing_id[0]->listing_id,
-                    'apartments' => $request->input('apartments'),
-                    'cabin' => $request->input('cabin'),
-                    'lounge' => $request->input('lounge'),
-                    'farm' => $request->input('farm'),
-                    'campsite' => $request->input('campsite'),
-                    'hotel' => $request->input('hotel'),
-                    'bread_breakfast' => $request->input('bread_breakfast'),
-                ]);
-
-                ListingGuestAmenities::create([
-                    'listing_id' => $listing_id[0]->listing_id,
-                    'wifi' => $request->input('wifi'),
-                    'tv' => $request->input('tv'),
-                    'kitchen' => $request->input('kitchen'),
-                    'washing_machine' => $request->input('washing_machine'),
-                    'free_parking' => $request->input('free_parking'),
-                    'breakfast_included' => $request->input('breakfast_included'),
-                    'air_condition' => $request->input('air_condition'),
-                    'dedicated_workspace' => $request->input('dedicated_workspace'),
-                    'pool' => $request->input('pool'),
-                    'hot_tub' => $request->input('hot_tub'),
-                    'patio' => $request->input('patio'),
-                    'bbq_grill' => $request->input('bbq_grill'),
-                    'outdooring' => $request->input('outdooring'),
-                    'fire_pit' => $request->input('fire_pit'),
-                    'gym' => $request->input('gym'),
-                    'beach_lake_access' => $request->input('beach_lake_access'),
-                    'smoke_alarm' => $request->input('smoke_alarm'),
-                    'first_aid' => $request->input('first_aid'),
-                    'fire_extinguish' => $request->input('fire_extinguish'),
-                    'cctv' => $request->input('cctv'),
-                ]);
-
-                ListingRestrictions::create([
-                    'listing_id' => $listing_id[0]->listing_id,
-                    'indoor_smoking' => $request->input('indoor_smoking'),
-                    'party' => $request->input('party'),
-                    'pets' => $request->input('pets'),
-                    'late_night_entry' => $request->input('late_night_entry'),
-                    'unknown_guest_entry' => $request->input('unknown_guest_entry'),
-                    'specific_requirement' => $request->input('specific_requirement'),
-                    
-                ]);
-            
-                
-                if($files = $request->file('listing_pictures')){
-                
-                    foreach ($files as $f) {
-                    $path = $f->store('listings');
-                    ListingImages::create([
-                        'listing_id' => $listing_id[0]->listing_id,
-                        'lister_id' => $lister_id,
-                        'listing_filename' => $f->hashName(),
-                        'listing_targetlocation' => $path,
-                    ]);
-                    }
-                   
-                }
-                
-                    
-                 return redirect(route('addlisting'))->with('success', 'Listing Created and Submitted for review');
-                    
-                        
-            }
-            
-        }
-
-        
-                return view('admin.dashboard');
-        } 
+       $listing = Listing::where('listing_title', $request->input('listing_title'))->get();
+       return redirect('/success/'.$listing[0]->listing_id);
     }
 
     public function pending_listings(Request $request){
