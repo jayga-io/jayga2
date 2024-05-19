@@ -167,7 +167,9 @@ class ListingController extends Controller
                             $message->to($receipent)->subject($subject);
                         }
                     );
-
+            
+            Listing::where('listing_id', $id)->delete();
+            
         return redirect(route('pendinglisting'))->with('deleted', 'Listing Declined');
     }
 

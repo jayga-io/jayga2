@@ -146,7 +146,7 @@
 
     @include('navbar')
 
-    <div class="vh-100 vh-100-mobile" 
+    <div class="vh-100-mobile" 
         style="padding-top:90px; background-image: url({{ asset('assets/img/banner-update-2-CtFTzztk.jpg') }}); width:100%; background-size: cover; object-fit:contain; ">
         <!--Navbar Section-->
         
