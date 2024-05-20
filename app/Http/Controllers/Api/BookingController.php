@@ -104,7 +104,7 @@ class BookingController extends Controller
                 'created_on' => date('Y-m-d H:i:s')
             ]);
 
-
+            /*
 
           if($lister[0]->phone == null){
 
@@ -218,7 +218,7 @@ class BookingController extends Controller
             send_sms($data);
           }
 
-            
+            */
 
             return response()->json([
                 'status' => 200,

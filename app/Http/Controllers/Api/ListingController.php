@@ -98,6 +98,8 @@ class ListingController extends Controller
 
              // $user = User::where('id', $request->input('user_id'))->get();
 
+             /*
+             
               if($user[0]->phone == null){
                 $receipent = $user[0]->email;
                 $subject = 'Listing Creation Under Review';
@@ -144,6 +146,9 @@ class ListingController extends Controller
                 ];
                 send_sms($data);
               }
+             
+             */
+             
 
                 
 
