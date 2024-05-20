@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\WithdrawsController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\Api\ListingUtilityController;
 use App\Http\Controllers\Api\TimeSlotsController;
+use App\Http\Controllers\Api\FeedbackController;
 
 
 use App\Http\Controllers\Frontend\common\ListingController2;
@@ -167,6 +168,14 @@ Route::get('/all/districts', [LocationController::class, 'index']);
 
 //timeslots api
 Route::get('/short-stay/slots', [TimeSlotsController::class, 'timeslots']);
+
+//feedback
+Route::post('/submit/feedback', [FeedbackController::class, 'create']);
+
+
+
+
+
 
 
 //Front side apis
