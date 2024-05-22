@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Refunds;
 use App\Models\Booking;
 use App\Models\BookingHistory;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Message;
 
 class RefundsController extends Controller
 {

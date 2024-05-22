@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\EarningsController;
 use App\Http\Controllers\Admin\AmenitiesListController;
 use App\Http\Controllers\Admin\RestrictionListController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Host\HostController;
 use App\Http\Controllers\Host\ListerDashboardController;
@@ -118,6 +119,10 @@ Route::prefix('admin')->group(function(){
             //create listing
             Route::post('/create-listing', [ListingController::class, 'create'])->name('createlistingadmin');
 
+            Route::get('/add-listing-features/{id}', [ListingController::class, 'add_features'])->name('addlistingamenities');
+
+            Route::post('/submit-listing-features', [ListingController::class, 'store_features'])->name('storefeatures');
+
             Route::get('/add-listing', [ListingController::class, 'index'])->name('addlisting');
 
             Route::get('/pending-listing', [ListingController::class, 'pending_listings'])->name('pendinglisting');
@@ -164,6 +169,11 @@ Route::prefix('admin')->group(function(){
         Route::get('/refunds', [RefundsController::class, 'show_refunds'])->name('show_refunds');
         Route::get('/refund-complete/{id}', [RefundsController::class, 'paid'])->name('refundcomplete');
         Route::get('/delete/refund/{id}', [RefundsController::class, 'delete'])->name('refund_del');
+
+        //feedback section
+        Route::get('/feedbacks', [FeedbackController::class, 'show'])->name('userfeedback');
+
+
     });
 
     Route::get('/login', [AdminController::class, 'login'])->name('adminlogin');

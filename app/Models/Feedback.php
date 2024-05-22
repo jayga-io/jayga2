@@ -9,4 +9,8 @@ class Feedback extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function users(){
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

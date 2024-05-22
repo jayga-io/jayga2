@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use App\Models\Listing;
-use App\Models\ListingDescribe;
-use App\Models\ListingGuestAmenities;
-use App\Models\ListingRestrictions;
+use App\Models\AmenitiesList;
+use App\Models\RestrictionList;
 use App\Models\ListingImages;
 use App\Models\ListerNid;
 use App\Models\User;
@@ -57,7 +56,7 @@ class ListingController extends Controller
        ]);
 
        $listing = Listing::where('listing_title', $request->input('listing_title'))->get();
-       return redirect('/success/'.$listing[0]->listing_id);
+       return redirect('/admin/add-listing-features/'.$listing[0]->listing_id);
     }
 
     public function pending_listings(Request $request){
@@ -107,6 +106,18 @@ class ListingController extends Controller
     public function update(UpdateListingRequest $request, Listing $listing)
     {
         //
+    }
+
+
+    public function add_features(Request $request, $id){
+        $listing_id = $id;
+        $amenities = AmenitiesList::all();
+        $restrictions = RestrictionList::all();
+        return view('admin.listings.add-amenities')->with('amenities', $amenities)->with('restrictions', $restrictions)->with('listing_id', $listing_id);
+    }
+
+    public function store_features(Request $request){
+        dd($request->all());
     }
 
     /**

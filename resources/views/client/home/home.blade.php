@@ -147,7 +147,7 @@
     @include('navbar')
 
     <div class="vh-100-mobile" 
-        style="padding-top:90px; background-image: url({{ asset('assets/img/banner-update-2-CtFTzztk.jpg') }}); width:100%; background-size: cover; object-fit:contain; ">
+        style="padding-top:50px; background-image: url({{ asset('assets/img/banner-update-2-CtFTzztk.jpg') }}); width:100%; background-size: cover; object-fit:contain; ">
         <!--Navbar Section-->
         
         <form action="{{ route('searchroute') }}" method="POST" enctype="application/x-www-form-urlencoded">

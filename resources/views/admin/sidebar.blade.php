@@ -191,7 +191,7 @@
                         <li><a href="invoice-reports.php">Invoice Report </a></li>
                     </ul>
                 </li>
-                <li> <a href="settings.php"><i class="fas fa-cog"></i> <span>Settings</span></a> </li>
+                <li> <a href="{{route('userfeedback')}}"><i class="fas fa-cog"></i> <span>User Feedbacks</span></a> </li>
                 <!-- <li class="list-divider"></li>
                 <li class="menu-title mt-3"> <span>UI ELEMENTS</span> </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-laptop"></i> <span> Components </span> <span class="menu-arrow"></span></a>
