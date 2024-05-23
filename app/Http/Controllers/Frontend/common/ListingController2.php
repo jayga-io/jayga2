@@ -71,7 +71,13 @@ class ListingController2 extends Controller
 
         ]);
         if($validated){
-            $filter = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->where('listing_type', $request->query('listing_type'))->where('full_day_price_set_by_user', '>=', $request->query('min_price'))->where('full_day_price_set_by_user', '<=', $request->query('max_price'))->where('allow_short_stay', $request->query('allow_short_stay'))->allowedFilters(['guest_num', 'bed_num', 'bathroom_num'])->with('images')->with('amenities')->with('restrictions')->with('reviews')->get();
+            $filter = QueryBuilder::for(Listing::class)
+            ->where('isApproved', true)->where('isActive', true)
+            ->where('listing_type', $request->query('listing_type'))
+            ->where('full_day_price_set_by_user', '>=', $request->query('min_price'))
+            ->where('full_day_price_set_by_user', '<=', $request->query('max_price'))
+            ->where('allow_short_stay', $request->query('allow_short_stay'))
+            ->allowedFilters(['guest_num', 'bed_num', 'bathroom_num'])->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
             if(count($filter)>0){
                 return response()->json([
                     'status' => 200,
@@ -102,8 +108,8 @@ class ListingController2 extends Controller
            ->where('listing_type', 'like', '%'.$request->query('listing_type').'%')
            ->where('district', 'like', '%'.$request->query('district').'%')
            ->with('images')
-           ->with('amenities')
-           ->with('restrictions')
+           ->with('newAmenities.amenity')
+           ->with('newRestrictions.restrictions')
            ->with('reviews')
            ->get();
 
