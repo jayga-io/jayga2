@@ -18,6 +18,7 @@ use App\Jobs\SendBookingEmail;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Mail\Message;
+use Artisan;
 
 class BookingController extends Controller
 {
