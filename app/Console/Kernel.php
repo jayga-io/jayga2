@@ -9,6 +9,7 @@ use App\Models\ListingAvailable;
 use App\Models\BookingHistory;
 use App\Models\Notification;
 use App\Models\User;
+use Artisan;
 
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -117,6 +118,10 @@ class Kernel extends ConsoleKernel
             ]);
         })->everyMinute();
 
+
+        $schedule->call(function (){
+            Artisan:call('queue:listen');
+        })->everyMinute();
         
        
     }
