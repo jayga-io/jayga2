@@ -294,8 +294,8 @@ class BookingController extends Controller
             'booking_status' => 'required',
         ]);
         if($validated){
-            $booking_id = Booking::where('booking_id', $request->input('booking_id'))->get();
-            $listing_name = Listing::where('listing_id', $booking_id[0]->listing_id)->get();
+            $booking_id = Booking::where('booking_id', $request->input('booking_id'))->with('listings')->get();
+           // $listing_name = Listing::where('listing_id', $booking_id[0]->listing_id)->get();
             if($request->input('booking_status') == 1){
 
               Booking::where('booking_id', $request->input('booking_id'))->update([
@@ -308,7 +308,7 @@ class BookingController extends Controller
                 $data = [
                     "sender_id" => "8809601010510",
                     "receiver" => $phone,
-                    "message" => 'Your booking request for ' .$listing_name[0]->listing_title . ' has been approved. Check-in: '. $booking_id[0]->date_enter .' , Check-out: '. $booking_id[0]->date_exit .'. For assistance, contact Jayga support. ',
+                    "message" => 'Your booking request for ' .$booking_id[0]->listings->listing_title . ' has been approved. Check-in: '. $booking_id[0]->date_enter .' , Check-out: '. $booking_id[0]->date_exit .'. For assistance, contact Jayga support. ',
                     
                     "remove_duplicate" => true
                 ];
@@ -321,7 +321,7 @@ class BookingController extends Controller
                     'listing_id' => $booking_id[0]->listing_id,
                     'booking_id' => $request->input('booking_id'),
                     'type' => 'Booking Request Confirmed',
-                    'messege' => 'Your Booking : '. $listing_name[0]->listing_title . ' is confirmed'
+                    'messege' => 'Your Booking : '. $booking_id[0]->listings->listing_title . ' is confirmed'
                    ];
             
                    notify($notifys);
@@ -333,29 +333,29 @@ class BookingController extends Controller
                     'booking_status' => 2,
                     'isApproved' => false
                 ]);
-                $books = Booking::where('booking_id', $request->input('booking_id'))->with('listings')->get();
+               // $books = Booking::where('booking_id', $request->input('booking_id'))->with('listings')->get();
            
                 BookingHistory::create([
-                     'user_id' => $books[0]->user_id,
-                     'listing_id' => $books[0]->listing_id,
-                     'booking_id' => $books[0]->booking_id,
-                     'lister_id' => $books[0]->lister_id,
-                     'listing_title' => $books[0]->listings->listing_title,
-                     'listing_type' => $books[0]->listings->listing_type,
-                     'short_stay_flag' => $books[0]->short_stay_flag,
-                     'transaction_id' => $books[0]->transaction_id,
-                     'date_enter' => $books[0]->date_enter,
-                     'date_exit' => $books[0]->date_exit,
-                     'tier' => $books[0]->tier,
-                     'total_members' => $books[0]->total_members,
-                     'email' => $books[0]->email,
-                     'phone' => $books[0]->phone,
-                     'pay_amount' => $books[0]->pay_amount,
-                     'net_payable' => $books[0]->net_payable,
-                     'payment_flag' => $books[0]->payment_flag,
-                     'booking_status' => $books[0]->booking_status,
-                     'isApproved' => $books[0]->isApproved,
-                     'isComplete' => $books[0]->isComplete,
+                     'user_id' => $booking_id[0]->user_id,
+                     'listing_id' => $booking_id[0]->listing_id,
+                     'booking_id' => $booking_id[0]->booking_id,
+                     'lister_id' => $booking_id[0]->lister_id,
+                     'listing_title' => $booking_id[0]->listings->listing_title,
+                     'listing_type' => $booking_id[0]->listings->listing_type,
+                     'short_stay_flag' => $booking_id[0]->short_stay_flag,
+                     'transaction_id' => $booking_id[0]->transaction_id,
+                     'date_enter' => $booking_id[0]->date_enter,
+                     'date_exit' => $booking_id[0]->date_exit,
+                     'tier' => $booking_id[0]->tier,
+                     'total_members' => $booking_id[0]->total_members,
+                     'email' => $booking_id[0]->email,
+                     'phone' => $booking_id[0]->phone,
+                     'pay_amount' => $booking_id[0]->pay_amount,
+                     'net_payable' => $booking_id[0]->net_payable,
+                     'payment_flag' => $booking_id[0]->payment_flag,
+                     'booking_status' => $booking_id[0]->booking_status,
+                     'isApproved' => $booking_id[0]->isApproved,
+                     'isComplete' => $booking_id[0]->isComplete,
                      'created_on' => date('Y-m-d H:i:s')
                  ]);
                     
@@ -377,8 +377,8 @@ class BookingController extends Controller
                     'lister_id' => $booking_id[0]->lister_id,
                     'listing_id' => $booking_id[0]->listing_id,
                     'booking_id' => $request->input('booking_id'),
-                    'type' => 'Booking Request Declined: '. $listing_name[0]->listing_title,
-                    'messege' => 'Your Booking : '. $listing_name[0]->listing_title . ' is declined'
+                    'type' => 'Booking Request Declined: '. $booking_id[0]->listings->listing_title,
+                    'messege' => 'Your Booking : '. $booking_id[0]->listings->listing_title . ' is declined'
                 ];
             
                    notify($notifys);
