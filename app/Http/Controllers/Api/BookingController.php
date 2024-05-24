@@ -108,14 +108,14 @@ class BookingController extends Controller
             $subject = 'New Booking Request';
             data: [
                 'lister' => $lister[0]->name,
-                'listing_title' => $listing[0]->listing_title,
+                'listing_title' => $booked[0]->listings->listing_title,
                 'checkin' => $booked[0]->date_enter,
                 'checkout' => $booked[0]->date_exit,
                 'guest_name' => $user[0]->name,
             ];
 
             Artisan::call('queue:work');
-            
+
             SendBookingEmail::dispatch($receipent, $subject, $data);
 
             /*
