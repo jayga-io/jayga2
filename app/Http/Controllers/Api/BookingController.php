@@ -107,7 +107,7 @@ class BookingController extends Controller
 
             $receipent = $lister[0]->email;
             $subject = 'New Booking Request';
-            data: [
+            $data = [
                 'lister' => $lister[0]->name,
                 'listing_title' => $booked[0]->listings->listing_title,
                 'checkin' => $booked[0]->date_enter,
