@@ -80,16 +80,16 @@ class BookingController extends Controller
                 'created_on' => date('Y-m-d H:i:s')
             ]);
 
-            $booked = Booking::where('transaction_id', $request->input('transaction_id'))->get();
-            $listing = Listing::where('listing_id', $booked[0]->listing_id)->get();
+            $booked = Booking::where('transaction_id', $request->input('transaction_id'))->with('listings')->get();
+           // $listing = Listing::where('listing_id', $booked[0]->listing_id)->get();
            // $time = date('Y-m-d H:i:s');
             Notification::create([
                 'user_id' => $request->input('user_id'),
                 'lister_id' => $request->input('lister_id'),
                 'listing_id' => $request->input('listing_id'),
                 'booking_id' => $booked[0]->booking_id,
-                'type' => 'New Booking Request : '.$listing[0]->listing_title,
-                'messege' => 'Your Booking request at : '.$listing[0]->listing_title. ' has been placed',
+                'type' => 'New Booking Request : '.$booked[0]->listings->listing_title,
+                'messege' => 'Your Booking request at : '.$booked[0]->listings->listing_title. ' has been placed',
                 'created_on' => date('Y-m-d H:i:s')
 
             ]);
@@ -99,8 +99,8 @@ class BookingController extends Controller
                 'lister_id' => $request->input('lister_id'),
                 'listing_id' => $request->input('listing_id'),
                 'booking_id' => $booked[0]->booking_id,
-                'type' => 'New Booking Request : '.$listing[0]->listing_title,
-                'messege' => 'Your have a new booking request for : '.$listing[0]->listing_title,
+                'type' => 'New Booking Request : '.$booked[0]->listings->listing_title,
+                'messege' => 'Your have a new booking request for : '.$booked[0]->listings->listing_title,
                 'created_on' => date('Y-m-d H:i:s')
             ]);
 
@@ -227,7 +227,7 @@ class BookingController extends Controller
                     'id' => $booked[0]->booking_id,
                     'pay_amount' => $booked[0]->pay_amount,
                     'lister_id' => $booked[0]->lister_id,
-                    'listing_id' => $listing[0]->listing_id,
+                    'listing_id' => $booked[0]->listings->listing_id,
                     'booking_order_name' => $booked[0]->booking_order_name,
                     'transaction_id' => $booked[0]->transaction_id,
                 ]
