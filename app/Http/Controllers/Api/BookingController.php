@@ -115,7 +115,7 @@ class BookingController extends Controller
                 'guest_name' => $user[0]->name,
             ];
 
-            Artisan::call('queue:work');
+            Artisan::call('queue:listen');
 
             SendBookingEmail::dispatch($receipent, $subject, $data);
 
