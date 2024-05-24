@@ -13,7 +13,7 @@ use App\Models\ListingAvailable;
 use App\Models\ListerDashboard;
 use App\Models\ListingImages;
 use App\Models\JaygaEarn;
-
+use App\Jobs\SendBookingEmail;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
@@ -103,6 +103,20 @@ class BookingController extends Controller
                 'messege' => 'Your have a new booking request for : '.$booked[0]->listings->listing_title,
                 'created_on' => date('Y-m-d H:i:s')
             ]);
+
+            $receipent = $lister[0]->email;
+            $subject = 'New Booking Request';
+            data: [
+                'lister' => $lister[0]->name,
+                'listing_title' => $listing[0]->listing_title,
+                'checkin' => $booked[0]->date_enter,
+                'checkout' => $booked[0]->date_exit,
+                'guest_name' => $user[0]->name,
+            ];
+
+            Artisan::call('queue:work');
+            
+            SendBookingEmail::dispatch($receipent, $subject, $data);
 
             /*
 
