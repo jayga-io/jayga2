@@ -7,6 +7,8 @@ use App\Models\Listing;
 use App\Models\AmenitiesList;
 use App\Models\RestrictionList;
 use App\Models\ListingImages;
+use App\Models\ListingGuestAmenities;
+use App\Models\ListingRestrictions;
 use App\Models\ListerNid;
 use App\Models\User;
 use App\Models\UserPictures;

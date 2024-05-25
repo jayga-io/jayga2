@@ -9,6 +9,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
         "laravel/framework": "^10.10",
+        "laravel/sail": "^1.29",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0",
@@ -18,7 +19,6 @@
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
-        "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.1",
@@ -32,9 +32,7 @@
         },
         "files": [
             "app/Helpers/Notification.php",
-            "app/Helpers/Sms.php",
-            "app/Helpers/Amenities",
-            "app/Helpers/Restrictions"
+            "app/Helpers/Sms.php"
         ]
             
         
