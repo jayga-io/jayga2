@@ -179,8 +179,15 @@ class ListingController extends Controller
             
         ]);
         if($validated){
+
+            $existed_images = ListingImages::where('listing_id', $request->input('listing_id'))->get();
             
             if(count($file)>0){
+
+                //delete previous files
+                foreach ($existed_images as $key => $value) {
+                    Storage::delete($value->listing_targetlocation);
+                }
                 
                 foreach ($file as $f) {
                 $path = $f->store('listings');
