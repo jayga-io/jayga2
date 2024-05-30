@@ -114,7 +114,9 @@ class LoginController extends Controller
 
            // $user = User::where('access_token', $request->input('acc_token'))->get();
            if($validated){
-                User::where('access_token', $request->input('acc_token'))->update([
+                $validateUser = User::where('access_token', $request->input('acc_token'))->get();
+                if(count($validateUser)>0){
+                     User::where('access_token', $request->input('acc_token'))->update([
                         'name' => $request->input('user_name'),
                         'email' => $request->input('user_email'),
                         'user_dob' => $request->input('user_dob'),
@@ -127,10 +129,20 @@ class LoginController extends Controller
                         'FCM_token' => $request->input('FCM_token'),
                         'platform_tag' => $request->input('platform_tag'),
                     ]);
-                return response()->json([
+
+                    return response()->json([
                         'status' => 200,
                         'messege' => 'user info updated'
                     ]);
+
+                }else{
+                    return response()->json([
+                        'status' => 404,
+                        'messege' => 'No user found'
+                    ], 404);
+                }
+               
+                
            }else{
                 return $validated->errors();
            }
