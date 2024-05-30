@@ -13,7 +13,7 @@ use Illuminate\Mail\Message;
 class LoginController extends Controller
 {
     public function signin(Request $request){
-        if($request->method() == 'POST'){
+       
            
             $validated = $request->validate([
              'phone' => 'required',
@@ -98,7 +98,7 @@ class LoginController extends Controller
     
                     
            
-        }
+        
     }
 
     public function register(Request $request){
