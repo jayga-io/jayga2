@@ -32,9 +32,20 @@ class ClientController extends Controller
      */
     public function index(Request $request)
     {
-        $listings = Listing::where('isApproved', true)->where('isActive', true)->with('images')->with('reviews')->take(8)->get();
+       // $listings = Listing::where('isApproved', true)->where('isActive', true)->with('images')->with('reviews')->take(8)->get();
 
-        $notifs = Notification::where('user_id', $request->session()->get('user'))->where('type', 'booking')->count();
+       // $notifs = Notification::where('user_id', $request->session()->get('user'))->where('type', 'booking')->count();
+
+        $pushdata = [
+            'token' => 'flryn6nhSjePYHp_Ab4PPt:APA91bFRhVXy44qZ-q49co48G1WGz8qlz7uqACfm6CZYgN2Y-lAOGquMEgssNDf5q1IjaQ53JvyWy6XmoCeXQbCjKFIbEQH6R3S0QnUJGbFV3TWgp_WiljSGx98GcCzGMdA1T7aSJPC-',
+            
+        ];
+
+        send_notif($pushdata);
+
+        
+
+
         $locations = \File::json('locations.json');
         Artisan::call('schedule:run');
        // dd($listings);

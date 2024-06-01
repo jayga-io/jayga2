@@ -115,12 +115,7 @@ class BookingController extends Controller
                 'guest_name' => $user[0]->name,
             ];
 
-            $pushdata = [
-                'token' => 'dsmLTBrWQomysqnaMUBxSe:APA91bE-iChS3YxkXbSms5eOXaB1nqlCmnAs983VpewGR-H_BLxNeaVk9rRD4xJWCKtylI9cFmqqWA4dBzWfZFp0k6yDzrr_B9tFgtIeEmh0aAu4j-nu5Iwmk6Fd2tqGl-d3PL58p88L',
-                
-            ];
-
-            send_notif($pushdata);
+           
 
            // Artisan::call('queue:listen');
 
