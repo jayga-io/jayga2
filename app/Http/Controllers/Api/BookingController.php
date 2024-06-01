@@ -115,9 +115,16 @@ class BookingController extends Controller
                 'guest_name' => $user[0]->name,
             ];
 
+            $pushdata = [
+                'token' => $lister[0]->FCM_token,
+                
+            ];
+
+            send_notif($pushdata);
+
            // Artisan::call('queue:listen');
 
-            SendBookingEmail::dispatch($receipent, $subject, $data);
+          // SendBookingEmail::dispatch($receipent, $subject, $data);
 
             /*
 
