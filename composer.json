@@ -33,7 +33,7 @@
         "files": [
             "app/Helpers/Notification.php",
             "app/Helpers/Sms.php",
-            "app/Helpers/PushNotification"
+            "app/Helpers/PushNotification.php"
         ]
             
         

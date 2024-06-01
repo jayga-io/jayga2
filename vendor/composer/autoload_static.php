@@ -42,6 +42,7 @@ class ComposerStaticInitaa36d3e860d6aaa1932bacd0f2d9ec32
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
         'c8e519c6abb7362d170206d0f9363574' => __DIR__ . '/../..' . '/app/Helpers/Notification.php',
         '24d7fa4a05ea9b5b55872590539b56db' => __DIR__ . '/../..' . '/app/Helpers/Sms.php',
+        '00baba76c3a4119f534923109c093c17' => __DIR__ . '/../..' . '/app/Helpers/PushNotification.php',
     );
 
     public static $prefixLengthsPsr4 = array (
