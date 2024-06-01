@@ -21,7 +21,7 @@ function send_notif($data){
 
     $response = Http::withHeaders([
         'Authorization' => 'Bearer AAAAeOE4nqg:APA91bGSkxDP4cmqLb5supVEbHVmQBUIHH1NeKJsPkiGXTqPrGJmHxH6GRok8wgwUf7T8n_YBUmyzgqirs6Be1rI5nVO1hizAjBDQPImT7DvFG2Cln0xQW4xe6tZmqYWA8zJnwJIIhM6',
-    ])->post($url, $details[0]);
+    ])->post($url, $details);
 
     return $response;
 }
