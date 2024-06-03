@@ -15,14 +15,15 @@ class WithdrawsController extends Controller
     public function postRequest(Request $request){
         $validated = $request->validate([
            'lister_id' => 'required',
-           'amount' => 'required'
+           'amount' => 'required',
+           'bank_id' => 'required',
         ]);
 
         if($validated){
             $id = $request->input('lister_id');
             $amount = $request->input('amount');
             $user = User::where('id', $request->input('lister_id'))->get();
-            $bank = BankDetails::where('lister_id', $request->input('lister_id'))->get();
+            $bank = BankDetails::where('id', $request->input('bank_id'))->get();
             $lister = ListerDashboard::where('lister_id', $request->input('lister_id'))->get();
             Withdraws::create([
                 'user_id' => $request->input('lister_id'),
