@@ -148,7 +148,7 @@ Route::get('/lister-dashboard', [AccountDashboardController::class, 'dashboard']
 Route::post('/request/withdraw', [WithdrawsController::class, 'postRequest']);
 
 //remove bank
-Route::get('/remove/card', [HostController::class, 'delBank']);
+Route::post('/remove/card', [HostController::class, 'delBank']);
 
 //completed boookings
 Route::get('/completed/bookings', [BookingController::class, 'completed_bookings']);

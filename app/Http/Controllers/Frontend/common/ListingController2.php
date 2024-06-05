@@ -71,12 +71,14 @@ class ListingController2 extends Controller
 
         ]);
         if($validated){
+            $key = $request->query('key');
             $filter = QueryBuilder::for(Listing::class)
             ->where('isApproved', true)->where('isActive', true)
             ->where('listing_type', $request->query('listing_type'))
             ->where('full_day_price_set_by_user', '>=', $request->query('min_price'))
             ->where('full_day_price_set_by_user', '<=', $request->query('max_price'))
             ->where('allow_short_stay', $request->query('allow_short_stay'))
+            ->where('listing_address', 'LIKE', '%' . $key . '%')
             ->allowedFilters(['guest_num', 'bed_num', 'bathroom_num'])->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
             if(count($filter)>0){
                 return response()->json([

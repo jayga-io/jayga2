@@ -107,7 +107,7 @@ class HostController extends Controller
         ]);
 
         if($valid){
-            BankDetails::where('id', $request->query('bank_id'))->delete();
+            BankDetails::where('id', $request->input('bank_id'))->delete();
 
             return response()->json([
                 'status' => 200,
