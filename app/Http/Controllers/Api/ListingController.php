@@ -61,10 +61,10 @@ class ListingController extends Controller
 
             
                 $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)
+                ->where('listing_address', 'LIKE', '%' . $key . '%')
                 ->whereDoesntHave('disable_dates', function ($query) use ($dates) {
                     $query->whereIn('dates', $dates);
                 })
-                ->where('listing_address', 'LIKE', '%' . $key . '%')
                 ->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])
                 ->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
                     
