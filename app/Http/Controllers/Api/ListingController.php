@@ -44,7 +44,7 @@ class ListingController extends Controller
         $date1 = $request->query('checkin');
         $date2 = $request->query('checkout');
 
-        if($date1 != null && $date2 != null){
+        if(isset($date1) && isset($date2)){
             // Parse the start and end dates
             $start = Carbon::parse($date1);
             $end = Carbon::parse($date2);
