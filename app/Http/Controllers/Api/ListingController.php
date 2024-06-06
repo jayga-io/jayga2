@@ -39,18 +39,61 @@ class ListingController extends Controller
 
     public function filter(Request $request){
         $key = $request->query('key');
-        $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->where('listing_address', 'LIKE', '%' . $key . '%')->allowedFilters(['guest_num', 'bed_num', 'district', 'allow_short_stay', 'listing_type'])->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
-        if(count($filtered_listing)>0){
-            return response()->json([
-                'status' => 200,
-                'filtered_listing' => $filtered_listing
-            ]);
+        $date1 = $request->query('checkin');
+        $date2 = $request->query('checkout');
+
+        if($date1 != null && $date2 != null){
+            // Parse the start and end dates
+            $start = Carbon::parse($date1);
+            $end = Carbon::parse($date2);
+
+            // Generate the period
+            $period = CarbonPeriod::create($start, $end);
+
+            // Create an array to hold the dates
+            $dates = [];
+
+            foreach ($period as $date) {
+                $dates[] = $date->format('Y-m-d');
+            }
+
+            
+                $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)
+                ->whereDoesntHave('disable_dates', function ($query) use ($dates) {
+                    $query->whereIn('dates', $dates);
+                })
+                ->where('listing_address', 'LIKE', '%' . $key . '%')
+                ->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])
+                ->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
+                    
+            
+            if(count($filtered_listing)>0){
+                return response()->json([
+                    'status' => 200,
+                    'filtered_listing' => $filtered_listing
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 404,
+                    'messege' => 'No filter result found'
+                ],404);
+            }
         }else{
-            return response()->json([
-                'status' => 404,
-                'messege' => 'No filter result found'
-            ],404);
+            $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->where('listing_address', 'LIKE', '%' . $key . '%')->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
+            if(count($filtered_listing)>0){
+                return response()->json([
+                    'status' => 200,
+                    'filtered_listing' => $filtered_listing
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 404,
+                    'messege' => 'No filter result found'
+                ],404);
+            }
         }
+        
+        
     }
 
     
