@@ -66,7 +66,7 @@ class ListingController extends Controller
                 ->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')
                 ->with('disable_dates')
                 ->whereDoesntHave('disable_dates', function ($query) use ($dates) {
-                    $query->whereIn('dates', $dates);
+                    $query->whereIn('dates', 'LIKE', '%'. $dates . '%');
                 })
                 ->get();
                     
