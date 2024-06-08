@@ -55,13 +55,18 @@ class ListingController extends Controller
 
             // Create an array to hold the dates
             $dates = [];
+            $listing_ids = [];
 
             foreach ($period as $date) {
                 $dates[] = $date->format('Y-m-d');
             }
 
             $av_listings = ListingAvailable::whereIn('dates', $dates)->get();
-           // dd($av_listings);
+
+            foreach ($av_listings as $key => $value) {
+                $listing_ids[] = $value->listing_id;
+            }
+           // dd($listing_ids);
             if(count($av_listings) <= 0){
                 $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->where('listing_address', 'LIKE', '%' . $key . '%')->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
                 if(count($filtered_listing)>0){
@@ -76,10 +81,18 @@ class ListingController extends Controller
                     ],404);
                 }
             }else{
-                return response()->json([
-                    'status' => 404,
-                    'messege' => 'No available listings found'
-                ], 404);
+                $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->whereIn('listing_id', $listing_ids)->where('listing_address', 'LIKE', '%' . $key . '%')->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
+                if(count($filtered_listing)>0){
+                    return response()->json([
+                        'status' => 200,
+                        'filtered_listing' => $filtered_listing
+                    ]);
+                }else{
+                    return response()->json([
+                        'status' => 404,
+                        'messege' => 'No filter result found'
+                    ],404);
+                }
             }
         
 

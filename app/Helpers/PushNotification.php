@@ -7,8 +7,8 @@ function send_notif($data){
         'message' => [
             'token' => $data,
             'notification' => [
-                'title' => 'New Notification',
-                'body' => 'This is a test notification',
+                'title' => 'Fahim',
+                'body' => 'This is a test nice notification',
             ]
         ]
     ];
