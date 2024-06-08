@@ -32,7 +32,7 @@ class ClientController extends Controller
      */
     public function index(Request $request)
     {
-       // send_notif();
+        //send_notif();
         $listings = Listing::where('isApproved', true)->where('isActive', true)->with('images')->with('reviews')->take(8)->get();
 
         $notifs = Notification::where('user_id', $request->session()->get('user'))->where('type', 'booking')->count();
