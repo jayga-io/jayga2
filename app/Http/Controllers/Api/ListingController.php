@@ -61,7 +61,7 @@ class ListingController extends Controller
             }
 
             foreach ($dates as $key => $value) {
-                $av_listings = ListingAvailable::whereIn('dates', $value)->get();
+                $av_listings = ListingAvailable::whereIn('dates', 'LIKE', '%'. $value .'%')->exists();
             }
 
             if(count($av_listings)>0){
