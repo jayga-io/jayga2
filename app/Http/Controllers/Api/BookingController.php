@@ -117,7 +117,7 @@ class BookingController extends Controller
 
             
 
-           $notif_data = $lister[0]->FCM_token;
+           $notif_data = 'deJoNzAURPmrS6J0Fs-Hmo:APA91bFF06znXWSDEb2Vfu7dJEMrPEEADz8timvGmrryfxHGvzgNMp84BQ_nKbUFU9ln1fEi4eTRq007_36H5dpmmv12Z4SRL7hJYFzn-kqOB9vYfhhMQk5I1aK1ypK51iEatKh-FyKD';
           // dd($notif_data);
            send_notif($notif_data);
           // dd($notif_data);

@@ -59,11 +59,11 @@ class ListingController extends Controller
             foreach ($period as $date) {
                 $dates[] = $date->format('Y-m-d');
             }
-
+            dd($dates);
             foreach ($dates as $key => $value) {
                 $av_listings = ListingAvailable::whereIn('dates', $value)->exists();
             }
-            dd($av_listings);
+           // dd($av_listings);
            
         
 
