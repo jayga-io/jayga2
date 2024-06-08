@@ -63,7 +63,7 @@ class ListingController extends Controller
             foreach ($dates as $key => $value) {
                 $av_listings = ListingAvailable::whereIn('dates', 'LIKE', '%'. $value .'%')->exists();
             }
-
+            dd($av_listings);
             if(count($av_listings)>0){
                 $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->where('listing_address', 'LIKE', '%' . $key . '%')->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
                 if(count($filtered_listing)>0){
