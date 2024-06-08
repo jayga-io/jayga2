@@ -115,9 +115,10 @@ class BookingController extends Controller
                 'guest_name' => $user[0]->name,
             ];
 
-            dd($notif_data);
+            
 
            $notif_data = $lister[0]->FCM_token;
+           dd($notif_data);
            send_notif($notif_data);
 
            // Artisan::call('queue:listen');
