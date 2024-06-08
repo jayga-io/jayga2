@@ -12,6 +12,7 @@ use App\Models\ListingGuestAmenities;
 use App\Models\ListingDescribe;
 use App\Models\ListingRestrictions;
 use App\Models\ListingImages;
+use App\Models\ListingAvailable;
 use App\Models\FavListing;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Support\Facades\Storage;
