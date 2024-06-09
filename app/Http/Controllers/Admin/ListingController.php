@@ -146,10 +146,10 @@ class ListingController extends Controller
 
     public function save_listing(Request $request){
         $listing_id = $request->input('listing_id');
-       // dd($request->all());
+      
         if($request->hasFile('listing_images')){
             $images[] = $request->file('listing_images');
-            dd($images);
+           // dd($images);
             $lister_id = Listing::where('listing_id', $listing_id)->get();
              foreach ($images as $key => $value) {
               $path = $value->store('listings');

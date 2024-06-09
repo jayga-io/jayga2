@@ -8,7 +8,7 @@
                 @csrf
                 <input type="hidden" name="listing_id" value="{{$listing_id}}">
                 <div class="my-3 ">
-                    <input type="file" name="listing-images[]"  id="listing-image" multiple required>
+                    <input type="file" name="listing_images[]"  id="listing-image" multiple required>
                     <label for="listing-image" class="form-label">Please upload multiple images</label>
                     <button type="submit" class="btn btn-primary mx-5"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
                 </div>
