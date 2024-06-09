@@ -69,11 +69,14 @@ class ListingController extends Controller
            // dd($listing_ids);
             if(count($av_listings) <= 0){
                 $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)
-                ->where('district', 'LIKE', '%' . $key . '%')
-                ->where('town', 'LIKE', '%' . $key . '%')
-                ->where('listing_address', 'LIKE', '%' . $key . '%')
-                ->where('listing_description', 'LIKE', '%' . $key . '%')
-                ->where('listing_title', 'LIKE', '%' . $key . '%')
+                ->where(function($query) use ($key) {
+                    $query->where('district', 'LIKE', '%' . $key . '%')
+                          ->orWhere('town', 'LIKE', '%' . $key . '%')
+                          ->orWhere('listing_address', 'LIKE', '%' . $key . '%')
+                          ->orWhere('listing_description', 'LIKE', '%' . $key . '%')
+                          ->orWhere('listing_title', 'LIKE', '%' . $key . '%');
+                    // Add more ->orWhere() calls for additional columns if needed
+                })
                 ->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])
                 ->with('images')->with('newAmenities.amenity')
                 ->with('newRestrictions.restrictions')
@@ -93,11 +96,14 @@ class ListingController extends Controller
             }else{
                 $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)
                 ->whereNotIn('listing_id', $listing_ids)
-                ->where('district', 'LIKE', '%' . $key . '%')
-                ->where('town', 'LIKE', '%' . $key . '%')
-                ->where('listing_address', 'LIKE', '%' . $key . '%')
-                ->where('listing_description', 'LIKE', '%' . $key . '%')
-                ->where('listing_title', 'LIKE', '%' . $key . '%')
+                ->where(function($query) use ($key) {
+                    $query->where('district', 'LIKE', '%' . $key . '%')
+                          ->orWhere('town', 'LIKE', '%' . $key . '%')
+                          ->orWhere('listing_address', 'LIKE', '%' . $key . '%')
+                          ->orWhere('listing_description', 'LIKE', '%' . $key . '%')
+                          ->orWhere('listing_title', 'LIKE', '%' . $key . '%');
+                    // Add more ->orWhere() calls for additional columns if needed
+                })
                 ->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])
                 ->with('images')
                 ->with('newAmenities.amenity')
@@ -115,25 +121,24 @@ class ListingController extends Controller
                         'messege' => 'No filter result found'
                     ],404);
                 }
-            }
-        
-
-            
-            
-              /*  $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)
-                ->where('listing_address', 'LIKE', '%' . $key . '%')
-                ->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])
-                ->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')
-                ->with('disable_dates')
-                ->whereDoesntHave('disable_dates', function ($query) use ($dates) {
-                    $query->whereIn('dates', 'LIKE', '%'. $dates . '%');
-                })
-                ->get();
-                */  
+            } 
             
             
         }else{
-            $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->where('listing_address', 'LIKE', '%' . $key . '%')->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
+            $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)
+                ->where(function($query) use ($key) {
+                    $query->where('district', 'LIKE', '%' . $key . '%')
+                      ->orWhere('town', 'LIKE', '%' . $key . '%')
+                      ->orWhere('listing_address', 'LIKE', '%' . $key . '%')
+                      ->orWhere('listing_description', 'LIKE', '%' . $key . '%')
+                      ->orWhere('listing_title', 'LIKE', '%' . $key . '%');
+                // Add more ->orWhere() calls for additional columns if needed
+                })
+                ->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])
+                ->with('images')->with('newAmenities.amenity')
+                ->with('newRestrictions.restrictions')
+                ->with('reviews')
+                ->get();
             if(count($filtered_listing)>0){
                 return response()->json([
                     'status' => 200,

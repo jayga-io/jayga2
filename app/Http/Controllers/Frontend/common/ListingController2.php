@@ -89,7 +89,14 @@ class ListingController2 extends Controller
             ->where('full_day_price_set_by_user', '>=', $request->query('min_price'))
             ->where('full_day_price_set_by_user', '<=', $request->query('max_price'))
             ->where('allow_short_stay', $request->query('allow_short_stay'))
-            ->where('listing_address', 'LIKE', '%' . $key . '%')
+            ->where(function($query) use ($key) {
+                $query->where('district', 'LIKE', '%' . $key . '%')
+                      ->orWhere('town', 'LIKE', '%' . $key . '%')
+                      ->orWhere('listing_address', 'LIKE', '%' . $key . '%')
+                      ->orWhere('listing_description', 'LIKE', '%' . $key . '%')
+                      ->orWhere('listing_title', 'LIKE', '%' . $key . '%');
+                // Add more ->orWhere() calls for additional columns if needed
+            })
             ->allowedFilters(['guest_num', 'bed_num', 'bathroom_num'])->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
             if(count($filter)>0){
                 return response()->json([
