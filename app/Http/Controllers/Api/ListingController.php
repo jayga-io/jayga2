@@ -45,7 +45,7 @@ class ListingController extends Controller
         $date1 = $request->query('checkin');
         $date2 = $request->query('checkout');
 
-        if(isset($date1) && isset($date2)){
+        
             // Parse the start and end dates
             $start = Carbon::parse($date1);
             $end = Carbon::parse($date2);
@@ -124,33 +124,7 @@ class ListingController extends Controller
             } 
             
             
-        }else{
-            $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)
-                ->where(function($query) use ($key) {
-                    $query->where('district', 'LIKE', '%' . $key . '%')
-                      ->orWhere('town', 'LIKE', '%' . $key . '%')
-                      ->orWhere('listing_address', 'LIKE', '%' . $key . '%')
-                      ->orWhere('listing_description', 'LIKE', '%' . $key . '%')
-                      ->orWhere('listing_title', 'LIKE', '%' . $key . '%');
-                // Add more ->orWhere() calls for additional columns if needed
-                })
-                ->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])
-                ->with('images')->with('newAmenities.amenity')
-                ->with('newRestrictions.restrictions')
-                ->with('reviews')
-                ->get();
-            if(count($filtered_listing)>0){
-                return response()->json([
-                    'status' => 200,
-                    'filtered_listing' => $filtered_listing
-                ]);
-            }else{
-                return response()->json([
-                    'status' => 404,
-                    'messege' => 'No filter result found'
-                ],404);
-            }
-        }
+        
         
         
     }
