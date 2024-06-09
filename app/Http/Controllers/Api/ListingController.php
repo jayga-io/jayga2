@@ -81,7 +81,7 @@ class ListingController extends Controller
                     ],404);
                 }
             }else{
-                $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->whereIn('listing_id', $listing_ids)->where('listing_address', 'LIKE', '%' . $key . '%')->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
+                $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->whereNotIn('listing_id', $listing_ids)->where('listing_address', 'LIKE', '%' . $key . '%')->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
                 if(count($filtered_listing)>0){
                     return response()->json([
                         'status' => 200,
