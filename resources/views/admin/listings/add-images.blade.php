@@ -4,7 +4,7 @@
         <h1>Add some images</h1>
         <div class="row mx-5">
             
-            <form action="{{route('savenewlisting')}}" class="my-3" method="POST">
+            <form action="{{route('savenewlisting')}}" class="my-3" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="listing_id" value="{{$listing_id}}">
                 <div class="my-3 ">
