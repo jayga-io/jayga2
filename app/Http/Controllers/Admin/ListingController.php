@@ -151,7 +151,7 @@ class ListingController extends Controller
             $images[] = $request->file('listing_images');
            // dd($images);
             $lister_id = Listing::where('listing_id', $listing_id)->get();
-             foreach ($images as $key => $value) {
+             foreach ($images[0] as $value) {
               $path = $value->store('listings');
                 ListingImages::create([
                     'listing_id' => $listing_id,
