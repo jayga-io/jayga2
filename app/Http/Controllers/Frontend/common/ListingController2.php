@@ -97,7 +97,12 @@ class ListingController2 extends Controller
                       ->orWhere('listing_title', 'LIKE', '%' . $key . '%');
                 // Add more ->orWhere() calls for additional columns if needed
             })
-            ->allowedFilters(['guest_num', 'bed_num', 'bathroom_num'])->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
+            ->allowedFilters(['guest_num', 'bed_num', 'bathroom_num'])
+            ->with('images')
+            ->with('newAmenities.amenity')
+            ->with('newRestrictions.restrictions')
+            ->with('reviews')
+            ->get();
             if(count($filter)>0){
                 return response()->json([
                     'status' => 200,
