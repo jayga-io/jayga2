@@ -7,8 +7,8 @@ use App\Models\Listing;
 use App\Models\AmenitiesList;
 use App\Models\RestrictionList;
 use App\Models\ListingImages;
-use App\Models\ListingGuestAmenities;
-use App\Models\ListingRestrictions;
+use App\Models\ListingAmenities;
+use App\Models\ListingRestricts;
 use App\Models\ListerNid;
 use App\Models\User;
 use App\Models\UserPictures;
@@ -119,7 +119,49 @@ class ListingController extends Controller
     }
 
     public function store_features(Request $request){
-        dd($request->all());
+        //dd($request->all());
+        if($request->input('amenities') != null || $request->input('restrictions') != null){
+            $amn = $request->input('amenities');
+            $restrct = $request->input('restrictions');
+            foreach ($amn as $key => $value) {
+                ListingAmenities::create([
+                    'listing_id' => $request->input('listing_id'),
+                    'amenities_id' => $value,
+                ]);
+            }
+
+            foreach ($restrct as $key => $value) {
+                ListingRestricts::create([
+                    'listing_id' => $request->input('listing_id'),
+                    'restriction_id' => $value,
+                ]);
+            }
+
+            return view('admin.listings.add-images')->with('listing_id', $request->input('listing_id'));
+        }else{
+            return redirect()->back()->with('errors', 'Please add some features');
+        }
+    }
+
+
+    public function save_listing(Request $request){
+        $listing_id = $request->input('listing_id');
+        if($request->hasFile('listing_images')){
+            $images[] = $request->file('listing_images');
+            $lister_id = Listing::where('listing_id', $listing_id)->get();
+             foreach ($images as $key => $value) {
+              $path = $value->store('listings');
+                ListingImages::create([
+                    'listing_id' => $listing_id,
+                    'lister_id' => $lister_id[0]->lister_id,
+                    'listing_filename' => $value->hashName(),
+                    'listing_targetlocation' => $path
+                ]);
+            }
+            return redirect('/admin')->with('success', 'Listing created & assigned to user.');
+        }else{
+            return redirect('/admin')->with('errors', 'Listing images can not be created');
+        }
     }
 
     /**

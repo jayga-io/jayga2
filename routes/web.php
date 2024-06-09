@@ -123,6 +123,8 @@ Route::prefix('admin')->group(function(){
 
             Route::post('/submit-listing-features', [ListingController::class, 'store_features'])->name('storefeatures');
 
+            Route::post('/save/listing', [ListingController::class, 'save_listing'])->name('savenewlisting');
+
             Route::get('/add-listing', [ListingController::class, 'index'])->name('addlisting');
 
             Route::get('/pending-listing', [ListingController::class, 'pending_listings'])->name('pendinglisting');
