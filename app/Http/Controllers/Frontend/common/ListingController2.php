@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\ListingAvailable;
+use App\Models\ListingAmenities;
 use App\Models\Reviews;
 use App\Models\Booking;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -72,9 +73,19 @@ class ListingController2 extends Controller
         ]);
         if($validated){
             $key = $request->query('key');
+            $amenities[] = $request->input('amenities');
+
+            $ls = ListingAmenities::whereIn('amenities_id', $amenities)->get();
+            $ls_ids = [];
+
+            foreach ($ls as $key => $value) {
+                $ls_ids[] = $value->listing_id;
+            }
+
             $filter = QueryBuilder::for(Listing::class)
             ->where('isApproved', true)->where('isActive', true)
             ->where('listing_type', $request->query('listing_type'))
+            ->whereIn('listing_id', $ls_ids)
             ->where('full_day_price_set_by_user', '>=', $request->query('min_price'))
             ->where('full_day_price_set_by_user', '<=', $request->query('max_price'))
             ->where('allow_short_stay', $request->query('allow_short_stay'))
