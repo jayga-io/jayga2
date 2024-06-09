@@ -68,7 +68,17 @@ class ListingController extends Controller
             }
            // dd($listing_ids);
             if(count($av_listings) <= 0){
-                $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->where('listing_address', 'LIKE', '%' . $key . '%')->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
+                $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)
+                ->where('district', 'LIKE', '%' . $key . '%')
+                ->where('town', 'LIKE', '%' . $key . '%')
+                ->where('listing_address', 'LIKE', '%' . $key . '%')
+                ->where('listing_description', 'LIKE', '%' . $key . '%')
+                ->where('listing_title', 'LIKE', '%' . $key . '%')
+                ->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])
+                ->with('images')->with('newAmenities.amenity')
+                ->with('newRestrictions.restrictions')
+                ->with('reviews')
+                ->get();
                 if(count($filtered_listing)>0){
                     return response()->json([
                         'status' => 200,
@@ -81,7 +91,19 @@ class ListingController extends Controller
                     ],404);
                 }
             }else{
-                $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)->whereNotIn('listing_id', $listing_ids)->where('listing_address', 'LIKE', '%' . $key . '%')->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->get();
+                $filtered_listing = QueryBuilder::for(Listing::class)->where('isApproved', true)->where('isActive', true)
+                ->whereNotIn('listing_id', $listing_ids)
+                ->where('district', 'LIKE', '%' . $key . '%')
+                ->where('town', 'LIKE', '%' . $key . '%')
+                ->where('listing_address', 'LIKE', '%' . $key . '%')
+                ->where('listing_description', 'LIKE', '%' . $key . '%')
+                ->where('listing_title', 'LIKE', '%' . $key . '%')
+                ->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])
+                ->with('images')
+                ->with('newAmenities.amenity')
+                ->with('newRestrictions.restrictions')
+                ->with('reviews')
+                ->get();
                 if(count($filtered_listing)>0){
                     return response()->json([
                         'status' => 200,
