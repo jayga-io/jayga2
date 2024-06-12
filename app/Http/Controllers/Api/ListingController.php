@@ -42,6 +42,7 @@ class ListingController extends Controller
 
     public function filter(Request $request){
         $key = $request->query('key');
+        $listing_type = $request->query('listing_type');
         $date1 = $request->query('checkin');
         $date2 = $request->query('checkout');
 
@@ -77,7 +78,7 @@ class ListingController extends Controller
                           ->orWhere('listing_title', 'LIKE', '%' . $key . '%');
                     // Add more ->orWhere() calls for additional columns if needed
                 })
-                ->where('listing_type', 'LIKE', '%'. $request->query('listing_type') .'%')
+                ->where('listing_type', 'LIKE', '%'.$listing_type.'%')
                 ->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay'])
                 ->with('images')->with('newAmenities.amenity')
                 ->with('newRestrictions.restrictions')
@@ -105,7 +106,7 @@ class ListingController extends Controller
                           ->orWhere('listing_title', 'LIKE', '%' . $key . '%');
                     // Add more ->orWhere() calls for additional columns if needed
                 })
-                ->where('listing_type', 'LIKE', '%'. $request->query('listing_type') .'%')
+                ->where('listing_type', 'LIKE', '%'.$listing_type.'%')
                 ->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay'])
                 ->with('images')
                 ->with('newAmenities.amenity')
