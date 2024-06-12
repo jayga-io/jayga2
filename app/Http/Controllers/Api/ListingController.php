@@ -484,4 +484,89 @@ class ListingController extends Controller
         }
         
     }
+
+
+    public function filtering(Request $request){
+        $query = Listing::with(['newAmenities.amenity', 'newRestrictions.restrictions', 'images', 'reviews']);
+
+        if ($request->has('guest_number')) {
+            $query->where('guest_num', $request->input('guest_number'));
+        }
+
+        if ($request->has('bed_number')) {
+            $query->where('bed_num', $request->input('bed_number'));
+        }
+
+        if ($request->has('bathroom_number')) {
+            $query->where('bathroom_num', $request->input('bathroom_number'));
+        }
+
+        if ($request->has('allow_short_stay')) {
+            $query->where('allow_short_stay', $request->input('allow_short_stay'));
+        }
+
+        if ($request->has('listing_type')) {
+            $query->where('listing_type', $request->input('listing_type'));
+        }
+        
+
+        if ($request->has('keyword')) {
+            $keyword = $request->input('keyword');
+            $query->where(function($query) use ($keyword) {
+                $query->where('district', 'LIKE', '%' . $keyword . '%')
+                      ->orWhere('town', 'LIKE', '%' . $keyword . '%')
+                      ->orWhere('listing_address', 'LIKE', '%' . $keyword . '%')
+                      ->orWhere('listing_description', 'LIKE', '%' . $keyword . '%')
+                      ->orWhere('listing_title', 'LIKE', '%' . $keyword . '%');
+                // Add more ->orWhere() calls for additional columns if needed
+            });
+        }
+
+        if($request->has('checkin') && $request->has('checkout')){
+            $date1 = $request->input('checkin');
+            $date2 = $request->input('checkout');
+    
+            
+                // Parse the start and end dates
+                $start = Carbon::parse($date1);
+                $end = Carbon::parse($date2);
+    
+                // Generate the period
+                $period = CarbonPeriod::create($start, $end);
+    
+                // Create an array to hold the dates
+                $dates = [];
+                $listing_ids = [];
+    
+                foreach ($period as $date) {
+                    $dates[] = $date->format('Y-m-d');
+                }
+    
+                $av_listings = ListingAvailable::whereIn('dates', $dates)->get();
+    
+                foreach ($av_listings as $key => $value) {
+                    $listing_ids[] = $value->listing_id;
+                }
+
+                $query->whereNotIn('listing_id', $listing_ids);
+
+        }
+
+        
+
+        $listings = $query->get();
+
+        if(count($listings)>0){
+            return response()->json([
+                'status' => 200,
+                'filtered_listings' => $listings
+            ]);
+        }else{
+            return response()->json([
+                'status' => 404,
+                'filtered_listings' => 'No listings found'
+            ], 404);
+        }
+       // return response()->json($listings);
+    }
 }

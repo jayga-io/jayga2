@@ -48,7 +48,7 @@ Route::post('/register', [LoginController::class, 'register']);
 
 Route::get('/listings' , [ListingController::class, 'listings']);
 
-Route::get('/filter-listings', [ListingController::class, 'filter']);
+Route::post('/filter-listings', [ListingController::class, 'filtering']);
 
 Route::post('/user-nid/upload', [UserController::class, 'nid']);
 
