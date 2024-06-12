@@ -77,7 +77,8 @@ class ListingController extends Controller
                           ->orWhere('listing_title', 'LIKE', '%' . $key . '%');
                     // Add more ->orWhere() calls for additional columns if needed
                 })
-                ->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])
+                ->where('listing_type', 'LIKE', '%'. $request->query('listing_type') .'%')
+                ->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay'])
                 ->with('images')->with('newAmenities.amenity')
                 ->with('newRestrictions.restrictions')
                 ->with('reviews')
@@ -104,7 +105,8 @@ class ListingController extends Controller
                           ->orWhere('listing_title', 'LIKE', '%' . $key . '%');
                     // Add more ->orWhere() calls for additional columns if needed
                 })
-                ->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay', 'listing_type'])
+                ->where('listing_type', 'LIKE', '%'. $request->query('listing_type') .'%')
+                ->allowedFilters(['guest_num', 'bed_num', 'allow_short_stay'])
                 ->with('images')
                 ->with('newAmenities.amenity')
                 ->with('newRestrictions.restrictions')
