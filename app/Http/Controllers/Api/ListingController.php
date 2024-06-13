@@ -506,7 +506,8 @@ class ListingController extends Controller
         }
 
         if ($request->has('listing_type')) {
-            $query->where('listing_type', $request->input('listing_type'));
+            $listing_type = $request->input('listing_type');
+            $query->where('listing_type', 'LIKE', '%'. $listing_type . '%');
         }
         
 
