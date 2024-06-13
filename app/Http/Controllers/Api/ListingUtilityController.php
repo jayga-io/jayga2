@@ -31,8 +31,8 @@ class ListingUtilityController extends Controller
             
         ]);
         if($validate){
-            $file = $request->file('utility');
-            $path = $file->store('utility_file');
+            $file = $request->file('utility_file');
+            $path = $file->store('listing_utility');
 
             ListingUtility::create([
                 'lister_id' => $request->input('lister_id'),
