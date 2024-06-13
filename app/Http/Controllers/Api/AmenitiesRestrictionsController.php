@@ -44,13 +44,13 @@ class AmenitiesRestrictionsController extends Controller
     public function add_amenities(Request $request){
         $validated = $request->validate([
             'listing_id' => 'required',
-            'amenities' => 'required',
+            'amenities' => 'array|required',
         ]);
 
         if($validated){
             $amenities = $request->input('amenities');
             foreach ($amenities as $value) {
-               
+
                 ListingAmenities::create([
                     
                     'listing_id' => $request->input('listing_id'),
