@@ -37,7 +37,7 @@ class ListingUtilityController extends Controller
             ListingUtility::create([
                 'lister_id' => $request->input('lister_id'),
                 'listing_id' => $request->input('listing_id'),
-                'utility_filename' => $path->hashName(),
+                'utility_filename' => $file->hashName(),
                 'utility_filelocation' => $path,
             ]);
 
