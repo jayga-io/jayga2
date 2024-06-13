@@ -505,6 +505,11 @@ class ListingController extends Controller
             $query->where('allow_short_stay', $request->input('allow_short_stay'));
         }
 
+        if($request->has('district')){
+            $district = $request->input('district');
+            $query->where('district', 'LIKE', '%'. $district . '%');
+        }
+
         if ($request->has('listing_type')) {
             $listing_type = $request->input('listing_type');
             $query->where('listing_type', 'LIKE', '%'. $listing_type . '%');
