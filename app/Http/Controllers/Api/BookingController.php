@@ -538,7 +538,7 @@ class BookingController extends Controller
             $notif_details = [
                 'token' => $lister[0]->FCM_token,
                 'title' => 'Review Your Stay at ['.$books[0]->listings->listing_title.']',
-                'body' => 'Dont forget to review your stay at ['.$books[0]->listings->listing_title.']',
+                'body' => 'Dont forget to review your stay at ['.$books[0]->listings->listing_title.']', 
                ];
               // dd($notif_data);
                send_notif($notif_details);
