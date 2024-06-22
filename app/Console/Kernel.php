@@ -86,7 +86,7 @@ class Kernel extends ConsoleKernel
 
            
            
-        })->everyHour();
+        })->hourly();
 
 
         $schedule->call(function (){
