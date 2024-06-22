@@ -31,6 +31,19 @@ class ListingUtilityController extends Controller
             
         ]);
         if($validate){
+
+            //check if listing utility exists
+
+            $utility_images = ListingUtility::where('lister_id', $request->input('lister_id'))->where('listing_id', $request->input('listing_id'))->get();
+
+            if(count($utility_images)>0){
+                foreach ($utility_images as $key => $value) {
+                    Storage::delete($value->utility_filelocation);
+                }
+            }
+
+
+
             $file = $request->file('utility_file');
             $path = $file->store('listing_utility');
 
