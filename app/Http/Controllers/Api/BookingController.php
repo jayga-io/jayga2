@@ -119,14 +119,9 @@ class BookingController extends Controller
           // dd($notif_data);
            send_notif($notif_details);
 
-           $data = [
-            "sender_id" => "8809601010510",
-            "receiver" => $lister[0]->phone,
-            "message" => 'Dear user, Your listing : '. $listing[0]->listing_title . ' has a new booking request',
-            "remove_duplicate" => true
-        ];
-
-            send_sms($data);
+        
+          
+        
           // dd($notif_data);
 
            // Artisan::call('queue:listen');
