@@ -81,14 +81,14 @@ class Kernel extends ConsoleKernel
             }
 
             Booking::where('booking_status', 0)
-                ->where('created_on', '<', now()->subHours(48))
+                ->where('created_on', '<', now()->subMinutes(2))
                 ->delete();
 
            
            
-        })->daily();
+        })->everyMinute();
 
-
+/*
         $schedule->call(function (){
 
             $pend_books = Booking::where('booking_status', 0)
@@ -110,7 +110,7 @@ class Kernel extends ConsoleKernel
             
            
         })->daily();
-
+*/
 
         $schedule->call(function (){
             User::where('updated_at', '<=', now()->subMinutes(60))->update([
