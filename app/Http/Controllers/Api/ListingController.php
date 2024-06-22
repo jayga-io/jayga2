@@ -517,7 +517,8 @@ class ListingController extends Controller
 
         if($request->has('area')){
             $town = $request->input('area');
-            $query->where('town', 'LIKE', '%'. $town .'%');
+            $town_name = explode(' ', $town);
+            $query->where('town', 'LIKE', '%'. $town_name[0] .'%');
         }
         
 
