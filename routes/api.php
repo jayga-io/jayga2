@@ -174,6 +174,9 @@ Route::get('/short-stay/slots', [TimeSlotsController::class, 'timeslots']);
 //feedback
 Route::post('/submit/feedback', [FeedbackController::class, 'create']);
 
+//feedback web
+Route::post('/feedback/web', [FeedbackController::class, 'feedback_web']);
+
 //server key api firebase
 Route::post('/set/server-key', [FirebaseController::class, 'create']);
 

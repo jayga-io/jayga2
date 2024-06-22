@@ -18,12 +18,29 @@ class FeedbackController extends Controller
                 'user_id' => $request->input('user_id'),
                 'title' => $request->input('title'),
                 'note' => $request->input('note'),
-                'type' => $request->input('type'),
+                'type' => 'app',
             ]);
 
             return response()->json([
                 'status' => 200,
                 'messege' => 'Feedback sent successfully'
+            ]);
+        }else{
+            return $validated->errors();
+        }
+    }
+
+    public function feedback_web(Request $request){
+        $validated = $request->validate([
+            'email' => 'required',
+        ]);
+        if($validated){
+            
+            Feedback::create([
+                'email' => $request->input('email'),
+                'title' => 'web feedback',
+                'note' => $request->input('messege'),
+                'type' => 'web'
             ]);
         }else{
             return $validated->errors();
