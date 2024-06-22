@@ -514,6 +514,11 @@ class ListingController extends Controller
             $listing_type = $request->input('listing_type');
             $query->where('listing_type', 'LIKE', '%'. $listing_type . '%');
         }
+
+        if($request->has('area')){
+            $town = $request->input('area');
+            $query->where('town', 'LIKE', '%'. $town .'%');
+        }
         
 
         if ($request->has('keyword')) {
