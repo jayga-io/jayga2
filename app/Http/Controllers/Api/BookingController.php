@@ -117,9 +117,15 @@ class BookingController extends Controller
 
             
 
-           $notif_data = $lister[0]->FCM_token;
+          // $notif_data = $lister[0]->FCM_token;
+
+           $notif_details = [
+            'token' => $lister[0]->FCM_token,
+            'title' => 'You have a new booking request',
+            'body' => 'Open the app to accept'
+           ];
           // dd($notif_data);
-           send_notif($notif_data);
+           send_notif($notif_details);
           // dd($notif_data);
 
            // Artisan::call('queue:listen');

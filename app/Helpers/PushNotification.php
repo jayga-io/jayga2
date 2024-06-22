@@ -5,10 +5,10 @@ function send_notif($data){
     $url = "https://fcm.googleapis.com/v1/projects/jayga-fa1ad/messages:send";
     $details = [
         'message' => [
-            'token' => $data,
+            'token' => $data->token,
             'notification' => [
-                'title' => 'Fahim',
-                'body' => 'This is a test nice notification',
+                'title' => $data->title,
+                'body' => $data->body,
             ]
         ]
     ];
