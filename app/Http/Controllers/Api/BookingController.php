@@ -513,6 +513,16 @@ class BookingController extends Controller
             Booking::where('booking_id', $id)->delete();
             ListingAvailable::where('booking_id', $id)->delete();
 
+            $lister = User::where('id', $request->input('lister_id'))->get();
+
+            $notif_details = [
+                'token' => $lister[0]->FCM_token,
+                'title' => 'Your booking has been completed',
+                'body' => 'Open the app to proceed'
+               ];
+              // dd($notif_data);
+               send_notif($notif_details);
+
             return response()->json([
                 'status' => 200,
                 'messege' => 'Booking Completed'

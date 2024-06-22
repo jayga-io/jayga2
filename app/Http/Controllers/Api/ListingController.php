@@ -176,7 +176,7 @@ class ListingController extends Controller
                 $listing_id = Listing::where('listing_title', $request->input('listing_title'))->get();
               //  dd($check[0]);
 
-             // $user = User::where('id', $request->input('user_id'))->get();
+              $user = User::where('id', $request->input('user_id'))->get();
 
              /*
              
@@ -228,7 +228,22 @@ class ListingController extends Controller
               }
              
              */
+
+             $notif_details = [
+                'token' => $user[0]->FCM_token,
+                'title' => 'Your listing has been created and submitted for review',
+                'body' => 'Open the app to proceed'
+               ];
+              // dd($notif_data);
+               send_notif($notif_details);
              
+             $data = [
+                "sender_id" => "8809601010510",
+                "receiver" => $user[0]->phone,
+                "message" => 'Your listing : '. $request->input('listing_title') . ' is created and submitted for review',
+                "remove_duplicate" => true
+            ];
+            send_sms($data);
 
                 
 
