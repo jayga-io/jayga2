@@ -23,9 +23,10 @@ class FirebaseController extends Controller
     public function create(Request $request)
     {
         $server_key = $request->input('server_key');
-        $check = Firebase::where('server_key', $server_key)->get();
+        $url = $request->input('url');
+        $check = Firebase::where('url', $url)->get();
         if(count($check)>0){
-            Firebase::where('server_key', $server_key)->update([
+            Firebase::where('url', $url)->update([
                 'server_key' => $server_key,
             ]);
             return response()->json([
