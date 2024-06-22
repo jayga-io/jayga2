@@ -21,7 +21,7 @@ use App\Http\Controllers\Api\ListingUtilityController;
 use App\Http\Controllers\Api\TimeSlotsController;
 use App\Http\Controllers\Api\FeedbackController;
 
-use App\Http\Controller\FirebaseController;
+use App\Http\Controllers\FirebaseController;
 
 
 use App\Http\Controllers\Frontend\common\ListingController2;
