@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TimeSlotShortstays extends Model
+class DisableSlot extends Model
 {
     use HasFactory;
     protected $guarded = [];

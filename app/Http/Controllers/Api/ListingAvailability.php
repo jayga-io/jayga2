@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ListingAvailable;
+use App\Models\DisableSlot;
 
 class ListingAvailability extends Controller
 {
@@ -67,6 +68,40 @@ class ListingAvailability extends Controller
                 'status' => false,
                 'messege' => 'Listing date not found'
             ]);
+        }
+    }
+
+    public function store_disabled_slots(Request $request){
+        $validated = $request->validate([
+            'listing_id' => 'required',
+            'slots' => 'array|required'
+        ]);
+
+        if($validated){
+
+            $slots = $request->input('slots');
+            $check = DisableSlot::where('listing_id', $request->input('listing_id'))->get();
+
+            if(count($check)>0){
+                DisableSlot::where('listing_id', $request->input('listing_id'))->delete();
+            }
+
+            foreach ($slots as $key => $value) {
+ 
+                    DisableSlot::create([
+                        'listing_id' => $request->input('listing_id'),
+                        'slot_id' => $value,
+                    ]);
+                
+            }
+
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Disabled slots stored'
+            ]);
+            
+        }else{
+            return $validated->errors();
         }
     }
 }

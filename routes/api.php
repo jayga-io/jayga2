@@ -177,6 +177,9 @@ Route::post('/submit/feedback', [FeedbackController::class, 'create']);
 //server key api firebase
 Route::post('/set/server-key', [FirebaseController::class, 'create']);
 
+//add disable slots
+Route::post('/add/disable-slots', [ListingAvailability::class, 'store_disabled_slots']);
+
 
 
 

@@ -49,13 +49,24 @@ class AmenitiesRestrictionsController extends Controller
 
         if($validated){
             $amenities = $request->input('amenities');
+
+            $check = ListingAmenities::where('listing_id', $request->input('listing_id'))->get();
+
+                if(count($check)>0){
+                    ListingAmenities::where('listing_id', $request->input('listing_id'))->delete();
+                }
+
             foreach ($amenities as $value) {
 
-                ListingAmenities::create([
+                
+                    ListingAmenities::create([
                     
-                    'listing_id' => $request->input('listing_id'),
-                    'amenities_id' => $value
-                ]);
+                        'listing_id' => $request->input('listing_id'),
+                        'amenities_id' => $value
+                    ]);
+                
+
+                
             }
 
             return response()->json([
@@ -76,11 +87,19 @@ class AmenitiesRestrictionsController extends Controller
 
         if($validated){
             $restrictions = $request->input('restriction_id');
+            $check = ListingRestricts::where('listing_id', $request->input('listing_id'))->get();
+                if(count($check)>0){
+                    ListingRestricts::where('listing_id', $request->input('listing_id'))->delete();
+                }
+
+
             foreach ($restrictions as $value) {
-                ListingRestricts::create([
-                    'listing_id' => $request->input('listing_id'),
-                    'restriction_id' => $value
-                ]);
+ 
+                    ListingRestricts::create([
+                        'listing_id' => $request->input('listing_id'),
+                        'restriction_id' => $value
+                    ]);
+ 
             }
 
             return response()->json([
