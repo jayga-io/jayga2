@@ -88,7 +88,7 @@ class Kernel extends ConsoleKernel
            
         })->everyHour();
 
-/*
+
         $schedule->call(function (){
 
             $pend_books = Booking::where('booking_status', 0)
@@ -99,19 +99,17 @@ class Kernel extends ConsoleKernel
            foreach ($pend_books as $key => $value) {
             
             $data = [
-                "sender_id" => "8809601010510",
-                 "receiver" => $value->lister->phone,
-                 "message" => "You have a pending booking against your listing at Jayga. Please confirm before it expires",
-                 "remove_duplicate" => true
+                'token' => $value->lister->FCM_token,
+                'title' => 'Booking expired',
+                'body' => 'Your Booking has been expired',
              ];
 
-             send_sms($data);
+             send_notif($data);
            }
             
            
-        })->daily();
+        })->everyMinute();
 
-*/
 
         $schedule->call(function (){
             User::where('updated_at', '<=', now()->subMinutes(60))->update([
