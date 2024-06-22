@@ -520,21 +520,17 @@ class ListingController extends Controller
             $query->where('allow_short_stay', $request->input('allow_short_stay'));
         }
 
-        if($request->has('district')){
-            $district = $request->input('district');
-            $query->where('district', 'LIKE', '%'. $district . '%');
-        }
+        
 
         if ($request->has('listing_type')) {
             $listing_type = $request->input('listing_type');
             $query->where('listing_type', 'LIKE', '%'. $listing_type . '%');
         }
 
-        if($request->has('area')){
-            $town = $request->input('area');
-            $town_name = explode(' ', $town);
-            $query->where('town', 'LIKE', '%'. $town_name[0] .'%');
-        }elseif ($request->has('keyword')) {
+        
+        
+
+        if($request->has('keyword')) {
             $keyword = $request->input('keyword');
             $query->where(function($query) use ($keyword) {
                 $query->where('district', 'LIKE', '%' . $keyword . '%')
@@ -544,7 +540,15 @@ class ListingController extends Controller
                       ->orWhere('listing_title', 'LIKE', '%' . $keyword . '%');
                 // Add more ->orWhere() calls for additional columns if needed
             });
+        }elseif($request->has('area')){
+            $town = $request->input('area');
+            $town_name = explode(' ', $town);
+            $query->where('town', 'LIKE', '%'. $town_name[0] .'%');
+        }elseif($request->has('district')){
+            $district = $request->input('district');
+            $query->where('district', 'LIKE', '%'. $district . '%');
         }
+        
 
         if($request->has('checkin') && $request->has('checkout')){
             $date1 = $request->input('checkin');
