@@ -4,7 +4,7 @@ use App\Models\Firebase;
 
 function send_notif($data){
     $firebase = Firebase::all();
-    dd($firebase);
+    dd($firebase[0]->server_key);
     $url = "https://fcm.googleapis.com/v1/projects/jayga-fa1ad/messages:send";
     $details = [
         'message' => [
