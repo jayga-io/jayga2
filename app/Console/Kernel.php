@@ -23,7 +23,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
              // Query pending booking requests created more than 48 hours ago
                 $pendingBookings = Booking::where('booking_status', 0)
-                ->where('created_on', '<', now()->subMinutes(2))
+                ->where('created_on', '<', now()->subHours(1))
                 ->with('listings')
                 ->get();
                // dd($pendingBookings);
@@ -81,12 +81,12 @@ class Kernel extends ConsoleKernel
             }
 
             Booking::where('booking_status', 0)
-                ->where('created_on', '<', now()->subMinutes(2))
+                ->where('created_on', '<', now()->subHours(1))
                 ->delete();
 
            
            
-        })->everyMinute();
+        })->everyHour();
 
 /*
         $schedule->call(function (){
@@ -110,6 +110,7 @@ class Kernel extends ConsoleKernel
             
            
         })->daily();
+
 */
 
         $schedule->call(function (){
