@@ -88,7 +88,7 @@ class Kernel extends ConsoleKernel
            
         })->hourly();
 
-/*
+
         $schedule->call(function (){
 
             $pend_books = Booking::where('booking_status', 0)
@@ -109,19 +109,19 @@ class Kernel extends ConsoleKernel
             
            
         })->everyMinute();
-*/
+
 
         $schedule->call(function (){
-            User::where('updated_at', '<=', now()->subMinutes(60))->update([
+            User::where('updated_at', '<', now()->subMinutes(60))->update([
                 'access_token' => NULL
             ]);
         })->everyMinute();
 
-
+/*
         $schedule->call(function (){
             Artisan:call('queue:listen');
         })->everyMinute();
-        
+    */
        
     }
 
