@@ -326,6 +326,7 @@ class BookingController extends Controller
         ]);
         if($validated){
             $booking_id = Booking::where('booking_id', $request->input('booking_id'))->with('listings')->get();
+            $lister = User::where('id', $booking_id[0]->lister_id)->get();
            // $listing_name = Listing::where('listing_id', $booking_id[0]->listing_id)->get();
             if($request->input('booking_status') == 1){
 
@@ -356,6 +357,16 @@ class BookingController extends Controller
                    ];
             
                    notify($notifys);
+
+                   
+
+                   $notif_details = [
+                    'token' => $lister[0]->FCM_token,
+                    'title' => 'Booking Request Confirmed : ['.$booking_id[0]->listings->listing_title.']',
+                    'body' => 'Your booking at ['.$booking_id[0]->listings->listing_title.'] is confirmed',
+                   ];
+                  // dd($notif_data);
+                   send_notif($notif_details);
 
 
             }elseif($request->input('booking_status') == 2){
@@ -413,6 +424,15 @@ class BookingController extends Controller
                 ];
             
                    notify($notifys);
+
+                   $notif_details = [
+                    'token' => $lister[0]->FCM_token,
+                    'title' => 'Booking Request Declined : ['.$booking_id[0]->listings->listing_title.']',
+                    'body' => 'Your booking at ['.$booking_id[0]->listings->listing_title.'] is declined',
+                   ];
+                  // dd($notif_data);
+                   send_notif($notif_details);
+
                    ListingAvailable::where('booking_id', $request->input('booking_id'))->delete();
                    Booking::where('booking_id', $request->input('booking_id'))->delete();
             }

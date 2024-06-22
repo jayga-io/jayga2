@@ -211,8 +211,8 @@ class ListingController extends Controller
 
            $notif_details = [
             'token' => $user[0]->FCM_token,
-            'title' => 'Your booking has been declined',
-            'body' => 'Open the app to book another listing'
+            'title' => 'Listing ['.$lister_id[0]->listing_title.'] declined',
+            'body' => 'Your listing ['.$lister_id[0]->listing_title.'] has been declined'
            ];
           // dd($notif_data);
            send_notif($notif_details);
@@ -252,10 +252,6 @@ class ListingController extends Controller
                     $lister_id = Listing::where('listing_id', $id)->get();
                     $user = User::where('id', $lister_id[0]->lister_id)->get();
 
-                   
-                
-                        
-                    
                     $phone = $user[0]->phone;
                     $data = [
                         "sender_id" => "8809601010510",
@@ -296,8 +292,8 @@ class ListingController extends Controller
                     ); */
                     $notif_details = [
                         'token' => $user[0]->FCM_token,
-                        'title' => 'Your booking has been approved',
-                        'body' => 'Open the app to proceed'
+                        'title' => 'Listing ['.$lister_id[0]->listing_title.'] approved',
+                        'body' => 'Your listing ['.$lister_id[0]->listing_title.'] has been approved',
                        ];
                       // dd($notif_data);
                        send_notif($notif_details);
