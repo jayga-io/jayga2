@@ -210,6 +210,15 @@ class ListingController extends Controller
     
            notify($notifys);
 
+           $notif_details = [
+            'token' => $user[0]->FCM_token,
+            'title' => 'Your booking has been declined',
+            'body' => 'Open the app to book another listing'
+           ];
+          // dd($notif_data);
+           send_notif($notif_details);
+
+           /*
            $receipent = $user[0]->email;
             $subject = 'Listing declined';
 
@@ -223,7 +232,7 @@ class ListingController extends Controller
                     callback: function (Message $message) use ($receipent, $subject) {
                             $message->to($receipent)->subject($subject);
                         }
-                    );
+                    ); */
             
             Listing::where('listing_id', $id)->delete();
             
@@ -271,6 +280,7 @@ class ListingController extends Controller
 
                 notify($notifys);
 
+                /*
                 $receipent = $user[0]->email;
                 $subject = 'Listing approved';
 
@@ -284,7 +294,14 @@ class ListingController extends Controller
                         callback: function (Message $message) use ($receipent, $subject) {
                             $message->to($receipent)->subject($subject);
                         }
-                    );
+                    ); */
+                    $notif_details = [
+                        'token' => $user[0]->FCM_token,
+                        'title' => 'Your booking has been approved',
+                        'body' => 'Open the app to proceed'
+                       ];
+                      // dd($notif_data);
+                       send_notif($notif_details);
 
                 return redirect(route('pendinglisting'))->with('success', 'Listing Approved');
         }
@@ -345,6 +362,18 @@ class ListingController extends Controller
            ];
 
            notify($notifys);
+
+           $lister = User::where('id', $ls[0]->lister_id)->get();
+
+           $notif_details = [
+            'token' => $lister[0]->FCM_token,
+            'title' => 'Your listing has been disabled',
+            'body' => 'Open the app to proceed'
+           ];
+          // dd($notif_data);
+           send_notif($notif_details);
+
+
         Listing::where('listing_id', $id)->update([
             'isApproved' => false,
             'isActive' => false,
