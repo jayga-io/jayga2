@@ -49,7 +49,7 @@ class BookingController extends Controller
             
             $check = Booking::where('transaction_id', $request->input('transaction_id'))->get();
             $user = User::where('id', $request->input('user_id'))->get();
-            $lister = User::where('id', $request->input('lister_id'))->get();
+           
             if(count($check)>0){
                 return response()->json([
                     'status' => false,
@@ -110,6 +110,7 @@ class BookingController extends Controller
             
 
           // $notif_data = $lister[0]->FCM_token;
+          $lister = User::where('id', $request->input('lister_id'))->get();
 
            $notif_details = [
             'token' => $lister[0]->FCM_token,
