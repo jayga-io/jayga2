@@ -21,6 +21,8 @@ use App\Http\Controllers\Api\ListingUtilityController;
 use App\Http\Controllers\Api\TimeSlotsController;
 use App\Http\Controllers\Api\FeedbackController;
 
+use App\Http\Controller\FirebaseController;
+
 
 use App\Http\Controllers\Frontend\common\ListingController2;
 use App\Http\Controllers\Frontend\user\UserloginController;
@@ -172,8 +174,8 @@ Route::get('/short-stay/slots', [TimeSlotsController::class, 'timeslots']);
 //feedback
 Route::post('/submit/feedback', [FeedbackController::class, 'create']);
 
-
-
+//server key api firebase
+Route::post('/set/server-key', [FirebaseController::class, 'create']);
 
 
 
