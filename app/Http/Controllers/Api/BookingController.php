@@ -113,8 +113,8 @@ class BookingController extends Controller
 
            $notif_details = [
             'token' => $lister[0]->FCM_token,
-            'title' => 'New Booking Request ['.$booked[0]->listings->listing_title.']',
-            'body' => 'You have a new booking request for ['.$booked[0]->listings->listing_title.']',
+            'title' => 'New Booking Request '.$booked[0]->listings->listing_title,
+            'body' => 'You have a new booking request for '.$booked[0]->listings->listing_title,
            ];
           // dd($notif_data);
            send_notif($notif_details);
