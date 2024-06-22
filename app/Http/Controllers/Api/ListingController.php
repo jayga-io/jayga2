@@ -534,10 +534,7 @@ class ListingController extends Controller
             $town = $request->input('area');
             $town_name = explode(' ', $town);
             $query->where('town', 'LIKE', '%'. $town_name[0] .'%');
-        }
-        
-
-        if ($request->has('keyword')) {
+        }elseif ($request->has('keyword')) {
             $keyword = $request->input('keyword');
             $query->where(function($query) use ($keyword) {
                 $query->where('district', 'LIKE', '%' . $keyword . '%')
