@@ -354,7 +354,8 @@ class BookingController extends Controller
                     'listing_id' => $booking_id[0]->listing_id,
                     'booking_id' => $request->input('booking_id'),
                     'type' => 'Booking Request Confirmed',
-                    'messege' => 'Your Booking : '. $booking_id[0]->listings->listing_title . ' is confirmed'
+                    'messege' => 'Your Booking : '. $booking_id[0]->listings->listing_title . ' is confirmed',
+                    'created_on' => date('Y-m-d H:i:s')
                    ];
             
                    notify($notifys);
@@ -422,7 +423,8 @@ class BookingController extends Controller
                     'listing_id' => $booking_id[0]->listing_id,
                     'booking_id' => $request->input('booking_id'),
                     'type' => 'Booking Request Declined: '. $booking_id[0]->listings->listing_title,
-                    'messege' => 'Your Booking : '. $booking_id[0]->listings->listing_title . ' is declined'
+                    'messege' => 'Your Booking : '. $booking_id[0]->listings->listing_title . ' is declined',
+                    'created_on' => date('Y-m-d H:i:s')
                 ];
             
                    notify($notifys);

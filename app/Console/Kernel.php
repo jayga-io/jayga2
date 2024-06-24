@@ -50,9 +50,10 @@ class Kernel extends ConsoleKernel
                     'net_payable' => $value->net_payable,
                     'payment_flag' => $value->payment_flag,
                     'booking_status' => 2,
-                    'isApproved' => $value->isApproved,
-                    'isComplete' => $value->isComplete,
+                    'isApproved' => false,
+                    'isComplete' => false,
                     'messeges' => 'Expired',
+                    'created_on' => date('Y-m-d H:i:s')
                 ]);
 
                 //Notification for user
@@ -61,9 +62,9 @@ class Kernel extends ConsoleKernel
                     'lister_id' => $value->lister_id,
                     'listing_id' => $value->listing_id,
                     'booking_id' => $value->booking_id,
-                    'type' => 'booking',
+                    'type' => 'booking expired',
                     'messege' => 'Your Booking request for : '.$value->listings->listing_title. ' has been expired',
-    
+                    'created_on' => date('Y-m-d H:i:s')
                 ]);
     
                 //notification for lister
@@ -72,9 +73,9 @@ class Kernel extends ConsoleKernel
                     'lister_id' => $value->lister_id,
                     'listing_id' => $value->listing_id,
                     'booking_id' => $value->booking_id,
-                    'type' => 'booking',
+                    'type' => 'booking expired',
                     'messege' => 'Your Booking request at : '.$value->listings->listing_title. ' has been expired',
-    
+                    'created_on' => date('Y-m-d H:i:s')
                 ]);
 
                // $value->delete();
