@@ -78,7 +78,7 @@ Route::post('/update/user/avatar', [UserController::class, 'photos']);
 
 Route::post('/booking-history', [BookingController::class, 'booking_history']);
 
-Route::get('/booking/lister', [BookingController::class, 'booking_for_lister']);
+Route::get('/booking/lister', [BookingController::class, 'booking_for_lister']); 
 
 Route::post('/change/booking-status', [BookingController::class, 'booking_status']);
 

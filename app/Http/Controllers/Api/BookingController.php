@@ -396,9 +396,10 @@ class BookingController extends Controller
                      'pay_amount' => $booking_id[0]->pay_amount,
                      'net_payable' => $booking_id[0]->net_payable,
                      'payment_flag' => $booking_id[0]->payment_flag,
-                     'booking_status' => $booking_id[0]->booking_status,
-                     'isApproved' => $booking_id[0]->isApproved,
-                     'isComplete' => $booking_id[0]->isComplete,
+                     'booking_status' => 2,
+                     'isApproved' => false,
+                     'isComplete' => false,
+                     'messeges' => 'declined by host',
                      'created_on' => date('Y-m-d H:i:s')
                  ]);
                     
