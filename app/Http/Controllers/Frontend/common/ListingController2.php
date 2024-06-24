@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\ListingAvailable;
 use App\Models\ListingAmenities;
+use App\Models\ListingRestricts;
 use App\Models\Reviews;
 use App\Models\Booking;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -211,4 +212,73 @@ class ListingController2 extends Controller
             ], 404);
         }
     }
+
+    public function filter_front(Request $request){
+        $query = Listing::where('isApproved', true)->where('isActive', true)->with(['newAmenities.amenity', 'newRestrictions.restrictions', 'images', 'reviews']);
+
+        if ($request->has('guest_number')) {
+            $query->where('guest_num', $request->input('guest_number'));
+        }
+
+        if ($request->has('bed_number')) {
+            $query->where('bed_num', $request->input('bed_number'));
+        }
+
+        if ($request->has('bathroom_number')) {
+            $query->where('bathroom_num', $request->input('bathroom_number'));
+        }
+
+        if ($request->has('allow_short_stay')) {
+            $query->where('allow_short_stay', $request->input('allow_short_stay'));
+        }
+
+        
+
+        if ($request->has('listing_type')) {
+            $listing_type = $request->input('listing_type');
+            $query->where('listing_type', 'LIKE', '%'. $listing_type . '%');
+        }
+
+        if($request->has('min_price')){
+            $query->where('full_day_price_set_by_user', '>=', $request->input('min_price'));
+        }
+
+        if($request->has('max_price')){
+            $query->where('full_day_price_set_by_user', '<=', $request->input('min_price'));
+        }
+        
+        if($request->has('amenities')){
+            $validated = $request->validate([
+                'amenities' => 'array'
+            ]);
+            if($validated){
+                $amenities = $request->input('amenities');
+                $listing_amenities = ListingAmenities::whereIn('amenities_id', $amenities)->get();
+                $listing_ids = [];
+                foreach ($listing_amenities as $key => $value) {
+                    $listing_ids[] = $value->listing_id;
+                }
+                $query->whereIn('listing_id', $listing_ids)->get();
+            }else{
+                return $validated->errors();
+            }
+        }
+
+
+        $listings = $query->get();
+
+        if(count($listings)>0){
+            return response()->json([
+                'status' => 200,
+                'filtered_listings' => $listings
+            ]);
+        }else{
+            return response()->json([
+                'status' => 404,
+                'filtered_listings' => 'No listings found'
+            ], 404);
+        }
+       // return response()->json($listings);
+    }
+    
 }
