@@ -244,7 +244,7 @@ class ListingController2 extends Controller
         }
 
         if($request->has('max_price')){
-            $query->where('full_day_price_set_by_user', '<=', $request->input('min_price'));
+            $query->where('full_day_price_set_by_user', '<=', $request->input('max_price'));
         }
         
         if($request->has('amenities')){
