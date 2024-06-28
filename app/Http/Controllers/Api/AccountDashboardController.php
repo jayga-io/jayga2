@@ -9,12 +9,15 @@ use App\Models\ListerDashboard;
 
 class AccountDashboardController extends Controller
 {
+
+
     public function dashboard(Request $request){
         $valid = $request->validate([
             'lister_id' => 'required',
         ]);
 
         if($valid){
+            
             $dash = ListerDashboard::where('lister_id', $request->query('lister_id'))->get();
             if(count($dash)>0){
                 return response()->json([
