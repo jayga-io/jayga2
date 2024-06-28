@@ -316,14 +316,14 @@ class ListingController2 extends Controller
         }
 
 
-        $listings = $query->get();
+        $listings = $query->paginate(10);
 
-        $paginated_listings = $listings->paginate(10);
+        
 
         if(count($listings)>0){
             return response()->json([
                 'status' => 200,
-                'filtered_listings' => $paginated_listings
+                'filtered_listings' => $listings
             ]);
         }else{
             return response()->json([
