@@ -60,66 +60,7 @@ class ListingController2 extends Controller
         }
     }
 
-    public function filter_list(Request $request){
-
-        $validated = $request->validate([
-            'listing_type' => 'required',
-            'min_price' => 'required',
-            'max_price' => 'required',
-            'allow_short_stay' => 'required',
-            'guest_num' => 'required',
-            'bed_num' => 'required',
-            'bathroom_num' => 'required',
-
-        ]);
-        if($validated){
-            $key = $request->query('key');
-            $amenities[] = $request->input('amenities');
-
-            $ls = ListingAmenities::whereIn('amenities_id', $amenities)->get();
-            $ls_ids = [];
-
-            foreach ($ls as $key => $value) {
-                $ls_ids[] = $value->listing_id;
-            }
-
-            $filter = QueryBuilder::for(Listing::class)
-            ->where('isApproved', true)->where('isActive', true)
-            ->where('listing_type', $request->query('listing_type'))
-            ->whereIn('listing_id', $ls_ids)
-            ->where('full_day_price_set_by_user', '>=', $request->query('min_price'))
-            ->where('full_day_price_set_by_user', '<=', $request->query('max_price'))
-            ->where('allow_short_stay', $request->query('allow_short_stay'))
-            ->where(function($query) use ($key) {
-                $query->where('district', 'LIKE', '%' . $key . '%')
-                      ->orWhere('town', 'LIKE', '%' . $key . '%')
-                      ->orWhere('listing_address', 'LIKE', '%' . $key . '%')
-                      ->orWhere('listing_description', 'LIKE', '%' . $key . '%')
-                      ->orWhere('listing_title', 'LIKE', '%' . $key . '%');
-                // Add more ->orWhere() calls for additional columns if needed
-            })
-            ->allowedFilters(['guest_num', 'bed_num', 'bathroom_num'])
-            ->with('images')
-            ->with('newAmenities.amenity')
-            ->with('newRestrictions.restrictions')
-            ->with('reviews')
-            ->get();
-            if(count($filter)>0){
-                return response()->json([
-                    'status' => 200,
-                    'filterd_listings' => $filter
-                ]);
-            }else{
-                return response()->json([
-                    'status' => 404,
-                    'filterd_listings' => 'No Listings Found'
-                ], 404);
-            }
-        }else{
-            return $validated->errors();
-        }
-        
-    }
+    
 
     public function search_list(Request $request){
         $validated = $request->validate([
