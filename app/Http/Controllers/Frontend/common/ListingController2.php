@@ -191,11 +191,11 @@ class ListingController2 extends Controller
         }
 
         if($request->has('district')){
-            $query->where('district', $request->input('district'));
+            $query->where('district', 'LIKE', '%'.$request->input('district').'%');
         }
 
         if($request->has('city')){
-            $query->where('town', $request->input('city'));
+            $query->where('town', 'LIKE', '%'.$request->input('city').'%');
         }
         
         if($request->has('amenities')){
