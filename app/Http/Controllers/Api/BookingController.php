@@ -18,6 +18,7 @@ use App\Jobs\SendBookingEmail;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Mail\Message;
+use Illuminate\Support\Str;
 use Artisan;
 
 class BookingController extends Controller
@@ -49,6 +50,7 @@ class BookingController extends Controller
             
             $check = Booking::where('transaction_id', $request->input('transaction_id'))->get();
             $user = User::where('id', $request->input('user_id'))->get();
+            $booking_number = Str::random(5);
            
             if(count($check)>0){
                 return response()->json([
@@ -59,6 +61,7 @@ class BookingController extends Controller
                 Booking::create([
                 'user_id' => $request->input('user_id'),
                 'booking_order_name' => $user[0]->name,
+                'booking_number' => 'Jg'.$booking_number,
                 'transaction_id' => $request->input('transaction_id'),
                 'lister_id' => $request->input('lister_id'),
                 'listing_id' => $request->input('listing_id'),
@@ -482,6 +485,7 @@ class BookingController extends Controller
                 'isComplete' => true,
                 'net_payable' => $lister_earn
             ]);
+
             $earning = ListerDashboard::where('lister_id', $request->input('lister_id'))->get();
             if(count($earning)>0){
                $update_earnings = $earning[0]->earnings + $lister_earn;
@@ -500,6 +504,10 @@ class BookingController extends Controller
             }
     
             $books = Booking::where('booking_id', $id)->with('listings')->get();
+
+            Listing::where('listing_id', $request->input('listing_id'))->update([
+                'booking_count' => $books[0]->listings->booking_count + 1
+            ]);
     
             JaygaEarn::create([
                 'invoice' => $books[0]->invoice_number,
