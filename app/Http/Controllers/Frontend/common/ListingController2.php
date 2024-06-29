@@ -13,6 +13,8 @@ use App\Models\Booking;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 
 class ListingController2 extends Controller
 {
