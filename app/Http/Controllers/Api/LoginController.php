@@ -116,24 +116,33 @@ class LoginController extends Controller
            if($validated){
                 $validateUser = User::where('access_token', $request->input('acc_token'))->get();
                 if(count($validateUser)>0){
-                     User::where('access_token', $request->input('acc_token'))->update([
-                        'name' => $request->input('user_name'),
-                        'email' => $request->input('user_email'),
-                        'user_dob' => $request->input('user_dob'),
-                        'phone' => $request->input('phone'),
-                        
-                        'user_address' => $request->input('user_address'),
-                        'is_lister' => $request->input('is_lister'),
-                        'user_long' => $request->input('user_long'),
-                        'user_lat' => $request->input('user_lat'),
-                        'FCM_token' => $request->input('FCM_token'),
-                        'platform_tag' => $request->input('platform_tag'),
-                    ]);
+                    $checkemail = User::where('email', $request->input('user_email'))->get();
+                    if(count($checkemail)>0){
+                        return response()->json([
+                            'status' => 401,
+                            'messege' => 'Duplicate email exists. Please use a different email'
+                        ], 401);
+                    }else{
+                        User::where('access_token', $request->input('acc_token'))->update([
+                            'name' => $request->input('user_name'),
+                            'email' => $request->input('user_email'),
+                            'user_dob' => $request->input('user_dob'),
+                            'phone' => $request->input('phone'),
+                            
+                            'user_address' => $request->input('user_address'),
+                            'is_lister' => $request->input('is_lister'),
+                            'user_long' => $request->input('user_long'),
+                            'user_lat' => $request->input('user_lat'),
+                            'FCM_token' => $request->input('FCM_token'),
+                            'platform_tag' => $request->input('platform_tag'),
+                        ]);
 
-                    return response()->json([
-                        'status' => 200,
-                        'messege' => 'user info updated'
-                    ]);
+                        return response()->json([
+                            'status' => 200,
+                            'messege' => 'user info updated'
+                        ]);
+                    }
+                     
 
                 }else{
                     return response()->json([
