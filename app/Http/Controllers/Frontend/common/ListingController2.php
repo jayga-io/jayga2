@@ -133,7 +133,7 @@ class ListingController2 extends Controller
         if(count($ls)>0){
             $initial_count = Listing::where('listing_id', $id)->get();
             Listing::where('listing_id', $id)->update([
-                'view_count' => $initial_count[0]->count + 1
+                'view_count' => $initial_count[0]->view_count + 1
             ]);
             return response()->json([
                 'status' => 200,
