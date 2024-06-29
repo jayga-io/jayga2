@@ -35,6 +35,7 @@ class Kernel extends ConsoleKernel
                     'user_id' => $value->user_id,
                     'listing_id' => $value->listing_id,
                     'booking_id' => $value->booking_id,
+                    'booking_number' => $value->booking_number,
                     'lister_id' => $value->lister_id,
                     'listing_title' => $value->listings->listing_title,
                     'listing_type' => $value->listings->listing_type,
