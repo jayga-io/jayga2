@@ -68,7 +68,15 @@
                 <li> <a href="/admin"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
 
                 <li class="list-divider"></li>
-                <li > <a href="{{ route('pendinglisting') }}"> Pending Listings </a> </li>
+                <li >
+                    <a href="{{ route('pendinglisting') }}">Pending Listings
+                        <span class="position-absolute translate-right badge rounded-pill">
+                            <small>({{DB::table('listings')->where('isApproved', false)->count()}})</small>
+                        
+                        </span>
+                    </a>
+                    
+                </li>
                 
                 <li ><a href="{{route('withdraw_req')}}">Withdraw Requests </a></li>
                 <li ><a href="{{route('show_refunds')}}">Refund Requests</a></li>

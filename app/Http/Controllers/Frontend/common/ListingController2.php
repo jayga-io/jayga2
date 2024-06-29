@@ -189,6 +189,14 @@ class ListingController2 extends Controller
         if($request->has('max_price')){
             $query->where('full_day_price_set_by_user', '<=', $request->input('max_price'));
         }
+
+        if($request->has('district')){
+            $query->where('district', $request->input('district'));
+        }
+
+        if($request->has('city')){
+            $query->where('town', $request->input('city'));
+        }
         
         if($request->has('amenities')){
             $validated = $request->validate([
