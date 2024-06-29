@@ -85,6 +85,8 @@
 									<th>Listing Type</th>
 									<th>Approval Status</th>
 									<th>Active Status</th>
+									<th>Total viewed</th>
+									<th>Total Bookings</th>
 									<th>View</th>
 									<th>Disable</th>
 									<th>Delete</th>
@@ -119,6 +121,9 @@
 										@else
 											<td><span class="badge rounded-pill bg-secondary" style="color: white">Inactive</span></td>
 										@endif
+
+										<td>{{$item->view_count}}</td>
+										<td>{{$item->booking_count}}</td>
 										<td><a href="/admin/view-listing/{{$item->listing_id}}" class="btn btn-warning"><i class="fa fa-eye"></i></a></td>
 										@if ($item->isApproved == false)
 										<td><a href="/admin/enable-listing/{{$item->listing_id}}" class="btn btn-success">Enable</a></td>
