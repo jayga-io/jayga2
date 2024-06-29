@@ -124,9 +124,7 @@ class ListingController2 extends Controller
         }
 
         foreach ($userunavailables as $key => $value) {
-           array_push($userdisabled_dates, [
-            'disabled_dates_by_host' => $value->dates
-           ]);
+           $userdisabled_dates[] = $value->dates;
         }
 
        // dd($checkindates);
