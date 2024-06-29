@@ -13,7 +13,7 @@ use Illuminate\Mail\Message;
 class RefundsController extends Controller
 {
     public function show_refunds(Request $request){
-        $rf = Refunds::with('user')->with('listing')->get();
+        $rf = Refunds::orderBy('created_at', 'DESC')->with('user')->with('listing')->get();
         return view('admin.refunds.refunds')->with('refunds', $rf);
     }
 

@@ -62,7 +62,7 @@ class ListingController extends Controller
     }
 
     public function pending_listings(Request $request){
-        $listings = Listing::where('isActive', true)->where('isApproved', false)->get();
+        $listings = Listing::where('isActive', true)->where('isApproved', false)->orderBy('created_at', 'DESC')->get();
         return view('admin.listings.pending-listing')->with('pending', $listings);
     }
     /**

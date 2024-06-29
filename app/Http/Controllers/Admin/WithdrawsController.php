@@ -12,7 +12,7 @@ use Illuminate\Mail\Message;
 class WithdrawsController extends Controller
 {
     public function show(Request $request){
-        $withdraws =  Withdraws::where('status', false)->get();
+        $withdraws =  Withdraws::where('status', false)->orderBy('created_at', 'DESC')->get();
         return view('admin.withdraws.withdraw')->with('withdraws', $withdraws);
     }
 
