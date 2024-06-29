@@ -69,17 +69,47 @@
 
                 <li class="list-divider"></li>
                 <li >
-                    <a href="{{ route('pendinglisting') }}">Pending Listings
-                        <span class="position-absolute translate-right badge rounded-pill">
-                            <small>({{DB::table('listings')->where('isApproved', false)->count()}})</small>
-                        
-                        </span>
-                    </a>
+                    @if (DB::table('listings')->where('isApproved', false)->count() > 0)
+                        <a href="{{ route('pendinglisting') }}">Pending Listings
+                            <span class="badge badge-pill badge-danger">
+                                <small>({{DB::table('listings')->where('isApproved', false)->count()}})</small>
+                            
+                            </span>
+                        </a>
+                    @else
+                        <a href="{{ route('pendinglisting') }}">Pending Listings</a>
+                    @endif
+                   
                     
                 </li>
                 
-                <li ><a href="{{route('withdraw_req')}}">Withdraw Requests </a></li>
-                <li ><a href="{{route('show_refunds')}}">Refund Requests</a></li>
+                <li >
+                    @if (DB::table('withdraws')->where('status', false)->count() > 0)
+                        <a href="{{route('withdraw_req')}}">Withdraw Requests 
+                            <span class="badge badge-pill badge-danger">
+                                <small>({{DB::table('withdraws')->where('status', false)->count()}})</small>
+                            
+                            </span>
+                        </a>
+                    @else
+                        <a href="{{route('withdraw_req')}}">Withdraw Requests </a>
+                    @endif
+                    
+                </li>
+                <li >
+
+                    @if (DB::table('refunds')->where('isPaid', false)->count() > 0)
+                        <a href="{{route('show_refunds')}}">Refund Requests
+                            <span class="badge badge-pill badge-danger">
+                                <small>({{DB::table('refunds')->where('isPaid', false)->count()}})</small>
+                            
+                            </span>
+                        </a>
+                    @else
+                        <a href="{{route('show_refunds')}}">Refund Requests</a> 
+                    @endif
+                    
+                </li>
 
                 <li class="list-divider"></li>
                 <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span
