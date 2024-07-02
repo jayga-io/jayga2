@@ -266,7 +266,7 @@ class ListingController extends Controller
         
     }
 
-    public function images(Request $request){
+    public function add_images(Request $request){
         $file = $request->file('listing_pictures');
         $validated = $request->validate([
             'listing_id' => 'required',
@@ -275,14 +275,14 @@ class ListingController extends Controller
         ]);
         if($validated){
 
-            $existed_images = ListingImages::where('listing_id', $request->input('listing_id'))->get();
+           // $existed_images = ListingImages::where('listing_id', $request->input('listing_id'))->get();
             
             if(count($file)>0){
 
                 //delete previous files
-                foreach ($existed_images as $key => $value) {
+              /*  foreach ($existed_images as $key => $value) {
                     Storage::delete($value->listing_targetlocation);
-                }
+                } */
                 
                 foreach ($file as $f) {
                 $path = $f->store('listings');
@@ -306,6 +306,35 @@ class ListingController extends Controller
         }else{
             return $validated->errors();
         }
+    }
+
+    public function remove_images(Request $request){
+
+        $validated = $request->validate([
+            'image_id' => 'required',
+        ]);
+
+        if($validated){
+            $existed_images = ListingImages::where('listing_img_id', $request->input('image_id'))->get();
+            if(count($existed_images)>0){
+                Storage::delete($existed_images[0]->listing_targetlocation);
+                ListingImages::where('listing_img_id', $id)->delete();
+
+                return response()->json([
+                    'status' => 200,
+                    'messege' => 'Image deleted'
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 404,
+                    'messege' => 'No image found'
+                ], 404);
+            }
+        }else{
+            return $validated->errors();
+        }
+
+        
     }
 
     public function listing_nid(Request $request){

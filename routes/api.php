@@ -58,7 +58,9 @@ Route::post('/listing-nid/upload', [ListingController::class, 'listing_nid']);
 
 Route::post('/add/listing', [ListingController::class, 'create']);
 
-Route::post('/add/listing-images', [ListingController::class, 'images']);
+Route::post('/add/listing-images', [ListingController::class, 'add_images']);
+
+Route::post('/remove/listing-images', [ListingController::class, 'remove_images']);
 
 Route::post('/add/booking', [BookingController::class, 'book']);
 
