@@ -318,7 +318,7 @@ class ListingController extends Controller
             $existed_images = ListingImages::where('listing_img_id', $request->input('image_id'))->get();
             if(count($existed_images)>0){
                 Storage::delete($existed_images[0]->listing_targetlocation);
-                ListingImages::where('listing_img_id', $id)->delete();
+                ListingImages::where('listing_img_id', $request->input('image_id'))->delete();
 
                 return response()->json([
                     'status' => 200,
