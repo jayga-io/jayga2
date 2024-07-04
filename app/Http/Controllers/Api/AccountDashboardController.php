@@ -19,10 +19,12 @@ class AccountDashboardController extends Controller
         if($valid){
             
             $dash = ListerDashboard::where('lister_id', $request->query('lister_id'))->get();
+            $total_bookings = Booking::where('lister_id', $request->query('lister_id'))->where('booking_status', 1)->count();
             if(count($dash)>0){
                 return response()->json([
                     'status' => 200,
-                    'dashboard' => $dash
+                    'dashboard' => $dash,
+                    'total_bookings' => $total_bookings
                 ]);
             }else{
                 return response()->json([
