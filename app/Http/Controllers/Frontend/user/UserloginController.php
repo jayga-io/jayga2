@@ -169,91 +169,33 @@ class UserloginController extends Controller
             'id' => 'integer|required',
             'email' => 'string',
             'phone' => 'string',
-            /*
-            'name' => 'string',
             
-            'user_nid' => 'Integer',
-            'user_dob' => 'string',
-            'user_address' => 'string',
-            'user_lat' => 'double',
-            'user_long' => 'double',
-            'about' => 'string',
-            'platform_tag' => 'string',
-            */
         ]);
 
         if($validated){
-            $id = $request->input('id');
-            $conflictCheck = User::where('phone', $request->input('phone'))->orWhere('email', $request->input('email'))->get();
-
-            if(count($conflictCheck)>0){
-                return response()->json([
-                    'status' => 403,
-                    'messege' => 'Phone number / Email already taken'
-                ], 403);
-            }else{
-                 User::where('id', $id)->update($request->all());
-                 return response()->json([
-                    'status' => 200,
-                    'message' => 'User information updated'
-                ]);
-            }
-           
-
-            /*
-            if($file = $request->file('photo')){
-                $avatar = UserPictures::where('user_id', $id)->get();
-                if(count($avatar)>0){
-                    Storage::delete($avatar[0]->user_targetlocation);
-                    $path = $file->store('useravatars');
-                    UserPictures::where('user_id', $id)->update([
-                        'user_id' => $id,
-                        'user_filename' => $file->hashName(),
-                        'user_targetlocation' => $path
-                    ]);
+            $checkConflict = User::where('phone', $request->input('phone'))->orWhere('email', $request->input('email'))->get();
+                
+                if(count($checkConflict)>0){
+                    if($checkConflict[0]->phone == null || $checkConflict[0]->email == null){
+                        User::where('id', $request->input('id'))->update($request->all());
+                        return response()->json([
+                            'status' => 200,
+                            'messege' => 'User information updated'
+                        ]);
+                    }else{
+                        return response()->json([
+                            'status' => 403,
+                            'messege' => 'Phone number / Email already taken'
+                        ], 403);
+                    }
+                    
                 }else{
-                    $path = $file->store('useravatars');
-                    UserPictures::create([
-                        'user_id' => $id,
-                        'user_filename' => $file->hashName(),
-                        'user_targetlocation' => $path
+                    User::where('id', $request->input('id'))->update($request->all());
+                    return response()->json([
+                        'status' => 200,
+                        'messege' => 'User information updated'
                     ]);
                 }
-            }
-
-            if($nid = $request->file('nid')){
-                $nids = UserNid::where('user_id', $id)->get();
-                if(count($nids)>0){
-                    foreach ($nids as $value) {
-                        Storage::delete($value->user_nid_targetlocation);
-                    }
-                    foreach ($nid as $values) {
-                        $path = $values->store('user_nids');
-                        
-                        UserNid::where('user_id', $id)->update([
-                            'user_id' => $id ,
-                            'user_nid_filename' => $values->hashName(), 
-                            'user_nid_targetlocation' => $path 
-                           
-                            
-                        ]);
-                    }
-
-                }else{
-                    foreach ($nid as $item) {
-                        $path = $item->store('user_nids');
-                        UserNid::create([
-                            'user_id' => $id ,
-                            'user_nid_filename' => $item->hashName(), 
-                            'user_nid_targetlocation' => $path 
-                           
-                            
-                        ]);
-                    }
-                }
-            }
-            */
-
             
         }else{
             return $validated->errors();
