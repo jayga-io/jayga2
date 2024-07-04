@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ListerDashboard;
-use App\Models\Booking;
+use App\Models\BookingHistory;
 
 
 class AccountDashboardController extends Controller
@@ -20,7 +20,7 @@ class AccountDashboardController extends Controller
         if($valid){
             
             $dash = ListerDashboard::where('lister_id', $request->query('lister_id'))->get();
-            $total_bookings = Booking::where('lister_id', $request->query('lister_id'))->where('booking_status', 1)->count();
+            $total_bookings = BookingHistory::where('lister_id', $request->query('lister_id'))->where('isComplete', true)->count();
             if(count($dash)>0){
                 return response()->json([
                     'status' => 200,

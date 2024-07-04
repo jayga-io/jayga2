@@ -540,7 +540,7 @@ class BookingController extends Controller
                 'payment_flag' => $books[0]->payment_flag,
                 'booking_status' => $books[0]->booking_status,
                 'isApproved' => $books[0]->isApproved,
-                'isComplete' => $books[0]->isComplete,
+                'isComplete' => true,
                 'created_on' => date('Y-m-d H:i:s')
             ]);
     
