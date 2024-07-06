@@ -3,7 +3,7 @@
     <div>
         
 
-        <div class="container my-2">
+        <div class="container my-5">
             <h1 class="mb-4">All Reports</h1>
             <table id="myTable" class="display">
 				<thead>

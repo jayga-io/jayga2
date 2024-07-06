@@ -20,6 +20,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\Api\ListingUtilityController;
 use App\Http\Controllers\Api\TimeSlotsController;
 use App\Http\Controllers\Api\FeedbackController;
+use App\Http\Controllers\Api\ReportsController;
 
 use App\Http\Controllers\FirebaseController;
 
@@ -185,7 +186,8 @@ Route::post('/set/server-key', [FirebaseController::class, 'create']);
 //add disable slots
 Route::post('/add/disable-slots', [ListingAvailability::class, 'store_disabled_slots']);
 
-
+//report submit api
+Route::post('/submit/report', [ReportsController::class, 'submit_report']);
 
 
 //Front side apis
