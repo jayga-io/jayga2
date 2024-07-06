@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Jaygaa Dashboard | All Listings</title>
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 	<link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
@@ -71,7 +71,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col mx-5">
+					<div class="col">
 						<table id="myTable" class="display">
 							<thead>
 								<tr>
