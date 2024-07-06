@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Reports;
+use App\Models\Listing;
 
 class ReportsController extends Controller
 {
@@ -12,13 +13,14 @@ class ReportsController extends Controller
         $validated = $request->validate([
             'user_id' => 'required',
             'listing_id' => 'required',
-            'lister_id' => 'required',
+            
             
         ]);
         if($validated){
+            $lister = Listing::where('listing_id', $request->input('listing_id'))->get();
             Reports::create([
                 'listing_id' => $request->input('listing_id'),
-                'lister_id' => $request->input('lister_id'),
+                'lister_id' => $lister[0]->lister_id,
                 'user_id' => $request->input('user_id'),
                 'report_category_id' => $request->input('report_category_id'),
                 
