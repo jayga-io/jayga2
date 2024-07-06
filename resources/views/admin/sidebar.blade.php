@@ -225,8 +225,8 @@
                 <li class="submenu"> <a href="#"><i class="fe fe-table"></i> <span> Reports </span> <span
                             class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        <li><a href="expense-reports.php">Expense Report </a></li>
-                        <li><a href="invoice-reports.php">Invoice Report </a></li>
+                        <li><a href="{{route('addreportcategory')}}">Add Report Category </a></li>
+                        <li><a href="#">Reports </a></li>
                     </ul>
                 </li>
                 <li> <a href="{{route('userfeedback')}}"><i class="fas fa-cog"></i> <span>User Feedbacks</span></a> </li>

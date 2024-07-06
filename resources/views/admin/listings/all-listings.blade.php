@@ -71,7 +71,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col">
+					<div class="col mx-5">
 						<table id="myTable" class="display">
 							<thead>
 								<tr>

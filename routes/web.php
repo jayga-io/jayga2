@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AmenitiesListController;
 use App\Http\Controllers\Admin\RestrictionListController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\FeedbackController;
+use App\Http\Controllers\Admin\ListingReportCategoriesController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Host\HostController;
 use App\Http\Controllers\Host\ListerDashboardController;
@@ -175,6 +176,11 @@ Route::prefix('admin')->group(function(){
         //feedback section
         Route::get('/feedbacks', [FeedbackController::class, 'show'])->name('userfeedback');
 
+
+        //report section
+        Route::get('/reports', [ListingReportCategoriesController::class, 'index'])->name('getallreports');
+        Route::post('/add/report/category', [ListingReportCategoriesController::class, 'add_report_category'])->name('addreportcategory');
+        Route::post('/update/report/category', [ListingReportCategoriesController::class, 'update_report_category'])->name('updatereportcategory');
 
     });
 
