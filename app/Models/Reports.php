@@ -14,7 +14,7 @@ class Reports extends Model
     protected $guarded = [];
 
     public function report_category(){
-        return $this->hasOne(ListingReportCategories::class, 'id', 'id');
+        return $this->hasOne(ListingReportCategories::class, 'report_category_id', 'id');
     }
 
     public function user(){
