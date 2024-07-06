@@ -22,7 +22,9 @@ class ListingReportCategoriesController extends Controller
     }
 
     public function update_report_category(Request $request){
-        ListingReportCategories::where('id', $request->input('report_id'))->update($request->all());
+        ListingReportCategories::where('id', $request->input('report_id'))->update([
+            'category_name' => $request->input('category_name')
+        ]);
         return redirect()->back()->with('success', 'Category name updated');
     }
 }
