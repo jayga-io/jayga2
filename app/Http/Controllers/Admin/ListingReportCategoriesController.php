@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ListingReportCategories;
+use App\Models\Reports;
 
 class ListingReportCategoriesController extends Controller
 {
@@ -26,5 +27,11 @@ class ListingReportCategoriesController extends Controller
             'category_name' => $request->input('category_name')
         ]);
         return redirect()->back()->with('success', 'Category name updated');
+    }
+
+
+    public function show_reports(Request $request){
+        $rep = Reports::with('report_category')->with('user')->with('lister')->with('listing')->get();
+        return view('admin.listingreports.listingreports')->with('reports', $rep);
     }
 }

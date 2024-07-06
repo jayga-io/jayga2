@@ -181,7 +181,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/reports', [ListingReportCategoriesController::class, 'index'])->name('getallreports');
         Route::post('/add/report/category', [ListingReportCategoriesController::class, 'add_report_category'])->name('addreportcategory');
         Route::post('/update/report/category', [ListingReportCategoriesController::class, 'update_report_category'])->name('updatereportcategory');
-
+        Route::get('/show/reports', [ListingReportCategoriesController::class, 'show_reports'])->name('showuserreports');
     });
 
     Route::get('/login', [AdminController::class, 'login'])->name('adminlogin');

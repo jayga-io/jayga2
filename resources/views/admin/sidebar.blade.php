@@ -226,7 +226,7 @@
                             class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="{{route('getallreports')}}">Add Report Category </a></li>
-                        <li><a href="#">Reports </a></li>
+                        <li><a href="{{route('showuserreports')}}">Reports </a></li>
                     </ul>
                 </li>
                 <li> <a href="{{route('userfeedback')}}"><i class="fas fa-cog"></i> <span>User Feedbacks</span></a> </li>
