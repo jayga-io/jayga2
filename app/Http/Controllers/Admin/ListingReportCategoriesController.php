@@ -11,7 +11,7 @@ class ListingReportCategoriesController extends Controller
 {
     public function index(Request $request){
         $reports = ListingReportCategories::all();
-        return view('admin.listingreports.reports')->with('reports', $reports);
+        return view('admin.listingreports.addreports')->with('reports', $reports);
     }
 
     public function add_report_category(Request $request){

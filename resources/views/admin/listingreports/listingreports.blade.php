@@ -9,12 +9,13 @@
 				<thead>
 					<tr>
 						<th>id</th>
-						<th>listing id</th>
-                        <th>listing title</th>
-                        <th>lister</th>
-                        <th>user</th>
-                        <th>comments</th>
-						<th>delete</th>
+						<th>Listing id</th>
+                        <th>Listing title</th>
+                        <th>Lister</th>
+                        <th>From User</th>
+						<th>Report Type</th>
+                        <th>Comments</th>
+						<th>Delete</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -26,6 +27,7 @@
 							<td>{{$item->listing->listing_title}}</td>
                             <td>{{$item->lister->name}}</td>
                             <td>{{$item->user->name}}</td>
+							<td>{{$item->report_category->category_name}}</td>
                             <td>{{$item->comments}}</td>
                             <td>Delete</td>
 						</tr>
