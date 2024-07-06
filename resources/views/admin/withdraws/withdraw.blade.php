@@ -98,7 +98,7 @@
 										<td>{{ $item->user_name }}</td>
 										<td>{{ $item->phone }}</td>
 										<td>{{ $item->bank_name }}</td>
-										<td>{{ $item->acc_name }} tk/-</td>
+										<td>{{ $item->acc_name }}</td>
 										<td>{{ $item->acc_number }}</td>
 										
 										<td>{{$item->routing_num}}</td>
