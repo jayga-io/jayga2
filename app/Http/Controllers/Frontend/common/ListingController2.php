@@ -158,7 +158,7 @@ class ListingController2 extends Controller
         $query = Listing::where('isApproved', true)->where('isActive', true)->with(['newAmenities.amenity', 'newRestrictions.restrictions', 'images', 'reviews']);
 
         if ($request->has('guest_number')) {
-            $query->where('guest_num', $request->input('guest_number'));
+            $query->where('guest_num', '>=', $request->input('guest_number'));
         }
 
         if ($request->has('bed_number')) {
@@ -265,7 +265,7 @@ class ListingController2 extends Controller
         }
 
 
-        $listings = $query->paginate(10);
+        $listings = $query->orderBy('guest_num')->paginate(10);
 
         
 
