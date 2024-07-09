@@ -285,13 +285,16 @@ class ListingController extends Controller
                 } */
                 
                 foreach ($file as $f) {
-                $path = $f->store('listings');
-                ListingImages::create([
-                    'listing_id' => $request->input('listing_id'),
-                    'lister_id' => $request->input('lister_id'),
-                    'listing_filename' => $f->hashName(),
-                    'listing_targetlocation' => $path,
-                ]);
+                   
+                    $path = public_path('usercovers/'. $f->hashName());
+                    $this->reduceImageFileSize($f, $path);
+                   // $path = $f->store('listings');
+                    ListingImages::create([
+                        'listing_id' => $request->input('listing_id'),
+                        'lister_id' => $request->input('lister_id'),
+                        'listing_filename' => $f->hashName(),
+                        'listing_targetlocation' => $path,
+                    ]);
                 }
                 return response()->json([
                     'status' => 200,
@@ -307,6 +310,40 @@ class ListingController extends Controller
             return $validated->errors();
         }
     }
+
+
+    private function reduceImageFileSize($image, $path)
+    {
+        // Get the image type
+        $imageType = $image->getClientOriginalExtension();
+
+        // Create an image resource from the uploaded file
+        switch ($imageType) {
+            case 'jpeg':
+            case 'jpg':
+                $img = imagecreatefromjpeg($image);
+                imagejpeg($img, $path, 75); // Adjust the quality parameter to reduce file size
+                break;
+
+            case 'png':
+                $img = imagecreatefrompng($image);
+                imagepng($img, $path, 8); // Adjust the compression parameter to reduce file size
+                break;
+
+            case 'gif':
+                $img = imagecreatefromgif($image);
+                imagegif($img, $path);
+                break;
+
+            default:
+                throw new \Exception('Unsupported image type');
+        }
+
+        // Free up memory
+        imagedestroy($img);
+    }
+
+
 
     public function remove_images(Request $request){
 
