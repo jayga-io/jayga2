@@ -21,6 +21,13 @@
                             @foreach ($user as $item)
                                 <tr>
                                     <td>{{$counter}}</td>
+                                    @if($item->user->name == null)
+                                        <td>{{$item->user->email}}</td>
+                                    @elseif($item->user->email == null)
+                                        <td>{{$item->user->phone}}</td>
+                                    @else
+                                        <td>{{$item->user->name}}</td>
+                                    @endif
                                     <td>{{$item->user->name}}</td>
                                     <td>{{$item->note}}</td>
                                     <td>{{$item->type}}</td>
