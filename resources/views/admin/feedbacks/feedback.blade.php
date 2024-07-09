@@ -21,7 +21,7 @@
                             @foreach ($user as $item)
                                 <tr>
                                     <td>{{$counter}}</td>
-                                    <td>{{$item->users->name}}</td>
+                                    <td>{{$item->user->name}}</td>
                                     <td>{{$item->note}}</td>
                                     <td>{{$item->type}}</td>
                                     <td>{{$item->created_at->diffForHumans()}}</td>
