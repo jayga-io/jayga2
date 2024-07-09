@@ -21,7 +21,13 @@
                             @foreach ($user as $item)
                                 <tr>
                                     <td>{{$counter}}</td>
-                                    <td>Anonymous User</td>
+
+                                    @if ($item->users->name == null)
+                                        <td>Anonymous User</td>
+                                    @else
+                                        <td>{{$item->users->name}}</td>
+                                    @endif
+                                    
                                     
                                     <td>{{$item->note}}</td>
                                     <td>{{$item->type}}</td>
