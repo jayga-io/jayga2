@@ -22,10 +22,10 @@
                                 <tr>
                                     <td>{{$counter}}</td>
 
-                                    @if ($item->users->name == null)
+                                    @if ($item->email == null)
                                         <td>Anonymous User</td>
                                     @else
-                                        <td>{{$item->users->name}}</td>
+                                        <td>{{$item->email}}</td>
                                     @endif
                                     
                                     
