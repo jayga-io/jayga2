@@ -286,7 +286,7 @@ class ListingController extends Controller
                 
                 foreach ($file as $f) {
                    
-                    $path = public_path('usercovers/'. $f->hashName());
+                    $path = store('usercovers/'. $f->hashName());
                     $this->reduceImageFileSize($f, $path);
                    // $path = $f->store('listings');
                     ListingImages::create([
