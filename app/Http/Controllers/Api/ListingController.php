@@ -285,13 +285,15 @@ class ListingController extends Controller
                 } */
                 
                 foreach ($file as $f) {
-                $path = $f->store('usercovers');
-                ListingImages::create([
-                    'listing_id' => $request->input('listing_id'),
-                    'lister_id' => $request->input('lister_id'),
-                    'listing_filename' => $f->hashName(),
-                    'listing_targetlocation' => $path,
-                ]);
+                    //$path = $f->store('usercovers');
+                    $path = Storage::putFile('usercovers');
+                    $this->reduceImageFileSize($f, $path);
+                    ListingImages::create([
+                        'listing_id' => $request->input('listing_id'),
+                        'lister_id' => $request->input('lister_id'),
+                        'listing_filename' => $f->hashName(),
+                        'listing_targetlocation' => $path,
+                    ]);
                 }
                 return response()->json([
                     'status' => 200,
