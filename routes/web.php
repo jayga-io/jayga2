@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\RestrictionListController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\ListingReportCategoriesController;
+use App\Http\Controllers\Admin\VoucharController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Host\HostController;
 use App\Http\Controllers\Host\ListerDashboardController;
@@ -182,6 +183,14 @@ Route::prefix('admin')->group(function(){
         Route::post('/add/report/category', [ListingReportCategoriesController::class, 'add_report_category'])->name('addreportcategory');
         Route::post('/update/report/category', [ListingReportCategoriesController::class, 'update_report_category'])->name('updatereportcategory');
         Route::get('/show/reports', [ListingReportCategoriesController::class, 'show_reports'])->name('showuserreports');
+
+
+        //vouchar section
+        Route::get('/vouchars', [VoucharController::class, 'get_all'])->name('getvouchars');
+        Route::post('/create/new/vouchar', [VoucharController::class, 'create_new'])->name('createnewvouchar');
+
+
+        
     });
 
     Route::get('/login', [AdminController::class, 'login'])->name('adminlogin');

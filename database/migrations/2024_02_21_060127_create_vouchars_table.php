@@ -14,11 +14,18 @@ return new class extends Migration
         Schema::create('vouchars', function (Blueprint $table) {
             $table->id();
             $table->string('vouchar_code');
-            $table->double('amount');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->string('campaign_id');
-            $table->boolean('isActive');
+            $table->string('discount_type');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('discount_value');
+            $table->integer('min_days');
+            $table->bigInteger('min_amount');
+            $table->bigInteger('max_discount');
+            $table->string('validity_start');
+            $table->string('validity_end');
+            $table->integer('usage_limit');
+            $table->bigInteger('usage_count');
+            $table->string('created_on');
             $table->timestamps();
         });
     }

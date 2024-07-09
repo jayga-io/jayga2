@@ -112,6 +112,9 @@
                 </li>
 
                 <li class="list-divider"></li>
+                <li>
+                    <a href="{{route('getvouchars')}}"><i class="fas fa-tag"></i><span>Vouchars</span></a>
+                </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span
                             class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">

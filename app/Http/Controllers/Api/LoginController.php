@@ -104,10 +104,8 @@ class LoginController extends Controller
     public function register(Request $request){
         $validated = $request->validate([
             'user_name' => 'required',
-            'user_email' => 'required',
-            'user_dob' => 'required',
             'acc_token' => 'required',
-            'phone' => 'required',
+            
            ]);
 
            
@@ -116,13 +114,6 @@ class LoginController extends Controller
            if($validated){
                 $validateUser = User::where('access_token', $request->input('acc_token'))->get();
                 if(count($validateUser)>0){
-                    $checkemail = User::where('email', $request->input('user_email'))->get();
-                    if(count($checkemail)>0){
-                        return response()->json([
-                            'status' => 401,
-                            'messege' => 'Duplicate email exists. Please use a different email'
-                        ], 401);
-                    }else{
                         User::where('access_token', $request->input('acc_token'))->update([
                             'name' => $request->input('user_name'),
                             'email' => $request->input('user_email'),
@@ -141,7 +132,7 @@ class LoginController extends Controller
                             'status' => 200,
                             'messege' => 'user info updated'
                         ]);
-                    }
+                    
                      
 
                 }else{
