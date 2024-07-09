@@ -28,7 +28,7 @@
                                     @else
                                         <td>{{$item->user->name}}</td>
                                     @endif
-                                    <td>{{$item->user->name}}</td>
+                                    
                                     <td>{{$item->note}}</td>
                                     <td>{{$item->type}}</td>
                                     <td>{{$item->created_at->diffForHumans()}}</td>
