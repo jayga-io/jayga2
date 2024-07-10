@@ -287,7 +287,18 @@ class ListingController extends Controller
                 foreach ($file as $f) {
                     //$path = $f->store('usercovers');
                     $path = Storage::putFile('usercovers', $f);
-                    $this->reduceImageFileSize($f, $path);
+                    $source = imagecreatefromstring(file_get_contents($f->getRealPath()));
+
+                    // Compress the image
+                    if ($image->getClientOriginalExtension() == 'jpeg' || $image->getClientOriginalExtension() == 'jpg') {
+                        imagejpeg($source, $path, 75); // 75 is the quality level (0-100)
+                    } elseif ($image->getClientOriginalExtension() == 'png') {
+                        imagepng($source, $path, 6); // 0 (no compression) to 9
+                    }
+        
+                    // Free up memory
+                    imagedestroy($source);
+        
                     ListingImages::create([
                         'listing_id' => $request->input('listing_id'),
                         'lister_id' => $request->input('lister_id'),
