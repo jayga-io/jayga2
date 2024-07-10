@@ -285,20 +285,7 @@ class ListingController extends Controller
                 } */
                 
                 foreach ($file as $f) {
-                    //$path = $f->store('usercovers');
-                    $path = Storage::putFile('usercovers', $f);
-                     // Create an Imagick object
-                        $imagick = new \Imagick($f->getPathname());
-
-                        // Compress the image
-                        $imagick->setImageCompressionQuality(75); // 0-100 for JPEG
-                        $imagick->stripImage(); // Remove unnecessary metadata
-                        $imagick->writeImage(Storage::putFile('usercovers/'. $f->hashName(), $f));
-
-                        // Clear the Imagick object
-                        $imagick->clear();
-                        $imagick->destroy();
-        
+                    $path = $f->store('listings');
                     ListingImages::create([
                         'listing_id' => $request->input('listing_id'),
                         'lister_id' => $request->input('lister_id'),
