@@ -290,9 +290,9 @@ class ListingController extends Controller
                     $source = imagecreatefromstring(file_get_contents($f->getRealPath()));
 
                     // Compress the image
-                    if ($image->getClientOriginalExtension() == 'jpeg' || $image->getClientOriginalExtension() == 'jpg') {
+                    if ($f->getClientOriginalExtension() == 'jpeg' || $f->getClientOriginalExtension() == 'jpg') {
                         imagejpeg($source, $path, 75); // 75 is the quality level (0-100)
-                    } elseif ($image->getClientOriginalExtension() == 'png') {
+                    } elseif ($f->getClientOriginalExtension() == 'png') {
                         imagepng($source, $path, 6); // 0 (no compression) to 9
                     }
         
