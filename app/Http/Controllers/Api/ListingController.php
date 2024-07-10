@@ -288,12 +288,12 @@ class ListingController extends Controller
                     //$path = $f->store('usercovers');
                     $path = Storage::putFile('usercovers', $f);
                      // Create an Imagick object
-                        $imagick = new \Imagick($f->getRealPath());
+                        $imagick = new \Imagick($f->getPathname());
 
                         // Compress the image
                         $imagick->setImageCompressionQuality(75); // 0-100 for JPEG
                         $imagick->stripImage(); // Remove unnecessary metadata
-                        $imagick->writeImage($path);
+                        $imagick->writeImage(Storage::putFile('usercovers', $imagick));
 
                         // Clear the Imagick object
                         $imagick->clear();
