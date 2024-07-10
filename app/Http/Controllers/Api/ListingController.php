@@ -293,7 +293,7 @@ class ListingController extends Controller
                         // Compress the image
                         $imagick->setImageCompressionQuality(75); // 0-100 for JPEG
                         $imagick->stripImage(); // Remove unnecessary metadata
-                        $imagick->writeImage(Storage::putFile('usercovers/'. $f->hashName(), $f));
+                        $imagick->writeImage(Storage::putFile('usercovers/'. $f->hashName(), $imagick));
 
                         // Clear the Imagick object
                         $imagick->clear();
