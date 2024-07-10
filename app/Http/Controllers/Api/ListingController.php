@@ -271,6 +271,7 @@ class ListingController extends Controller
         $validated = $request->validate([
             'listing_id' => 'required',
             'lister_id' => 'required',
+            'listing_pictures' => 'required|array|max:5',
             'listing_pictures.*' => 'required|image|mimes:jpeg,png,jpg|max:4048'
         ]);
         if($validated){
