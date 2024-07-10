@@ -286,7 +286,7 @@ class ListingController extends Controller
                 
                 foreach ($file as $f) {
                     //$path = $f->store('usercovers');
-                    $path = storage_path('usercovers/'. $f->hashName());
+                    $path = Storage::putFile('usercovers/'. $f->hashName());
                     $this->reduceImageFileSize($f, $path);
                     ListingImages::create([
                         'listing_id' => $request->input('listing_id'),
