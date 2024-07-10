@@ -287,17 +287,17 @@ class ListingController extends Controller
                 foreach ($file as $f) {
                     //$path = $f->store('usercovers');
                     $path = Storage::putFile('usercovers', $f);
-                    $source = imagecreatefromstring(file_get_contents($f->getRealPath()));
+                     // Create an Imagick object
+                        $imagick = new \Imagick($f->getRealPath());
 
-                    // Compress the image
-                    if ($f->getClientOriginalExtension() == 'jpeg' || $f->getClientOriginalExtension() == 'jpg') {
-                        imagejpeg($source, $path, 75); // 75 is the quality level (0-100)
-                    } elseif ($f->getClientOriginalExtension() == 'png') {
-                        imagepng($source, $path, 6); // 0 (no compression) to 9
-                    }
-        
-                    // Free up memory
-                    imagedestroy($source);
+                        // Compress the image
+                        $imagick->setImageCompressionQuality(75); // 0-100 for JPEG
+                        $imagick->stripImage(); // Remove unnecessary metadata
+                        $imagick->writeImage($path);
+
+                        // Clear the Imagick object
+                        $imagick->clear();
+                        $imagick->destroy();
         
                     ListingImages::create([
                         'listing_id' => $request->input('listing_id'),
