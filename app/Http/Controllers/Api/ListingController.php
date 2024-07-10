@@ -267,16 +267,16 @@ class ListingController extends Controller
     }
 
     public function add_images(Request $request){
-        $file = $request->file('listing_pictures');
+        
         $validated = $request->validate([
             'listing_id' => 'required',
             'lister_id' => 'required',
-            
+            'listing_pictures.*' => 'required|image|mimes:jpeg,png,jpg|max:4048'
         ]);
         if($validated){
 
            // $existed_images = ListingImages::where('listing_id', $request->input('listing_id'))->get();
-            
+           $file = $request->file('listing_pictures');
             if(count($file)>0){
 
                 //delete previous files
