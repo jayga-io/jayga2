@@ -125,7 +125,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function(){
             $today = Carbon::today();
             Vouchar::where('validity_end', '<', $today)->delete();
-        })->everyMinute();
+        })->hourly();
 
 /*
         $schedule->call(function (){
