@@ -1,6 +1,6 @@
 @extends('admin.layouts')
 @section('content')
-    <div class="my-5">
+    <div class="container my-5"> 
         <h1>All Users</h1>
 
         <div class="row my-3">

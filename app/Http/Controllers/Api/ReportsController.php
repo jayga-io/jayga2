@@ -18,19 +18,28 @@ class ReportsController extends Controller
         ]);
         if($validated){
             $lister = Listing::where('listing_id', $request->input('listing_id'))->get();
-            Reports::create([
-                'listing_id' => $request->input('listing_id'),
-                'lister_id' => $lister[0]->lister_id,
-                'user_id' => $request->input('user_id'),
-                'report_category_id' => $request->input('report_category_id'),
-                
-                'comments' => $request->input('comments')
-            ]);
+            $exists_report = Reports::where('listing_id', $request->input('listing_id'))->where('user_id', $request->input('user_id'))->get();
+            if(count($exists_report)>0){
+                return response()->json([
+                    'status' => 403,
+                    'messege' => 'Report already submitted'
+                ], 403);
+            }else{
+                Reports::create([
+                    'listing_id' => $request->input('listing_id'),
+                    'lister_id' => $lister[0]->lister_id,
+                    'user_id' => $request->input('user_id'),
+                    'report_category_id' => $request->input('report_category_id'),
+                    
+                    'comments' => $request->input('comments')
+                ]);
 
-            return response()->json([
-                'status' => 200,
-                'messege' => 'Report submitted'
-            ]);
+                return response()->json([
+                    'status' => 200,
+                    'messege' => 'Report submitted'
+                ]);
+            }
+            
         }else{
             return $validated->errors();
         }

@@ -58,7 +58,7 @@
                         <th>Validity End</th>
 						<th>Discount Type</th>
 						<th>Created on</th>
-						<th>Delete</th>
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -72,7 +72,7 @@
 							<td>{{ $item->validity_end }}</td>
 							<td>{{ $item->discount_type }}</td>
 							<td>{{ $item->created_at->format('F j, Y') }}</td>
-                            <td><button>Delete</button></td>
+                            
 						</tr>
 						<?php $counter++; ?>
 					@endforeach

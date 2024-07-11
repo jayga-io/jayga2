@@ -9,7 +9,9 @@ use App\Models\ListingAvailable;
 use App\Models\BookingHistory;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\Vouchar;
 use Artisan;
+use Carbon\Carbon;
 
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -118,6 +120,12 @@ class Kernel extends ConsoleKernel
                 'access_token' => NULL
             ]);
         })->everyMinute();
+
+
+        $schedule->call(function(){
+            $today = Carbon::today();
+            Vouchar::where('validity_end', '<', $today)->delete();
+        })->hourly();
 
 /*
         $schedule->call(function (){
