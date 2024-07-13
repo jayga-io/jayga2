@@ -21,6 +21,7 @@ use App\Http\Controllers\Api\ListingUtilityController;
 use App\Http\Controllers\Api\TimeSlotsController;
 use App\Http\Controllers\Api\FeedbackController;
 use App\Http\Controllers\Api\ReportsController;
+use App\Http\Controllers\Api\UserVoucharController;
 
 use App\Http\Controllers\FirebaseController;
 
@@ -188,6 +189,16 @@ Route::post('/add/disable-slots', [ListingAvailability::class, 'store_disabled_s
 
 //report submit api
 Route::post('/submit/report', [ReportsController::class, 'submit_report']);
+
+
+//add user vouchar api
+Route::post('/user/add/vouchar', [UserVoucharController::class, 'add_vouchar_user']);
+
+//get user vouchar
+Route::post('/user/vouchars', [UserVoucharController::class, 'get_vouchar']);
+
+//user valid vouchars
+Route::post('/user/valid/vouchars', [UserVoucharController::class, 'user_valid_vouchars']);
 
 
 //Front side apis
