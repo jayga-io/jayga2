@@ -14,6 +14,7 @@ use App\Models\ListerDashboard;
 use App\Models\ListingImages;
 use App\Models\JaygaEarn;
 use App\Models\Vouchar;
+use App\Models\UserVouchar;
 use App\Jobs\SendBookingEmail;
 
 use Illuminate\Support\Facades\Http;
@@ -70,130 +71,20 @@ class BookingController extends Controller
                         'messege' => 'Transaction id can not be same'
                     ]);
                 }else{
+
                     if($request->has('vouchar_code')){
-                        $today = Carbon::today();
-                        $vouchar = Vouchar::where('vouchar_code', $request->input('vouchar_code'))->where('validity_end', '>=', $today)->get();
-                        if(count($vouchar)>0){
-                            $usage = Booking::where('vouchar_code', $request->input('vouchar_code'))->where('user_id', $request->input('user_id'))->count();
-                            if($usage > 1){
-                                return response()->json([
-                                    'status' => 403,
-                                    'messege' => 'maximum usage amount for the vouchar for this user reached'
-                                ], 403);
-                            }else{
-                                $date1 = Carbon::createFromFormat('Y-m-d', $request->input('date_enter'));
-                                $date2 = Carbon::createFromFormat('Y-m-d', $request->input('date_exit'));
-        
-                                $daysDifference = $date1->diffInDays($date2);
-                                if($vouchar[0]->discount_type == '%'){
-                                    if($daysDifference >= '3'){
-                                        $newPayamount = ($request->input('pay_amount')*($vouchar[0]->discount_value)/100);
-                                        $deductedAmount = $request->input('pay_amount') - $newPayamount;
-                                        Booking::create([
-                                            'user_id' => $request->input('user_id'),
-                                            'booking_order_name' => $user[0]->name,
-                                            'booking_number' => 'Jg'.$booking_number,
-                                            'transaction_id' => $request->input('transaction_id'),
-                                            'lister_id' => $request->input('lister_id'),
-                                            'listing_id' => $request->input('listing_id'),
-                                            'date_enter' => $request->input('date_enter'),
-                                            'date_exit' => $request->input('date_exit'),
-                                            'short_stay_flag' => $request->input('short_stay_flag'),
-                                            'tier' => $request->input('tier'),
-                                            'total_members' => $request->input('guest_num'),
-                                            'vouchar_code' => $request->input('vouchar_code'),
-                                        // 'listing_type' => $request->input('listing_type'),
-                                            'days_stayed' => $request->input('days_stayed'),
-                                            'pay_amount' => $deductedAmount,
-                                            'net_payable' => $request->input('listing_price'),
-                                            'all_day_flag' => $request->input('all_day_flag'),
-                                            'payment_flag' => $request->input('payment_flag'),
-                                            'email' => $user[0]->email,
-                                            'phone' => $user[0]->phone,
-                                            'messeges' => $vouchar[0]->discount_value.'% off vouchar applied',
-                                            'platform_type' => $request->input('platform_type'),
-                                            'invoice_number' => $request->input('invoice_number'),
-                                            'created_on' => date('Y-m-d H:i:s')
-                                        ]);
-                                    }else{
-                                        return response()->json([
-                                            'status' => 405,
-                                            'messege' => 'percentage vouchars applicable for at least 3 days of booking'
-                                        ], 405);
-                                    }
-                                }elseif($vouchar[0]->discount_type == 'TK'){
-                                // $listing_type = Listing::where('listing_id', $request->input('listing_id'))->get();
-                                    if($listing[0]->listing_type == 'apartment'){
-                                        $newPaid = $request->input('pay_amount') - $vouchar[0]->discount_value;
-                                        Booking::create([
-                                            'user_id' => $request->input('user_id'),
-                                            'booking_order_name' => $user[0]->name,
-                                            'booking_number' => 'Jg'.$booking_number,
-                                            'transaction_id' => $request->input('transaction_id'),
-                                            'lister_id' => $request->input('lister_id'),
-                                            'listing_id' => $request->input('listing_id'),
-                                            'date_enter' => $request->input('date_enter'),
-                                            'date_exit' => $request->input('date_exit'),
-                                            'short_stay_flag' => $request->input('short_stay_flag'),
-                                            'tier' => $request->input('tier'),
-                                            'total_members' => $request->input('guest_num'),
-                                            'vouchar_code' => $request->input('vouchar_code'),
-                                        // 'listing_type' => $request->input('listing_type'),
-                                            'days_stayed' => $request->input('days_stayed'),
-                                            'pay_amount' => $newPaid,
-                                            'net_payable' => $request->input('listing_price'),
-                                            'all_day_flag' => $request->input('all_day_flag'),
-                                            'payment_flag' => $request->input('payment_flag'),
-                                            'email' => $user[0]->email,
-                                            'phone' => $user[0]->phone,
-                                            'messeges' => $vouchar[0]->discount_value.'TK off vouchar applied',
-                                            'platform_type' => $request->input('platform_type'),
-                                            'invoice_number' => $request->input('invoice_number'),
-                                            'created_on' => date('Y-m-d H:i:s')
-                                        ]);
-                                    }else{
-                                        return response()->json([
-                                            'status' => 405,
-                                            'messege' => 'solid vouchars are applicable to apartment bookings only'
-                                        ], 405);
-                                    }
-                                }else{
-                                    Booking::create([
-                                        'user_id' => $request->input('user_id'),
-                                        'booking_order_name' => $user[0]->name,
-                                        'booking_number' => 'Jg'.$booking_number,
-                                        'transaction_id' => $request->input('transaction_id'),
-                                        'lister_id' => $request->input('lister_id'),
-                                        'listing_id' => $request->input('listing_id'),
-                                        'date_enter' => $request->input('date_enter'),
-                                        'date_exit' => $request->input('date_exit'),
-                                        'short_stay_flag' => $request->input('short_stay_flag'),
-                                        'tier' => $request->input('tier'),
-                                        'total_members' => $request->input('guest_num'),
-                                    // 'listing_type' => $request->input('listing_type'),
-                                        'days_stayed' => $request->input('days_stayed'),
-                                        'pay_amount' => $request->input('pay_amount'),
-                                        'net_payable' => $request->input('listing_price'),
-                                        'all_day_flag' => $request->input('all_day_flag'),
-                                        'payment_flag' => $request->input('payment_flag'),
-                                        'email' => $user[0]->email,
-                                        'phone' => $user[0]->phone,
-                                        'messeges' => $request->input('messege'),
-                                        'platform_type' => $request->input('platform_type'),
-                                        'invoice_number' => $request->input('invoice_number'),
-                                        'created_on' => date('Y-m-d H:i:s')
-                                    ]);
-                                }
-                            }
-                            
-                            
-                        }else{
+                        UserVouchar::where('vouchar_code', $request->input('vouchar_code'))->where('user_id', $request->input('user_id'))->update([
+                            'usage_count' => 1
+                        ]);
+                        $duplicate_vouchar = Booking::where('vouchar_code', $request->input('vouchar_code'))->where('user_id', $request->input('user_id'))->count();
+                        if($duplicate_vouchar > 0){
                             return response()->json([
-                                'status' => 404,
-                                'messege' => 'vouchar not valid or maybe expired'
-                            ], 404);
+                                'status' => 403,
+                                'messege' => 'Vouchar already used'
+                            ], 403);
                         }
-                    }else{
+                    }
+
                         Booking::create([
                             'user_id' => $request->input('user_id'),
                             'booking_order_name' => $user[0]->name,
@@ -214,12 +105,13 @@ class BookingController extends Controller
                             'payment_flag' => $request->input('payment_flag'),
                             'email' => $user[0]->email,
                             'phone' => $user[0]->phone,
+                            'vouchar_code' => $request->input('vouchar_code'),
                             'messeges' => $request->input('messege'),
                             'platform_type' => $request->input('platform_type'),
                             'invoice_number' => $request->input('invoice_number'),
                             'created_on' => date('Y-m-d H:i:s')
                         ]);
-                    }
+                    
                 }
     
             } 
@@ -277,8 +169,26 @@ class BookingController extends Controller
         ];
 
         send_sms($data);
+/*
+        if($user[0]->email != null){
+            $subject = 'Booking Request Sent';
+            $receipent = $user[0]->email;
+
+            Mail::plain(
+               view: 'mailTemplates.BookingRequestSent',
+               data: [
+                   'user' => $user[0]->name,
+                   'listing_title' => $listing[0]->listing_title,
+                   'checkin' => $booked[0]->date_enter,
+                   'checkout' => $booked[0]->date_exit,
+               ],
+               callback: function (Message $message) use ($receipent, $subject) {
+                   $message->to($receipent)->subject($subject);
+               }
+           );
+        }
           
-        
+      */  
           // dd($notif_data);
 
            // Artisan::call('queue:listen');

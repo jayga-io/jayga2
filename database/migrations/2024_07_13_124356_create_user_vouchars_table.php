@@ -17,6 +17,13 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('vouchar_id')->unsigned();
             $table->foreign('vouchar_id')->references('id')->on('vouchars')->onDelete('cascade');
+            $table->string('discount_type');
+            $table->bigInteger('discount_value');
+            
+            $table->bigInteger('max_discount');
+            $table->string('validity_start');
+            $table->string('validity_end');
+            $table->string('created_on');
             $table->timestamps();
         });
     }
