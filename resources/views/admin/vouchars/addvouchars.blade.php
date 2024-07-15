@@ -3,9 +3,10 @@
     <div>
         <div class="container my-5">
             <h1>Vouchars</h1>
-            <div class="row  py-5">
-                <form action="{{ route('createnewvouchar')}}" method="POST" class="d-flex justify-content-between" >
-                    @csrf
+            <form action="{{ route('createnewvouchar')}}" method="POST" class="d-flex justify-content-between" >
+                @csrf
+            <div class="row py-5">
+                
                     
                     <div class="col-lg-2 col-md-2 col-sm-12">
                         
@@ -20,7 +21,7 @@
                     </div>
 
                     <div class="col-lg-2 col-md-2 col-sm-12">
-                        <label for="discount_type" >Voucahr value</label>
+                        <label for="discount_type" >Voucahr type</label>
                         <select name="discount_type" class="form-control">
                             <option value="%">% Percentage</option>
                             <option value="TK">Cash</option>
@@ -38,12 +39,23 @@
                     </div>
 
                     <div class="col-lg-2 col-md-2 col-sm-12">
-                        <label for="addbtn" >Add Vouchar</label>
-                        <button class="btn btn-success form-control" type="submit" style="color: white;">Add</button>
+                        <label for="maxdiscount">Max discount</label>
+                        <input type="text" name="maxdiscount" class="form-control" required>
                     </div>
-                </form>
+
+                    <div class="col-lg-2 col-md-2 col-sm-12">
+                        
+                    </div>
 
             </div>
+            <div class="row mx-3">
+                <label for="addbtn" >Add Vouchar</label>
+                <button class="btn btn-success form-control" type="submit" style="color: white;">Add</button>
+            </div>
+                    
+            </form>
+
+            
         </div>
 
         <div class="container my-2">

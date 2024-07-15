@@ -69,10 +69,10 @@
 
                 <li class="list-divider"></li>
                 <li >
-                    @if (DB::table('listings')->where('isApproved', false)->count() > 0)
+                    @if (DB::table('listings')->where('isApproved', false)->where('isActive', true)->count() > 0)
                         <a href="{{ route('pendinglisting') }}">Pending Listings
                             <span class="badge badge-pill badge-danger">
-                                <small>({{DB::table('listings')->where('isApproved', false)->count()}})</small>
+                                <small>({{DB::table('listings')->where('isApproved', false)->where('isActive', true)->count()}})</small>
                             
                             </span>
                         </a>

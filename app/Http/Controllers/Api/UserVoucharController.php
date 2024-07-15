@@ -33,6 +33,14 @@ class UserVoucharController extends Controller
                     UserVouchar::create([
                         'user_id' => $request->input('user_id'),
                         'vouchar_id' => $vouchar[0]->id,
+                        'vouchar_code' => $vouchar[0]->vouchar_code,
+                        'discount_type' => $vouchar[0]->discount_type,
+                        'discount_value' => $vouchar[0]->discount_value,
+                        'max_discount' => $vouchar[0]->max_discount,
+                        'validity_start' => $vouchar[0]->validity_start,
+                        'validity_end' => $vouchar[0]->validity_end,
+                        'usage_count' => 0,
+                        'created_on' => $vouchar[0]->created_on,
                     ]);
 
                     return response()->json([
@@ -86,24 +94,68 @@ class UserVoucharController extends Controller
         ]);
 
         if($validated){
-            $listing = Listing::where('listing_id', $request->input('listing_id'))->get();
+           $listing = Listing::where('listing_id', $request->input('listing_id'))->get();
             $date1 = Carbon::createFromFormat('Y-m-d', $request->input('checkin'));
             $date2 = Carbon::createFromFormat('Y-m-d', $request->input('checkout'));
-        
+
             $daysDifference = $date1->diffInDays($date2);
 
-            $getuserVouchars = UserVouchar::where('user_id', $request->input('user_id'))->get('vouchar_id');
-           // dd($getuserVouchars);
-            $percentVouchars = Vouchar::whereIn('id', $getuserVouchars)->where('discount_type', '%')->get();
-            $solidVouchars = Vouchar::whereIn('id', $getuserVouchars)->where('discount_type', 'TK')->get();
-           // dd($solidVouchars);
+            $vouchers = UserVouchar::where('user_id', $request->input('user_id'))->get();
+            $applicableVouchers = [];
 
-           if($listing[0]->listing_type == 'apartment'){
+            if(count($vouchers)>0){
+                foreach ($vouchers as $voucher) {
+                
+                    if ($voucher->discount_value >= 50 && $voucher->discount_type == '%' && $voucher->usage_count == 0 && $daysDifference >= 3) {
+                        $newPayamount = ($request->input('total_amount')*($voucher->discount_value)/100);
+                        $deductedAmount = 0;
+                        if($newPayamount > $voucher->max_discount){
+                            $deductedAmount = $request->input('total_amount') - $voucher->max_discount;
+                        }else{
+                            $deductedAmount = $request->input('total_amount') - $newPayamount;
+                        }
+                        
+                        $calculation = [
+                            'vouchar' => $voucher,
+                            'total_amount' => $request->input('total_amount'),
+                            'discounted_price' => $deductedAmount,
+                            'deducted_price' => $voucher->max_discount
+                        ];
+                        array_push($applicableVouchers, $calculation);
+                    }
+        
+                    if ($voucher->discount_value <= 200 && $voucher->discount_type == 'TK' && $voucher->usage_count == 0 && $listing[0]->listing_type == 'apartment') {
+                        $newPaid = $request->input('total_amount') - $voucher->max_discount;
+                        $calculation = [
+                            'vouchar' => $voucher,
+                            'total_amount' => $request->input('total_amount'),
+                            'discounted_price' => $newPaid,
+                            'deducted_price' => $voucher->max_discount
+                        ];
+                        array_push($applicableVouchers, $calculation);
+                    }
+        
+                }
+
+                if(count($applicableVouchers) > 0){
+                    return response()->json([
+                        'status' => 200,
+                        'vouchars' => $applicableVouchers
+                    ]);
+                }else{
+                    return response()->json([
+                        'status' => 404,
+                        'messege' => 'No applicable vouchars found'
+                    ], 404);
+                }
+                
+            }else{
+                return response()->json([
+                    'status' => 404,
+                    'messege' => 'No vouchars found'
+                ], 404);
+            }
             
-           }
-          
-
-
         }else{
             return $validated->errors();
         }
