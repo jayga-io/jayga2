@@ -116,213 +116,69 @@ class BookingController extends Controller
     
             } 
 
-        
+ 
 
-               
-               
-                
+                $booked = Booking::where('transaction_id', $request->input('transaction_id'))->with('listings')->get();
+            // $listing = Listing::where('listing_id', $booked[0]->listing_id)->get();
+            // $time = date('Y-m-d H:i:s');
+                Notification::create([
+                    'user_id' => $request->input('user_id'),
+                    'lister_id' => $request->input('lister_id'),
+                    'listing_id' => $request->input('listing_id'),
+                    'booking_id' => $booked[0]->booking_id,
+                    'type' => 'New Booking Request : '.$booked[0]->listings->listing_title,
+                    'messege' => 'Your Booking request at : '.$booked[0]->listings->listing_title. ' has been placed',
+                    'created_on' => date('Y-m-d H:i:s')
 
-            $booked = Booking::where('transaction_id', $request->input('transaction_id'))->with('listings')->get();
-           // $listing = Listing::where('listing_id', $booked[0]->listing_id)->get();
-           // $time = date('Y-m-d H:i:s');
-            Notification::create([
-                'user_id' => $request->input('user_id'),
-                'lister_id' => $request->input('lister_id'),
-                'listing_id' => $request->input('listing_id'),
-                'booking_id' => $booked[0]->booking_id,
-                'type' => 'New Booking Request : '.$booked[0]->listings->listing_title,
-                'messege' => 'Your Booking request at : '.$booked[0]->listings->listing_title. ' has been placed',
-                'created_on' => date('Y-m-d H:i:s')
+                ]);
 
-            ]);
-
-            Notification::create([
-                'user_id' => $request->input('lister_id'),
-                'lister_id' => $request->input('lister_id'),
-                'listing_id' => $request->input('listing_id'),
-                'booking_id' => $booked[0]->booking_id,
-                'type' => 'New Booking Request : '.$booked[0]->listings->listing_title,
-                'messege' => 'Your have a new booking request for : '.$booked[0]->listings->listing_title,
-                'created_on' => date('Y-m-d H:i:s')
-            ]);
+                Notification::create([
+                    'user_id' => $request->input('lister_id'),
+                    'lister_id' => $request->input('lister_id'),
+                    'listing_id' => $request->input('listing_id'),
+                    'booking_id' => $booked[0]->booking_id,
+                    'type' => 'New Booking Request : '.$booked[0]->listings->listing_title,
+                    'messege' => 'Your have a new booking request for : '.$booked[0]->listings->listing_title,
+                    'created_on' => date('Y-m-d H:i:s')
+                ]);
 
            
 
             
 
-          // $notif_data = $lister[0]->FCM_token;
-          $lister = User::where('id', $request->input('lister_id'))->get();
+                // $notif_data = $lister[0]->FCM_token;
+                $lister = User::where('id', $request->input('lister_id'))->get();
 
-           $notif_details = [
-            'token' => $lister[0]->FCM_token,
-            'title' => 'New Booking Request '.$booked[0]->listings->listing_title,
-            'body' => 'You have a new booking request. ' .$booked[0]->listings->listing_title. ' Open the app to proceed',
-           ];
-          // dd($notif_data);
-           send_notif($notif_details);
+                $notif_details = [
+                    'token' => $lister[0]->FCM_token,
+                    'title' => 'New Booking Request '.$booked[0]->listings->listing_title,
+                    'body' => 'You have a new booking request. ' .$booked[0]->listings->listing_title. ' Open the app to proceed',
+                ];
+                // dd($notif_data);
+                send_notif($notif_details);
 
-           $data = [
-            "sender_id" => "8809601010510",
-            "receiver" => $lister[0]->phone,
-            "message" => 'Dear user, Your listing : '. $booked[0]->listings->listing_title . ' has a new booking request',
-            "remove_duplicate" => true
-        ];
-
-        send_sms($data);
-/*
-        if($user[0]->email != null){
-            $subject = 'Booking Request Sent';
-            $receipent = $user[0]->email;
-
-            Mail::plain(
-               view: 'mailTemplates.BookingRequestSent',
-               data: [
-                   'user' => $user[0]->name,
-                   'listing_title' => $listing[0]->listing_title,
-                   'checkin' => $booked[0]->date_enter,
-                   'checkout' => $booked[0]->date_exit,
-               ],
-               callback: function (Message $message) use ($receipent, $subject) {
-                   $message->to($receipent)->subject($subject);
-               }
-           );
-        }
-          
-      */  
-          // dd($notif_data);
-
-           // Artisan::call('queue:listen');
-
-          // SendBookingEmail::dispatch($receipent, $subject, $data);
-
-            /*
-
-          if($lister[0]->phone == null){
-
-                $receipent = $lister[0]->email;
-                $subject = 'New Booking Request';
-
-                 Mail::plain(
-                    view: 'mailTemplates.NewBookingRequest',
-                    data: [
-                        'lister' => $lister[0]->name,
-                        'listing_title' => $listing[0]->listing_title,
-                        'checkin' => $booked[0]->date_enter,
-                        'checkout' => $booked[0]->date_exit,
-                        'guest_name' => $user[0]->name,
-                    ],
-                    callback: function (Message $message) use ($receipent, $subject) {
-                        $message->to($receipent)->subject($subject);
-                    }
-                );
-
-
-          }elseif($lister[0]->email == null){
-                    $data = [
-                        "sender_id" => "8809601010510",
-                        "receiver" => $lister[0]->phone,
-                        "message" => 'Dear user, Your listing : '. $listing[0]->listing_title . ' has a new booking request',
-                        "remove_duplicate" => true
-                    ];
-
-                send_sms($data);
-          }else{
-            //mail
-            $receipent = $lister[0]->email;
-                $subject = 'New Booking Request';
-
-                 Mail::plain(
-                    view: 'mailTemplates.NewBookingRequest',
-                    data: [
-                        'lister' => $lister[0]->name,
-                        'listing_title' => $listing[0]->listing_title,
-                        'checkin' => $booked[0]->date_enter,
-                        'checkout' => $booked[0]->date_exit,
-                        'guest_name' => $user[0]->name,
-                    ],
-                    callback: function (Message $message) use ($receipent, $subject) {
-                        $message->to($receipent)->subject($subject);
-                    }
-                );
-
-                //messege
                 $data = [
                     "sender_id" => "8809601010510",
                     "receiver" => $lister[0]->phone,
-                    "message" => 'Dear user, Your listing : '. $listing[0]->listing_title . ' has a new booking request',
+                    "message" => 'Dear user, Your listing : '. $booked[0]->listings->listing_title . ' has a new booking request',
                     "remove_duplicate" => true
                 ];
 
-            send_sms($data);
-          }
+                send_sms($data);
 
-          if($user[0]->phone == null){
-            $subject = 'Booking Request Sent';
-            $receipent = $user[0]->email;
 
-            Mail::plain(
-               view: 'mailTemplates.BookingRequestSent',
-               data: [
-                   'user' => $user[0]->name,
-                   'listing_title' => $listing[0]->listing_title,
-                   'checkin' => $booked[0]->date_enter,
-                   'checkout' => $booked[0]->date_exit,
-               ],
-               callback: function (Message $message) use ($receipent, $subject) {
-                   $message->to($receipent)->subject($subject);
-               }
-           );
-          }elseif($user[0]->email == null){
-                $data = [
-                    "sender_id" => "8809601010510",
-                    "receiver" => $user[0]->phone,
-                    "message" => 'Dear user, Your booking at : '. $listing[0]->listing_title . ' has sent to the host for review',
-                    "remove_duplicate" => true
-                ];
-
-            send_sms($data);
-          }else{
-            //mail
-            $subject = 'Booking Request Sent';
-            $receipent = $user[0]->email;
-
-            Mail::plain(
-               view: 'mailTemplates.BookingRequestSent',
-               data: [
-                   'user' => $user[0]->name,
-                   'listing_title' => $listing[0]->listing_title,
-                   'checkin' => $booked[0]->date_enter,
-                   'checkout' => $booked[0]->date_exit,
-               ],
-               callback: function (Message $message) use ($receipent, $subject) {
-                   $message->to($receipent)->subject($subject);
-               }
-           );
-           //messege
-                $data = [
-                    "sender_id" => "8809601010510",
-                    "receiver" => $user[0]->phone,
-                    "message" => 'Dear user, Your booking at : '. $listing[0]->listing_title . ' has sent to the host for review',
-                    "remove_duplicate" => true
-                ];
-
-            send_sms($data);
-          }
-
-            */
-
-            return response()->json([
-                'status' => 200,
-                'messege' => 'Booking created successfully',
-                'booking_details' => [
-                    'id' => $booked[0]->booking_id,
-                    'pay_amount' => $booked[0]->pay_amount,
-                    'lister_id' => $booked[0]->lister_id,
-                    'listing_id' => $booked[0]->listings->listing_id,
-                    'booking_order_name' => $booked[0]->booking_order_name,
-                    'transaction_id' => $booked[0]->transaction_id,
-                ]
-            ]);
+                return response()->json([
+                    'status' => 200,
+                    'messege' => 'Booking created successfully',
+                    'booking_details' => [
+                        'id' => $booked[0]->booking_id,
+                        'pay_amount' => $booked[0]->pay_amount,
+                        'lister_id' => $booked[0]->lister_id,
+                        'listing_id' => $booked[0]->listings->listing_id,
+                        'booking_order_name' => $booked[0]->booking_order_name,
+                        'transaction_id' => $booked[0]->transaction_id,
+                    ]
+                ]);
         }else{
            return $validated->errors();
         }
