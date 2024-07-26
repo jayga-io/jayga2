@@ -61,6 +61,7 @@
                         <div class="col-sm-12 mt-5 ">
                             <h3 class="page-title mt-3">Listing Details</h3>
                             <div class="page-title mt-3" style="float:right">
+                                <a href="/admin/edit-listing/{{$listing[0]->listing_id}}" class="btn btn-secondary">Edit</a>
                                 <a href="/admin/approve-listing/{{ $listing[0]->listing_id }}" class="btn btn-primary">Approve</a>
                                 <a class="btn btn-danger" href="/admin/decline-listing/{{$listing[0]->listing_id }}">Decline</a>
                             </div>

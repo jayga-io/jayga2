@@ -390,11 +390,9 @@ class ListerDashboardController extends Controller
     }
 
     public function edit_listing(Request $request, $id){
-        $listing = Listing::where('listing_id', $id)->get();
-        $amenities = ListingGuestAmenities::where('listing_id', $id)->get();
-        $restrictions = ListingRestrictions::where('listing_id', $id)->get();
-        $listing_images = ListingImages::where('listing_id', $id)->get();
-        return view('host.listings.single-listing')->with('listing', $listing)->with('amenities', $amenities)->with('restrictions', $restrictions)->with('images', $listing_images);
+        $listing = Listing::where('listing_id', $id)->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('images')->get();
+      // dd($listing);
+        return view('host.listings.single-listing')->with('listing', $listing);
     }
 
 
@@ -417,34 +415,7 @@ class ListerDashboardController extends Controller
 
        
 
-        ListingGuestAmenities::where('listing_id', $request->input('listing_id'))->update([
-            
-            'wifi' => $request->input('wifi'),
-            'tv' => $request->input('tv'),
-            'kitchen' => $request->input('kitchen'),
-            'washing_machine' => $request->input('washing_machine'),
-            'free_parking' => $request->input('free_parking'),
-            'breakfast_included' => $request->input('breakfast_included'),
-            'air_condition' => $request->input('air_condition'),
-            'dedicated_workspace' => $request->input('dedicated_workspace'),
-            
-            'gym' => $request->input('gym'),
-            'beach_lake_access' => $request->input('beach_lake_access'),
-            
-            'fire_extinguish' => $request->input('fire_extinguish'),
-            'cctv' => $request->input('cctv'),
-        ]);
-
-        ListingRestrictions::where('listing_id', $request->input('listing_id'))->update([
-            
-            'indoor_smoking' => $request->input('indoor_smoking'),
-            'party' => $request->input('party'),
-            'pets' => $request->input('pets'),
-            'late_night_entry' => $request->input('late_night_entry'),
-            'unknown_guest_entry' => $request->input('unknown_guest_entry'),
-            
-            
-        ]);
+       
 
         if($filez = $request->file('lsimages')){
             foreach ($filez as $ls) {

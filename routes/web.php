@@ -136,6 +136,8 @@ Route::prefix('admin')->group(function(){
                     return view('admin.listings.all-listings')->with('all', $listings);
                 })->name('all_listings');
 
+        Route::get('/edit-listing/{id}', [ListerDashboardController::class, 'edit_listing'])->name('editlistingadmin');
+
 
         Route::get('/view-listing/{id}', [ListingController::class, 'show']);
 
