@@ -298,7 +298,7 @@ Route::prefix('setup')->group(function(){
 //user dashboard
 
 Route::prefix('user')->group(function(){
-    Route::middleware(ensureotp::class)->group(function(){
+    
             Route::get('/dashboard', [ListerDashboardController::class, 'index'])->name('userdash');
 
             //booking
@@ -354,7 +354,7 @@ Route::prefix('user')->group(function(){
             //withdraw
             Route::get('/withdraw', [AccountsController::class, 'withdraw'])->name('withdraw')->middleware(HasBankAccount::class);
             Route::post('/withdraw/confirm', [AccountsController::class, 'withdraw_request'])->name('withdrawconfirm');
-    });
+    
 
     
 });
