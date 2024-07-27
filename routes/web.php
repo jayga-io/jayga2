@@ -191,7 +191,8 @@ Route::prefix('admin')->group(function(){
         Route::get('/vouchars', [VoucharController::class, 'get_all'])->name('getvouchars');
         Route::post('/create/new/vouchar', [VoucharController::class, 'create_new'])->name('createnewvouchar');
 
-
+        //user delete
+        Route::get('/user/delete/{id}', [UsersController::class, 'delete_user']);
         
     });
 
