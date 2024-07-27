@@ -80,13 +80,15 @@ class UserloginController extends Controller
                     ], 403);
                 }
 
-                User::where('phone', $request->input('emailOrPhone'))->orWhere('email', $request->input('emailOrPhone'))->update([
+                User::where('id', $user[0]->id)->update([
                     'access_token' => $authToken
                 ]);
 
+                $updatedUser = User::where('phone', $request->input('emailOrPhone'))->orWhere('email', $request->input('emailOrPhone'))->get();
+
                 return response()->json([
                     'status' => 200,
-                    'user' => $user
+                    'user' => $updatedUser
                 ]);
                 
             }else{
