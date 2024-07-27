@@ -146,4 +146,10 @@ class UsersController extends Controller
             return redirect()->back()->with('success', 'Messege successfully sent!');
         }
     }
+
+
+    public function delete_user(Request $request, $id){
+        User::where('id', $id)->delete();
+        return redirect()->back()->with('error', 'User deleted');
+    }
 }

@@ -137,7 +137,17 @@ class ListingController extends Controller
     public function create(Request $request){
 
         $validated = $request->validate([
-            'user_id' => 'required'
+            'user_id' => 'required',
+            'listing_title' => 'required',
+            'listing_type' => 'required',
+            'listing_description' => 'required',
+            'full_day_price_set_by_user' => 'required',
+            'district' => 'required',
+            'lati' => 'required',
+            'longi' => 'required',
+            'listing_address' => 'required',
+            
+
         ]);
 
         $check = Listing::where('listing_title', $request->input('listing_title'))->where('lister_id', $request->input('user_id'))->get();

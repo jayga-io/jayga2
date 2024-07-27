@@ -3,7 +3,7 @@
     <div class="container my-5"> 
         <h1>All Users</h1>
 
-        <div class="row my-3">
+        <div class="row">
             <table id="myTable" class="display">
                 <thead>
                     <tr>
@@ -16,6 +16,7 @@
                         <th>Joined At</th>
                         <th>Suspend</th>
                         <th>Contact</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,6 +56,7 @@
 
                             
                             <td><button class="btn btn-success fs-6" data-toggle="modal" data-target="#exampleModal">Messege</button></td>
+                            <td><a href="/admin/user/delete/{{$item->id}}" class="btn btn-danger">Delete</a></td>
                         </tr>
                         <?php $counter++; ?>
                     @endforeach
