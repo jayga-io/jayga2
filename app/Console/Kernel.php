@@ -116,10 +116,10 @@ class Kernel extends ConsoleKernel
 
 
         $schedule->call(function (){
-            User::where('updated_at', '<', now()->subMinutes(60))->update([
+            User::where('updated_at', '<', now()->subMinutes(4320))->update([
                 'access_token' => NULL
             ]);
-        })->everyMinute();
+        })->hourly();
 
 
         $schedule->call(function(){

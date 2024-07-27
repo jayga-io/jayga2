@@ -17,22 +17,18 @@ class UserloginController extends Controller
 {
     public function login(Request $request){
         $validated = $request->validate([
-            'phone' => 'required'
+            'emailOrPhone' => 'required'
         ]);
 
         if($validated){
-            $user = User::where('phone', $request->input('phone'))->orWhere('email', $request->input('phone'))->get();
-            $authKey = 'jayga_user';
-            $authToken = Hash::make($authKey);
-            $otp = random_int(1000,9999);
-            $pattern = '/^\S+@\S+\.\S+$/';
 
-            $txt = $request->input('phone');
+            $otp = random_int(1000,9999);
+            $txt = $request->input('emailOrPhone');
 
             if(is_numeric($txt)){
                 $data = [
                     "sender_id" => "8809601010510",
-                     "receiver" => $request->input('phone'),
+                     "receiver" => $txt,
                      "message" => "Your Jayga OTP is:".$otp,
                      "remove_duplicate" => true
                  ];
@@ -53,46 +49,14 @@ class UserloginController extends Controller
                 );
             }
 
-            if(count($user)>0){
-
-                User::where('id', $user[0]->id)->update([ 'access_token' => $authToken ]);
-
+            return response()->json([
+                'status' => '200',
+                //'messege' => 'New user registered successfully',
+                'phone' => $txt,
+                'otp' => $otp,
+                //'access_token' => $authToken
                 
-                
-                return response()->json([
-                    'status' => '200',
-                    'messege' => 'User already exist',
-                    'phone' => $request->input('phone'),
-                    'otp' => $otp,
-                    'access_token' => $authToken
-                    
-                ]);
-
-            }else{
-                if(is_numeric($txt)){
-                    User::create([
-                        'phone' => $request->input('phone'),
-                        'access_token' => $authToken
-                    ]);
-                }elseif(preg_match($pattern, $txt)){
-                    User::create([
-                        'email' => $request->input('phone'),
-                        'access_token' => $authToken
-                    ]);
-                }
-                
-
-             
-                
-                return response()->json([
-                    'status' => '200',
-                    'messege' => 'New user registered successfully',
-                    'phone' => $request->input('phone'),
-                    'otp' => $otp,
-                    'access_token' => $authToken
-                    
-                ]);
-            }
+            ]);
         }else{
             return $validated->errors();
         }
@@ -100,11 +64,14 @@ class UserloginController extends Controller
 
     public function verify_otp(Request $request){
         $validated = $request->validate([
-            'access_token' => 'required'
+            'emailOrPhone' => 'required'
         ]);
 
         if($validated){
-            $user = User::where('access_token', $request->input('access_token'))->with('avatars')->get();
+            $authKey = 'jayga_user';
+            $authToken = Hash::make($authKey);
+            $pattern = '/^\S+@\S+\.\S+$/';
+            $user = User::where('phone', $request->input('emailOrPhone'))->orWhere('email', $request->input('emailOrPhone'))->get();
             if(count($user)>0){
                 if($user[0]->isSuspended == true){
                     return response()->json([
@@ -112,17 +79,35 @@ class UserloginController extends Controller
                         'messege' => 'User account suspended. Please contact with Jayga support'
                     ], 403);
                 }else{
-                    return response()->json([
-                        'status' => 200,
-                        'user' => $user
+                    User::where('phone', $request->input('emailOrPhone'))->orWhere('email', $request->input('emailOrPhone'))->update([
+                        'access_token' => $authToken
                     ]);
+                    
                 }
+
+                return response()->json([
+                    'status' => 200,
+                    'user' => $user
+                ]);
                 
             }else{
+                if(is_numeric($request->input('emailOrPhone'))){
+                    User::create([
+                        'phone' => $request->input('emailOrPhone'),
+                        'access_token' => $authToken
+                    ]);
+                }elseif(preg_match($pattern, $request->input('emailOrPhone'))){
+                    User::create([
+                        'email' => $request->input('emailOrPhone'),
+                        'access_token' => $authToken
+                    ]);
+                }
+                $newUser = User::where('phone', $request->input('emailOrPhone'))->orWhere('email', $request->input('emailOrPhone'))->get();
                 return response()->json([
-                    'status' => 404,
-                    'user' => 'Authentication faild'
-                ], 404);
+                    'status' => 200,
+                    'messege' => 'new user created',
+                    'user' => $newUser
+                ]);
             }
         }else{
             return $validated->errors();
