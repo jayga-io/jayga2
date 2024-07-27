@@ -146,6 +146,7 @@ class ListingController extends Controller
             'lati' => 'required',
             'longi' => 'required',
             'listing_address' => 'required',
+            'guest_num' => 'required'
             
 
         ]);
