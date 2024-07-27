@@ -21,7 +21,7 @@ class UserloginController extends Controller
         ]);
 
         if($validated){
-
+            $pattern = '/^\S+@\S+\.\S+$/';
             $otp = random_int(1000,9999);
             $txt = $request->input('emailOrPhone');
 
@@ -78,12 +78,11 @@ class UserloginController extends Controller
                         'status' => 403,
                         'messege' => 'User account suspended. Please contact with Jayga support'
                     ], 403);
-                }else{
-                    User::where('phone', $request->input('emailOrPhone'))->orWhere('email', $request->input('emailOrPhone'))->update([
-                        'access_token' => $authToken
-                    ]);
-                    
                 }
+
+                User::where('phone', $request->input('emailOrPhone'))->orWhere('email', $request->input('emailOrPhone'))->update([
+                    'access_token' => $authToken
+                ]);
 
                 return response()->json([
                     'status' => 200,
