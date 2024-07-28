@@ -106,7 +106,7 @@ class UserVoucharController extends Controller
             if(count($vouchers)>0){
                 foreach ($vouchers as $voucher) {
                 
-                    if ($daysDifference >= 2) {
+                    if ($daysDifference <= $voucher->min_days && $voucher->min_days >= 2) {
                         $newPayamount = round(($request->input('total_amount')*($voucher->discount_value)/100));
                         $deductedAmount = 0;
                         if($newPayamount > $voucher->max_discount){

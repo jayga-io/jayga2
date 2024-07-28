@@ -20,6 +20,8 @@ class VoucharController extends Controller
             'discount_value' => $request->input('vouchar_value'),
             'validity_start' => $request->input('validity_start'),
             'validity_end' => $request->input('validity_end'),
+            'min_days' => $request->input('duration'),
+            'min_amount' => $request->input('minamount'),
             'max_discount' => $request->input('maxdiscount'),
             'created_on' => date('Y-m-d H:i:s')
         ]);
