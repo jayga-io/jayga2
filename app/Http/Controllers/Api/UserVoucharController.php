@@ -112,6 +112,7 @@ class UserVoucharController extends Controller
                         if($voucher->max_discount != null){
                             $deductedAmount = $request->input('total_amount') - $voucher->max_discount;
                         }else{
+                            $deductedAmount = 0;
                             $deductedAmount = $request->input('total_amount') - $newPayamount;
                         }
                         
