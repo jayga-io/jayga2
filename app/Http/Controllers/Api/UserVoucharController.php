@@ -107,14 +107,28 @@ class UserVoucharController extends Controller
                 foreach ($vouchers as $voucher) {
                 
                     if ($daysDifference >= $voucher->min_days && $daysDifference >= 3 && $voucher->discount_type == '%') {
-                        $newPayamount = round(($request->input('total_amount')*($voucher->discount_value))/100);
-                        $deductedAmount = 0;
-                        if($voucher->max_discount != null){
-                            $deductedAmount = $request->input('total_amount') - $voucher->max_discount;
-                        }else{
-                           // $deductedAmount = 0;
-                            $deductedAmount = $request->input('total_amount') - $newPayamount;
+
+                        if($voucher->discount_type == '%'){
+                            $newPayamount = round(($request->input('total_amount')*($voucher->discount_value))/100);
+                            $deductedAmount = 0;
+                            if($voucher->max_discount != null){
+                                $deductedAmount = $request->input('total_amount') - $voucher->max_discount;
+                            }else{
+                            // $deductedAmount = 0;
+                                $deductedAmount = $request->input('total_amount') - $newPayamount;
+                            }
                         }
+                        if($voucher->discount_type == 'TK'){
+                            $newPayamount = $request->input('total_amount') - $voucher->discount_value;
+                            $deductedAmount = 0;
+                            if($voucher->max_discount != null){
+                                $deductedAmount = $request->input('total_amount') - $voucher->max_discount;
+                            }else{
+                            // $deductedAmount = 0;
+                                $deductedAmount = $request->input('total_amount') - $newPayamount;
+                            }
+                        }
+                        
                         
                         $calculation = [
                             'vouchar' => $voucher,
