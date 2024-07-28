@@ -106,13 +106,13 @@ class UserVoucharController extends Controller
             if(count($vouchers)>0){
                 foreach ($vouchers as $voucher) {
                 
-                    if ($daysDifference >= $voucher->min_days && $daysDifference >= 3) {
+                    if ($daysDifference >= $voucher->min_days && $daysDifference >= 3 && $voucher->discount_type == '%') {
                         $newPayamount = round(($request->input('total_amount')*($voucher->discount_value))/100);
                         $deductedAmount = 0;
                         if($voucher->max_discount != null){
                             $deductedAmount = $request->input('total_amount') - $voucher->max_discount;
                         }else{
-                            $deductedAmount = 0;
+                           // $deductedAmount = 0;
                             $deductedAmount = $request->input('total_amount') - $newPayamount;
                         }
                         
