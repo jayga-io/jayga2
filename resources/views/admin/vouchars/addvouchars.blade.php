@@ -8,19 +8,19 @@
             <div class="row py-5">
                 
                     
-                    <div class="col-lg-2 col-md-2 col-sm-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
                         
                             <label for="vouchar_code" class="form-label">Vouchar Code</label>
                             <input type="text" name="vouchar_code" class="form-control" placeholder="Enter vouchar code" required>
                         
                     </div>
 
-                    <div class="col-lg-2 col-md-2 col-sm-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
                         <label for="vouchar_value" >Voucahr value</label>
                         <input type="number" class="form-control" name="vouchar_value" required>
                     </div>
 
-                    <div class="col-lg-2 col-md-2 col-sm-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
                         <label for="discount_type" >Voucahr type</label>
                         <select name="discount_type" class="form-control">
                             <option value="%">% Percentage</option>
@@ -28,30 +28,37 @@
                         </select>
                     </div>
 
-                    <div class="col-lg-2 col-md-2 col-sm-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
                         <label for="validity_start" >Validity start</label>
                         <input type="date" class="form-control" name="validity_start" required>
                     </div>
 
-                    <div class="col-lg-2 col-md-2 col-sm-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
                         <label for="validity_end" >Validity end</label>
                         <input type="date" class="form-control" name="validity_end" required>
                     </div>
 
-                    <div class="col-lg-2 col-md-2 col-sm-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
                         <label for="maxdiscount">Max discount</label>
-                        <input type="text" name="maxdiscount" class="form-control" required>
+                        <input type="text" name="maxdiscount" class="form-control">
                     </div>
 
-                    <div class="col-lg-2 col-md-2 col-sm-12">
-                        
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <label for="minamount">Minimum amount</label>
+                        <input type="text" name="minamount" class="form-control" >
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <label for="duration">Duration</label>
+                        <input type="text" name="duration" class="form-control" required>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <label for="addbtn" >Add Vouchar</label>
+                        <button class="btn btn-success form-control" type="submit" style="color: white;">Add</button>
                     </div>
 
             </div>
-            <div class="row mx-3">
-                <label for="addbtn" >Add Vouchar</label>
-                <button class="btn btn-success form-control" type="submit" style="color: white;">Add</button>
-            </div>
+            
                     
             </form>
 
@@ -69,6 +76,8 @@
 						<th>Validity From</th>
                         <th>Validity End</th>
 						<th>Discount Type</th>
+                        <th>Maximum discount</th>
+                        <th>Duration</th>
 						<th>Created on</th>
 						
 					</tr>
@@ -83,6 +92,13 @@
 							<td>{{ $item->validity_start }}</td>
 							<td>{{ $item->validity_end }}</td>
 							<td>{{ $item->discount_type }}</td>
+                            @if ($item->max_discount == null)
+                                <td>Not set</td>
+                            @else
+                                <td>{{ $item->max_discount }}</td>
+                            @endif
+                            
+                            <td>{{ $item->min_days }}</td>
 							<td>{{ $item->created_at->format('F j, Y') }}</td>
                             
 						</tr>
