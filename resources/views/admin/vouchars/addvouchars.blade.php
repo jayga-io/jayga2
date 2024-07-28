@@ -79,7 +79,7 @@
                         <th>Maximum discount</th>
                         <th>Duration</th>
 						<th>Created on</th>
-						
+						<th>Delete</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -100,7 +100,7 @@
                             
                             <td>{{ $item->min_days }}</td>
 							<td>{{ $item->created_at->format('F j, Y') }}</td>
-                            
+                            <td><a href="/admin/delete/vouchar/{{$item->id}}" class="btn btn-danger">Delete</a></td>
 						</tr>
 						<?php $counter++; ?>
 					@endforeach

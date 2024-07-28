@@ -28,4 +28,9 @@ class VoucharController extends Controller
 
         return redirect()->back()->with('success', 'vouchar created successfully');
     }
+
+    public function delete_vouchar(Request $request, $id){
+        Vouchar::where('id', $id)->delete();
+        return redirect()->back()->with('error', 'Vouchar deleted');
+    }
 }
