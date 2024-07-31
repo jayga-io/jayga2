@@ -157,7 +157,14 @@ class BookingController extends Controller
                 // dd($notif_data);
                 send_notif($notif_details);
 
-               
+                $data = [
+                    "sender_id" => "8809601010510",
+                    "receiver" => $lister[0]->phone,
+                    "message" => 'Dear user, Your listing : '. $booked[0]->listings->listing_title . ' has a new booking request',
+                    "remove_duplicate" => true
+                ];
+
+                send_sms($data);
 
 
                 return response()->json([
@@ -366,7 +373,124 @@ class BookingController extends Controller
 
     }
 
+    public function mark_complete(Request $request){
+        $validated = $request->validate([
+            'booking_id' => 'required',
+           // 'listing_price' => 'required',
+            'lister_id' => 'required',
+            //'paid_amount' => 'required'
+        ]); 
+
+        if($validated){
+            $id = $request->input('booking_id');
+            $booking = Booking::where('booking_id', $id)->get();
+            $amount = $booking[0]->net_payable;
+           // $paid_amount = $amount;
+            $lister_fee = ($amount * 6.9) /100;
+            $booking_fee = ($booking[0]->pay_amount * 3) / 100;
     
+            $lister_earn = $amount - $lister_fee;
+           // $jayga_earn = $amount - $booking_fee;
+    
+            $jayga_earn = $lister_fee + $booking_fee ;
+
+            $jayga_loss = 0;
+            
+            if($booking[0]->pay_amount < $booking[0]->net_payable){
+                $jayga_loss = $booking[0]->net_payable - $booking[0]->pay_amount;
+                $jayga_earn = $jayga_earn - $booking_fee;
+            }
+
+            $jayga_total = $jayga_earn - $jayga_loss;
+    
+            Booking::where('booking_id', $id)->update([
+                'isComplete' => true,
+                //'net_payable' => $lister_earn
+            ]);
+
+            $earning = ListerDashboard::where('lister_id', $request->input('lister_id'))->get();
+            if(count($earning)>0){
+               $update_earnings = $earning[0]->earnings + $lister_earn;
+               $total_earn = $earning[0]->total_earnings + $lister_earn;
+                ListerDashboard::where('lister_id', $request->input('lister_id'))->update([
+                    'total_earnings' => $total_earn,
+                    'earnings' => $update_earnings
+                ]);
+            }else{
+                ListerDashboard::create([
+                    'lister_id' => $request->input('lister_id'),
+                    'total_earnings' => $lister_earn,
+                    'earnings' => $lister_earn
+                ]);
+                
+            }
+    
+            $books = Booking::where('booking_id', $id)->with('listings')->get();
+
+            Listing::where('listing_id', $request->input('listing_id'))->update([
+                'booking_count' => $books[0]->listings->booking_count + 1
+            ]);
+    
+            JaygaEarn::create([
+                'invoice' => $books[0]->invoice_number,
+                'listing_id' => $books[0]->listing_id,
+                'booking_id' => $id,
+                'listing_price' => $books[0]->net_payable,
+                'paid_amount' => $books[0]->pay_amount,
+                'listing_fee' => $lister_fee,
+                'booking_fee' => $booking_fee,
+                'jayga_earn' => $jayga_earn,
+                'jayga_loss' => $jayga_loss,
+                'total' => $jayga_total
+            ]);
+    
+            BookingHistory::create([
+                'user_id' => $books[0]->user_id,
+                'listing_id' => $books[0]->listing_id,
+                'booking_id' => $books[0]->booking_id,
+                'booking_number' => $books[0]->booking_number,
+                'lister_id' => $request->input('lister_id'),
+                'listing_title' => $books[0]->listings->listing_title,
+                'listing_type' => $books[0]->listings->listing_type,
+                'short_stay_flag' => $books[0]->short_stay_flag,
+                'transaction_id' => $books[0]->transaction_id,
+                'date_enter' => $books[0]->date_enter,
+                'date_exit' => $books[0]->date_exit,
+                'tier' => $books[0]->tier,
+                'total_members' => $books[0]->total_members,
+                'email' => $books[0]->email,
+                'phone' => $books[0]->phone,
+                'pay_amount' => $books[0]->pay_amount,
+                'net_payable' => $books[0]->net_payable,
+                'payment_flag' => $books[0]->payment_flag,
+                'booking_status' => $books[0]->booking_status,
+                'isApproved' => $books[0]->isApproved,
+                'isComplete' => true,
+                'created_on' => date('Y-m-d H:i:s')
+            ]);
+    
+            Booking::where('booking_id', $id)->delete();
+            ListingAvailable::where('booking_id', $id)->delete();
+
+            $lister = User::where('id', $request->input('lister_id'))->get();
+
+            $notif_details = [
+                'token' => $lister[0]->FCM_token,
+                'title' => 'Review Your Stay at ['.$books[0]->listings->listing_title.']',
+                'body' => 'Dont forget to review your stay at ['.$books[0]->listings->listing_title.']', 
+               ];
+              // dd($notif_data);
+               send_notif($notif_details);
+
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Booking Completed'
+            ]);
+           
+        }else{
+           return $validated->errors();
+        }
+    }
 
     public function completed_bookings(Request $request){
         $validated = $request->validate([

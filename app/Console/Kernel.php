@@ -22,7 +22,116 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-       
+        $schedule->call(function () {
+             // Query pending booking requests created more than 48 hours ago
+                $pendingBookings = Booking::where('booking_status', 0)
+                ->where('created_on', '<', now()->subHours(48))
+                ->with('listings')
+                ->get();
+               // dd($pendingBookings);
+
+            // Update status to declined for each pending booking
+            foreach ($pendingBookings as $key => $value) {
+                
+                BookingHistory::create([
+                    'user_id' => $value->user_id,
+                    'listing_id' => $value->listing_id,
+                    'booking_id' => $value->booking_id,
+                    'booking_number' => $value->booking_number,
+                    'lister_id' => $value->lister_id,
+                    'listing_title' => $value->listings->listing_title,
+                    'listing_type' => $value->listings->listing_type,
+                    'short_stay_flag' => $value->short_stay_flag,
+                    'transaction_id' => $value->transaction_id,
+                    'date_enter' => $value->date_enter,
+                    'date_exit' => $value->date_exit,
+                    'tier' => $value->tier,
+                    'total_members' => $value->total_members,
+                    'email' => $value->email,
+                    'phone' => $value->phone,
+                    'pay_amount' => $value->pay_amount,
+                    'net_payable' => $value->net_payable,
+                    'payment_flag' => $value->payment_flag,
+                    'booking_status' => 2,
+                    'isApproved' => false,
+                    'isComplete' => false,
+                    'messeges' => 'Expired',
+                    'created_on' => date('Y-m-d H:i:s')
+                ]);
+
+                //Notification for user
+                Notification::create([
+                    'user_id' => $value->user_id,
+                    'lister_id' => $value->lister_id,
+                    'listing_id' => $value->listing_id,
+                    'booking_id' => $value->booking_id,
+                    'type' => 'booking expired',
+                    'messege' => 'Your Booking request for : '.$value->listings->listing_title. ' has been expired',
+                    'created_on' => date('Y-m-d H:i:s')
+                ]);
+    
+                //notification for lister
+                Notification::create([
+                    'user_id' => $value->lister_id,
+                    'lister_id' => $value->lister_id,
+                    'listing_id' => $value->listing_id,
+                    'booking_id' => $value->booking_id,
+                    'type' => 'booking expired',
+                    'messege' => 'Your Booking request at : '.$value->listings->listing_title. ' has been expired',
+                    'created_on' => date('Y-m-d H:i:s')
+                ]);
+
+               // $value->delete();
+            }
+
+            Booking::where('booking_status', 0)
+                ->where('created_on', '<', now()->subHours(48))
+                ->delete();
+
+           
+           
+        })->hourly();
+
+
+        $schedule->call(function (){
+
+            $pend_books = Booking::where('booking_status', 0)
+            ->where('created_on', '<', now()->subHours(48))
+            ->with('lister')
+            ->get();
+
+           foreach ($pend_books as $key => $value) {
+            
+            $data = [
+                'token' => $value->lister->FCM_token,
+                'title' => 'Booking expired',
+                'body' => 'Your Booking has been expired',
+             ];
+
+             send_notif($data);
+           }
+            
+           
+        })->hourly();
+
+
+        $schedule->call(function (){
+            User::where('updated_at', '<', now()->subMinutes(4320))->update([
+                'access_token' => NULL
+            ]);
+        })->hourly();
+
+
+        $schedule->call(function(){
+            $today = Carbon::today();
+            Vouchar::where('validity_end', '<', $today)->delete();
+        })->hourly();
+
+/*
+        $schedule->call(function (){
+            Artisan:call('queue:listen');
+        })->everyMinute();
+    */
        
     }
 
