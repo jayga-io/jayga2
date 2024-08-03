@@ -31,6 +31,10 @@ use App\Http\Controllers\Frontend\user\UserloginController;
 use App\Http\Controllers\Frontend\user\UserdetailsController;
 
 
+//email
+use App\Http\Controllers\Api\email\BookingEmail;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -116,7 +120,7 @@ Route::get('/show/availability/{id}', [ListingAvailability::class, 'get_dates'])
 
 Route::get('/show/notifications/{id}', [NotificationController::class, 'show']);
 
-
+Route::post('/booking/make-complete', [BookingController::class, 'mark_complete']);
 
 Route::post('/user/delete', [UserController::class, 'user_delete']);
 
@@ -199,6 +203,12 @@ Route::post('/user/vouchars', [UserVoucharController::class, 'get_vouchar']);
 
 //user valid vouchars
 Route::post('/user/valid/vouchars', [UserVoucharController::class, 'user_valid_vouchars']);
+
+
+
+//Email Sending Apis
+Route::post('/send/booking-email', [BookingEmail::class, 'send_booking_email']);
+Route::post('/send/listing-email', [ListingEmail::class, 'send_listing_email']);
 
 
 //Front side apis
