@@ -24,29 +24,38 @@ class UserVoucharController extends Controller
             $vouchar = Vouchar::where('vouchar_code', $request->input('vouchar_code'))->where('validity_end', '>=', $today)->get();
             if(count($vouchar)>0){
                 $usage = Booking::where('vouchar_code', $request->input('vouchar_code'))->where('user_id', $request->input('user_id'))->count();
+                $userVouchar = UserVouchar::where('vouchar_code', $request->input('vouchar_code'))->where('user_id', $request->input('user_id'))->count();
                 if($usage > 1){
                     return response()->json([
                         'status' => 403,
                         'messege' => 'maximum usage amount for the vouchar for this user reached'
                     ], 403);
                 }else{
-                    UserVouchar::create([
-                        'user_id' => $request->input('user_id'),
-                        'vouchar_id' => $vouchar[0]->id,
-                        'vouchar_code' => $vouchar[0]->vouchar_code,
-                        'discount_type' => $vouchar[0]->discount_type,
-                        'discount_value' => $vouchar[0]->discount_value,
-                        'max_discount' => $vouchar[0]->max_discount,
-                        'validity_start' => $vouchar[0]->validity_start,
-                        'validity_end' => $vouchar[0]->validity_end,
-                        'usage_count' => 0,
-                        'created_on' => $vouchar[0]->created_on,
-                    ]);
+                    if($userVouchar > 1){
+                        return response()->json([
+                            'status' => 403,
+                            'messege' => 'Vouchar already added'
+                        ], 403);
+                    }else{
+                        UserVouchar::create([
+                            'user_id' => $request->input('user_id'),
+                            'vouchar_id' => $vouchar[0]->id,
+                            'vouchar_code' => $vouchar[0]->vouchar_code,
+                            'discount_type' => $vouchar[0]->discount_type,
+                            'discount_value' => $vouchar[0]->discount_value,
+                            'max_discount' => $vouchar[0]->max_discount,
+                            'validity_start' => $vouchar[0]->validity_start,
+                            'validity_end' => $vouchar[0]->validity_end,
+                            'usage_count' => 0,
+                            'created_on' => $vouchar[0]->created_on,
+                        ]);
 
-                    return response()->json([
-                        'status' => 200,
-                        'messege' => 'Vouchar added to this user'
-                    ]);
+                        return response()->json([
+                            'status' => 200,
+                            'messege' => 'Vouchar added to this user'
+                        ]);
+                    }
+                    
                 }
             }else{
                 return response()->json([
