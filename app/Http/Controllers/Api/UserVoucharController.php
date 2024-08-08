@@ -43,6 +43,8 @@ class UserVoucharController extends Controller
                             'vouchar_code' => $vouchar[0]->vouchar_code,
                             'discount_type' => $vouchar[0]->discount_type,
                             'discount_value' => $vouchar[0]->discount_value,
+                            'min_days' => $vouchar[0]->min_days,
+                            'min_amount' => $vouchar[0]->min_amount,
                             'max_discount' => $vouchar[0]->max_discount,
                             'validity_start' => $vouchar[0]->validity_start,
                             'validity_end' => $vouchar[0]->validity_end,
