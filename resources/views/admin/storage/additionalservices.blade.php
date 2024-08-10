@@ -19,7 +19,7 @@
 
                 <div class="col-lg-3 col-md-3 col-sm-12">
                     <label for="service_description">Service description:</label>
-                    <textarea name="service_description" id="content" class="form-control" required></textarea>
+                    <textarea name="service_description" id="content" class=" form-control" required></textarea>
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-sm-12">
@@ -48,7 +48,7 @@
                     @foreach ($services as $item)
                         <tr>
                             <td>{{$counter}}</td>
-                            <td><img src="https://new.jayga.io/uploads/storage/{{$item->service_icon}}" alt=""></td>
+                            <td><img src="https://new.jayga.io/uploads/storage/{{$item->service_icon}}" height="32px;" width="32px;" alt=""></td>
                             <td>{{$item->service_name}}</td>
                             <td>{{$item->service_description}}</td>
                             <td>{{$item->created_at->diffForHumans()}}</td>

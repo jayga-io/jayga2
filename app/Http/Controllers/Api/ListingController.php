@@ -525,10 +525,10 @@ class ListingController extends Controller
         ]);
     }
 
-    public function del_fav(Request $request, $id){
-        $listing = FavListing::where('id', $id)->get();
+    public function del_fav(Request $request){
+        $listing = FavListing::where('id', $request->input('id'))->get();
         if(count($listing)>0){
-            FavListing::where('id', $id)->delete();
+            FavListing::where('id', $request->input('id'))->delete();
          return response()->json([
             'status' => 200,
             'messege' => 'Favourite listing removed'
