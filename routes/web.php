@@ -12,18 +12,23 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\ListingReportCategoriesController;
 use App\Http\Controllers\Admin\VoucharController;
+use App\Http\Controllers\Admin\StorageController;
+
 use App\Http\Controllers\LoginController;
+
 use App\Http\Controllers\Host\HostController;
 use App\Http\Controllers\Host\ListerDashboardController;
 use App\Http\Controllers\Host\ListerUserController;
 use App\Http\Controllers\Host\AccountsController;
 use App\Http\Controllers\Host\BankDetailsController;
+
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Client\ClientLoginController;
 use App\Http\Controllers\Client\ClientNotificationController;
 use App\Http\Controllers\Client\FavouritesController;
 use App\Http\Controllers\Client\SearchController;
 use App\Http\Controllers\Client\RefundController;
+
 use App\Models\User;
 use App\Models\Listing;
 use App\Http\Middleware\ensureotp;
@@ -194,6 +199,18 @@ Route::prefix('admin')->group(function(){
 
         //user delete
         Route::get('/user/delete/{id}', [UsersController::class, 'delete_user']);
+
+
+        //storage section
+        Route::get('/additional-services', [StorageController::class, 'show_services'])->name('additionalservices');
+        Route::post('/create/services', [StorageController::class, 'create_services'])->name('createservices');
+
+        //inventory
+        Route::get('/inventory-types', [StorageController::class, 'inventory_types'])->name('inventorytypes');
+        Route::post('/create/inventory-type', [StorageController::class, 'create_inventory_type'])->name('createinventorytype');
+
+
+
         
     });
 
