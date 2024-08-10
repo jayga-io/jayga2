@@ -216,7 +216,7 @@ class BookingController extends Controller
         ]);
 
         if($validated){
-            $bookings = Booking::where('lister_id', $request->query('lister_id'))->with('listings')->with('listings.images')->orderBy('created_at', 'DESC')->get();
+            $bookings = Booking::where('lister_id', $request->query('lister_id'))->with('listings')->with('listings.images')->with('user')->orderBy('created_at', 'DESC')->get();
             if(count($bookings)>0){
                 return response()->json([
                     'status' => true,
@@ -498,7 +498,7 @@ class BookingController extends Controller
         ]);
 
         if($validated){
-            $completed = BookingHistory::where('lister_id', $request->query('lister_id'))->where('isComplete', true)->get();
+            $completed = BookingHistory::where('lister_id', $request->query('lister_id'))->where('isComplete', true)->with('user')->get();
 
             if(count($completed)>0){
                 return response()->json([

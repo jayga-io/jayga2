@@ -236,7 +236,8 @@
                 <li class="list-divider"></li>
 
                 <li class="submenu">
-                    <a href="#"><i class="fe fe-table"></i> <span> Storage </span></a>
+                    <a href="#"><i class="fe fe-table"></i> <span> Storage </span><span
+                        class="menu-arrow"></span></a>
                     <ul class="submenu_class">
                         <li><a href="{{route('additionalservices')}}">Additional Services</a></li>
                         <li><a href="{{route('inventorytypes')}}">Inventory Types</a></li>

@@ -13,14 +13,25 @@
 
 	<link rel="stylesheet" href="{{asset('assets/css/style.css')}}"> 
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-	<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: 'textarea.tinymce-editor', // Select the textarea with this class
-            plugins: 'lists link image preview code',
-            toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code preview'
-        });
-    </script>
+	<!-- Place the first <script> tag in your HTML's <head> -->
+	<script src="https://cdn.tiny.cloud/1/f805ktplgd3vcc1pvvh0ci648lo1ri7ouzb38bzo14donovl/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+	<!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+	<script>
+	tinymce.init({
+		selector: '',
+		plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+		toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+		tinycomments_mode: 'embedded',
+		tinycomments_author: 'Author name',
+		mergetags_list: [
+		{ value: 'First.Name', title: 'First Name' },
+		{ value: 'Email', title: 'Email' },
+		],
+		ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+	});
+	</script>
+    
 	<link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 </head>
 

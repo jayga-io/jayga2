@@ -104,7 +104,7 @@ Route::post('/add/fav/listing', [ListingController::class, 'add_fav']);
 
 Route::get('/fav/listings/{id}', [ListingController::class, 'get_fav']);
 
-Route::get('/fav/listing/remove/{id}', [ListingController::class, 'del_fav']);
+Route::post('/fav/listing/remove/{id}', [ListingController::class, 'del_fav']);
 
 Route::get('/user/avatars/{id}', [UserController::class, 'user_avatars']);
 
