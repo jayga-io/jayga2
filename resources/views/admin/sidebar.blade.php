@@ -232,7 +232,22 @@
                         <li><a href="{{route('showuserreports')}}">Reports </a></li>
                     </ul>
                 </li>
+
+                <li class="list-divider"></li>
+
+                <li class="submenu">
+                    <a href="#"><i class="fe fe-table"></i> <span> Storage </span></a>
+                    <ul class="submenu_class">
+                        <li><a href="{{route('additionalservices')}}">Additional Services</a></li>
+                        <li><a href="{{route('inventorytypes')}}">Inventory Types</a></li>
+                    </ul>
+                </li>
+
+
+
                 <li> <a href="{{route('userfeedback')}}"><i class="fas fa-cog"></i> <span>User Feedbacks</span></a> </li>
+
+               
                 <!-- <li class="list-divider"></li>
                 <li class="menu-title mt-3"> <span>UI ELEMENTS</span> </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-laptop"></i> <span> Components </span> <span class="menu-arrow"></span></a>

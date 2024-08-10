@@ -22,6 +22,8 @@ return new class extends Migration
             $table->bigInteger('quantity_value');
             $table->string('item_type');
             $table->string('item_size');
+            $table->string('additional_details');
+            $table->json('additional_services');
             $table->string('created_on');
             $table->timestamps();
         });
