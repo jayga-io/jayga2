@@ -190,8 +190,8 @@ class BookingController extends Controller
         ]);
 
         if($validated){
-            $bookings = Booking::where('user_id', $request->input('user_id'))->with('listings')->with('listings.images')->with('user')->orderBy('created_at', 'DESC')->get();
-            $past_bookings = BookingHistory::where('user_id', $request->input('user_id'))->with('listings')->with('listings.images')->with('user')->orderBy('created_at', 'DESC')->get();
+            $bookings = Booking::where('user_id', $request->input('user_id'))->with('listings')->with('listings.images')->with('user')->with('user.avatars')->orderBy('created_at', 'DESC')->get();
+            $past_bookings = BookingHistory::where('user_id', $request->input('user_id'))->with('listings')->with('listings.images')->with('user')->with('user.avatars')->orderBy('created_at', 'DESC')->get();
             
             if(count($bookings)>0 || count($past_bookings)>0){
                 return response()->json([
@@ -216,11 +216,13 @@ class BookingController extends Controller
         ]);
 
         if($validated){
-            $bookings = Booking::where('lister_id', $request->query('lister_id'))->with('listings')->with('listings.images')->with('user')->orderBy('created_at', 'DESC')->get();
-            if(count($bookings)>0){
+            $bookings = Booking::where('lister_id', $request->query('lister_id'))->with('listings')->with('listings.images')->with('user')->with('user.avatars')->orderBy('created_at', 'DESC')->get();
+            $past_bookings = BookingHistory::where('lister_id', $request->input('lister_id'))->with('listings')->with('listings.images')->with('user')->with('user.avatars')->orderBy('created_at', 'DESC')->get();
+            if(count($bookings)>0 || count($past_bookings)>0){
                 return response()->json([
                     'status' => true,
-                    'bookings' => $bookings
+                    'bookings' => $bookings,
+                    'past_bookings' => $past_bookings
                 ]);
             }else{
                 return response()->json([
