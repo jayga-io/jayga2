@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\UserPictures;
 use App\Models\UserNid;
+use App\Models\Inventory;
+use App\Models\BusinessLocation;
 
 class User extends Authenticatable
 {
@@ -55,5 +57,13 @@ class User extends Authenticatable
 
     public function listings(){
         return $this->hasMany(Listing::class, 'lister_id', 'id');
+    }
+
+    public function inventories(){
+        return $this->hasMany(Inventory::class, 'user_id', 'id');
+    }
+
+    public function business_locations(){
+        return $this->hasMany(BusinessLocation::class, 'user_id', 'id');
     }
 }

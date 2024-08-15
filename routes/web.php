@@ -208,7 +208,7 @@ Route::prefix('admin')->group(function(){
         //inventory
         Route::get('/inventory-types', [StorageController::class, 'inventory_types'])->name('inventorytypes');
         Route::post('/create/inventory-type', [StorageController::class, 'create_inventory_type'])->name('createinventorytype');
-
+        Route::get('/show/inventory/requests', [StorageController::class, 'show_inventory_requests'])->name('showinventoryreq');
 
 
         

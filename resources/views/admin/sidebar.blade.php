@@ -239,6 +239,7 @@
                     <a href="#"><i class="fe fe-table"></i> <span> Storage </span><span
                         class="menu-arrow"></span></a>
                     <ul class="submenu_class">
+                        <li><a href="{{route('showinventoryreq')}}">Inventory Requests</a></li>
                         <li><a href="{{route('additionalservices')}}">Additional Services</a></li>
                         <li><a href="{{route('inventorytypes')}}">Inventory Types</a></li>
                     </ul>
