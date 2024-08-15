@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AdditionalStorageServices;
 use App\Models\InventoryType;
+use App\Models\Inventory;
 
 class StorageController extends Controller
 {
@@ -44,5 +45,10 @@ class StorageController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Inventory type added');
+    }
+
+    public function show_inventory_requests(Request $request){
+        $inventories = Inventory::with('user')->with('business_location')->get();
+        return view('admin.storage.storagerequests')->with('inventories', $inventories);
     }
 }
