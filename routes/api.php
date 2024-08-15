@@ -22,6 +22,7 @@ use App\Http\Controllers\Api\TimeSlotsController;
 use App\Http\Controllers\Api\FeedbackController;
 use App\Http\Controllers\Api\ReportsController;
 use App\Http\Controllers\Api\UserVoucharController;
+use App\Http\Controllers\Api\StorageController;
 
 use App\Http\Controllers\FirebaseController;
 
@@ -209,6 +210,9 @@ Route::post('/user/valid/vouchars', [UserVoucharController::class, 'user_valid_v
 //Email Sending Apis
 Route::post('/send/booking-email', [BookingEmail::class, 'send_booking_email']);
 Route::post('/send/listing-email', [ListingEmail::class, 'send_listing_email']);
+
+//storage request api
+Route::post('/send/storage/request', [StorageController::class, 'send_storage_request']);
 
 
 //Front side apis
