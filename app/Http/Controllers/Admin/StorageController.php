@@ -48,8 +48,9 @@ class StorageController extends Controller
     }
 
     public function show_inventory_requests(Request $request){
-        $inventories = Inventory::with('user')->with('business_location')->get();
-        return view('admin.storage.storagerequests')->with('inventories', $inventories);
+        $pendinginventories = Inventory::where('status', false)->with('user')->with('business_location')->get();
+        $acceptedinventories = Inventory::where('status', true)->with('user')->with('business_location')->get();
+        return view('admin.storage.storagerequests')->with('pendinginventories', $pendinginventories)->with('acceptedinventories', $acceptedinventories);
     }
 
     public function delete_inventory_types(Request $request, $id){

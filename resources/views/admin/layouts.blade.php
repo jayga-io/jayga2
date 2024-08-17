@@ -50,6 +50,9 @@
 		let table = new DataTable('#myTable');
 	</script>
 	<script>
+		let table = new DataTable('#myTable2');
+	</script>
+	<script>
 		let table2 = new DataTable('#myTableRefunds',{
 			  scrollX: true
 			});
@@ -58,6 +61,17 @@
 		let table3 = new DataTable('#pendingTable',{
 			  scrollX: true
 			});
+	</script>
+
+	<script>
+		let table6 = new DataTable('#pendTable',{
+			scrollX: true
+		});
+	</script>
+	<script>
+		let table5 = new DataTable('#approvedTable',{
+			scrollX: true
+		});
 	</script>
 
 	<script>
