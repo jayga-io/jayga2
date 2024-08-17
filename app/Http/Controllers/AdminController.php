@@ -21,7 +21,7 @@ class AdminController extends Controller
     public function index()
     {
         $tk = JaygaEarn::all();
-        $total_earned = JaygaEarn::sum('total');
+        $total_earned = round(JaygaEarn::sum('total'));
         $booking_count = BookingHistory::count();
        // dd($booking_count);
         $listings = Listing::where('isApproved', true)->count();
