@@ -43,15 +43,13 @@
                                     <td>{{$item->user->name}}</td>
                                     <td>{{$item->quantity_value}}.{{$item->quantity_type}}</td>
                                     <td>{{$item->business_location->district}},{{$item->business_location->primary_address}}</td>
-                                    @if ($item->status == true)
-                                        <td><span>&#128994; In store</span></td>
-                                    @else
-                                        <td><span>&#128308; Not in store</span></td>
-                                    @endif
+                                   
+                                    <td><span>&#128308; Not in store</span></td>
+                                    
                                     <td>{{$item->created_at->diffForHumans()}}</td>
                                     <td><a href="#" class="btn btn-primary">View</a></td>
                                     
-                                    <td><a href="#" class="btn btn-danger">Delete</a></td>
+                                    <td><a href="/admin/delete/inventories/{{$item->id}}" class="btn btn-danger">Delete</a></td>
                                 </tr>
                                 <?php $counter++; ?>
                             @endforeach
@@ -86,15 +84,13 @@
                                     <td>{{$item->user->name}}</td>
                                     <td>{{$item->quantity_value}}.{{$item->quantity_type}}</td>
                                     <td>{{$item->business_location->district}},{{$item->business_location->primary_address}}</td>
-                                    @if ($item->status == true)
+                                    
                                         <td><span>&#128994; In store</span></td>
-                                    @else
-                                        <td><span>&#128308; Not in store</span></td>
-                                    @endif
+                                   
                                     <td>{{$item->created_at->diffForHumans()}}</td>
                                     <td><a href="#" class="btn btn-primary">View</a></td>
                                     
-                                    <td><a href="#" class="btn btn-danger">Delete</a></td>
+                                    <td><a href="/admin/delete/inventories/{{$item->id}}" class="btn btn-danger">Delete</a></td>
                                 </tr>
                                 <?php $counter++; ?>
                             @endforeach
