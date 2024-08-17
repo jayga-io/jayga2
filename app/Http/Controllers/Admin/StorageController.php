@@ -62,4 +62,9 @@ class StorageController extends Controller
         AdditionalStorageServices::where('id', $id)->delete();
         return redirect()->back()->with('success', 'Additional service deleted');
     }
+
+    public function delete_inventories(Request $request, $id){
+        Inventory::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Inventory request deleted');
+    }
 }
