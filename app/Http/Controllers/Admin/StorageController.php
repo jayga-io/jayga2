@@ -51,4 +51,14 @@ class StorageController extends Controller
         $inventories = Inventory::with('user')->with('business_location')->get();
         return view('admin.storage.storagerequests')->with('inventories', $inventories);
     }
+
+    public function delete_inventory_types(Request $request, $id){
+        InventoryType::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Inventory type deleted');
+    }
+
+    public function delete_additional_service(Request $request, $id){
+        AdditionalStorageServices::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Additional service deleted');
+    }
 }

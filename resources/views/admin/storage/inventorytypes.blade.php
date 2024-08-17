@@ -42,7 +42,7 @@
                             
                             <td>{{$item->inventory_type}}</td>
                             <td>{{$item->created_at->diffForHumans()}}</td>
-                            <td><a href="#" class="btn btn-danger">Delete</a></td>
+                            <td><a href="/admin/delete/inventory-type/{{$item->id}}" class="btn btn-danger">Delete</a></td>
                         </tr>
                         <?php $counter++; ?>
                     @endforeach

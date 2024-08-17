@@ -12,6 +12,7 @@ function send_notif($data){
             'notification' => [
                 'title' => $data['title'],
                 'body' => $data['body'],
+                'type' => 'booking',
             ]
         ]
     ];

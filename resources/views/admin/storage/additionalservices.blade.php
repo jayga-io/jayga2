@@ -52,7 +52,7 @@
                             <td>{{$item->service_name}}</td>
                             <td>{{$item->service_description}}</td>
                             <td>{{$item->created_at->diffForHumans()}}</td>
-                            <td><a href="#" class="btn btn-danger">Delete</a></td>
+                            <td><a href="/admin/delete/additional-service/{{$item->id}}" class="btn btn-danger">Delete</a></td>
                         </tr>
                         <?php $counter++; ?>
                     @endforeach
