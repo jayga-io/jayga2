@@ -211,6 +211,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/show/inventory/requests', [StorageController::class, 'show_inventory_requests'])->name('showinventoryreq');
         Route::get('/delete/inventory-type/{id}', [StorageController::class, 'delete_inventory_types']);
         Route::get('/delete/additional-service/{id}', [StorageController::class, 'delete_additional_service']);
+        Route::get('/delete/inventories/{id}', [StorageController::class, 'delete_inventories']);
 
 
         
