@@ -11,17 +11,19 @@ use App\Models\Inventory;
 class StorageController extends Controller
 {
     public function send_storage_request(Request $request){
+       // dd($request->all());
         $validated = $request->validate([
             'district' => 'required',
             'user_id' => 'required',
             'primary_address' => 'required',
             'business_storage_size' => 'required',
             'inventories' => 'required|array',
-            'inventories.item_name' => 'required',
-            'inventories.quantity_type' => 'required',
-            'inventories.quantity_value' => 'required',
-            'inventories.item_type' => 'required',
-            
+            'inventories.*.item_name' => 'required',
+            'inventories.*.quantity_type' => 'required',
+            'inventories.*.quantity_value' => 'required',
+            'inventories.*.item_type' => 'required',
+            'inventories.*.additional_details' => 'string',
+            'additional_services' => 'array',
             
             
         ]);
@@ -35,17 +37,17 @@ class StorageController extends Controller
             'primary_address' => $request->input('primary_address'),
             'additional_address' => $request->input('additional_address'),
             'business_storage_size' => $request->input('business_storage_size'),
-            'additional_services' => $request->input('additional_services'),
+            'additional_services' => json_encode($request->input('additional_services')),
             'created_on' => date('Y-m-d H:i:s')
            ]);
 
            $bl = BusinessLocation::latest()->first();
           
-            $inventories[] = $request->input('inventories');
+           // $inventories[] = $request->input('inventories');
 
             
 
-            foreach ($inventories as $key => $value) {
+            foreach ($validated['inventories'] as $key => $value) {
                Inventory::create([
                 'user_id' => $request->input('user_id'),
                 'business_location_id' => $bl->business_id,
