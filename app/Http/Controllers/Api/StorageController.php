@@ -22,7 +22,7 @@ class StorageController extends Controller
             'inventories.quantity_value' => 'required',
             'inventories.item_type' => 'required',
             
-            'inventories.additional_services' => 'required'
+            
             
         ]);
     
@@ -35,6 +35,7 @@ class StorageController extends Controller
             'primary_address' => $request->input('primary_address'),
             'additional_address' => $request->input('additional_address'),
             'business_storage_size' => $request->input('business_storage_size'),
+            'additional_services' => $request->input('additional_services'),
             'created_on' => date('Y-m-d H:i:s')
            ]);
 
@@ -54,7 +55,7 @@ class StorageController extends Controller
                 'item_type' => $value['item_type'],
                 
                 'additional_details' => $value['additional_details'],
-                'additional_services' => $value['additional_services'],
+               // 'additional_services' => $value['additional_services'],
                 'created_on' => date('Y-m-d H:i:s')
                ]);
             }
