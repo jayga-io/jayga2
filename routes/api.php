@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\FeedbackController;
 use App\Http\Controllers\Api\ReportsController;
 use App\Http\Controllers\Api\UserVoucharController;
 use App\Http\Controllers\Api\StorageController;
+use App\Http\Controllers\Api\ChatsController;
 
 use App\Http\Controllers\FirebaseController;
 
@@ -213,6 +214,10 @@ Route::post('/send/listing-email', [ListingEmail::class, 'send_listing_email']);
 
 //storage request api
 Route::post('/send/storage/request', [StorageController::class, 'send_storage_request']);
+
+//chats api
+Route::get('/get/chats', [ChatsController::class, 'get_chat']);
+Route::post('/create/chats', [ChatsController::class, 'create_chat']);
 
 
 //Front side apis
