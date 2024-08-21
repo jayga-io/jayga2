@@ -60,11 +60,11 @@ class ChatsController extends Controller
 
     public function get_chat(Request $request){
         $validated = $request->validate([
-            'id' => 'required'
+            'booking_id' => 'required'
         ]);
 
         if($validated){
-          $chat = Chat::where('user_id', $request->query('id'))->orWhere('lister_id', $request->query('id'))
+          $chat = Chat::where('booking_id', $request->query('booking_id'))
             ->with('user')->with('user.avatars')
             ->with('lister')->with('lister.avatars')
             ->with('listing')
