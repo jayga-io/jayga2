@@ -35,6 +35,7 @@ class ChatsController extends Controller
                     'listing_id' => $validated['listing_id'] ,
                     'booking_id' => $validated['booking_id'] ,
                     'image' => $file->hashName() ,
+                    'created_on' => date('Y-m-d H:i:s')
                 ]);
             }else{
                 Chat::create([
@@ -47,6 +48,7 @@ class ChatsController extends Controller
                     'listing_id' => $validated['listing_id'] ,
                     'booking_id' => $validated['booking_id'] ,
                     'image' => null ,
+                    'created_on' => date('Y-m-d H:i:s')
                 ]);
             }
             return response()->json([
@@ -69,6 +71,7 @@ class ChatsController extends Controller
             ->with('lister')->with('lister.avatars')
             ->with('listing')
             ->with('booking')
+            ->orderBy('created_at', 'DESC')
             ->get();
 
             if(count($chat)>0){
