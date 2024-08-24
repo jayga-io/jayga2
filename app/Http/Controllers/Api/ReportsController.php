@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Reports;
 use App\Models\Listing;
+use App\Models\ListingReportCategories;
 
 class ReportsController extends Controller
 {
@@ -42,6 +43,21 @@ class ReportsController extends Controller
             
         }else{
             return $validated->errors();
+        }
+    }
+
+    public function get_report_categories(){
+        $reportcategories = ListingReportCategories::all();
+        if(count($reportcategories)>0){
+            return response()->json([
+                'status' => 200,
+                'reportcategories' => $reportcategories
+            ]);
+        }else{
+            return response()->json([
+                'status' => 404,
+                'messege' => 'Not found anything'
+            ], 404);
         }
     }
 }
