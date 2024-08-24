@@ -22,6 +22,7 @@
         <form action="{{ route('updatelisting') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="d-flex justify-content-between">
+                <input type="hidden" value="{{$listing[0]->lister_id}}" name="lister_id">
                 <h2>Edit Listing</h2>
                 @if ($listing[0]->isActive == true)
                     <div>
