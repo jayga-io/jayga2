@@ -423,7 +423,7 @@ class ListerDashboardController extends Controller
                 $path = $ls->store('listings');
                 ListingImages::create([
                     'listing_id' => $request->input('listing_id'),
-                    'lister_id' => $request->session()->get('user'),
+                    'lister_id' => $request->input('lister_id'),
                     'listing_filename' => $ls->hashName(),
                     'listing_targetlocation' => $path,
                 ]);
