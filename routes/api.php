@@ -225,7 +225,7 @@ Route::post('/create/chats', [ChatsController::class, 'create_chat']);
 
 
 //Notification send
-Route::post('/send/push-notif', PushnotifController::class, 'send_notif');
+Route::post('/send/push-notif', [PushnotifController::class, 'send_notif']);
 
 
 //Front side apis

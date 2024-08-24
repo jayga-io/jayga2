@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class PushnotifController extends Controller
 {
@@ -33,6 +34,8 @@ class PushnotifController extends Controller
                     'messege' => 'Notification sent'
                 ]);
             }
+        }else{
+            return $validated->errors();
         }
 
         
