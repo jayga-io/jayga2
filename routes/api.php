@@ -24,6 +24,7 @@ use App\Http\Controllers\Api\ReportsController;
 use App\Http\Controllers\Api\UserVoucharController;
 use App\Http\Controllers\Api\StorageController;
 use App\Http\Controllers\Api\ChatsController;
+use App\Http\Controllers\Api\PushnotifController;
 
 use App\Http\Controllers\FirebaseController;
 
@@ -196,6 +197,9 @@ Route::post('/add/disable-slots', [ListingAvailability::class, 'store_disabled_s
 //report submit api
 Route::post('/submit/report', [ReportsController::class, 'submit_report']);
 
+//get report categories
+Route::get('/report-categories', [ReportsController::class, 'get_report_categories']);
+
 
 //add user vouchar api
 Route::post('/user/add/vouchar', [UserVoucharController::class, 'add_vouchar_user']);
@@ -218,6 +222,10 @@ Route::post('/send/storage/request', [StorageController::class, 'send_storage_re
 //chats api
 Route::get('/get/chats', [ChatsController::class, 'get_chat']);
 Route::post('/create/chats', [ChatsController::class, 'create_chat']);
+
+
+//Notification send
+Route::post('/send/push-notif', PushnotifController::class, 'send_notif');
 
 
 //Front side apis
