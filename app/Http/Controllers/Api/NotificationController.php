@@ -9,7 +9,14 @@ use App\Models\Notification;
 class NotificationController extends Controller
 {
     public function show(Request $request, $id){
-      $notis =  Notification::where('user_id', $id)->with('listings')->with('bookings')->orderBy('created_at', 'DESC')->get();
+     // $notis =  Notification::where('user_id', $id)->with('listings')->with('bookings')->orderBy('created_at', 'DESC')->get();
+        $notis = [];
+        Notification::where('user_id', $id)->with('listings')->with('bookings')->orderBy('created_at', 'DESC')->chunk(100, function($notifs) use(&$notis){
+            foreach($notifs as $notf){
+               // dd($notf);
+                $notis[] = $notf;
+            }
+        }); 
      // $lister_notis = Notification::where('lister_id', $user_notis[0]->)
         if(count($notis)>0){
             return response()->json([

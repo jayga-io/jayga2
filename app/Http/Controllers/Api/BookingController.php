@@ -138,6 +138,7 @@ class BookingController extends Controller
                     'listing_id' => $request->input('listing_id'),
                     'booking_id' => $booked[0]->booking_id,
                     'type' => 'New Booking Request : '.$booked[0]->listings->listing_title,
+                    //type => 'request_sent_by_guest
                     'messege' => 'Your have a new booking request for : '.$booked[0]->listings->listing_title,
                     'created_on' => date('Y-m-d H:i:s')
                 ]);
