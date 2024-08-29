@@ -8,6 +8,7 @@ use App\Models\Booking;
 use App\Models\BookingHistory;
 use App\Models\Listing;
 use App\Models\User;
+use App\Models\Inventory;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
 use Illuminate\Http\Request;
@@ -24,10 +25,26 @@ class AdminController extends Controller
         $total_earned = round(JaygaEarn::sum('total'));
         $booking_count = BookingHistory::count();
        // dd($booking_count);
-        $listings = Listing::where('isApproved', true)->count();
+        $listings = Listing::all()->count();
         $rooms = Listing::where('listing_type', 'room')->count();
+        $active_listing = Listing::where('isActive', true)->where('isApproved', true)->count();
+        $disabled_listing = Listing::where('isActive', false)->where('isApproved', false)->count();
+        $users = User::all()->count();
+        $hosts = User::whereDoesntHave('listings')->count();
+
+        $pending_inventories = Inventory::where('status', false)->count();
+        $accepted_inventories = Inventory::where('status', true)->count();
        // dd($total_earned);
-        return view('admin.dashboard')->with('tk', $tk)->with('total', $total_earned)->with('bookings', $booking_count)->with('listings', $listings)->with('rooms', $rooms);
+        return view('admin.dashboard')->with('tk', $tk)->with('total', $total_earned)
+        ->with('bookings', $booking_count)
+        ->with('listings', $listings)
+        ->with('rooms', $rooms)
+        ->with('active_listings', $active_listing)
+        ->with('disabled_listings', $disabled_listing)
+        ->with('users', $users)
+        ->with('hosts', $hosts)
+        ->with('pending_inventories', $pending_inventories)
+        ->with('accepted_inventories', $accepted_inventories);
     }
 
     /**

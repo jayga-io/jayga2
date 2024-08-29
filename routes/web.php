@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\RestrictionListController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\ListingReportCategoriesController;
+use App\Http\Controllers\Admin\ListingReviewsController;
 use App\Http\Controllers\Admin\VoucharController;
 use App\Http\Controllers\Admin\StorageController;
 
@@ -213,7 +214,9 @@ Route::prefix('admin')->group(function(){
         Route::get('/delete/additional-service/{id}', [StorageController::class, 'delete_additional_service']);
         Route::get('/delete/inventories/{id}', [StorageController::class, 'delete_inventories']);
 
-
+        //Listing reviews
+        Route::get('/show/listing/reviews', [ListingReviewsController::class, 'show_reviews'])->name('showlistingreviews');
+        Route::get('/delete/listing-review/{id}', [ListingReviewsController::class, 'delete_reviews'])->name('dellistingreviews');
         
     });
 

@@ -127,6 +127,7 @@
                     <ul class="submenu_class" style="display: none;">
 
                         <li><a href="{{route('all_listings')}}"> All Listing </a></li>
+                        <li><a href="{{route('showlistingreviews')}}"> Show Listing Reviews </a></li>
 
                         <li><a href="{{ route('addlisting')}}"> Create a listing </a></li>
                     </ul>
