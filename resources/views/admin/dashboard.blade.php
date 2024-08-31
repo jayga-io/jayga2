@@ -272,7 +272,7 @@
 
         <div class="row">
             <div class="col">
-                <table id="myTable" class="display">
+                <table id="earningTable" class="display">
                     <thead>
                         <tr>
                             <th>id</th>
