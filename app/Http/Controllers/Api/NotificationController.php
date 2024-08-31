@@ -30,4 +30,39 @@ class NotificationController extends Controller
             ]);
         }
     }
+
+    public function mark_read(Request $request){
+        $validated = $request->validate([
+            'user_id' => 'required'
+        ]);
+
+        if($validated){
+            Notification::where('user_id', $validated['user_id'])->update([
+                'isRead' => true
+            ]);
+
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Notifications marked read'
+            ]);
+        }else{
+            $validated->errors();
+        }
+    }
+
+    public function get_unread_count(Request $request){
+        $validated = $request->validate([
+            'user_id' => 'required'
+        ]);
+
+        if($validated){
+            $unread_count = Notification::where('user_id', $request->query('user_id'))->where('isRead', false)->count();
+            return response()->json([
+                'status' => 200,
+                'unread_notif_count' => $unread_count
+            ]);
+        }else{
+            $validated->errors();
+        }
+    }
 }
