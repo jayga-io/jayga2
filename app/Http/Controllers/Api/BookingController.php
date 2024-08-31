@@ -154,6 +154,7 @@ class BookingController extends Controller
                     'token' => $lister[0]->FCM_token,
                     'title' => 'New Booking Request '.$booked[0]->listings->listing_title,
                     'body' => 'You have a new booking request. ' .$booked[0]->listings->listing_title. ' Open the app to proceed',
+                    'type' => 'booking'
                 ];
                 // dd($notif_data);
                 send_notif($notif_details);
@@ -282,6 +283,7 @@ class BookingController extends Controller
                     'token' => $lister[0]->FCM_token,
                     'title' => 'Booking Request Confirmed : ['.$booking_id[0]->listings->listing_title.']',
                     'body' => 'Your booking at ['.$booking_id[0]->listings->listing_title.'] is confirmed',
+                    'type' => 'booking_approved'
                    ];
                   // dd($notif_data);
                    send_notif($notif_details);
@@ -350,6 +352,7 @@ class BookingController extends Controller
                     'token' => $lister[0]->FCM_token,
                     'title' => 'Booking Request Declined : ['.$booking_id[0]->listings->listing_title.']',
                     'body' => 'Your booking at ['.$booking_id[0]->listings->listing_title.'] is declined',
+                    'type' => 'booking_declined'
                    ];
                   // dd($notif_data);
                    send_notif($notif_details);
@@ -481,6 +484,7 @@ class BookingController extends Controller
                 'token' => $lister[0]->FCM_token,
                 'title' => 'Review Your Stay at ['.$books[0]->listings->listing_title.']',
                 'body' => 'Dont forget to review your stay at ['.$books[0]->listings->listing_title.']', 
+                'type' => 'booking_completed'
                ];
               // dd($notif_data);
                send_notif($notif_details);

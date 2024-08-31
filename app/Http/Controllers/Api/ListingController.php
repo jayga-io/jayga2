@@ -243,7 +243,8 @@ class ListingController extends Controller
              $notif_details = [
                 'token' => $user[0]->FCM_token,
                 'title' => 'Your listing has been created and submitted for review',
-                'body' => 'Open the app to proceed'
+                'body' => 'Open the app to proceed',
+                'type' => 'listing_created'
                ];
               // dd($notif_data);
                send_notif($notif_details);
