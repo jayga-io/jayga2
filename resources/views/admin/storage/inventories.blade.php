@@ -2,6 +2,7 @@
 @section('content')
     <div class="my-5">
         <div class="row my-3">
+            <h1 class="my-3">Inventories</h1>
             <table id="approvedTable" class="display">
                 <thead>
                     <tr>

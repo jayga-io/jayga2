@@ -232,6 +232,8 @@
             </a>
 
         </div>
+
+
 		<div class="col-xl-3 col-sm-6 col-12">
             <a href="{{route('bannedusers')}}">
                 <div class="card board1 fill">
@@ -240,6 +242,56 @@
                             <div>
                                 <h3 class="card_widget_header">{{ $suspended_users }}</h3>
                                 <h6 class="text-muted">Banned users</h6>
+                            </div>
+                            <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewbox="0 0 24 24" fill="none" stroke="#009688" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                                        <path
+                                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                        </path>
+                                    </svg></span> </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+		<div class="col-xl-3 col-sm-6 col-12">
+            <a href="{{route('showlistingreviews')}}">
+                <div class="card board1 fill">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <div>
+                                <h3 class="card_widget_header">{{ $reviews }}</h3>
+                                <h6 class="text-muted">Listing Reviews</h6>
+                            </div>
+                            <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewbox="0 0 24 24" fill="none" stroke="#009688" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                                        <path
+                                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                        </path>
+                                    </svg></span> </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+		<div class="col-xl-3 col-sm-6 col-12">
+            <a href="{{route('showuserreports')}}">
+                <div class="card board1 fill">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <div>
+                                <h3 class="card_widget_header">{{ $reports }}</h3>
+                                <h6 class="text-muted">Listing Reports</h6>
                             </div>
                             <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"

@@ -9,6 +9,8 @@ use App\Models\BookingHistory;
 use App\Models\Listing;
 use App\Models\User;
 use App\Models\Inventory;
+use App\Models\Reviews;
+use App\Models\Reports;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
 use Illuminate\Http\Request;
@@ -34,6 +36,8 @@ class AdminController extends Controller
         $suspended_users = User::where('isSuspended', true)->count();
         $pending_inventories = Inventory::where('status', false)->count();
         $accepted_inventories = Inventory::where('status', true)->count();
+        $listing_reviews = Reviews::all()->count();
+        $listing_reports = Reports::all()->count();
        // dd($total_earned);
         return view('admin.dashboard')->with('tk', $tk)->with('total', $total_earned)
         ->with('bookings', $booking_count)
@@ -43,6 +47,8 @@ class AdminController extends Controller
         ->with('disabled_listings', $disabled_listing)
         ->with('users', $users)
         ->with('hosts', $hosts)
+        ->with('reviews', $listing_reviews)
+        ->with('reports', $listing_reports)
         ->with('suspended_users', $suspended_users)
         ->with('pending_inventories', $pending_inventories)
         ->with('accepted_inventories', $accepted_inventories);
