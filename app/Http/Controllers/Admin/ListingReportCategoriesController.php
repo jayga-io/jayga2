@@ -34,4 +34,9 @@ class ListingReportCategoriesController extends Controller
         $rep = Reports::with('report_category')->with('user')->with('lister')->with('listing')->get();
         return view('admin.listingreports.listingreports')->with('reports', $rep);
     }
+
+    public function delete_report(Request $request, $id){
+        Reports::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Report deleted');
+    }
 }

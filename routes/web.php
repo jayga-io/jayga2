@@ -191,7 +191,7 @@ Route::prefix('admin')->group(function(){
         Route::post('/add/report/category', [ListingReportCategoriesController::class, 'add_report_category'])->name('addreportcategory');
         Route::post('/update/report/category', [ListingReportCategoriesController::class, 'update_report_category'])->name('updatereportcategory');
         Route::get('/show/reports', [ListingReportCategoriesController::class, 'show_reports'])->name('showuserreports');
-
+        Route::get('/del/report/{id}', [ListingReportCategoriesController::class, 'delete_report'])->name('deletereport');
 
         //vouchar section
         Route::get('/vouchars', [VoucharController::class, 'get_all'])->name('getvouchars');
