@@ -15,7 +15,7 @@ function send_notif($data){
         
             ],
             'data' => [
-                'type' => 'chat',
+                'type' => $data['type'],
             ]
         ]
     ];
