@@ -29,7 +29,7 @@
                             <td>{{$item->user->name}}</td>
 							<td>{{$item->report_category->category_name}}</td>
                             <td>{{$item->comments}}</td>
-                            <td>Delete</td>
+                            <td><a href="/admin/del/report/{{$item->id}}" class="btn btn-danger">Delete</a></td>
 						</tr>
 						<?php $counter++; ?>
 					@endforeach
