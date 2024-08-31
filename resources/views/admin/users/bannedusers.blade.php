@@ -1,7 +1,7 @@
 @extends('admin.layouts')
 @section('content')
     <div class="container my-5"> 
-        <h1>All Users</h1>
+        <h1>Banned Users</h1>
 
         <div class="row">
             <table id="myTable" class="display">
