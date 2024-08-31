@@ -27,6 +27,7 @@ class PushnotifController extends Controller
                     'token' => $user[0]->FCM_token,
                     'title' => $validated['title'],
                     'body' => $validated['body'],
+                    'type' => $request->input('type')
                 ];
                 send_notif($data);
                 return response()->json([
