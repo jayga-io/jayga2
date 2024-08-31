@@ -47,9 +47,7 @@
     </div>
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 	<script>
-		let tablee = new DataTable('#myTable',{
-			scrollX: true
-		});
+		let tablee = new DataTable('#myTable');
 	</script>
 	<script>
 		let tabley = new DataTable('#earningTable');
