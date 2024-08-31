@@ -377,5 +377,15 @@ class ListingController extends Controller
         return redirect()->back()->with('errors', 'Listing disabled');
     }
 
+    public function disabled_listings(Request $request){
+        $disabled_listings = Listing::where('isApproved', false)->where('isActive', false)->get();
+        return view('admin.listings.disabled-listings')->with('disabled_listings', $disabled_listings);
+    }
+
+    public function all_listings(Request $request){
+        $listings = Listing::orderBy('created_at', 'DESC')->get();
+        return view('admin.listings.all-listings')->with('all', $listings);
+    }
+
    
 }
