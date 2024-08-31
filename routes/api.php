@@ -227,6 +227,10 @@ Route::post('/create/chats', [ChatsController::class, 'create_chat']);
 //Notification send
 Route::post('/send/push-notif', [PushnotifController::class, 'send_notif']);
 
+//Notification read count and mark read
+Route::get('/unread/notif/count', [NotificationController::class, 'get_unread_count']);
+Route::post('/mark/read/notif', [NotificationController::class, 'mark_read']);
+
 
 //Front side apis
 
