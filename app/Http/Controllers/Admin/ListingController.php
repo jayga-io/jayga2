@@ -213,7 +213,8 @@ class ListingController extends Controller
            $notif_details = [
             'token' => $user[0]->FCM_token,
             'title' => 'Listing ['.$lister_id[0]->listing_title.'] declined',
-            'body' => 'Your listing ['.$lister_id[0]->listing_title.'] has been declined'
+            'body' => 'Your listing ['.$lister_id[0]->listing_title.'] has been declined',
+            'type' => 'listing_declined'
            ];
           // dd($notif_data);
            send_notif($notif_details);
@@ -295,6 +296,7 @@ class ListingController extends Controller
                         'token' => $user[0]->FCM_token,
                         'title' => 'Listing ['.$lister_id[0]->listing_title.'] approved',
                         'body' => 'Your listing ['.$lister_id[0]->listing_title.'] has been approved',
+                        'type' => 'listing_approved'
                        ];
                       // dd($notif_data);
                        send_notif($notif_details);
@@ -366,7 +368,8 @@ class ListingController extends Controller
            $notif_details = [
             'token' => $lister[0]->FCM_token,
             'title' => 'Your listing has been disabled',
-            'body' => 'Open the app to proceed'
+            'body' => 'Open the app to proceed',
+            'type' => 'listing_disabled_by_admin'
            ];
           // dd($notif_data);
            send_notif($notif_details);
