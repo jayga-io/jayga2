@@ -3,6 +3,7 @@
     <div class="my-5">
         <div class="row my-3 mx-auto">
             <div class="col-12">
+                <h1 class="my-2">Disabled Listings</h1>
                 <table id="myTable" class="display">
                     <thead>
                         <tr>
