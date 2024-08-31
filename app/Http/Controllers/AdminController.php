@@ -31,7 +31,7 @@ class AdminController extends Controller
         $disabled_listing = Listing::where('isActive', false)->where('isApproved', false)->count();
         $users = User::all()->count();
         $hosts = User::whereDoesntHave('listings')->count();
-
+        $suspended_users = User::where('isSuspended', true)->count();
         $pending_inventories = Inventory::where('status', false)->count();
         $accepted_inventories = Inventory::where('status', true)->count();
        // dd($total_earned);
@@ -43,6 +43,7 @@ class AdminController extends Controller
         ->with('disabled_listings', $disabled_listing)
         ->with('users', $users)
         ->with('hosts', $hosts)
+        ->with('suspended_users', $suspended_users)
         ->with('pending_inventories', $pending_inventories)
         ->with('accepted_inventories', $accepted_inventories);
     }

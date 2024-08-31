@@ -152,4 +152,9 @@ class UsersController extends Controller
         User::where('id', $id)->delete();
         return redirect()->back()->with('error', 'User deleted');
     }
+
+    public function banned_users(Request $request){
+        $banned_users = User::where('isSuspended', true)->get();
+        return view('admin.users.bannedusers')->with('banned_users', $banned_users);
+    }
 }

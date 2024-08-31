@@ -120,6 +120,7 @@ Route::prefix('admin')->group(function(){
             //users
             Route::get('/users', [UsersController::class, 'index'])->name('allusers');
             Route::get('/hosts', [UsersController::class, 'hosts'])->name('allhosts');
+            Route::get('/banned-users', [UsersController::class, 'banned_users'])->name('bannedusers');
             Route::get('/user/suspend/{id}', [UsersController::class, 'suspend'])->name('suspenduser');
             Route::get('/user/unsuspend/{id}', [UsersController::class, 'unsuspend'])->name('unsuspenduser');
             Route::post('/user/send/messege', [UsersController::class, 'sendMessege'])->name('sendmessege');
@@ -137,10 +138,9 @@ Route::prefix('admin')->group(function(){
 
             Route::get('/pending-listing', [ListingController::class, 'pending_listings'])->name('pendinglisting');
 
-            Route::get('/all-listing', function(){
-                    $listings = Listing::orderBy('created_at', 'DESC')->get();
-                    return view('admin.listings.all-listings')->with('all', $listings);
-                })->name('all_listings');
+            Route::get('/all-listing', [ListingController::class, 'all_listings'])->name('all_listings');
+
+            Route::get('/disabled/listings', [ListingController::class, 'disabled_listings'])->name('disabledlistings');
 
         Route::get('/edit-listing/{id}', [ListerDashboardController::class, 'edit_listing'])->name('editlistingadmin');
 
@@ -210,6 +210,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/inventory-types', [StorageController::class, 'inventory_types'])->name('inventorytypes');
         Route::post('/create/inventory-type', [StorageController::class, 'create_inventory_type'])->name('createinventorytype');
         Route::get('/show/inventory/requests', [StorageController::class, 'show_inventory_requests'])->name('showinventoryreq');
+        Route::get('/show/inventories', [StorageController::class, 'inventories'])->name('showinventories');
         Route::get('/delete/inventory-type/{id}', [StorageController::class, 'delete_inventory_types']);
         Route::get('/delete/additional-service/{id}', [StorageController::class, 'delete_additional_service']);
         Route::get('/delete/inventories/{id}', [StorageController::class, 'delete_inventories']);
