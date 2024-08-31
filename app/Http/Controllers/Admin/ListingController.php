@@ -203,7 +203,7 @@ class ListingController extends Controller
             'user_id' => $user[0]->id,
             'lister_id' => $lister_id[0]->lister_id,
             'listing_id' => $id,
-            'type' => 'Listing',
+            'type' => 'new_listing_declined',
             'messege' => 'Your listing : '. $lister_id[0]->listing_title . ' has been declined'
            ];
     
@@ -268,7 +268,7 @@ class ListingController extends Controller
                     'user_id' => $user[0]->id,
                     'lister_id' => $lister_id[0]->lister_id,
                     'listing_id' => $id,
-                    'type' => 'Listing',
+                    'type' => 'new_listing_approved',
                     'messege' => 'Your listing : '. $lister_id[0]->listing_title . ' has been approved',
                     'created_on' => date('Y-m-d H:i:s')
                 ];

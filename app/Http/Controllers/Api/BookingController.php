@@ -126,7 +126,7 @@ class BookingController extends Controller
                     'lister_id' => $request->input('lister_id'),
                     'listing_id' => $request->input('listing_id'),
                     'booking_id' => $booked[0]->booking_id,
-                    'type' => 'New Booking Request : '.$booked[0]->listings->listing_title,
+                    'type' => 'new_booking_request_placed',
                     'messege' => 'Your Booking request at : '.$booked[0]->listings->listing_title. ' has been placed',
                     'created_on' => date('Y-m-d H:i:s')
 
@@ -137,7 +137,7 @@ class BookingController extends Controller
                     'lister_id' => $request->input('lister_id'),
                     'listing_id' => $request->input('listing_id'),
                     'booking_id' => $booked[0]->booking_id,
-                    'type' => 'New Booking Request : '.$booked[0]->listings->listing_title,
+                    'type' => 'new_booking_request_sent_by_guest',
                     //type => 'request_sent_by_guest
                     'messege' => 'Your have a new booking request for : '.$booked[0]->listings->listing_title,
                     'created_on' => date('Y-m-d H:i:s')
@@ -269,7 +269,7 @@ class BookingController extends Controller
                     'lister_id' => $booking_id[0]->lister_id,
                     'listing_id' => $booking_id[0]->listing_id,
                     'booking_id' => $request->input('booking_id'),
-                    'type' => 'Booking Request Confirmed',
+                    'type' => 'booking_accepted_by_host',
                     'messege' => 'Your Booking : '. $booking_id[0]->listings->listing_title . ' is confirmed',
                     'created_on' => date('Y-m-d H:i:s')
                    ];
@@ -339,7 +339,7 @@ class BookingController extends Controller
                     'lister_id' => $booking_id[0]->lister_id,
                     'listing_id' => $booking_id[0]->listing_id,
                     'booking_id' => $request->input('booking_id'),
-                    'type' => 'Booking Request Declined: '. $booking_id[0]->listings->listing_title,
+                    'type' => 'booking_declined_by_host',
                     'messege' => 'Your Booking : '. $booking_id[0]->listings->listing_title . ' is declined',
                     'created_on' => date('Y-m-d H:i:s')
                 ];
