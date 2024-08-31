@@ -204,7 +204,8 @@ class ListingController extends Controller
             'lister_id' => $lister_id[0]->lister_id,
             'listing_id' => $id,
             'type' => 'new_listing_declined',
-            'messege' => 'Your listing : '. $lister_id[0]->listing_title . ' has been declined'
+            'messege' => 'Your listing : '. $lister_id[0]->listing_title . ' has been declined',
+            'created_on' => date('Y-m-d H:i:s')
            ];
     
            notify($notifys);
@@ -331,8 +332,9 @@ class ListingController extends Controller
             'lister_id' => $ls[0]->lister_id,
             'listing_id' => $id,
             
-            'type' => 'Listing',
-            'messege' => 'Your Listing : '. $ls[0]->listing_title . ' has been enabled'
+            'type' => 'listing_enabled_by_admin',
+            'messege' => 'Your Listing : '. $ls[0]->listing_title . ' has been enabled',
+            'created_on' => date('Y-m-d H:i:s')
            ];
 
            notify($notifys);
@@ -352,8 +354,9 @@ class ListingController extends Controller
             'lister_id' => $ls[0]->lister_id,
             'listing_id' => $id,
             
-            'type' => 'Listing',
-            'messege' => 'Your Listing : '. $ls[0]->listing_title . ' has been disabled'
+            'type' => 'listing_disabled_by_admin',
+            'messege' => 'Your Listing : '. $ls[0]->listing_title . ' has been disabled',
+            'created_on' => date('Y-m-d H:i:s')
            ];
 
            notify($notifys);

@@ -162,7 +162,8 @@ class BookingController extends Controller
             'booking_id' => $id,
             'type' => 'booking_accepted_by_host',
             //type => booking_accepted_by_host
-            'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been approved'
+            'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been approved',
+            'created_on' => date('Y-m-d H:i:s')
            ];
     
            notify($notifys);
@@ -206,7 +207,8 @@ class BookingController extends Controller
             'booking_id' => $id,
             'type' => 'booking_declined_by_host',
             //type => declined_by_host
-            'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been declined'
+            'messege' => 'Your Booking : '. $listing_name[0]->listing_title . 'has been declined',
+            'created_on' => date('Y-m-d H:i:s')
            ];
     
            notify($notifys);
