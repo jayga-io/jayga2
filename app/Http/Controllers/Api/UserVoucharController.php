@@ -71,13 +71,11 @@ class UserVoucharController extends Controller
     }
 
 
-    public function get_vouchar(Request $request){
-        $validated = $request->validate([
-            'user_id' => 'required',
-        ]);
+    public function get_vouchar(Request $request, $id){
+        
 
-        if($validated){
-            $vouchars = UserVouchar::where('user_id', $request->query('user_id'))->with('users')->get();
+        
+            $vouchars = UserVouchar::where('user_id', $id)->with('users')->get();
             if(count($vouchars)>0){
                 return response()->json([
                     'status' => 200,
@@ -86,13 +84,11 @@ class UserVoucharController extends Controller
             }else{
                 return response()->json([
                     'status' => 404,
-                    'messege' => 'Vouchar expired'
+                    'messege' => 'Vouchar expired / No vouchers found'
                 ], 404);
             }
             
-        }else{
-            return $validated->errors();
-        }
+        
     }
 
     public function user_valid_vouchars(Request $request){
