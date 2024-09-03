@@ -77,7 +77,7 @@ class UserVoucharController extends Controller
         ]);
 
         if($validated){
-            $vouchars = UserVouchar::where('user_id', $request->input('user_id'))->with('users')->with('vouchars')->get();
+            $vouchars = UserVouchar::where('user_id', $request->input('user_id'))->with('users')->get();
             if(count($vouchars)>0){
                 return response()->json([
                     'status' => 200,
