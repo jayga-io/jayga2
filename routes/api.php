@@ -205,7 +205,7 @@ Route::get('/report-categories', [ReportsController::class, 'get_report_categori
 Route::post('/user/add/vouchar', [UserVoucharController::class, 'add_vouchar_user']);
 
 //get user vouchar
-Route::post('/user/vouchars', [UserVoucharController::class, 'get_vouchar']);
+Route::get('/user/vouchars', [UserVoucharController::class, 'get_vouchar']);
 
 //user valid vouchars
 Route::post('/user/valid/vouchars', [UserVoucharController::class, 'user_valid_vouchars']);
