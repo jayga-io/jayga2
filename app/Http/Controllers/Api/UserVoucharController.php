@@ -25,18 +25,12 @@ class UserVoucharController extends Controller
             if(count($vouchar)>0){
                 $usage = Booking::where('vouchar_code', $request->input('vouchar_code'))->where('user_id', $request->input('user_id'))->count();
                 $userVouchar = UserVouchar::where('vouchar_code', $request->input('vouchar_code'))->where('user_id', $request->input('user_id'))->count();
-                if($usage > 1){
+                if(count($userVouchar) > 1){
                     return response()->json([
                         'status' => 403,
-                        'messege' => 'maximum usage amount for the vouchar for this user reached'
+                        'messege' => 'Vouchar already added'
                     ], 403);
                 }else{
-                    if($userVouchar > 1){
-                        return response()->json([
-                            'status' => 403,
-                            'messege' => 'Vouchar already added'
-                        ], 403);
-                    }else{
                         UserVouchar::create([
                             'user_id' => $request->input('user_id'),
                             'vouchar_id' => $vouchar[0]->id,
@@ -56,7 +50,7 @@ class UserVoucharController extends Controller
                             'status' => 200,
                             'messege' => 'Vouchar added to this user'
                         ]);
-                    }
+                    
                     
                 }
             }else{
