@@ -20,12 +20,12 @@ class UserVoucharController extends Controller
         ]);
 
         if($validated){
-            $today = Carbon::today();
+           // $today = Carbon::today();
             $vouchar = Vouchar::where('vouchar_code', $request->input('vouchar_code'))->where('validity_end', '>=', $today)->get();
             if(count($vouchar)>0){
-                $usage = Booking::where('vouchar_code', $request->input('vouchar_code'))->where('user_id', $request->input('user_id'))->count();
+               // $usage = Booking::where('vouchar_code', $request->input('vouchar_code'))->where('user_id', $request->input('user_id'))->count();
                 $userVouchar = UserVouchar::where('vouchar_code', $request->input('vouchar_code'))->where('user_id', $request->input('user_id'))->get();
-                if(count($userVouchar) > 1){
+                if(count($userVouchar) > 0){
                     return response()->json([
                         'status' => 403,
                         'messege' => 'Vouchar already added'
