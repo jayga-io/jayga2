@@ -24,7 +24,7 @@ class UserVoucharController extends Controller
             $vouchar = Vouchar::where('vouchar_code', $request->input('vouchar_code'))->where('validity_end', '>=', $today)->get();
             if(count($vouchar)>0){
                 $usage = Booking::where('vouchar_code', $request->input('vouchar_code'))->where('user_id', $request->input('user_id'))->count();
-                $userVouchar = UserVouchar::where('vouchar_code', $request->input('vouchar_code'))->where('user_id', $request->input('user_id'))->count();
+                $userVouchar = UserVouchar::where('vouchar_code', $request->input('vouchar_code'))->where('user_id', $request->input('user_id'))->get();
                 if(count($userVouchar) > 1){
                     return response()->json([
                         'status' => 403,
