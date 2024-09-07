@@ -80,9 +80,10 @@ class ChatsController extends Controller
             });
 
             if(count($all_chats)>0){
+                $result_chats = collect($all_chats);
                 return response()->json([
                     'status' => 200,
-                    'chats' => $all_chats
+                    'chats' => $result_chats
                 ]);
             }else{
                 return response()->json([
