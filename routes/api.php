@@ -223,6 +223,8 @@ Route::post('/send/storage/request', [StorageController::class, 'send_storage_re
 //chats api
 Route::get('/get/chats', [ChatsController::class, 'get_chat']);
 Route::post('/create/chats', [ChatsController::class, 'create_chat']);
+Route::post('/chat/mark-read', [ChatsController::class, 'mark_read']);
+Route::get('/chat/unread-count', [ChatsController::class, 'get_unread_count']);
 
 
 //Notification send
@@ -240,6 +242,7 @@ Route::post('/ispushnotifon', [UserController::class, 'push_notif']);
 //user / Host reviews
 Route::post('/post/review', [UserReviewController::class, 'create']);
 Route::get('/get/host/reviews/{id}', [UserReviewController::class, 'view']);
+
 
 
 //Front side apis
