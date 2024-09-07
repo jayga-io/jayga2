@@ -66,18 +66,23 @@ class ChatsController extends Controller
         ]);
 
         if($validated){
+            $all_chats = [];
           $chat = Chat::where('booking_id', $request->query('booking_id'))
             ->with('user')->with('user.avatars')
             ->with('lister')->with('lister.avatars')
             ->with('listing')
             ->with('booking')
             ->orderBy('created_at', 'DESC')
-            ->get();
+            ->chunk(100, function($chats) use($all_chats){
+                foreach ($chats as $key => $value) {
+                    $all_chats[] = $value;
+                }
+            });
 
-            if(count($chat)>0){
+            if(count($all_chats)>0){
                 return response()->json([
                     'status' => 200,
-                    'chats' => $chat
+                    'chats' => $all_chats
                 ]);
             }else{
                 return response()->json([
@@ -87,6 +92,42 @@ class ChatsController extends Controller
             }
         }else{
             return $validated->errors();
+        }
+    }
+
+    public function mark_read(Request $request){
+        $validated = $request->validate([
+            'user_id' => 'required',
+            'booking_id' => 'required'
+        ]);
+
+        if($validated){
+            Chat::where('user_id', $validated['user_id'])->where('booking_id', $validated['booking_id'])->update([
+                'isRead' => true
+            ]);
+
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Chat marked read'
+            ]);
+        }else{
+            $validated->errors();
+        }
+    }
+
+    public function get_unread_count(Request $request){
+        $validated = $request->validate([
+            'user_id' => 'required'
+        ]);
+
+        if($validated){
+            $unread_count = Chat::where('user_id', $request->query('user_id'))->where('isRead', false)->count();
+            return response()->json([
+                'status' => 200,
+                'unread_chat_count' => $unread_count
+            ]);
+        }else{
+            $validated->errors();
         }
     }
 }

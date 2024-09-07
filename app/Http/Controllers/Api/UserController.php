@@ -185,6 +185,32 @@ class UserController extends Controller
     }
 
     
+    public function push_notif(Request $request){
+        $validated = $request->validate([
+            'user_id' => 'required',
+            'isPushNotif' => 'required|boolean',
+            'FCM_token' => 'string|nullable'
+        ]);
+
+        if($validated){
+            if($validated['isPushNotif'] == true){
+                User::where('id', $validated['user_id'])->update([
+                    'isPushNotif' => $validated['isPushNotif'],
+                    'FCM_token' => $validated['FCM_token']
+                ]);
+            }elseif($validated['isPushNotif'] == false){
+                User::where('id', $validated['user_id'])->update([
+                    'isPushNotif' => $validated['isPushNotif']
+                ]);
+            }
+            return response()->json([
+                'status' => 200,
+                'messege' => 'Push Notification updated'
+            ]);
+        }else{
+            return $validated->errors();
+        }
+    }
 
 
     public function user_delete(Request $request){

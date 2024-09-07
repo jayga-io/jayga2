@@ -66,4 +66,8 @@ class User extends Authenticatable
     public function business_locations(){
         return $this->hasMany(BusinessLocation::class, 'user_id', 'id');
     }
+
+    public function reviews(){
+        return $this->hasMany(UserReview::class, 'user_id', 'id');
+    }
 }
