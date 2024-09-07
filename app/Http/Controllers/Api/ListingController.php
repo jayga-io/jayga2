@@ -633,9 +633,10 @@ class ListingController extends Controller
         });
 
         if(count($all_listings)>0){
+            $result_listings = collect($all_listings);
             return response()->json([
                 'status' => 200,
-                'filtered_listings' => $all_listings
+                'filtered_listings' => $result_listings
             ]);
         }else{
             return response()->json([
