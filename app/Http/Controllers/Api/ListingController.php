@@ -624,13 +624,18 @@ class ListingController extends Controller
         }
 
         
+        $all_listings = [];
 
-        $listings = $query->orderBy('guest_num')->get();
+        $listings = $query->orderBy('guest_num')->chunk(40, function($ls) use($all_listings){
+            foreach ($ls as $key => $value) {
+                $all_listings[] = $ls;
+            }
+        });
 
-        if(count($listings)>0){
+        if(count($all_listings)>0){
             return response()->json([
                 'status' => 200,
-                'filtered_listings' => $listings
+                'filtered_listings' => $all_listings
             ]);
         }else{
             return response()->json([

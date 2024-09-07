@@ -25,6 +25,7 @@ use App\Http\Controllers\Api\UserVoucharController;
 use App\Http\Controllers\Api\StorageController;
 use App\Http\Controllers\Api\ChatsController;
 use App\Http\Controllers\Api\PushnotifController;
+use App\Http\Controllers\Api\UserReviewController;
 
 use App\Http\Controllers\FirebaseController;
 
@@ -222,6 +223,8 @@ Route::post('/send/storage/request', [StorageController::class, 'send_storage_re
 //chats api
 Route::get('/get/chats', [ChatsController::class, 'get_chat']);
 Route::post('/create/chats', [ChatsController::class, 'create_chat']);
+Route::post('/chat/mark-read', [ChatsController::class, 'mark_read']);
+Route::get('/chat/unread-count', [ChatsController::class, 'get_unread_count']);
 
 
 //Notification send
@@ -230,6 +233,16 @@ Route::post('/send/push-notif', [PushnotifController::class, 'send_notif']);
 //Notification read count and mark read
 Route::get('/unread/notif/count', [NotificationController::class, 'get_unread_count']);
 Route::post('/mark/read/notif', [NotificationController::class, 'mark_read']);
+
+
+
+//user push notif on off
+Route::post('/ispushnotifon', [UserController::class, 'push_notif']);
+
+//user / Host reviews
+Route::post('/post/review', [UserReviewController::class, 'create']);
+Route::get('/get/host/reviews/{id}', [UserReviewController::class, 'view']);
+
 
 
 //Front side apis
