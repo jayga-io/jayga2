@@ -626,7 +626,7 @@ class ListingController extends Controller
         
         $all_listings = [];
 
-        $listings = $query->orderBy('guest_num')->chunk(40, function($ls) use($all_listings){
+        $listings = $query->orderBy('guest_num')->chunk(40, function($ls) use(&$all_listings){
             foreach ($ls as $key => $value) {
                 $all_listings[] = $ls;
             }
