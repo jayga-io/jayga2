@@ -73,7 +73,7 @@ class ChatsController extends Controller
             ->with('listing')
             ->with('booking')
             ->orderBy('created_at', 'DESC')
-            ->chunk(100, function($chats) use($all_chats){
+            ->chunk(100, function($chats) use(&$all_chats){
                 foreach ($chats as $key => $value) {
                     $all_chats[] = $value;
                 }
