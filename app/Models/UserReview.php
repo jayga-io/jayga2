@@ -13,4 +13,8 @@ class UserReview extends Model
     public function users(){
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function avatars(){
+        return $this->hasOne(UserPictures::class, 'user_id', 'user_id');
+    }
 }
