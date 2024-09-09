@@ -50,7 +50,7 @@ class UserReviewController extends Controller
                 'avg_rating' => $rounded_avg
             ]);
 
-            $updated_reviews = UserReview::where('host_id', $id)->orderBy('stars')->with('users')->with('users.avatar')->get();
+            $updated_reviews = UserReview::where('host_id', $id)->orderBy('stars')->with('users')->get();
             return response()->json([
                 'status' => 200,
                 
