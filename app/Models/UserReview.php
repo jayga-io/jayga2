@@ -11,6 +11,6 @@ class UserReview extends Model
     protected $guarded = [];
 
     public function users(){
-        return $this->belongsTo(User::class, 'id', 'user_id');
+        return $this->belongsTo(User::class, 'id');
     }
 }
