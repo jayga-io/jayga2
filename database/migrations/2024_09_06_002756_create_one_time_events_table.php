@@ -15,11 +15,16 @@ return new class extends Migration
             $table->id();
             $table->foreignId('host_id')->constrained('users');
             $table->string('event_name');
+            $table->string('event_description');
             $table->string('location');
             $table->date('date');
             $table->time('start_time');
             $table->integer('duration'); // In minutes
             $table->json('ticket_categories'); // Array of ticket categories (name, perks, price)
+            $table->json('attractions');
+            $table->json('perks');
+            $table->json('restrictions');
+            $table->json('photos');
             $table->timestamps();
         });
     }
