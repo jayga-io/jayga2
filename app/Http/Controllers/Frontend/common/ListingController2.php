@@ -104,7 +104,12 @@ class ListingController2 extends Controller
 
     public function single_listing(Request $request, $id){ 
 
-        $ls = Listing::where('listing_id', $id)->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->with('host')->with('booking')->get();
+      
+       
+        $ls = Listing::where('listing_id', $id)->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->with('host')->with('hostdp')->with('booking')->get();
+        $ls_count = Listing::where('lister_id', $ls[0]->lister_id)->count();
+        $bookings_count = BookingHistory::where('lister_id', $ls[0]->lister_id)->count();
+
         $fivestarcount = Reviews::where('listing_id', $id)->where('stars', 5)->count();
         $fourstarcount = Reviews::where('listing_id', $id)->where('stars', 4)->count();
         $threestarcount = Reviews::where('listing_id', $id)->where('stars', 3)->count();
@@ -136,6 +141,8 @@ class ListingController2 extends Controller
             return response()->json([
                 'status' => 200,
                 'listing_details' => $ls,
+                'host_listing_count' => $ls_count,
+                'host_listing_count' => $bookings_count,
                 'star_count' => [
                     'five_stars' => $fivestarcount,
                     'four_stars' => $fourstarcount,
