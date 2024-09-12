@@ -8,6 +8,7 @@ use App\Models\Listing;
 use App\Models\TimeSlotShortstays;
 use App\Models\ListingImages;
 use App\Models\User;
+use App\Models\UserPictures;
 
 class BookingHistory extends Model
 {
@@ -28,5 +29,13 @@ class BookingHistory extends Model
 
     public function user(){
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function lister(){
+        return $this->hasOne(User::class, 'id', 'lister_id');
+    }
+
+    public function listerdp(){
+        return $this->hasOne(UserPictures::class, 'user_id', 'lister_id');
     }
 }

@@ -107,43 +107,44 @@ class ListingController2 extends Controller
 
       
        
-        $ls = Listing::where('listing_id', $id)->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->with('host')->with('hostdp')->with('booking')->get();
-        $ls_count = Listing::where('lister_id', $ls[0]->lister_id)->count();
-        $bookings_count = BookingHistory::where('lister_id', $ls[0]->lister_id)->count();
-
-        $fivestarcount = Reviews::where('listing_id', $id)->where('stars', 5)->count();
-        $fourstarcount = Reviews::where('listing_id', $id)->where('stars', 4)->count();
-        $threestarcount = Reviews::where('listing_id', $id)->where('stars', 3)->count();
-        $twostarcount = Reviews::where('listing_id', $id)->where('stars', 2)->count();
-        $onestarcount = Reviews::where('listing_id', $id)->where('stars', 1)->count();
-        $dis_dates = Booking::where('listing_id', $id)->get();
-        $userunavailables = ListingAvailable::where('listing_id', $id)->get();
-        $dates = [];
-        $userdisabled_dates = [];
+        $ls = Listing::where('listing_id', $id)->with('images')->with('newAmenities.amenity')->with('newRestrictions.restrictions')->with('reviews')->with('host')->with('hostdp')->get();
         
-        foreach ($dis_dates as $key => $value) {
-            array_push($dates, [
-                'checkin' => $value->date_enter,
-                'checkout' => $value->date_exit
-            ]);
-           
-        }
-
-        foreach ($userunavailables as $key => $value) {
-           $userdisabled_dates[] = $value->dates;
-        }
-
        // dd($checkindates);
         if(count($ls)>0){
             $initial_count = Listing::where('listing_id', $id)->get();
             Listing::where('listing_id', $id)->update([
                 'view_count' => $initial_count[0]->view_count + 1
             ]);
+            $ls_count = Listing::where('lister_id', $ls[0]->lister_id)->count();
+            $bookings_count = BookingHistory::where('lister_id', $ls[0]->lister_id)->count();
+
+            $fivestarcount = Reviews::where('listing_id', $id)->where('stars', 5)->count();
+            $fourstarcount = Reviews::where('listing_id', $id)->where('stars', 4)->count();
+            $threestarcount = Reviews::where('listing_id', $id)->where('stars', 3)->count();
+            $twostarcount = Reviews::where('listing_id', $id)->where('stars', 2)->count();
+            $onestarcount = Reviews::where('listing_id', $id)->where('stars', 1)->count();
+            $dis_dates = Booking::where('listing_id', $id)->get();
+            $userunavailables = ListingAvailable::where('listing_id', $id)->get();
+            $dates = [];
+            $userdisabled_dates = [];
+            
+            foreach ($dis_dates as $key => $value) {
+                array_push($dates, [
+                    'checkin' => $value->date_enter,
+                    'checkout' => $value->date_exit
+                ]);
+            
+            }
+
+            foreach ($userunavailables as $key => $value) {
+            $userdisabled_dates[] = $value->dates;
+            }
+
             return response()->json([
                 'status' => 200,
                 'listing_details' => $ls,
                 'host_listing_count' => $ls_count,
-                'host_listing_count' => $bookings_count,
+                'host_booking_count' => $bookings_count,
                 'star_count' => [
                     'five_stars' => $fivestarcount,
                     'four_stars' => $fourstarcount,

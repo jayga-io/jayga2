@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Listing;
 use App\Models\User;
+use App\Models\UserPictures;
 use App\Models\TimeSlotShortstays;
 use App\Models\ListingImages;
 
@@ -28,6 +29,10 @@ class Booking extends Model
 
     public function lister(){
         return $this->hasOne(User::class, 'id', 'lister_id');
+    }
+
+    public function listerdp(){
+        return $this->hasOne(UserPictures::class, 'user_id', 'lister_id');
     }
 
     public function user(){

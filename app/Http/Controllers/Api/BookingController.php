@@ -192,8 +192,8 @@ class BookingController extends Controller
         ]);
 
         if($validated){
-            $bookings = Booking::where('user_id', $request->input('user_id'))->with('listings')->with('listings.images')->with('user')->with('user.avatars')->orderBy('created_at', 'DESC')->get();
-            $past_bookings = BookingHistory::where('user_id', $request->input('user_id'))->with('listings')->with('listings.images')->with('user')->with('user.avatars')->orderBy('created_at', 'DESC')->get();
+            $bookings = Booking::where('user_id', $request->input('user_id'))->with('listings')->with('listings.images')->with('user')->with('user.avatars')->with('lister')->with('listerdp')->orderBy('created_at', 'DESC')->get();
+            $past_bookings = BookingHistory::where('user_id', $request->input('user_id'))->with('listings')->with('listings.images')->with('user')->with('user.avatars')->with('lister')->with('listerdp')->orderBy('created_at', 'DESC')->get();
             
             if(count($bookings)>0 || count($past_bookings)>0){
                 return response()->json([

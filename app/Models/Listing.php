@@ -47,11 +47,11 @@ class Listing extends Model
     }
 
     public function host(){
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'lister_id');
     }
 
     public function hostdp(){
-        return $this->hasOne(UserPictures::class, 'user_id', 'id');
+        return $this->hasOne(UserPictures::class, 'user_id', 'lister_id');
     }
 
     
