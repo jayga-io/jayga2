@@ -51,7 +51,7 @@ class Listing extends Model
     }
 
     public function hostdp(){
-        return $this->hasOne(UserPictures::class, 'id', 'user_id');
+        return $this->hasOne(UserPictures::class, 'user_id', 'id');
     }
 
     
