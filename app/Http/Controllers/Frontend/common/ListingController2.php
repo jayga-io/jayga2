@@ -10,6 +10,7 @@ use App\Models\ListingAmenities;
 use App\Models\ListingRestricts;
 use App\Models\Reviews;
 use App\Models\Booking;
+use App\Models\BookingHistory;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
