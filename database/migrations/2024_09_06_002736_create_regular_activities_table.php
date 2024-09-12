@@ -19,8 +19,12 @@ return new class extends Migration
             $table->integer('duration'); // In minutes
             $table->time('start_time');
             $table->json('available_weekdays'); // Array of weekdays
-            $table->decimal('ticket_price', 8, 2);
+            $table->bigInteger('number_of_tickets');
+            $table->decimal('adult_ticket_price', 8, 2);
+            $table->decimal('child_ticket_price', 8, 2);
             $table->json('ticket_categories')->nullable(); // Optional ticket categories
+            $table->string('max_capacity');
+            $table->string('min_capacity');
             $table->timestamps();
         });
     }

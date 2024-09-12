@@ -13,6 +13,8 @@ use App\Models\Booking;
 use App\Models\Reviews;
 use App\Models\ListingAmenities;
 use App\Models\ListingRestricts;
+use App\Models\User;
+use App\Models\UserPictures;
 
 class Listing extends Model
 {
@@ -45,11 +47,11 @@ class Listing extends Model
     }
 
     public function host(){
-        return $this->belongsTo(User::class, 'id', 'lister_id');
+        return $this->belongsTo(User::class, 'id');
     }
 
     public function hostdp(){
-        return $this->hasOne(User::class, 'id', 'lister_id');
+        return $this->hasOne(UserPictures::class, 'id', 'user_id');
     }
 
     
