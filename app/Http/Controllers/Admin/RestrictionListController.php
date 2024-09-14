@@ -22,6 +22,7 @@ class RestrictionListController extends Controller
          
          RestrictionList::create([
             'restriction_name' => $request->input('restriction_name'),
+            'restriction_type' => $request->input('restriction_type'),
             'restriction_icon' => $path,
          ]);
          return redirect()->back()->with('success', 'Restrictions Added Successfully.');
@@ -42,6 +43,7 @@ class RestrictionListController extends Controller
 
              RestrictionList::where('id', $request->input('restriction_id'))->update([
                 'restriction_name' => $request->input('restriction_name'),
+                'restriction_type' => $request->input('restriction_type'),
                 'restriction_icon' => $path,
              ]);
  
@@ -50,6 +52,7 @@ class RestrictionListController extends Controller
         }else{
             RestrictionList::where('id', $request->input('restriction_id'))->update([
                 'restriction_name' => $request->input('restriction_name'),
+                'restriction_type' => $request->input('restriction_type'),
                 
              ]);
         }
