@@ -15,8 +15,12 @@
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
                         
-                            <label for="restriction_name" class="form-label">Restriction type</label>
-                            <input type="text" name="restriction_type" class="form-control" placeholder="Enter type of the restriction" required>
+                            <label for="restriction_type" class="form-label">Restriction type</label>
+                            <select name="restriction_type" required>
+                                <option value="listing">Listing</option>
+                                <option value="storage">Storage</option>
+                               
+                              </select>
                         
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
