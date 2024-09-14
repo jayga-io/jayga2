@@ -28,7 +28,8 @@ class AmenitiesListController extends Controller
         AmenitiesList::create([
             'amenities_name' => $request->input('amenity_name'),
             'amenities_icon' => $path,
-            'amenities_category' => $request->input('amenities_category')
+            'amenities_category' => $request->input('amenities_category'),
+            'amenity_type' => $request->input('amenity_type')
         ]);
         return redirect()->back()->with('success', 'Amenities Added Successfully.');
     }
@@ -49,14 +50,16 @@ class AmenitiesListController extends Controller
             AmenitiesList::where('id', $request->input('amenity_id'))->update([
                 'amenities_name' => $request->input('amenity_name'),
                 'amenities_icon' => $path,
-                'amenities_category' => $request->input('amenities_category')
+                'amenities_category' => $request->input('amenities_category'),
+                'amenity_type' => $request->input('amenity_type')
             ]);
             
        }else{
         AmenitiesList::where('id', $request->input('amenity_id'))->update([
             'amenities_name' => $request->input('amenity_name'),
             
-            'amenities_category' => $request->input('amenities_category')
+            'amenities_category' => $request->input('amenities_category'),
+            'amenity_type' => $request->input('amenity_type')
         ]);
        }
 

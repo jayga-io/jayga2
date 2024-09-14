@@ -7,18 +7,24 @@
                 <form action="{{ route('createrestriction')}}" method="POST" enctype="multipart/form-data" class="d-flex justify-content-between" >
                     @csrf
                   
-                    <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12">
                         
-                            <label for="amenity_name" class="form-label">Restriction name</label>
+                            <label for="restriction_name" class="form-label">Restriction name</label>
                             <input type="text" name="restriction_name" class="form-control" placeholder="Enter name of the restriction" required>
                         
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        
+                            <label for="restriction_name" class="form-label">Restriction type</label>
+                            <input type="text" name="restriction_type" class="form-control" placeholder="Enter type of the restriction" required>
+                        
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
                         <label for="fileupload">Upload icon</label>
                         <input type="file" class="form-control" name="fileupload" required>
                     </div>
 
-                    <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12">
                         <label for="addbtn">Add Restriction</label>
                         <button class="btn btn-success form-control" type="submit" style="color: white;">Add</button>
                     </div>
