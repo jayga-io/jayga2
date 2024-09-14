@@ -27,7 +27,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-12">
                         
                             <label for="amenity_type" class="form-label">Amenity Type</label>
-                            <select name="amenity_type" required>
+                            <select name="amenity_type" class="form-control" required>
                                 <option value="listing">Listing</option>
                                 <option value="storage">Storage</option>
                                
