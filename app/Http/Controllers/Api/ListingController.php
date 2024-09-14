@@ -180,6 +180,7 @@ class ListingController extends Controller
                     'long' => $request->input('longi'),
                     'listing_type' => $request->input('listing_type'),
                     'video_link' => $request->input('video_link'),
+                    'service_type' => $request->input('service_type') //enum listing or storage
                 ]);
 
                 
