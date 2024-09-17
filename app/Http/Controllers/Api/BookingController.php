@@ -43,7 +43,7 @@ class BookingController extends Controller
             'guest_num' => 'required',
             //'email' => 'required',
             'pay_amount' => 'required',
-            'listing_price' => 'required',
+           // 'listing_price' => 'required',
             'payment_flag' => 'boolean|required',
             
 
@@ -100,7 +100,7 @@ class BookingController extends Controller
                         // 'listing_type' => $request->input('listing_type'),
                             'days_stayed' => $request->input('days_stayed'),
                             'pay_amount' => $request->input('pay_amount'),
-                            'net_payable' => $request->input('listing_price'),
+                            'net_payable' => $listing[0]->full_day_price_set_by_user,
                             'all_day_flag' => $request->input('all_day_flag'),
                             'payment_flag' => $request->input('payment_flag'),
                             'email' => $user[0]->email,
