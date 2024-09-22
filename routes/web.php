@@ -99,9 +99,480 @@ Route::get('/route-cache', function() {
 
 
 
-  // admin section
-Route::prefix('admin')->group(function(){
 
+
+
+
+
+
+Route::get('/payment/success', function(){
+    return view('success');
+});
+
+Route::get('/payment/failure', function(){
+    return view('failed');
+});
+
+Route::get('/back', function(){
+    return redirect(route('home'));
+})->name('backroute');
+
+Route::get('/get-time', function(){
+    echo date('Y-m-d H:i:s');
+});
+
+
+//host 
+Route::prefix('host')->group(function(){
+    //login
+    Route::get('/login', [LoginController::class, 'login']);
+    Route::post('/get-otp', [LoginController::class, 'get_otp'])->name('sendotp');
+    Route::post('/verify', [LoginController::class, 'otpverify'])->name('otpverify');
+    Route::get('/setup', function(){
+        return redirect('/setup/step/2');
+    });
+    
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::prefix('setup')->group(function(){
+    Route::middleware(ensureotp::class)->group(function(){
+        Route::middleware(HasProfile::class)->group(function(){
+            Route::get('/step/1', [HostController::class, 'userform'])->name('step1');
+            Route::get('/step/2', [HostController::class, 'hostypeform'])->name('step2');
+            Route::get('/step/3', [HostController::class, 'listingform'])->name('step3');
+            Route::get('/step/4', [HostController::class, 'listing_info'])->name('step4');
+            Route::get('/step/5', [HostController::class, 'listing_nid'])->name('step5');
+            Route::get('/step/6', [HostController::class, 'amenities'])->name('step6');
+            Route::get('/step/7', [HostController::class, 'restrictions'])->name('step7');
+            Route::get('/step/8', [HostController::class, 'listing_images'])->name('step8');
+            Route::get('/step/9', [HostController::class, 'set_home_address'])->name('step9');
+            Route::get('/step/10', [HostController::class, 'congrats'])->name('step10');
+
+            Route::prefix('form')->group(function(){
+                Route::post('/user/create', [HostController::class, 'user_create'])->name('usercreate');
+                Route::post('/listing/create', [HostController::class, 'create_listing'])->name('listingcreate');
+                Route::post('/listing/info', [HostController::class, 'create_infos'])->name('listinginfo');
+                Route::post('/upload/files', [HostController::class, 'doc_uploads'])->name('uploadfiles');
+                Route::post('/create/amenities', [HostController::class, 'create_amenities'])->name('amenities');
+                Route::post('/create/restrictions', [HostController::class, 'create_restrictions'])->name('restrictions');
+                Route::post('/upload/listing/images', [HostController::class, 'upload_listing_images'])->name('listingimages');
+                Route::post('/set/address', [HostController::class, 'set_address'])->name('setaddress');
+            });
+
+            Route::prefix('update')->group(function(){
+                Route::get('/listing', [HostController::class, 'edit_listing'])->name('correctlisting');
+                Route::get('/infos', [HostController::class, 'edit_infos'])->name('correctinfos');
+                Route::get('/amenities', [HostController::class, 'edit_amenities'])->name('correctamenities');
+                Route::get('/restrictions', [HostController::class, 'edit_restrictions'])->name('correctrestrictions');
+
+
+                Route::post('/listing/confirm', [HostController::class, 'update_listing'])->name('changelisting');
+                Route::post('infos/confirm', [HostController::class, 'update_infos'])->name('changeinfos');
+                Route::post('amenities/confirm', [HostController::class, 'update_amenities'])->name('changeamenities');
+                Route::post('restrictions/confirm', [HostController::class, 'update_restrictions'])->name('changerestrictions');
+                
+            });
+        });
+        
+            
+    });
+
+    
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//user dashboard
+Route::get('/user/unset/{id}', [UsersController::class, 'suspend']);
+Route::prefix('user')->group(function(){
+    
+            Route::get('/dashboard', [ListerDashboardController::class, 'index'])->name('userdash');
+
+            //booking
+            Route::get('/manage/bookings', [ListerDashboardController::class, 'bookings'])->name('managebookings');
+            Route::get('/booking-confirm/{id}', [ListerDashboardController::class, 'confirm'])->name('bookconfirm');
+            Route::get('/booking-deny/{id}', [ListerDashboardController::class, 'deny'])->name('bookdeny');
+            Route::get('/booking-cancel/{id}', [ListerDashboardController::class, 'cancel'])->name('bookcancel');
+            Route::get('/booking-complete/{id}/{amount}', [ListerDashboardController::class, 'complete'])->name('completebooking');
+
+            //profile
+            Route::get('/profile', [ListerUserController::class, 'index'])->name('userprofile');
+            Route::post('/update/profile', [ListerUserController::class, 'create'])->name('createuserprofile');
+
+            // listings
+            Route::get('/listings', [ListerDashboardController::class, 'listings'])->name('alllistings');
+            Route::get('/listing/single-item/{id}', [ListerDashboardController::class, 'edit_listing'])->name('editlisting');
+            Route::post('/update-listing', [ListerDashboardController::class, 'update_listing'])->name('updatelisting');
+            Route::get('/delete/listing/{id}', [ListerDashboardController::class, 'delete'])->name('deletelisting');
+            Route::get('/remove/listing-image/{id}', [ListerDashboardController::class, 'remove_image']);
+
+            //accounts
+            Route::get('/accounts/center', [AccountsController::class, 'accounts'])->name('acccenter');
+            //bank details
+            Route::post('/add/bank', [BankDetailsController::class, 'store'])->name('addbank');
+
+            //withdraw
+            Route::get('/withdraw', [AccountsController::class, 'withdraw'])->name('withdraw')->middleware(HasBankAccount::class);
+            Route::post('/withdraw/confirm', [AccountsController::class, 'withdraw_request'])->name('withdrawconfirm'); Route::get('/dashboard', [ListerDashboardController::class, 'index'])->name('userdash');
+
+            //booking
+            Route::get('/manage/bookings', [ListerDashboardController::class, 'bookings'])->name('managebookings');
+            Route::get('/booking-confirm/{id}', [ListerDashboardController::class, 'confirm'])->name('bookconfirm');
+            Route::get('/booking-deny/{id}', [ListerDashboardController::class, 'deny'])->name('bookdeny');
+            Route::get('/booking-cancel/{id}', [ListerDashboardController::class, 'cancel'])->name('bookcancel');
+            Route::get('/booking-complete/{id}/{amount}', [ListerDashboardController::class, 'complete'])->name('completebooking');
+
+            //profile
+            Route::get('/profile', [ListerUserController::class, 'index'])->name('userprofile');
+            Route::post('/update/profile', [ListerUserController::class, 'create'])->name('createuserprofile');
+
+            // listings
+            Route::get('/listings', [ListerDashboardController::class, 'listings'])->name('alllistings');
+            Route::get('/listing/single-item/{id}', [ListerDashboardController::class, 'edit_listing'])->name('editlisting');
+            Route::post('/update-listing', [ListerDashboardController::class, 'update_listing'])->name('updatelisting');
+            Route::get('/delete/listing/{id}', [ListerDashboardController::class, 'delete'])->name('deletelisting');
+            Route::get('/remove/listing-image/{id}', [ListerDashboardController::class, 'remove_image']);
+
+            //accounts
+            Route::get('/accounts/center', [AccountsController::class, 'accounts'])->name('acccenter');
+            //bank details
+            Route::post('/add/bank', [BankDetailsController::class, 'store'])->name('addbank');
+
+            //withdraw
+            Route::get('/withdraw', [AccountsController::class, 'withdraw'])->name('withdraw')->middleware(HasBankAccount::class);
+            Route::post('/withdraw/confirm', [AccountsController::class, 'withdraw_request'])->name('withdrawconfirm');
+    
+
+    
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // admin section
+
+Route::get('/user/reset/{id}', [UsersController::class, 'unsuspend']);
+  Route::prefix('admin')->group(function(){
     Route::middleware(Adminauth::class)->group(function(){
             Route::get('/', [AdminController::class, 'index'])->name('adminhome');
 
@@ -124,6 +595,7 @@ Route::prefix('admin')->group(function(){
             Route::get('/user/suspend/{id}', [UsersController::class, 'suspend'])->name('suspenduser');
             Route::get('/user/unsuspend/{id}', [UsersController::class, 'unsuspend'])->name('unsuspenduser');
             Route::post('/user/send/messege', [UsersController::class, 'sendMessege'])->name('sendmessege');
+            
 
             //create listing
             Route::post('/create-listing', [ListingController::class, 'create'])->name('createlistingadmin');
@@ -224,6 +696,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/login', [AdminController::class, 'login'])->name('adminlogin');
 
     Route::post('/success', [AdminController::class, 'store'])->name('adminauth');
+
     
     
 
@@ -245,148 +718,137 @@ Route::prefix('admin')->group(function(){
 
 
 
-Route::get('/payment/success', function(){
-    return view('success');
-});
-
-Route::get('/payment/failure', function(){
-    return view('failed');
-});
-
-Route::get('/back', function(){
-    return redirect(route('home'));
-})->name('backroute');
-
-Route::get('/get-time', function(){
-    echo date('Y-m-d H:i:s');
-});
 
 
-//host 
-Route::prefix('host')->group(function(){
-    //login
-    Route::get('/login', [LoginController::class, 'login']);
-    Route::post('/get-otp', [LoginController::class, 'get_otp'])->name('sendotp');
-    Route::post('/verify', [LoginController::class, 'otpverify'])->name('otpverify');
-    Route::get('/setup', function(){
-        return redirect('/setup/step/2');
-    });
-    
-});
-
-Route::prefix('setup')->group(function(){
-    Route::middleware(ensureotp::class)->group(function(){
-        Route::middleware(HasProfile::class)->group(function(){
-            Route::get('/step/1', [HostController::class, 'userform'])->name('step1');
-            Route::get('/step/2', [HostController::class, 'hostypeform'])->name('step2');
-            Route::get('/step/3', [HostController::class, 'listingform'])->name('step3');
-            Route::get('/step/4', [HostController::class, 'listing_info'])->name('step4');
-            Route::get('/step/5', [HostController::class, 'listing_nid'])->name('step5');
-            Route::get('/step/6', [HostController::class, 'amenities'])->name('step6');
-            Route::get('/step/7', [HostController::class, 'restrictions'])->name('step7');
-            Route::get('/step/8', [HostController::class, 'listing_images'])->name('step8');
-            Route::get('/step/9', [HostController::class, 'set_home_address'])->name('step9');
-            Route::get('/step/10', [HostController::class, 'congrats'])->name('step10');
-
-            Route::prefix('form')->group(function(){
-                Route::post('/user/create', [HostController::class, 'user_create'])->name('usercreate');
-                Route::post('/listing/create', [HostController::class, 'create_listing'])->name('listingcreate');
-                Route::post('/listing/info', [HostController::class, 'create_infos'])->name('listinginfo');
-                Route::post('/upload/files', [HostController::class, 'doc_uploads'])->name('uploadfiles');
-                Route::post('/create/amenities', [HostController::class, 'create_amenities'])->name('amenities');
-                Route::post('/create/restrictions', [HostController::class, 'create_restrictions'])->name('restrictions');
-                Route::post('/upload/listing/images', [HostController::class, 'upload_listing_images'])->name('listingimages');
-                Route::post('/set/address', [HostController::class, 'set_address'])->name('setaddress');
-            });
-
-            Route::prefix('update')->group(function(){
-                Route::get('/listing', [HostController::class, 'edit_listing'])->name('correctlisting');
-                Route::get('/infos', [HostController::class, 'edit_infos'])->name('correctinfos');
-                Route::get('/amenities', [HostController::class, 'edit_amenities'])->name('correctamenities');
-                Route::get('/restrictions', [HostController::class, 'edit_restrictions'])->name('correctrestrictions');
 
 
-                Route::post('/listing/confirm', [HostController::class, 'update_listing'])->name('changelisting');
-                Route::post('infos/confirm', [HostController::class, 'update_infos'])->name('changeinfos');
-                Route::post('amenities/confirm', [HostController::class, 'update_amenities'])->name('changeamenities');
-                Route::post('restrictions/confirm', [HostController::class, 'update_restrictions'])->name('changerestrictions');
-                
-            });
-        });
-        
-            
-    });
-
-    
-});
 
 
-//user dashboard
 
-Route::prefix('user')->group(function(){
-    
-            Route::get('/dashboard', [ListerDashboardController::class, 'index'])->name('userdash');
 
-            //booking
-            Route::get('/manage/bookings', [ListerDashboardController::class, 'bookings'])->name('managebookings');
-            Route::get('/booking-confirm/{id}', [ListerDashboardController::class, 'confirm'])->name('bookconfirm');
-            Route::get('/booking-deny/{id}', [ListerDashboardController::class, 'deny'])->name('bookdeny');
-            Route::get('/booking-cancel/{id}', [ListerDashboardController::class, 'cancel'])->name('bookcancel');
-            Route::get('/booking-complete/{id}/{amount}', [ListerDashboardController::class, 'complete'])->name('completebooking');
 
-            //profile
-            Route::get('/profile', [ListerUserController::class, 'index'])->name('userprofile');
-            Route::post('/update/profile', [ListerUserController::class, 'create'])->name('createuserprofile');
 
-            // listings
-            Route::get('/listings', [ListerDashboardController::class, 'listings'])->name('alllistings');
-            Route::get('/listing/single-item/{id}', [ListerDashboardController::class, 'edit_listing'])->name('editlisting');
-            Route::post('/update-listing', [ListerDashboardController::class, 'update_listing'])->name('updatelisting');
-            Route::get('/delete/listing/{id}', [ListerDashboardController::class, 'delete'])->name('deletelisting');
-            Route::get('/remove/listing-image/{id}', [ListerDashboardController::class, 'remove_image']);
 
-            //accounts
-            Route::get('/accounts/center', [AccountsController::class, 'accounts'])->name('acccenter');
-            //bank details
-            Route::post('/add/bank', [BankDetailsController::class, 'store'])->name('addbank');
 
-            //withdraw
-            Route::get('/withdraw', [AccountsController::class, 'withdraw'])->name('withdraw')->middleware(HasBankAccount::class);
-            Route::post('/withdraw/confirm', [AccountsController::class, 'withdraw_request'])->name('withdrawconfirm'); Route::get('/dashboard', [ListerDashboardController::class, 'index'])->name('userdash');
 
-            //booking
-            Route::get('/manage/bookings', [ListerDashboardController::class, 'bookings'])->name('managebookings');
-            Route::get('/booking-confirm/{id}', [ListerDashboardController::class, 'confirm'])->name('bookconfirm');
-            Route::get('/booking-deny/{id}', [ListerDashboardController::class, 'deny'])->name('bookdeny');
-            Route::get('/booking-cancel/{id}', [ListerDashboardController::class, 'cancel'])->name('bookcancel');
-            Route::get('/booking-complete/{id}/{amount}', [ListerDashboardController::class, 'complete'])->name('completebooking');
 
-            //profile
-            Route::get('/profile', [ListerUserController::class, 'index'])->name('userprofile');
-            Route::post('/update/profile', [ListerUserController::class, 'create'])->name('createuserprofile');
 
-            // listings
-            Route::get('/listings', [ListerDashboardController::class, 'listings'])->name('alllistings');
-            Route::get('/listing/single-item/{id}', [ListerDashboardController::class, 'edit_listing'])->name('editlisting');
-            Route::post('/update-listing', [ListerDashboardController::class, 'update_listing'])->name('updatelisting');
-            Route::get('/delete/listing/{id}', [ListerDashboardController::class, 'delete'])->name('deletelisting');
-            Route::get('/remove/listing-image/{id}', [ListerDashboardController::class, 'remove_image']);
 
-            //accounts
-            Route::get('/accounts/center', [AccountsController::class, 'accounts'])->name('acccenter');
-            //bank details
-            Route::post('/add/bank', [BankDetailsController::class, 'store'])->name('addbank');
 
-            //withdraw
-            Route::get('/withdraw', [AccountsController::class, 'withdraw'])->name('withdraw')->middleware(HasBankAccount::class);
-            Route::post('/withdraw/confirm', [AccountsController::class, 'withdraw_request'])->name('withdrawconfirm');
-    
 
-    
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //client section
+Route::get('/users_policy', [UsersController::class, 'user_policies']);
 Route::prefix('client')->group(function(){
     Route::get('/home', [ClientController::class, 'index'])->name('home');
     Route::post('/search', [SearchController::class, 'search'])->name('searchroute');
@@ -426,6 +888,83 @@ Route::get('/logout', function(Request $request){
     $request->session()->flush();
     return redirect('/');
 })->name('logout');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
