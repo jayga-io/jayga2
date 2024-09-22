@@ -6,7 +6,7 @@
             <div class="row  py-5">
                 <form action="{{ route('createamenities')}}" method="POST" class="d-flex justify-content-between" enctype="multipart/form-data">
                     @csrf
-                    <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="col-lg-2 col-md-2 col-sm-12">
                         
                             <label for="amenities_category" class="form-label">Select Category</label>
                             <select name="amenities_category" class="form-control" required>
@@ -18,13 +18,13 @@
                             </select>
                         
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="col-lg-2 col-md-2 col-sm-12">
                         
                             <label for="amenity_name" class="form-label">Amenity name</label>
                             <input type="text" name="amenity_name" class="form-control" placeholder="Enter name of the amenity" required>
                         
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="col-lg-2 col-md-2 col-sm-12">
                         
                             <label for="amenity_type" class="form-label">Amenity Type</label>
                             <select name="amenity_type" class="form-control" required>
@@ -34,12 +34,12 @@
                               </select>
                         
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="col-lg-2 col-md-2 col-sm-12">
                         <label for="fileupload" >Upload icon</label>
                         <input type="file" class="form-control" name="fileupload" required>
                     </div>
 
-                    <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="col-lg-2 col-md-2 col-sm-12">
                         <label for="addbtn" >Add Amenity</label>
                         <button class="btn btn-success form-control" type="submit" style="color: white;">Add</button>
                     </div>
@@ -123,7 +123,10 @@
                                     <option value="entertainment">Entertainment & Relaxation</option>
                                     <option value="security">Safety & Security</option>
                                     <option value="foods">Food & Beverage</option>
-                                    <option value="additional">Additional Services</option>
+                                    <option value="additional services">Additional Services</option>
+                                    <option value="Storage Unit Features">Storage Unit Features</option>
+                                    <option value="Storage Security">Storage Security</option>
+                                    <option value="Additional Storage Services">Additional Storage Services</option>
                                 </select>
                             </div>
                             <div class="col-12 mb-3">
