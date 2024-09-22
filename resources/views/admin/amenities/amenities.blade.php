@@ -10,11 +10,14 @@
                         
                             <label for="amenities_category" class="form-label">Select Category</label>
                             <select name="amenities_category" class="form-control" required>
-                                <option value="accommodation">Accommodation</option>
-                                <option value="entertainment">Entertainment & Relaxation</option>
-                                <option value="security">Safety & Security</option>
-                                <option value="foods">Food & Beverage</option>
-                                <option value="additional">Additional Services</option>
+                                <option value="Accommodation" >Accommodation</option>
+                                    <option value="Entertainment">Entertainment & Relaxation</option>
+                                    <option value="Security">Safety & Security</option>
+                                    <option value="Foods & Beverage">Food & Beverage</option>
+                                    <option value="Additional Services">Additional Services</option>
+                                    <option value="Storage Unit Features">Storage Unit Features</option>
+                                    <option value="Storage Security">Storage Security</option>
+                                    <option value="Additional Storage Services">Additional Storage Services</option>
                             </select>
                         
                     </div>
@@ -119,11 +122,11 @@
                                 <label for="amenitycate" class="form-label">Amenity Category</label>
                                 <select name="amenities_category" id="amenities_cat" class="form-control" required>
                                     <option selected id="opt1"></option>
-                                    <option value="accommodation" >Accommodation</option>
-                                    <option value="entertainment">Entertainment & Relaxation</option>
-                                    <option value="security">Safety & Security</option>
-                                    <option value="foods">Food & Beverage</option>
-                                    <option value="additional services">Additional Services</option>
+                                    <option value="Accommodation" >Accommodation</option>
+                                    <option value="Entertainment">Entertainment & Relaxation</option>
+                                    <option value="Security">Safety & Security</option>
+                                    <option value="Foods & Beverage">Food & Beverage</option>
+                                    <option value="Additional Services">Additional Services</option>
                                     <option value="Storage Unit Features">Storage Unit Features</option>
                                     <option value="Storage Security">Storage Security</option>
                                     <option value="Additional Storage Services">Additional Storage Services</option>
