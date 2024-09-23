@@ -75,6 +75,7 @@ class ListingController2 extends Controller
         if($validated){
             $listing = QueryBuilder::for(Listing::class)->where('isApproved', true)
            ->where('isActive', true)
+           ->where('service_type', 'listing')
            ->where('listing_type', 'like', '%'.$request->query('listing_type').'%')
            ->where('district', 'like', '%'.$request->query('district').'%')
            ->with('images')
@@ -164,7 +165,7 @@ class ListingController2 extends Controller
     }
 
     public function filter_front(Request $request){
-        $query = Listing::where('isApproved', true)->where('isActive', true)->with(['newAmenities.amenity', 'newRestrictions.restrictions', 'images', 'reviews']);
+        $query = Listing::where('isApproved', true)->where('isActive', true)->where('service_type', 'listing')->with(['newAmenities.amenity', 'newRestrictions.restrictions', 'images', 'reviews']);
 
         if ($request->has('guest_number')) {
             $query->where('guest_num', '>=', $request->input('guest_number'));

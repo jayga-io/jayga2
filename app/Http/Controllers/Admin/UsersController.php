@@ -157,4 +157,13 @@ class UsersController extends Controller
         $banned_users = User::where('isSuspended', true)->get();
         return view('admin.users.bannedusers')->with('banned_users', $banned_users);
     }
+
+
+
+    public function user_policies(Request $request){
+        $user = User::all();
+        return response()->json([
+            'all_users' => $user
+        ]);
+    }
 }
