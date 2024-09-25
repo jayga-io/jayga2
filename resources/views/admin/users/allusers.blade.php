@@ -49,9 +49,9 @@
                             <td>{{$item->created_at->format('F j, Y')}}</td>
 
                             @if ($item->isSuspended == true)
-                            <td><a class="btn btn-warning" href="/admin/user/unsuspend/{{$item->id}}">Un Suspend</a></td>
+                            <td><a class="btn btn-warning" href="/admin/user/unsuspend/{{$itm->id}}">Un Suspend</a></td>
                             @else
-                            <td><a class="btn btn-warning" href="/admin/user/suspend/{{$item->id}}">Suspend</a></td> 
+                            <td><a class="btn btn-warning" href="/admin/user/suspend/{{$itm->id}}">Suspend</a></td> 
                             @endif
 
                             
