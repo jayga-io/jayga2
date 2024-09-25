@@ -30,7 +30,7 @@
 							<td>{{$item->description}}</td>
 							<td>{{$item->created_at->diffForHumans()}}</td>
 							
-                            <td><a href="/admin/delete/listing-review/{{$item->review_id}}" class="btn btn-danger">Delete</a></td>
+                            <td><a href="/admin/delete/listing-review/{{$item->reviw_id}}" class="btn btn-danger">Delete</a></td>
 						</tr>
 						<?php $counter++; ?>
 					@endforeach
