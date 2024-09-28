@@ -670,6 +670,7 @@ Route::get('/user/reset/{id}', [UsersController::class, 'unsuspend']);
         Route::get('/show/listing/reviews', [ListingReviewsController::class, 'show_reviews'])->name('showlistingreviews');
         Route::get('/delete/listing-review/{id}', [ListingReviewsController::class, 'delete_reviews'])->name('dellistingreviews');
         
+        Route::get('/logout', [AdminController::class, 'destroy'])->name('adminlogout');
     });
 
     Route::get('/login', [AdminController::class, 'login'])->name('adminlogin');
