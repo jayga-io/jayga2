@@ -49,7 +49,7 @@
                 </div>
                 <a class="dropdown-item" href="profile.php">My Profile</a>
                 <a class="dropdown-item" href="settings.php">Account Settings</a>
-                <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
+                <a class="dropdown-item" href="{{route('adminlogout')}}">Logout</a>
             </div>
         </li>
     </ul>
