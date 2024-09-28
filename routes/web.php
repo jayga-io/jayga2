@@ -863,7 +863,7 @@ Route::prefix('client')->group(function(){
 
  Route::get('/logout', function(Request $request){
     $request->session()->flush();
-    
+    Session(['admin' => 'J@yga2024']);
     return redirect('/');
 })->name('logout');
    

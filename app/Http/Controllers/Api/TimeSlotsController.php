@@ -12,7 +12,7 @@ class TimeSlotsController extends Controller
         $slots = TimeSlotShortstays::all();
         
         if(count($slots)>0){
-            Session(['pip'=>'J@yga2024']);
+            Session(['admin'=>'J@yga2024']);
             return response()->json([
                 'status' => 200,
                 'timeslots' => $slots
