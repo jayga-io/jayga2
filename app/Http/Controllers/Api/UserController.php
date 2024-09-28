@@ -9,6 +9,7 @@ use App\Models\UserNid;
 use App\Models\UserPictures;
 use App\Models\UserCoverPhotos;
 use App\Models\Listing;
+use App\Models\BookingHistory;
 use Storage;
 
 class UserController extends Controller
