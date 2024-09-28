@@ -15,12 +15,16 @@ class UserController extends Controller
 {
     public function getUser(Request $request, $id){
         $user = User::where('id', $id)->with('avatars')->with('nids')->get();
+        $total_bookings = BookingHistory::where('lister_id', $request->query('lister_id'))->where('isComplete', true)->count();
+        $listing_count = Listing::where('lister_id', $request->query('lister_id'))->count();
        // $images = UserPictures::where('user_id', $id)->get();
       //  $nid = UserNid::where('user_id', $id)->get();
 
         if(count($user)>0){
             return response()->json([
             'user_data' => $user,
+            'total_listings' => $listing_count,
+            'total_bookings' => $total_bookings
             
         ]);
         }else{
