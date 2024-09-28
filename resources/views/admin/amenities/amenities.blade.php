@@ -59,6 +59,7 @@
 						<th>id</th>
 						<th>Amenity Name</th>
 						<th>Amenity Category</th>
+                        <th>Amenity Type</th>
 						<th>Amenity icon</th>
 
 						<th>Edit</th>
@@ -73,6 +74,7 @@
 							<td>{{ $counter }}</td>
 							<td>{{ $item->amenities_name }}</td>
 							<td>{{ $item->amenities_category }}</td>
+							<td>{{ $item->amenity_type }}</td>
                             @if ($item->amenities_icon)
                                 <td><img src="https://new.jayga.io/uploads/{{ $item->amenities_icon }}" alt=""></td>
                             @else

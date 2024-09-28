@@ -44,7 +44,7 @@
 					<tr>
 						<th>id</th>
 						<th>Restriction Name</th>
-						
+						<th>Restriction Type</th>
 						<th>Restriction icon</th>
 
 						<th>Delete</th>
@@ -58,6 +58,7 @@
 						<tr>
 							<td>{{ $counter }}</td>
 							<td>{{ $item->restriction_name }}</td>
+							<td>{{ $item->restriction_type }}</td>
 							
                             @if ($item->restriction_icon)
                                 <td><img src="https://new.jayga.io/uploads/{{ $item->restriction_icon }}" alt=""></td>

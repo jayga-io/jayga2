@@ -55,6 +55,7 @@ class ListingController extends Controller
         'zip_code' => $request->input('zip'),
         'allow_short_stay' => $request->input('short_stay'),
         'listing_type' => $request->input('listing_type'),
+        'service_type' => $request->input('service_type')
        ]);
 
        $listing = Listing::where('listing_title', $request->input('listing_title'))->get();
