@@ -469,7 +469,7 @@ class BookingController extends Controller
                 'pay_amount' => $books[0]->pay_amount,
                 'net_payable' => $books[0]->net_payable,
                 'payment_flag' => $books[0]->payment_flag,
-                'booking_status' => $books[0]->booking_status,
+                'booking_status' => 6,
                 'isApproved' => $books[0]->isApproved,
                 'isComplete' => true,
                 'created_on' => date('Y-m-d H:i:s')

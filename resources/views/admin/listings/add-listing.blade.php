@@ -5,6 +5,7 @@
         
             <div class="row">
                 <form class="d-flex  my-3" action="{{route('createlistingadmin')}}" method="POST">
+                    <input type="hidden" value="listing" name="service_type">
 					@csrf
                     <div class="col-md-8">
 

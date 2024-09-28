@@ -71,6 +71,8 @@ class AdminController extends Controller
         $admin = strip_tags($request->input('username'));
         $password = strip_tags($request->input('password'));
 
+        
+
        // $encodedpass = Hash::make($password);
         $admin_exists = Admin::where('admin_name', $admin)->get();
 

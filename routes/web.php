@@ -74,28 +74,7 @@ Route::get('/route-cache', function() {
 
 
 
-  // Clear view cache:
-  
-  Route::get('/view-clear', function() {
-      Artisan::call('view:clear');
-      return 'View cache has been cleared';
-  });
-
-
-  Route::get('/clear/controllers', function(){
-    Artisan::call('remove:controllers');
-    return 'Controllers cleared';
-  });
-
-  Route::get('/clear/models', function(){
-    Artisan::call('remove:models');
-    return 'Models cleared';
-  });
-
-  Route::get('/clear/database', function(){
-    Artisan::call('remove:database');
-    return 'Database cleared';
-  });
+ 
 
 
 
@@ -880,14 +859,18 @@ Route::prefix('client')->group(function(){
    Route::get('/all/listings', [ClientController::class, 'all_listing'])->name('all_listing');
 
  Route::get('/remove/favourite/{id}', [FavouritesController::class, 'remove']);
+
+
+ Route::get('/logout', function(Request $request){
+    $request->session()->flush();
+    
+    return redirect('/');
+})->name('logout');
    
   
 });
 
-Route::get('/logout', function(Request $request){
-    $request->session()->flush();
-    return redirect('/');
-})->name('logout');
+
 
 
 
