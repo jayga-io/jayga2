@@ -547,7 +547,7 @@ class ListingController extends Controller
     public function filtering(Request $request){
        
         $query = Listing::where('isApproved', true)->where('isActive', true)->where('service_type', 'listing')->with(['newAmenities.amenity', 'newRestrictions.restrictions', 'images', 'host', 'hostdp', 'reviews']);
-
+       
         if ($request->has('guest_number')) {
             $query->where('guest_num', '>=', $request->input('guest_number'));
         }
