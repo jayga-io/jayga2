@@ -17,7 +17,7 @@ class Adminauth
     {
         $check = $request->session()->get('admin');
         $pip = $request->session()->get('pip');
-        if(!$check == null && $check === 'J@yga2024' || $pip === 'J@yga2024'){
+        if(!$check == null && $check === 'J@yga2024'){
             return $next($request);
         }else{
             return redirect(route('adminlogin'))->with('warning', 'You are not logged in yet');
