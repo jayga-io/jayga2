@@ -21,17 +21,28 @@ class UserReviewController extends Controller
         if($validated){
             $user = User::where('id', $validated['user_id'])->get();
             $host = User::where('id', $validated['host_id'])->get();
-            UserReview::create([
-                'host_id' => $validated['host_id'],
-                'user_id' => $validated['user_id'],
-                'stars' => $validated['stars'],
-                'messeges' => $validated['messege'],
-                'created_on' => date('Y-m-d H:i:s')
-            ]);
-            return response()->json([
-                'status' => 200,
-                'messege' => 'Review Submitted. Thank you for your feedback'
-            ]);
+            $check = UserReview::where('host_id', $validated['host_id'])->where('user_id', $validated['user_id'])->get();
+            if(count($check)>0){
+
+                return response()->json([
+                    'status' => 403,
+                    'messege' => 'Can not submit multiple reviews'
+                ], 403);
+
+            }else{
+                UserReview::create([
+                    'host_id' => $validated['host_id'],
+                    'user_id' => $validated['user_id'],
+                    'stars' => $validated['stars'],
+                    'messeges' => $validated['messege'],
+                    'created_on' => date('Y-m-d H:i:s')
+                ]);
+                return response()->json([
+                    'status' => 200,
+                    'messege' => 'Review Submitted. Thank you for your feedback'
+                ]);
+            }
+            
         }else{
             return $validated->errors();
         }
