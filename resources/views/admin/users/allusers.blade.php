@@ -13,7 +13,7 @@
                         <th>Email</th>
                         
                         <th>Active Bookings</th>
-                        <th>Joined At</th>
+                        
                         <th>Suspend</th>
                         <th>Contact</th>
                         <th>Delete</th>
@@ -46,16 +46,16 @@
 
                             <td>{{$item->bookings->count()}}</td>
 
-                            <td>{{$item->created_at->format('F j, Y')}}</td>
+                            
 
                             @if ($item->isSuspended == true)
-                            <td><a class="btn btn-warning" href="/admin/user/unsuspend/{{$itm->id}}">Un Suspend</a></td>
+                            <td><a class="btn btn-warning" href="#">Un Suspend</a></td>
                             @else
-                            <td><a class="btn btn-warning" href="/admin/user/suspend/{{$itm->id}}">Suspend</a></td> 
+                            <td><a class="btn btn-warning" href="#">Suspend</a></td> 
                             @endif
 
                             
-                            <td><button class="btn btn-success fs-6" data-toggle="modal" data-target="#exampleModal">Messege</button></td>
+                            <td><button class="btn btn-success fs-6">Messege</button></td>
                             <td><a href="/admin/user/delete/{{$item->id}}" class="btn btn-danger">Delete</a></td>
                         </tr>
                         <?php $counter++; ?>

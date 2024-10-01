@@ -15,7 +15,7 @@ class ReviewController extends Controller
             'listing_id' => 'required',
             
             'stars' => 'required',
-            'review' => 'required',
+            
         ]);
 
         if($validated){

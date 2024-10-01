@@ -37,13 +37,14 @@ class LoginController extends Controller
                             if(count($user)>0){
 
                                 if($user[0]->isSuspended == true){
+                                    Session([ 'client_id' => $user[0]->id ]);
                                     return response()->json([
                                         'status' => 403,
                                         'messege' => 'User account suspended. Please contact with Jayga support'
                                     ], 403);
                                 }else{
                                     User::where('id', $user[0]->id)->update([ 'access_token' => $authToken, 'FCM_token' => $request->input('FCM_token')]);
-                                    
+                                   
                                     return response()->json([
                                         'status' => '200',
                                         'messege' => 'User already exist',
@@ -78,6 +79,7 @@ class LoginController extends Controller
                                 }
                                 
                                 $user = User::where('phone', $request->input('phone'))->orWhere('email', $request->input('phone'))->get();
+                               
                                 return response()->json([
                                     'status' => '200',
                                     'messege' => 'New user registered successfully',
