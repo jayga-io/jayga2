@@ -68,6 +68,16 @@ Route::get('/listings' , [ListingController::class, 'listings']);
 
 Route::post('/filter-listings', [ListingController::class, 'filtering']);
 
+//listing side apis
+Route::prefix('listings')->group(function(){
+    Route::get('/sort', [ListingController2::class, 'listing_sort'])->name('listing_sort'); 
+    Route::post('/filter-listing', [ListingController2::class, 'filter_front'])->name('filterlisting');
+    Route::get('/search-listing', [ListingController2::class, 'search_list'])->name('searchlisting');
+    Route::get('/single-listing/{id}', [ListingController2::class, 'single_listing'])->name('single-listing');
+    
+});
+
+
 
  Route::middleware(CheckValidRequest::class)->group(function() {
             Route::post('/user-nid/upload', [UserController::class, 'nid']);
@@ -255,15 +265,7 @@ Route::post('/filter-listings', [ListingController::class, 'filtering']);
 
             //Front side apis
 
-            //listing side apis
-            Route::prefix('listings')->group(function(){
-                Route::get('/sort', [ListingController2::class, 'listing_sort'])->name('listing_sort'); 
-                Route::post('/filter-listing', [ListingController2::class, 'filter_front'])->name('filterlisting');
-                Route::get('/search-listing', [ListingController2::class, 'search_list'])->name('searchlisting');
-                Route::get('/single-listing/{id}', [ListingController2::class, 'single_listing'])->name('single-listing');
-                
-            });
-
+            
             //user login and details apis
 
             //user info update
