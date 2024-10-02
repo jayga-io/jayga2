@@ -76,6 +76,8 @@ Route::prefix('listings')->group(function(){
     Route::get('/single-listing/{id}', [ListingController2::class, 'single_listing'])->name('single-listing');
     
 });
+//timeslots api
+Route::get('/short-stay/slots', [TimeSlotsController::class, 'timeslots']);
 
 
 
@@ -198,8 +200,7 @@ Route::prefix('listings')->group(function(){
             //location api
             Route::get('/all/districts', [LocationController::class, 'index']);
 
-            //timeslots api
-            Route::get('/short-stay/slots', [TimeSlotsController::class, 'timeslots']);
+            
 
             //feedback
             Route::post('/submit/feedback', [FeedbackController::class, 'create']);
@@ -304,4 +305,7 @@ Route::prefix('listings')->group(function(){
 
 
 });
+
+
+
 
