@@ -79,7 +79,7 @@ Route::prefix('listings')->group(function(){
 
 
 
-// Route::middleware(CheckValidRequest::class)->group(function() {
+ Route::middleware(CheckValidRequest::class)->group(function() {
             Route::post('/user-nid/upload', [UserController::class, 'nid']);
 
             Route::post('/listing-nid/upload', [ListingController::class, 'listing_nid']);
@@ -303,5 +303,5 @@ Route::prefix('listings')->group(function(){
 
 
 
-//});
+});
 
