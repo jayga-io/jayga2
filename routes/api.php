@@ -79,6 +79,15 @@ Route::prefix('listings')->group(function(){
 //timeslots api
 Route::get('/short-stay/slots', [TimeSlotsController::class, 'timeslots']);
 
+//user login and details apis
+
+//user info update
+            Route::prefix('auth')->group(function(){
+                Route::post('/login', [UserloginController::class, 'login'])->name('authuser');
+                Route::post('/otp-verify', [UserloginController::class, 'verify_otp'])->name('otpauthuserverify');
+               
+            });
+
 
 
  Route::middleware(CheckValidRequest::class)->group(function() {
@@ -271,8 +280,7 @@ Route::get('/short-stay/slots', [TimeSlotsController::class, 'timeslots']);
 
             //user info update
             Route::prefix('auth')->group(function(){
-                Route::post('/login', [UserloginController::class, 'login'])->name('authuser');
-                Route::post('/otp-verify', [UserloginController::class, 'verify_otp'])->name('otpauthuserverify');
+               
                 Route::get('/get-user', [UserloginController::class, 'get_user'])->name('fetchuser');
                 Route::post('/update-user', [UserLoginController::class, 'update_user'])->name('update_user');
                 Route::post('/update/user/image', [UserController::class, 'photos'])->name('updateuserimage');
