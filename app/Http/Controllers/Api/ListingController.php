@@ -656,6 +656,8 @@ class ListingController extends Controller
             'admin_pass' => $encodedpass
         ]);
 
+        $request->session()->flush();
+
         return response()->json([
             'messege' => 'Success'
         ]);
