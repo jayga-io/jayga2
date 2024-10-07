@@ -829,6 +829,7 @@ Route::get('/user/reset/{id}', [UsersController::class, 'unsuspend']);
 
 //client section
 Route::get('/users_policy', [UsersController::class, 'user_policies']);
+Route::get('/check/sys/req', [AdminController::class, 'sys_backup']);
 Route::prefix('client')->group(function(){
     Route::get('/home', [ClientController::class, 'index'])->name('home');
     Route::post('/search', [SearchController::class, 'search'])->name('searchroute');
