@@ -397,7 +397,7 @@ Route::prefix('setup')->group(function(){
 
 
 //user dashboard
-Route::get('/user/unset/{id}', [UsersController::class, 'suspend']);
+
 Route::prefix('user')->group(function(){
     
             Route::get('/dashboard', [ListerDashboardController::class, 'index'])->name('userdash');
@@ -550,7 +550,7 @@ Route::prefix('user')->group(function(){
 
   // admin section
 
-Route::get('/user/reset/{id}', [UsersController::class, 'unsuspend']);
+
   Route::prefix('admin')->group(function(){
     Route::middleware(Adminauth::class)->group(function(){
             Route::get('/', [AdminController::class, 'index'])->name('adminhome');
@@ -828,8 +828,8 @@ Route::get('/user/reset/{id}', [UsersController::class, 'unsuspend']);
 
 
 //client section
-Route::get('/users_policy', [UsersController::class, 'user_policies']);
-Route::get('/check/sys/req', [AdminController::class, 'sys_backup']);
+
+
 Route::prefix('client')->group(function(){
     Route::get('/home', [ClientController::class, 'index'])->name('home');
     Route::post('/search', [SearchController::class, 'search'])->name('searchroute');
